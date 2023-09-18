@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Target Name="CreateMdbFile" BeforeTargets="CopyDLLToPlugins" Condition="'$(Configuration)' == 'Debug'">
+    <PropertyGroup>
+      <Pdb2MdbPath Condition="!Exists('$(Pdb2MdbPath)')">$(SolutionDir)pdb2mdb.exe</Pdb2MdbPath>
+    </PropertyGroup>
+    <Message Text="Creating the mdb debug file" Importance="high" Condition="Exists('$(Pdb2MdbPath)')"/>
+    <Delete Files="$(TargetPath).mdb" />
+    <Exec Command="$(Pdb2MdbPath) $(TargetPath)" Condition="Exists('$(Pdb2MdbPath)')"/>
+    <Message Text="Creation succeeded" Importance="high" Condition="'$(MSBuildLastTaskResult)' == 'True' AND Exists('$(TargetPath).mdb')"/>
+  </Target>
+  <Target Name="CopyDLLToPlugins" AfterTargets="Build" Condition="'$(Configuration)' == 'Debug'">
+    <Message Text="Copying DLL file to plugins" Importance="high"/>
+    <PropertyGroup>
+      <PluginsPath Condition="!Exists('$(PluginsPath)')">$(GamePath)\BepInEx\plugins</PluginsPath>
+    </PropertyGroup>
+    <MakeDir Directories="$(PluginsPath)\$(AssemblyName)" />
+    <Message Text="Copying $(TargetFileName) to $(PluginsPath)\$(AssemblyName)" Importance="high" />
+    <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(PluginsPath)\$(AssemblyName)" />
+    <Message Text="Copying $(TargetFileName).mdb to $(PluginsPath)\$(AssemblyName)" Importance="high" Condition="Exists('$(TargetPath).mdb')" />
+    <Copy SourceFiles="$(TargetPath).mdb" DestinationFolder="$(PluginsPath)\$(AssemblyName)" Condition="Exists('$(TargetPath).mdb')" />
+    <Message Text="Copying $(AssemblyName).pdb to $(PluginsPath)\$(AssemblyName)" Importance="high" Condition="Exists('$(TargetDir)$(AssemblyName).pdb')" />
+    <Copy SourceFiles="$(TargetDir)$(AssemblyName).pdb" DestinationFolder="$(PluginsPath)\$(AssemblyName)" Condition="Exists('$(TargetDir)$(AssemblyName).pdb')" />
+    <Message Text="Copy succeeded" Importance="high"/>
+  </Target>
+  <Target Name="CreateNexusPackage" AfterTargets="Build" Condition="'$(Configuration)' == 'Release'">
+    <Message Text="Creating Nexus package" Importance="high"/>
+    <MakeDir Directories="$(ProjectDir)Publish\Nexus" />
+    <Message Text="Copying $(TargetFileName) to $(ProjectDir)Publish\Nexus" Importance="high" />
+    <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(ProjectDir)\Publish\Nexus" />
+    <Message Text="Compressing..." Importance="high" />
+    <Exec Command="powershell.exe -Command &quot;Compress-Archive -Path &apos;$(ProjectDir)Publish\Nexus\*&apos; -DestinationPath &apos;$(ProjectDir)Publish\Nexus\$(AssemblyName).zip&apos;&quot; -Force" Condition="'$(OS)' == 'Windows_NT'" />
+    <Message Text="Nexus package created" Importance="high"/>
+  </Target>
+  <Target Name="CreateThunderStorePackage" AfterTargets="Build" Condition="'$(Configuration)' == 'Release'">
+    <Message Text="Creating ThunderStore package" Importance="high"/>
+    <MakeDir Directories="$(ProjectDir)Publish\ThunderStore" />
+    <Message Text="Copying $(TargetFileName) to $(ProjectDir)Publish\ThunderStore" Importance="high" />
+    <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(ProjectDir)\Publish\ThunderStore" />
+    <Message Text="Copying $(ProjectDir)README.md to $(ProjectDir)Publish\ThunderStore" Importance="high" Condition="Exists('$(ProjectDir)README.md')"/>
+    <Copy SourceFiles="$(ProjectDir)README.md" DestinationFolder="$(ProjectDir)\Publish\ThunderStore" Condition="Exists('$(ProjectDir)README.md')"/>
+    <Message Text="Copying $(SolutionDir)README.md to $(ProjectDir)Publish\ThunderStore" Importance="high" Condition="Exists('$(SolutionDir)README.md') AND !Exists('$(ProjectDir)README.md')"/>
+    <Copy SourceFiles="$(SolutionDir)README.md" DestinationFolder="$(ProjectDir)\Publish\ThunderStore" Condition="Exists('$(SolutionDir)README.md') AND !Exists('$(ProjectDir)README.md')"/>
+    <Message Text="Compressing..." Importance="high" />
+    <Exec Command="powershell.exe -Command &quot;Compress-Archive -Path &apos;$(ProjectDir)Publish\ThunderStore\*&apos; -DestinationPath &apos;$(ProjectDir)Publish\ThunderStore\$(AssemblyName).zip&apos;&quot; -Force" Condition="'$(OS)' == 'Windows_NT'" />
+    <Message Text="ThunderStore package created" Importance="high"/>
+  </Target>
+</Project>
