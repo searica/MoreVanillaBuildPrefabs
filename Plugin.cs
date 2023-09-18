@@ -11,7 +11,7 @@ namespace MoreVanillaBuildPrefabs
     {
         public const string PluginGuid = "searica.valheim.morevanillabuildprefabs";
         public const string PluginName = "MoreVanillaPrefabBuilds";
-        public const string PluginVersion = "0.0.1";
+        public const string PluginVersion = "0.0.2";
 
         Harmony _harmony;
 
