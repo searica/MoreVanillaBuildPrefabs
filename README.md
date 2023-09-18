@@ -80,6 +80,9 @@ If you are having issues with a prefab you would like to build with but it won't
 
 **TLDR:** Some prefabs other than the ones enabled by default may be buggy, please adjust your expectations accordingly.
 
+### Differences from MoreVanillaBuilds by Galathil
+First, MoreVanillaBuilds by Galathil has been archived on Github and has not been updated for Hildir's Request, while this mod was built for Hildir's Request. Second, the code used to allow placing added pieces for MoreVanillaBuilds had the additional effect of bypassing all placement restrictions for all pieces, which mean that it was possible to build pieces in locations that it was not possible to deconstruct them. In contrast, this mod always respect placement restrictions (such as the no build zone at spawn) to prevent issues with being unable to deconstruct pieces by using code based on PotteryBarn.
+
 ### Deconstructing Pieces
 Since this mod adds more prefabs to the hammer, that means you can deconstruct more pieces. Currently the mod is designed so that when you deconstruct world-generate pieces they drop their normal item drops plus some fraction of the additional build resources added to them by this mod (if the prefab is enabled). For pieces that have been built by the player, they will only ever drop the resources used to build them.
 
