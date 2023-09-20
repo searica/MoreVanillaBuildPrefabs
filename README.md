@@ -20,7 +20,7 @@ If you are not using a mod manager then, you need a modded instance of Valheim (
 
 **Recommended:** Install SearsCatalog (https://valheim.thunderstore.io/package/ComfyMods/SearsCatalog/) to extend the hammer build table and allow you to access all the pieces this mod adds even if there are too many added pieces for the vanilla build table.
 
-### Update Notice:
+### Update Notice!
 When updating to version 0.0.3 the mod will generate a new config file as I have changed the naming scheme to be automatic. Once the new config file generates you can just copy paste the contents of your old config file into the new one if you have customized any of the prefabs. My apologies for the inconvience, future updates will not modify the config file name.
 
 ## Configuration
