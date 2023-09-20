@@ -12,7 +12,9 @@ namespace MoreVanillaBuildPrefabs
     public class PrefabAdder
     {
         // keys are piece names and values are prefab names
-        public static Dictionary<string, string> AddedPieces = new Dictionary<string, string>();    
+        public static Dictionary<string, string> AddedPieces = new Dictionary<string, string>();
+
+        public static Dictionary<string, Piece.Requirement[]> DefaultResources = new Dictionary<string, Piece.Requirement[]>();
 
         private static HashSet<string> pieceNameCache = null;
 
@@ -137,9 +139,10 @@ namespace MoreVanillaBuildPrefabs
 
         private static void InitPieceData(GameObject prefab)
         {
-            if (prefab.GetComponent<Piece>() == null)
+            Piece piece = prefab.GetComponent<Piece>();
+            if (piece == null)
             {
-                Piece piece = prefab.AddComponent<Piece>();
+                piece = prefab.AddComponent<Piece>();
                 if (piece != null)
                 {
                     piece.m_groundOnly = false;
@@ -158,6 +161,16 @@ namespace MoreVanillaBuildPrefabs
                     piece.m_repairPiece = false; // setting this to true breaks a lot of pieces
                     piece.m_canBeRemoved = true;
                     piece.m_onlyInBiome = Heightmap.Biome.None;
+                }
+            }
+            else
+            {
+                if (piece.m_resources !=  null)
+                {
+#if DEBUG
+                    Log.LogDebug($"Adding default drops for {prefab.name}");
+#endif
+                    DefaultResources.Add(prefab.name, piece.m_resources);
                 }
             }
         }

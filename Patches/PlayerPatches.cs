@@ -93,30 +93,11 @@ namespace MoreVanillaBuildPrefabs.Patces
 
                 if (clonedPrefab.TryGetComponent(out Humanoid humanoid))
                 {
-                    if (humanoid.m_defaultItems == null)
-                    {
-                        humanoid.m_defaultItems = Array.Empty<GameObject>();
-                    }
-
-                    if (humanoid.m_randomWeapon == null)
-                    {
-                        humanoid.m_randomWeapon = Array.Empty<GameObject>();
-                    }
-
-                    if (humanoid.m_randomArmor == null)
-                    {
-                        humanoid.m_randomArmor = Array.Empty<GameObject>();
-                    }
-
-                    if (humanoid.m_randomShield == null)
-                    {
-                        humanoid.m_randomShield = Array.Empty<GameObject>();
-                    }
-
-                    if (humanoid.m_randomSets == null)
-                    {
-                        humanoid.m_randomSets = Array.Empty<Humanoid.ItemSet>();
-                    }
+                    humanoid.m_defaultItems = Array.Empty<GameObject>();
+                    humanoid.m_randomWeapon = Array.Empty<GameObject>();
+                    humanoid.m_randomArmor ??= Array.Empty<GameObject>();
+                    humanoid.m_randomShield ??= Array.Empty<GameObject>();
+                    humanoid.m_randomSets ??= Array.Empty<Humanoid.ItemSet>();   
                 }
 
                 clonedPrefab.SetActive(true);

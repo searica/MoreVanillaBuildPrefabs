@@ -1,4 +1,5 @@
 ﻿using HarmonyLib;
+using UnityEngine;
 
 namespace MoreVanillaBuildPrefabs.Patches
 {
@@ -10,7 +11,7 @@ namespace MoreVanillaBuildPrefabs.Patches
         static void PieceSetCreatorPrefix(long uid, Piece __instance)
         {
             if (!PluginConfig.IsModEnabled.Value) { return; }
-            
+
             // Synchronize the positions and rotations of otherwise non-persistent objects
             var view = __instance.GetComponent<ZNetView>();
             if (view && !view.m_persistent)
@@ -24,16 +25,18 @@ namespace MoreVanillaBuildPrefabs.Patches
                 }
                 sync.m_syncPosition = true;
                 sync.m_syncRotation = true;
-
-            }            
+            }
         }
 
         [HarmonyPrefix]
         [HarmonyPatch(typeof(Piece), nameof(Piece.DropResources))]
-        static void PieceDropResourcesPrefix(Piece __instance)
+        static void PieceDropResourcesPrefix(Piece __instance, out Piece.Requirement[] __state)
         {
+            __state = null;
             if (!PluginConfig.IsModEnabled.Value) { return; }
-
+#if DEBUG
+            Log.LogInfo($"Custom drop resources for {__instance.gameObject.name}");
+#endif
             // Only interact if it is a piece added by this mod
             if (PrefabAdder.AddedPieces.ContainsKey(__instance.m_name))
             {
@@ -44,18 +47,43 @@ namespace MoreVanillaBuildPrefabs.Patches
                 {
                     Plugin.DisableDestructionDrops = true;
                 }
-                /* Could use a check to disable build resource drops 
-                 * from world-generated pieces via returning false 
-                 * in the harmony prefix patch, but this can prevent 
-                 * them from dropping anything even when they would 
-                 * normally drop something.
-                 * 
-                 * Instead just allow world-generated pieces affected 
-                 * by this mod to drop the configured build resources
-                 * along with their default resources as per vanilla 
-                 * drop rules for non-player built pieces.
-                 */
+                else
+                {
+                    // set drops to defaults and store the current drops
+                    __state = __instance.m_resources;
+                    string prefab_name = RemoveFromEnd(__instance.gameObject.name, "(Clone)");
+                    if (PrefabAdder.DefaultResources.ContainsKey(prefab_name))
+                    {
+                        Log.LogInfo("Resetting drop resources to defaults.");
+                        __instance.m_resources = PrefabAdder.DefaultResources[prefab_name];
+                    }
+                    else
+                    {
+                        foreach (var resource in __instance.m_resources)
+                        {
+                            resource.m_resItem = null;
+                        }
+                    }
+                }
             }
+        }
+
+        [HarmonyPostfix]
+        [HarmonyPatch(typeof(Piece), nameof(Piece.DropResources))]
+        static void PieceDropResourcesPostfix(Piece __instance, Piece.Requirement[] __state)
+        {
+            // restore original drops from before the prefix patch
+            __instance.m_resources = __state;
+        }
+
+        public static string RemoveFromEnd(string s, string suffix)
+        {
+            if (s.EndsWith(suffix))
+            {
+                return s.Substring(0, s.Length - suffix.Length);
+            }
+
+            return s;
         }
     }
 }
