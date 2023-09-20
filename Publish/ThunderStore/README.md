@@ -52,10 +52,10 @@ The rest of the configuration files contains [xxxxxx] sections to configure each
 - CraftingStation =
   - Set the required crafting station. Vanilla crafting station IDs are: piece_workbench | forge | piece_stonecutter | blackforge. Leaving it empty means that it can be built and deconstructed without a crafting station.
 - Requirements =
-  - The requirements to build the prefab. By default, no requirements needed (like creative mod). Each requirement is separated by a semicolon (;). Each requirement contain the itemID and the quantity separated by a comma (,). You can find itemID on Valheim Wiki or on this link : https://valheim-modding.github.io/Jotunn/data/objects/item-list.html. Example : requirements = Wood,5;Stone,2, in this case you need 5 woods and 2 stones to build the prefab
+  - The resources required to build the prefab. Currently only some prefabs have default resource requirements while the rest require no resources. When entering requirements the format is item_id,amount;item_id,amount. Each requirement contain the item_id and the quantity separated by a comma (,). Each requirement is then separated by a semicolon (;).rated by semicolons. You can find itemID on Valheim Wiki or on this link : https://valheim-modding.github.io/Jotunn/data/objects/item-list.html. For example: requirements = Wood,5;Stone,2 would mean the prefab requires 5 wood and 2 stone to build. Finally, you can technically add an arbitrary number of requirements but the vanilla UI does not show more than 4 of them (at least in the crafting menu).
 
 ### Default Prefab Configuration
-The mod comes with a default configuration that sets the crafting requirements for many of the prefab pieces when generating the configuration file. The defaults also enable a number of preconfigured piecces for building. These configurations are based on my preferences and intended to ensure that someone playing with the mod will only unlock various build piecces after encountering them in the world. The default configuration also means that the mod can simply be installed and used immediately to get a sense of how it works. You are of course able to change these default configurations however you please.
+The mod comes with a default configuration that sets the crafting requirements for many of the prefab pieces when generating the configuration file. The defaults also enable a number of pre-configured pieces for building. These configurations are based on my preferences and intended to ensure that someone playing with the mod will only unlock various build pieces after encountering them in the world. The default configuration also means that the mod can simply be installed and used immediately to get a sense of how it works. You are of course able to change these default configurations however you please.
 
 ### Default Enabled Pieces
 <details>
@@ -87,15 +87,19 @@ If you are having issues with a prefab you would like to build with but it won't
 First, MoreVanillaBuilds by Galathil has been archived on Github and has not been updated for Hildir's Request, while this mod was built for Hildir's Request. Second, the code used to allow placing added pieces for MoreVanillaBuilds had the additional effect of bypassing all placement restrictions for all pieces, which meant that it was possible to build pieces in locations that it was not possible to deconstruct them. In contrast, this mod always respect placement restrictions (such as the no build zone at spawn) to prevent issues with being unable to deconstruct pieces by using code based on PotteryBarn.
 
 ### Deconstructing Pieces
-Since this mod adds more prefabs to the hammer, that means you can deconstruct more pieces. As of version 0.0.3, world-generated pieces will only drop their default drops, while player-built piecces will only drop the resources used to build them.
+Since this mod adds more prefabs to the hammer, that means you can deconstruct more pieces. As of version 0.0.3, world-generated pieces will only drop their default drops, while player-built pieces will only drop the resources used to build them.
 
 ### CreatorShop Pieces
-Prefabs set to the custom CreatorShop cateogry on the hammer will behave differently than pieces from other categories with respect to deconstructing them.
+Prefabs set to the custom CreatorShop category on the hammer will behave differently than pieces from other categories with respect to deconstructing them.
 
 Specifically, when a piece is set to the CreatorShop category player's can only deconstruct instances of that piece that they have placed themselves. This prevents player's from deconstructing world-generated prefabs like trees while still allowing you to build and deconstruct player-placed trees. If multiple player's have this mod enabled they can still only deconstruct CreatorShop pieces that they have placed themselves.
 
 ## Known Issues
 Placing armor on the Male Armor Stand and Female Armor Stand prefabs have clipping issues where not all of the armor is displayed. I have not been able to fix this as of yet.
+
+## Planned Improvements
+- Add a configuration option for each prefab that enables a generic collision patch to allow users to possibly fix placing prefabs that have not been custom patched yet.
+- Figure out if I can implement server-sync with this mod so configurations can be enforced on servers.
 
 ## Compatibility
 This is a non-exhaustive list.
@@ -185,4 +189,4 @@ Likely incompatible with other mods that add Vanilla prefabs to the build hammer
 Github: https://github.com/searica/MoreVanillaBuildPrefabs
 
 ### Contributions
-You are welcome to open issues on the Github repository to provide suggestions, feature requests, compatability issues, and bug reports. Over time I will slowly patch more prefabs and hopefully come up with a more generalizable method of patching them, but if you'd really like a specific prefab to work better just open an issue letting me know. I'm a grad student and have a lot of personal responsabilities on top of that so I can't promise I will respond quickly though, but I do intend to maintain and improve the mod in my free time.
+You are welcome to open issues on the Github repository to provide suggestions, feature requests, compatibility issues, and bug reports. Over time I will slowly patch more prefabs and hopefully come up with a more generalizable method of patching them, but if you'd really like a specific prefab to work better just open an issue letting me know. I'm a grad student and have a lot of personal responsibilities on top of that so I can't promise I will respond quickly though, but I do intend to maintain and improve the mod in my free time.
