@@ -58,6 +58,7 @@ namespace MoreVanillaBuildPrefabs
         {
             Log.Init(Logger);
             PluginConfig.Init(Config);
+            PluginConfig.SetUpConfig();
             _harmony = Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), harmonyInstanceId: PluginGuid);
         }
 

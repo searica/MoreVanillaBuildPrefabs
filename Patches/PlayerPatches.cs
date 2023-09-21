@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Reflection.Emit;
 using UnityEngine.EventSystems;
+using Jotunn.Managers;
 
 namespace MoreVanillaBuildPrefabs.Patces
 {
@@ -114,13 +115,21 @@ namespace MoreVanillaBuildPrefabs.Patces
                     // Prevents world generated piece from player removal with build hammer.
                     if (!piece.IsPlacedByPlayer() && Plugin.IsCreatorShopPiece(piece))
                     {
+                        
                         __result = false;
                         return false;
                     }
 
-                    // Prevents player from breaking pottery barn pieces they didn't create themselves.
+                    // Prevents player from breaking pottery barn pieces they didn't
+                    // create themselves unless admin check and config is true.
                     if (Plugin.IsCreatorShopPiece(piece) && !piece.IsCreator())
                     {
+                        // Allow admins to deconstruct CreatorShop pieces built by other players if setting is enabled in config
+                        if (PluginConfig.AdminDeconstructCreatorShop.Value && SynchronizationManager.Instance.PlayerIsAdmin)
+                        {
+                            __result = true;
+                            return true;
+                        }
                         __result = false;
                         return false;
                     }

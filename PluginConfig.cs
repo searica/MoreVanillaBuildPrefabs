@@ -1,6 +1,7 @@
 ﻿using BepInEx.Configuration;
 using Jotunn.Configs;
 using UnityEngine;
+using ServerSync;
 
 
 namespace MoreVanillaBuildPrefabs
@@ -9,42 +10,94 @@ namespace MoreVanillaBuildPrefabs
     {
         private static ConfigFile configFile;
 
+        private static readonly ConfigSync configSync = new(Plugin.PluginGuid)
+        {
+            DisplayName = Plugin.PluginName,
+            CurrentVersion = Plugin.PluginVersion,
+            MinimumRequiredVersion = Plugin.PluginVersion
+        };
+
+        internal static ConfigEntry<T> BindConfig<T>(string group, string name, T value, ConfigDescription description, bool synchronizedSetting = true)
+        {
+            ConfigEntry<T> configEntry = configFile.Bind(group, name, value, description);
+
+            SyncedConfigEntry<T> syncedConfigEntry = configSync.AddConfigEntry(configEntry);
+            syncedConfigEntry.SynchronizedConfig = synchronizedSetting;
+
+            return configEntry;
+        }
+
+        internal static ConfigEntry<bool> BindLockingConfig(string group, string name, bool value, ConfigDescription description, bool synchronizedSetting = true)
+        {
+            ConfigEntry<bool> configEntry = configFile.Bind(group, name, value, description);
+
+            SyncedConfigEntry<bool> syncedConfigEntry = configSync.AddLockingConfigEntry(configEntry);
+            syncedConfigEntry.SynchronizedConfig = synchronizedSetting;
+
+            return configEntry;
+        }
+
+        internal static ConfigEntry<T> BindConfig<T>(string group, string name, T value, string description, bool synchronizedSetting = true) => BindConfig(group, name, value, new ConfigDescription(description), synchronizedSetting);
+
+
         private static readonly string MainSectionName = "_Global";
         public static ConfigEntry<bool> IsModEnabled { get; private set; }
-        private static ConfigEntry<bool> forceAllPrefabs;
-        private static ConfigEntry<bool> verboseMode;
+        public static ConfigEntry<bool> LockConfiguration { get; private set; }
+        internal static ConfigEntry<bool> AdminDeconstructCreatorShop;
+        private static ConfigEntry<bool> ForceAllPrefabs;
+        private static ConfigEntry<bool> VerboseMode;
         private static readonly AcceptableValueList<bool> AcceptableToggleValuesList = new(new bool[]{false, true});
 
         public static void Init(ConfigFile config)
         {
             configFile = config;
+        }
 
-            IsModEnabled = configFile.Bind(
+        public static void SetUpConfig()
+        {
+            IsModEnabled = BindConfig(
                 MainSectionName,
                 "EnableMod",
                 true,
                 new ConfigDescription(
-                    "Globally enable or disable this mod (restart required).", 
+                    "Globally enable or disable this mod (restart required).",
                     AcceptableToggleValuesList
                 )
              );
-
-            forceAllPrefabs = configFile.Bind(
+            LockConfiguration = BindLockingConfig(
+                MainSectionName,
+                "LockConfiguration",
+                true,
+                new ConfigDescription(
+                    "If true, the configuration is locked and can be changed by server admins only.",
+                    AcceptableToggleValuesList
+                )
+            );
+            AdminDeconstructCreatorShop = BindConfig(
+                MainSectionName,
+                "AdminDeconstructCreatorShop",
+                true,
+                new ConfigDescription(
+                    "Set to true to allow admin players to deconstruct any CreatorShop pieces built by players. Intended to prevent greifing via placement of indestructable objects.",
+                    AcceptableToggleValuesList
+                )
+            );
+            ForceAllPrefabs = BindConfig(
                 MainSectionName,
                 "ForceAllPrefabs",
                 false,
                 new ConfigDescription(
-                    "If enabled, adds all prefabs from the configuration file to the hammer based on their current configuration (requirements).", 
+                    "If enabled, adds all prefabs from the configuration file to the hammer based on their current configuration (requirements).",
                     AcceptableToggleValuesList
                 )
             );
 
-            verboseMode = configFile.Bind(
+            VerboseMode = BindConfig(
                 MainSectionName,
                 "VerboseMode",
                 false,
                 new ConfigDescription(
-                    "If enable, print debug informations in console.", 
+                    "If enable, print debug informations in console.",
                     AcceptableToggleValuesList
                 )
             );
@@ -57,12 +110,12 @@ namespace MoreVanillaBuildPrefabs
 
         public static bool IsVerbose()
         {
-            return verboseMode.Value;
+            return VerboseMode.Value;
         }
 
         public static bool IsForceAllPrefabs()
         {
-            return forceAllPrefabs.Value;
+            return ForceAllPrefabs.Value;
         }
 
         public static PrefabDefaults.PrefabConfig LoadPrefabConfig(GameObject prefab)
@@ -71,7 +124,7 @@ namespace MoreVanillaBuildPrefabs
          
             // get predefined configs or generic settings if no predefined config
             PrefabDefaults.PrefabConfig default_config = PrefabDefaults.GetDefaultPrefabConfigValues(prefab.name);
-            default_config.Enabled = configFile.Bind(
+            default_config.Enabled = BindConfig(
                 sectionName, 
                 "Enabled", 
                 default_config.Enabled,
@@ -80,7 +133,7 @@ namespace MoreVanillaBuildPrefabs
                     AcceptableToggleValuesList
                 )
             ).Value;
-            default_config.AllowedInDungeons = configFile.Bind(
+            default_config.AllowedInDungeons = BindConfig(
                 sectionName, 
                 "AllowedInDungeons", 
                 default_config.AllowedInDungeons,
@@ -89,7 +142,7 @@ namespace MoreVanillaBuildPrefabs
                     AcceptableToggleValuesList
                 )
             ).Value;
-            default_config.Category = configFile.Bind(
+            default_config.Category = BindConfig(
                 sectionName, 
                 "Category", 
                 default_config.Category,
@@ -98,10 +151,7 @@ namespace MoreVanillaBuildPrefabs
                     Plugin.HammerCategoryNames.GetAcceptableValueList()
                 )
             ).Value;
-#if DEBUG
-            Log.LogInfo($"Default CraftingStation pre-bind: {default_config.CraftingStation}");
-#endif
-            default_config.CraftingStation = configFile.Bind(
+            default_config.CraftingStation = BindConfig(
                 sectionName, 
                 "CraftingStation", 
                 default_config.CraftingStation,
@@ -110,27 +160,25 @@ namespace MoreVanillaBuildPrefabs
                     CraftingStations.GetAcceptableValueList()
                 )
             ).Value;
-#if DEBUG
-            Log.LogInfo($"Default CraftingStation post-bind: {default_config.CraftingStation}");
-#endif
-            default_config.Requirements = configFile.Bind(
+            default_config.Requirements = BindConfig(
                 sectionName, 
                 "Requirements", 
-                default_config.Requirements
+                default_config.Requirements,
+                "Resources required to build the prefab. Formatted as: itemID,amount;itemID,amount where itemID is the in-game identifier for the resource and amount is an integer. "
             ).Value;
 
             // if the prefab is not already included in the list of prefabs that need a 
             // collision patch then add a config option to enable the placement collision patch.
             if (!PrefabDefaults.NeedsCollisionPatchForGhost.Contains(prefab.name))
             {
-                default_config.PlacementPatch = configFile.Bind(
+                default_config.PlacementPatch = BindConfig(
                     sectionName, 
                     "PlacementPatch", 
                     false, 
                     new ConfigDescription(
                         "Set to true to enable collision patching during placement of the piece.\n" +
-                        "Reccomended to try this if the piece is not appearing when you go to place it." +
-                        " Also if this setting this to true fixes the issue please open an issue on Github " +
+                        "Reccomended to try this if the piece is not appearing when you go to place it.\n\n" +
+                        " If enabling the placement patch via this setting fixes the issue please open an issue on Github" +
                         " letting me know so I can make sure the collision patch is always applied to this piece.", 
                         AcceptableToggleValuesList
                     )

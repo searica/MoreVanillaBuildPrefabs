@@ -9,7 +9,7 @@
     <Exec Command="$(Pdb2MdbPath) $(TargetPath)" Condition="Exists('$(Pdb2MdbPath)')"/>
     <Message Text="Creation succeeded" Importance="high" Condition="'$(MSBuildLastTaskResult)' == 'True' AND Exists('$(TargetPath).mdb')"/>
   </Target>
-  <Target Name="CopyDLLToPlugins" AfterTargets="Build" Condition="'$(Configuration)' == 'Debug'">
+  <Target Name="CopyDLLToPlugins" AfterTargets="ILRepacker" Condition="'$(Configuration)' == 'Debug'">
     <Message Text="Copying DLL file to plugins" Importance="high"/>
     <PropertyGroup>
       <PluginsPath Condition="!Exists('$(PluginsPath)')">$(GamePath)\BepInEx\plugins</PluginsPath>
@@ -23,7 +23,7 @@
     <Copy SourceFiles="$(TargetDir)$(AssemblyName).pdb" DestinationFolder="$(PluginsPath)\$(AssemblyName)" Condition="Exists('$(TargetDir)$(AssemblyName).pdb')" />
     <Message Text="Copy succeeded" Importance="high"/>
   </Target>
-  <Target Name="CreateNexusPackage" AfterTargets="Build" Condition="'$(Configuration)' == 'Release'">
+  <Target Name="CreateNexusPackage" AfterTargets="ILRepacker" Condition="'$(Configuration)' == 'Release'">
     <Message Text="Creating Nexus package" Importance="high"/>
     <MakeDir Directories="$(ProjectDir)Publish\Nexus" />
     <Message Text="Copying $(TargetFileName) to $(ProjectDir)Publish\Nexus" Importance="high" />
@@ -32,7 +32,7 @@
     <Exec Command="powershell.exe -Command &quot;Compress-Archive -Path &apos;$(ProjectDir)Publish\Nexus\*&apos; -DestinationPath &apos;$(ProjectDir)Publish\Nexus\$(AssemblyName).zip&apos;&quot; -Force" Condition="'$(OS)' == 'Windows_NT'" />
     <Message Text="Nexus package created" Importance="high"/>
   </Target>
-  <Target Name="CreateThunderStorePackage" AfterTargets="Build" Condition="'$(Configuration)' == 'Release'">
+  <Target Name="CreateThunderStorePackage" AfterTargets="ILRepacker" Condition="'$(Configuration)' == 'Release'">
     <Message Text="Creating ThunderStore package" Importance="high"/>
     <MakeDir Directories="$(ProjectDir)Publish\ThunderStore" />
     <Message Text="Copying $(TargetFileName) to $(ProjectDir)Publish\ThunderStore" Importance="high" />

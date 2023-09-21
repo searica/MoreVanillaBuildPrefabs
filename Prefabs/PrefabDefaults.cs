@@ -9,13 +9,13 @@ namespace MoreVanillaBuildPrefabs
 
         public struct PrefabConfig
         {
-            
             public bool Enabled;
             public bool AllowedInDungeons;
             public string Category;
             public string CraftingStation;
             public string Requirements;
             public bool PlacementPatch;
+
             public PrefabConfig(
                 bool Enabled = false, 
                 bool AllowedInDungeons = false, 
