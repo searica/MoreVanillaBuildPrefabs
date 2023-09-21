@@ -99,7 +99,11 @@ Placing armor on the Male Armor Stand and Female Armor Stand prefabs have clippi
 
 ## Planned Improvements
 - Add a configuration option for each prefab that enables a generic collision patch to allow users to possibly fix placing prefabs that have not been custom patched yet.
+- Balancing tweaks to current default resource requirements.
+- Patch and enable more prefabs.
+- Add a setting so CreatorShop pieces can always be deconstructed by Server Admins to prevent griefing via placing indestructible unremovable pieces.
 - Figure out if I can implement server-sync with this mod so configurations can be enforced on servers.
+  - Add a setting to restrict building CreatorShop pieces to Server Admins only if I get Server Sync working.
 
 ## Compatibility
 This is a non-exhaustive list.

@@ -12,13 +12,13 @@ namespace MoreVanillaBuildPrefabs
     public class PrefabAdder
     {
         // keys are piece names and values are prefab names
-        public static Dictionary<string, string> AddedPieces = new Dictionary<string, string>();
+        public static Dictionary<string, string> AddedPieces = new();
 
-        public static Dictionary<string, Piece.Requirement[]> DefaultResources = new Dictionary<string, Piece.Requirement[]>();
+        public static Dictionary<string, Piece.Requirement[]> DefaultResources = new();
 
         private static HashSet<string> pieceNameCache = null;
 
-        private static readonly HashSet<string> IgnoredPrefabs = new HashSet<string>() {
+        private static readonly HashSet<string> IgnoredPrefabs = new() {
             "Player",
             "Valkyrie",
             "HelmetOdin",
@@ -33,6 +33,7 @@ namespace MoreVanillaBuildPrefabs
             "odin",
             "dvergrprops_wood_stake",
             "Hildir",
+            "demister_ball"
         };
 
         public static void FindAndRegisterPrefabs()
@@ -196,7 +197,7 @@ namespace MoreVanillaBuildPrefabs
             }
 
             // load config data and create piece config
-            PrefabConfigs.PrefabConfig prefabConfig = PluginConfig.LoadPrefabConfig(prefab);
+            PrefabDefaults.PrefabConfig prefabConfig = PluginConfig.LoadPrefabConfig(prefab);
 
             if (!prefabConfig.Enabled && !PluginConfig.IsForceAllPrefabs())
             {
@@ -223,10 +224,12 @@ namespace MoreVanillaBuildPrefabs
                 foreach (string req in prefabConfig.Requirements.Split(';'))
                 {
                     string[] values = req.Split(',');
-                    RequirementConfig reqConf = new RequirementConfig();
-                    reqConf.Item = values[0].Trim();
-                    reqConf.Amount = int.Parse(values[1].Trim());
-                    reqConf.Recover = true;
+                    RequirementConfig reqConf = new RequirementConfig
+                    {
+                        Item = values[0].Trim(),
+                        Amount = int.Parse(values[1].Trim()),
+                        Recover = true
+                    };
                     pieceConfig.AddRequirement(reqConf);
                 }
             }
@@ -1052,9 +1055,11 @@ namespace MoreVanillaBuildPrefabs
 
         private static Sprite GenerateObjectIcon(GameObject obj)
         {
-            RenderManager.RenderRequest request = new RenderManager.RenderRequest(obj);
-            request.Rotation = RenderManager.IsometricRotation;
-            request.UseCache = true;
+            var request = new RenderManager.RenderRequest(obj)
+            {
+                Rotation = RenderManager.IsometricRotation,
+                UseCache = true
+            };
             return RenderManager.Instance.Render(request);
         }
     }

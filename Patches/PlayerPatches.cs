@@ -57,7 +57,7 @@ namespace MoreVanillaBuildPrefabs.Patces
 
                 if (
                     PrefabAdder.AddedPieces.ContainsValue(selectedPrefab.name) 
-                    && PrefabConfigs.NeedsCollisionPatchForGhost.Contains(selectedPrefab.name)
+                    && PrefabDefaults.NeedsCollisionPatchForGhost.Contains(selectedPrefab.name)
                     )
                 {
                     // Needed to make some things work, like Stalagmite, blackmarble_corner_stair, silvervein, etc.

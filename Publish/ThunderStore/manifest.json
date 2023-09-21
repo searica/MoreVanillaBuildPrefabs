@@ -2,7 +2,7 @@
     "name": "More_Vanilla_Build_Prefabs",
     "author": "Searica",
     "version_number": "0.0.3",
-    "website_url": "https://github.com/searica/ExtraSnapPointsMadeEasy",
+    "website_url": "https://github.com/searica/MoreVanillaBuildPrefabs",
     "description": "Adds configurable vanilla build prefabs to hammer in survival mode with a default configuration for ease of use.",
     "dependencies": [
         "denikson-BepInExPack_Valheim-5.4.2105",

@@ -1,7 +1,12 @@
-﻿using System.Reflection;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 using BepInEx;
+using BepInEx.Configuration;
 using HarmonyLib;
 using Jotunn.Managers;
+
 
 namespace MoreVanillaBuildPrefabs
 {
@@ -23,18 +28,29 @@ namespace MoreVanillaBuildPrefabs
             public static Piece.PieceCategory Building;
             public static Piece.PieceCategory Furniture;
             public static Piece.PieceCategory CreatorShop;
+
+            public static string GetAcceptableValues()
+            {
+                List<Piece.PieceCategory> values = typeof(HammerCategories).GetAllPublicStaticValues<Piece.PieceCategory>();
+                List<string> names = values.Select(x => x.ToString()).ToList(); 
+                return String.Join(" || ", names);
+            }
         }
 
         public static class HammerCategoryNames
         {
-            public static string Misc = "Misc";
-            public static string Crafting = "Crafting";
-            public static string Building = "Building";
-            public static string Furniture = "Furniture";
-            public static string CreatorShop = "CreatorShop";
+            public const string CreatorShop = "CreatorShop";
+            public const string Misc = "Misc";
+            public const string Crafting = "Crafting";
+            public const string Building = "Building";
+            public const string Furniture = "Furniture";
+            
+            public static AcceptableValueList<string> GetAcceptableValueList()
+            {
+                return new AcceptableValueList<string>(typeof(HammerCategoryNames).GetAllPublicConstantValues<string>().ToArray());
+            }
         }
-
-        public static bool _debug = false;
+        
 
         public static bool DisableDestructionDrops { get; set; } = false;
 
@@ -47,6 +63,7 @@ namespace MoreVanillaBuildPrefabs
 
         public void OnDestroy()
         {
+            PluginConfig.Save();
             _harmony?.UnpatchSelf();
         }
 
