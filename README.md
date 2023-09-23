@@ -72,32 +72,31 @@ For each detected prefab in the game you can:
 ### Prefab Configuration Sections:
 The rest of the configuration files contains [xxxxxx] sections to configure each prefab. Each section contains:
 
-**Enabled**
+**Enabled** [Synced with Server, Requires Restart]
 - If true then add the prefab as a buildable piece. Note: this setting is ignored if ForceAllPrefabs is true.
   - Acceptable values: False, True
   - Default value: false
 
-
-**AllowedInDungeons**
+**AllowedInDungeons** [Synced with Server, Requires Restart]
 - If true then this prefab can be built inside dungeon zones.
   - Acceptable values: False, True
   - Default value: false
 
-**Category**
+**Category** [Synced with Server, Requires Restart]
 - A string defining the tab the prefab shows up on in the hammer build table.
   - Acceptable values: CreatorShop, Misc, Crafting, Building, Furniture# Setting type: String
 - Default value: CreatorShop
 
-**CraftingStation**
+**CraftingStation** [Synced with Server, Requires Restart]
 - A string defining the crafting station required to built the prefab.
   - Acceptable values: None, Workbench, Forge, Stonecutter, Cauldron, ArtisanTable, BlackForge, GaldrTable
   - Default value: None
 
-**Requirements**
+**Requirements** [Synced with Server, Requires Restart]
 - Resources required to build the prefab. Formatted as: itemID,amount;itemID,amount where itemID is the in-game identifier for the resource and amount is an integer. You can find itemID on Valheim Wiki or on this [link](https://valheim-modding.github.io/Jotunn/data/objects/item-list.html). Example: Requirements = Wood,5;Stone,2 would mean the prefab requires 5 wood and 2 stone to build.
   - Default value:
 
-**PlacementPatch**
+**PlacementPatch** [Synced with Server, Requires Restart]
 - Set to true to enable collision patching during placement of the piece. Recommended to try this if the piece is not appearing when attempting to place it. (If enabling the placement patch via this setting fixes the issue please open an issue on Github letting me know so I can make sure the collision patch is always applied to this piece.)
   - Acceptable values: False, True
   - Default value: false
@@ -246,6 +245,9 @@ Likely incompatible with other mods that add Vanilla prefabs to the build hammer
 
 ### Source Code
 Github: https://github.com/searica/MoreVanillaBuildPrefabs
+
+## Donations/Tips
+My mods will always be free to use but if you feel like saying thanks you can tip/donate here: https://ko-fi.com/searica
 
 ### Contributions
 You are welcome to open issues on the Github repository to provide suggestions, feature requests, compatibility issues, and bug reports. Over time I will slowly patch more prefabs and hopefully come up with a more generalizable method of patching them, but if you'd really like a specific prefab to work better just open an issue letting me know. I'm a grad student and have a lot of personal responsibilities on top of that so I can't promise I will respond quickly, but I do intend to maintain and improve the mod in my free time.
