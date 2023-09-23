@@ -1,5 +1,5 @@
 # MoreVanillaBuildPrefabs
-MoreVanillaBuildPrefabs is a Valheim mod to make all vanilla prefabs buildable with the hammer (survival way) while allowing you to configure the requirements to build them. It also now has ServerSync!
+MoreVanillaBuildPrefabs is a Valheim mod to make all vanilla prefabs buildable with the hammer (survival way) while allowing you to configure the requirements to build them. It also now has ServerSync! The mod can still be used as a Client-Side mod though.
 
 ### Acknowledgements
 This mod was inspired by MoreVanillaBuilds by Galathil and PotteryBarn by ComfyMods and the core functionality of the code is based on those two mods. Thanks to blaxxun-boop for creating ServerSync.
