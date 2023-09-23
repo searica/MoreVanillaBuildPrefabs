@@ -1,3 +1,6 @@
+### Version 0.1.1
+- Fixed bug caused by incorrect file version in AssemblyInfo.cs
+
 ### Version 0.1.0
 **Big updates**
 - ServerSync has now been implemented.
