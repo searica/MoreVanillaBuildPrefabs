@@ -32,17 +32,29 @@
     <Exec Command="powershell.exe -Command &quot;Compress-Archive -Path &apos;$(ProjectDir)Publish\Nexus\*&apos; -DestinationPath &apos;$(ProjectDir)Publish\Nexus\$(AssemblyName).zip&apos;&quot; -Force" Condition="'$(OS)' == 'Windows_NT'" />
     <Message Text="Nexus package created" Importance="high"/>
   </Target>
-  <Target Name="CreateThunderStorePackage" AfterTargets="ILRepacker" Condition="'$(Configuration)' == 'Release'">
-    <Message Text="Creating ThunderStore package" Importance="high"/>
-    <MakeDir Directories="$(ProjectDir)Publish\ThunderStore" />
-    <Message Text="Copying $(TargetFileName) to $(ProjectDir)Publish\ThunderStore" Importance="high" />
-    <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(ProjectDir)\Publish\ThunderStore" />
-    <Message Text="Copying $(ProjectDir)README.md to $(ProjectDir)Publish\ThunderStore" Importance="high" Condition="Exists('$(ProjectDir)README.md')"/>
-    <Copy SourceFiles="$(ProjectDir)README.md" DestinationFolder="$(ProjectDir)\Publish\ThunderStore" Condition="Exists('$(ProjectDir)README.md')"/>
-    <Message Text="Copying $(SolutionDir)README.md to $(ProjectDir)Publish\ThunderStore" Importance="high" Condition="Exists('$(SolutionDir)README.md') AND !Exists('$(ProjectDir)README.md')"/>
-    <Copy SourceFiles="$(SolutionDir)README.md" DestinationFolder="$(ProjectDir)\Publish\ThunderStore" Condition="Exists('$(SolutionDir)README.md') AND !Exists('$(ProjectDir)README.md')"/>
-    <Message Text="Compressing..." Importance="high" />
-    <Exec Command="powershell.exe -Command &quot;Compress-Archive -Path &apos;$(ProjectDir)Publish\ThunderStore\*&apos; -DestinationPath &apos;$(ProjectDir)Publish\ThunderStore\$(AssemblyName).zip&apos;&quot; -Force" Condition="'$(OS)' == 'Windows_NT'" />
-    <Message Text="ThunderStore package created" Importance="high"/>
-  </Target>
+	<Target Name="CreateThunderStorePackage" AfterTargets="Build" Condition="'$(Configuration)' == 'Release'">
+		<Message Text="Creating ThunderStore package" Importance="high"/>
+		<MakeDir Directories="$(ProjectDir)Publish\ThunderStore" />
+		<Message Text="Copying $(TargetFileName) to $(ProjectDir)Publish\ThunderStore" Importance="high" />
+
+		<Copy SourceFiles="$(TargetPath)" DestinationFolder="$(ProjectDir)\Publish\ThunderStore" />
+		<Message Text="Copying $(ProjectDir)README.md to $(ProjectDir)Publish\ThunderStore" Importance="high" Condition="Exists('$(ProjectDir)README.md')"/>
+		<Copy SourceFiles="$(ProjectDir)README.md" DestinationFolder="$(ProjectDir)\Publish\ThunderStore" Condition="Exists('$(ProjectDir)README.md')"/>
+		<Message Text="Copying $(SolutionDir)README.md to $(ProjectDir)Publish\ThunderStore" Importance="high" Condition="Exists('$(SolutionDir)README.md') AND !Exists('$(ProjectDir)README.md')"/>
+		<Copy SourceFiles="$(SolutionDir)README.md" DestinationFolder="$(ProjectDir)\Publish\ThunderStore" Condition="Exists('$(SolutionDir)README.md') AND !Exists('$(ProjectDir)README.md')"/>
+
+		<Message Text="Copying $(ProjectDir)CHANGELOG.md to $(ProjectDir)Publish\ThunderStore" Importance="high" Condition="Exists('$(ProjectDir)CHANGELOG.md')"/>
+		<Copy SourceFiles="$(ProjectDir)CHANGELOG.md" DestinationFolder="$(ProjectDir)\Publish\ThunderStore" Condition="Exists('$(ProjectDir)CHANGELOG.md')"/>
+		<Message Text="Copying $(SolutionDir)CHANGELOG.md to $(ProjectDir)Publish\ThunderStore" Importance="high" Condition="Exists('$(SolutionDir)CHANGELOG.md') AND !Exists('$(ProjectDir)CHANGELOG.md')"/>
+		<Copy SourceFiles="$(SolutionDir)CHANGELOG.md" DestinationFolder="$(ProjectDir)\Publish\ThunderStore" Condition="Exists('$(SolutionDir)CHANGELOG.md') AND !Exists('$(ProjectDir)CHANGELOG.md')"/>
+
+		<Message Text="Copying $(ProjectDir)manifest.json to $(ProjectDir)Publish\ThunderStore" Importance="high" Condition="Exists('$(ProjectDir)manifest.json')"/>
+		<Copy SourceFiles="$(ProjectDir)manifest.json" DestinationFolder="$(ProjectDir)\Publish\ThunderStore" Condition="Exists('$(ProjectDir)manifest.json')"/>
+		<Message Text="Copying $(SolutionDir)manifest.json to $(ProjectDir)Publish\ThunderStore" Importance="high" Condition="Exists('$(SolutionDir)manifest.json') AND !Exists('$(ProjectDir)manifest.json')"/>
+		<Copy SourceFiles="$(SolutionDir)manifest.json" DestinationFolder="$(ProjectDir)\Publish\ThunderStore" Condition="Exists('$(SolutionDir)manifest.json') AND !Exists('$(ProjectDir)manifest.json')"/>
+
+		<Message Text="Compressing..." Importance="high" />
+		<Exec Command="powershell.exe -Command &quot;Compress-Archive -Path &apos;$(ProjectDir)Publish\ThunderStore\*&apos; -DestinationPath &apos;$(ProjectDir)Publish\ThunderStore\$(AssemblyName).zip&apos;&quot; -Force" Condition="'$(OS)' == 'Windows_NT'" />
+		<Message Text="ThunderStore package created" Importance="high"/>
+	</Target>
 </Project>

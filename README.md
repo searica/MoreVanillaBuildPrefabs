@@ -1,16 +1,14 @@
 # MoreVanillaBuildPrefabs
-MoreVanillaBuildPrefabs is a Valheim mod to make all vanilla prefabs buildable with the hammer (survival way) while allowing you to configure the requirements to build them.
+MoreVanillaBuildPrefabs is a Valheim mod to make all vanilla prefabs buildable with the hammer (survival way) while allowing you to configure the requirements to build them. It also now has ServerSync!
 
 ### Acknowledgements
-This mod was inspired by MoreVanillaBuilds by Galathil and PotteryBarn by ComfyMods and the core functionality of the code is based on those two mods.
+This mod was inspired by MoreVanillaBuilds by Galathil and PotteryBarn by ComfyMods and the core functionality of the code is based on those two mods. Thanks to blaxxun-boop for creating ServerSync.
 
 ## Key Feature
 Because all the added build pieces are pre-existing vanilla prefabs, any pieces you build with this mod will persist in your world even if you uninstall the mod. This means that pieces you build on a server will also be visible for players without the mod and any builds using the pieces from this mod will load for players without the mod.
 
 ## Instructions
-If you are using a mod manager for Thunderstore simply install the mod from there and skip to step 3 below.
-
-If you are not using a mod manager then, you need a modded instance of Valheim (BepInEx) and Jötunn plugin installed.
+If you are using a mod manager for Thunderstore simply install the mod from there and skip to step 3 below. If you are not using a mod manager then, you need a modded instance of Valheim (BepInEx) and the Jötunn plugin installed.
 
 1. Download the MoreVanillaBuildPrefabs.dll from the Publish/Thunderstore directory.
 2. Place the MoreVanillaBuildPrefabs.dll into your BepInEx\plugins folder
@@ -21,7 +19,18 @@ If you are not using a mod manager then, you need a modded instance of Valheim (
 **Recommended:** Install SearsCatalog (https://valheim.thunderstore.io/package/ComfyMods/SearsCatalog/) to extend the hammer build table and allow you to access all the pieces this mod adds even if there are too many added pieces for the vanilla build table.
 
 ### Update Notice!
-When updating to version 0.0.3 the mod will generate a new config file as I have changed the naming scheme to be automatic. Once the new config file generates you can just copy paste the contents of your old config file into the new one if you have customized any of the prefabs. My apologies for the inconvience, future updates will not modify the config file name.
+The configuration options have changed significantly with version 0.1.0. It is recommended to delete your configuration file and regenerate it.
+
+If you have made significant customizations to the configuration file and wish to keep those changes use the following steps:
+- Make a copy of your current configuration file.
+- Delete the original customized configuration file.
+- Generate a new configuration file.
+- Copy/paste the customized entries from your back up to the new configuration file.
+- Edit the required crafting station entry based on the new acceptable values (can use find and replace feature):
+  - piece_workbench -> Workbench
+  - piece_stonecutter -> Stonecutter
+  - forge" -> Forge
+  - blackforge -> BlackForge
 
 ## Configuration
 You need to edit the configuration file with client/server off! If you use an in-game configuration manager, you need to restart the game/server to apply configuration.
@@ -31,31 +40,71 @@ For each detected prefab in the game you can:
 - Define custom recipe to build the prefab in-game.
 - Set the required crafting station to build and deconstruct the prefab.
 - Set whether the prefab is allowed to be built inside of dungeons.
+- Enable a generic placement patch if the piece is behaving strangely when placing it.
 
-### _Global Section Configuration:
-- EnableMod. Default = true.
-  - Globally enable or disable this mod (restart required).
-- forceAllPrefabs. Default = false.
-  - Setting to true overrides individual configuration for all prefabs and enables them all for building with the hammer.
-- verboseMode. Default = false.
-  - You should keep it to false. This configuration displays debug information in the console (and slows down game performances)
+### Global Section Configuration:
+
+**EnableMod** [Synced with Server, Requires Restart]
+- Globally enable or disable this mod (restart required).
+  - Acceptable values: False, True
+  - Default = true
+
+**LockConfiguration** = [Synced with Server]
+- If true, the configuration is locked and can be changed by server admins only.
+  - Acceptable values: False, True
+  - Default value: true
+
+**AdminDeconstructCreatorShop** [Synced with Server]
+- Set to true to allow admin players to deconstruct any CreatorShop pieces built by players. Intended to prevent griefing via placement of indestructible objects.
+  - Acceptable values: False, True
+  - Default value: true
+
+**ForceAllPrefabs** [Synced with Server, Requires Restart]
+- Setting to true overrides individual configuration for all prefabs and enables them all for building with the hammer.
+  - Acceptable values: False, True
+  - Default = false
+
+**VerboseMode** [Synced with Server]
+- You should keep it to false. This configuration displays debug information in the console (and slows down game performance).
+  - Acceptable values: False, True
+  - Default = false.
 
 ### Prefab Configuration Sections:
 The rest of the configuration files contains [xxxxxx] sections to configure each prefab. Each section contains:
 
-- isEnable = false
-  - Change it to true to show the prefab in the hammer. Note that if forceAllPrefabs is set to true, this config is ignored.
-- AllowedInDungeons = false
-  - Whether the piece can be built inside of dungeons, set to true to allow building it in dungeons.
-- Category = CreatorShop
-  - This sets tab the prefab should appear. Vanilla categories are: Misc | Crafting | Building | Furniture. This mod adds a fifth category "CreatorShop", see section on CreatorShop pieces.
-- CraftingStation =
-  - Set the required crafting station. Vanilla crafting station IDs are: piece_workbench | forge | piece_stonecutter | blackforge. Leaving it empty means that it can be built and deconstructed without a crafting station.
-- Requirements =
-  - The resources required to build the prefab. Currently only some prefabs have default resource requirements while the rest require no resources. When entering requirements the format is item_id,amount;item_id,amount. Each requirement contain the item_id and the quantity separated by a comma (,). Each requirement is then separated by a semicolon (;).rated by semicolons. You can find itemID on Valheim Wiki or on this link : https://valheim-modding.github.io/Jotunn/data/objects/item-list.html. For example: requirements = Wood,5;Stone,2 would mean the prefab requires 5 wood and 2 stone to build. Finally, you can technically add an arbitrary number of requirements but the vanilla UI does not show more than 4 of them (at least in the crafting menu).
+**Enabled**
+- If true then add the prefab as a buildable piece. Note: this setting is ignored if ForceAllPrefabs is true.
+  - Acceptable values: False, True
+  - Default value: false
+
+
+**AllowedInDungeons**
+- If true then this prefab can be built inside dungeon zones.
+  - Acceptable values: False, True
+  - Default value: false
+
+**Category**
+- A string defining the tab the prefab shows up on in the hammer build table.
+  - Acceptable values: CreatorShop, Misc, Crafting, Building, Furniture# Setting type: String
+- Default value: CreatorShop
+
+**CraftingStation**
+- A string defining the crafting station required to built the prefab.
+  - Acceptable values: None, Workbench, Forge, Stonecutter, Cauldron, ArtisanTable, BlackForge, GaldrTable
+  - Default value: None
+
+**Requirements**
+- Resources required to build the prefab. Formatted as: itemID,amount;itemID,amount where itemID is the in-game identifier for the resource and amount is an integer. You can find itemID on Valheim Wiki or on this [link](https://valheim-modding.github.io/Jotunn/data/objects/item-list.html). Example: Requirements = Wood,5;Stone,2 would mean the prefab requires 5 wood and 2 stone to build.
+  - Default value:
+
+**PlacementPatch**
+- Set to true to enable collision patching during placement of the piece. Recommended to try this if the piece is not appearing when attempting to place it. (If enabling the placement patch via this setting fixes the issue please open an issue on Github letting me know so I can make sure the collision patch is always applied to this piece.)
+  - Acceptable values: False, True
+  - Default value: false
+  - *Note:* this setting is not available on prefabs that I have already made custom placement patches for.
 
 ### Default Prefab Configuration
-The mod comes with a default configuration that sets the crafting requirements for many of the prefab pieces when generating the configuration file. The defaults also enable a number of pre-configured pieces for building. These configurations are based on my preferences and intended to ensure that someone playing with the mod will only unlock various build pieces after encountering them in the world. The default configuration also means that the mod can simply be installed and used immediately to get a sense of how it works. You are of course able to change these default configurations however you please.
+The mod comes with a default configuration that sets the crafting requirements for many of the prefabs when generating the configuration file. The defaults also enable a number of pre-configured prefabs for building. These configurations are based on my preferences and intended to ensure that someone playing with the mod will only unlock various build pieces after encountering them in the world. The default configuration also means that the mod can simply be installed and used immediately to get a sense of how it works. You are of course able to change these default configurations however you please.
 
 ### Default Enabled Pieces
 <details>
@@ -65,6 +114,7 @@ The mod comes with a default configuration that sets the crafting requirements f
   - All Dvergr furniture.
   - Most Dvergr wooden structures.
   - Dvergr demisters.
+  - Fuling village pieces.
   - Various rocks.
   - Extra furniture and decorations.
   - Turf roofs.
@@ -87,23 +137,28 @@ If you are having issues with a prefab you would like to build with but it won't
 First, MoreVanillaBuilds by Galathil has been archived on Github and has not been updated for Hildir's Request, while this mod was built for Hildir's Request. Second, the code used to allow placing added pieces for MoreVanillaBuilds had the additional effect of bypassing all placement restrictions for all pieces, which meant that it was possible to build pieces in locations that it was not possible to deconstruct them. In contrast, this mod always respect placement restrictions (such as the no build zone at spawn) to prevent issues with being unable to deconstruct pieces by using code based on PotteryBarn.
 
 ### Deconstructing Pieces
-Since this mod adds more prefabs to the hammer, that means you can deconstruct more pieces. As of version 0.0.3, world-generated pieces will only drop their default drops, while player-built pieces will only drop the resources used to build them.
+Since this mod adds more prefabs to the hammer, that means you can deconstruct more pieces. As of version 0.0.3 and all later versions, world-generated pieces will only drop their default drops, while player-built pieces will only drop the resources used to build them.
 
 ### CreatorShop Pieces
 Prefabs set to the custom CreatorShop category on the hammer will behave differently than pieces from other categories with respect to deconstructing them.
 
-Specifically, when a piece is set to the CreatorShop category player's can only deconstruct instances of that piece that they have placed themselves. This prevents player's from deconstructing world-generated prefabs like trees while still allowing you to build and deconstruct player-placed trees. If multiple player's have this mod enabled they can still only deconstruct CreatorShop pieces that they have placed themselves.
+Specifically, when a piece is set to the CreatorShop category player's can only deconstruct instances of that piece that they have placed themselves. This prevents player's from deconstructing world-generated prefabs like trees while still allowing you to build and deconstruct player-placed trees. If multiple player's have this mod enabled they can still only deconstruct CreatorShop pieces that they have placed themselves. If the AdminDeconstructCreatorShop option is set to True, then admins can deconstruct CreatorShop pieces placed by other players.
 
 ## Known Issues
-Placing armor on the Male Armor Stand and Female Armor Stand prefabs have clipping issues where not all of the armor is displayed. I have not been able to fix this as of yet.
+- Placing armor on the Male Armor Stand and Female Armor Stand prefabs have clipping issues where not all of the armor is displayed. I have not been able to fix this as of yet.
+- Collision during placement for some items is not ideal and won't allow automatic snapping to select the bottom of the prefab.
+  - <details>
+  <summary>Click to see a list of specific pieces (contains spoilers.)</summary>
+  - Blackmarble_post01
+  - Dvergr Demister
+  - Dvergr Demsister Large
+</details>
+
 
 ## Planned Improvements
-- Add a configuration option for each prefab that enables a generic collision patch to allow users to possibly fix placing prefabs that have not been custom patched yet.
-- Balancing tweaks to current default resource requirements.
+- Resolve known issues.
 - Patch and enable more prefabs.
-- Add a setting so CreatorShop pieces can always be deconstructed by Server Admins to prevent griefing via placing indestructible unremovable pieces.
-- Figure out if I can implement server-sync with this mod so configurations can be enforced on servers.
-  - Add a setting to restrict building CreatorShop pieces to Server Admins only if I get Server Sync working.
+- Add a setting to restrict building CreatorShop pieces to Server Admins only.
 
 ## Compatibility
 This is a non-exhaustive list.
@@ -193,4 +248,4 @@ Likely incompatible with other mods that add Vanilla prefabs to the build hammer
 Github: https://github.com/searica/MoreVanillaBuildPrefabs
 
 ### Contributions
-You are welcome to open issues on the Github repository to provide suggestions, feature requests, compatibility issues, and bug reports. Over time I will slowly patch more prefabs and hopefully come up with a more generalizable method of patching them, but if you'd really like a specific prefab to work better just open an issue letting me know. I'm a grad student and have a lot of personal responsibilities on top of that so I can't promise I will respond quickly though, but I do intend to maintain and improve the mod in my free time.
+You are welcome to open issues on the Github repository to provide suggestions, feature requests, compatibility issues, and bug reports. Over time I will slowly patch more prefabs and hopefully come up with a more generalizable method of patching them, but if you'd really like a specific prefab to work better just open an issue letting me know. I'm a grad student and have a lot of personal responsibilities on top of that so I can't promise I will respond quickly, but I do intend to maintain and improve the mod in my free time.

@@ -6,16 +6,19 @@
 	<LangVersion>10.0</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
-    <TargetFramework>net481</TargetFramework>
-    <GamePath>C:\Program Files (x86)\Steam\steamapps\common\Valheim</GamePath>
-    <AppDataDir>$([System.Environment]::GetFolderPath(SpecialFolder.ApplicationData))</AppDataDir>
-    <r2ModManPath>$(AppDataDir)\r2modmanPlus-local\Valheim\profiles</r2ModManPath>
-    <PluginsPath>$(r2ModManPath)\Mod-Debug\BepInEx\plugins</PluginsPath>
-    <Pdb2MdbPath>$(SolutionDir)\pdb2mdb.exe</Pdb2MdbPath>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+	<GamePath>C:\Program Files (x86)\Steam\steamapps\common\Valheim_Clean</GamePath>
+	<CorLibPath>$(GamePath)\unstripped_corlib</CorLibPath>
+	<BepInExPath>$(GamePath)\BepInEx\core</BepInExPath>
+	<PublicizedAssembliesPath>$(GamePath)\valheim_Data\Managed\publicized_assemblies</PublicizedAssembliesPath>
+	<AppDataDir>$([System.Environment]::GetFolderPath(SpecialFolder.ApplicationData))</AppDataDir>
+	<r2ModManPath>$(AppDataDir)\r2modmanPlus-local\Valheim\profiles</r2ModManPath>
+	<PluginsPath>$(r2ModManPath)\Mod-Debug\BepInEx\plugins</PluginsPath>
+	<Pdb2MdbPath>$(SolutionDir)\pdb2mdb.exe</Pdb2MdbPath>
   </PropertyGroup>
   <PropertyGroup>
+	<TargetFramework>net481</TargetFramework>
     <OutputType>Library</OutputType>
+	<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -31,19 +34,19 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="0Harmony">
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Valheim - Clean (0.217.14)\BepInEx\core\0Harmony.dll</HintPath>
+      <HintPath>$(BepInExPath)\0Harmony.dll</HintPath>
     </Reference>
     <Reference Include="assembly_guiutils">
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Valheim - Clean (0.217.14)\valheim_Data\Managed\publicized_assemblies\assembly_guiutils_publicized.dll</HintPath>
+      <HintPath>$(PublicizedAssembliesPath)\assembly_guiutils_publicized.dll</HintPath>
     </Reference>
     <Reference Include="assembly_utils">
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Valheim - Clean (0.217.14)\valheim_Data\Managed\publicized_assemblies\assembly_utils_publicized.dll</HintPath>
+      <HintPath>$(PublicizedAssembliesPath)\assembly_utils_publicized.dll</HintPath>
     </Reference>
     <Reference Include="assembly_valheim">
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Valheim - Clean (0.217.14)\valheim_Data\Managed\publicized_assemblies\assembly_valheim_publicized.dll</HintPath>
+      <HintPath>$(PublicizedAssembliesPath)\assembly_valheim_publicized.dll</HintPath>
     </Reference>
     <Reference Include="BepInEx">
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Valheim - Clean (0.217.14)\BepInEx\core\BepInEx.dll</HintPath>
+      <HintPath>$(BepInExPath)\BepInEx.dll</HintPath>
     </Reference>
     <Reference Include="Jotunn">
       <HintPath>..\Libs\Jotunn.dll</HintPath>
@@ -52,19 +55,19 @@
       <HintPath>Libs\ServerSync.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine">
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Valheim - Clean (0.217.14)\unstripped_corlib\UnityEngine.dll</HintPath>
+      <HintPath>$(CorLibPath)\UnityEngine.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AssetBundleModule">
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Valheim - Clean (0.217.14)\unstripped_corlib\UnityEngine.AssetBundleModule.dll</HintPath>
+      <HintPath>$(CorLibPath)\UnityEngine.AssetBundleModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.CoreModule">
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Valheim - Clean (0.217.14)\unstripped_corlib\UnityEngine.CoreModule.dll</HintPath>
+      <HintPath>$(CorLibPath)\UnityEngine.CoreModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.PhysicsModule">
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Valheim - Clean (0.217.14)\unstripped_corlib\UnityEngine.PhysicsModule.dll</HintPath>
+      <HintPath>$(CorLibPath)\UnityEngine.PhysicsModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Valheim - Clean (0.217.14)\unstripped_corlib\UnityEngine.UI.dll</HintPath>
+      <HintPath>$(CorLibPath)\UnityEngine.UI.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

@@ -40,7 +40,7 @@ namespace MoreVanillaBuildPrefabs
         internal static ConfigEntry<T> BindConfig<T>(string group, string name, T value, string description, bool synchronizedSetting = true) => BindConfig(group, name, value, new ConfigDescription(description), synchronizedSetting);
 
 
-        private static readonly string MainSectionName = "_Global";
+        private static readonly string MainSectionName = "\u200BGlobal";
         public static ConfigEntry<bool> IsModEnabled { get; private set; }
         public static ConfigEntry<bool> LockConfiguration { get; private set; }
         internal static ConfigEntry<bool> AdminDeconstructCreatorShop;
@@ -78,7 +78,8 @@ namespace MoreVanillaBuildPrefabs
                 "AdminDeconstructCreatorShop",
                 true,
                 new ConfigDescription(
-                    "Set to true to allow admin players to deconstruct any CreatorShop pieces built by players. Intended to prevent greifing via placement of indestructable objects.",
+                    "Set to true to allow admin players to deconstruct any CreatorShop pieces built by players." +
+                    " Intended to prevent griefing via placement of indestructible objects.",
                     AcceptableToggleValuesList
                 )
             );
