@@ -1,3 +1,6 @@
+### Version 0.1.2
+- Fixed ILRepacker not merging ServerSync assembly when creating Release version of Thunderstore mod package.
+
 ### Version 0.1.1
 - Fixed bug caused by incorrect file version in AssemblyInfo.cs
 
