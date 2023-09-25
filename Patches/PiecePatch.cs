@@ -1,7 +1,7 @@
 ﻿using HarmonyLib;
 using UnityEngine;
 
-namespace MoreVanillaBuildPrefabs.Patches
+namespace MoreVanillaBuildPrefabs
 {
     [HarmonyPatch]
     internal class PiecePatch
@@ -38,7 +38,7 @@ namespace MoreVanillaBuildPrefabs.Patches
             Log.LogInfo($"Custom drop resources for {__instance.gameObject.name}");
 #endif
             // Only interact if it is a piece added by this mod
-            if (PrefabAdder.AddedPieces.ContainsKey(__instance.m_name))
+            if (PrefabHelper.AddedPieces.Contains(__instance.m_name))
             {
                 // disable desctruction drops for player built pieces
                 // prevents things like player built dvergerprops_crate
@@ -52,10 +52,10 @@ namespace MoreVanillaBuildPrefabs.Patches
                     // set drops to defaults and store the current drops
                     __state = __instance.m_resources;
                     string prefab_name = RemoveFromEnd(__instance.gameObject.name, "(Clone)");
-                    if (PrefabAdder.DefaultResources.ContainsKey(prefab_name))
+                    if (PrefabHelper.DefaultResources.ContainsKey(prefab_name))
                     {
                         Log.LogInfo("Resetting drop resources to defaults.");
-                        __instance.m_resources = PrefabAdder.DefaultResources[prefab_name];
+                        __instance.m_resources = PrefabHelper.DefaultResources[prefab_name];
                     }
                     else
                     {

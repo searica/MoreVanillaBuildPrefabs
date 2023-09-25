@@ -4,20 +4,23 @@ using UnityEngine.SceneManagement;
 
 namespace MoreVanillaBuildPrefabs
 {
+    // Switch to using Azumatt piece manager instead of Jotunn?
 
-    [HarmonyPatch]
+    [HarmonyPatch(typeof(ObjectDB))]
     internal class ObjectDBPatch
     {
         // Hook just before Jotunn registers the Pieces
-        [HarmonyPatch(typeof(ObjectDB), "Awake"), HarmonyPrefix]
-        static void ObjectDBAwakePrefix()
+        [HarmonyPrefix]
+        [HarmonyPatch(nameof(ObjectDB.Awake))]
+        static void ObjectDBAwake()
         {
+            Log.LogInfo("ObjectDBAwake()");
             if (PluginConfig.IsModEnabled.Value)
             {
-                if (SceneManager.GetActiveScene().name == "main")
+                if (SceneManager.GetActiveScene().name == "start" && PrefabHelper.AddedPieces.Count != 0)
                 {
-                    Plugin.AddHammerCategories();
-                    PrefabAdder.FindAndRegisterPrefabs();
+                    PrefabHelper.RemoveAddedPrefabs();
+                    Plugin.RemoveHammerCategories();
                 }
             }
         }

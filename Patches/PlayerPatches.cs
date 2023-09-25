@@ -3,10 +3,9 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Reflection.Emit;
-using UnityEngine.EventSystems;
 using Jotunn.Managers;
 
-namespace MoreVanillaBuildPrefabs.Patces
+namespace MoreVanillaBuildPrefabs
 {
     internal class PlayerPatches
     {
@@ -57,7 +56,7 @@ namespace MoreVanillaBuildPrefabs.Patces
                 GameObject clonedPrefab = UnityEngine.Object.Instantiate(selectedPrefab);
 
                 if (
-                    PrefabAdder.AddedPieces.ContainsValue(selectedPrefab.name) 
+                    PrefabHelper.AddedPrefabs.Contains(selectedPrefab.name) 
                     && PrefabDefaults.NeedsCollisionPatchForGhost.Contains(selectedPrefab.name)
                     )
                 {
@@ -115,7 +114,6 @@ namespace MoreVanillaBuildPrefabs.Patces
                     // Prevents world generated piece from player removal with build hammer.
                     if (!piece.IsPlacedByPlayer() && Plugin.IsCreatorShopPiece(piece))
                     {
-                        
                         __result = false;
                         return false;
                     }

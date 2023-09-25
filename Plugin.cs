@@ -59,6 +59,9 @@ namespace MoreVanillaBuildPrefabs
             Log.Init(Logger);
             PluginConfig.Init(Config);
             PluginConfig.SetUpConfig();
+            PrefabManager.OnPrefabsRegistered += AddHammerCategories;
+            PrefabManager.OnPrefabsRegistered += PrefabHelper.FindAndRegisterPrefabs;
+
             _harmony = Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), harmonyInstanceId: PluginGuid);
         }
 
@@ -70,16 +73,24 @@ namespace MoreVanillaBuildPrefabs
 
         public static void AddHammerCategories()
         {
-            HammerCategories.Misc = PieceManager.Instance.AddPieceCategory("_HammerPieceTable", HammerCategoryNames.Misc);
-            HammerCategories.Crafting = PieceManager.Instance.AddPieceCategory("_HammerPieceTable", HammerCategoryNames.Crafting);
-            HammerCategories.Furniture = PieceManager.Instance.AddPieceCategory("_HammerPieceTable", HammerCategoryNames.Furniture);
-            HammerCategories.Building = PieceManager.Instance.AddPieceCategory("_HammerPieceTable", HammerCategoryNames.Building);
+            Log.LogInfo("AddHammerCategories()");
+            //HammerCategories.Misc = PieceManager.Instance.AddPieceCategory("_HammerPieceTable", HammerCategoryNames.Misc);
+            //HammerCategories.Crafting = PieceManager.Instance.AddPieceCategory("_HammerPieceTable", HammerCategoryNames.Crafting);
+            //HammerCategories.Furniture = PieceManager.Instance.AddPieceCategory("_HammerPieceTable", HammerCategoryNames.Furniture);
+            //HammerCategories.Building = PieceManager.Instance.AddPieceCategory("_HammerPieceTable", HammerCategoryNames.Building);
             HammerCategories.CreatorShop = PieceManager.Instance.AddPieceCategory("_HammerPieceTable", HammerCategoryNames.CreatorShop);
+            //PrefabManager.OnPrefabsRegistered -= AddHammerCategories;
+        }
+
+        public static void RemoveHammerCategories()
+        {
+            Log.LogInfo("RemoveHammerCategories");
+            PieceManager.Instance.RemovePieceCategory("_HammerPieceTable", HammerCategoryNames.CreatorShop);
         }
 
         public static bool IsCreatorShopPiece(Piece piece)
         {
-            if (PrefabAdder.AddedPieces.ContainsKey(piece.m_name))
+            if (PrefabHelper.AddedPieces.Contains(piece.m_name))
             {
                 if (piece.m_category == HammerCategories.CreatorShop)
                 {

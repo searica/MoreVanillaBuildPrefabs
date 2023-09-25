@@ -3,6 +3,7 @@
 
 ### Version 0.1.1
 - Fixed bug caused by incorrect file version in AssemblyInfo.cs
+- Thanks to BLUBBSON for letting me know about the bug.
 
 ### Version 0.1.0
 **Big updates**

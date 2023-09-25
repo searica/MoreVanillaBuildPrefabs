@@ -9,14 +9,15 @@ using UnityEngine;
 
 namespace MoreVanillaBuildPrefabs
 {
-    public class PrefabAdder
+    public class PrefabHelper
     {
         // keys are piece names and values are prefab names
-        public static Dictionary<string, string> AddedPieces = new();
+        public static HashSet<string> AddedPieces = new();
+        public static HashSet<string> AddedPrefabs = new();
 
         public static Dictionary<string, Piece.Requirement[]> DefaultResources = new();
 
-        private static HashSet<string> pieceNameCache = null;
+        private static HashSet<string> PieceNameCache = null;
 
         private static readonly HashSet<string> IgnoredPrefabs = new() {
             "Player",
@@ -39,20 +40,55 @@ namespace MoreVanillaBuildPrefabs
         public static void FindAndRegisterPrefabs()
         {
             Log.LogInfo("FindAndRegisterPrefabs()");
+            PieceNameCache = GetExistingPieceNames();
+
             ZNetScene.instance.m_prefabs
             .Where(go => go.transform.parent == null && !ShouldIgnorePrefab(go))
             .OrderBy(go => go.name)
             .ToList()
             .ForEach(CreatePrefabPiece);
             PluginConfig.Save();
+            Log.LogInfo($"Added {AddedPieces.Count} pieces");
+            //PrefabManager.OnPrefabsRegistered -= FindAndRegisterPrefabs;
+        }
+
+        public static void RemoveAddedPrefabs()
+        {
+            Log.LogInfo("RemoveAddedPrefabs()");
+            int removedCounter = 0;
+            foreach (var name in AddedPrefabs)
+            {
+#if DEBUG
+                Log.LogInfo($"Attempting to remove: {name}");
+#endif
+                try
+                {
+                    PieceManager.Instance.RemovePiece(name);
+                    removedCounter++;
+                }
+                catch (Exception e)
+                {
+#if DEBUG
+                    Log.LogInfo($"{name}: {e}");
+#endif
+                }
+            }
+            AddedPieces.Clear();
+            AddedPrefabs.Clear();
+            DefaultResources.Clear();
+            PieceNameCache = null;
+            Log.LogInfo($"Removed {removedCounter} custom pieces");
         }
 
         private static bool ShouldIgnorePrefab(GameObject prefab)
         {
             // Ignore existing pieces
-            HashSet<string> prefabsToSkip = GetExistingPieceNames();
-            if (prefabsToSkip.Contains(prefab.name))
+            if (PieceNameCache == null)
             {
+                throw new Exception("PieceNameCache is null");
+            }
+            else if (PieceNameCache.Contains(prefab.name))
+            { 
                 return true;
             }
 
@@ -67,6 +103,12 @@ namespace MoreVanillaBuildPrefabs
             {
                 return true;
             }
+
+            //fix crash on re-logging
+            //if (AddedPieces.ContainsValue(prefab.name))
+            //{
+            //    return true;
+            //}
 
             // Customs filters
             if (prefab.GetComponent("Projectile") != null ||
@@ -116,15 +158,15 @@ namespace MoreVanillaBuildPrefabs
         //  - PieceTable.m_pieces
         private static HashSet<string> GetExistingPieceNames()
         {
-            if (pieceNameCache == null)
+            if (PieceNameCache == null)
             {
                 var result = Resources.FindObjectsOfTypeAll<PieceTable>()
                   .SelectMany(pieceTable => pieceTable.m_pieces)
                   .Select(piece => piece.name);
 
-                pieceNameCache = new HashSet<string>(result);
+                PieceNameCache = new HashSet<string>(result);
             }
-            return pieceNameCache;
+            return PieceNameCache;
         }
 
         private static bool EnsureNoDuplicateZNetView(GameObject prefab)
@@ -236,7 +278,8 @@ namespace MoreVanillaBuildPrefabs
 
             var piece = new CustomPiece(prefab, true, pieceConfig);
             PieceManager.Instance.AddPiece(piece);
-            AddedPieces.Add(pieceConfig.Name, prefab.name);
+            AddedPieces.Add(pieceConfig.Name);
+            AddedPrefabs.Add(prefab.name);
         }
 
         /*

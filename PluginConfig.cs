@@ -64,6 +64,7 @@ namespace MoreVanillaBuildPrefabs
                     AcceptableToggleValuesList
                 )
              );
+
             LockConfiguration = BindLockingConfig(
                 MainSectionName,
                 "LockConfiguration",
@@ -73,6 +74,7 @@ namespace MoreVanillaBuildPrefabs
                     AcceptableToggleValuesList
                 )
             );
+
             AdminDeconstructCreatorShop = BindConfig(
                 MainSectionName,
                 "AdminDeconstructCreatorShop",
@@ -83,6 +85,7 @@ namespace MoreVanillaBuildPrefabs
                     AcceptableToggleValuesList
                 )
             );
+
             ForceAllPrefabs = BindConfig(
                 MainSectionName,
                 "ForceAllPrefabs",
