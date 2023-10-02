@@ -77,7 +77,7 @@ namespace MoreVanillaBuildPrefabs
 
         public static void RemoveHammerCategories()
         {
-            Log.LogInfo("RemoveHammerCategories");
+            Log.LogInfo("RemoveHammerCategories()");
             PieceManager.Instance.RemovePieceCategory("_HammerPieceTable", HammerCategoryNames.CreatorShop);
         }
 
