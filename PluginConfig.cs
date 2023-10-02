@@ -96,10 +96,14 @@ namespace MoreVanillaBuildPrefabs
                 )
             );
 
+            bool verbose = false;
+#if DEBUG
+            verbose = true;
+#endif
             VerboseMode = BindConfig(
                 MainSectionName,
                 "VerboseMode",
-                false,
+                verbose,
                 new ConfigDescription(
                     "If enable, print debug informations in console.",
                     AcceptableToggleValuesList

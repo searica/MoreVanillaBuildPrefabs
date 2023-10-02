@@ -34,7 +34,11 @@ namespace MoreVanillaBuildPrefabs
             "odin",
             "dvergrprops_wood_stake",
             "Hildir",
-            "demister_ball"
+            "demister_ball",
+            // crashes on relogging
+            "blackmarble_tile_wall_1x1",
+            "blackmarble_tile_wall_2x2",
+            "blackmarble_tile_wall_2x4"
         };
 
         public static void FindAndRegisterPrefabs()
@@ -49,7 +53,7 @@ namespace MoreVanillaBuildPrefabs
             .ForEach(CreatePrefabPiece);
             PluginConfig.Save();
             Log.LogInfo($"Added {AddedPieces.Count} pieces");
-            //PrefabManager.OnPrefabsRegistered -= FindAndRegisterPrefabs;
+            PrefabManager.OnPrefabsRegistered -= FindAndRegisterPrefabs;
         }
 
         public static void RemoveAddedPrefabs()
@@ -58,12 +62,14 @@ namespace MoreVanillaBuildPrefabs
             int removedCounter = 0;
             foreach (var name in AddedPrefabs)
             {
+                // removing them doesn't seem to actually work properly
 #if DEBUG
                 Log.LogInfo($"Attempting to remove: {name}");
 #endif
                 try
                 {
                     PieceManager.Instance.RemovePiece(name);
+                    //PieceManager.Instance.GetPieceTable("_HammerPieceTable");
                     removedCounter++;
                 }
                 catch (Exception e)
@@ -204,6 +210,10 @@ namespace MoreVanillaBuildPrefabs
                     piece.m_repairPiece = false; // setting this to true breaks a lot of pieces
                     piece.m_canBeRemoved = true;
                     piece.m_onlyInBiome = Heightmap.Biome.None;
+                    if (PluginConfig.IsVerbose())
+                    {
+                        Log.LogInfo($"Creating Piece for: {prefab.name}");
+                    }
                 }
             }
             else
@@ -228,15 +238,6 @@ namespace MoreVanillaBuildPrefabs
                 }
                 return;
             }
-            
-            if (PluginConfig.IsVerbose())
-            {
-                Log.LogInfo("Initialize '" + prefab.name + "'");
-                foreach (Component compo in prefab.GetComponents<Component>())
-                {
-                    Log.LogInfo("  - " + compo.GetType().Name);
-                }
-            }
 
             // load config data and create piece config
             PrefabDefaults.PrefabConfig prefabConfig = PluginConfig.LoadPrefabConfig(prefab);
@@ -246,6 +247,22 @@ namespace MoreVanillaBuildPrefabs
                 // prefab denied by config
                 return;
             }
+
+            if (PluginConfig.IsVerbose())
+            {
+                Log.LogInfo("Initialize '" + prefab.name + "'");
+                foreach (Component compo in prefab.GetComponents<Component>())
+                {
+                    Log.LogInfo("  - " + compo.GetType().Name);
+                }
+            }
+
+            // trying to fix crash issue (it failed)
+            //if (prefab.GetComponent<Piece>() == null)
+            //{
+            //    Log.LogInfo($"Skipping {prefab.name} due to Piece == null");
+            //    return;
+            //}
 
             PatchPrefabIfNeeded(prefab);
             InitPieceData(prefab);

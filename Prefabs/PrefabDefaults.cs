@@ -66,9 +66,9 @@ namespace MoreVanillaBuildPrefabs
             {"blackmarble_stair_corner_left", new PrefabConfig(true, false, HammerCategoryNames.Building, nameof(CraftingStations.Stonecutter), "BlackMarble,8") },
             {"blackmarble_stair_corner", new PrefabConfig(true, false, HammerCategoryNames.Building, nameof(CraftingStations.Stonecutter), "BlackMarble,8") },
             {"blackmarble_tile_floor_2x2", new PrefabConfig(true, false, HammerCategoryNames.Building, nameof(CraftingStations.Stonecutter), "BlackMarble,2") },
-            {"blackmarble_tile_wall_1x1", new PrefabConfig(true, false, HammerCategoryNames.Building, nameof(CraftingStations.Stonecutter), "BlackMarble,1") },
-            {"blackmarble_tile_wall_2x2", new PrefabConfig(true, false, HammerCategoryNames.Building, nameof(CraftingStations.Stonecutter), "BlackMarble,2") },
-            {"blackmarble_tile_wall_2x4", new PrefabConfig(true, false, HammerCategoryNames.Building, nameof(CraftingStations.Stonecutter), "BlackMarble,4") },
+            //{"blackmarble_tile_wall_1x1", new PrefabConfig(true, false, HammerCategoryNames.Building, nameof(CraftingStations.Stonecutter), "BlackMarble,1") },
+            //{"blackmarble_tile_wall_2x2", new PrefabConfig(true, false, HammerCategoryNames.Building, nameof(CraftingStations.Stonecutter), "BlackMarble,2") },
+            //{"blackmarble_tile_wall_2x4", new PrefabConfig(true, false, HammerCategoryNames.Building, nameof(CraftingStations.Stonecutter), "BlackMarble,4") },
             {"blackmarble_base_2", new PrefabConfig(true, false, HammerCategoryNames.Building, nameof(CraftingStations.Stonecutter), "BlackMarble,6") },
             {"blackmarble_column_3", new PrefabConfig(true, false, HammerCategoryNames.Building, nameof(CraftingStations.Stonecutter), "BlackMarble,16") },
             {"blackmarble_floor_large", new PrefabConfig(true, false, HammerCategoryNames.Building, nameof(CraftingStations.Stonecutter), "BlackMarble,32") },
@@ -121,7 +121,6 @@ namespace MoreVanillaBuildPrefabs
             {"goblin_woodwall_2m_ribs", new PrefabConfig(false, false, HammerCategoryNames.CreatorShop, nameof(CraftingStations.None), "BoneFragments,6;Tar,1") },
             {"goblinking_totemholder", new PrefabConfig(false, false, HammerCategoryNames.CreatorShop, nameof(CraftingStations.Stonecutter), "Stone,1;Tar,1") },
             
-
             // misc pieces
             {"barrell", new PrefabConfig(true, false, HammerCategoryNames.Misc, nameof(CraftingStations.Workbench), "Wood,2") },
             {"turf_roof", new PrefabConfig(true, false, HammerCategoryNames.Building, nameof(CraftingStations.Workbench), "Wood,2") },

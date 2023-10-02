@@ -144,6 +144,7 @@ Prefabs set to the custom CreatorShop category on the hammer will behave differe
 Specifically, when a piece is set to the CreatorShop category player's can only deconstruct instances of that piece that they have placed themselves. This prevents player's from deconstructing world-generated prefabs like trees while still allowing you to build and deconstruct player-placed trees. If multiple player's have this mod enabled they can still only deconstruct CreatorShop pieces that they have placed themselves. If the AdminDeconstructCreatorShop option is set to True, then admins can deconstruct CreatorShop pieces placed by other players.
 
 ## Known Issues
+- Custom build pieces are added the first time you log into a world so I am not sure how switching between servers without restarting the game will work regarding correctly syncing configuration settings.
 - Placing armor on the Male Armor Stand and Female Armor Stand prefabs have clipping issues where not all of the armor is displayed. I have not been able to fix this as of yet.
 - Collision during placement for some items is not ideal and won't allow automatic snapping to select the bottom of the prefab.
   - <details>
@@ -157,6 +158,7 @@ Specifically, when a piece is set to the CreatorShop category player's can only 
 - Resolve known issues.
 - Patch and enable more prefabs.
 - Add a setting to restrict building CreatorShop pieces to Server Admins only.
+- Determine why some of the disabled prefabs cause the game to crash when re-logging.
 
 ## Compatibility
 This is a non-exhaustive list.

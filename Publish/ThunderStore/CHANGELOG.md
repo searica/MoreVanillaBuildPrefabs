@@ -1,8 +1,20 @@
+### Version 0.1.3
+- Updated for Jotunn 2.14.1
+- Removed three prefabs that caused a crash when re-logging. (This should fix compatibility issues with the Multiverse Mod)
+<details>
+  <summary>Click to see specific prefabs (contains spoilers.)</summary>
+	- blackmarble_tile_wall_1x1
+	- blackmarble_tile_wall_2x2
+	- blackmarble_tile_wall_2x4
+</details>
+
+
 ### Version 0.1.2
 - Fixed ILRepacker not merging ServerSync assembly when creating Release version of Thunderstore mod package.
 
 ### Version 0.1.1
 - Fixed bug caused by incorrect file version in AssemblyInfo.cs
+- Thanks to BLUBBSON for letting me know about the bug.
 
 ### Version 0.1.0
 **Big updates**

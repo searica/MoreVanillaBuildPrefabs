@@ -17,7 +17,7 @@ namespace MoreVanillaBuildPrefabs
         public const string PluginName = "MoreVanillaPrefabBuilds";
         internal const string Author = "Searica";
         public const string PluginGuid = $"{Author}.Valheim.{PluginName}";
-        public const string PluginVersion = "0.1.2";
+        public const string PluginVersion = "0.1.3";
 
         Harmony _harmony;
 
@@ -28,13 +28,6 @@ namespace MoreVanillaBuildPrefabs
             public static Piece.PieceCategory Building;
             public static Piece.PieceCategory Furniture;
             public static Piece.PieceCategory CreatorShop;
-
-            public static string GetAcceptableValues()
-            {
-                List<Piece.PieceCategory> values = typeof(HammerCategories).GetAllPublicStaticValues<Piece.PieceCategory>();
-                List<string> names = values.Select(x => x.ToString()).ToList(); 
-                return String.Join(" || ", names);
-            }
         }
 
         public static class HammerCategoryNames
@@ -79,7 +72,7 @@ namespace MoreVanillaBuildPrefabs
             //HammerCategories.Furniture = PieceManager.Instance.AddPieceCategory("_HammerPieceTable", HammerCategoryNames.Furniture);
             //HammerCategories.Building = PieceManager.Instance.AddPieceCategory("_HammerPieceTable", HammerCategoryNames.Building);
             HammerCategories.CreatorShop = PieceManager.Instance.AddPieceCategory("_HammerPieceTable", HammerCategoryNames.CreatorShop);
-            //PrefabManager.OnPrefabsRegistered -= AddHammerCategories;
+            PrefabManager.OnPrefabsRegistered -= AddHammerCategories;
         }
 
         public static void RemoveHammerCategories()
