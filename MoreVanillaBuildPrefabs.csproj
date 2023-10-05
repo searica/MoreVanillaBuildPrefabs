@@ -5,7 +5,7 @@
 	<!--<LangVersion>preview</LangVersion>-->
 	<LangVersion>10.0</LangVersion>
   </PropertyGroup>
-  <PropertyGroup>
+  <PropertyGroup>  
 	<GamePath>C:\Program Files (x86)\Steam\steamapps\common\Valheim_Clean</GamePath>
 	<CorLibPath>$(GamePath)\unstripped_corlib</CorLibPath>
 	<BepInExPath>$(GamePath)\BepInEx\core</BepInExPath>

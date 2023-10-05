@@ -18,6 +18,10 @@ namespace MoreVanillaBuildPrefabs
 #endif
             if (PluginConfig.IsModEnabled.Value)
             {
+                if (SceneManager.GetActiveScene() == null)
+                {
+                    return;
+                }
                 if (SceneManager.GetActiveScene().name == "start" && PrefabHelper.AddedPrefabs.Count != 0)
                 {
                     PrefabHelper.RemoveCustomPieces();
