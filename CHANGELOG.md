@@ -1,6 +1,6 @@
 ### Version 0.1.3
-- Updated for Jotunn 2.14.1
-- Removed three prefabs that caused a crash when re-logging. (This should fix compatibility issues with the Multiverse mod) 
+- Updated for Jotunn 2.14.2
+- Removed three prefabs that caused a crash when re-logging. (This should fix compatibility issues with the Multiverse mod)
 - Improved load times when re-logging.
 - Changed method of adding custom build pieces to respect server configuration when changing between servers without restarting the game.
 - Added configuration option to restrict placement of CreatorShop pieces to Admins.
