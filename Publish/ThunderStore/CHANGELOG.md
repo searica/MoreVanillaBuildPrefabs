@@ -1,3 +1,6 @@
+### Version 0.1.4
+- Updated for patch 0.217.22
+
 ### Version 0.1.3
 - Updated for Jotunn 2.14.2
 - Removed three prefabs that caused a crash when re-logging. (This should fix compatibility issues with the Multiverse mod)
