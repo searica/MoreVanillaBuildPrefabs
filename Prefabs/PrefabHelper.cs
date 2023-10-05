@@ -12,7 +12,8 @@ namespace MoreVanillaBuildPrefabs
     public class PrefabHelper
     {
         // keys are piece names and values are prefab names
-        public static HashSet<string> AddedPieces = new();
+        public static List<GameObject> Prefabs = new();
+
         public static HashSet<string> AddedPrefabs = new();
 
         public static Dictionary<string, Piece.Requirement[]> DefaultResources = new();
@@ -41,36 +42,42 @@ namespace MoreVanillaBuildPrefabs
             "blackmarble_tile_wall_2x4"
         };
 
-        public static void FindAndRegisterPrefabs()
+        public static void FindPrefabs()
         {
-            Log.LogInfo("FindAndRegisterPrefabs()");
+            Log.LogInfo("FindPrefabs()");
             PieceNameCache = GetExistingPieceNames();
-
-            ZNetScene.instance.m_prefabs
+            Prefabs = ZNetScene.instance.m_prefabs
             .Where(go => go.transform.parent == null && !ShouldIgnorePrefab(go))
             .OrderBy(go => go.name)
-            .ToList()
-            .ForEach(CreatePrefabPiece);
-            PluginConfig.Save();
-            Log.LogInfo($"Added {AddedPieces.Count} pieces");
-            PrefabManager.OnPrefabsRegistered -= FindAndRegisterPrefabs;
+            .ToList();
+            PrefabManager.OnPrefabsRegistered -= FindPrefabs;
+            Log.LogInfo($"Found {Prefabs.Count()} prefabs");
         }
 
-        public static void RemoveAddedPrefabs()
+        public static void AddCustomPieces()
         {
-            Log.LogInfo("RemoveAddedPrefabs()");
+            Log.LogInfo("AddCustomPieces()");
+            Prefabs.ForEach(CreatePrefabPiece);
+            Log.LogInfo($"Created {AddedPrefabs.Count} custom pieces");
+        }
+
+        public static void RemoveCustomPieces()
+        {
+            Log.LogInfo("RemoveCustomPieces()");
             int removedCounter = 0;
+            PieceTable pieceTable = PieceManager.Instance.GetPieceTable("_HammerPieceTable");
             foreach (var name in AddedPrefabs)
             {
-                // removing them doesn't seem to actually work properly
-#if DEBUG
-                Log.LogInfo($"Attempting to remove: {name}");
-#endif
                 try
                 {
-                    PieceManager.Instance.RemovePiece(name);
-                    //PieceManager.Instance.GetPieceTable("_HammerPieceTable");
+                    // Remove piece from PieceTable and PieceManager
+                    CustomPiece piece = PieceManager.Instance.GetPiece(name);
+                    pieceTable.m_pieces.Remove(piece.PiecePrefab);
+                    PieceManager.Instance.RemovePiece(piece);
                     removedCounter++;
+#if DEBUG
+                    Log.LogInfo($"Removed: {name} from PieceTable");
+#endif
                 }
                 catch (Exception e)
                 {
@@ -79,10 +86,9 @@ namespace MoreVanillaBuildPrefabs
 #endif
                 }
             }
-            AddedPieces.Clear();
             AddedPrefabs.Clear();
-            DefaultResources.Clear();
-            PieceNameCache = null;
+            // I think I can leave this as is since on a second log in I will have changed the prefabs to have piece components
+            //DefaultResources.Clear(); 
             Log.LogInfo($"Removed {removedCounter} custom pieces");
         }
 
@@ -94,13 +100,19 @@ namespace MoreVanillaBuildPrefabs
                 throw new Exception("PieceNameCache is null");
             }
             else if (PieceNameCache.Contains(prefab.name))
-            { 
+            {
+#if DEBUG
+                Log.LogInfo($"PieceNameCache contains: {prefab.name}");
+#endif
                 return true;
             }
 
             // Ignore specific prefab names
             if (IgnoredPrefabs.Contains(prefab.name))
             {
+#if DEBUG
+                Log.LogInfo($"IgnoredPrefabs contains: {prefab.name}");
+#endif
                 return true;
             }
 
@@ -109,12 +121,6 @@ namespace MoreVanillaBuildPrefabs
             {
                 return true;
             }
-
-            //fix crash on re-logging
-            //if (AddedPieces.ContainsValue(prefab.name))
-            //{
-            //    return true;
-            //}
 
             // Customs filters
             if (prefab.GetComponent("Projectile") != null ||
@@ -140,7 +146,6 @@ namespace MoreVanillaBuildPrefabs
                 prefab.GetComponent("LiquidVolume") != null ||
                 prefab.GetComponent("Gibber") != null ||
                 prefab.GetComponent("TimedDestruction") != null ||
-                prefab.GetComponent("TeleportAbility") != null ||
                 prefab.GetComponent("ShipConstructor") != null ||
                 prefab.GetComponent("TriggerSpawner") != null ||
                 prefab.GetComponent("TeleportAbility") != null ||
@@ -220,10 +225,14 @@ namespace MoreVanillaBuildPrefabs
             {
                 if (piece.m_resources !=  null)
                 {
+                    // stop errors on second log in
+                    if (!DefaultResources.ContainsKey(prefab.name))
+                    {
 #if DEBUG
-                    Log.LogDebug($"Adding default drops for {prefab.name}");
+                        Log.LogDebug($"Adding default drops for {prefab.name}");
 #endif
-                    DefaultResources.Add(prefab.name, piece.m_resources);
+                        DefaultResources.Add(prefab.name, piece.m_resources);
+                    }
                 }
             }
         }
@@ -257,20 +266,13 @@ namespace MoreVanillaBuildPrefabs
                 }
             }
 
-            // trying to fix crash issue (it failed)
-            //if (prefab.GetComponent<Piece>() == null)
-            //{
-            //    Log.LogInfo($"Skipping {prefab.name} due to Piece == null");
-            //    return;
-            //}
-
             PatchPrefabIfNeeded(prefab);
             InitPieceData(prefab);
 
             var pieceConfig = new PieceConfig
             {
                 Name = PrefabNames.FormatPrefabName(prefab.name),
-                Description = PrefabNames.GetPrefabFriendlyName(prefab),
+                Description = PrefabNames.GetPrefabDescription(prefab),
                 PieceTable = "_HammerPieceTable",
                 Category = prefabConfig.Category,
                 AllowedInDungeons = prefabConfig.AllowedInDungeons,
@@ -283,7 +285,7 @@ namespace MoreVanillaBuildPrefabs
                 foreach (string req in prefabConfig.Requirements.Split(';'))
                 {
                     string[] values = req.Split(',');
-                    RequirementConfig reqConf = new RequirementConfig
+                    RequirementConfig reqConf = new()
                     {
                         Item = values[0].Trim(),
                         Amount = int.Parse(values[1].Trim()),
@@ -294,8 +296,18 @@ namespace MoreVanillaBuildPrefabs
             }
 
             var piece = new CustomPiece(prefab, true, pieceConfig);
+
+            // Restrict CreatorShop pieces to Admins only
+            if (
+                Plugin.IsCreatorShopPiece(piece.Piece) 
+                && PluginConfig.AdminOnlyCreatorShop.Value 
+                && !SynchronizationManager.Instance.PlayerIsAdmin
+            )
+            {
+                return;
+            }
+
             PieceManager.Instance.AddPiece(piece);
-            AddedPieces.Add(pieceConfig.Name);
             AddedPrefabs.Add(prefab.name);
         }
 
@@ -418,7 +430,7 @@ namespace MoreVanillaBuildPrefabs
                     });
                     break;
                 case "blackmarble_floor_large":
-                    List<Vector3> points = new List<Vector3>();
+                    List<Vector3> points = new();
                     for (int y = -1; y <= 1; y += 2)
                     {
                         for (int x = -4; x <= 4; x += 2)
@@ -986,7 +998,7 @@ namespace MoreVanillaBuildPrefabs
                     );
                     break;
                 case "stone_floor":
-                    List<Vector3> pts = new List<Vector3>();
+                    List<Vector3> pts = new();
                     for (float y = -0.5f; y <= 0.5f; y += 1)
                     {
                         for (int x = -2; x <= 2; x += 1)

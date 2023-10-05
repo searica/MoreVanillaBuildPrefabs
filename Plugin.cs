@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
+﻿using System.Reflection;
 using BepInEx;
-using BepInEx.Configuration;
 using HarmonyLib;
 using Jotunn.Managers;
 
@@ -19,41 +15,20 @@ namespace MoreVanillaBuildPrefabs
         public const string PluginGuid = $"{Author}.Valheim.{PluginName}";
         public const string PluginVersion = "0.1.3";
 
-        Harmony _harmony;
-
-        public static class HammerCategories
-        {
-            public static Piece.PieceCategory Misc;
-            public static Piece.PieceCategory Crafting;
-            public static Piece.PieceCategory Building;
-            public static Piece.PieceCategory Furniture;
-            public static Piece.PieceCategory CreatorShop;
-        }
-
-        public static class HammerCategoryNames
-        {
-            public const string CreatorShop = "CreatorShop";
-            public const string Misc = "Misc";
-            public const string Crafting = "Crafting";
-            public const string Building = "Building";
-            public const string Furniture = "Furniture";
-            
-            public static AcceptableValueList<string> GetAcceptableValueList()
-            {
-                return new AcceptableValueList<string>(typeof(HammerCategoryNames).GetAllPublicConstantValues<string>().ToArray());
-            }
-        }
-        
+        Harmony _harmony;      
 
         public static bool DisableDestructionDrops { get; set; } = false;
 
         public void Awake()
         {
             Log.Init(Logger);
+
             PluginConfig.Init(Config);
             PluginConfig.SetUpConfig();
-            PrefabManager.OnPrefabsRegistered += AddHammerCategories;
-            PrefabManager.OnPrefabsRegistered += PrefabHelper.FindAndRegisterPrefabs;
+
+            PrefabManager.OnPrefabsRegistered += Hammer.AddHammerCategories;
+            PrefabManager.OnPrefabsRegistered += PrefabHelper.FindPrefabs;
+            PrefabManager.OnPrefabsRegistered += PrefabHelper.AddCustomPieces;
 
             _harmony = Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), harmonyInstanceId: PluginGuid);
         }
@@ -64,28 +39,12 @@ namespace MoreVanillaBuildPrefabs
             _harmony?.UnpatchSelf();
         }
 
-        public static void AddHammerCategories()
-        {
-            Log.LogInfo("AddHammerCategories()");
-            //HammerCategories.Misc = PieceManager.Instance.AddPieceCategory("_HammerPieceTable", HammerCategoryNames.Misc);
-            //HammerCategories.Crafting = PieceManager.Instance.AddPieceCategory("_HammerPieceTable", HammerCategoryNames.Crafting);
-            //HammerCategories.Furniture = PieceManager.Instance.AddPieceCategory("_HammerPieceTable", HammerCategoryNames.Furniture);
-            //HammerCategories.Building = PieceManager.Instance.AddPieceCategory("_HammerPieceTable", HammerCategoryNames.Building);
-            HammerCategories.CreatorShop = PieceManager.Instance.AddPieceCategory("_HammerPieceTable", HammerCategoryNames.CreatorShop);
-            PrefabManager.OnPrefabsRegistered -= AddHammerCategories;
-        }
-
-        public static void RemoveHammerCategories()
-        {
-            Log.LogInfo("RemoveHammerCategories()");
-            PieceManager.Instance.RemovePieceCategory("_HammerPieceTable", HammerCategoryNames.CreatorShop);
-        }
-
         public static bool IsCreatorShopPiece(Piece piece)
         {
-            if (PrefabHelper.AddedPieces.Contains(piece.m_name))
+            //if (PrefabHelper.AddedPieces.Contains(piece.m_name))
+            if (PrefabHelper.AddedPrefabs.Contains(piece.gameObject.name))
             {
-                if (piece.m_category == HammerCategories.CreatorShop)
+                if (piece.m_category == Hammer.HammerCategories.CreatorShop)
                 {
                     return true;
                 }

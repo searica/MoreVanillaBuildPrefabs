@@ -18,20 +18,6 @@ If you are using a mod manager for Thunderstore simply install the mod from ther
 
 **Recommended:** Install SearsCatalog (https://valheim.thunderstore.io/package/ComfyMods/SearsCatalog/) to extend the hammer build table and allow you to access all the pieces this mod adds even if there are too many added pieces for the vanilla build table.
 
-### Update Notice!
-The configuration options have changed significantly with version 0.1.0. It is recommended to delete your configuration file and regenerate it.
-
-If you have made significant customizations to the configuration file and wish to keep those changes use the following steps:
-- Make a copy of your current configuration file.
-- Delete the original customized configuration file.
-- Generate a new configuration file.
-- Copy/paste the customized entries from your back up to the new configuration file.
-- Edit the required crafting station entry based on the new acceptable values (can use find and replace feature):
-  - piece_workbench -> Workbench
-  - piece_stonecutter -> Stonecutter
-  - forge" -> Forge
-  - blackforge -> BlackForge
-
 ## Configuration
 You need to edit the configuration file with client/server off! If you use an in-game configuration manager, you need to restart the game/server to apply configuration.
 
@@ -47,56 +33,61 @@ For each detected prefab in the game you can:
 **EnableMod** [Synced with Server, Requires Restart]
 - Globally enable or disable this mod (restart required).
   - Acceptable values: False, True
-  - Default = true
+  - Default value: true
 
-**LockConfiguration** = [Synced with Server]
+**LockConfiguration** [Synced with Server]
 - If true, the configuration is locked and can be changed by server admins only.
   - Acceptable values: False, True
   - Default value: true
+ 
+**AdminOnlyCreatorShop** [Synced with Server]
+- Set to true to restrict placement and deconstruction of CreatorShop pieces to players with Admin status.
+  - Acceptable values: False, True
+  - Default value: false
 
 **AdminDeconstructCreatorShop** [Synced with Server]
 - Set to true to allow admin players to deconstruct any CreatorShop pieces built by players. Intended to prevent griefing via placement of indestructible objects.
   - Acceptable values: False, True
   - Default value: true
 
-**ForceAllPrefabs** [Synced with Server, Requires Restart]
+**ForceAllPrefabs** [Synced with Server, Requires Re-Logging]
 - Setting to true overrides individual configuration for all prefabs and enables them all for building with the hammer.
   - Acceptable values: False, True
-  - Default = false
+  - Default value: false
 
 **VerboseMode** [Synced with Server]
 - You should keep it to false. This configuration displays debug information in the console (and slows down game performance).
   - Acceptable values: False, True
-  - Default = false.
+  - Default value: false.
 
 ### Prefab Configuration Sections:
 The rest of the configuration files contains [xxxxxx] sections to configure each prefab. Each section contains:
 
-**Enabled** [Synced with Server, Requires Restart]
+**Enabled** [Synced with Server, Requires Re-Logging]
 - If true then add the prefab as a buildable piece. Note: this setting is ignored if ForceAllPrefabs is true.
   - Acceptable values: False, True
   - Default value: false
 
-**AllowedInDungeons** [Synced with Server, Requires Restart]
+**AllowedInDungeons** [Synced with Server, Requires Re-Logging]
 - If true then this prefab can be built inside dungeon zones.
   - Acceptable values: False, True
   - Default value: false
 
-**Category** [Synced with Server, Requires Restart]
+**Category** [Synced with Server, Requires Re-Logging]
 - A string defining the tab the prefab shows up on in the hammer build table.
   - Acceptable values: CreatorShop, Misc, Crafting, Building, Furniture# Setting type: String
 - Default value: CreatorShop
 
-**CraftingStation** [Synced with Server, Requires Restart]
+**CraftingStation** [Synced with Server, Requires Re-Logging]
 - A string defining the crafting station required to built the prefab.
   - Acceptable values: None, Workbench, Forge, Stonecutter, Cauldron, ArtisanTable, BlackForge, GaldrTable
   - Default value: None
 
-**Requirements** [Synced with Server, Requires Restart]
+**Requirements** [Synced with Server, Requires Re-Logging]
 - Resources required to build the prefab. Formatted as: itemID,amount;itemID,amount where itemID is the in-game identifier for the resource and amount is an integer. You can find itemID on Valheim Wiki or on this [link](https://valheim-modding.github.io/Jotunn/data/objects/item-list.html). Example: Requirements = Wood,5;Stone,2 would mean the prefab requires 5 wood and 2 stone to build.
   - Default value:
 
-**PlacementPatch** [Synced with Server, Requires Restart]
+**PlacementPatch** [Synced with Server, Requires Re-Logging]
 - Set to true to enable collision patching during placement of the piece. Recommended to try this if the piece is not appearing when attempting to place it. (If enabling the placement patch via this setting fixes the issue please open an issue on Github letting me know so I can make sure the collision patch is always applied to this piece.)
   - Acceptable values: False, True
   - Default value: false
@@ -144,21 +135,61 @@ Prefabs set to the custom CreatorShop category on the hammer will behave differe
 Specifically, when a piece is set to the CreatorShop category player's can only deconstruct instances of that piece that they have placed themselves. This prevents player's from deconstructing world-generated prefabs like trees while still allowing you to build and deconstruct player-placed trees. If multiple player's have this mod enabled they can still only deconstruct CreatorShop pieces that they have placed themselves. If the AdminDeconstructCreatorShop option is set to True, then admins can deconstruct CreatorShop pieces placed by other players.
 
 ## Known Issues
-- Custom build pieces are added the first time you log into a world so I am not sure how switching between servers without restarting the game will work regarding correctly syncing configuration settings.
-- Placing armor on the Male Armor Stand and Female Armor Stand prefabs have clipping issues where not all of the armor is displayed. I have not been able to fix this as of yet.
-- Collision during placement for some items is not ideal and won't allow automatic snapping to select the bottom of the prefab.
-  - <details>
-    <summary>Click to see a list of specific pieces (contains spoilers.)</summary>
-      Blackmarble_post01,
-      Dvergr Demister,
-      Dvergr Demsister Large
+
+### Crash When Re-Logging
+Some prefabs result in a crash when re-logging if that prefab is enabled. The default configuration does not enable any prefabs that cause this issue. If you experience this issue please do the following steps:
+- Check the game's crash log at %localappdata%\Temp\IronGate\Valheim (BepInEx does not register an error when this issue occurs)
+- Open the Player.log file generated for the most recent crash.
+- Scroll to the bottom and check for the following text <details>
+  <summary>STACK TRACE OUTPUT</summary>
+
+        ========== OUTPUTTING STACK TRACE ==================
+        0x00007FF86A638726 (UnityPlayer) UnityMain
+        0x00007FF86A63884C (UnityPlayer) UnityMain
+        0x00007FF86A634318 (UnityPlayer) UnityMain
+        0x00007FF86A75DFBA (UnityPlayer) UnityMain
+        0x00007FF86A74C3F3 (UnityPlayer) UnityMain
+        0x00007FF86A5BED6E (UnityPlayer) UnityMain
+        0x00007FF86A5BEAD5 (UnityPlayer) UnityMain
+        0x00007FF86A5C0F73 (UnityPlayer) UnityMain
+        0x00007FF86A5C12D1 (UnityPlayer) UnityMain
+        0x00007FF86A5C0C89 (UnityPlayer) UnityMain
+        0x00007FF86A5A516A (UnityPlayer) UnityMain
+        0x00007FF86A5A5210 (UnityPlayer) UnityMain
+        0x00007FF86A5A94A8 (UnityPlayer) UnityMain
+          ERROR: SymGetSymFromAddr64, GetLastError: 'Attempt to access invalid address.' (Address: 00007FF86A3669DA)
+        0x00007FF86A3669DA (UnityPlayer) (function-name not available)
+          ERROR: SymGetSymFromAddr64, GetLastError: 'Attempt to access invalid address.' (Address: 00007FF86A364EAB)
+        0x00007FF86A364EAB (UnityPlayer) (function-name not available)
+          ERROR: SymGetSymFromAddr64, GetLastError: 'Attempt to access invalid address.' (Address: 00007FF86A369F02)
+        0x00007FF86A369F02 (UnityPlayer) (function-name not available)
+        0x00007FF86A36B0AB (UnityPlayer) UnityMain
+          ERROR: SymGetSymFromAddr64, GetLastError: 'Attempt to access invalid address.' (Address: 00007FF7E33311F2)
+        0x00007FF7E33311F2 (valheim) (function-name not available)
+        0x00007FF961FC257D (KERNEL32) BaseThreadInitThunk
+        0x00007FF9632EAA68 (ntdll) RtlUserThreadStart
+        ========== END OF STACKTRACE ===========
     </details>
+- Open an issue on Github reporting the error and the Prefab that was enabled to cause it.
+
+### Custom Armor Stand Clipping
+Placing armor on the Male Armor Stand and Female Armor Stand prefabs have clipping issues where not all of the armor is displayed. I have not been able to fix this as of yet.
+
+
+### Placement Collision
+Collision during placement for some items is not ideal and won't allow automatic snapping to select the bottom of the prefab.
+<details>
+<summary>Click to see a list of specific pieces (contains spoilers.)</summary>
+  Blackmarble_post01,
+  Dvergr Demister,
+  Dvergr Demsister Large
+</details>
 
 ## Planned Improvements
 - Resolve known issues.
 - Patch and enable more prefabs.
 - Add a setting to restrict building CreatorShop pieces to Server Admins only.
-- Determine why some of the disabled prefabs cause the game to crash when re-logging.
+- Determine why some prefabs cause the game to crash when re-logging.
 
 ## Compatibility
 This is a non-exhaustive list.

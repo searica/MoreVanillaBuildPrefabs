@@ -44,6 +44,7 @@ namespace MoreVanillaBuildPrefabs
         public static ConfigEntry<bool> IsModEnabled { get; private set; }
         public static ConfigEntry<bool> LockConfiguration { get; private set; }
         internal static ConfigEntry<bool> AdminDeconstructCreatorShop;
+        internal static ConfigEntry<bool> AdminOnlyCreatorShop;
         private static ConfigEntry<bool> ForceAllPrefabs;
         private static ConfigEntry<bool> VerboseMode;
         private static readonly AcceptableValueList<bool> AcceptableToggleValuesList = new(new bool[]{false, true});
@@ -71,6 +72,16 @@ namespace MoreVanillaBuildPrefabs
                 true,
                 new ConfigDescription(
                     "If true, the configuration is locked and can be changed by server admins only.",
+                    AcceptableToggleValuesList
+                )
+            );
+
+            AdminOnlyCreatorShop = BindConfig(
+                MainSectionName,
+                "AdminOnlyCreatorShop",
+                false,
+                new ConfigDescription(
+                    "Set to true to restrict placement and deconstruction of CreatorShop pieces to players with Admin status.",
                     AcceptableToggleValuesList
                 )
             );
@@ -156,7 +167,7 @@ namespace MoreVanillaBuildPrefabs
                 default_config.Category,
                 new ConfigDescription(
                     "A string defining the tab the prefab shows up on in the hammer build table.", 
-                    Plugin.HammerCategoryNames.GetAcceptableValueList()
+                    Hammer.HammerCategoryNames.GetAcceptableValueList()
                 )
             ).Value;
             default_config.CraftingStation = BindConfig(

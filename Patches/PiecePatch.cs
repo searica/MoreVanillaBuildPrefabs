@@ -1,5 +1,4 @@
 ﻿using HarmonyLib;
-using UnityEngine;
 
 namespace MoreVanillaBuildPrefabs
 {
@@ -38,7 +37,8 @@ namespace MoreVanillaBuildPrefabs
             Log.LogInfo($"Custom drop resources for {__instance.gameObject.name}");
 #endif
             // Only interact if it is a piece added by this mod
-            if (PrefabHelper.AddedPieces.Contains(__instance.m_name))
+            string prefab_name = PrefabNames.GetPrefabName(__instance);
+            if (PrefabHelper.AddedPrefabs.Contains(prefab_name))
             {
                 // disable desctruction drops for player built pieces
                 // prevents things like player built dvergerprops_crate
@@ -51,7 +51,7 @@ namespace MoreVanillaBuildPrefabs
                 {
                     // set drops to defaults and store the current drops
                     __state = __instance.m_resources;
-                    string prefab_name = RemoveFromEnd(__instance.gameObject.name, "(Clone)");
+                    
                     if (PrefabHelper.DefaultResources.ContainsKey(prefab_name))
                     {
                         Log.LogInfo("Resetting drop resources to defaults.");
@@ -74,16 +74,6 @@ namespace MoreVanillaBuildPrefabs
         {
             // restore original drops from before the prefix patch
             __instance.m_resources = __state;
-        }
-
-        public static string RemoveFromEnd(string s, string suffix)
-        {
-            if (s.EndsWith(suffix))
-            {
-                return s.Substring(0, s.Length - suffix.Length);
-            }
-
-            return s;
         }
     }
 }

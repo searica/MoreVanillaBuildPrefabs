@@ -1,8 +1,11 @@
 ### Version 0.1.3
 - Updated for Jotunn 2.14.1
-- Removed three prefabs that caused a crash when re-logging. (This should fix compatibility issues with the Multiverse Mod)
+- Removed three prefabs that caused a crash when re-logging. (This should fix compatibility issues with the Multiverse mod) 
+- Improved load times when re-logging.
+- Changed method of adding custom build pieces to respect server configuration when changing between servers without restarting the game.
+- Added configuration option to restrict placement of CreatorShop pieces to Admins.
 <details>
-  <summary>Click to see specific prefabs (contains spoilers.)</summary>
+  <summary>Click to see specific prefabs that were removed (contains spoilers).</summary>
 	- blackmarble_tile_wall_1x1
 	- blackmarble_tile_wall_2x2
 	- blackmarble_tile_wall_2x4
@@ -14,7 +17,7 @@
 
 ### Version 0.1.1
 - Fixed bug caused by incorrect file version in AssemblyInfo.cs
-- Thanks to BLUBBSON for letting me know about the bug.
+- Thanks to BLUBBSON on Github for letting me know about the bug.
 
 ### Version 0.1.0
 **Big updates**

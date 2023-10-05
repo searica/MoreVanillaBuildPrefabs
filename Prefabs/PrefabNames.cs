@@ -15,7 +15,7 @@ namespace MoreVanillaBuildPrefabs
                 .Replace("  ", " ");
         }
 
-        public static string GetPrefabFriendlyName(GameObject prefab)
+        public static string GetPrefabDescription(GameObject prefab)
         {
             if (prefab.name == "metalbar_1x2") return "Enforced marble 1x2";
 
@@ -38,21 +38,36 @@ namespace MoreVanillaBuildPrefabs
             if (mineRock) return mineRock.m_name;
 
             Pickable pickable = prefab.GetComponent<Pickable>();
-            if (pickable) return GetPrefabFriendlyName(pickable.m_itemPrefab);
+            if (pickable) return GetPrefabDescription(pickable.m_itemPrefab);
 
             CreatureSpawner creatureSpawner = prefab.GetComponent<CreatureSpawner>();
-            if (creatureSpawner) return GetPrefabFriendlyName(creatureSpawner.m_creaturePrefab);
+            if (creatureSpawner) return GetPrefabDescription(creatureSpawner.m_creaturePrefab);
 
             SpawnArea spawnArea = prefab.GetComponent<SpawnArea>();
             if (spawnArea && spawnArea.m_prefabs.Count > 0)
             {
-                return GetPrefabFriendlyName(spawnArea.m_prefabs[0].m_prefab);
+                return GetPrefabDescription(spawnArea.m_prefabs[0].m_prefab);
             }
 
             Piece piece = prefab.GetComponent<Piece>();
             if (piece && !string.IsNullOrEmpty(piece.m_name)) return piece.m_name;
 
             return prefab.name;
+        }
+
+        public static string GetPrefabName(Piece piece)
+        {
+            return RemoveFromEnd(piece.gameObject.name, "(Clone)");
+        }
+
+        public static string RemoveFromEnd(string s, string suffix)
+        {
+            if (s.EndsWith(suffix))
+            {
+                return s.Substring(0, s.Length - suffix.Length);
+            }
+
+            return s;
         }
     }
 }
