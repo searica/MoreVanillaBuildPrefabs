@@ -5,16 +5,16 @@ using UnityEngine.SceneManagement;
 namespace MoreVanillaBuildPrefabs
 {
 
-    [HarmonyPatch(typeof(ObjectDB))]
-    internal class ObjectDBPatch
+    [HarmonyPatch(typeof(ZNetScene))]
+    internal class ZNetScenePatch
     {
         // Hook just before Jotunn registers the Pieces
         [HarmonyPrefix]
-        [HarmonyPatch(nameof(ObjectDB.Awake))]
-        static void ObjectDBAwake()
+        [HarmonyPatch(nameof(ZNetScene.Shutdown))]
+        static void ZNetSceneShutDown()
         {
 #if DEBUG
-            Log.LogInfo("ObjectDBAwake()");
+            Log.LogInfo("ZNetScene.ShutDown()");
 #endif
             if (PluginConfig.IsModEnabled.Value)
             {
@@ -22,10 +22,10 @@ namespace MoreVanillaBuildPrefabs
                 {
                     return;
                 }
-                if (SceneManager.GetActiveScene().name == "start" && PrefabHelper.AddedPrefabs.Count != 0)
+                if (SceneManager.GetActiveScene().name == "main" && PrefabHelper.AddedPrefabs.Count != 0)
                 {
                     PrefabHelper.RemoveCustomPieces();
-                    Hammer.RemoveHammerCategories();
+                    HammerCategories.RemoveCustomCategories();
                 }
             }
         }

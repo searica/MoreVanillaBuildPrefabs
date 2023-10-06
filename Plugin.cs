@@ -13,7 +13,7 @@ namespace MoreVanillaBuildPrefabs
         public const string PluginName = "MoreVanillaPrefabBuilds";
         internal const string Author = "Searica";
         public const string PluginGuid = $"{Author}.Valheim.{PluginName}";
-        public const string PluginVersion = "0.1.4";
+        public const string PluginVersion = "0.2.0";
 
         Harmony _harmony;      
 
@@ -25,8 +25,9 @@ namespace MoreVanillaBuildPrefabs
 
             PluginConfig.Init(Config);
             PluginConfig.SetUpConfig();
+            PluginConfig.Save();
 
-            PrefabManager.OnPrefabsRegistered += Hammer.AddHammerCategories;
+            PrefabManager.OnPrefabsRegistered += HammerCategories.AddCustomCategories;
             PrefabManager.OnPrefabsRegistered += PrefabHelper.FindPrefabs;
             PrefabManager.OnPrefabsRegistered += PrefabHelper.AddCustomPieces;
 
@@ -37,19 +38,6 @@ namespace MoreVanillaBuildPrefabs
         {
             PluginConfig.Save();
             _harmony?.UnpatchSelf();
-        }
-
-        public static bool IsCreatorShopPiece(Piece piece)
-        {
-            //if (PrefabHelper.AddedPieces.Contains(piece.m_name))
-            if (PrefabHelper.AddedPrefabs.Contains(piece.gameObject.name))
-            {
-                if (piece.m_category == Hammer.HammerCategories.CreatorShop)
-                {
-                    return true;
-                }
-            }
-            return false;
         }
     }
 }

@@ -1,11 +1,12 @@
-﻿using Jotunn.Configs;
+﻿using System;
+using System.Linq;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using UnityEngine;
+using Jotunn.Configs;
 using Jotunn.Entities;
 using Jotunn.Managers;
-using System.Collections.Generic;
-using System.Linq;
-using System;
-using UnityEngine;
-
+using MoreVanillaBuildPrefabs.Utils;
 
 namespace MoreVanillaBuildPrefabs
 {
@@ -36,7 +37,6 @@ namespace MoreVanillaBuildPrefabs
             "dvergrprops_wood_stake",
             "Hildir",
             "demister_ball",
-            // crashes on relogging
             "blackmarble_tile_wall_1x1",
             "blackmarble_tile_wall_2x2",
             "blackmarble_tile_wall_2x4"
@@ -45,6 +45,10 @@ namespace MoreVanillaBuildPrefabs
         public static void FindPrefabs()
         {
             Log.LogInfo("FindPrefabs()");
+#if DEBUG
+            var watch = new System.Diagnostics.Stopwatch();
+            watch.Start();
+#endif
             PieceNameCache = GetExistingPieceNames();
             Prefabs = ZNetScene.instance.m_prefabs
             .Where(go => go.transform.parent == null && !ShouldIgnorePrefab(go))
@@ -52,13 +56,30 @@ namespace MoreVanillaBuildPrefabs
             .ToList();
             PrefabManager.OnPrefabsRegistered -= FindPrefabs;
             Log.LogInfo($"Found {Prefabs.Count()} prefabs");
+#if DEBUG
+            watch.Stop();
+            Log.LogInfo($"Search Time: {watch.ElapsedMilliseconds} ms");
+#endif
         }
 
         public static void AddCustomPieces()
         {
+#if DEBUG
+            var watch = new System.Diagnostics.Stopwatch();
+            watch.Start();
+#endif
             Log.LogInfo("AddCustomPieces()");
-            Prefabs.ForEach(CreatePrefabPiece);
+            //Parallel.ForEach( piece => { })
+            foreach (var prefab in Prefabs)
+            {
+                CreatePrefabPiece(prefab);
+            }
             Log.LogInfo($"Created {AddedPrefabs.Count} custom pieces");
+#if DEBUG
+            watch.Stop();
+            Log.LogInfo($"Creation Time: {watch.ElapsedMilliseconds} ms");
+#endif
+            PluginConfig.Save();
         }
 
         public static void RemoveCustomPieces()
@@ -66,6 +87,7 @@ namespace MoreVanillaBuildPrefabs
             Log.LogInfo("RemoveCustomPieces()");
             int removedCounter = 0;
             PieceTable pieceTable = PieceManager.Instance.GetPieceTable("_HammerPieceTable");
+
             foreach (var name in AddedPrefabs)
             {
                 try
@@ -73,11 +95,14 @@ namespace MoreVanillaBuildPrefabs
                     // Remove piece from PieceTable and PieceManager
                     CustomPiece piece = PieceManager.Instance.GetPiece(name);
                     pieceTable.m_pieces.Remove(piece.PiecePrefab);
-                    PieceManager.Instance.RemovePiece(piece);
-                    removedCounter++;
 #if DEBUG
                     Log.LogInfo($"Removed: {name} from PieceTable");
 #endif
+
+                    // Remove piece from Jotunn.PieceManager
+                    PieceManager.Instance.RemovePiece(piece);
+                    removedCounter++;
+
                 }
                 catch (Exception e)
                 {
@@ -87,8 +112,6 @@ namespace MoreVanillaBuildPrefabs
                 }
             }
             AddedPrefabs.Clear();
-            // I think I can leave this as is since on a second log in I will have changed the prefabs to have piece components
-            //DefaultResources.Clear(); 
             Log.LogInfo($"Removed {removedCounter} custom pieces");
         }
 
@@ -101,18 +124,12 @@ namespace MoreVanillaBuildPrefabs
             }
             else if (PieceNameCache.Contains(prefab.name))
             {
-#if DEBUG
-                Log.LogInfo($"PieceNameCache contains: {prefab.name}");
-#endif
                 return true;
             }
 
             // Ignore specific prefab names
             if (IgnoredPrefabs.Contains(prefab.name))
             {
-#if DEBUG
-                Log.LogInfo($"IgnoredPrefabs contains: {prefab.name}");
-#endif
                 return true;
             }
 
@@ -277,7 +294,7 @@ namespace MoreVanillaBuildPrefabs
                 Category = prefabConfig.Category,
                 AllowedInDungeons = prefabConfig.AllowedInDungeons,
                 CraftingStation = prefabConfig.CraftingStation,
-                Icon = CreatePrefabIcon(prefab),
+                Icon = PrefabIcons.CreatePrefabIcon(prefab),
             };
 
             if (!string.IsNullOrEmpty(prefabConfig.Requirements))
@@ -299,7 +316,7 @@ namespace MoreVanillaBuildPrefabs
 
             // Restrict CreatorShop pieces to Admins only
             if (
-                Plugin.IsCreatorShopPiece(piece.Piece) 
+                HammerCategories.IsCreatorShopPiece(piece.Piece) 
                 && PluginConfig.AdminOnlyCreatorShop.Value 
                 && !SynchronizationManager.Instance.PlayerIsAdmin
             )
@@ -1050,13 +1067,13 @@ namespace MoreVanillaBuildPrefabs
                     break;
                 //TODO: patch collider so that it aligns with bottom snap point
                 case "dverger_demister":
-                    Colliders.RemoveColliders(prefab); //remove large box collider
+                    CollisionHelper.RemoveColliders(prefab); //remove large box collider
 
                     // add thin collider along post
-                    Colliders.AddBoxCollider(prefab, new Vector3(0.0f, -0.2f, 0.0f), new Vector3(0.2f, 1.1f, 0.2f));
+                    CollisionHelper.AddBoxCollider(prefab, new Vector3(0.0f, -0.2f, 0.0f), new Vector3(0.2f, 1.1f, 0.2f));
 
                     // add collider around the ring
-                    Colliders.AddBoxCollider(prefab, Vector3.zero, new Vector3(1.0f, 0.1f, 1.0f));
+                    CollisionHelper.AddBoxCollider(prefab, Vector3.zero, new Vector3(1.0f, 0.1f, 1.0f));
 
                     SnapPointHelper.AddSnapPoints(
                         prefab,
@@ -1069,13 +1086,13 @@ namespace MoreVanillaBuildPrefabs
                     );
                     break;
                 case "dverger_demister_large":
-                    Colliders.RemoveColliders(prefab); //remove large box collider
+                    CollisionHelper.RemoveColliders(prefab); //remove large box collider
 
                     // add thin collider along post
-                    Colliders.AddBoxCollider(prefab, new Vector3(0.0f, -0.25f, 0.0f), new Vector3(0.2f, 1.3f, 0.2f));
+                    CollisionHelper.AddBoxCollider(prefab, new Vector3(0.0f, -0.25f, 0.0f), new Vector3(0.2f, 1.3f, 0.2f));
 
                     // add collider around the ring
-                    Colliders.AddBoxCollider(prefab, new Vector3(0.0f, -0.25f, 0.0f), new Vector3(1.0f, 0.1f, 1.0f));
+                    CollisionHelper.AddBoxCollider(prefab, new Vector3(0.0f, -0.25f, 0.0f), new Vector3(1.0f, 0.1f, 1.0f));
 
                     SnapPointHelper.AddSnapPoints(
                         prefab,
@@ -1099,40 +1116,6 @@ namespace MoreVanillaBuildPrefabs
                 default:
                     break;
             }
-        }
-
-        // Refs:
-        //  - CreatureSpawner.m_creaturePrefab
-        //  - PickableItem.m_randomItemPrefabs
-        //  - PickableItem.RandomItem.m_itemPrefab
-        public static Sprite CreatePrefabIcon(GameObject prefab)
-        {
-            Sprite result = GenerateObjectIcon(prefab);
-
-            if (result == null)
-            {
-                PickableItem.RandomItem[] randomItemPrefabs = prefab.GetComponent<PickableItem>()?.m_randomItemPrefabs;
-                if (randomItemPrefabs != null && randomItemPrefabs.Length > 0)
-                {
-                    GameObject item = randomItemPrefabs[0].m_itemPrefab?.gameObject;
-                    if (item != null)
-                    {
-                        result = GenerateObjectIcon(item);
-                    }
-                }
-            }
-
-            return result;
-        }
-
-        private static Sprite GenerateObjectIcon(GameObject obj)
-        {
-            var request = new RenderManager.RenderRequest(obj)
-            {
-                Rotation = RenderManager.IsometricRotation,
-                UseCache = true
-            };
-            return RenderManager.Instance.Render(request);
         }
     }
 }

@@ -1,7 +1,7 @@
 {
     "name": "More_Vanilla_Build_Prefabs",
     "author": "Searica",
-    "version_number": "0.1.4",
+    "version_number": "0.2.0",
     "website_url": "https://github.com/searica/MoreVanillaBuildPrefabs",
     "description": "Adds configurable vanilla build prefabs to hammer in survival mode with a default configuration for ease of use. Now with ServerSync!",
   "dependencies": [

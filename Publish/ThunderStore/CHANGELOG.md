@@ -1,3 +1,8 @@
+### Version 0.2.0
+- Reduced load time from ~30 seconds to ~0.5 seconds (Thanks to Margmas on the OdinPlus discord for the tip on reducing config file load times.)
+- Switched to using ZNetScene for patch to trigger removal of custom pieces on logout.
+- Internal code refactoring and clean up.
+
 ### Version 0.1.4
 - Updated for patch 0.217.22
 

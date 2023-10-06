@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace MoreVanillaBuildPrefabs
+namespace MoreVanillaBuildPrefabs.Utils
 {
-    internal class Colliders
+    internal class CollisionHelper
     {
         public static void AddBoxCollider(GameObject prefab, Vector3 center, Vector3 size)
         {
@@ -36,7 +36,7 @@ namespace MoreVanillaBuildPrefabs
                     localCenter += item.bounds.center;
                 }
             }
-            localCenter /= (float)allColliders.Count;
+            localCenter /= allColliders.Count;
             return localCenter;
         }
 
@@ -45,7 +45,7 @@ namespace MoreVanillaBuildPrefabs
             Collider[] colliders = prefab.GetComponentsInChildren<Collider>();
             foreach (Collider collider in colliders)
             {
-                UnityEngine.Object.DestroyImmediate(collider);
+                Object.DestroyImmediate(collider);
             }
         }
 

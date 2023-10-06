@@ -5,7 +5,7 @@ namespace MoreVanillaBuildPrefabs
 {
     internal class PrefabNames
     {
-        static readonly Regex PrefabNameRegex = new Regex(@"([a-z])([A-Z])");
+        static readonly Regex PrefabNameRegex = new(@"([a-z])([A-Z])");
         public static string FormatPrefabName(string prefabName)
         {
             return PrefabNameRegex

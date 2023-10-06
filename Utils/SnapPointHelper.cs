@@ -1,5 +1,4 @@
-﻿using MoreVanillaBuildPrefabs;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 /* In Unity
@@ -8,7 +7,7 @@ using UnityEngine;
  * Z = forward/back
  */
 
-namespace MoreVanillaBuildPrefabs
+namespace MoreVanillaBuildPrefabs.Utils
 {
     public class SnapPointHelper
     {
@@ -64,7 +63,7 @@ namespace MoreVanillaBuildPrefabs
 
         public static void FixPiece(GameObject target)
         {
-              foreach (Collider collider in target.GetComponentsInChildren<Collider>())
+            foreach (Collider collider in target.GetComponentsInChildren<Collider>())
             {
                 collider.gameObject.layer = LayerMask.NameToLayer("piece");
             }

@@ -52,6 +52,7 @@ namespace MoreVanillaBuildPrefabs
         public static void Init(ConfigFile config)
         {
             configFile = config;
+            configFile.SaveOnConfigSet = false;
         }
 
         public static void SetUpConfig()
@@ -107,14 +108,10 @@ namespace MoreVanillaBuildPrefabs
                 )
             );
 
-            bool verbose = false;
-#if DEBUG
-            verbose = true;
-#endif
             VerboseMode = BindConfig(
                 MainSectionName,
                 "VerboseMode",
-                verbose,
+                false,
                 new ConfigDescription(
                     "If enable, print debug informations in console.",
                     AcceptableToggleValuesList
@@ -167,7 +164,7 @@ namespace MoreVanillaBuildPrefabs
                 default_config.Category,
                 new ConfigDescription(
                     "A string defining the tab the prefab shows up on in the hammer build table.", 
-                    Hammer.HammerCategoryNames.GetAcceptableValueList()
+                    HammerCategories.HammerCategoryNames.GetAcceptableValueList()
                 )
             ).Value;
             default_config.CraftingStation = BindConfig(

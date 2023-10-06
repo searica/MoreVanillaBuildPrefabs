@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Reflection.Emit;
 using Jotunn.Managers;
+using MoreVanillaBuildPrefabs.Utils;
 
 namespace MoreVanillaBuildPrefabs
 {
@@ -61,7 +62,7 @@ namespace MoreVanillaBuildPrefabs
                     )
                 {
                     // Needed to make some things work, like Stalagmite, blackmarble_corner_stair, silvervein, etc.
-                    Colliders.PatchCollider(clonedPrefab);
+                    CollisionHelper.PatchCollider(clonedPrefab);
                 }
 
                 if (!setActive)
@@ -112,7 +113,7 @@ namespace MoreVanillaBuildPrefabs
                 if (PluginConfig.IsModEnabled.Value)
                 {
                     // Prevents world generated piece from player removal with build hammer.
-                    if (!piece.IsPlacedByPlayer() && Plugin.IsCreatorShopPiece(piece))
+                    if (!piece.IsPlacedByPlayer() && HammerCategories.IsCreatorShopPiece(piece))
                     {
                         __result = false;
                         return false;
@@ -120,7 +121,7 @@ namespace MoreVanillaBuildPrefabs
 
                     // Prevents player from breaking pottery barn pieces they didn't
                     // create themselves unless admin check and config is true.
-                    if (Plugin.IsCreatorShopPiece(piece) && !piece.IsCreator())
+                    if (HammerCategories.IsCreatorShopPiece(piece) && !piece.IsCreator())
                     {
                         // Allow admins to deconstruct CreatorShop pieces built by other players if setting is enabled in config
                         if (PluginConfig.AdminDeconstructCreatorShop.Value && SynchronizationManager.Instance.PlayerIsAdmin)

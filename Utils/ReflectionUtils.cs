@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Reflection;
 
-namespace MoreVanillaBuildPrefabs
+namespace MoreVanillaBuildPrefabs.Utils
 {
     public static class ReflectionUtils
     {

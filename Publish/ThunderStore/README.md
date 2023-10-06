@@ -100,7 +100,7 @@ The mod comes with a default configuration that sets the crafting requirements f
 <details>
   <summary>Click to see a general list of enabled pieces (contains spoilers.)</summary>
 
-  - Most black marble pieces used in Dvergr builds.
+  - Most black marble pieces used in Dvergr structures.
   - All Dvergr furniture.
   - Most Dvergr wooden structures.
   - Dvergr demisters.
@@ -188,8 +188,8 @@ Collision during placement for some items is not ideal and won't allow automatic
 ## Planned Improvements
 - Resolve known issues.
 - Patch and enable more prefabs.
-- Add a setting to restrict building CreatorShop pieces to Server Admins only.
 - Determine why some prefabs cause the game to crash when re-logging.
+- Add sfx to placement and deconstruction of black marble prefabs.
 
 ## Compatibility
 This is a non-exhaustive list.
