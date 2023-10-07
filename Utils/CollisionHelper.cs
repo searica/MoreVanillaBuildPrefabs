@@ -15,14 +15,21 @@ namespace MoreVanillaBuildPrefabs.Utils
         public static void PatchCollider(GameObject prefab)
         {
             // Needed to make some things work, like Stalagmite, Rock_destructible, Rock_7, silvervein, etc.
-            Bounds desiredBounds = new Bounds();
+            Bounds desiredBounds = new();
             foreach (Renderer renderer in prefab.GetComponentsInChildren<Renderer>())
             {
                 desiredBounds.Encapsulate(renderer.bounds);
             }
-            var collider = prefab.AddComponent<BoxCollider>();
-            collider.center = desiredBounds.center;
-            collider.size = desiredBounds.size;
+            AddBoxCollider(prefab, desiredBounds.center, desiredBounds.size);
+        }
+
+        public static void RemoveColliders(GameObject prefab)
+        {
+            Collider[] colliders = prefab.GetComponentsInChildren<Collider>();
+            foreach (Collider collider in colliders)
+            {
+                Object.DestroyImmediate(collider);
+            }
         }
 
         public static Vector3 GetCenter(GameObject prefab)
@@ -40,19 +47,10 @@ namespace MoreVanillaBuildPrefabs.Utils
             return localCenter;
         }
 
-        public static void RemoveColliders(GameObject prefab)
-        {
-            Collider[] colliders = prefab.GetComponentsInChildren<Collider>();
-            foreach (Collider collider in colliders)
-            {
-                Object.DestroyImmediate(collider);
-            }
-        }
-
         public static List<Collider> GetAllColliders(GameObject prefab)
         {
             Collider[] componentsInChildren = prefab.GetComponentsInChildren<Collider>();
-            List<Collider> colliders = new List<Collider>();
+            List<Collider> colliders = new();
             colliders.Capacity = componentsInChildren.Length;
             Collider[] array = componentsInChildren;
             foreach (Collider collider in array)

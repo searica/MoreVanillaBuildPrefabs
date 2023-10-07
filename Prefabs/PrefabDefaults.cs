@@ -46,6 +46,7 @@ namespace MoreVanillaBuildPrefabs
         {
             "blackmarble_stair_corner",
             "blackmarble_stair_corner_left",
+            "CargoCrate"
             //"dverger_demister",  // didn't fix it so I gotta patch these seperately
             //"dverger_demister_large",
         };
@@ -128,7 +129,7 @@ namespace MoreVanillaBuildPrefabs
             {"turf_roof_wall", new PrefabConfig(false, false, HammerCategories.HammerCategoryNames.Building, nameof(CraftingStations.Workbench), "Wood,2") }, // it's just a wood 26 degree wall
             {"stone_floor", new PrefabConfig(true, false, HammerCategories.HammerCategoryNames.Building, nameof(CraftingStations.Stonecutter), "Stone,24") },
             {"bucket", new PrefabConfig(true, false, HammerCategories.HammerCategoryNames.Misc, nameof(CraftingStations.Workbench), "Wood,2") },
-            {"CargoCrate", new PrefabConfig(true, false, HammerCategories.HammerCategoryNames.Misc, nameof(CraftingStations.Workbench), "Wood,2") },
+            //{"CargoCrate", new PrefabConfig(true, false, HammerCategories.HammerCategoryNames.Misc, nameof(CraftingStations.Workbench), "Wood,2") },
             {"Pickable_SurtlingCoreStand", new PrefabConfig(true, false, HammerCategories.HammerCategoryNames.Furniture, nameof(CraftingStations.Forge), "Iron,2;SurtlingCore,1") },
             {"cloth_hanging_door_double", new PrefabConfig(true, false, HammerCategories.HammerCategoryNames.Furniture, nameof(CraftingStations.Workbench), "JuteRed,4") },
             {"rug_straw", new PrefabConfig(true, false, HammerCategories.HammerCategoryNames.Furniture, nameof(CraftingStations.None), "Wood,2") },

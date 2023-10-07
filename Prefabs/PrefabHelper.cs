@@ -36,10 +36,13 @@ namespace MoreVanillaBuildPrefabs
             "odin",
             "dvergrprops_wood_stake",
             "Hildir",
-            "demister_ball",
+            //Crashes on relog
             "blackmarble_tile_wall_1x1",
             "blackmarble_tile_wall_2x2",
-            "blackmarble_tile_wall_2x4"
+            "blackmarble_tile_wall_2x4",
+            //Placement is glitchy
+            "demister_ball",
+            "CargoCrate"
         };
 
         public static void FindPrefabs()
@@ -60,6 +63,23 @@ namespace MoreVanillaBuildPrefabs
             watch.Stop();
             Log.LogInfo($"Search Time: {watch.ElapsedMilliseconds} ms");
 #endif
+
+            var prefab = PrefabManager.Instance.GetPrefab("piece_groundtorch_wood");
+            if (PluginConfig.IsVerbose())
+            {
+                Log.LogInfo($"{prefab.name}");
+                Log.LogInfo($"Child Count: {prefab.GetComponent<Piece>().transform.childCount}");
+                for (int i = 0; i < prefab.GetComponent<Piece>().transform.childCount; i++)
+                {
+                    var child = prefab.GetComponent<Piece>().transform.GetChild(i).gameObject;
+                    Log.LogInfo($"Child: {child.GetType().Name} {child.name}");
+                    foreach (var collider in child.GetComponents<Collider>())
+                    {
+                        Log.LogInfo($"Collider: {collider.GetType().Name} {collider.name}");
+                    }
+                }
+               
+            }
         }
 
         public static void AddCustomPieces()
@@ -489,11 +509,6 @@ namespace MoreVanillaBuildPrefabs
                     // Fix piece colliders via layers
                     UnityEngine.Object.DestroyImmediate(prefab.GetComponent<MeshCollider>());
                     SnapPointHelper.FixPiece(prefab);
-
-                    // Temp fix collider
-                    //UnityEngine.Object.DestroyImmediate(prefab.GetComponent<MeshCollider>());
-                    //prefab.AddComponent<BoxCollider>();
-                    //prefab.GetComponent<BoxCollider>().size = new Vector3(2, 2, 2);
                     break;
                 case "blackmarble_tile_floor_1x1":
                     prefab.transform.Find("_snappoint").gameObject.transform.localPosition = new Vector3(0.5f, 0.1f, 0.5f);
@@ -1081,8 +1096,7 @@ namespace MoreVanillaBuildPrefabs
                         {
                             new Vector3(0.0f, 0.0f, 0.0f),
                             new Vector3(0.0f, -0.65f, 0.0f),
-                        },
-                        true
+                        }
                     );
                     break;
                 case "dverger_demister_large":
@@ -1100,8 +1114,7 @@ namespace MoreVanillaBuildPrefabs
                         {
                             new Vector3(0.0f, 0.0f, 0.0f),
                             new Vector3(0.0f, -0.9f, 0.0f),
-                        },
-                        true
+                        }
                     );
                     break;
                 case "dvergrprops_hooknchain":
