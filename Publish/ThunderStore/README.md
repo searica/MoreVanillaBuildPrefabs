@@ -2,7 +2,7 @@
 MoreVanillaBuildPrefabs is a Valheim mod to make all vanilla prefabs buildable with the hammer (survival way) while allowing you to configure the requirements to build them. It also now has ServerSync! The mod can still be used as a Client-Side mod though.
 
 ### Acknowledgements
-This mod was inspired by MoreVanillaBuilds by Galathil and PotteryBarn by ComfyMods and the core functionality of the code is based on those two mods. Thanks to blaxxun-boop for creating ServerSync.
+This mod was inspired by MoreVanillaBuilds by Galathil and PotteryBarn by ComfyMods. The core functionality of the code is based on those two mods. Thanks to blaxxun-boop for creating ServerSync.
 
 ## Key Feature
 Because all the added build pieces are pre-existing vanilla prefabs, any pieces you build with this mod will persist in your world even if you uninstall the mod. This means that pieces you build on a server will also be visible for players without the mod and any builds using the pieces from this mod will load for players without the mod.
@@ -100,7 +100,7 @@ The mod comes with a default configuration that sets the crafting requirements f
 <details>
   <summary>Click to see a general list of enabled pieces (contains spoilers.)</summary>
 
-  - Most black marble pieces used in Dvergr structures.
+  - All black marble pieces used in Dvergr structures.
   - All Dvergr furniture.
   - Most Dvergr wooden structures.
   - Dvergr demisters.
@@ -136,42 +136,6 @@ Specifically, when a piece is set to the CreatorShop category player's can only 
 
 ## Known Issues
 
-### Crash When Re-Logging
-Some prefabs result in a crash when re-logging if that prefab is enabled. The default configuration does not enable any prefabs that cause this issue. If you experience this issue please do the following steps:
-- Check the game's crash log at %localappdata%\Temp\IronGate\Valheim (BepInEx does not register an error when this issue occurs)
-- Open the Player.log file generated for the most recent crash.
-- Scroll to the bottom and check for the following text <details>
-  <summary>STACK TRACE OUTPUT</summary>
-
-        ========== OUTPUTTING STACK TRACE ==================
-        0x00007FF86A638726 (UnityPlayer) UnityMain
-        0x00007FF86A63884C (UnityPlayer) UnityMain
-        0x00007FF86A634318 (UnityPlayer) UnityMain
-        0x00007FF86A75DFBA (UnityPlayer) UnityMain
-        0x00007FF86A74C3F3 (UnityPlayer) UnityMain
-        0x00007FF86A5BED6E (UnityPlayer) UnityMain
-        0x00007FF86A5BEAD5 (UnityPlayer) UnityMain
-        0x00007FF86A5C0F73 (UnityPlayer) UnityMain
-        0x00007FF86A5C12D1 (UnityPlayer) UnityMain
-        0x00007FF86A5C0C89 (UnityPlayer) UnityMain
-        0x00007FF86A5A516A (UnityPlayer) UnityMain
-        0x00007FF86A5A5210 (UnityPlayer) UnityMain
-        0x00007FF86A5A94A8 (UnityPlayer) UnityMain
-          ERROR: SymGetSymFromAddr64, GetLastError: 'Attempt to access invalid address.' (Address: 00007FF86A3669DA)
-        0x00007FF86A3669DA (UnityPlayer) (function-name not available)
-          ERROR: SymGetSymFromAddr64, GetLastError: 'Attempt to access invalid address.' (Address: 00007FF86A364EAB)
-        0x00007FF86A364EAB (UnityPlayer) (function-name not available)
-          ERROR: SymGetSymFromAddr64, GetLastError: 'Attempt to access invalid address.' (Address: 00007FF86A369F02)
-        0x00007FF86A369F02 (UnityPlayer) (function-name not available)
-        0x00007FF86A36B0AB (UnityPlayer) UnityMain
-          ERROR: SymGetSymFromAddr64, GetLastError: 'Attempt to access invalid address.' (Address: 00007FF7E33311F2)
-        0x00007FF7E33311F2 (valheim) (function-name not available)
-        0x00007FF961FC257D (KERNEL32) BaseThreadInitThunk
-        0x00007FF9632EAA68 (ntdll) RtlUserThreadStart
-        ========== END OF STACKTRACE ===========
-    </details>
-- Open an issue on Github reporting the error and the Prefab that was enabled to cause it.
-
 ### Custom Armor Stand Clipping
 Placing armor on the Male Armor Stand and Female Armor Stand prefabs have clipping issues where not all of the armor is displayed. I have not been able to fix this as of yet.
 
@@ -179,7 +143,6 @@ Placing armor on the Male Armor Stand and Female Armor Stand prefabs have clippi
 ## Planned Improvements
 - Resolve known issues.
 - Patch and enable more prefabs.
-- Determine why some prefabs cause the game to crash when re-logging.
 - Add sfx to placement and deconstruction of black marble prefabs.
 
 ## Compatibility
@@ -229,6 +192,7 @@ Likely incompatible with other mods that add Vanilla prefabs to the build hammer
 - MapTeleport (by Numenos)
 - Mead Base Icon Fix (by Sulyvana)
 - MultiUserChest (by MSchmoecker)
+- Multiverse (by 1010101110)
 - Minimal UI (by Azumatt)
 - NoSmokeStayList (by TastyChickenLegs)
 - OdinsFoodBarrels (by OdinPlus)

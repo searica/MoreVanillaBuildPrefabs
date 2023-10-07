@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Jotunn.Configs;
+using Jotunn.Managers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -42,9 +44,36 @@ namespace MoreVanillaBuildPrefabs
             return piece;
         }
 
+        public static Piece SetCategory(this Piece piece, string pieceCategoryName)
+        {
+            var pieceCategory = PieceManager.Instance.GetPieceCategory(pieceCategoryName);
+            piece.m_category = (Piece.PieceCategory)pieceCategory; 
+            return piece;
+        }
+
+
         public static Piece SetCategory(this Piece piece, Piece.PieceCategory pieceCategory)
         {
             piece.m_category = pieceCategory;
+            return piece;
+        }
+
+        public static Piece SetCraftingStation(this Piece piece, string humanReadableName)
+        {
+            CraftingStation station;
+            if (humanReadableName == "None")
+            {
+                station = null;
+            }
+            else
+            {
+                var internalName = CraftingStations.GetNames()[humanReadableName];
+
+                station = PrefabManager.Instance
+                    .GetPrefab(internalName)
+                    .GetComponent<CraftingStation>();
+            }
+            piece.m_craftingStation = station;
             return piece;
         }
 
@@ -89,7 +118,14 @@ namespace MoreVanillaBuildPrefabs
             piece.m_targetNonPlayerBuilt = canTarget;
             return piece;
         }
+
+        public static Piece SetAllowedInDungeons(this Piece piece, bool value)
+        {
+            piece.m_allowedInDungeons = value;
+            return piece;
+        }
     }
+
     public static class PieceTableExtensions
     {
         public static bool AddPiece(this PieceTable pieceTable, Piece piece)
@@ -100,8 +136,9 @@ namespace MoreVanillaBuildPrefabs
             }
 
             pieceTable.m_pieces.Add(piece.gameObject);
-            ZLog.Log($"Added Piece {piece.m_name} to PieceTable {pieceTable.name}");
-
+#if DEBUG
+            Log.LogInfo($"Added Piece {piece.m_name} to PieceTable {pieceTable.name}");
+#endif
             return true;
         }
     }

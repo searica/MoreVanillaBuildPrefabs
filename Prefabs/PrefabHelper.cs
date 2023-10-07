@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using UnityEngine;
-using Jotunn.Configs;
-using Jotunn.Entities;
 using Jotunn.Managers;
 using MoreVanillaBuildPrefabs.Utils;
 
@@ -13,7 +10,7 @@ namespace MoreVanillaBuildPrefabs
     public class PrefabHelper
     {
         // keys are piece names and values are prefab names
-        public static List<GameObject> Prefabs = new();
+        public static List<GameObject> EligiblePrefabs = new();
 
         public static HashSet<string> AddedPrefabs = new();
 
@@ -36,10 +33,6 @@ namespace MoreVanillaBuildPrefabs
             "odin",
             "dvergrprops_wood_stake",
             "Hildir",
-            //Crashes on relog
-            "blackmarble_tile_wall_1x1",
-            "blackmarble_tile_wall_2x2",
-            "blackmarble_tile_wall_2x4",
             //Placement is glitchy
             "demister_ball",
             "CargoCrate"
@@ -53,33 +46,15 @@ namespace MoreVanillaBuildPrefabs
             watch.Start();
 #endif
             PieceNameCache = GetExistingPieceNames();
-            Prefabs = ZNetScene.instance.m_prefabs
+            EligiblePrefabs = ZNetScene.instance.m_prefabs
             .Where(go => go.transform.parent == null && !ShouldIgnorePrefab(go))
             .OrderBy(go => go.name)
             .ToList();
-            PrefabManager.OnPrefabsRegistered -= FindPrefabs;
-            Log.LogInfo($"Found {Prefabs.Count()} prefabs");
+            Log.LogInfo($"Found {EligiblePrefabs.Count()} prefabs");
 #if DEBUG
             watch.Stop();
             Log.LogInfo($"Search Time: {watch.ElapsedMilliseconds} ms");
 #endif
-
-            var prefab = PrefabManager.Instance.GetPrefab("piece_groundtorch_wood");
-            if (PluginConfig.IsVerbose())
-            {
-                Log.LogInfo($"{prefab.name}");
-                Log.LogInfo($"Child Count: {prefab.GetComponent<Piece>().transform.childCount}");
-                for (int i = 0; i < prefab.GetComponent<Piece>().transform.childCount; i++)
-                {
-                    var child = prefab.GetComponent<Piece>().transform.GetChild(i).gameObject;
-                    Log.LogInfo($"Child: {child.GetType().Name} {child.name}");
-                    foreach (var collider in child.GetComponents<Collider>())
-                    {
-                        Log.LogInfo($"Collider: {collider.GetType().Name} {collider.name}");
-                    }
-                }
-               
-            }
         }
 
         public static void AddCustomPieces()
@@ -89,11 +64,18 @@ namespace MoreVanillaBuildPrefabs
             watch.Start();
 #endif
             Log.LogInfo("AddCustomPieces()");
-            //Parallel.ForEach( piece => { })
-            foreach (var prefab in Prefabs)
+               
+            var pieceTable = GetPieceTable("_HammerPieceTable");
+            if ( pieceTable == null )
             {
-                CreatePrefabPiece(prefab);
+                Log.LogError("Could not find _HammerPieceTable");
             }
+
+            foreach (var prefab in EligiblePrefabs)
+            {
+                CreatePrefabPiece(prefab, pieceTable);
+            }
+           
             Log.LogInfo($"Created {AddedPrefabs.Count} custom pieces");
 #if DEBUG
             watch.Stop();
@@ -106,21 +88,18 @@ namespace MoreVanillaBuildPrefabs
         {
             Log.LogInfo("RemoveCustomPieces()");
             int removedCounter = 0;
-            PieceTable pieceTable = PieceManager.Instance.GetPieceTable("_HammerPieceTable");
+            PieceTable pieceTable = GetPieceTable("_HammerPieceTable");
 
             foreach (var name in AddedPrefabs)
             {
                 try
                 {
-                    // Remove piece from PieceTable and PieceManager
-                    CustomPiece piece = PieceManager.Instance.GetPiece(name);
-                    pieceTable.m_pieces.Remove(piece.PiecePrefab);
+                    // Remove piece from PieceTable 
+                    var prefab = ZNetScene.instance.GetPrefab(name);
+                    pieceTable.m_pieces.Remove(prefab);
 #if DEBUG
                     Log.LogInfo($"Removed: {name} from PieceTable");
 #endif
-
-                    // Remove piece from Jotunn.PieceManager
-                    PieceManager.Instance.RemovePiece(piece);
                     removedCounter++;
 
                 }
@@ -133,6 +112,19 @@ namespace MoreVanillaBuildPrefabs
             }
             AddedPrefabs.Clear();
             Log.LogInfo($"Removed {removedCounter} custom pieces");
+        }
+
+        private static PieceTable GetPieceTable(string name)
+        {
+            var pieceTables = Resources.FindObjectsOfTypeAll<PieceTable>();
+            if (pieceTables != null)
+            {
+                foreach (var pieceTable in pieceTables)
+                {
+                    if (pieceTable.name == name) return pieceTable;
+                }
+            }
+            return null;
         }
 
         private static bool ShouldIgnorePrefab(GameObject prefab)
@@ -220,6 +212,9 @@ namespace MoreVanillaBuildPrefabs
         private static bool EnsureNoDuplicateZNetView(GameObject prefab)
         {
             var views = prefab.GetComponents<ZNetView>();
+
+            if (views == null) return true;
+
             for (int i = 1; i < views.Length; ++i)
             {
                 GameObject.DestroyImmediate(views[i]);
@@ -228,13 +223,14 @@ namespace MoreVanillaBuildPrefabs
             return views.Length <= 1;
         }
 
-        private static void CreatePrefabPiece(GameObject prefab)
+        private static void CreatePrefabPiece(GameObject prefab, PieceTable pieceTable)
         {
             if (!EnsureNoDuplicateZNetView(prefab))
             {
+                // Just dont, as it will fuck over vanilla (non-mod) users
                 if (PluginConfig.IsVerbose())
                 {
-                    Log.LogInfo("Ignore " + prefab.name);
+                    Log.LogInfo($"Prevent duplicate ZNetView for: {prefab.name}");
                 }
                 return;
             }
@@ -260,37 +256,18 @@ namespace MoreVanillaBuildPrefabs
             InitPieceData(prefab);
             PatchPrefabIfNeeded(prefab);
 
-            var pieceConfig = new PieceConfig
-            {
-                Name = PrefabNames.FormatPrefabName(prefab.name),
-                Description = PrefabNames.GetPrefabDescription(prefab),
-                PieceTable = "_HammerPieceTable",
-                Category = prefabConfig.Category,
-                AllowedInDungeons = prefabConfig.AllowedInDungeons,
-                CraftingStation = prefabConfig.CraftingStation,
-                Icon = PrefabIcons.CreatePrefabIcon(prefab),
-            };
-
-            if (!string.IsNullOrEmpty(prefabConfig.Requirements))
-            {
-                foreach (string req in prefabConfig.Requirements.Split(';'))
-                {
-                    string[] values = req.Split(',');
-                    RequirementConfig reqConf = new()
-                    {
-                        Item = values[0].Trim(),
-                        Amount = int.Parse(values[1].Trim()),
-                        Recover = true
-                    };
-                    pieceConfig.AddRequirement(reqConf);
-                }
-            }
-
-            var piece = new CustomPiece(prefab, true, pieceConfig);
+            var piece = prefab.GetComponent<Piece>();
+            piece.SetName(PrefabNames.FormatPrefabName(prefab.name))
+                .SetDescription(PrefabNames.GetPrefabDescription(prefab))
+                .SetAllowedInDungeons(prefabConfig.AllowedInDungeons)
+                .SetCategory(prefabConfig.Category)
+                .SetCraftingStation(prefabConfig.CraftingStation)
+                .SetResources(CreateRequirements(prefabConfig.Requirements))
+                .SetIcon(PrefabIcons.CreatePrefabIcon(prefab));
 
             // Restrict CreatorShop pieces to Admins only
             if (
-                HammerCategories.IsCreatorShopPiece(piece.Piece)
+                HammerCategories.IsCreatorShopPiece(piece)
                 && PluginConfig.AdminOnlyCreatorShop.Value
                 && !SynchronizationManager.Instance.PlayerIsAdmin
             )
@@ -298,8 +275,35 @@ namespace MoreVanillaBuildPrefabs
                 return;
             }
 
-            PieceManager.Instance.AddPiece(piece);
-            AddedPrefabs.Add(prefab.name);
+
+            if (!pieceTable.m_pieces.Contains(prefab))
+            {
+                pieceTable.m_pieces.Add(prefab);
+                AddedPrefabs.Add(prefab.name);
+            }
+        }
+
+        static Piece.Requirement[] CreateRequirements(string data)
+        {
+            if (string.IsNullOrEmpty(data)) return new Piece.Requirement[0];
+
+            // If not empty
+            var reqs = data.Split(';');
+            Piece.Requirement[] requirements = new Piece.Requirement[reqs.Count()];
+
+            for (int i = 0; i < reqs.Count(); i++)
+            {
+                string[] values = reqs[i].Split(',');
+
+                Piece.Requirement req = new()
+                {
+                    m_resItem = PrefabManager.Cache.GetPrefab<GameObject>(values[0].Trim()).GetComponent<ItemDrop>(),
+                    m_amount = int.Parse(values[1].Trim()),
+                    m_recover = true
+                };
+                requirements[i] = req;
+            }
+            return requirements;
         }
 
         private static void InitPieceData(GameObject prefab)
@@ -321,7 +325,7 @@ namespace MoreVanillaBuildPrefabs
                     piece.m_notOnFloor = false;
                     piece.m_onlyInTeleportArea = false;
                     piece.m_allowedInDungeons = false;
-                    piece.m_clipEverything = true;
+                    piece.m_clipEverything = !PrefabDefaults.RestrictClipping.Contains(prefab.name);
                     piece.m_allowRotatedOverlap = true;
                     piece.m_repairPiece = false; // setting this to true breaks a lot of pieces
                     piece.m_canBeRemoved = true;
@@ -527,30 +531,30 @@ namespace MoreVanillaBuildPrefabs
                     prefab.transform.Find("_snappoint (1)").gameObject.transform.localPosition = new Vector3(0.5f, 1, 0.1f);
                     prefab.transform.Find("_snappoint (2)").gameObject.transform.localPosition = new Vector3(-0.5f, 0, 0.1f);
                     prefab.transform.Find("_snappoint (3)").gameObject.transform.localPosition = new Vector3(-0.5f, 1, 0.1f);
-                    UnityEngine.Object.DestroyImmediate(prefab.transform.Find("_snappoint (4)").gameObject);
-                    UnityEngine.Object.DestroyImmediate(prefab.transform.Find("_snappoint (5)").gameObject);
-                    UnityEngine.Object.DestroyImmediate(prefab.transform.Find("_snappoint (6)").gameObject);
-                    UnityEngine.Object.DestroyImmediate(prefab.transform.Find("_snappoint (7)").gameObject);
+                    prefab.transform.Find("_snappoint (4)").gameObject.transform.localPosition = new Vector3(0.25f, 0, 0.1f);
+                    prefab.transform.Find("_snappoint (5)").gameObject.transform.localPosition = new Vector3(0.25f, 0.5f, 0.1f);
+                    prefab.transform.Find("_snappoint (6)").gameObject.transform.localPosition = new Vector3(-0.25f, 0, 0.1f);
+                    prefab.transform.Find("_snappoint (7)").gameObject.transform.localPosition = new Vector3(-0.25f, 0.5f, 0.1f);
                     break;
                 case "blackmarble_tile_wall_2x2":
                     prefab.transform.Find("_snappoint").gameObject.transform.localPosition = new Vector3(1, 0, 0.1f);
                     prefab.transform.Find("_snappoint (1)").gameObject.transform.localPosition = new Vector3(1, 2, 0.1f);
                     prefab.transform.Find("_snappoint (2)").gameObject.transform.localPosition = new Vector3(-1, 0, 0.1f);
                     prefab.transform.Find("_snappoint (3)").gameObject.transform.localPosition = new Vector3(-1, 2, 0.1f);
-                    UnityEngine.Object.DestroyImmediate(prefab.transform.Find("_snappoint (4)").gameObject);
-                    UnityEngine.Object.DestroyImmediate(prefab.transform.Find("_snappoint (5)").gameObject);
-                    UnityEngine.Object.DestroyImmediate(prefab.transform.Find("_snappoint (6)").gameObject);
-                    UnityEngine.Object.DestroyImmediate(prefab.transform.Find("_snappoint (7)").gameObject);
+                    prefab.transform.Find("_snappoint (4)").gameObject.transform.localPosition = new Vector3(0.5f, 0, 0.1f);
+                    prefab.transform.Find("_snappoint (5)").gameObject.transform.localPosition = new Vector3(0.5f, 1, 0.1f);
+                    prefab.transform.Find("_snappoint (6)").gameObject.transform.localPosition = new Vector3(-0.5f, 0, 0.1f);
+                    prefab.transform.Find("_snappoint (7)").gameObject.transform.localPosition = new Vector3(-0.5f, 1, 0.1f);
                     break;
                 case "blackmarble_tile_wall_2x4":
                     prefab.transform.Find("_snappoint").gameObject.transform.localPosition = new Vector3(1, 0, 0.1f);
                     prefab.transform.Find("_snappoint (1)").gameObject.transform.localPosition = new Vector3(1, 4, 0.1f);
                     prefab.transform.Find("_snappoint (2)").gameObject.transform.localPosition = new Vector3(-1, 0, 0.1f);
                     prefab.transform.Find("_snappoint (3)").gameObject.transform.localPosition = new Vector3(-1, 4, 0.1f);
-                    UnityEngine.Object.DestroyImmediate(prefab.transform.Find("_snappoint (4)").gameObject);
-                    UnityEngine.Object.DestroyImmediate(prefab.transform.Find("_snappoint (5)").gameObject);
-                    UnityEngine.Object.DestroyImmediate(prefab.transform.Find("_snappoint (6)").gameObject);
-                    UnityEngine.Object.DestroyImmediate(prefab.transform.Find("_snappoint (7)").gameObject);
+                    prefab.transform.Find("_snappoint (4)").gameObject.transform.localPosition = new Vector3(0.5f, 0, 0.1f);
+                    prefab.transform.Find("_snappoint (5)").gameObject.transform.localPosition = new Vector3(0.5f, 2, 0.1f);
+                    prefab.transform.Find("_snappoint (6)").gameObject.transform.localPosition = new Vector3(-0.5f, 0, 0.1f);
+                    prefab.transform.Find("_snappoint (7)").gameObject.transform.localPosition = new Vector3(-0.5f, 2, 0.1f);
                     break;
                 case "dungeon_queen_door":
                     SnapPointHelper.AddSnapPoints(
@@ -1047,7 +1051,7 @@ namespace MoreVanillaBuildPrefabs
                     SnapPointHelper.AddSnapPoints(prefab, pts);
                     break;
                 case "blackmarble_post01":
-                    prefab.GetComponent<Piece>().m_clipEverything = false;
+                    //prefab.GetComponent<Piece>().m_clipEverything = false;
                     SnapPointHelper.AddSnapPoints(
                         prefab,
                         new Vector3[]
@@ -1080,7 +1084,7 @@ namespace MoreVanillaBuildPrefabs
                     );
                     break;
                 case "dverger_demister":
-                    prefab.GetComponent<Piece>().m_clipEverything = false;
+                    //prefab.GetComponent<Piece>().m_clipEverything = false;
 
                     CollisionHelper.RemoveColliders(prefab); //remove large box collider
 
@@ -1100,7 +1104,7 @@ namespace MoreVanillaBuildPrefabs
                     );
                     break;
                 case "dverger_demister_large":
-                    prefab.GetComponent<Piece>().m_clipEverything = false;
+                    //prefab.GetComponent<Piece>().m_clipEverything = false;
 
                     CollisionHelper.RemoveColliders(prefab); //remove large box collider
 
@@ -1120,7 +1124,7 @@ namespace MoreVanillaBuildPrefabs
                     );
                     break;
                 case "dvergrprops_hooknchain":
-                    prefab.GetComponent<Piece>().m_clipEverything = false;
+                    //prefab.GetComponent<Piece>().m_clipEverything = false;
                     SnapPointHelper.AddSnapPoints(
                         prefab,
                         new Vector3[]
@@ -1130,7 +1134,7 @@ namespace MoreVanillaBuildPrefabs
                     );
                     break;
                 case "barrell":
-                    prefab.GetComponent<Piece>().m_clipEverything = false;
+                    //prefab.GetComponent<Piece>().m_clipEverything = false;
                     SnapPointHelper.AddSnapPoints(
                         prefab,
                         new Vector3[]

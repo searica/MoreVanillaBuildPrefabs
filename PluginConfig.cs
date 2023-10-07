@@ -1,13 +1,16 @@
-﻿using BepInEx.Configuration;
+﻿using System.IO;
+using BepInEx;
+using BepInEx.Configuration;
 using Jotunn.Configs;
 using UnityEngine;
 using ServerSync;
-
 
 namespace MoreVanillaBuildPrefabs
 {
     internal class PluginConfig
     {
+        private static readonly string ConfigFileName = Plugin.PluginGuid + ".cfg";
+        private static readonly string ConfigFileFullPath = Paths.ConfigPath + Path.DirectorySeparatorChar + ConfigFileName;
         private static ConfigFile configFile;
 
         private static readonly ConfigSync configSync = new(Plugin.PluginGuid)
@@ -53,6 +56,25 @@ namespace MoreVanillaBuildPrefabs
         {
             configFile = config;
             configFile.SaveOnConfigSet = false;
+        }
+
+        public static void Save()
+        {
+            configFile.Save();
+        }
+
+        public static void SaveOnConfigSet(bool value)
+        {
+            configFile.SaveOnConfigSet = value;
+        }
+        public static bool IsVerbose()
+        {
+            return VerboseMode.Value;
+        }
+
+        public static bool IsForceAllPrefabs()
+        {
+            return ForceAllPrefabs.Value;
         }
 
         public static void SetUpConfig()
@@ -117,21 +139,7 @@ namespace MoreVanillaBuildPrefabs
                     AcceptableToggleValuesList
                 )
             );
-        }
-
-        public static void Save()
-        {
-            configFile.Save();
-        }
-
-        public static bool IsVerbose()
-        {
-            return VerboseMode.Value;
-        }
-
-        public static bool IsForceAllPrefabs()
-        {
-            return ForceAllPrefabs.Value;
+            Save();
         }
 
         public static PrefabDefaults.PrefabConfig LoadPrefabConfig(GameObject prefab)
@@ -141,8 +149,8 @@ namespace MoreVanillaBuildPrefabs
             // get predefined configs or generic settings if no predefined config
             PrefabDefaults.PrefabConfig default_config = PrefabDefaults.GetDefaultPrefabConfigValues(prefab.name);
             default_config.Enabled = BindConfig(
-                sectionName, 
-                "Enabled", 
+                sectionName,
+                "\u200BEnabled", 
                 default_config.Enabled,
                 new ConfigDescription(
                     "If true then add the prefab as a buildable piece. Note: this setting is ignored if ForceAllPrefabs is true.",
@@ -206,6 +214,32 @@ namespace MoreVanillaBuildPrefabs
                 }
             }
             return default_config;
+        }
+
+        internal static void SetupWatcher()
+        {
+            FileSystemWatcher watcher = new(Paths.ConfigPath, ConfigFileName);
+            watcher.Changed += ReadConfigValues;
+            watcher.Created += ReadConfigValues;
+            watcher.Renamed += ReadConfigValues;
+            watcher.IncludeSubdirectories = true;
+            watcher.SynchronizingObject = ThreadingHelper.SynchronizingObject;
+            watcher.EnableRaisingEvents = true;
+        }
+
+        private static void ReadConfigValues(object sender, FileSystemEventArgs e)
+        {
+            if (!File.Exists(ConfigFileFullPath)) return;
+            try
+            {
+                Log.LogInfo("ReadConfigValues called");
+                configFile.Reload();
+            }
+            catch
+            {
+                Log.LogError($"There was an issue loading your {ConfigFileName}");
+                Log.LogError("Please check your config entries for spelling and format!");
+            }
         }
     }
 }

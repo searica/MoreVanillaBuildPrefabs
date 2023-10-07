@@ -8,7 +8,7 @@ namespace MoreVanillaBuildPrefabs
     [HarmonyPatch(typeof(ZNetScene))]
     internal class ZNetScenePatch
     {
-        // Hook just before Jotunn registers the Pieces
+        // Hook just ZNetScene as destroyed during log out
         [HarmonyPrefix]
         [HarmonyPatch(nameof(ZNetScene.Shutdown))]
         static void ZNetSceneShutDown()
@@ -18,6 +18,8 @@ namespace MoreVanillaBuildPrefabs
 #endif
             if (PluginConfig.IsModEnabled.Value)
             {
+                PluginConfig.Save(); // save cfg file changes on logout
+
                 if (SceneManager.GetActiveScene() == null)
                 {
                     return;

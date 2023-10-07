@@ -1,3 +1,13 @@
+## Version 0.3.0
+- Implemented built-in cfg file watcher to ensure changes made to cfg file are not erased.
+- Fixed crashing issue with some prefabs and re-enabled them by default.
+- Changed when custom pieces are added to wait until after recieving data from ServerSync (Thanks to Cass for reporting the issue and to Wackymole for helping figure out which method to patch).
+- Changed method of adding custom pieces to not use Jotunn.PieceManager due to Null Exception error, will probably switch back after Jotunn updates.
+
+### Version 0.2.2
+- Added null check to EnsureNoDuplicateZNetView(), should resolve issues caused when rejoining servers (Thanks to Cass on the Odinplus for reporting the bug).
+- Mod now saves the cfg file on logout, should hopefully preserve changes made to it before reading from it when rejoining a server.
+
 ### Version 0.2.1
 - Fixed clipping and placement for several prefabs.
 - Adjusted snap points on a few prefabs.
@@ -5,7 +15,7 @@
 - Code clean up.
 
 ### Version 0.2.0
-- Reduced load time from ~30 seconds to ~0.5 seconds (Thanks to Margmas on the OdinPlus discord for the tip on reducing config file load times.)
+- Reduced load time from ~30 seconds to ~0.5 seconds (Thanks to onnan for reporting the issue and to Margmas on the OdinPlus discord for the tip on reducing config file load times.)
 - Switched to using ZNetScene for patch to trigger removal of custom pieces on logout.
 - Internal code refactoring and clean up.
 
@@ -24,7 +34,6 @@
 	- blackmarble_tile_wall_2x2
 	- blackmarble_tile_wall_2x4
 </details>
-
 
 ### Version 0.1.2
 - Fixed ILRepacker not merging ServerSync assembly when creating Release version of Thunderstore mod package.

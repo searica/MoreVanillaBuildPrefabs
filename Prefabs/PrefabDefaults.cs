@@ -1,5 +1,4 @@
 ﻿using Jotunn.Configs;
-using UnityEngine;
 using System.Collections.Generic;
 
 namespace MoreVanillaBuildPrefabs
@@ -47,16 +46,21 @@ namespace MoreVanillaBuildPrefabs
         {
             "blackmarble_stair_corner",
             "blackmarble_stair_corner_left",
-            // didn't fix it so I gotta patch these seperately
-            //"dverger_demister",  
-            //"dverger_demister_large",
-            //"CargoCrate",
+        };
+
+        // EligiblePrefabs that should not be set to allow clipping everything
+        public static readonly HashSet<string> RestrictClipping = new()
+        {
+            "blackmarble_post01",
+            "dverger_demister",
+            "dverger_demister_large",
+            "dvergrprops_hooknchain",
+            "barrell",
         };
 
 
         public static readonly Dictionary<string, PrefabConfig> DefaultConfigs = new()
         {
-
             // black marble pieces
             {"blackmarble_head_big01", new PrefabConfig(true, false, HammerCategories.HammerCategoryNames.Building, nameof(CraftingStations.Stonecutter), "BlackMarble,6") },
             {"blackmarble_head_big02", new PrefabConfig(true, false, HammerCategories.HammerCategoryNames.Building, nameof(CraftingStations.Stonecutter), "BlackMarble,6") },
@@ -70,9 +74,9 @@ namespace MoreVanillaBuildPrefabs
             {"blackmarble_stair_corner_left", new PrefabConfig(true, false, HammerCategories.HammerCategoryNames.Building, nameof(CraftingStations.Stonecutter), "BlackMarble,8") },
             {"blackmarble_stair_corner", new PrefabConfig(true, false, HammerCategories.HammerCategoryNames.Building, nameof(CraftingStations.Stonecutter), "BlackMarble,8") },
             {"blackmarble_tile_floor_2x2", new PrefabConfig(true, false, HammerCategories.HammerCategoryNames.Building, nameof(CraftingStations.Stonecutter), "BlackMarble,2") },
-            //{"blackmarble_tile_wall_1x1", new PrefabConfig(true, false, HammerCategories.HammerCategoryNames.Building, nameof(CraftingStations.Stonecutter), "BlackMarble,1") },
-            //{"blackmarble_tile_wall_2x2", new PrefabConfig(true, false, HammerCategories.HammerCategoryNames.Building, nameof(CraftingStations.Stonecutter), "BlackMarble,2") },
-            //{"blackmarble_tile_wall_2x4", new PrefabConfig(true, false, HammerCategories.HammerCategoryNames.Building, nameof(CraftingStations.Stonecutter), "BlackMarble,4") },
+            {"blackmarble_tile_wall_1x1", new PrefabConfig(true, false, HammerCategories.HammerCategoryNames.Building, nameof(CraftingStations.Stonecutter), "BlackMarble,1") },
+            {"blackmarble_tile_wall_2x2", new PrefabConfig(true, false, HammerCategories.HammerCategoryNames.Building, nameof(CraftingStations.Stonecutter), "BlackMarble,2") },
+            {"blackmarble_tile_wall_2x4", new PrefabConfig(true, false, HammerCategories.HammerCategoryNames.Building, nameof(CraftingStations.Stonecutter), "BlackMarble,4") },
             {"blackmarble_base_2", new PrefabConfig(true, false, HammerCategories.HammerCategoryNames.Building, nameof(CraftingStations.Stonecutter), "BlackMarble,6") },
             {"blackmarble_column_3", new PrefabConfig(true, false, HammerCategories.HammerCategoryNames.Building, nameof(CraftingStations.Stonecutter), "BlackMarble,16") },
             {"blackmarble_floor_large", new PrefabConfig(true, false, HammerCategories.HammerCategoryNames.Building, nameof(CraftingStations.Stonecutter), "BlackMarble,32") },

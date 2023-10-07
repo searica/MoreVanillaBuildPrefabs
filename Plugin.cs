@@ -13,7 +13,7 @@ namespace MoreVanillaBuildPrefabs
         public const string PluginName = "MoreVanillaPrefabBuilds";
         internal const string Author = "Searica";
         public const string PluginGuid = $"{Author}.Valheim.{PluginName}";
-        public const string PluginVersion = "0.2.1";
+        public const string PluginVersion = "0.3.0";
 
         Harmony _harmony;      
 
@@ -25,13 +25,10 @@ namespace MoreVanillaBuildPrefabs
 
             PluginConfig.Init(Config);
             PluginConfig.SetUpConfig();
-            PluginConfig.Save();
-
-            PrefabManager.OnPrefabsRegistered += HammerCategories.AddCustomCategories;
-            PrefabManager.OnPrefabsRegistered += PrefabHelper.FindPrefabs;
-            PrefabManager.OnPrefabsRegistered += PrefabHelper.AddCustomPieces;
-
+       
             _harmony = Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), harmonyInstanceId: PluginGuid);
+
+            PluginConfig.SetupWatcher();
         }
 
         public void OnDestroy()
