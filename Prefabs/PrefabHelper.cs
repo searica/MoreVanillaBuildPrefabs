@@ -1051,7 +1051,6 @@ namespace MoreVanillaBuildPrefabs
                     SnapPointHelper.AddSnapPoints(prefab, pts);
                     break;
                 case "blackmarble_post01":
-                    //prefab.GetComponent<Piece>().m_clipEverything = false;
                     SnapPointHelper.AddSnapPoints(
                         prefab,
                         new Vector3[]
@@ -1084,8 +1083,6 @@ namespace MoreVanillaBuildPrefabs
                     );
                     break;
                 case "dverger_demister":
-                    //prefab.GetComponent<Piece>().m_clipEverything = false;
-
                     CollisionHelper.RemoveColliders(prefab); //remove large box collider
 
                     // add thin collider along post
@@ -1104,8 +1101,6 @@ namespace MoreVanillaBuildPrefabs
                     );
                     break;
                 case "dverger_demister_large":
-                    //prefab.GetComponent<Piece>().m_clipEverything = false;
-
                     CollisionHelper.RemoveColliders(prefab); //remove large box collider
 
                     // add thin collider along post
@@ -1124,7 +1119,6 @@ namespace MoreVanillaBuildPrefabs
                     );
                     break;
                 case "dvergrprops_hooknchain":
-                    //prefab.GetComponent<Piece>().m_clipEverything = false;
                     SnapPointHelper.AddSnapPoints(
                         prefab,
                         new Vector3[]
@@ -1134,7 +1128,6 @@ namespace MoreVanillaBuildPrefabs
                     );
                     break;
                 case "barrell":
-                    //prefab.GetComponent<Piece>().m_clipEverything = false;
                     SnapPointHelper.AddSnapPoints(
                         prefab,
                         new Vector3[]
@@ -1144,6 +1137,20 @@ namespace MoreVanillaBuildPrefabs
                     );
                     break;
                 default:
+                    // Add SnapPoint to Local Center if there is not already one present there
+                    Transform transform = prefab.GetComponent<Piece>().transform;
+                    for (var index = 0; index < transform.childCount; ++index)
+                    {
+                        var child = transform.GetChild(index);
+                        if (child.CompareTag("snappoint"))
+                        {
+                            if (child.localPosition.Equals(Vector3.zero))
+                            {
+                                return;
+                            }
+                        }
+                    }
+                    SnapPointHelper.AddCenterSnapPoint(prefab);
                     break;
             }
         }
