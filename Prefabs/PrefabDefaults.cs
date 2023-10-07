@@ -1,4 +1,5 @@
 ﻿using Jotunn.Configs;
+using UnityEngine;
 using System.Collections.Generic;
 
 namespace MoreVanillaBuildPrefabs
@@ -35,9 +36,9 @@ namespace MoreVanillaBuildPrefabs
 
         static public PrefabConfig GetDefaultPrefabConfigValues(string prefab_name)
         {
-            if (defaultConfigs.ContainsKey(prefab_name))
+            if (DefaultConfigs.ContainsKey(prefab_name))
             {
-                return defaultConfigs[prefab_name];
+                return DefaultConfigs[prefab_name];
             }
             return new PrefabConfig();
         }
@@ -46,12 +47,14 @@ namespace MoreVanillaBuildPrefabs
         {
             "blackmarble_stair_corner",
             "blackmarble_stair_corner_left",
-            "CargoCrate"
-            //"dverger_demister",  // didn't fix it so I gotta patch these seperately
+            // didn't fix it so I gotta patch these seperately
+            //"dverger_demister",  
             //"dverger_demister_large",
+            //"CargoCrate",
         };
 
-        public static readonly Dictionary<string, PrefabConfig> defaultConfigs = new()
+
+        public static readonly Dictionary<string, PrefabConfig> DefaultConfigs = new()
         {
 
             // black marble pieces

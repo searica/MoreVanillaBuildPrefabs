@@ -106,6 +106,26 @@ namespace MoreVanillaBuildPrefabs
                 return clonedPrefab;
             }
 
+            //[HarmonyPostfix]
+            //[HarmonyPatch(nameof(Player.SetupPlacementGhost))]
+            //static void SetupPlacementGhostPostfix(Player __instance)
+            //{
+            //    if (__instance.m_placementGhost == null)
+            //    {
+            //        return;
+            //    }
+
+            //    Log.LogInfo($"{__instance.m_placementGhost.name}");
+            //    if (
+            //        PrefabHelper.AddedPrefabs.Contains(__instance.m_placementGhost.name)
+            //        && PrefabDefaults.OffSetPlacementGhost.ContainsKey(__instance.m_placementGhost.name)
+            //        )
+            //    {
+            //        Log.LogInfo("Apply Offset");
+            //        __instance.m_placementGhost.transform.position += PrefabDefaults.OffSetPlacementGhost[__instance.m_placementGhost.name];
+            //    }
+            //}
+
             [HarmonyPrefix]
             [HarmonyPatch(nameof(Player.CheckCanRemovePiece))]
             static bool CheckCanRemovePrefix(Player __instance, Piece piece, ref bool __result)

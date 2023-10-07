@@ -176,15 +176,6 @@ Some prefabs result in a crash when re-logging if that prefab is enabled. The de
 Placing armor on the Male Armor Stand and Female Armor Stand prefabs have clipping issues where not all of the armor is displayed. I have not been able to fix this as of yet.
 
 
-### Placement Collision
-Collision during placement for some items is not ideal and won't allow automatic snapping to select the bottom of the prefab.
-<details>
-<summary>Click to see a list of specific pieces (contains spoilers.)</summary>
-  Blackmarble_post01,
-  Dvergr Demister,
-  Dvergr Demsister Large
-</details>
-
 ## Planned Improvements
 - Resolve known issues.
 - Patch and enable more prefabs.

@@ -228,6 +228,80 @@ namespace MoreVanillaBuildPrefabs
             return views.Length <= 1;
         }
 
+        private static void CreatePrefabPiece(GameObject prefab)
+        {
+            if (!EnsureNoDuplicateZNetView(prefab))
+            {
+                if (PluginConfig.IsVerbose())
+                {
+                    Log.LogInfo("Ignore " + prefab.name);
+                }
+                return;
+            }
+
+            // load config data and create piece config
+            PrefabDefaults.PrefabConfig prefabConfig = PluginConfig.LoadPrefabConfig(prefab);
+
+            if (!prefabConfig.Enabled && !PluginConfig.IsForceAllPrefabs())
+            {
+                // prefab denied by config
+                return;
+            }
+
+            if (PluginConfig.IsVerbose())
+            {
+                Log.LogInfo("Initialize '" + prefab.name + "'");
+                foreach (Component compo in prefab.GetComponents<Component>())
+                {
+                    Log.LogInfo("  - " + compo.GetType().Name);
+                }
+            }
+
+            InitPieceData(prefab);
+            PatchPrefabIfNeeded(prefab);
+
+            var pieceConfig = new PieceConfig
+            {
+                Name = PrefabNames.FormatPrefabName(prefab.name),
+                Description = PrefabNames.GetPrefabDescription(prefab),
+                PieceTable = "_HammerPieceTable",
+                Category = prefabConfig.Category,
+                AllowedInDungeons = prefabConfig.AllowedInDungeons,
+                CraftingStation = prefabConfig.CraftingStation,
+                Icon = PrefabIcons.CreatePrefabIcon(prefab),
+            };
+
+            if (!string.IsNullOrEmpty(prefabConfig.Requirements))
+            {
+                foreach (string req in prefabConfig.Requirements.Split(';'))
+                {
+                    string[] values = req.Split(',');
+                    RequirementConfig reqConf = new()
+                    {
+                        Item = values[0].Trim(),
+                        Amount = int.Parse(values[1].Trim()),
+                        Recover = true
+                    };
+                    pieceConfig.AddRequirement(reqConf);
+                }
+            }
+
+            var piece = new CustomPiece(prefab, true, pieceConfig);
+
+            // Restrict CreatorShop pieces to Admins only
+            if (
+                HammerCategories.IsCreatorShopPiece(piece.Piece)
+                && PluginConfig.AdminOnlyCreatorShop.Value
+                && !SynchronizationManager.Instance.PlayerIsAdmin
+            )
+            {
+                return;
+            }
+
+            PieceManager.Instance.AddPiece(piece);
+            AddedPrefabs.Add(prefab.name);
+        }
+
         private static void InitPieceData(GameObject prefab)
         {
             Piece piece = prefab.GetComponent<Piece>();
@@ -272,80 +346,6 @@ namespace MoreVanillaBuildPrefabs
                     }
                 }
             }
-        }
-
-        private static void CreatePrefabPiece(GameObject prefab)
-        {
-            if (!EnsureNoDuplicateZNetView(prefab))
-            {
-                if (PluginConfig.IsVerbose())
-                {
-                    Log.LogInfo("Ignore " + prefab.name);
-                }
-                return;
-            }
-
-            // load config data and create piece config
-            PrefabDefaults.PrefabConfig prefabConfig = PluginConfig.LoadPrefabConfig(prefab);
-
-            if (!prefabConfig.Enabled && !PluginConfig.IsForceAllPrefabs())
-            {
-                // prefab denied by config
-                return;
-            }
-
-            if (PluginConfig.IsVerbose())
-            {
-                Log.LogInfo("Initialize '" + prefab.name + "'");
-                foreach (Component compo in prefab.GetComponents<Component>())
-                {
-                    Log.LogInfo("  - " + compo.GetType().Name);
-                }
-            }
-
-            PatchPrefabIfNeeded(prefab);
-            InitPieceData(prefab);
-
-            var pieceConfig = new PieceConfig
-            {
-                Name = PrefabNames.FormatPrefabName(prefab.name),
-                Description = PrefabNames.GetPrefabDescription(prefab),
-                PieceTable = "_HammerPieceTable",
-                Category = prefabConfig.Category,
-                AllowedInDungeons = prefabConfig.AllowedInDungeons,
-                CraftingStation = prefabConfig.CraftingStation,
-                Icon = PrefabIcons.CreatePrefabIcon(prefab),
-            };
-
-            if (!string.IsNullOrEmpty(prefabConfig.Requirements))
-            {
-                foreach (string req in prefabConfig.Requirements.Split(';'))
-                {
-                    string[] values = req.Split(',');
-                    RequirementConfig reqConf = new()
-                    {
-                        Item = values[0].Trim(),
-                        Amount = int.Parse(values[1].Trim()),
-                        Recover = true
-                    };
-                    pieceConfig.AddRequirement(reqConf);
-                }
-            }
-
-            var piece = new CustomPiece(prefab, true, pieceConfig);
-
-            // Restrict CreatorShop pieces to Admins only
-            if (
-                HammerCategories.IsCreatorShopPiece(piece.Piece) 
-                && PluginConfig.AdminOnlyCreatorShop.Value 
-                && !SynchronizationManager.Instance.PlayerIsAdmin
-            )
-            {
-                return;
-            }
-
-            PieceManager.Instance.AddPiece(piece);
-            AddedPrefabs.Add(prefab.name);
         }
 
         /*
@@ -1047,8 +1047,7 @@ namespace MoreVanillaBuildPrefabs
                     SnapPointHelper.AddSnapPoints(prefab, pts);
                     break;
                 case "blackmarble_post01":
-                    // may need to repatch game since I deleted the mesh collider?
-                    // UnityEngine.Object.DestroyImmediate(prefab.GetComponent<MeshCollider>());
+                    prefab.GetComponent<Piece>().m_clipEverything = false;
                     SnapPointHelper.AddSnapPoints(
                         prefab,
                         new Vector3[]
@@ -1080,8 +1079,9 @@ namespace MoreVanillaBuildPrefabs
                         }
                     );
                     break;
-                //TODO: patch collider so that it aligns with bottom snap point
                 case "dverger_demister":
+                    prefab.GetComponent<Piece>().m_clipEverything = false;
+
                     CollisionHelper.RemoveColliders(prefab); //remove large box collider
 
                     // add thin collider along post
@@ -1100,6 +1100,8 @@ namespace MoreVanillaBuildPrefabs
                     );
                     break;
                 case "dverger_demister_large":
+                    prefab.GetComponent<Piece>().m_clipEverything = false;
+
                     CollisionHelper.RemoveColliders(prefab); //remove large box collider
 
                     // add thin collider along post
@@ -1118,11 +1120,22 @@ namespace MoreVanillaBuildPrefabs
                     );
                     break;
                 case "dvergrprops_hooknchain":
+                    prefab.GetComponent<Piece>().m_clipEverything = false;
                     SnapPointHelper.AddSnapPoints(
                         prefab,
                         new Vector3[]
                         {
-                            new Vector3(0.0f, 3.0f, 0.0f)
+                            new Vector3(0.0f, 2.5f, 0.0f)
+                        }
+                    );
+                    break;
+                case "barrell":
+                    prefab.GetComponent<Piece>().m_clipEverything = false;
+                    SnapPointHelper.AddSnapPoints(
+                        prefab,
+                        new Vector3[]
+                        {
+                            new Vector3(0.0f, -1.0f, 0.0f)
                         }
                     );
                     break;

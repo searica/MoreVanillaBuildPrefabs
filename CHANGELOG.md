@@ -1,3 +1,9 @@
+### Version 0.2.1
+- Fixed clipping and placement for several prefabs.
+- Adjusted snap points on a few prefabs.
+- Disabled CargoCrate prefab due to failing to instantiate upon placement.
+- Code clean up.
+
 ### Version 0.2.0
 - Reduced load time from ~30 seconds to ~0.5 seconds (Thanks to Margmas on the OdinPlus discord for the tip on reducing config file load times.)
 - Switched to using ZNetScene for patch to trigger removal of custom pieces on logout.
