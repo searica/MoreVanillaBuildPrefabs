@@ -9,7 +9,7 @@ namespace MoreVanillaBuildPrefabs
 
         public static Piece.PieceCategory CreatorShop;
 
-        public static class HammerCategoryNames
+        public static class Names
         {
             public const string CreatorShop = "CreatorShop";
             public const string Misc = "Misc";
@@ -19,28 +19,27 @@ namespace MoreVanillaBuildPrefabs
 
             public static AcceptableValueList<string> GetAcceptableValueList()
             {
-                return new AcceptableValueList<string>(typeof(HammerCategoryNames).GetAllPublicConstantValues<string>().ToArray());
+                return new AcceptableValueList<string>(typeof(Names).GetAllPublicConstantValues<string>().ToArray());
             }
         }
 
         public static void AddCustomCategories()
         {
             Log.LogInfo("AddCustomCategories()");
-            CreatorShop = PieceManager.Instance.AddPieceCategory("_HammerPieceTable", HammerCategoryNames.CreatorShop);
+            CreatorShop = PieceManager.Instance.AddPieceCategory("_HammerPieceTable", Names.CreatorShop);
         }
 
         public static void RemoveCustomCategories()
         {
             Log.LogInfo("RemoveCustomCategories()");
-            PieceManager.Instance.RemovePieceCategory("_HammerPieceTable", HammerCategoryNames.CreatorShop);
+            PieceManager.Instance.RemovePieceCategory("_HammerPieceTable", Names.CreatorShop);
         }
 
         public static bool IsCreatorShopPiece(Piece piece)
         {
-            //if (PrefabHelper.AddedPieces.Contains(piece.m_name))
             if (PrefabHelper.AddedPrefabs.Contains(piece.gameObject.name))
             {
-                if (piece.m_category == HammerCategories.CreatorShop)
+                if (piece.m_category == CreatorShop)
                 {
                     return true;
                 }

@@ -1,14 +1,59 @@
 ﻿using System.IO;
 using BepInEx;
 using BepInEx.Configuration;
-using Jotunn.Configs;
 using UnityEngine;
 using ServerSync;
+using static MoreVanillaBuildPrefabs.PieceHelper;
+using System.Collections.Generic;
 
 namespace MoreVanillaBuildPrefabs
 {
     internal class PluginConfig
     {
+        public struct PrefabConfig
+        {
+            public bool Enabled;
+            public bool AllowedInDungeons;
+            public string Category;
+            public string CraftingStation;
+            public Piece.Requirement[] Requirements;
+            public bool PlacementPatch;
+
+            public PrefabConfig(
+                bool Enabled = false,
+                bool AllowedInDungeons = false,
+                string Category = HammerCategories.Names.CreatorShop,
+                string CraftingStation = nameof(CraftingStations.None),
+                string Requirements = null,
+                bool PlacementPatch = false
+            )
+            {
+                this.Enabled = Enabled;
+                this.AllowedInDungeons = AllowedInDungeons;
+                this.Category = Category;
+                this.CraftingStation = CraftingStation;
+                this.Requirements = CreateRequirements(Requirements);
+                this.PlacementPatch = PlacementPatch;
+            }
+
+            public PrefabConfig(
+                bool Enabled = false,
+                bool AllowedInDungeons = false,
+                string Category = HammerCategories.Names.CreatorShop,
+                string CraftingStation = nameof(CraftingStations.None),
+                Piece.Requirement[] Requirements = null,
+                bool PlacementPatch = false
+            )
+            {
+                this.Enabled = Enabled;
+                this.AllowedInDungeons = AllowedInDungeons;
+                this.Category = Category;
+                this.CraftingStation = CraftingStation;
+                this.Requirements = Requirements;
+                this.PlacementPatch = PlacementPatch;
+            }
+        }
+
         private static readonly string ConfigFileName = Plugin.PluginGuid + ".cfg";
         private static readonly string ConfigFileFullPath = Paths.ConfigPath + Path.DirectorySeparatorChar + ConfigFileName;
         private static ConfigFile configFile;
@@ -50,7 +95,7 @@ namespace MoreVanillaBuildPrefabs
         internal static ConfigEntry<bool> AdminOnlyCreatorShop;
         private static ConfigEntry<bool> ForceAllPrefabs;
         private static ConfigEntry<bool> VerboseMode;
-        private static readonly AcceptableValueList<bool> AcceptableToggleValuesList = new(new bool[]{false, true});
+        private static readonly AcceptableValueList<bool> AcceptableToggleValuesList = new(new bool[] { false, true });
 
         public static void Init(ConfigFile config)
         {
@@ -142,15 +187,15 @@ namespace MoreVanillaBuildPrefabs
             Save();
         }
 
-        public static PrefabDefaults.PrefabConfig LoadPrefabConfig(GameObject prefab)
+        public static PrefabConfig LoadPrefabConfig(GameObject prefab)
         {
             string sectionName = prefab.name;
-         
+
             // get predefined configs or generic settings if no predefined config
-            PrefabDefaults.PrefabConfig default_config = PrefabDefaults.GetDefaultPrefabConfigValues(prefab.name);
+            PrefabConfig default_config = PrefabDefaults.GetDefaultPrefabConfigValues(prefab.name);
             default_config.Enabled = BindConfig(
                 sectionName,
-                "\u200BEnabled", 
+                "\u200BEnabled",
                 default_config.Enabled,
                 new ConfigDescription(
                     "If true then add the prefab as a buildable piece. Note: this setting is ignored if ForceAllPrefabs is true.",
@@ -158,37 +203,37 @@ namespace MoreVanillaBuildPrefabs
                 )
             ).Value;
             default_config.AllowedInDungeons = BindConfig(
-                sectionName, 
-                "AllowedInDungeons", 
+                sectionName,
+                "AllowedInDungeons",
                 default_config.AllowedInDungeons,
                 new ConfigDescription(
-                    "If true then this prefab can be built inside dungeon zones.", 
+                    "If true then this prefab can be built inside dungeon zones.",
                     AcceptableToggleValuesList
                 )
             ).Value;
             default_config.Category = BindConfig(
-                sectionName, 
-                "Category", 
+                sectionName,
+                "Category",
                 default_config.Category,
                 new ConfigDescription(
-                    "A string defining the tab the prefab shows up on in the hammer build table.", 
-                    HammerCategories.HammerCategoryNames.GetAcceptableValueList()
+                    "A string defining the tab the prefab shows up on in the hammer build table.",
+                    HammerCategories.Names.GetAcceptableValueList()
                 )
             ).Value;
 
             default_config.CraftingStation = BindConfig(
-                sectionName, 
-                "CraftingStation", 
+                sectionName,
+                "CraftingStation",
                 default_config.CraftingStation,
                 new ConfigDescription(
-                    "A string defining the crafting station required to built the prefab.", 
+                    "A string defining the crafting station required to built the prefab.",
                     CraftingStations.GetAcceptableValueList()
                 )
             ).Value;
 
             default_config.Requirements = BindConfig(
-                sectionName, 
-                "Requirements", 
+                sectionName,
+                "Requirements",
                 default_config.Requirements,
                 "Resources required to build the prefab. Formatted as: itemID,amount;itemID,amount where itemID is the in-game identifier for the resource and amount is an integer. "
             ).Value;
@@ -198,14 +243,14 @@ namespace MoreVanillaBuildPrefabs
             if (!PrefabDefaults.NeedsCollisionPatchForGhost.Contains(prefab.name))
             {
                 default_config.PlacementPatch = BindConfig(
-                    sectionName, 
-                    "PlacementPatch", 
-                    false, 
+                    sectionName,
+                    "PlacementPatch",
+                    false,
                     new ConfigDescription(
                         "Set to true to enable collision patching during placement of the piece.\n" +
                         "Reccomended to try this if the piece is not appearing when you go to place it.\n\n" +
                         " If enabling the placement patch via this setting fixes the issue please open an issue on Github" +
-                        " letting me know so I can make sure the collision patch is always applied to this piece.", 
+                        " letting me know so I can make sure the collision patch is always applied to this piece.",
                         AcceptableToggleValuesList
                     )
                 ).Value;
@@ -216,6 +261,39 @@ namespace MoreVanillaBuildPrefabs
                 }
             }
             return default_config;
+        }
+
+        /// <summary>
+        ///     Convert Requirements string to Piece.Requirement Array
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        internal static Piece.Requirement[] CreateRequirements(string data)
+        {
+            if (string.IsNullOrEmpty(data)) return new Piece.Requirement[0];
+
+            // If not empty
+            List<Piece.Requirement> requirements = new();
+
+            foreach (var entry in data.Split(';'))
+            {
+                string[] values = entry.Split(',');
+
+                var itm = PrefabHelper.Cache.GetPrefab(values[0].Trim())?.GetComponent<ItemDrop>();
+                if (itm == null)
+                {
+                    Log.LogWarning($"Invalid build requirement ID: {values[0].Trim()}");
+                    continue;
+                }
+                Piece.Requirement req = new()
+                {
+                    m_resItem = PrefabHelper.Cache.GetPrefab(values[0].Trim()).GetComponent<ItemDrop>(),
+                    m_amount = int.Parse(values[1].Trim()),
+                    m_recover = true
+                };
+                requirements.Add(req);
+            }
+            return requirements.ToArray();
         }
 
         internal static void SetupWatcher()

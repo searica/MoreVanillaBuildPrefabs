@@ -8,7 +8,7 @@
 - Implemented built-in cfg file watcher to ensure changes made to cfg file are not erased.
 - Fixed crashing issue with some prefabs and re-enabled them by default.
 - Changed when custom pieces are added to wait until after recieving data from ServerSync (Thanks to Cass for reporting the issue and to Wackymole for helping figure out which method to patch).
-- Changed method of adding custom pieces to not use Jotunn.PieceManager due to Null Exception error, will probably switch back after Jotunn updates.
+- Changed method of adding custom pieces to due to Null Exception error caused by adding them with Jotunn after ZNet.Start(), will probably switch back after Jotunn updates.
 
 ### Version 0.2.2
 - Added null check to EnsureNoDuplicateZNetView(), should resolve issues caused when rejoining servers (Thanks to Cass on the Odinplus for reporting the bug).

@@ -8,7 +8,7 @@ using Jotunn.Managers;
 namespace MoreVanillaBuildPrefabs
 {
     internal class PieceHelper
-    {   
+    {
         /// <summary>
         ///     Get existing objects of type PieceTable.
         /// </summary>
@@ -35,7 +35,7 @@ namespace MoreVanillaBuildPrefabs
             }
             return null;
         }
-        
+
         /// <summary>
         ///     Get HashSet of all piece name attached to existing PieceTable objects.
         /// </summary>
@@ -96,13 +96,11 @@ namespace MoreVanillaBuildPrefabs
             bool allowedInDungeons,
             string category,
             string craftingStation,
-            string requirements,
+            Piece.Requirement[] requirements,
             Sprite icon
         )
         {
             var pieceCategory = (Piece.PieceCategory)PieceManager.Instance.GetPieceCategory(category);
-            var reqs = CreateRequirements(requirements);
-
             CraftingStation station;
             if (craftingStation == "None")
             {
@@ -113,8 +111,8 @@ namespace MoreVanillaBuildPrefabs
                 var internalName = CraftingStations.GetNames()[craftingStation];
                 station = ZNetScene.instance?.GetPrefab(internalName)?.GetComponent<CraftingStation>();
             }
-            
-            return ConfigurePiece(piece, name, description, allowedInDungeons, pieceCategory, station, reqs, icon);
+
+            return ConfigurePiece(piece, name, description, allowedInDungeons, pieceCategory, station, requirements, icon);
         }
 
         /// <summary>
@@ -123,9 +121,9 @@ namespace MoreVanillaBuildPrefabs
         /// <param name="piece"></param>
         /// <returns></returns>
         internal static Piece ConfigurePiece(
-            Piece piece, 
-            string name, 
-            string description, 
+            Piece piece,
+            string name,
+            string description,
             bool allowedInDungeons,
             Piece.PieceCategory category,
             CraftingStation craftingStation,
@@ -163,33 +161,6 @@ namespace MoreVanillaBuildPrefabs
             return true;
         }
 
-        static Piece.Requirement[] CreateRequirements(string data)
-        {
-            if (string.IsNullOrEmpty(data)) return new Piece.Requirement[0];
-
-            // If not empty
-            List<Piece.Requirement> requirements = new();
-
-            foreach (var entry in data.Split(';'))
-            {
-                string[] values = entry.Split(',');
-
-                var itm = PrefabHelper.Cache.GetPrefab(values[0].Trim())?.GetComponent<ItemDrop>();
-                if (itm == null)
-                {
-                    Log.LogWarning($"Invalid build requirement ID: {values[0].Trim()}");
-                    continue;
-                }
-                Piece.Requirement req = new()
-                {
-                    m_resItem = PrefabHelper.Cache.GetPrefab(values[0].Trim()).GetComponent<ItemDrop>(),
-                    m_amount = int.Parse(values[1].Trim()),
-                    m_recover = true
-                };
-                requirements.Add(req);
-            }
-            return requirements.ToArray();
-        }
 
 
         /// <summary>
