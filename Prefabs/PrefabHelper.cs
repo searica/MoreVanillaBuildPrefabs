@@ -97,9 +97,6 @@ namespace MoreVanillaBuildPrefabs
                     // Remove piece from PieceTable 
                     var prefab = ZNetScene.instance.GetPrefab(name);
                     pieceTable.m_pieces.Remove(prefab);
-#if DEBUG
-                    Log.LogInfo($"Removed: {name} from PieceTable");
-#endif
                     removedCounter++;
 
                 }
@@ -288,22 +285,27 @@ namespace MoreVanillaBuildPrefabs
             if (string.IsNullOrEmpty(data)) return new Piece.Requirement[0];
 
             // If not empty
-            var reqs = data.Split(';');
-            Piece.Requirement[] requirements = new Piece.Requirement[reqs.Count()];
+            List<Piece.Requirement> requirements = new();
 
-            for (int i = 0; i < reqs.Count(); i++)
+            foreach(var entry in data.Split(';'))
             {
-                string[] values = reqs[i].Split(',');
+                string[] values = entry.Split(',');
 
+                var itm = PrefabManager.Cache.GetPrefab<GameObject>(values[0].Trim())?.GetComponent<ItemDrop>();
+                if (itm == null)
+                {
+                    Log.LogWarning($"Invalid build requirement ID: {values[0].Trim()}");
+                    continue;
+                }
                 Piece.Requirement req = new()
                 {
                     m_resItem = PrefabManager.Cache.GetPrefab<GameObject>(values[0].Trim()).GetComponent<ItemDrop>(),
                     m_amount = int.Parse(values[1].Trim()),
                     m_recover = true
                 };
-                requirements[i] = req;
+                requirements.Add(req);
             }
-            return requirements;
+            return requirements.ToArray();
         }
 
         private static void InitPieceData(GameObject prefab)

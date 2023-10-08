@@ -7,6 +7,7 @@ namespace MoreVanillaBuildPrefabs.Patches
     internal class GamePatch
     {
 
+        // Hook to add piecces after ServerSync recieces data
         [HarmonyPostfix]
         [HarmonyPatch(nameof(Game._RequestRespawn))]
         static void Game_RequestRespawnPostFix()
