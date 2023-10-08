@@ -73,6 +73,13 @@ namespace MoreVanillaBuildPrefabs
 
             foreach (var prefab in EligiblePrefabs)
             {
+                // don't know how this could happen but it
+                // could be the source of new error report
+                if (prefab == null)
+                {
+                    Log.LogWarning("Null prefab found in EligiblePrefabs");
+                    continue;
+                }
                 CreatePrefabPiece(prefab, pieceTable);
             }
            
@@ -206,20 +213,6 @@ namespace MoreVanillaBuildPrefabs
             return PieceNameCache;
         }
 
-        private static bool EnsureNoDuplicateZNetView(GameObject prefab)
-        {
-            var views = prefab.GetComponents<ZNetView>();
-
-            if (views == null) return true;
-
-            for (int i = 1; i < views.Length; ++i)
-            {
-                GameObject.DestroyImmediate(views[i]);
-            }
-
-            return views.Length <= 1;
-        }
-
         private static void CreatePrefabPiece(GameObject prefab, PieceTable pieceTable)
         {
             if (!EnsureNoDuplicateZNetView(prefab))
@@ -278,6 +271,20 @@ namespace MoreVanillaBuildPrefabs
                 pieceTable.m_pieces.Add(prefab);
                 AddedPrefabs.Add(prefab.name);
             }
+        }
+
+        private static bool EnsureNoDuplicateZNetView(GameObject prefab)
+        {
+            var views = prefab?.GetComponents<ZNetView>();
+
+            if (views == null) return true;
+
+            for (int i = 1; i < views.Length; ++i)
+            {
+                GameObject.DestroyImmediate(views[i]);
+            }
+
+            return views.Length <= 1;
         }
 
         static Piece.Requirement[] CreateRequirements(string data)
