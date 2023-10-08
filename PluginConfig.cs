@@ -17,7 +17,7 @@ namespace MoreVanillaBuildPrefabs
             public bool AllowedInDungeons;
             public string Category;
             public string CraftingStation;
-            public Piece.Requirement[] Requirements;
+            public string Requirements;
             public bool PlacementPatch;
 
             public PrefabConfig(
@@ -26,23 +26,6 @@ namespace MoreVanillaBuildPrefabs
                 string Category = HammerCategories.Names.CreatorShop,
                 string CraftingStation = nameof(CraftingStations.None),
                 string Requirements = null,
-                bool PlacementPatch = false
-            )
-            {
-                this.Enabled = Enabled;
-                this.AllowedInDungeons = AllowedInDungeons;
-                this.Category = Category;
-                this.CraftingStation = CraftingStation;
-                this.Requirements = CreateRequirements(Requirements);
-                this.PlacementPatch = PlacementPatch;
-            }
-
-            public PrefabConfig(
-                bool Enabled = false,
-                bool AllowedInDungeons = false,
-                string Category = HammerCategories.Names.CreatorShop,
-                string CraftingStation = nameof(CraftingStations.None),
-                Piece.Requirement[] Requirements = null,
                 bool PlacementPatch = false
             )
             {
@@ -269,7 +252,7 @@ namespace MoreVanillaBuildPrefabs
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
-        internal static Piece.Requirement[] CreateRequirements(string data)
+        internal static Piece.Requirement[] CreateRequirementsArray(string data)
         {
             if (string.IsNullOrEmpty(data)) return new Piece.Requirement[0];
 
