@@ -19,13 +19,16 @@ If you are using a mod manager for Thunderstore simply install the mod from ther
 **Recommended:** Install SearsCatalog (https://valheim.thunderstore.io/package/ComfyMods/SearsCatalog/) to extend the hammer build table and allow you to access all the pieces this mod adds even if there are too many added pieces for the vanilla build table.
 
 ## Configuration
-You need to edit the configuration file with client/server off! If you use an in-game configuration manager, you need to restart the game/server to apply configuration.
+You can now edit the configuration file while the game/server is on. 
+Both directly editing the file and using an in-game configuration manager will work. 
+For changes to take effect you may still need to rejoin the game session or restart the game though as pieces are added upon joining a session.
 
 For each detected prefab in the game you can:
 - Enable/Disable it from the hammer.
-- Define custom recipe to build the prefab in-game.
-- Set the required crafting station to build and deconstruct the prefab.
 - Set whether the prefab is allowed to be built inside of dungeons.
+- Set the piece category within the hammer.
+- Set the required crafting station to build and deconstruct the prefab.
+- Define custom recipe to build the prefab in-game.
 - Enable a generic placement patch if the piece is behaving strangely when placing it.
 
 ### Global Section Configuration:
@@ -136,17 +139,21 @@ Specifically, when a piece is set to the CreatorShop category player's can only 
 
 ## Known Issues
 
-### Custom Armor Stand Clipping
+#### Custom Armor Stand Clipping
 Placing armor on the Male Armor Stand and Female Armor Stand prefabs have clipping issues where not all of the armor is displayed. I have not been able to fix this as of yet.
-
 
 ## Planned Improvements
 - Resolve known issues.
 - Patch and enable more prefabs.
+- Consider adding vanilla functionality to custom pieces like sitting in chairs.
 - Add sfx to placement and deconstruction of black marble prefabs.
 
 ## Compatibility
 This is a non-exhaustive list.
+
+### Partial Incompatiability
+- WackysDatabase (by WackyMole)
+	- WackysDB is not able to find pieces added by this mod since they are added after WackysDB checks for them.
 
 ### Incompatible Mods
 Likely incompatible with other mods that add Vanilla prefabs to the build hammer unless you disable the prefabs from this mod that overlap with the other one since conflicting build requirements can cause unexpected behavior.
@@ -171,6 +178,7 @@ Likely incompatible with other mods that add Vanilla prefabs to the build hammer
 - BetterUI Reforged (by the defside)
 - BowsBeforeHoes (by Azumatt)
 - BuildRestrictionTweaks (any version that is a reupload of Aedenthorn)
+- CreatureLevelAndLootControl (by Smoothbrain)
 - ComforTweaks (by Smoothbrain)
 - ComfySigns (by ComfyMods)
 - CraftingFilter (by Aedenthorn)

@@ -1,3 +1,9 @@
+## Version 0.3.1
+- Added NullException checks to fix compatiability issues with CreatureLevelAndLootControl.
+- Changed mod to search for prefabs every time a game session is joined (has minimal impact on load time, < 50 ms on average) to prevent null prefab errors.
+- Added error handling to catch incorrect build requirement ID's and throw a warning to the log.
+- Thanks to Cass again for letting me know about the compatiability issue and testing out the fixes.
+
 ## Version 0.3.0
 - Implemented built-in cfg file watcher to ensure changes made to cfg file are not erased.
 - Fixed crashing issue with some prefabs and re-enabled them by default.
@@ -19,6 +25,10 @@
 - Switched to using ZNetScene for patch to trigger removal of custom pieces on logout.
 - Internal code refactoring and clean up.
 
+### Version 0.1.X
+<details>
+<summary>details</summary>
+
 ### Version 0.1.4
 - Updated for patch 0.217.22
 
@@ -29,7 +39,7 @@
 - Changed method of adding custom build pieces to respect server configuration when changing between servers without restarting the game.
 - Added configuration option to restrict placement of CreatorShop pieces to Admins.
 <details>
-  <summary>Click to see specific prefabs that were removed (contains spoilers).</summary>
+	<summary>Click to see specific prefabs that were removed (contains spoilers).</summary>
 	- blackmarble_tile_wall_1x1
 	- blackmarble_tile_wall_2x2
 	- blackmarble_tile_wall_2x4
@@ -48,7 +58,7 @@
 - Added a setting to allow admins to deconstruct CreatorShop pieces built by other players.
 - Add a configuration option for each prefab that enables a generic collision patch to allow users to possibly fix placing prefabs that have not been custom patched yet.
 - Improved configuration file to provide configuration descriptions and a list of acceptable values for each configuration option.
-  - Crafting station names are now descriptive instead of based on the item_id in-game.
+	- Crafting station names are now descriptive instead of based on the item_id in-game.
 
 **Minor Changes**
 - Tweaked resource requirements for better balance.
@@ -68,3 +78,5 @@
 
 ### Version 0.0.1
 - Initial release.
+
+</details>
