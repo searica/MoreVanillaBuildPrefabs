@@ -72,13 +72,14 @@ namespace MoreVanillaBuildPrefabs
         internal static ConfigEntry<T> BindConfig<T>(string group, string name, T value, string description, bool synchronizedSetting = true) => BindConfig(group, name, value, new ConfigDescription(description), synchronizedSetting);
 
 
-        private static readonly string MainSectionName = "\u200BGlobal";
+        private const string MainSectionName = "\u200BGlobal";
         public static ConfigEntry<bool> IsModEnabled { get; private set; }
         public static ConfigEntry<bool> LockConfiguration { get; private set; }
-        internal static ConfigEntry<bool> AdminDeconstructCreatorShop;
-        internal static ConfigEntry<bool> AdminOnlyCreatorShop;
-        private static ConfigEntry<bool> ForceAllPrefabs;
-        private static ConfigEntry<bool> VerboseMode;
+        public static ConfigEntry<bool> AdminDeconstructCreatorShop { get; private set; }
+        public static ConfigEntry<bool> AdminOnlyCreatorShop { get; private set; }
+        public static ConfigEntry<bool> ForceAllPrefabs { get; private set; }
+        public static ConfigEntry<bool> VerboseMode { get; private set; }
+
         private static readonly AcceptableValueList<bool> AcceptableToggleValuesList = new(new bool[] { false, true });
 
         public static void Init(ConfigFile config)
@@ -96,6 +97,7 @@ namespace MoreVanillaBuildPrefabs
         {
             configFile.SaveOnConfigSet = value;
         }
+
         public static bool IsVerbose()
         {
             return VerboseMode.Value;
@@ -186,6 +188,7 @@ namespace MoreVanillaBuildPrefabs
                     AcceptableToggleValuesList
                 )
             ).Value;
+
             default_config.AllowedInDungeons = BindConfig(
                 sectionName,
                 "AllowedInDungeons",
@@ -195,6 +198,7 @@ namespace MoreVanillaBuildPrefabs
                     AcceptableToggleValuesList
                 )
             ).Value;
+
             default_config.Category = BindConfig(
                 sectionName,
                 "Category",
@@ -238,6 +242,7 @@ namespace MoreVanillaBuildPrefabs
                         AcceptableToggleValuesList
                     )
                 ).Value;
+
                 if (default_config.PlacementPatch)
                 {
                     // add prefab to list of prefabs needing a collision patch if setting is true
