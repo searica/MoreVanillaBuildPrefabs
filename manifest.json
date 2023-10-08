@@ -4,8 +4,8 @@
     "version_number": "0.3.1",
     "website_url": "https://github.com/searica/MoreVanillaBuildPrefabs",
     "description": "Adds configurable vanilla build prefabs to hammer in survival mode with a default configuration for ease of use. Now with ServerSync!",
-  "dependencies": [
-    "denikson-BepInExPack_Valheim-5.4.2200",
-    "ValheimModding-Jotunn-2.14.3"
-  ]
+    "dependencies": [
+      "denikson-BepInExPack_Valheim-5.4.2200",
+      "ValheimModding-Jotunn-2.14.3"
+    ]
 }

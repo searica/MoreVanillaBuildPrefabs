@@ -25,13 +25,8 @@ namespace MoreVanillaBuildPrefabs.Patches
                 // If loading into game world and prefabs have not been added
                 if (SceneManager.GetActiveScene().name == "main" && PrefabHelper.AddedPrefabs.Count == 0)
                 {
-                    if (PrefabHelper.EligiblePrefabs.Count == 0)
-                    {
-                        PrefabHelper.FindPrefabs();
-                    }
                     HammerCategories.AddCustomCategories();
-                    PrefabHelper.AddCustomPieces();
-
+                    PrefabHelper.FindAndAddPrefabs();
                 }
             }
         }

@@ -68,10 +68,7 @@ namespace MoreVanillaBuildPrefabs
             else
             {
                 var internalName = CraftingStations.GetNames()[humanReadableName];
-
-                station = PrefabManager.Instance
-                    .GetPrefab(internalName)
-                    .GetComponent<CraftingStation>();
+                station = ZNetScene.instance.GetPrefab(internalName).GetComponent<CraftingStation>();
             }
             piece.m_craftingStation = station;
             return piece;
