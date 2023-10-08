@@ -260,16 +260,22 @@ namespace MoreVanillaBuildPrefabs
             return views.Length <= 1;
         }
 
+        /// <summary>
+        ///     If prefab has an existing piece with existing build requirements,
+        ///     then add the default build requirements to DefaultResources dictionary 
+        ///     if they have not already been added.
+        /// </summary>
+        /// <param name="prefab"></param>
         private static void SaveDefaultResources(GameObject prefab)
         {
             var piece = prefab?.GetComponent<Piece>();
             if (piece?.m_resources != null)
             {
-                // stop errors on second log in
+                // Stop errors on subsequent log ins
                 if (!DefaultResources.ContainsKey(prefab.name))
                 {
 #if DEBUG
-                    Log.LogDebug($"Adding default drops for {prefab.name}");
+                    Log.LogDebug($"Adding default resources for {prefab.name}");
 #endif
                     DefaultResources.Add(prefab.name, piece.m_resources);
                 }
@@ -307,6 +313,14 @@ namespace MoreVanillaBuildPrefabs
                     string name = gameObject.name;
                     dictionaryCache[name] = FindBestAsset(gameObject, name);
                 }
+            }
+
+            /// <summary>
+            ///     Clears the internal cache of game objects.
+            /// </summary>
+            internal static void ClearCache()
+            {
+                dictionaryCache.Clear();
             }
 
             /// <summary>
