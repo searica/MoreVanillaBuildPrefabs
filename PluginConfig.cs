@@ -175,6 +175,7 @@ namespace MoreVanillaBuildPrefabs
                     HammerCategories.HammerCategoryNames.GetAcceptableValueList()
                 )
             ).Value;
+
             default_config.CraftingStation = BindConfig(
                 sectionName, 
                 "CraftingStation", 
@@ -184,6 +185,7 @@ namespace MoreVanillaBuildPrefabs
                     CraftingStations.GetAcceptableValueList()
                 )
             ).Value;
+
             default_config.Requirements = BindConfig(
                 sectionName, 
                 "Requirements", 
