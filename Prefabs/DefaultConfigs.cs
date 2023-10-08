@@ -4,13 +4,13 @@ using static MoreVanillaBuildPrefabs.PieceHelper;
 
 namespace MoreVanillaBuildPrefabs
 {
-    public class PrefabDefaults
+    public class DefaultConfigs
     {
         internal static PrefabConfig GetDefaultPrefabConfigValues(string prefab_name)
         {
-            if (DefaultConfigs.ContainsKey(prefab_name))
+            if (DefaultConfigValues.ContainsKey(prefab_name))
             {
-                return DefaultConfigs[prefab_name];
+                return DefaultConfigValues[prefab_name];
             }
             return new PrefabConfig();
         }
@@ -32,7 +32,7 @@ namespace MoreVanillaBuildPrefabs
         };
 
 
-        internal static readonly Dictionary<string, PrefabConfig> DefaultConfigs = new()
+        internal static readonly Dictionary<string, PrefabConfig> DefaultConfigValues = new()
         {
             // black marble pieces
             {"blackmarble_head_big01",

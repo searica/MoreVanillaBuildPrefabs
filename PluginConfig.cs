@@ -3,6 +3,7 @@ using BepInEx;
 using BepInEx.Configuration;
 using UnityEngine;
 using ServerSync;
+using Jotunn.Managers;
 using static MoreVanillaBuildPrefabs.PieceHelper;
 using System.Collections.Generic;
 
@@ -192,7 +193,7 @@ namespace MoreVanillaBuildPrefabs
             string sectionName = prefab.name;
 
             // get predefined configs or generic settings if no predefined config
-            PrefabConfig default_config = PrefabDefaults.GetDefaultPrefabConfigValues(prefab.name);
+            PrefabConfig default_config = DefaultConfigs.GetDefaultPrefabConfigValues(prefab.name);
             default_config.Enabled = BindConfig(
                 sectionName,
                 "\u200BEnabled",
@@ -240,7 +241,7 @@ namespace MoreVanillaBuildPrefabs
 
             // if the prefab is not already included in the list of prefabs that need a 
             // collision patch then add a config option to enable the placement collision patch.
-            if (!PrefabDefaults.NeedsCollisionPatchForGhost.Contains(prefab.name))
+            if (!DefaultConfigs.NeedsCollisionPatchForGhost.Contains(prefab.name))
             {
                 default_config.PlacementPatch = BindConfig(
                     sectionName,
@@ -257,7 +258,7 @@ namespace MoreVanillaBuildPrefabs
                 if (default_config.PlacementPatch)
                 {
                     // add prefab to list of prefabs needing a collision patch if setting is true
-                    PrefabDefaults.NeedsCollisionPatchForGhost.Add(prefab.name);
+                    DefaultConfigs.NeedsCollisionPatchForGhost.Add(prefab.name);
                 }
             }
             return default_config;
@@ -279,7 +280,7 @@ namespace MoreVanillaBuildPrefabs
             {
                 string[] values = entry.Split(',');
 
-                var itm = PrefabHelper.Cache.GetPrefab(values[0].Trim())?.GetComponent<ItemDrop>();
+                var itm = PrefabManager.Cache.GetPrefab<GameObject>(values[0].Trim())?.GetComponent<ItemDrop>();
                 if (itm == null)
                 {
                     Log.LogWarning($"Invalid build requirement ID: {values[0].Trim()}");
@@ -287,7 +288,7 @@ namespace MoreVanillaBuildPrefabs
                 }
                 Piece.Requirement req = new()
                 {
-                    m_resItem = PrefabHelper.Cache.GetPrefab(values[0].Trim()).GetComponent<ItemDrop>(),
+                    m_resItem = PrefabManager.Cache.GetPrefab<GameObject>(values[0].Trim()).GetComponent<ItemDrop>(),
                     m_amount = int.Parse(values[1].Trim()),
                     m_recover = true
                 };

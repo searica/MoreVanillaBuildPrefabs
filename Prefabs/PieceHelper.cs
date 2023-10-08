@@ -71,7 +71,7 @@ namespace MoreVanillaBuildPrefabs
                     piece.m_notOnFloor = false;
                     piece.m_onlyInTeleportArea = false;
                     piece.m_allowedInDungeons = false;
-                    piece.m_clipEverything = !PrefabDefaults.RestrictClipping.Contains(prefab.name);
+                    piece.m_clipEverything = !DefaultConfigs.RestrictClipping.Contains(prefab.name);
                     piece.m_allowRotatedOverlap = true;
                     piece.m_repairPiece = false; // setting this to true breaks a lot of pieces
                     piece.m_canBeRemoved = true;
