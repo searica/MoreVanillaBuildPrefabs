@@ -7,8 +7,9 @@ namespace MoreVanillaBuildPrefabs.Patches
     internal class GamePatch
     {
 
-        // Hook to add piecces after ServerSync recieces data
+        // Hook here to add pieces after ServerSync recieves data
         [HarmonyPostfix]
+        [HarmonyPriority(Priority.High)] // High priority for compatiability with WackyDB
         [HarmonyPatch(nameof(Game._RequestRespawn))]
         static void Game_RequestRespawnPostFix()
         {
