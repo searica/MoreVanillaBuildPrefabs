@@ -1,8 +1,6 @@
 ﻿using System.Reflection;
 using BepInEx;
 using HarmonyLib;
-using Jotunn.Managers;
-
 
 namespace MoreVanillaBuildPrefabs
 {
@@ -13,9 +11,9 @@ namespace MoreVanillaBuildPrefabs
         public const string PluginName = "MoreVanillaPrefabBuilds";
         internal const string Author = "Searica";
         public const string PluginGuid = $"{Author}.Valheim.{PluginName}";
-        public const string PluginVersion = "0.3.1";
+        public const string PluginVersion = "0.3.2";
 
-        Harmony _harmony;      
+        Harmony _harmony;
 
         public static bool DisableDestructionDrops { get; set; } = false;
 
@@ -25,7 +23,7 @@ namespace MoreVanillaBuildPrefabs
 
             PluginConfig.Init(Config);
             PluginConfig.SetUpConfig();
-       
+
             _harmony = Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), harmonyInstanceId: PluginGuid);
 
             PluginConfig.SetupWatcher();
