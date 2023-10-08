@@ -41,12 +41,7 @@ namespace MoreVanillaBuildPrefabs
             var watch = new System.Diagnostics.Stopwatch();
             watch.Start();
 #endif
-
-            if (PieceNameCache != null)
-            {
-                PieceNameCache = null;
-                PieceNameCache = PieceHelper.GetExistingPieceNames();
-            }
+            PieceNameCache = PieceHelper.GetExistingPieceNames();
 
             var EligiblePrefabs = ZNetScene.instance.m_prefabs
             .Where(go => go.transform.parent == null && !ShouldIgnorePrefab(go))
@@ -67,8 +62,7 @@ namespace MoreVanillaBuildPrefabs
 
             foreach (var prefab in EligiblePrefabs)
             {
-                // Don't know how this happens but it definitely does
-                // sometimes when other mods are used in addition to this one.
+                // Check to fix rare incompatability with other mods.
                 if (prefab == null)
                 {
                     Log.LogWarning("Null prefab found in EligiblePrefabs");
@@ -77,7 +71,7 @@ namespace MoreVanillaBuildPrefabs
                 CreatePrefabPiece(prefab, pieceTable);
             }
 
-            Log.LogInfo($"Created {AddedPrefabs.Count} custom pieces");
+            Log.LogInfo($"Added {AddedPrefabs.Count} custom pieces");
 #if DEBUG
             watch.Stop();
             Log.LogInfo($"Creation Time: {watch.ElapsedMilliseconds} ms");
@@ -107,6 +101,7 @@ namespace MoreVanillaBuildPrefabs
                 }
             }
             AddedPrefabs.Clear();
+            PieceNameCache = null;
             Log.LogInfo($"Removed {removedCounter} custom pieces");
         }
 
