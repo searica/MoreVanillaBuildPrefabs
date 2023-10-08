@@ -1,13 +1,19 @@
+### Version 0.3.2
+- Update to Jotunn 2.14.4
+- Changed priority of patch for adding prefabs to fix partial incomparability with WackyDB.
+- Internal refactoring to clean up code and make managing methods easier.
+- Enabled some more piecces by default.
+
 ### Version 0.3.1
-- Added NullException checks to fix compatiability issues with CreatureLevelAndLootControl.
+- Added NullException checks to fix compatibility issues with CreatureLevelAndLootControl.
 - Changed mod to search for prefabs every time a game session is joined (has minimal impact on load time, < 50 ms on average) to prevent null prefab errors.
 - Added error handling to catch incorrect build requirement ID's and throw a warning to the log.
-- Thanks to Cass again for letting me know about the compatiability issue and testing out the fixes.
+- Thanks to Cass again for letting me know about the compatibility issue and testing out the fixes.
 
 ### Version 0.3.0
 - Implemented built-in cfg file watcher to ensure changes made to cfg file are not erased.
 - Fixed crashing issue with some prefabs and re-enabled them by default.
-- Changed when custom pieces are added to wait until after recieving data from ServerSync (Thanks to Cass for reporting the issue and to Wackymole for helping figure out which method to patch).
+- Changed when custom pieces are added to wait until after receiving data from ServerSync (Thanks to Cass for reporting the issue and to Wackymole for helping figure out which method to patch).
 - Changed method of adding custom pieces due to Null Exception error caused by adding pieces with Jotunn after ZNet.Start(), will probably switch back after Jotunn updates.
 
 ### Version 0.2.2
