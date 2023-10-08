@@ -96,23 +96,23 @@ namespace MoreVanillaBuildPrefabs
             bool allowedInDungeons,
             string category,
             string craftingStation,
-            Piece.Requirement[] requirements,
+            string requirements,
             Sprite icon
         )
         {
             var pieceCategory = (Piece.PieceCategory)PieceManager.Instance.GetPieceCategory(category);
-            CraftingStation station;
-            if (craftingStation == "None")
-            {
-                station = null;
-            }
-            else
-            {
-                var internalName = CraftingStations.GetNames()[craftingStation];
-                station = ZNetScene.instance?.GetPrefab(internalName)?.GetComponent<CraftingStation>();
-            }
-
-            return ConfigurePiece(piece, name, description, allowedInDungeons, pieceCategory, station, requirements, icon);
+            var reqs = PluginConfig.CreateRequirementsArray(requirements);
+            var station = CraftingStations.GetCraftingStation(craftingStation);
+            return ConfigurePiece(
+                piece,
+                name,
+                description,
+                allowedInDungeons,
+                pieceCategory,
+                station,
+                reqs,
+                icon
+            );
         }
 
         /// <summary>
@@ -161,8 +161,6 @@ namespace MoreVanillaBuildPrefabs
             return true;
         }
 
-
-
         /// <summary>
         ///     Helper to get existing crafting station names
         /// </summary>
@@ -171,42 +169,42 @@ namespace MoreVanillaBuildPrefabs
             /// <summary>
             ///     No crafting station
             /// </summary>
-            public static string None => string.Empty;
+            internal static string None => string.Empty;
 
             /// <summary>
             ///    Workbench crafting station
             /// </summary>
-            public static string Workbench => "piece_workbench";
+            internal static string Workbench => "piece_workbench";
 
             /// <summary>
             ///    Forge crafting station
             /// </summary>
-            public static string Forge => "forge";
+            internal static string Forge => "forge";
 
             /// <summary>
             ///     Stonecutter crafting station
             /// </summary>
-            public static string Stonecutter => "piece_stonecutter";
+            internal static string Stonecutter => "piece_stonecutter";
 
             /// <summary>
             ///     Cauldron crafting station
             /// </summary>
-            public static string Cauldron => "piece_cauldron";
+            internal static string Cauldron => "piece_cauldron";
 
             /// <summary>
             ///     Artisan table crafting station
             /// </summary>
-            public static string ArtisanTable => "piece_artisanstation";
+            internal static string ArtisanTable => "piece_artisanstation";
 
             /// <summary>
             ///     Black forge crafting station
             /// </summary>
-            public static string BlackForge => "blackforge";
+            internal static string BlackForge => "blackforge";
 
             /// <summary>
             ///     Galdr table crafting station
             /// </summary>
-            public static string GaldrTable => "piece_magetable";
+            internal static string GaldrTable => "piece_magetable";
 
 
             private static readonly Dictionary<string, string> NamesMap = new()
@@ -227,7 +225,7 @@ namespace MoreVanillaBuildPrefabs
             ///     Gets the human readable name to internal names map
             /// </summary>
             /// <returns></returns>
-            public static Dictionary<string, string> GetNames()
+            internal static Dictionary<string, string> GetNames()
             {
                 return NamesMap;
             }
@@ -241,7 +239,7 @@ namespace MoreVanillaBuildPrefabs
             ///     </code>
             /// </summary>
             /// <returns></returns>
-            public static AcceptableValueList<string> GetAcceptableValueList()
+            internal static AcceptableValueList<string> GetAcceptableValueList()
             {
                 return AcceptableValues;
             }
@@ -256,7 +254,7 @@ namespace MoreVanillaBuildPrefabs
             ///     Otherwise the unchanged craftingStation parameter is returned.
             /// </returns>
             /// 
-            public static string GetInternalName(string craftingStation)
+            internal static string GetInternalName(string craftingStation)
             {
                 if (string.IsNullOrEmpty(craftingStation))
                 {
@@ -270,6 +268,18 @@ namespace MoreVanillaBuildPrefabs
 
                 return craftingStation;
             }
-        } // End CraftingStations
-    }
+
+            /// <summary>
+            ///     Get CraftingStation object from either the human readable or internal name.
+            /// </summary>
+            /// <param name="craftingStation"></param>
+            /// <returns></returns>
+            internal static CraftingStation GetCraftingStation(string name)
+            {
+                var internalName = GetInternalName(name);
+                var station = ZNetScene.instance?.GetPrefab(internalName)?.GetComponent<CraftingStation>();
+                return station;
+            }
+        }
+    } // End CraftingStations
 }
