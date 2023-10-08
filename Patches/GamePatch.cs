@@ -27,7 +27,7 @@ namespace MoreVanillaBuildPrefabs.Patches
                 {
                     if (PrefabHelper.EligiblePrefabs.Count == 0)
                     {
-                        PrefabHelper.FindPrefabs(); // Only search once
+                        PrefabHelper.FindPrefabs();
                     }
                     HammerCategories.AddCustomCategories();
                     PrefabHelper.AddCustomPieces();

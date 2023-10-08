@@ -73,8 +73,8 @@ namespace MoreVanillaBuildPrefabs
 
             foreach (var prefab in EligiblePrefabs)
             {
-                // don't know how this could happen but it
-                // could be the source of new error report
+                // Don't know how this happens but it definitely does
+                // sometimes when other mods are used in addition to this one.
                 if (prefab == null)
                 {
                     Log.LogWarning("Null prefab found in EligiblePrefabs");
@@ -115,6 +115,8 @@ namespace MoreVanillaBuildPrefabs
                 }
             }
             AddedPrefabs.Clear();
+            EligiblePrefabs.Clear();
+            PieceNameCache = null;
             Log.LogInfo($"Removed {removedCounter} custom pieces");
         }
 
