@@ -148,14 +148,10 @@ Specifically, when a piece is set to the CreatorShop category player's can only 
 - Patch and enable more prefabs by default.
 - Automatically add missing sfx to placement and deconstruction of prefabs based on the required crafting station.
 - Consider adding vanilla functionality to custom pieces like sitting in chairs.
+- Add a config option to enable comfort values for custom pieces.
 
 ## Compatibility
 These are a non-exhaustive lists.
-
-### Partial Incompatiability
-- WackysDatabase (by WackyMole)
-	- WackysDB is not able to find pieces added by this mod since they are added after WackysDB checks for them.
-	- Changes have been made such that WackysDB version 2.1.1 and up should be fully compatiable with MoreVanillaBuildPrefabs version 0.3.2 and up.
 
 ### Incompatible Mods
 Likely incompatible with other mods that add Vanilla prefabs to the build hammer unless you disable the prefabs from this mod that overlap with the other one since conflicting build requirements can cause unexpected behavior.
@@ -237,6 +233,7 @@ Likely incompatible with other mods that add Vanilla prefabs to the build hammer
 - Veinmine (by WiseHorrer)
 - Venture Location Reset (by VentureValheim)
 - VikingsDoSwim (by blacks7ar)
+- WackysDatabase (by WackyMole)
 - WieldEquipmentWhileSwimming (by blacks7ar)
 - Probably even more, it's pretty compatible.
 
