@@ -1,76 +1,79 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  <Import Project="ModPackageTool.targets" Condition="Exists('ModPackageTool.targets')" />
-  <PropertyGroup>
-	<!--<LangVersion>latest</LangVersion>-->
-	<!--<LangVersion>preview</LangVersion>-->
-	<LangVersion>10.0</LangVersion>
-  </PropertyGroup>
-  <PropertyGroup>  
-	<GamePath>C:\Program Files (x86)\Steam\steamapps\common\Valheim_Clean</GamePath>
-	<CorLibPath>$(GamePath)\unstripped_corlib</CorLibPath>
-	<BepInExPath>$(GamePath)\BepInEx\core</BepInExPath>
-	<PublicizedAssembliesPath>$(GamePath)\valheim_Data\Managed\publicized_assemblies</PublicizedAssembliesPath>
-	<AppDataDir>$([System.Environment]::GetFolderPath(SpecialFolder.ApplicationData))</AppDataDir>
-	<r2ModManPath>$(AppDataDir)\r2modmanPlus-local\Valheim\profiles</r2ModManPath>
-	<PluginsPath>$(r2ModManPath)\Mod-Debug\BepInEx\plugins</PluginsPath>
-	<Pdb2MdbPath>$(SolutionDir)\pdb2mdb.exe</Pdb2MdbPath>
-  </PropertyGroup>
-  <PropertyGroup>
-	<TargetFramework>net481</TargetFramework>
-    <OutputType>Library</OutputType>
-	<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <DefineConstants>$(DefineConstants);DefineConstants</DefineConstants>
-  </PropertyGroup>
-  <PropertyGroup>
-    <EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
-  </PropertyGroup>
-  <ItemGroup>
-    <PackageReference Include="ILRepack.Lib.MSBuild.Task" Version="2.0.18.2" />
-    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
-    <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="0Harmony">
-      <HintPath>$(BepInExPath)\0Harmony.dll</HintPath>
-    </Reference>
-    <Reference Include="assembly_guiutils">
-      <HintPath>$(PublicizedAssembliesPath)\assembly_guiutils_publicized.dll</HintPath>
-    </Reference>
-    <Reference Include="assembly_utils">
-      <HintPath>$(PublicizedAssembliesPath)\assembly_utils_publicized.dll</HintPath>
-    </Reference>
-    <Reference Include="assembly_valheim">
-      <HintPath>$(PublicizedAssembliesPath)\assembly_valheim_publicized.dll</HintPath>
-    </Reference>
-    <Reference Include="BepInEx">
-      <HintPath>$(BepInExPath)\BepInEx.dll</HintPath>
-    </Reference>
-    <Reference Include="Jotunn">
-      <HintPath>..\Libs\Jotunn.dll</HintPath>
-    </Reference>
-    <Reference Include="ServerSync">
-      <HintPath>Libs\ServerSync.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine">
-      <HintPath>$(CorLibPath)\UnityEngine.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.AssetBundleModule">
-      <HintPath>$(CorLibPath)\UnityEngine.AssetBundleModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.CoreModule">
-      <HintPath>$(CorLibPath)\UnityEngine.CoreModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.PhysicsModule">
-      <HintPath>$(CorLibPath)\UnityEngine.PhysicsModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UI">
-      <HintPath>$(CorLibPath)\UnityEngine.UI.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Libs\" />
-  </ItemGroup>
+	<Import Project="ModPackageTool.targets" Condition="Exists('ModPackageTool.targets')" />
+	<PropertyGroup>
+		<!--<LangVersion>latest</LangVersion>-->
+		<!--<LangVersion>preview</LangVersion>-->
+		<LangVersion>10.0</LangVersion>
+	</PropertyGroup>
+	<PropertyGroup>
+		<GamePath>C:\Program Files (x86)\Steam\steamapps\common\Valheim_Clean</GamePath>
+		<CorLibPath>$(GamePath)\unstripped_corlib</CorLibPath>
+		<BepInExPath>$(GamePath)\BepInEx\core</BepInExPath>
+		<PublicizedAssembliesPath>$(GamePath)\valheim_Data\Managed\publicized_assemblies</PublicizedAssembliesPath>
+		<AppDataDir>$([System.Environment]::GetFolderPath(SpecialFolder.ApplicationData))</AppDataDir>
+		<r2ModManPath>$(AppDataDir)\r2modmanPlus-local\Valheim\profiles</r2ModManPath>
+		<PluginsPath>$(r2ModManPath)\Mod-Debug\BepInEx\plugins</PluginsPath>
+		<Pdb2MdbPath>$(SolutionDir)\pdb2mdb.exe</Pdb2MdbPath>
+	</PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net481</TargetFramework>
+		<OutputType>Library</OutputType>
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+		<DefineConstants>$(DefineConstants);DefineConstants</DefineConstants>
+	</PropertyGroup>
+	<PropertyGroup>
+		<EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
+	</PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="ILRepack.Lib.MSBuild.Task" Version="2.0.18.2" />
+		<PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+		<PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
+	</ItemGroup>
+	<ItemGroup>
+		<Reference Include="0Harmony">
+			<HintPath>$(BepInExPath)\0Harmony.dll</HintPath>
+		</Reference>
+		<Reference Include="assembly_guiutils">
+			<HintPath>$(PublicizedAssembliesPath)\assembly_guiutils_publicized.dll</HintPath>
+		</Reference>
+		<Reference Include="assembly_utils">
+			<HintPath>$(PublicizedAssembliesPath)\assembly_utils_publicized.dll</HintPath>
+		</Reference>
+		<Reference Include="assembly_valheim">
+			<HintPath>$(PublicizedAssembliesPath)\assembly_valheim_publicized.dll</HintPath>
+		</Reference>
+		<Reference Include="BepInEx">
+			<HintPath>$(BepInExPath)\BepInEx.dll</HintPath>
+		</Reference>
+		<Reference Include="Jotunn">
+			<HintPath>..\Libs\Jotunn.dll</HintPath>
+		</Reference>
+		<Reference Include="ServerSync">
+			<HintPath>Libs\ServerSync.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine">
+			<HintPath>$(CorLibPath)\UnityEngine.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.AssetBundleModule">
+			<HintPath>$(CorLibPath)\UnityEngine.AssetBundleModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.ClothModule">
+			<HintPath>$(CorLibPath)\UnityEngine.ClothModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.CoreModule">
+			<HintPath>$(CorLibPath)\UnityEngine.CoreModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.PhysicsModule">
+			<HintPath>$(CorLibPath)\UnityEngine.PhysicsModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.UI">
+			<HintPath>$(CorLibPath)\UnityEngine.UI.dll</HintPath>
+		</Reference>
+	</ItemGroup>
+	<ItemGroup>
+		<Folder Include="Libs\" />
+	</ItemGroup>
 </Project>
