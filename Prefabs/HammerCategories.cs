@@ -37,7 +37,7 @@ namespace MoreVanillaBuildPrefabs
 
         public static bool IsCreatorShopPiece(Piece piece)
         {
-            if (PrefabHelper.AddedPrefabs.Contains(piece.gameObject.name))
+            if (PieceHelper.AddedPrefabs.Contains(piece.gameObject.name))
             {
                 if (piece.m_category == CreatorShop)
                 {
