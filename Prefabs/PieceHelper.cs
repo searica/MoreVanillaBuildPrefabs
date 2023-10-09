@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using BepInEx.Configuration;
@@ -9,6 +10,8 @@ namespace MoreVanillaBuildPrefabs
 {
     internal class PieceHelper
     {
+        public static HashSet<string> AddedPrefabs = new();
+
         /// <summary>
         ///     Get existing objects of type PieceTable.
         /// </summary>
@@ -96,8 +99,7 @@ namespace MoreVanillaBuildPrefabs
             bool allowedInDungeons,
             string category,
             string craftingStation,
-            string requirements,
-            Sprite icon
+            string requirements
         )
         {
             var pieceCategory = (Piece.PieceCategory)PieceManager.Instance.GetPieceCategory(category);
@@ -110,8 +112,7 @@ namespace MoreVanillaBuildPrefabs
                 allowedInDungeons,
                 pieceCategory,
                 station,
-                reqs,
-                icon
+                reqs
             );
         }
 
@@ -127,8 +128,7 @@ namespace MoreVanillaBuildPrefabs
             bool allowedInDungeons,
             Piece.PieceCategory category,
             CraftingStation craftingStation,
-            Piece.Requirement[] requirements,
-            Sprite icon
+            Piece.Requirement[] requirements
         )
         {
             piece.m_name = name;
@@ -137,8 +137,19 @@ namespace MoreVanillaBuildPrefabs
             piece.m_category = category;
             piece.m_craftingStation = craftingStation;
             piece.m_resources = requirements;
-            piece.m_icon = icon;
             return piece;
+        }
+
+
+        /// <summary>
+        ///     Method to add a prefab to a piece table.
+        /// </summary>
+        /// <param name="piece"></param>
+        /// <param name="pieceTable"></param>
+        /// <returns> bool indicating if piece was added. </returns>
+        internal static bool AddPieceToPieceTable(GameObject prefab, PieceTable pieceTable)
+        {
+            return AddPieceToPieceTable(prefab.GetComponent<Piece>(), pieceTable);
         }
 
         /// <summary>
@@ -158,7 +169,26 @@ namespace MoreVanillaBuildPrefabs
             {
                 Log.LogInfo($"Added Piece {piece.m_name} to PieceTable {pieceTable.name}");
             }
+            AddedPrefabs.Add(piece.gameObject.name);
             return true;
+        }
+
+        internal static bool RemovePieceFromPieceTable(string name, PieceTable pieceTable)
+        {
+            try // Remove piece from PieceTable
+            {
+                var prefab = ZNetScene.instance.GetPrefab(name);
+                pieceTable.m_pieces.Remove(prefab);
+                AddedPrefabs.Remove(prefab.name);
+                return true;
+            }
+            catch (Exception e)
+            {
+#if DEBUG
+                Log.LogInfo($"{name}: {e}");
+#endif
+                return false;
+            }
         }
 
         /// <summary>
