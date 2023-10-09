@@ -18,6 +18,10 @@ namespace MoreVanillaBuildPrefabs
         {
             switch (prefab.name)
             {
+                case "ArmorStand_Male":
+                case "ArmorStand_Female":
+                    SnapPointHelper.AddCenterSnapPoint(prefab);
+                    break;
                 case "blackmarble_column_3":
                     SnapPointHelper.AddSnapPoints(
                         prefab,
@@ -674,10 +678,6 @@ namespace MoreVanillaBuildPrefabs
                             new Vector3(0.0f, 0.5f, 0.0f),  // top mid edge
                         }
                     );
-                    break;
-                case "ArmorStand_Female":
-                case "ArmorStand_Male":
-                    SnapPointHelper.AddCenterSnapPoint(prefab);
                     break;
                 case "metalbar_1x2":
                     SnapPointHelper.AddSnapPoints(
