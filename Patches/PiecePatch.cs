@@ -39,7 +39,7 @@ namespace MoreVanillaBuildPrefabs
             // Only interact if it is a piece added by this mod or
             // the prefab has previously had it's resources altered by the mod
             string prefab_name = PrefabNames.GetPrefabName(__instance);
-            if (PrefabHelper.AddedPrefabs.Contains(prefab_name) || PrefabHelper.DefaultResources.ContainsKey(prefab_name))
+            if (PieceHelper.AddedPrefabs.Contains(prefab_name) || PrefabHelper.DefaultResources.ContainsKey(prefab_name))
             {
                 // disable desctruction drops for player built pieces
                 // prevents things like player built dvergerprops_crate
@@ -52,7 +52,7 @@ namespace MoreVanillaBuildPrefabs
                 {
                     // set drops to defaults and store the current drops
                     __state = __instance.m_resources;
-                    
+
                     if (PrefabHelper.DefaultResources.ContainsKey(prefab_name))
                     {
                         Log.LogInfo("Resetting drop resources to defaults.");
