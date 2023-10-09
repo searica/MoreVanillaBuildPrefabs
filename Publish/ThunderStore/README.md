@@ -1,8 +1,8 @@
 # MoreVanillaBuildPrefabs
-MoreVanillaBuildPrefabs is a Valheim mod to make all vanilla prefabs buildable with the hammer (survival way) while allowing you to configure the requirements to build them. It also now has ServerSync! The mod can still be used as a Client-Side mod though.
+MoreVanillaBuildPrefabs is a Valheim mod to make all vanilla prefabs buildable with the hammer (survival way) while allowing you to configure the requirements to build them. It also now has ServerSync! The mod can still be used as a purely Client-Side mod though.
 
 ### Acknowledgements
-This mod was inspired by MoreVanillaBuilds by Galathil and PotteryBarn by ComfyMods. The core functionality of the code is based on those two mods. Thanks to blaxxun-boop for creating ServerSync.
+This mod was inspired by MoreVanillaBuilds by Galathil and PotteryBarn by ComfyMods. The core functionality of the code is based on those two mods. Also, thanks to blaxxun-boop for creating ServerSync and the developers of Jotunn.
 
 ## Key Feature
 Because all the added build pieces are pre-existing vanilla prefabs, any pieces you build with this mod will persist in your world even if you uninstall the mod. This means that pieces you build on a server will also be visible for players without the mod and any builds using the pieces from this mod will load for players without the mod.
@@ -122,7 +122,9 @@ The prefabs enabled by this mod were not necessarily intended to be built by pla
 
 All of the pieces that are enabled by default have been patched to have snap points and fix collision issues to ensure they can be used similarly to existing vanilla pieces. For the prefabs that are not enabled by default, while many of them have been patched not all of them have as the process of patching them is currently entirely manual. This means that if you enable prefabs other than the ones enabled by default there is no guarantee they will behave nicely.
 
-If you are having issues with a prefab you would like to build with but it won't appear when you try to place it the issue is likely due to missing colliders that have not been patched yet. A work around for some prefabs is to install either [Snap Points Made Easy](https://valheim.thunderstore.io/package/MathiasDecrock/Snap_Points_Made_Easy/) by MathiasDecrock or the mod [Extra Snap Points Made Easy](https://valheim.thunderstore.io/package/Searica/Extra_Snap_Points_Made_Easy/) by Searica (that's me). Both of these mods allow you to manually select the snap points on the piece you are placing and the piece you are snapping to. Manually selecting the snap points can allow you to place a prefab that otherwise does not show up due to missing colliders. Some prefabs used for making dungeons can also behave unexpectedly such as being able to open a door but not close it. If there is piece you would really like to build with that is buggy feel free to open an issue on Github requesting it to be patched (see contributions section).
+If you are having issues with a prefab you would like to build with but it won't appear when you try to place it the issue is likely due to missing colliders that have not been patched yet. A work around for some prefabs is to install either [Snap Points Made Easy](https://valheim.thunderstore.io/package/MathiasDecrock/Snap_Points_Made_Easy/) by MathiasDecrock or the mod [Extra Snap Points Made Easy](https://valheim.thunderstore.io/package/Searica/Extra_Snap_Points_Made_Easy/) by Searica (that's me). Both of these mods allow you to manually select the snap points on the piece you are placing and the piece you are snapping to. Manually selecting the snap points can allow you to place a prefab that otherwise does not show up due to missing colliders. 
+
+Some prefabs used in vanilla dungeons can also behave unexpectedly, such as being able to open a door but not close it. If there is piece you would really like to build with that is buggy feel free to open an issue on Github requesting it to be patched (see contributions section).
 
 **TLDR:** Some prefabs other than the ones enabled by default may be buggy, please adjust your expectations accordingly.
 
@@ -139,21 +141,21 @@ Specifically, when a piece is set to the CreatorShop category player's can only 
 
 ## Known Issues
 
-#### Custom Armor Stand Clipping
-Placing armor on the Male Armor Stand and Female Armor Stand prefabs have clipping issues where not all of the armor is displayed. I have not been able to fix this as of yet.
+**Custom Armor Stand Clipping**: Armor placed on the Male Armor Stand and Female Armor Stand prefabs has clipping issues causing parts of the armor to not be displayed. I have not been able to fix this as of yet.
 
 ## Planned Improvements
 - Resolve known issues.
-- Patch and enable more prefabs.
+- Patch and enable more prefabs by default.
+- Automatically add missing sfx to placement and deconstruction of prefabs based on the required crafting station.
 - Consider adding vanilla functionality to custom pieces like sitting in chairs.
-- Add sfx to placement and deconstruction of black marble prefabs.
 
 ## Compatibility
-This is a non-exhaustive list.
+These are a non-exhaustive lists.
 
 ### Partial Incompatiability
 - WackysDatabase (by WackyMole)
 	- WackysDB is not able to find pieces added by this mod since they are added after WackysDB checks for them.
+	- Changes have been made such that WackysDB version 2.1.1 and up should be fully compatiable with MoreVanillaBuildPrefabs version 0.3.2 and up.
 
 ### Incompatible Mods
 Likely incompatible with other mods that add Vanilla prefabs to the build hammer unless you disable the prefabs from this mod that overlap with the other one since conflicting build requirements can cause unexpected behavior.
@@ -245,4 +247,6 @@ Github: https://github.com/searica/MoreVanillaBuildPrefabs
 My mods will always be free to use but if you feel like saying thanks you can tip/donate here: https://ko-fi.com/searica
 
 ### Contributions
-You are welcome to open issues on the Github repository to provide suggestions, feature requests, compatibility issues, and bug reports. Over time I will slowly patch more prefabs and hopefully come up with a more generalizable method of patching them, but if you'd really like a specific prefab to work better just open an issue letting me know. I'm a grad student and have a lot of personal responsibilities on top of that so I can't promise I will respond quickly, but I do intend to maintain and improve the mod in my free time.
+If you would like to provide suggestions, make feature requests, or reports bugs and compatability issues you can either open an issue on the Github repository or tag me (@searica) with a message on the [Odin Plus discord](https://discord.gg/mbkPcvu9ax).
+
+Over time I will slowly patch more prefabs and hopefully come up with a more generalizable method of patching them, but if you'd really like a specific prefab to work better then let me know via one of the methods above. I'm a grad student and have a lot of personal responsibilities on top of that so I can't promise I will always respond quickly, but I do intend to maintain and improve the mod in my free time.
