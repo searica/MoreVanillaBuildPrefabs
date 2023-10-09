@@ -1,4 +1,5 @@
 ﻿using HarmonyLib;
+using System.Linq;
 using UnityEngine.SceneManagement;
 
 
@@ -24,12 +25,25 @@ namespace MoreVanillaBuildPrefabs
                 {
                     return;
                 }
-                if (SceneManager.GetActiveScene().name == "main" && PrefabHelper.AddedPrefabs.Count != 0)
+                if (SceneManager.GetActiveScene().name == "main" && PieceHelper.AddedPrefabs.Count != 0)
                 {
-                    PrefabHelper.RemoveCustomPieces();
+                    RemoveCustomPieces();
                     HammerCategories.RemoveCustomCategories();
                 }
             }
+        }
+
+        internal static void RemoveCustomPieces()
+        {
+            Log.LogInfo("RemoveCustomPieces()");
+            PieceTable pieceTable = PieceHelper.GetPieceTable("_HammerPieceTable");
+
+            int numCustomPieces = PieceHelper.AddedPrefabs.Count();
+            foreach (var name in PieceHelper.AddedPrefabs)
+            {
+                PieceHelper.RemovePieceFromPieceTable(name, pieceTable);
+            }
+            Log.LogInfo($"Removed {numCustomPieces - PieceHelper.AddedPrefabs.Count} custom pieces");
         }
     }
 }
