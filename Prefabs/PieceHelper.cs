@@ -153,11 +153,11 @@ namespace MoreVanillaBuildPrefabs
             {
                 return false;
             }
-
             pieceTable.m_pieces.Add(piece.gameObject);
-#if DEBUG
-            Log.LogInfo($"Added Piece {piece.m_name} to PieceTable {pieceTable.name}");
-#endif
+            if (PluginConfig.IsVerbose())
+            {
+                Log.LogInfo($"Added Piece {piece.m_name} to PieceTable {pieceTable.name}");
+            }
             return true;
         }
 
