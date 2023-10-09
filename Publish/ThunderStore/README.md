@@ -149,7 +149,6 @@ Specifically, when a piece is set to the CreatorShop category player's can only 
 - Automatically add missing sfx to placement and deconstruction of prefabs based on the required crafting station.
 - Consider adding vanilla functionality to custom pieces like sitting in chairs.
 - Add a config option to enable comfort values for custom pieces.
-- Allow adding altered versions of the prefabs to create 1x1 stone floor piece.
 
 ## Compatibility
 These are a non-exhaustive lists.
