@@ -13,11 +13,75 @@ namespace MoreVanillaBuildPrefabs
         [HarmonyPatch(typeof(Player))]
         static class PlayerPatch
         {
+            [HarmonyTranspiler]
+            [HarmonyPatch(nameof(Player.PlacePiece))]
+            static IEnumerable<CodeInstruction> PlacePieceTranspiler(IEnumerable<CodeInstruction> instructions)
+            {
+                // Targeting code
+                // GameObject gameObject2 = Object.Instantiate(gameObject, position, rotation);
+                //  IL_012c: ldloc.2
+                //  IL_012d: ldloc.0
+                //  IL_012e: ldloc.1
+                //  IL_012f: call !!0 [UnityEngine.CoreModule] UnityEngine.Object::Instantiate<class [UnityEngine.CoreModule] UnityEngine.GameObject>(!!0, valuetype[UnityEngine.CoreModule] UnityEngine.Vector3, valuetype[UnityEngine.CoreModule] UnityEngine.Quaternion)
+                //      IL_0134: stloc.3
+
+                // want to be able to edit the instantiated gameObject2 
+                // such that I can remove things like the pickable property from the surtling core stands
+                return new CodeMatcher(instructions)
+                    .MatchForward(
+                        useEnd: false,
+                        new CodeMatch(
+                            OpCodes.Call,
+                            ReflectionUtils.GetGenericMethod(
+                                    typeof(UnityEngine.Object),
+                                    nameof(UnityEngine.Object.Instantiate),
+                                    genericParameterCount: 1,
+                                    new Type[] { typeof(Type), typeof(Vector3), typeof(Quaternion) }
+                                )
+                                .MakeGenericMethod(typeof(GameObject))
+                        ),
+                        new CodeMatch(OpCodes.Stloc_3)
+                    )
+                    .SetInstructionAndAdvance(
+                        Transpilers.EmitDelegate<Func<GameObject, Vector3, Quaternion, GameObject>>(PlacePieceInstantiateDelegate))
+                    .InstructionEnumeration();
+            }
+
+            private static GameObject PlacePieceInstantiateDelegate(
+                GameObject gameObject,
+                Vector3 position,
+                Quaternion rotation
+            )
+            {
+                var gameObject2 = UnityEngine.Object.Instantiate(gameObject, position, rotation);
+                if (!PluginConfig.IsModEnabled.Value)
+                {
+                    return gameObject2;
+                }
+
+                if (PieceHelper.AddedPrefabs.Contains(gameObject.name)
+                    && DefaultConfigs.RemovePickable.Contains(gameObject.name)
+                )
+                {
+                    var pickable = gameObject2.GetComponent<Pickable>();
+                    if (pickable != null)
+                    {
+                        UnityEngine.Object.DestroyImmediate(pickable);
+                    }
+                }
+                return gameObject2;
+            }
 
             [HarmonyTranspiler]
             [HarmonyPatch(nameof(Player.SetupPlacementGhost))]
             static IEnumerable<CodeInstruction> SetupPlacementGhostTranspiler(IEnumerable<CodeInstruction> instructions)
             {
+                // Targeting this code:
+                // m_placementGhost = Object.Instantiate(selectedPrefab);
+                //  IL_008c: ldarg.0
+                //  IL_008d: ldloc.0
+                //  IL_008e: call !!0 [UnityEngine.CoreModule] UnityEngine.Object::Instantiate<class [UnityEngine.CoreModule] UnityEngine.GameObject>(!!0)
+                //  IL_0093: stfld class [UnityEngine.CoreModule] UnityEngine.GameObject Player::m_placementGhost
                 return new CodeMatcher(instructions)
                     .MatchForward(
                         useEnd: false,
@@ -35,7 +99,7 @@ namespace MoreVanillaBuildPrefabs
                     .InstructionEnumeration();
             }
 
-            static GameObject SetupPlacementGhostInstantiateDelegate(GameObject selectedPrefab)
+            private static GameObject SetupPlacementGhostInstantiateDelegate(GameObject selectedPrefab)
             {
                 if (!PluginConfig.IsModEnabled.Value)
                 {
