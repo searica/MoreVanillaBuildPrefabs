@@ -77,7 +77,7 @@ namespace MoreVanillaBuildPrefabs.Patches
             }
 
             // Create icons
-            PrefabIcons.Instance.GeneratePrefabIcons(customPrefabs);
+            PrefabIcons.Instance.StartGeneratePrefabIcons(customPrefabs);
 
             // Add pieces to hammer piece table
             var pieceTable = PieceHelper.GetPieceTable("_HammerPieceTable");
