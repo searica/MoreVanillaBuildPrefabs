@@ -4,8 +4,37 @@ using static MoreVanillaBuildPrefabs.PieceHelper;
 
 namespace MoreVanillaBuildPrefabs
 {
-    public class DefaultConfigs
+    internal class DefaultConfigs
     {
+        internal static Dictionary<string, Piece.Requirement[]> DefaultResources = new();
+
+        internal static readonly HashSet<string> IgnoredPrefabs = new() {
+            "Player",
+            "Valkyrie",
+            "HelmetOdin",
+            "CapeOdin",
+            "CastleKit_pot03",
+            "Ravens",
+            "TERRAIN_TEST",
+            "PlaceMarker",
+            "Circle_section",
+            "guard_stone_test",
+            "Haldor",
+            "odin",
+            "dvergrprops_wood_stake",
+            "Hildir",
+            //Placement is glitchy
+            "demister_ball",
+            "CargoCrate"
+        };
+
+        internal static readonly HashSet<string> RemovePickable = new()
+        {
+            "Pickable_SurtlingCoreStand",
+            "Pickable_BlackCoreStand",
+            // "Pickable_Tar"
+        };
+
         internal static PrefabConfig GetDefaultPrefabConfigValues(string prefab_name)
         {
             if (DefaultConfigValues.ContainsKey(prefab_name))

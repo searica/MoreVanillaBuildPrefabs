@@ -8,28 +8,6 @@ namespace MoreVanillaBuildPrefabs
 {
     public class PrefabHelper
     {
-        public static Dictionary<string, Piece.Requirement[]> DefaultResources = new();
-
-        private static readonly HashSet<string> IgnoredPrefabs = new() {
-            "Player",
-            "Valkyrie",
-            "HelmetOdin",
-            "CapeOdin",
-            "CastleKit_pot03",
-            "Ravens",
-            "TERRAIN_TEST",
-            "PlaceMarker",
-            "Circle_section",
-            "guard_stone_test",
-            "Haldor",
-            "odin",
-            "dvergrprops_wood_stake",
-            "Hildir",
-            //Placement is glitchy
-            "demister_ball",
-            "CargoCrate"
-        };
-
         /// <summary>
         ///     Checks prefab to see if it is eligble for making a custom piece.
         /// </summary>
@@ -39,7 +17,7 @@ namespace MoreVanillaBuildPrefabs
         internal static bool ShouldIgnorePrefab(GameObject prefab)
         {
             // Ignore specific prefab names
-            if (IgnoredPrefabs.Contains(prefab.name))
+            if (DefaultConfigs.IgnoredPrefabs.Contains(prefab.name))
             {
                 return true;
             }
@@ -183,12 +161,12 @@ namespace MoreVanillaBuildPrefabs
             if (piece?.m_resources != null)
             {
                 // Stop errors on subsequent log ins
-                if (!DefaultResources.ContainsKey(prefab.name))
+                if (!DefaultConfigs.DefaultResources.ContainsKey(prefab.name))
                 {
 #if DEBUG
                     Log.LogDebug($"Adding default resources for {prefab.name}");
 #endif
-                    DefaultResources.Add(prefab.name, piece.m_resources);
+                    DefaultConfigs.DefaultResources.Add(prefab.name, piece.m_resources);
                 }
             }
         }
