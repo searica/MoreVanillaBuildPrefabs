@@ -3,7 +3,6 @@ using BepInEx;
 using BepInEx.Configuration;
 using UnityEngine;
 using ServerSync;
-using Jotunn.Managers;
 using static MoreVanillaBuildPrefabs.PieceHelper;
 using System.Collections.Generic;
 
@@ -267,16 +266,15 @@ namespace MoreVanillaBuildPrefabs
             foreach (var entry in data.Split(';'))
             {
                 string[] values = entry.Split(',');
-
-                var itm = PrefabManager.Cache.GetPrefab<GameObject>(values[0].Trim())?.GetComponent<ItemDrop>();
+                var itm = ObjectDB.instance.GetItemPrefab(values[0].Trim())?.GetComponent<ItemDrop>();
                 if (itm == null)
                 {
-                    Log.LogWarning($"Invalid build requirement ID: {values[0].Trim()}");
+                    Log.LogWarning($"Unable to find requirement ID: {values[0].Trim()}");
                     continue;
                 }
                 Piece.Requirement req = new()
                 {
-                    m_resItem = PrefabManager.Cache.GetPrefab<GameObject>(values[0].Trim()).GetComponent<ItemDrop>(),
+                    m_resItem = itm,
                     m_amount = int.Parse(values[1].Trim()),
                     m_recover = true
                 };
