@@ -1,3 +1,9 @@
+### Version 0.3.3
+- Fix color artifacts in custom piece icons (Thanks again for your help Margmas).
+- Fix bug that I accidentally re-introduced where world-generated CreatorShop pieces could be deconstructed.
+- Added SearsCatalog as a Thunderstore dependency.
+- More internal refactoring and clean-up to get ready for possibly adding some new features.
+
 ### Version 0.3.2
 - Update to Jotunn 2.14.4
 - Changed priority of patch for adding prefabs to fix partial incomparability with WackyDB.
