@@ -2,7 +2,8 @@
 - Update to Jotunn 2.14.4
 - Changed priority of patch for adding prefabs to fix partial incomparability with WackyDB.
 - Internal refactoring to clean up code and make managing methods easier.
-- Enabled some more piecces by default.
+- Enabled some more pieces by default.
+- Added EffectsList patch from PotteryBarn to fix null exceptions when using custom Armor Stands.
 
 ### Version 0.3.1
 - Added NullException checks to fix compatibility issues with CreatureLevelAndLootControl.
