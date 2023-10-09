@@ -7,27 +7,49 @@ namespace MoreVanillaBuildPrefabs
 {
     internal class PrefabIcons : MonoBehaviour
     {
-        private static readonly GameObject _parent = new();
+        private static GameObject _parent;
         private static PrefabIcons _instance;
+        private static Coroutine _coroutine;
 
         /// <summary>
         ///     The singleton instance of this manager.
         /// </summary>
-        public static PrefabIcons Instance => _instance ??= _parent.AddComponent<PrefabIcons>() as PrefabIcons;
+        public static PrefabIcons Instance => CreateInstance();
+
+        private static PrefabIcons CreateInstance()
+        {
+            if (_parent == null)
+            {
+                _parent = new GameObject();
+                GameObject.DontDestroyOnLoad(_parent);
+            }
+            if (_instance == null)
+            {
+                _instance = _parent.AddComponent<PrefabIcons>();
+            }
+            return _instance;
+        }
 
         /// <summary>
         ///     Hide .ctor to prevent other instances from being created
         /// </summary>
         private PrefabIcons() { }
 
-
         /// <summary>
         ///     Create and add Icons for list of prefabs with pieces.
         /// </summary>
         /// <param name="prefabs"></param>
-        internal void GeneratePrefabIcons(IEnumerable<GameObject> prefabs)
+        internal void StartGeneratePrefabIcons(IEnumerable<GameObject> prefabs)
         {
-            StartCoroutine(GeneratePrefabIconsCoroutine(prefabs));
+            _coroutine = StartCoroutine(GeneratePrefabIconsCoroutine(prefabs));
+        }
+
+        internal void EndGeneratePrefabIcons()
+        {
+            if (_coroutine != null)
+            {
+                StopCoroutine(_coroutine);
+            }
         }
 
         // Refs:
