@@ -8,11 +8,7 @@ namespace MoreVanillaBuildPrefabs
 {
     public class PrefabHelper
     {
-        public static HashSet<string> AddedPrefabs = new();
-
         public static Dictionary<string, Piece.Requirement[]> DefaultResources = new();
-
-        private static HashSet<string> PieceNameCache = null;
 
         private static readonly HashSet<string> IgnoredPrefabs = new() {
             "Player",
@@ -34,95 +30,14 @@ namespace MoreVanillaBuildPrefabs
             "CargoCrate"
         };
 
-        public static void FindAndAddPrefabs()
-        {
-            Log.LogInfo("FindAndAddPrefabs()");
-#if DEBUG
-            var watch = new System.Diagnostics.Stopwatch();
-            watch.Start();
-#endif
-            PieceNameCache = PieceHelper.GetExistingPieceNames();
-
-            var EligiblePrefabs = ZNetScene.instance.m_prefabs
-            .Where(go => go.transform.parent == null && !ShouldIgnorePrefab(go))
-            .OrderBy(go => go.name)
-            .ToList();
-            Log.LogInfo($"Found {EligiblePrefabs.Count()} prefabs");
-#if DEBUG
-            watch.Stop();
-            Log.LogInfo($"Search Time: {watch.ElapsedMilliseconds} ms");
-            watch.Reset();
-            watch.Start();
-#endif
-            var pieceTable = PieceHelper.GetPieceTable("_HammerPieceTable");
-            if (pieceTable == null)
-            {
-                Log.LogError("Could not find _HammerPieceTable");
-            }
-
-            foreach (var prefab in EligiblePrefabs)
-            {
-                // Check to fix rare incompatability with other mods.
-                if (prefab == null)
-                {
-                    Log.LogWarning("Null prefab found in EligiblePrefabs");
-                    continue;
-                }
-                CreatePrefabPiece(prefab, pieceTable);
-            }
-
-            Log.LogInfo($"Added {AddedPrefabs.Count} custom pieces");
-#if DEBUG
-            watch.Stop();
-            Log.LogInfo($"Creation Time: {watch.ElapsedMilliseconds} ms");
-#endif
-            PluginConfig.Save();
-        }
-
-        public static void RemoveCustomPieces()
-        {
-            Log.LogInfo("RemoveCustomPieces()");
-            int removedCounter = 0;
-            PieceTable pieceTable = PieceHelper.GetPieceTable("_HammerPieceTable");
-
-            foreach (var name in AddedPrefabs)
-            {
-                try // Remove piece from PieceTable
-                {
-                    var prefab = ZNetScene.instance.GetPrefab(name);
-                    pieceTable.m_pieces.Remove(prefab);
-                    removedCounter++;
-                }
-                catch (Exception e)
-                {
-#if DEBUG
-                    Log.LogInfo($"{name}: {e}");
-#endif
-                }
-            }
-            AddedPrefabs.Clear();
-            PieceNameCache = null;
-            Log.LogInfo($"Removed {removedCounter} custom pieces");
-        }
-
         /// <summary>
         ///     Checks prefab to see if it is eligble for making a custom piece.
         /// </summary>
         /// <param name="prefab"></param>
         /// <returns></returns>
         /// <exception cref="Exception"></exception>
-        private static bool ShouldIgnorePrefab(GameObject prefab)
+        internal static bool ShouldIgnorePrefab(GameObject prefab)
         {
-            // Ignore existing pieces
-            if (PieceNameCache == null)
-            {
-                throw new Exception("PieceNameCache is null");
-            }
-            else if (PieceNameCache.Contains(prefab.name))
-            {
-                return true;
-            }
-
             // Ignore specific prefab names
             if (IgnoredPrefabs.Contains(prefab.name))
             {
@@ -182,7 +97,7 @@ namespace MoreVanillaBuildPrefabs
         /// </summary>
         /// <param name="prefab"></param>
         /// <param name="pieceTable"></param>
-        private static void CreatePrefabPiece(GameObject prefab, PieceTable pieceTable)
+        internal static GameObject CreatePrefabPiece(GameObject prefab)
         {
             if (!EnsureNoDuplicateZNetView(prefab))
             {
@@ -191,7 +106,7 @@ namespace MoreVanillaBuildPrefabs
                 {
                     Log.LogInfo($"Prevent duplicate ZNetView for: {prefab.name}");
                 }
-                return;
+                return null;
             }
 
             // load config data and create piece config
@@ -199,7 +114,7 @@ namespace MoreVanillaBuildPrefabs
 
             if (!prefabConfig.Enabled && !PluginConfig.IsForceAllPrefabs()) // prefab denied by config
             {
-                return;
+                return null;
             }
 
             if (PluginConfig.IsVerbose())
@@ -223,8 +138,7 @@ namespace MoreVanillaBuildPrefabs
                 prefabConfig.AllowedInDungeons,
                 prefabConfig.Category,
                 prefabConfig.CraftingStation,
-                prefabConfig.Requirements,
-                PrefabIcons.CreatePrefabIcon(prefab)
+                prefabConfig.Requirements
             );
 
             // Restrict CreatorShop pieces to Admins only
@@ -232,13 +146,10 @@ namespace MoreVanillaBuildPrefabs
                 && PluginConfig.AdminOnlyCreatorShop.Value
                 && !SynchronizationManager.Instance.PlayerIsAdmin)
             {
-                return;
+                return null;
             }
 
-            if (PieceHelper.AddPieceToPieceTable(piece, pieceTable))
-            {
-                AddedPrefabs.Add(prefab.name);
-            }
+            return prefab;
         }
 
         /// <summary>
