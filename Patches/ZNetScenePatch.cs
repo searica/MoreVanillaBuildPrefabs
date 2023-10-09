@@ -1,4 +1,5 @@
 ﻿using HarmonyLib;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine.SceneManagement;
 
@@ -39,7 +40,8 @@ namespace MoreVanillaBuildPrefabs
             PieceTable pieceTable = PieceHelper.GetPieceTable("_HammerPieceTable");
 
             int numCustomPieces = PieceHelper.AddedPrefabs.Count();
-            foreach (var name in PieceHelper.AddedPrefabs)
+            var prefabsToRemove = PieceHelper.AddedPrefabs.ToList();
+            foreach (var name in prefabsToRemove)
             {
                 PieceHelper.RemovePieceFromPieceTable(name, pieceTable);
             }
