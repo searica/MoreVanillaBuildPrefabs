@@ -15,6 +15,20 @@ namespace MoreVanillaBuildPrefabs.Utils
             | BindingFlags.GetProperty
             | BindingFlags.SetProperty;
 
+        public static MethodInfo GetMethod(Type type, string name, int genericParameterCount, Type[] types)
+        {
+            foreach (MethodInfo method in type.GetMethods(AllBindings))
+            {
+                if (method.Name == name
+                    && HasMatchingParameterTypes(genericParameterCount, types, method.GetParameters()))
+                {
+                    return method;
+                }
+            }
+
+            return default;
+        }
+
         public static MethodInfo GetGenericMethod(Type type, string name, int genericParameterCount, Type[] types)
         {
             foreach (MethodInfo method in type.GetMethods(AllBindings))
