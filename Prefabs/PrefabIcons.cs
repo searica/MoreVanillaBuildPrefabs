@@ -7,7 +7,6 @@ namespace MoreVanillaBuildPrefabs
 {
     internal class PrefabIcons : MonoBehaviour
     {
-        private static bool Rendering = false;
         private static readonly GameObject _parent = new();
         private static PrefabIcons _instance;
 
@@ -28,10 +27,7 @@ namespace MoreVanillaBuildPrefabs
         /// <param name="prefabs"></param>
         internal void GeneratePrefabIcons(IEnumerable<GameObject> prefabs)
         {
-            var renderingCoroutine = StartCoroutine(GeneratePrefabIconsCoroutine(prefabs));
-            //var renderWatcher = StartCoroutine(WhileRendering());
-            //StopCoroutine(renderingCoroutine);
-            //StopCoroutine(renderWatcher);
+            StartCoroutine(GeneratePrefabIconsCoroutine(prefabs));
         }
 
         // Refs:
@@ -40,7 +36,6 @@ namespace MoreVanillaBuildPrefabs
         //  - PickableItem.RandomItem.m_itemPrefab
         private IEnumerator GeneratePrefabIconsCoroutine(IEnumerable<GameObject> prefabs)
         {
-            Rendering = true;
             foreach (var prefab in prefabs)
             {
                 if (prefab == null) { Log.LogInfo($"Null prefab found"); }
@@ -66,20 +61,6 @@ namespace MoreVanillaBuildPrefabs
                     piece.m_icon = result;
                 }
             }
-            Rendering = false;
-            Log.LogInfo("Rendering Complete");
-        }
-
-        private IEnumerator WhileRendering()
-        {
-            while (Rendering)
-            {
-#if DEBUG
-                Log.LogInfo("Rendering");
-#endif
-                yield return new WaitForSeconds(0.1f);
-            }
-
         }
 
         private Sprite GenerateObjectIcon(GameObject obj)
