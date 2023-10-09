@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 using Jotunn.Managers;
 
 namespace MoreVanillaBuildPrefabs
@@ -9,25 +11,30 @@ namespace MoreVanillaBuildPrefabs
         //  - CreatureSpawner.m_creaturePrefab
         //  - PickableItem.m_randomItemPrefabs
         //  - PickableItem.RandomItem.m_itemPrefab
-        public static Sprite CreatePrefabIcon(GameObject prefab)
-        {
-            Sprite result = GenerateObjectIcon(prefab);
 
-            if (result == null)
+        private static IEnumerator GeneratePrefabIcons(IEnumerable<GameObject> prefabs)
+        {
+            foreach (var prefab in prefabs)
             {
-                PickableItem.RandomItem[] randomItemPrefabs = prefab.GetComponent<PickableItem>()?.m_randomItemPrefabs;
-                if (randomItemPrefabs != null && randomItemPrefabs.Length > 0)
+                yield return null;
+                Sprite result = GenerateObjectIcon(prefab);
+                if (result == null)
                 {
-                    GameObject item = randomItemPrefabs[0].m_itemPrefab?.gameObject;
-                    if (item != null)
+                    PickableItem.RandomItem[] randomItemPrefabs = prefab.GetComponent<PickableItem>()?.m_randomItemPrefabs;
+                    if (randomItemPrefabs != null && randomItemPrefabs.Length > 0)
                     {
-                        result = GenerateObjectIcon(item);
+                        GameObject item = randomItemPrefabs[0].m_itemPrefab?.gameObject;
+                        if (item != null)
+                        {
+                            yield return null;
+                            result = GenerateObjectIcon(item);
+                        }
                     }
                 }
+                prefab.GetComponent<Piece>().m_icon = result;
             }
-
-            return result;
         }
+
 
         private static Sprite GenerateObjectIcon(GameObject obj)
         {
