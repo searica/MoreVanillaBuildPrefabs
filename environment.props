@@ -1,0 +1,20 @@
+<Project>
+	<PropertyGroup>
+		<ValheimGamePath>C:\Program Files (x86)\Steam\steamapps\common\Valheim_Clean</ValheimGamePath>
+		<CorlibPath>$(ValheimGamePath)\unstripped_corlib</CorlibPath>
+		<BepInExPath>$(ValheimGamePath)\BepInEx</BepInExPath>
+		<PublicizedAssembliesPath>$(ValheimGamePath)\valheim_Data\Managed\publicized_assemblies</PublicizedAssembliesPath>
+		<Pdb2MdbPath>$(SolutionDir)\pdb2mdb.exe</Pdb2MdbPath>
+		<AppDataDir>$([System.Environment]::GetFolderPath(SpecialFolder.ApplicationData))</AppDataDir>
+		<r2ModManPath>$(AppDataDir)\r2modmanPlus-local\Valheim\profiles</r2ModManPath>
+		<CopyOutputDLLPath>$(r2ModManPath)\Mod-Debug\BepInEx\plugins</CopyOutputDLLPath>
+
+		<!-- This is where the output DLL will be copied to after building. The templates support doing this for up to three locations. Duplicate this line and append a number. Example below -->
+		<!--<CopyOutputDLLPath2>$(ValheimGamePath)\BepInEx\plugins</CopyOutputDLLPath2>-->
+		<!--<CopyOutputDLLPath3>$(ValheimGamePath)\BepInEx\plugins</CopyOutputDLLPath3>-->
+		<AfterTargets>ILRepacker</AfterTargets>
+		<PublishDir>$(ProjectDir)\Publish</PublishDir>
+		<ThunderstoreDir>$(PublishDir)\Thunderstore</ThunderstoreDir>
+		<NexusDir>$(PublishDir)\Nexus</NexusDir>
+	</PropertyGroup>
+</Project>

@@ -1,59 +1,166 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Target Name="CreateMdbFile" BeforeTargets="CopyDLLToPlugins" Condition="'$(Configuration)' == 'Debug'">
-    <PropertyGroup>
-      <Pdb2MdbPath Condition="!Exists('$(Pdb2MdbPath)')">$(SolutionDir)pdb2mdb.exe</Pdb2MdbPath>
-    </PropertyGroup>
-    <Message Text="Creating the mdb debug file" Importance="high" Condition="Exists('$(Pdb2MdbPath)')"/>
-    <Delete Files="$(TargetPath).mdb" />
-    <Exec Command="$(Pdb2MdbPath) $(TargetPath)" Condition="Exists('$(Pdb2MdbPath)')"/>
-    <Message Text="Creation succeeded" Importance="high" Condition="'$(MSBuildLastTaskResult)' == 'True' AND Exists('$(TargetPath).mdb')"/>
-  </Target>
-  <Target Name="CopyDLLToPlugins" AfterTargets="ILRepacker" Condition="'$(Configuration)' == 'Debug'">
-    <Message Text="Copying DLL file to plugins" Importance="high"/>
-    <PropertyGroup>
-      <PluginsPath Condition="!Exists('$(PluginsPath)')">$(GamePath)\BepInEx\plugins</PluginsPath>
-    </PropertyGroup>
-    <MakeDir Directories="$(PluginsPath)\$(AssemblyName)" />
-    <Message Text="Copying $(TargetFileName) to $(PluginsPath)\$(AssemblyName)" Importance="high" />
-    <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(PluginsPath)\$(AssemblyName)" />
-    <Message Text="Copying $(TargetFileName).mdb to $(PluginsPath)\$(AssemblyName)" Importance="high" Condition="Exists('$(TargetPath).mdb')" />
-    <Copy SourceFiles="$(TargetPath).mdb" DestinationFolder="$(PluginsPath)\$(AssemblyName)" Condition="Exists('$(TargetPath).mdb')" />
-    <Message Text="Copying $(AssemblyName).pdb to $(PluginsPath)\$(AssemblyName)" Importance="high" Condition="Exists('$(TargetDir)$(AssemblyName).pdb')" />
-    <Copy SourceFiles="$(TargetDir)$(AssemblyName).pdb" DestinationFolder="$(PluginsPath)\$(AssemblyName)" Condition="Exists('$(TargetDir)$(AssemblyName).pdb')" />
-    <Message Text="Copy succeeded" Importance="high"/>
-  </Target>
-  <Target Name="CreateNexusPackage" AfterTargets="ILRepacker" Condition="'$(Configuration)' == 'Release'">
-    <Message Text="Creating Nexus package" Importance="high"/>
-    <MakeDir Directories="$(ProjectDir)Publish\Nexus" />
-    <Message Text="Copying $(TargetFileName) to $(ProjectDir)Publish\Nexus" Importance="high" />
-    <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(ProjectDir)\Publish\Nexus" />
-    <Message Text="Compressing..." Importance="high" />
-    <Exec Command="powershell.exe -Command &quot;Compress-Archive -Path &apos;$(ProjectDir)Publish\Nexus\*&apos; -DestinationPath &apos;$(ProjectDir)Publish\Nexus\$(AssemblyName).zip&apos;&quot; -Force" Condition="'$(OS)' == 'Windows_NT'" />
-    <Message Text="Nexus package created" Importance="high"/>
-  </Target>
-	<Target Name="CreateThunderStorePackage" AfterTargets="ILRepacker" Condition="'$(Configuration)' == 'Release'">
+	<Target Name="CreateMdbFile" BeforeTargets="CopyDLLToPlugins" Condition="'$(Configuration)' == 'Debug'">
+		<PropertyGroup>
+			<Pdb2MdbPath Condition="!Exists('$(Pdb2MdbPath)')">$(SolutionDir)pdb2mdb.exe</Pdb2MdbPath>
+		</PropertyGroup>
+		<Message Text="Creating the mdb debug file" Importance="high" Condition="Exists('$(Pdb2MdbPath)')"/>
+		<Delete Files="$(TargetPath).mdb" />
+		<Exec Command="$(Pdb2MdbPath) $(TargetPath)" Condition="Exists('$(Pdb2MdbPath)')"/>
+		<Message Text="Creation succeeded" Importance="high" Condition="'$(MSBuildLastTaskResult)' == 'True' AND Exists('$(TargetPath).mdb')"/>
+	</Target>
+
+	<Target Name="CopyDLLToPlugins" AfterTargets="$(AfterTargets)" Condition="'$(Configuration)' == 'Debug'">
+		<Message Text="Copying DLL file to plugins" Importance="high"/>
+		<PropertyGroup>
+			<PluginsPath Condition="!Exists('$(PluginsPath)')">$(GamePath)\BepInEx\plugins</PluginsPath>
+		</PropertyGroup>
+		<MakeDir Directories="$(PluginsPath)\$(AssemblyName)" />
+		<Message Text="Copying $(TargetFileName) to $(PluginsPath)\$(AssemblyName)" Importance="high" />
+		<Copy SourceFiles="$(TargetPath)" DestinationFolder="$(PluginsPath)\$(AssemblyName)" />
+		<Message Text="Copying $(TargetFileName).mdb to $(PluginsPath)\$(AssemblyName)" Importance="high" Condition="Exists('$(TargetPath).mdb')" />
+		<Copy SourceFiles="$(TargetPath).mdb" DestinationFolder="$(PluginsPath)\$(AssemblyName)" Condition="Exists('$(TargetPath).mdb')" />
+		<Message Text="Copying $(AssemblyName).pdb to $(PluginsPath)\$(AssemblyName)" Importance="high" Condition="Exists('$(TargetDir)$(AssemblyName).pdb')" />
+		<Copy SourceFiles="$(TargetDir)$(AssemblyName).pdb" DestinationFolder="$(PluginsPath)\$(AssemblyName)" Condition="Exists('$(TargetDir)$(AssemblyName).pdb')" />
+		<Message Text="Copy succeeded" Importance="high"/>
+	</Target>
+
+	<Target Name="CreateNexusPackage" AfterTargets="$(AfterTargets)" Condition="'$(Configuration)' == 'Release'">
+		<Message Text="Creating Nexus package" Importance="high"/>
+		<MakeDir Directories="$(ProjectDir)Publish\Nexus" />
+		<Message Text="Copying $(TargetFileName) to $(ProjectDir)Publish\Nexus" Importance="high" />
+		<Copy SourceFiles="$(TargetPath)" DestinationFolder="$(ProjectDir)\Publish\Nexus" />
+		<Message Text="Compressing..." Importance="high" />
+		<Exec Command="powershell.exe -Command &quot;Compress-Archive -Path &apos;$(ProjectDir)Publish\Nexus\*&apos; -DestinationPath &apos;$(ProjectDir)Publish\Nexus\$(AssemblyName).zip&apos;&quot; -Force" Condition="'$(OS)' == 'Windows_NT'" />
+		<Message Text="Nexus package created" Importance="high"/>
+	</Target>
+
+	<Target Name="CreateThunderStorePackage" AfterTargets="$(AfterTargets)" Condition="'$(Configuration)' == 'Release'">
 		<Message Text="Creating ThunderStore package" Importance="high"/>
 		<MakeDir Directories="$(ProjectDir)Publish\ThunderStore" />
-		<Message Text="Copying $(TargetFileName) to $(ProjectDir)Publish\ThunderStore" Importance="high" />
 
+		<Message Text="Copying $(TargetFileName) to $(ProjectDir)Publish\ThunderStore" Importance="high" />
 		<Copy SourceFiles="$(TargetPath)" DestinationFolder="$(ProjectDir)\Publish\ThunderStore" />
+
 		<Message Text="Copying $(ProjectDir)README.md to $(ProjectDir)Publish\ThunderStore" Importance="high" Condition="Exists('$(ProjectDir)README.md')"/>
 		<Copy SourceFiles="$(ProjectDir)README.md" DestinationFolder="$(ProjectDir)\Publish\ThunderStore" Condition="Exists('$(ProjectDir)README.md')"/>
+
 		<Message Text="Copying $(SolutionDir)README.md to $(ProjectDir)Publish\ThunderStore" Importance="high" Condition="Exists('$(SolutionDir)README.md') AND !Exists('$(ProjectDir)README.md')"/>
 		<Copy SourceFiles="$(SolutionDir)README.md" DestinationFolder="$(ProjectDir)\Publish\ThunderStore" Condition="Exists('$(SolutionDir)README.md') AND !Exists('$(ProjectDir)README.md')"/>
 
 		<Message Text="Copying $(ProjectDir)CHANGELOG.md to $(ProjectDir)Publish\ThunderStore" Importance="high" Condition="Exists('$(ProjectDir)CHANGELOG.md')"/>
 		<Copy SourceFiles="$(ProjectDir)CHANGELOG.md" DestinationFolder="$(ProjectDir)\Publish\ThunderStore" Condition="Exists('$(ProjectDir)CHANGELOG.md')"/>
+
 		<Message Text="Copying $(SolutionDir)CHANGELOG.md to $(ProjectDir)Publish\ThunderStore" Importance="high" Condition="Exists('$(SolutionDir)CHANGELOG.md') AND !Exists('$(ProjectDir)CHANGELOG.md')"/>
 		<Copy SourceFiles="$(SolutionDir)CHANGELOG.md" DestinationFolder="$(ProjectDir)\Publish\ThunderStore" Condition="Exists('$(SolutionDir)CHANGELOG.md') AND !Exists('$(ProjectDir)CHANGELOG.md')"/>
 
 		<Message Text="Copying $(ProjectDir)manifest.json to $(ProjectDir)Publish\ThunderStore" Importance="high" Condition="Exists('$(ProjectDir)manifest.json')"/>
 		<Copy SourceFiles="$(ProjectDir)manifest.json" DestinationFolder="$(ProjectDir)\Publish\ThunderStore" Condition="Exists('$(ProjectDir)manifest.json')"/>
+
 		<Message Text="Copying $(SolutionDir)manifest.json to $(ProjectDir)Publish\ThunderStore" Importance="high" Condition="Exists('$(SolutionDir)manifest.json') AND !Exists('$(ProjectDir)manifest.json')"/>
 		<Copy SourceFiles="$(SolutionDir)manifest.json" DestinationFolder="$(ProjectDir)\Publish\ThunderStore" Condition="Exists('$(SolutionDir)manifest.json') AND !Exists('$(ProjectDir)manifest.json')"/>
+
 		<Message Text="Compressing..." Importance="high" />
 		<Exec Command="powershell.exe -Command &quot;Compress-Archive -Path &apos;$(ProjectDir)Publish\ThunderStore\*&apos; -DestinationPath &apos;$(ProjectDir)Publish\ThunderStore\$(AssemblyName).zip&apos;&quot; -Force" Condition="'$(OS)' == 'Windows_NT'" />
+
 		<Message Text="ThunderStore package created" Importance="high"/>
 	</Target>
 </Project>
+
+
+<!--<Target Name="GetAssemblyVersion" AfterTargets="$(AfterTargets)">
+	<GetAssemblyIdentity AssemblyFiles="$(TargetPath)">
+		<Output TaskParameter="Assemblies" ItemName="Targets" />
+	</GetAssemblyIdentity>
+	<ItemGroup>
+		<AssemblyVersions Include="@(Targets->'%(Version)')" />
+	</ItemGroup>
+	<Error Text="Failed to get Assembly Version." Condition="'%(AssemblyVersions.Identity)' == ''" />
+	<PropertyGroup>
+		<AssemblyVersion>%(AssemblyVersions.Identity)</AssemblyVersion>
+		<Major>$(AssemblyVersion.Split('.')[0])</Major>
+		<Minor>$(AssemblyVersion.Split('.')[1])</Minor>
+		<Patch>$(AssemblyVersion.Split('.')[2])</Patch>
+		<PackageName>$(AssemblyName)_v$(Major).$(Minor).$(Patch)</PackageName>
+		<PackageVersion>$(Major).$(Minor).$(Patch)</PackageVersion>
+		<VersionString>$(Major).$(Minor).$(Patch)</VersionString>
+		<PackageDir>$(ThunderstoreDir)\$(PackageName)</PackageDir>
+	</PropertyGroup>
+</Target>-->
+
+<!--<Target Name="CopyOutputDLL" AfterTargets="GetAssemblyVersion">
+	<Error Text="DLL not found in target directory." Condition="!Exists('$(TargetDir)$(AssemblyName).dll')" />
+	<Copy SourceFiles="$(TargetDir)$(AssemblyName).dll" DestinationFolder="$(CopyOutputDLLPath)" OverwriteReadOnlyFiles="true" />
+	<Copy SourceFiles="$(TargetDir)$(AssemblyName).dll" DestinationFolder="$(CopyOutputDLLPath2)" OverwriteReadOnlyFiles="true" Condition="Exists('$(CopyOutputDLLPath2)')" />
+	<Copy SourceFiles="$(TargetDir)$(AssemblyName).dll" DestinationFolder="$(CopyOutputDLLPath3)" OverwriteReadOnlyFiles="true" Condition="Exists('$(CopyOutputDLLPath3)')" />
+</Target>-->
+
+<!--<Target Name="CopyReadMeToTSFolder" AfterTargets="CopyOutputDLL" Condition=" ('$(Configuration)|$(Platform)' == 'Release|AnyCPU') And ('$(OS)' == 'Windows_NT') ">
+	<Warning Text="README.md not found in project directory. A default README.md file will be created for the Thunderstore package" Condition="!Exists('README.md')" />
+	<WriteLinesToFile File="README.md" Lines="Default Readme file from one of Azumatt's Templates. Replace this with actual content." Overwrite="false" Condition="!Exists('README.md')" />
+	<Copy SourceFiles="README.md" DestinationFolder="$(PackageDir)" OverwriteReadOnlyFiles="true" />
+	<Copy SourceFiles="README.md" DestinationFolder="$(ProjectDir)\Thunderstore" OverwriteReadOnlyFiles="true" />
+</Target>-->
+
+<!--<UsingTask TaskName="WriteManifestFile" TaskFactory="CodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.v4.0.dll">
+	<ParameterGroup>
+		<ManifestFile ParameterType="System.String" Required="true" />
+		<AssemblyName ParameterType="System.String" Required="true" />
+	</ParameterGroup>
+	<Task>
+		<Code Type="Fragment" Language="cs">
+			<![CDATA[
+if (!System.IO.File.Exists(ManifestFile))
+{
+string content = @"{
+  ""name"": """ + AssemblyName + @""",
+  ""version_number"": ""1.0.0"",
+  ""website_url"": ""https://discord.gg/pdHgy6Bsng"",
+  ""description"": ""Your mod description goes here. Do not forget to replace the icon.png file with your own. Must be 256x256. Your Readme.md file will be copied from the one in your project folder."",
+  ""dependencies"": [
+    ""denikson-BepInExPack_Valheim-5.4.2105""
+]
+}";
+System.IO.File.WriteAllText(ManifestFile, content);
+}
+]]>
+
+		</Code>
+	</Task>
+</UsingTask>-->
+
+<!--<Target Name="UpdateManifestVersion" AfterTargets="CopyReadmeToTSFolder" Condition=" ('$(Configuration)|$(Platform)' == 'Release|AnyCPU') And ('$(OS)' == 'Windows_NT') ">
+	<WriteManifestFile ManifestFile="$(ProjectDir)Thunderstore\manifest.json" AssemblyName="$(AssemblyName)" />
+	<ItemGroup>
+		<ManifestFile Include="$(ProjectDir)Thunderstore\manifest.json" />
+	</ItemGroup>
+	<Message Text="ManifestFile is @(ManifestFile)" />
+	<Message Text="Updating version number in Thunderstore\manifest.json" Condition="Exists(@(ManifestFile))" />
+	<Exec Command="powershell.exe -ExecutionPolicy Bypass -Command &quot;&amp; { &amp; '$(ProjectDir)UpdateManifest.ps1' -manifestFile '@(ManifestFile)' -versionString '$(PackageVersion)' }&quot;" />
+</Target>-->
+
+<!--<Target Name="MakeThunderstorePackage" AfterTargets="UpdateManifestVersion" Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+	<Error Text="manifest.json not found in Thunderstore directory." Condition="!Exists('$(ProjectDir)\Thunderstore\manifest.json')" />
+	<Error Text="icon.png not found in Thunderstore directory. Please note that Thunderstore requires this image to be 256x256 in dimension" Condition="!Exists('$(ProjectDir)\Thunderstore\icon.png')" />
+	<ItemGroup>
+		<PackageFiles Include="$(TargetDir)$(AssemblyName).dll" Condition="Exists('$(TargetDir)$(AssemblyName).dll')" />
+		<PackageFiles Include="$(ProjectDir)\Thunderstore\CHANGELOG.md" Condition="Exists('$(ProjectDir)\Thunderstore\CHANGELOG.md')" />
+		<PackageFiles Include="$(ProjectDir)\Thunderstore\manifest.json" Condition="Exists('$(ProjectDir)\Thunderstore\manifest.json')" />
+		<PackageFiles Include="$(ProjectDir)\Thunderstore\icon.png" Condition="Exists('$(ProjectDir)\Thunderstore\icon.png')" />
+	</ItemGroup>
+	<MakeDir Directories="$(PackageDir)" />
+	<Copy SourceFiles="@(PackageFiles)" DestinationFolder="$(PackageDir)" />
+	<ZipDirectory SourceDirectory="$(PackageDir)" DestinationFile="Thunderstore\$(PackageName).zip" Overwrite="true" />
+	<RemoveDir Directories="$(PackageDir)" />
+</Target>-->
+
+<!--<Target Name="MakeNexusPackage" AfterTargets="MakeThunderstorePackage" Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+	<MakeDir Directories="$(ProjectDir)\Nexus" />
+	<ItemGroup>
+		<NexusPackageFiles Include="$(TargetDir)$(AssemblyName).dll;" />
+	</ItemGroup>
+	<MakeDir Directories="$(PackageDir)" />
+	<Copy SourceFiles="@(NexusPackageFiles)" DestinationFolder="$(PackageDir)" />
+	<ZipDirectory SourceDirectory="$(PackageDir)" DestinationFile="Nexus\$(PackageName).zip" Overwrite="true" />
+	<RemoveDir Directories="$(PackageDir)" />
+</Target>-->
