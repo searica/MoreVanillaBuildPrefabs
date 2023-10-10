@@ -66,6 +66,7 @@ namespace MoreVanillaBuildPrefabs
             //        var pickable = gameObject2.GetComponent<Pickable>();
             //        if (pickable != null)
             //        {
+            //            Log.LogInfo("Destroying Pickable");
             //            UnityEngine.Object.DestroyImmediate(pickable);
             //        }
             //    }
