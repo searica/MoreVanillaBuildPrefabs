@@ -18,6 +18,18 @@ namespace MoreVanillaBuildPrefabs
                 case "ArmorStand_Male":
                 case "ArmorStand_Female":
                     SnapPointHelper.AddCenterSnapPoint(prefab);
+                    //var pose = prefab.transform.Find("PlayerPose");
+                    //Log.LogInfo($"pose is null {pose == null}");
+                    //Log.LogInfo($"{pose.GetType()} {pose.name}");
+                    //foreach (var skinMesh in prefab.GetComponentsInChildren<SkinnedMeshRenderer>())
+                    //{
+                    //    if (skinMesh.name == "body")
+                    //    {
+                    //        Log.LogInfo($"{skinMesh.GetType()} {skinMesh.name} {skinMesh.quality}");
+                    //        skinMesh.transform.localScale *= 0.95f;
+                    //        break;
+                    //    }
+                    //}
                     break;
                 case "blackmarble_column_3":
                     SnapPointHelper.AddSnapPoints(
