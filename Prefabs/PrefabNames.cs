@@ -1,45 +1,64 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using UnityEngine;
 
 namespace MoreVanillaBuildPrefabs
 {
     internal class PrefabNames
     {
+        static readonly Dictionary<string, string> NamesMap = new()
+        {
+            {"stoneblock_fracture", "Stone floor (2)"},
+            {"dvergrprops_hooknchain", "Dvergr hook & chain"},
+        };
+
+        static readonly Dictionary<string, string> DescriptionMap = new()
+        {
+            {"metalbar_1x2", "Enforced marble 1x2"},
+        };
+
         static readonly Regex PrefabNameRegex = new(@"([a-z])([A-Z])");
         public static string FormatPrefabName(string prefabName)
         {
+            if (NamesMap.ContainsKey(prefabName)) return NamesMap[prefabName];
+
             var name = PrefabNameRegex
                 .Replace(prefabName, "$1 $2")
                 .TrimStart(' ')
                 .Replace('_', ' ')
                 .Replace("  ", " ")
-                .ToLower();
+                .ToLower()
+                .Replace("dverger", "dvergr")
+                .Replace("dvergrtown", "dvergr")
+                .Replace("dvergrprops", "dvergr");
             name = RemovePrefix(name, "pickable");
-            name = RemoveSuffix(name, "destructable");
-            return CapitalizeFirstLetter(name).Trim();
+            name = RemovePrefix(name, "piece");
+            name = RemoveSuffix(name, "destructable").Trim();
+
+            return CapitalizeFirstLetter(name);
         }
 
         public static string GetPrefabDescription(GameObject prefab)
         {
-            if (prefab.name == "metalbar_1x2") return "Enforced marble 1x2";
+            if (DescriptionMap.ContainsKey(prefab.name)) return DescriptionMap[prefab.name];
 
             HoverText hover = prefab.GetComponent<HoverText>();
-            if (hover) return hover.m_text;
+            if (hover && !string.IsNullOrEmpty(hover.m_text)) return hover.m_text;
 
             ItemDrop item = prefab.GetComponent<ItemDrop>();
-            if (item) return item.m_itemData.m_shared.m_name;
+            if (item && !string.IsNullOrEmpty(item.m_itemData.m_shared.m_name)) return item.m_itemData.m_shared.m_name;
 
             Character chara = prefab.GetComponent<Character>();
-            if (chara) return chara.m_name;
+            if (chara && !string.IsNullOrEmpty(chara.m_name)) return chara.m_name;
 
             RuneStone runestone = prefab.GetComponent<RuneStone>();
-            if (runestone) return runestone.m_name;
+            if (runestone && !string.IsNullOrEmpty(runestone.m_name)) return runestone.m_name;
 
             ItemStand itemStand = prefab.GetComponent<ItemStand>();
-            if (itemStand) return itemStand.m_name;
+            if (itemStand && !string.IsNullOrEmpty(itemStand.m_name)) return itemStand.m_name;
 
             MineRock mineRock = prefab.GetComponent<MineRock>();
-            if (mineRock) return mineRock.m_name;
+            if (mineRock && !string.IsNullOrEmpty(mineRock.m_name)) return mineRock.m_name;
 
             Pickable pickable = prefab.GetComponent<Pickable>();
             if (pickable) return GetPrefabDescription(pickable.m_itemPrefab);
