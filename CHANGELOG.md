@@ -1,3 +1,14 @@
+### Version 0.3.4
+- Improved naming for custom pieces.
+    - Format of custom piece names is now consistent with vanilla name formatting.
+	- Some spelling inconsistencies from the game's internal ID's have been corrected.
+- Automatically add hover text if missing for custom pieces (may not always display though).
+- Enable more prefabs by default.
+- Tweak build requirements and costs for some prefabs.
+- Patched placement of several pieces.
+    - Improved placement of dvergr poles and wood pieces.
+	- Fixed issue with some black marble pieces moving after placement due to discrepency between colliders and rigid bodies.
+
 ### Version 0.3.3
 - Fix color artifacts in custom piece icons (Thanks again for your help Margmas).
 - Fix bug that I accidentally re-introduced where world-generated CreatorShop pieces could be deconstructed.
