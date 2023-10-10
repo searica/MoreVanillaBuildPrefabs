@@ -119,6 +119,15 @@ namespace MoreVanillaBuildPrefabs
                 prefabConfig.Requirements
             );
 
+            // Fix missing hover text if needed.
+            var hover = prefab.GetComponent<HoverText>();
+            if (!hover)
+            {
+                hover = prefab.AddComponent<HoverText>();
+                hover.enabled = true;
+                hover.m_text = prefab.GetComponent<Piece>().m_description;
+            }
+
             // Restrict CreatorShop pieces to Admins only
             if (HammerCategories.IsCreatorShopPiece(piece)
                 && PluginConfig.AdminOnlyCreatorShop.Value
