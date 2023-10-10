@@ -7,6 +7,7 @@
 		<Pdb2MdbPath>$(SolutionDir)\pdb2mdb.exe</Pdb2MdbPath>
 		<AppDataDir>$([System.Environment]::GetFolderPath(SpecialFolder.ApplicationData))</AppDataDir>
 		<r2ModManPath>$(AppDataDir)\r2modmanPlus-local\Valheim\profiles</r2ModManPath>
+		<PluginsPath>$(r2ModManPath)\Mod-Debug\BepInEx\plugins</PluginsPath>
 		<CopyOutputDLLPath>$(r2ModManPath)\Mod-Debug\BepInEx\plugins</CopyOutputDLLPath>
 
 		<!-- This is where the output DLL will be copied to after building. The templates support doing this for up to three locations. Duplicate this line and append a number. Example below -->
