@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Linq;
-using System.Collections.Generic;
 using UnityEngine;
 using Jotunn.Managers;
+
 
 namespace MoreVanillaBuildPrefabs
 {
@@ -120,12 +119,11 @@ namespace MoreVanillaBuildPrefabs
             );
 
             // Fix missing hover text if needed.
-            var hover = prefab.GetComponent<HoverText>();
-            if (!hover)
+            var hover = prefab.GetComponent<HoverText>() ?? prefab.AddComponent<HoverText>();
+            if (string.IsNullOrEmpty(hover.m_text))
             {
-                hover = prefab.AddComponent<HoverText>();
                 hover.enabled = true;
-                hover.m_text = prefab.GetComponent<Piece>().m_description;
+                hover.m_text = prefab.GetComponent<Piece>().m_name;
             }
 
             // Restrict CreatorShop pieces to Admins only
