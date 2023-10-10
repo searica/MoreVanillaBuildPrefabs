@@ -1,9 +1,12 @@
 ﻿using HarmonyLib;
-using MoreVanillaBuildPrefabs.Configs;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+
+using MoreVanillaBuildPrefabs.Configs;
+using MoreVanillaBuildPrefabs.Logging;
+using MoreVanillaBuildPrefabs.Helpers;
 
 namespace MoreVanillaBuildPrefabs.Patches
 {

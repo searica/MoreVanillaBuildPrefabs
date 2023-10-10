@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Jotunn.Managers;
+using MoreVanillaBuildPrefabs.Logging;
 
 namespace MoreVanillaBuildPrefabs.Helpers
 {

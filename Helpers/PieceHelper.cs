@@ -5,6 +5,7 @@ using UnityEngine;
 using BepInEx.Configuration;
 using Jotunn.Managers;
 using MoreVanillaBuildPrefabs.Configs;
+using MoreVanillaBuildPrefabs.Logging;
 
 namespace MoreVanillaBuildPrefabs.Helpers
 {

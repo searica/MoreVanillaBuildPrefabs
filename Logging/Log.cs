@@ -2,7 +2,7 @@
 using System.Reflection;
 using UnityEngine;
 
-namespace MoreVanillaBuildPrefabs
+namespace MoreVanillaBuildPrefabs.Logging
 {
     /// <summary>
     /// Helper class for properly logging from static contexts.

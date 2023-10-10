@@ -2,6 +2,7 @@
 using BepInEx;
 using HarmonyLib;
 using MoreVanillaBuildPrefabs.Configs;
+using MoreVanillaBuildPrefabs.Logging;
 
 namespace MoreVanillaBuildPrefabs
 {

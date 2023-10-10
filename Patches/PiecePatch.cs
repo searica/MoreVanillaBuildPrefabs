@@ -1,6 +1,8 @@
 ﻿using HarmonyLib;
+using MoreVanillaBuildPrefabs.Logging;
 using MoreVanillaBuildPrefabs.Configs;
 using MoreVanillaBuildPrefabs.Helpers;
+
 
 namespace MoreVanillaBuildPrefabs
 {
@@ -9,7 +11,9 @@ namespace MoreVanillaBuildPrefabs
     {
         // Called when piece is just placed
         [HarmonyPatch(typeof(Piece), "SetCreator"), HarmonyPrefix]
+#pragma warning disable IDE0060 // Remove unused parameter
         static void PieceSetCreatorPrefix(long uid, Piece __instance)
+#pragma warning restore IDE0060 // Remove unused parameter
         {
             if (!PluginConfig.IsModEnabled.Value) { return; }
 

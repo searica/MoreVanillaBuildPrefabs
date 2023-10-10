@@ -6,6 +6,7 @@ using ServerSync;
 using System.Collections.Generic;
 using MoreVanillaBuildPrefabs.Helpers;
 using static MoreVanillaBuildPrefabs.Helpers.PieceHelper;
+using MoreVanillaBuildPrefabs.Logging;
 
 namespace MoreVanillaBuildPrefabs.Configs
 {

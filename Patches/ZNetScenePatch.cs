@@ -1,8 +1,10 @@
 ﻿using HarmonyLib;
-using MoreVanillaBuildPrefabs.Configs;
 using System.Linq;
 using UnityEngine.SceneManagement;
 
+using MoreVanillaBuildPrefabs.Configs;
+using MoreVanillaBuildPrefabs.Helpers;
+using MoreVanillaBuildPrefabs.Logging;
 
 namespace MoreVanillaBuildPrefabs
 {
