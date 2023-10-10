@@ -23,6 +23,8 @@ namespace MoreVanillaBuildPrefabs
             "odin",
             "dvergrprops_wood_stake",
             "Hildir",
+            "Flies",
+            "turf_roof_wall",
             //Placement is glitchy
             "demister_ball",
             "CargoCrate"
@@ -1668,10 +1670,10 @@ namespace MoreVanillaBuildPrefabs
             {
                 "stoneblock_fracture",
                 new PrefabConfig(
-                    false,
+                    true,
                     false,
                     HammerCategories.Names.Building,
-                    nameof(CraftingStations.None),
+                    nameof(CraftingStations.Stonecutter),
                     "Stone,24"
                 )
             },
