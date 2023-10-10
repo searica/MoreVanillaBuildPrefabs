@@ -51,7 +51,6 @@ namespace MoreVanillaBuildPrefabs.Configs
         {
             "blackmarble_stair_corner",
             "blackmarble_stair_corner_left",
-            //"stoneblock_fracture"
         };
 
         // EligiblePrefabs that should not be set to allow clipping everything
@@ -64,12 +63,17 @@ namespace MoreVanillaBuildPrefabs.Configs
             "barrell",
             "MountainKit_brazier_blue",
             "MountainKit_brazier",
-            //"stoneblock_fracture",
+            "stoneblock_fracture",
             "piece_dvergr_pole",
             "dvergrprops_wood_pole",
             "dvergrprops_wood_wall"
         };
 
+        internal static readonly HashSet<string> CanClipGround = new()
+        {
+            "stoneblock_fracture",
+            "blackmarble_post01",
+        };
 
         internal static readonly Dictionary<string, PrefabConfig> DefaultConfigValues = new()
         {

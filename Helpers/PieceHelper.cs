@@ -76,8 +76,9 @@ namespace MoreVanillaBuildPrefabs.Helpers
                     piece.m_onlyInTeleportArea = false;
                     piece.m_allowedInDungeons = false;
                     piece.m_clipEverything = !DefaultConfigs.RestrictClipping.Contains(prefab.name);
+                    piece.m_clipGround = DefaultConfigs.CanClipGround.Contains(prefab.name);
                     piece.m_allowRotatedOverlap = true;
-                    piece.m_repairPiece = false; // setting this to true breaks a lot of pieces
+                    piece.m_repairPiece = false; // setting to true prevents placement
                     piece.m_canBeRemoved = true;
                     piece.m_onlyInBiome = Heightmap.Biome.None;
                     if (PluginConfig.IsVerbose())

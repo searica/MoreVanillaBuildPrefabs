@@ -732,7 +732,8 @@ namespace MoreVanillaBuildPrefabs.Helpers
                         }
                     }
                     SnapPointHelper.AddSnapPoints(prefab, pts, true);
-                    //CollisionHelper.AddBoxCollider(prefab, Vector3.zero, new Vector3(2, 1, 2));
+                    UnityEngine.Object.DestroyImmediate(prefab.GetComponent<MineRock>());
+                    CollisionHelper.AddBoxCollider(prefab, Vector3.zero, new Vector3(2, 1, 2));
                     break;
                 case "blackmarble_post01":
                     SnapPointHelper.AddSnapPoints(
@@ -740,10 +741,15 @@ namespace MoreVanillaBuildPrefabs.Helpers
                         new Vector3[]
                         {
                             new Vector3(0.0f, 0.0f, 0.0f),
-                            new Vector3(1.0f, -1.0f, 1.0f),
-                            new Vector3(1.0f, -1.0f, -1.0f),
-                            new Vector3(-1.0f, -1.0f, -1.0f),
-                            new Vector3(-1.0f, -1.0f, 1.0f),
+                            // these snap points are outside the rigid body
+                            //new Vector3(1.0f, -1.0f, 1.0f),
+                            //new Vector3(1.0f, -1.0f, -1.0f),
+                            //new Vector3(-1.0f, -1.0f, -1.0f),
+                            //new Vector3(-1.0f, -1.0f, 1.0f),
+                            new Vector3(1.0f, 0.0f, 1.0f),
+                            new Vector3(1.0f, 0.0f, -1.0f),
+                            new Vector3(-1.0f, 0.0f, -1.0f),
+                            new Vector3(-1.0f, 0.0f, 1.0f),
                             new Vector3(1.0f, 1.0f, 1.0f),
                             new Vector3(1.0f, 1.0f, -1.0f),
                             new Vector3(-1.0f, 1.0f, -1.0f),
