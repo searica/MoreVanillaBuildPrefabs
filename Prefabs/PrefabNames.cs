@@ -8,11 +8,15 @@ namespace MoreVanillaBuildPrefabs
         static readonly Regex PrefabNameRegex = new(@"([a-z])([A-Z])");
         public static string FormatPrefabName(string prefabName)
         {
-            return PrefabNameRegex
+            var name = PrefabNameRegex
                 .Replace(prefabName, "$1 $2")
                 .TrimStart(' ')
                 .Replace('_', ' ')
-                .Replace("  ", " ");
+                .Replace("  ", " ")
+                .ToLower();
+            name = RemovePrefix(name, "pickable");
+            name = RemoveSuffix(name, "destructable");
+            return CapitalizeFirstLetter(name).Trim();
         }
 
         public static string GetPrefabDescription(GameObject prefab)
@@ -57,10 +61,10 @@ namespace MoreVanillaBuildPrefabs
 
         public static string GetPrefabName(Piece piece)
         {
-            return RemoveFromEnd(piece.gameObject.name, "(Clone)");
+            return RemoveSuffix(piece.gameObject.name, "(Clone)");
         }
 
-        public static string RemoveFromEnd(string s, string suffix)
+        public static string RemoveSuffix(string s, string suffix)
         {
             if (s.EndsWith(suffix))
             {
@@ -69,5 +73,25 @@ namespace MoreVanillaBuildPrefabs
 
             return s;
         }
+
+        public static string RemovePrefix(string s, string prefix)
+        {
+            if (s.StartsWith(prefix))
+            {
+                return s.Substring(prefix.Length, s.Length - prefix.Length);
+            }
+            return s;
+        }
+
+        static string CapitalizeFirstLetter(string s)
+        {
+            if (s.Length == 0)
+                return s;
+            else if (s.Length == 1)
+                return $"{char.ToUpper(s[0])}";
+            else
+                return char.ToUpper(s[0]) + s.Substring(1);
+        }
+
     }
 }
