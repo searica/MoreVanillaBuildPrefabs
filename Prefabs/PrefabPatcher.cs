@@ -13,6 +13,7 @@ namespace MoreVanillaBuildPrefabs
         /// <param name="prefab"></param>
         internal static void PatchPrefabIfNeeded(GameObject prefab)
         {
+            List<Vector3> pts = new();
             switch (prefab.name)
             {
                 case "ArmorStand_Male":
@@ -143,18 +144,17 @@ namespace MoreVanillaBuildPrefabs
                     });
                     break;
                 case "blackmarble_floor_large":
-                    List<Vector3> points = new();
                     for (int y = -1; y <= 1; y += 2)
                     {
                         for (int x = -4; x <= 4; x += 2)
                         {
                             for (int z = -4; z <= 4; z += 2)
                             {
-                                points.Add(new Vector3(x, y, z));
+                                pts.Add(new Vector3(x, y, z));
                             }
                         }
                     }
-                    SnapPointHelper.AddSnapPoints(prefab, points);
+                    SnapPointHelper.AddSnapPoints(prefab, pts);
                     break;
                 case "blackmarble_head_big01":
                     SnapPointHelper.AddSnapPoints(prefab, new Vector3[] {
@@ -701,8 +701,8 @@ namespace MoreVanillaBuildPrefabs
                         }
                     );
                     break;
+
                 case "stone_floor":
-                    List<Vector3> pts = new();
                     for (float y = -0.5f; y <= 0.5f; y += 1)
                     {
                         for (int x = -2; x <= 2; x += 1)
@@ -710,6 +710,21 @@ namespace MoreVanillaBuildPrefabs
                             for (int z = -2; z <= 2; z += 1)
                             {
                                 if (!(Math.Abs(x) == 2 && Mathf.Abs(z) == 2))  // skip corners that already have snap points
+                                {
+                                    pts.Add(new Vector3(x, y, z));
+                                }
+                            }
+                        }
+                    }
+                    SnapPointHelper.AddSnapPoints(prefab, pts);
+                    break;
+                case "stoneblock_fracture":
+                    for (float y = -0.5f; y <= 0.5f; y += 1)
+                    {
+                        for (int x = -2; x <= 2; x += 2)
+                        {
+                            for (int z = -2; z <= 2; z += 2)
+                            {
                                 {
                                     pts.Add(new Vector3(x, y, z));
                                 }
