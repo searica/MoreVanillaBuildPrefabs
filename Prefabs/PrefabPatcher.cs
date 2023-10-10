@@ -701,7 +701,6 @@ namespace MoreVanillaBuildPrefabs
                         }
                     );
                     break;
-
                 case "stone_floor":
                     for (float y = -0.5f; y <= 0.5f; y += 1)
                     {
@@ -719,11 +718,12 @@ namespace MoreVanillaBuildPrefabs
                     SnapPointHelper.AddSnapPoints(prefab, pts);
                     break;
                 case "stoneblock_fracture":
+                    // x and y scale is strange for this one
                     for (float y = -0.5f; y <= 0.5f; y += 1)
                     {
-                        for (int x = -2; x <= 2; x += 2)
+                        for (int x = -1; x <= 1; x += 1)
                         {
-                            for (int z = -2; z <= 2; z += 2)
+                            for (int z = -1; z <= 1; z += 1)
                             {
                                 {
                                     pts.Add(new Vector3(x, y, z));
@@ -731,7 +731,8 @@ namespace MoreVanillaBuildPrefabs
                             }
                         }
                     }
-                    SnapPointHelper.AddSnapPoints(prefab, pts);
+                    SnapPointHelper.AddSnapPoints(prefab, pts, true);
+                    //CollisionHelper.AddBoxCollider(prefab, Vector3.zero, new Vector3(2, 1, 2));
                     break;
                 case "blackmarble_post01":
                     SnapPointHelper.AddSnapPoints(
@@ -749,8 +750,16 @@ namespace MoreVanillaBuildPrefabs
                             new Vector3(-1.0f, 1.0f, 1.0f),
                             new Vector3(0.0f, 3.5f, 0.0f), // for torches
                         },
-                        true // fix collision
+                        true
                     );
+                    foreach (var collider in prefab.GetComponentsInChildren<BoxCollider>())
+                    {
+                        if (collider.name == "collider")
+                        {
+                            collider.center += new Vector3(0.0f, 0.5f, 0.0f);
+                            collider.size += new Vector3(0.0f, -1.0f, 0.0f);
+                        }
+                    }
                     break;
                 case "wood_ledge":
                     SnapPointHelper.AddSnapPoints(

@@ -50,6 +50,7 @@ namespace MoreVanillaBuildPrefabs
         {
             "blackmarble_stair_corner",
             "blackmarble_stair_corner_left",
+            //"stoneblock_fracture"
         };
 
         // EligiblePrefabs that should not be set to allow clipping everything
@@ -60,6 +61,12 @@ namespace MoreVanillaBuildPrefabs
             "dverger_demister_large",
             "dvergrprops_hooknchain",
             "barrell",
+            "MountainKit_brazier_blue",
+            "MountainKit_brazier",
+            //"stoneblock_fracture",
+            "piece_dvergr_pole",
+            "dvergrprops_wood_pole",
+            "dvergrprops_wood_wall"
         };
 
 
@@ -734,7 +741,7 @@ namespace MoreVanillaBuildPrefabs
                     false,
                     HammerCategories.Names.Building,
                     nameof(CraftingStations.Stonecutter),
-                    "Stone,24"
+                    "Stone,16"
                 )
             },
             {
@@ -1674,7 +1681,7 @@ namespace MoreVanillaBuildPrefabs
                     false,
                     HammerCategories.Names.Building,
                     nameof(CraftingStations.Stonecutter),
-                    "Stone,24"
+                    "Stone,16"
                 )
             },
             {
