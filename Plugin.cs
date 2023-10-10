@@ -1,6 +1,7 @@
 ﻿using System.Reflection;
 using BepInEx;
 using HarmonyLib;
+using MoreVanillaBuildPrefabs.Configs;
 
 namespace MoreVanillaBuildPrefabs
 {

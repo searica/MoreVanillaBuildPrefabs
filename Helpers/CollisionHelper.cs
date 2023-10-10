@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace MoreVanillaBuildPrefabs.Utils
+namespace MoreVanillaBuildPrefabs.Helpers
 {
     internal class CollisionHelper
     {
@@ -50,8 +50,10 @@ namespace MoreVanillaBuildPrefabs.Utils
         public static List<Collider> GetAllColliders(GameObject prefab)
         {
             Collider[] componentsInChildren = prefab.GetComponentsInChildren<Collider>();
-            List<Collider> colliders = new();
-            colliders.Capacity = componentsInChildren.Length;
+            List<Collider> colliders = new()
+            {
+                Capacity = componentsInChildren.Length
+            };
             Collider[] array = componentsInChildren;
             foreach (Collider collider in array)
             {

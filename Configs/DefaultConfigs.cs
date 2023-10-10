@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
-using static MoreVanillaBuildPrefabs.PluginConfig;
-using static MoreVanillaBuildPrefabs.PieceHelper;
+using MoreVanillaBuildPrefabs.Helpers;
+using static MoreVanillaBuildPrefabs.Configs.PluginConfig;
+using static MoreVanillaBuildPrefabs.Helpers.PieceHelper;
 
-namespace MoreVanillaBuildPrefabs
+namespace MoreVanillaBuildPrefabs.Configs
 {
     internal class DefaultConfigs
     {

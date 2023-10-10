@@ -1,4 +1,6 @@
 ﻿using HarmonyLib;
+using MoreVanillaBuildPrefabs.Configs;
+using MoreVanillaBuildPrefabs.Helpers;
 
 namespace MoreVanillaBuildPrefabs
 {

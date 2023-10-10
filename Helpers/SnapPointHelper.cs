@@ -7,7 +7,7 @@ using UnityEngine;
  * Z = forward/back
  */
 
-namespace MoreVanillaBuildPrefabs.Utils
+namespace MoreVanillaBuildPrefabs.Helpers
 {
     public class SnapPointHelper
     {
@@ -53,7 +53,7 @@ namespace MoreVanillaBuildPrefabs.Utils
 
         private static void CreateSnapPoint(Vector3 pos, Transform parent)
         {
-            GameObject snappoint = new GameObject("_snappoint");
+            GameObject snappoint = new("_snappoint");
             snappoint.transform.parent = parent;
             snappoint.transform.localPosition = pos;
             snappoint.tag = "snappoint";

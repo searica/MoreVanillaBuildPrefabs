@@ -2,7 +2,7 @@
 using System.Text.RegularExpressions;
 using UnityEngine;
 
-namespace MoreVanillaBuildPrefabs
+namespace MoreVanillaBuildPrefabs.Helpers
 {
     internal class PrefabNames
     {

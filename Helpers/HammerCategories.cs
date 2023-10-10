@@ -2,7 +2,7 @@
 using Jotunn.Managers;
 
 
-namespace MoreVanillaBuildPrefabs
+namespace MoreVanillaBuildPrefabs.Helpers
 {
     internal class HammerCategories
     {

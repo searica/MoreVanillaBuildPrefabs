@@ -4,9 +4,9 @@ using System.Linq;
 using UnityEngine;
 using BepInEx.Configuration;
 using Jotunn.Managers;
+using MoreVanillaBuildPrefabs.Configs;
 
-
-namespace MoreVanillaBuildPrefabs
+namespace MoreVanillaBuildPrefabs.Helpers
 {
     internal class PieceHelper
     {
@@ -149,7 +149,8 @@ namespace MoreVanillaBuildPrefabs
         /// <returns> bool indicating if piece was added. </returns>
         internal static bool AddPieceToPieceTable(GameObject prefab, PieceTable pieceTable)
         {
-            return AddPieceToPieceTable(prefab.GetComponent<Piece>(), pieceTable);
+            var piece = prefab.GetComponent<Piece>() ?? throw new Exception($"Prefab {prefab.name} has no Piece component attached");
+            return AddPieceToPieceTable(piece, pieceTable);
         }
 
         /// <summary>
@@ -164,13 +165,59 @@ namespace MoreVanillaBuildPrefabs
             {
                 return false;
             }
-            pieceTable.m_pieces.Add(piece.gameObject);
+
+            var prefab = piece.gameObject;
+            var name = prefab.name;
+            var hash = name.GetStableHashCode();
+
+            if (ZNetScene.instance != null && !ZNetScene.instance.m_namedPrefabs.ContainsKey(hash))
+            {
+                RegisterToZNetScene(prefab);
+            }
+
+            pieceTable.m_pieces.Add(prefab);
+
             if (PluginConfig.IsVerbose())
             {
                 Log.LogInfo($"Added Piece {piece.m_name} to PieceTable {pieceTable.name}");
             }
-            AddedPrefabs.Add(piece.gameObject.name);
+            AddedPrefabs.Add(prefab.name);
+
             return true;
+        }
+
+        /// <summary>
+        ///     Register a single prefab to the current <see cref="ZNetScene"/>.<br />
+        ///     Checks for existence of the object via GetStableHashCode() and adds the prefab if it is not already added.
+        /// </summary>
+        /// <param name="gameObject"></param>
+        public static void RegisterToZNetScene(GameObject gameObject)
+        {
+            var znet = ZNetScene.instance;
+
+            if (znet)
+            {
+                string name = gameObject.name;
+                int hash = name.GetStableHashCode();
+
+                if (znet.m_namedPrefabs.ContainsKey(hash))
+                {
+                    Log.LogDebug($"Prefab {name} already in ZNetScene");
+                }
+                else
+                {
+                    if (gameObject.GetComponent<ZNetView>() != null)
+                    {
+                        znet.m_prefabs.Add(gameObject);
+                    }
+                    else
+                    {
+                        znet.m_nonNetViewPrefabs.Add(gameObject);
+                    }
+                    znet.m_namedPrefabs.Add(hash, gameObject);
+                    Log.LogDebug($"Added prefab {name}");
+                }
+            }
         }
 
         internal static bool RemovePieceFromPieceTable(string name, PieceTable pieceTable)

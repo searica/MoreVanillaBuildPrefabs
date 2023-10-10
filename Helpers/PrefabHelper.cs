@@ -1,9 +1,9 @@
 ﻿using System;
 using UnityEngine;
 using Jotunn.Managers;
+using MoreVanillaBuildPrefabs.Configs;
 
-
-namespace MoreVanillaBuildPrefabs
+namespace MoreVanillaBuildPrefabs.Helpers
 {
     public class PrefabHelper
     {

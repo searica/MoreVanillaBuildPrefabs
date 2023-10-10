@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Jotunn.Managers;
 
-namespace MoreVanillaBuildPrefabs
+namespace MoreVanillaBuildPrefabs.Helpers
 {
     internal class PrefabIcons : MonoBehaviour
     {

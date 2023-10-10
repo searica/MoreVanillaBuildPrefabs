@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Reflection.Emit;
 using Jotunn.Managers;
-using MoreVanillaBuildPrefabs.Utils;
+using MoreVanillaBuildPrefabs.Helpers;
+using MoreVanillaBuildPrefabs.Configs;
 
 namespace MoreVanillaBuildPrefabs
 {

@@ -3,10 +3,11 @@ using BepInEx;
 using BepInEx.Configuration;
 using UnityEngine;
 using ServerSync;
-using static MoreVanillaBuildPrefabs.PieceHelper;
 using System.Collections.Generic;
+using MoreVanillaBuildPrefabs.Helpers;
+using static MoreVanillaBuildPrefabs.Helpers.PieceHelper;
 
-namespace MoreVanillaBuildPrefabs
+namespace MoreVanillaBuildPrefabs.Configs
 {
     internal class PluginConfig
     {

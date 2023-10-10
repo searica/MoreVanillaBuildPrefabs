@@ -1,9 +1,9 @@
-﻿using MoreVanillaBuildPrefabs.Utils;
+﻿using MoreVanillaBuildPrefabs.Helpers;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace MoreVanillaBuildPrefabs
+namespace MoreVanillaBuildPrefabs.Helpers
 {
     internal class PrefabPatcher
     {
