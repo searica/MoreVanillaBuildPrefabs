@@ -34,7 +34,7 @@ namespace MoreVanillaBuildPrefabs
             __state = null;
             if (!PluginConfig.IsModEnabled.Value) { return; }
 #if DEBUG
-            Log.LogInfo($"Custom drop resources for {__instance.gameObject.name}");
+            Log.LogInfo($"DropResourcesPrefix() for {__instance.gameObject.name}");
 #endif
             // Only interact if it is a piece added by this mod or
             // the prefab has previously had it's resources altered by the mod
