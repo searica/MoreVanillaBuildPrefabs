@@ -7,10 +7,13 @@ using UnityEngine.SceneManagement;
 using MoreVanillaBuildPrefabs.Configs;
 using MoreVanillaBuildPrefabs.Logging;
 using MoreVanillaBuildPrefabs.Helpers;
+using Jotunn.Entities;
+using Jotunn.Managers;
 
 namespace MoreVanillaBuildPrefabs.Patches
 {
     [HarmonyPatch(typeof(Game))]
+    //[HarmonyPatch(typeof(ObjectDB))]
     internal class GamePatch
     {
 
@@ -18,6 +21,7 @@ namespace MoreVanillaBuildPrefabs.Patches
         [HarmonyPostfix]
         [HarmonyPriority(Priority.High)] // High priority for compatiability with WackyDB
         [HarmonyPatch(nameof(Game._RequestRespawn))]
+        //[HarmonyPatch(nameof(ObjectDB.Awake))]
         static void Game_RequestRespawnPostFix()
         {
 #if DEBUG
@@ -64,7 +68,7 @@ namespace MoreVanillaBuildPrefabs.Patches
             watch.Start();
 #endif
             // Create and configure pieces
-            List<GameObject> customPrefabs = new();
+            List<CustomPiece> customPieces = new();
             foreach (var prefab in EligiblePrefabs)
             {
                 // Check to fix rare incompatability with other mods.
@@ -73,23 +77,20 @@ namespace MoreVanillaBuildPrefabs.Patches
                     Log.LogWarning("Null prefab found in EligiblePrefabs");
                     continue;
                 }
-                var prefabPiece = PrefabHelper.CreatePrefabPiece(prefab);
-                if (prefabPiece != null)
+                var customPiece = CreatePrefabCustomPiece(prefab);
+                if (customPiece != null)
                 {
-                    customPrefabs.Add(prefabPiece);
+                    customPieces.Add(customPiece);
                 }
             }
 
             // Create icons
-            PrefabIcons.Instance.StartGeneratePrefabIcons(customPrefabs);
+            PrefabIcons.Instance.GeneratePrefabIcons(customPieces);
 
-            // Add pieces to hammer piece table
-            var pieceTable = PieceHelper.GetPieceTable("_HammerPieceTable");
-            if (pieceTable == null) { Log.LogError("Could not find _HammerPieceTable"); }
-
-            foreach (var prefab in customPrefabs)
+            // Add pieces
+            foreach (var customPiece in customPieces)
             {
-                PieceHelper.AddPieceToPieceTable(prefab.GetComponent<Piece>(), pieceTable);
+                PieceHelper.AddCustomPiece(customPiece);
             }
 
             Log.LogInfo($"Added {PieceHelper.AddedPrefabs.Count} custom pieces");
@@ -98,6 +99,75 @@ namespace MoreVanillaBuildPrefabs.Patches
             Log.LogInfo($"Creation Time: {watch.ElapsedMilliseconds} ms");
 #endif
             PluginConfig.Save();
+        }
+
+        /// <summary>
+        ///     Create and add custom pieces based on cfg file.
+        /// </summary>
+        /// <param name="prefab"></param>
+        /// <param name="pieceTable"></param>
+        internal static CustomPiece CreatePrefabCustomPiece(GameObject prefab)
+        {
+            if (!PrefabHelper.EnsureNoDuplicateZNetView(prefab))
+            {
+                // Just dont, as it will fuck over vanilla (non-mod) users
+                if (PluginConfig.IsVerbose())
+                {
+                    Log.LogInfo($"Prevent duplicate ZNetView for: {prefab.name}");
+                }
+                return null;
+            }
+
+            // load config data and create piece config
+            PluginConfig.PrefabConfig prefabConfig = PluginConfig.LoadPrefabConfig(prefab);
+
+            if (!prefabConfig.Enabled && !PluginConfig.IsForceAllPrefabs()) // prefab denied by config
+            {
+                return null;
+            }
+
+            if (PluginConfig.IsVerbose())
+            {
+                Log.LogInfo("Initialize '" + prefab.name + "'");
+                foreach (Component compo in prefab.GetComponents<Component>())
+                {
+                    Log.LogInfo("  - " + compo.GetType().Name);
+                }
+            }
+
+            PrefabHelper.SaveDefaultResources(prefab);
+            PieceHelper.InitPieceComponent(prefab);
+            PrefabPatcher.PatchPrefabIfNeeded(prefab);
+
+            var piece = prefab.GetComponent<Piece>();
+            CustomPiece customPiece = PieceHelper.ConfigureCustomPiece(
+                piece,
+                PrefabNames.FormatPrefabName(prefab.name),
+                PrefabNames.GetPrefabDescription(prefab),
+                prefabConfig.AllowedInDungeons,
+                prefabConfig.Category,
+                "_HammerPieceTable",
+                prefabConfig.CraftingStation,
+                prefabConfig.Requirements
+            );
+
+            // Fix missing hover text if needed.
+            var hover = prefab.GetComponent<HoverText>() ?? prefab.AddComponent<HoverText>();
+            if (string.IsNullOrEmpty(hover.m_text))
+            {
+                hover.enabled = true;
+                hover.m_text = prefab.GetComponent<Piece>().m_name;
+            }
+
+            // Restrict CreatorShop pieces to Admins only
+            if (HammerCategories.IsCreatorShopPiece(piece)
+                && PluginConfig.AdminOnlyCreatorShop.Value
+                && !SynchronizationManager.Instance.PlayerIsAdmin)
+            {
+                return null;
+            }
+
+            return customPiece;
         }
     }
 }

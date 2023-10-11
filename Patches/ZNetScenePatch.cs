@@ -39,13 +39,12 @@ namespace MoreVanillaBuildPrefabs
         internal static void RemoveCustomPieces()
         {
             Log.LogInfo("RemoveCustomPieces()");
-            PieceTable pieceTable = PieceHelper.GetPieceTable("_HammerPieceTable");
 
             int numCustomPieces = PieceHelper.AddedPrefabs.Count();
             var prefabsToRemove = PieceHelper.AddedPrefabs.ToList();
             foreach (var name in prefabsToRemove)
             {
-                PieceHelper.RemovePieceFromPieceTable(name, pieceTable);
+                PieceHelper.RemoveCustomPiece(name);
             }
             Log.LogInfo($"Removed {numCustomPieces - PieceHelper.AddedPrefabs.Count} custom pieces");
         }

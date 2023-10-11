@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
+using Jotunn.Configs;
 using MoreVanillaBuildPrefabs.Helpers;
 using static MoreVanillaBuildPrefabs.Configs.PluginConfig;
-using static MoreVanillaBuildPrefabs.Helpers.PieceHelper;
 
 namespace MoreVanillaBuildPrefabs.Configs
 {

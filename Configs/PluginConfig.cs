@@ -5,8 +5,8 @@ using UnityEngine;
 using ServerSync;
 using System.Collections.Generic;
 using MoreVanillaBuildPrefabs.Helpers;
-using static MoreVanillaBuildPrefabs.Helpers.PieceHelper;
 using MoreVanillaBuildPrefabs.Logging;
+using Jotunn.Configs;
 
 namespace MoreVanillaBuildPrefabs.Configs
 {
@@ -253,34 +253,23 @@ namespace MoreVanillaBuildPrefabs.Configs
             return default_config;
         }
 
-        /// <summary>
-        ///     Convert Requirements string to Piece.Requirement Array
-        /// </summary>
-        /// <param name="data"></param>
-        /// <returns></returns>
-        internal static Piece.Requirement[] CreateRequirementsArray(string data)
+        internal static RequirementConfig[] CreateRequirementsConfigs(string data)
         {
-            if (string.IsNullOrEmpty(data)) return new Piece.Requirement[0];
+            if (string.IsNullOrEmpty(data)) return new RequirementConfig[0];
 
             // If not empty
-            List<Piece.Requirement> requirements = new();
+            List<RequirementConfig> requirements = new();
 
             foreach (var entry in data.Split(';'))
             {
                 string[] values = entry.Split(',');
-                var itm = ObjectDB.instance.GetItemPrefab(values[0].Trim())?.GetComponent<ItemDrop>();
-                if (itm == null)
+                RequirementConfig reqConfig = new()
                 {
-                    Log.LogWarning($"Unable to find requirement ID: {values[0].Trim()}");
-                    continue;
-                }
-                Piece.Requirement req = new()
-                {
-                    m_resItem = itm,
-                    m_amount = int.Parse(values[1].Trim()),
-                    m_recover = true
+                    Item = values[0].Trim(),
+                    Amount = int.Parse(values[1].Trim()),
+                    Recover = true
                 };
-                requirements.Add(req);
+                requirements.Add(reqConfig);
             }
             return requirements.ToArray();
         }
@@ -310,5 +299,39 @@ namespace MoreVanillaBuildPrefabs.Configs
                 Log.LogError("Please check your config entries for spelling and format!");
             }
         }
+
+        // Obsolete code
+
+        ///// <summary>
+        /////     Convert Requirements string to Piece.Requirement Array
+        ///// </summary>
+        ///// <param name="data"></param>
+        ///// <returns></returns>
+        //internal static Piece.Requirement[] CreateRequirementsArray(string data)
+        //{
+        //    if (string.IsNullOrEmpty(data)) return new Piece.Requirement[0];
+
+        //    // If not empty
+        //    List<Piece.Requirement> requirements = new();
+
+        //    foreach (var entry in data.Split(';'))
+        //    {
+        //        string[] values = entry.Split(',');
+        //        var itm = ObjectDB.instance.GetItemPrefab(values[0].Trim())?.GetComponent<ItemDrop>();
+        //        if (itm == null)
+        //        {
+        //            Log.LogWarning($"Unable to find requirement ID: {values[0].Trim()}");
+        //            continue;
+        //        }
+        //        Piece.Requirement req = new()
+        //        {
+        //            m_resItem = itm,
+        //            m_amount = int.Parse(values[1].Trim()),
+        //            m_recover = true
+        //        };
+        //        requirements.Add(req);
+        //    }
+        //    return requirements.ToArray();
+        //}
     }
 }
