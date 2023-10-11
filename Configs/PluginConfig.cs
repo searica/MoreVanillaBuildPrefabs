@@ -255,7 +255,7 @@ namespace MoreVanillaBuildPrefabs.Configs
 
         internal static RequirementConfig[] CreateRequirementsConfigs(string data)
         {
-            if (string.IsNullOrEmpty(data)) return new RequirementConfig[0];
+            if (string.IsNullOrEmpty(data.Trim())) return null;
 
             // If not empty
             List<RequirementConfig> requirements = new();
@@ -309,7 +309,7 @@ namespace MoreVanillaBuildPrefabs.Configs
         ///// <returns></returns>
         //internal static Piece.Requirement[] CreateRequirementsArray(string data)
         //{
-        //    if (string.IsNullOrEmpty(data)) return new Piece.Requirement[0];
+        //    if (string.IsNullOrEmpty(data)) return null;
 
         //    // If not empty
         //    List<Piece.Requirement> requirements = new();

@@ -87,8 +87,12 @@ namespace MoreVanillaBuildPrefabs.Helpers
                 Category = category,
                 PieceTable = pieceTable,
                 CraftingStation = craftingStation,
-                Requirements = PluginConfig.CreateRequirementsConfigs(requirements)
             };
+            var reqs = PluginConfig.CreateRequirementsConfigs(requirements);
+            if (reqs != null)
+            {
+                pieceConfig.Requirements = reqs;
+            }
 
             CustomPiece customPiece = new(piece.gameObject, false, pieceConfig);
 
