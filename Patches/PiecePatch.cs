@@ -6,11 +6,16 @@ using MoreVanillaBuildPrefabs.Helpers;
 
 namespace MoreVanillaBuildPrefabs
 {
-    [HarmonyPatch]
+    [HarmonyPatch(typeof(Piece))]
     internal class PiecePatch
     {
-        // Called when piece is just placed
-        [HarmonyPatch(typeof(Piece), "SetCreator"), HarmonyPrefix]
+        /// <summary>
+        ///     Called when just before pice is placed
+        /// </summary>
+        /// <param name="uid"></param>
+        /// <param name="__instance"></param>
+        [HarmonyPrefix]
+        [HarmonyPatch(nameof(Piece.SetCreator))]
 #pragma warning disable IDE0060 // Remove unused parameter
         static void PieceSetCreatorPrefix(long uid, Piece __instance)
 #pragma warning restore IDE0060 // Remove unused parameter
@@ -33,8 +38,15 @@ namespace MoreVanillaBuildPrefabs
             }
         }
 
+        /// <summary>
+        ///         Disable desctruction drops for player built pieces to prevent
+        ///         things like player built dvergerprops_crate dropping dvergr 
+        ///         extractors even if they're not a build requirement
+        /// </summary>
+        /// <param name="__instance"></param>
+        /// <param name="__state"></param>
         [HarmonyPrefix]
-        [HarmonyPatch(typeof(Piece), nameof(Piece.DropResources))]
+        [HarmonyPatch(nameof(Piece.DropResources))]
         static void PieceDropResourcesPrefix(Piece __instance, out Piece.Requirement[] __state)
         {
             __state = null;
@@ -47,9 +59,6 @@ namespace MoreVanillaBuildPrefabs
             string prefab_name = NameHelper.GetPrefabName(__instance);
             if (PieceHelper.AddedPrefabs.Contains(prefab_name) || DefaultConfigs.DefaultResources.ContainsKey(prefab_name))
             {
-                // disable desctruction drops for player built pieces
-                // prevents things like player built dvergerprops_crate
-                // dropping dvergr extractors even if they weren't used to build them
                 if (__instance.IsPlacedByPlayer())
                 {
                     Plugin.DisableDestructionDrops = true;
@@ -76,7 +85,7 @@ namespace MoreVanillaBuildPrefabs
         }
 
         [HarmonyPostfix]
-        [HarmonyPatch(typeof(Piece), nameof(Piece.DropResources))]
+        [HarmonyPatch(nameof(Piece.DropResources))]
         static void PieceDropResourcesPostfix(Piece __instance, Piece.Requirement[] __state)
         {
             // restore original drops from before the prefix patch
