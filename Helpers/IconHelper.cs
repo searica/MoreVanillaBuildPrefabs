@@ -11,7 +11,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
     {
         private static GameObject _parent;
         private static IconHelper _instance;
-        //private static Coroutine _coroutine;
+        // private static Coroutine _coroutine;
 
         /// <summary>
         ///     The singleton instance of this manager.
