@@ -172,58 +172,58 @@ namespace MoreVanillaBuildPrefabs.Helpers
         //    return null;
         //}
 
-        //        /// <summary>
-        //        ///     Method to configure customPiece fields based on cfg file data.
-        //        /// </summary>
-        //        /// <param name="piece"></param>
-        //        /// <returns></returns>
-        //        internal static Piece ConfigurePiece(
-        //            Piece piece,
-        //            string name,
-        //            string description,
-        //            bool allowedInDungeons,
-        //            string category,
-        //            string craftingStation,
-        //            string requirements
-        //        )
-        //        {
-        //            var pieceCategory = (Piece.PieceCategory)PieceManager.Instance.GetPieceCategory(category);
-        //            var reqs = PluginConfig.CreateRequirementsArray(requirements);
-        //            var station = CraftingStations.GetCraftingStation(craftingStation);
-        //            return ConfigurePiece(
-        //                piece,
-        //                name,
-        //                description,
-        //                allowedInDungeons,
-        //                pieceCategory,
-        //                station,
-        //                reqs
-        //            );
-        //        }
+        ///// <summary>
+        /////     Method to configure customPiece fields based on cfg file data.
+        ///// </summary>
+        ///// <param name="piece"></param>
+        ///// <returns></returns>
+        //internal static Piece ConfigurePiece(
+        //    Piece piece,
+        //    string name,
+        //    string description,
+        //    bool allowedInDungeons,
+        //    string category,
+        //    string craftingStation,
+        //    string requirements
+        //)
+        //{
+        //    var pieceCategory = (Piece.PieceCategory)PieceManager.Instance.GetPieceCategory(category);
+        //    var reqs = PluginConfig.CreateRequirementsArray(requirements);
+        //    var station = CraftingStations.GetCraftingStation(craftingStation);
+        //    return ConfigurePiece(
+        //        piece,
+        //        name,
+        //        description,
+        //        allowedInDungeons,
+        //        pieceCategory,
+        //        station,
+        //        reqs
+        //    );
+        //}
 
-        //        /// <summary>
-        //        ///     Method to configure customPiece fields.
-        //        /// </summary>
-        //        /// <param name="piece"></param>
-        //        /// <returns></returns>
-        //        internal static Piece ConfigurePiece(
-        //            Piece piece,
-        //            string name,
-        //            string description,
-        //            bool allowedInDungeons,
-        //            Piece.PieceCategory category,
-        //            CraftingStation craftingStation,
-        //            Piece.Requirement[] requirements
-        //        )
-        //        {
-        //            piece.m_name = name;
-        //            piece.m_description = description;
-        //            piece.m_allowedInDungeons = allowedInDungeons;
-        //            piece.m_category = category;
-        //            piece.m_craftingStation = craftingStation;
-        //            piece.m_resources = requirements;
-        //            return piece;
-        //        }
+        ///// <summary>
+        /////     Method to configure customPiece fields.
+        ///// </summary>
+        ///// <param name="piece"></param>
+        ///// <returns></returns>
+        //internal static Piece ConfigurePiece(
+        //    Piece piece,
+        //    string name,
+        //    string description,
+        //    bool allowedInDungeons,
+        //    Piece.PieceCategory category,
+        //    CraftingStation craftingStation,
+        //    Piece.Requirement[] requirements
+        //)
+        //{
+        //    piece.m_name = name;
+        //    piece.m_description = description;
+        //    piece.m_allowedInDungeons = allowedInDungeons;
+        //    piece.m_category = category;
+        //    piece.m_craftingStation = craftingStation;
+        //    piece.m_resources = requirements;
+        //    return piece;
+        //}
 
         //        /// <summary>
         //        ///     Method to add a prefab to a customPiece table.
