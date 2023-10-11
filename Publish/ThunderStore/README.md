@@ -140,10 +140,13 @@ Prefabs set to the custom CreatorShop category on the hammer will behave differe
 Specifically, when a piece is set to the CreatorShop category player's can only deconstruct instances of that piece that they have placed themselves. This prevents player's from deconstructing world-generated prefabs like trees while still allowing you to build and deconstruct player-placed trees. If multiple player's have this mod enabled they can still only deconstruct CreatorShop pieces that they have placed themselves. If the AdminDeconstructCreatorShop option is set to True, then admins can deconstruct CreatorShop pieces placed by other players.
 
 ## Known Issues
-
 **Custom Armor Stand Clipping**: Armor placed on the Male Armor Stand and Female Armor Stand prefabs has clipping issues causing parts of the armor to not be displayed. I have not been able to fix this as of yet.
 
-**Piece Icons**: Lighting can be variable between icons for different pieces. 
+**Piece Icons**: Lighting can be variable between icons for different pieces and/or have color artifacting can occur.
+- A fix has been implemented, but icons are cached by Jotunn so you will need to reset them to fix the issue.
+- Go to this directory: %userprofile%\appdata\LocalLow\IronGate\Valheim\Jotunn\CachedIcons 
+- Delete all the pngs in that directory.
+- Restart the game and the mod should regenerate the icons correctly.
 
 ## Planned Improvements
 - Resolve known issues.
@@ -154,6 +157,9 @@ Specifically, when a piece is set to the CreatorShop category player's can only 
 
 ## Compatibility
 These are non-exhaustive lists.
+
+### Partial Incompatiabily
+**PlanBuild (by MathiasDecrock)** The mods do work together but PlanBuild does not detect any of the pieces added by this mod so they will not show up in the plan hammer. Currently working on a fix.
 
 ### Incompatible Mods
 Likely incompatible with other mods that add Vanilla prefabs to the build hammer unless you disable the prefabs from this mod that overlap with the other one since conflicting build requirements can cause unexpected behavior.
@@ -207,7 +213,6 @@ Likely incompatible with other mods that add Vanilla prefabs to the build hammer
 - PassivePowers (by Smoothbrain)
 - Pathfinder (by Crystal)
 - Perfect Placement (by Azumatt)
-- PlanBuild (by MathiasDecrock)
 - PlantEasily (by Advize)
 - PlantEverything (by Advize)
 - ProfitablePieces (by Azumatt)

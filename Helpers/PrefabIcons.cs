@@ -42,28 +42,29 @@ namespace MoreVanillaBuildPrefabs.Helpers
         /// <param name="prefabs"></param>
         internal void StartGeneratePrefabIcons(IEnumerable<GameObject> prefabs)
         {
-            _coroutine = StartCoroutine(GeneratePrefabIconsCoroutine(prefabs));
+            GeneratePrefabIconsCoroutine(prefabs);
+            //_coroutine = StartCoroutine(GeneratePrefabIconsCoroutine(prefabs));
         }
 
-        internal void EndGeneratePrefabIcons()
-        {
-            if (_coroutine != null)
-            {
-                StopCoroutine(_coroutine);
-            }
-        }
+        //internal void StopGeneratePrefabIcons()
+        //{
+        //    if (_coroutine != null)
+        //    {
+        //        StopCoroutine(_coroutine);
+        //    }
+        //}
 
         // Refs:
         //  - CreatureSpawner.m_creaturePrefab
         //  - PickableItem.m_randomItemPrefabs
         //  - PickableItem.RandomItem.m_itemPrefab
-        private IEnumerator GeneratePrefabIconsCoroutine(IEnumerable<GameObject> prefabs)
+        private void GeneratePrefabIconsCoroutine(IEnumerable<GameObject> prefabs)
         {
             foreach (var prefab in prefabs)
             {
                 if (prefab == null) { Log.LogInfo($"Null prefab found"); }
 
-                yield return null;
+                //yield return null;
                 Sprite result = GenerateObjectIcon(prefab);
                 if (result == null)
                 {
@@ -73,7 +74,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
                         GameObject item = randomItemPrefabs[0].m_itemPrefab?.gameObject;
                         if (item != null)
                         {
-                            yield return null;
+                            //yield return null;
                             result = GenerateObjectIcon(item);
                         }
                     }
@@ -84,6 +85,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
                     piece.m_icon = result;
                 }
             }
+            //yield return null;
         }
 
         private Sprite GenerateObjectIcon(GameObject obj)

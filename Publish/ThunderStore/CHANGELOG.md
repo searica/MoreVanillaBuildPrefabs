@@ -1,13 +1,15 @@
 ### Version 0.3.4
-- Improved naming for custom pieces.
+- Improved naming for custom pieces in hammer build table.
     - Format of custom piece names is now consistent with vanilla name formatting.
 	- Some spelling inconsistencies from the game's internal ID's have been corrected.
-- Automatically add hover text if missing for custom pieces (may not always display though).
-- Enable more prefabs by default.
-- Tweak build requirements and costs for some prefabs.
+- Automatically add hover text if missing for custom pieces (depending on the piece it still may not display).
+- Ptched and enabled more prefabs by default.
+- Disabled a prefab that explodes into a giant boulder (Thanks Cass!)
+- Tweaked build requirements and costs for some prefabs.
 - Patched placement of several pieces.
     - Improved placement of dvergr poles and wood pieces.
 	- Fixed issue with some black marble pieces moving after placement due to discrepency between colliders and rigid bodies.
+- Changed how piece Icons are generated to hopefully fix the lighting issue with some icons.
 
 ### Version 0.3.3
 - Fix color artifacts in custom piece icons (Thanks again for your help Margmas).

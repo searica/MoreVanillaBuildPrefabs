@@ -26,6 +26,7 @@ namespace MoreVanillaBuildPrefabs.Configs
             "Hildir",
             "Flies",
             "turf_roof_wall",
+            "rock_mistlands2", // explodes into a boulder
             //Placement is glitchy
             "demister_ball",
             "CargoCrate"
