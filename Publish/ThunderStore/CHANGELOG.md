@@ -1,3 +1,9 @@
+### Version 0.3.5
+- Switched back to adding pieces via Jotunn.
+- More automatic naming improvements.
+- Quick fix for null exception error that broke the mod last release (Somehow the option that allowed me to reference the publicized assembles got unchecked).
+- Changed ModGUID to match mod name. **This changes the name of your cfg file. So after it regenerates copy over any changes you've made via a text editor and delete your old one.**
+
 ### Version 0.3.4
 - Improved naming for custom pieces in hammer build table.
     - Format of custom piece names is now consistent with vanilla name formatting.
