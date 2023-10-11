@@ -10,6 +10,8 @@ namespace MoreVanillaBuildPrefabs.Helpers
         {
             {"stoneblock_fracture", "Stone floor (2)"},
             {"dvergrprops_hooknchain", "Dvergr hook & chain"},
+            {"dvergrprops_wood_wall", "Dvergr wood wall (large)"},
+            {"piece_dvergr_wood_wall", "Dvergr wood wall"},
         };
 
         static readonly Dictionary<string, string> DescriptionMap = new()
