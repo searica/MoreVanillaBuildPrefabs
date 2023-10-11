@@ -1,5 +1,6 @@
 ﻿using BepInEx.Configuration;
 using Jotunn.Managers;
+using Jotunn.Configs;
 using MoreVanillaBuildPrefabs.Logging;
 
 namespace MoreVanillaBuildPrefabs.Helpers
@@ -26,13 +27,13 @@ namespace MoreVanillaBuildPrefabs.Helpers
         public static void AddCustomCategories()
         {
             Log.LogInfo("AddCustomCategories()");
-            CreatorShop = PieceManager.Instance.AddPieceCategory("_HammerPieceTable", Names.CreatorShop);
+            CreatorShop = PieceManager.Instance.AddPieceCategory(PieceTables.Hammer, Names.CreatorShop);
         }
 
         public static void RemoveCustomCategories()
         {
             Log.LogInfo("RemoveCustomCategories()");
-            PieceManager.Instance.RemovePieceCategory("_HammerPieceTable", Names.CreatorShop);
+            PieceManager.Instance.RemovePieceCategory(PieceTables.Hammer, Names.CreatorShop);
         }
 
         public static bool IsCreatorShopPiece(Piece piece)

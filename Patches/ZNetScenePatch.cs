@@ -30,23 +30,12 @@ namespace MoreVanillaBuildPrefabs
                 }
                 if (SceneManager.GetActiveScene().name == "main" && PieceHelper.AddedPrefabs.Count != 0)
                 {
-                    RemoveCustomPieces();
+                    PieceHelper.RemoveCustomPieces();
                     HammerCategories.RemoveCustomCategories();
                 }
             }
         }
 
-        internal static void RemoveCustomPieces()
-        {
-            Log.LogInfo("RemoveCustomPieces()");
 
-            int numCustomPieces = PieceHelper.AddedPrefabs.Count();
-            var prefabsToRemove = PieceHelper.AddedPrefabs.ToList();
-            foreach (var name in prefabsToRemove)
-            {
-                PieceHelper.RemoveCustomPiece(name);
-            }
-            Log.LogInfo($"Removed {numCustomPieces - PieceHelper.AddedPrefabs.Count} custom pieces");
-        }
     }
 }

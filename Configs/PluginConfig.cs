@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using MoreVanillaBuildPrefabs.Helpers;
 using MoreVanillaBuildPrefabs.Logging;
 using Jotunn.Configs;
+using System;
 
 namespace MoreVanillaBuildPrefabs.Configs
 {
@@ -255,7 +256,7 @@ namespace MoreVanillaBuildPrefabs.Configs
 
         internal static RequirementConfig[] CreateRequirementConfigsArray(string data)
         {
-            if (string.IsNullOrEmpty(data.Trim())) return null;
+            if (string.IsNullOrEmpty(data.Trim())) return Array.Empty<RequirementConfig>();
 
             // If not empty
             List<RequirementConfig> requirements = new();

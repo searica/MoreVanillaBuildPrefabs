@@ -1,7 +1,6 @@
 ﻿using System;
 using UnityEngine;
 using MoreVanillaBuildPrefabs.Configs;
-using MoreVanillaBuildPrefabs.Logging;
 
 namespace MoreVanillaBuildPrefabs.Helpers
 {

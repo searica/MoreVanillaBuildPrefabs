@@ -7,6 +7,7 @@ using MoreVanillaBuildPrefabs.Configs;
 using MoreVanillaBuildPrefabs.Logging;
 using Jotunn.Configs;
 using Jotunn.Entities;
+using Jotunn;
 
 namespace MoreVanillaBuildPrefabs.Helpers
 {
@@ -87,25 +88,35 @@ namespace MoreVanillaBuildPrefabs.Helpers
                 Category = category,
                 PieceTable = pieceTable,
                 CraftingStation = craftingStation,
+                Requirements = PluginConfig.CreateRequirementConfigsArray(requirements)
             };
-            piece.m_resources = PluginConfig.CreateRequirementsArray(requirements);
-            //var reqs = PluginConfig.CreateRequirementConfigsArray(requirements);
-            //if (reqs != null)
-            //{
-            //    pieceConfig.Requirements = reqs;
-            //}
-
             CustomPiece customPiece = new(piece.gameObject, true, pieceConfig);
-
             return customPiece;
         }
 
-        internal static void AddCustomPiece(CustomPiece customPiece)
+        internal static bool AddCustomPiece(CustomPiece customPiece)
         {
-            //var flag = PieceManager.Instance.AddPiece(customPiece);
+            customPiece.PiecePrefab.FixReferences(true);
+            var flag = PieceManager.Instance.AddPiece(customPiece);
             PieceManager.Instance.RegisterPieceInPieceTable(customPiece.PiecePrefab, customPiece.PieceTable, customPiece.Category);
             AddedPrefabs.Add(customPiece.PiecePrefab.name);
-            //return flag;
+            return flag;
+        }
+
+        /// <summary>
+        ///     Remove all custom pieces added by this mod.
+        /// </summary>
+        internal static void RemoveCustomPieces()
+        {
+            Log.LogInfo("RemoveCustomPieces()");
+
+            int numCustomPieces = PieceHelper.AddedPrefabs.Count();
+            var prefabsToRemove = PieceHelper.AddedPrefabs.ToList();
+            foreach (var name in prefabsToRemove)
+            {
+                RemoveCustomPiece(name);
+            }
+            Log.LogInfo($"Removed {numCustomPieces - PieceHelper.AddedPrefabs.Count} custom pieces");
         }
 
         internal static bool RemoveCustomPiece(string name)
@@ -116,7 +127,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
                 var pieceTable = PieceManager.Instance.GetPieceTable(customPiece.PieceTable);
 
                 pieceTable.m_pieces.Remove(customPiece.PiecePrefab);
-                //PieceManager.Instance.RemovePiece(name);
+                PieceManager.Instance.RemovePiece(name);
 
                 AddedPrefabs.Remove(customPiece.PiecePrefab.name);
                 return true;

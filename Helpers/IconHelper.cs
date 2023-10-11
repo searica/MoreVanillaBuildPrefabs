@@ -1,10 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using Jotunn.Managers;
 using MoreVanillaBuildPrefabs.Logging;
 using Jotunn.Entities;
-using System.Linq;
+
 
 namespace MoreVanillaBuildPrefabs.Helpers
 {
@@ -12,7 +11,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
     {
         private static GameObject _parent;
         private static IconHelper _instance;
-        private static Coroutine _coroutine;
+        //private static Coroutine _coroutine;
 
         /// <summary>
         ///     The singleton instance of this manager.
@@ -24,7 +23,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
             if (_parent == null)
             {
                 _parent = new GameObject();
-                GameObject.DontDestroyOnLoad(_parent);
+                DontDestroyOnLoad(_parent);
             }
             if (_instance == null)
             {
