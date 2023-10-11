@@ -1,18 +1,16 @@
-﻿using Jotunn.Configs;
-using Jotunn.Managers;
-using MoreVanillaBuildPrefabs.Logging;
+﻿using MoreVanillaBuildPrefabs.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using UnityEngine;
+
 
 namespace MoreVanillaBuildPrefabs
 {
 
-    public static class TypeExtensions
+    internal static class TypeExtensions
     {
-        public static List<T> GetAllPublicConstantValues<T>(this Type type)
+        internal static List<T> GetAllPublicConstantValues<T>(this Type type)
         {
             return type
                 .GetFields(BindingFlags.Public | BindingFlags.Static | BindingFlags.FlattenHierarchy)
@@ -21,7 +19,7 @@ namespace MoreVanillaBuildPrefabs
                 .ToList();
         }
 
-        public static List<T> GetAllPublicStaticValues<T>(this Type type)
+        internal static List<T> GetAllPublicStaticValues<T>(this Type type)
         {
             return type
                 .GetFields(BindingFlags.Public | BindingFlags.Static)
@@ -31,14 +29,14 @@ namespace MoreVanillaBuildPrefabs
         }
     }
 
-    public static class PluginExtensions
+    internal static class PluginExtensions
     {
-        public static T Ref<T>(this T o) where T : UnityEngine.Object
+        internal static T Ref<T>(this T o) where T : UnityEngine.Object
         {
             return o ? o : null;
         }
 
-        public static void Dispose(this IEnumerable<IDisposable> collection)
+        internal static void Dispose(this IEnumerable<IDisposable> collection)
         {
             foreach (IDisposable item in collection)
             {
