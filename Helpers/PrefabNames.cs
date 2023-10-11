@@ -8,9 +8,9 @@ namespace MoreVanillaBuildPrefabs.Helpers
     {
         static readonly Dictionary<string, string> NamesMap = new()
         {
-            {"stoneblock_fracture", "Stone floor (2)"},
+            {"stoneblock_fracture", "Stone floor2 4x4"},
             {"dvergrprops_hooknchain", "Dvergr hook & chain"},
-            {"dvergrprops_wood_wall", "Dvergr wood wall (large)"},
+            {"dvergrprops_wood_wall", "Dvergr wood wall 4x4"},
             {"piece_dvergr_wood_wall", "Dvergr wood wall"},
         };
 
