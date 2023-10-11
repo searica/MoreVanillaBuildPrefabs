@@ -11,16 +11,14 @@ using Jotunn.Managers;
 
 namespace MoreVanillaBuildPrefabs.Patches
 {
-    //[HarmonyPatch(typeof(Game))]
-    [HarmonyPatch(typeof(ObjectDB))]
+    [HarmonyPatch(typeof(Game))]
     internal class GamePatch
     {
 
         // Hook here to add pieces after ServerSync recieves data
         [HarmonyPrefix]
         [HarmonyPriority(Priority.High)] // High priority for compatiability with WackyDB
-        //[HarmonyPatch(nameof(Game._RequestRespawn))]
-        [HarmonyPatch(nameof(ObjectDB.Awake))]
+        [HarmonyPatch(nameof(Game._RequestRespawn))]
         static void Game_RequestRespawnPostFix()
         {
 #if DEBUG
