@@ -89,7 +89,7 @@ namespace MoreVanillaBuildPrefabs.Patches
             // Add pieces
             foreach (var customPiece in customPieces)
             {
-                PieceHelper.AddCustomPiece(customPiece);
+                PieceHelper.AddPieceToPieceTable(customPiece);
             }
 
             Log.LogInfo($"Added {PieceHelper.AddedPrefabs.Count} custom pieces");
@@ -101,7 +101,7 @@ namespace MoreVanillaBuildPrefabs.Patches
         }
 
         /// <summary>
-        ///     Create and add custom pieces based on cfg file.
+        ///     Create piece components based on cfg file.
         /// </summary>
         /// <param name="prefab"></param>
         /// <param name="pieceTable"></param>
@@ -139,16 +139,16 @@ namespace MoreVanillaBuildPrefabs.Patches
             PrefabPatcher.PatchPrefabIfNeeded(prefab);
 
             var piece = prefab.GetComponent<Piece>();
-            CustomPiece customPiece = PieceHelper.ConfigureCustomPiece(
+            PieceHelper.ConfigurePiece(
                 piece,
                 NameHelper.FormatPrefabName(prefab.name),
                 NameHelper.GetPrefabDescription(prefab),
                 prefabConfig.AllowedInDungeons,
                 prefabConfig.Category,
-                PieceTables.Hammer,
                 prefabConfig.CraftingStation,
                 prefabConfig.Requirements
             );
+
 
             // Fix missing hover text if needed.
             var hover = prefab.GetComponent<HoverText>() ?? prefab.AddComponent<HoverText>();
@@ -168,5 +168,75 @@ namespace MoreVanillaBuildPrefabs.Patches
 
             return customPiece;
         }
+
+        // Jotunn based code
+        /// <summary>
+        ///     Create and add custom pieces based on cfg file.
+        /// </summary>
+        /// <param name="prefab"></param>
+        /// <param name="pieceTable"></param>
+        //internal static CustomPiece CreatePrefabCustomPiece(GameObject prefab)
+        //{
+        //    if (!PrefabHelper.EnsureNoDuplicateZNetView(prefab))
+        //    {
+        //        // Just dont, as it will fuck over vanilla (non-mod) users
+        //        if (PluginConfig.IsVerbose())
+        //        {
+        //            Log.LogInfo($"Prevent duplicate ZNetView for: {prefab.name}");
+        //        }
+        //        return null;
+        //    }
+
+        //    // load config data and create piece config
+        //    PluginConfig.PrefabConfig prefabConfig = PluginConfig.LoadPrefabConfig(prefab);
+
+        //    if (!prefabConfig.Enabled && !PluginConfig.IsForceAllPrefabs()) // prefab denied by config
+        //    {
+        //        return null;
+        //    }
+
+        //    if (PluginConfig.IsVerbose())
+        //    {
+        //        Log.LogInfo("Initialize '" + prefab.name + "'");
+        //        foreach (Component compo in prefab.GetComponents<Component>())
+        //        {
+        //            Log.LogInfo("  - " + compo.GetType().Name);
+        //        }
+        //    }
+
+        //    DefaultConfigs.SaveDefaultResources(prefab);
+        //    PieceHelper.InitPieceComponent(prefab);
+        //    PrefabPatcher.PatchPrefabIfNeeded(prefab);
+
+        //    var piece = prefab.GetComponent<Piece>();
+        //    CustomPiece customPiece = PieceHelper.ConfigureCustomPiece(
+        //        piece,
+        //        NameHelper.FormatPrefabName(prefab.name),
+        //        NameHelper.GetPrefabDescription(prefab),
+        //        prefabConfig.AllowedInDungeons,
+        //        prefabConfig.Category,
+        //        PieceTables.Hammer,
+        //        prefabConfig.CraftingStation,
+        //        prefabConfig.Requirements
+        //    );
+
+        //    // Fix missing hover text if needed.
+        //    var hover = prefab.GetComponent<HoverText>() ?? prefab.AddComponent<HoverText>();
+        //    if (string.IsNullOrEmpty(hover.m_text))
+        //    {
+        //        hover.enabled = true;
+        //        hover.m_text = prefab.GetComponent<Piece>().m_name;
+        //    }
+
+        //    // Restrict CreatorShop pieces to Admins only
+        //    if (HammerCategories.IsCreatorShopPiece(piece)
+        //        && PluginConfig.AdminOnlyCreatorShop.Value
+        //        && !SynchronizationManager.Instance.PlayerIsAdmin)
+        //    {
+        //        return null;
+        //    }
+
+        //    return customPiece;
+        //}
     }
 }
