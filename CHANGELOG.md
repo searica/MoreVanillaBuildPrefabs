@@ -52,7 +52,9 @@
 
 ### Versions 0.2.X
 <details>
-<summary>details</summary>
+
+<summary>Click to expand</summary>
+
 ### Version 0.2.2
 - Added null check to EnsureNoDuplicateZNetView(), should resolve issues caused when rejoining servers (Thanks to Cass on the Odinplus for reporting the bug).
 - Mod now saves the cfg file on logout, should hopefully preserve changes made to it before reading from it when rejoining a server.
@@ -71,7 +73,8 @@
 
 ### Versions 0.1.X
 <details>
-<summary>details</summary>
+
+<summary>Click to expand</summary>
 
 ### Version 0.1.4
 - Updated for patch 0.217.22
@@ -82,15 +85,6 @@
 - Improved load times when re-logging.
 - Changed method of adding custom build pieces to respect server configuration when changing between servers without restarting the game.
 - Added configuration option to restrict placement of CreatorShop pieces to Admins.
-
-<details>
-<summary>Click to see specific prefabs that were removed (contains spoilers).</summary>
-
-- blackmarble_tile_wall_1x1
-- blackmarble_tile_wall_2x2
-- blackmarble_tile_wall_2x4
-
-</details>
 
 ### Version 0.1.2
 - Fixed ILRepacker not merging ServerSync assembly when creating Release version of Thunderstore mod package.
