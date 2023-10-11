@@ -5,14 +5,14 @@ namespace MoreVanillaBuildPrefabs.Helpers
 {
     internal class CollisionHelper
     {
-        public static void AddBoxCollider(GameObject prefab, Vector3 center, Vector3 size)
+        internal static void AddBoxCollider(GameObject prefab, Vector3 center, Vector3 size)
         {
             var collider = prefab.AddComponent<BoxCollider>();
             collider.center = center;
             collider.size = size;
         }
 
-        public static void PatchCollider(GameObject prefab)
+        internal static void PatchCollider(GameObject prefab)
         {
             // Needed to make some things work, like Stalagmite, Rock_destructible, Rock_7, silvervein, etc.
             Bounds desiredBounds = new();
@@ -23,7 +23,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
             AddBoxCollider(prefab, desiredBounds.center, desiredBounds.size);
         }
 
-        public static void RemoveColliders(GameObject prefab)
+        internal static void RemoveColliders(GameObject prefab)
         {
             Collider[] colliders = prefab.GetComponentsInChildren<Collider>();
             foreach (Collider collider in colliders)
@@ -32,7 +32,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
             }
         }
 
-        public static Vector3 GetCenter(GameObject prefab)
+        internal static Vector3 GetCenter(GameObject prefab)
         {
             List<Collider> allColliders = GetAllColliders(prefab);
             Vector3 localCenter = Vector3.zero;
@@ -47,7 +47,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
             return localCenter;
         }
 
-        public static List<Collider> GetAllColliders(GameObject prefab)
+        internal static List<Collider> GetAllColliders(GameObject prefab)
         {
             Collider[] componentsInChildren = prefab.GetComponentsInChildren<Collider>();
             List<Collider> colliders = new()

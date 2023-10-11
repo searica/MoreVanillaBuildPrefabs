@@ -11,7 +11,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
 {
     public class SnapPointHelper
     {
-        public static void AddCenterSnapPoint(GameObject target)
+        internal static void AddCenterSnapPoint(GameObject target)
         {
             AddSnapPoints(
                 target,
@@ -22,7 +22,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
             );
         }
 
-        public static void AddSnapPoints(
+        internal static void AddSnapPoints(
             GameObject target,
             IEnumerable<Vector3> points,
             bool fixPiece = false,
@@ -61,7 +61,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
         }
 
 
-        public static void FixPiece(GameObject target)
+        internal static void FixPiece(GameObject target)
         {
             foreach (Collider collider in target.GetComponentsInChildren<Collider>())
             {

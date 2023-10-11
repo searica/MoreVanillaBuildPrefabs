@@ -5,15 +5,23 @@ using UnityEngine;
 using Jotunn.Managers;
 using MoreVanillaBuildPrefabs.Configs;
 using MoreVanillaBuildPrefabs.Logging;
-using Jotunn.Configs;
-using Jotunn.Entities;
-using Jotunn;
+
 
 namespace MoreVanillaBuildPrefabs.Helpers
 {
     internal class PieceHelper
     {
-        public static HashSet<string> AddedPrefabs = new();
+        internal static HashSet<string> AddedPrefabs = new();
+
+        /// <summary>
+        ///     Returns a bool indicating if the piece was added by this mod.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        internal static bool IsAddedByMod(string name)
+        {
+            return AddedPrefabs.Contains(name);
+        }
 
         /// <summary>
         ///     Get existing objects of type PieceTable.
@@ -145,20 +153,37 @@ namespace MoreVanillaBuildPrefabs.Helpers
             return piece;
         }
 
+
         /// <summary>
-        ///     Method to add a prefab to a customPiece table.
+        ///     Method to add a iece to a piece table.
+        /// </summary>
+        /// <param name="piece"></param>
+        /// <param name="pieceTable"></param>
+        /// <returns> bool indicating if customPiece was added. </returns>
+        internal static void AddPiecesListToPieceTable(IEnumerable<Piece> pieces, string pieceTableName)
+        {
+            var pieceTable = GetPieceTable(pieceTableName);
+            foreach (var piece in pieces)
+            {
+                AddPieceToPieceTable(piece, pieceTable);
+            }
+            Log.LogInfo($"Added {AddedPrefabs.Count} custom pieces");
+        }
+
+        /// <summary>
+        ///     Method to add a prefab to a piece table.
         /// </summary>
         /// <param name="piece"></param>
         /// <param name="pieceTable"></param>
         /// <returns> bool indicating if customPiece was added. </returns>
         internal static bool AddPieceToPieceTable(GameObject prefab, PieceTable pieceTable)
         {
-            var piece = prefab.GetComponent<Piece>() ?? throw new Exception($"Prefab {prefab.name} has no Piece component attached");
+            var piece = prefab.GetComponent<Piece>() ?? throw new Exception($"Prefab {prefab.name} has no Piece component.");
             return AddPieceToPieceTable(piece, pieceTable);
         }
 
         /// <summary>
-        ///     Method to add a customPiece to a customPiece table.
+        ///     Method to add a piece to a piece table.
         /// </summary>
         /// <param name="piece"></param>
         /// <param name="pieceTable"></param>
@@ -186,6 +211,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
             {
                 Log.LogInfo($"Added Piece {piece.m_name} to PieceTable {pieceTable.name}");
             }
+
             AddedPrefabs.Add(prefab.name);
 
             return true;
@@ -196,7 +222,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
         ///     Checks for existence of the object via GetStableHashCode() and adds the prefab if it is not already added.
         /// </summary>
         /// <param name="gameObject"></param>
-        public static void RegisterToZNetScene(GameObject gameObject)
+        internal static void RegisterToZNetScene(GameObject gameObject)
         {
             var znet = ZNetScene.instance;
 
@@ -225,9 +251,39 @@ namespace MoreVanillaBuildPrefabs.Helpers
             }
         }
 
+        /// <summary>
+        ///     Removes all pieces added by the mod from the piece table.
+        /// </summary>
+        /// <param name="pieceTableName"></param>
+        internal static void RemoveAllCustomPiecesFromPieceTable(string pieceTableName)
+        {
+            Log.LogInfo("RemoveAllCustomPiecesFromPieceTable()");
+
+            int numCustomPieces = AddedPrefabs.Count();
+            var prefabsToRemove = AddedPrefabs.ToList();
+            var pieceTable = GetPieceTable(pieceTableName);
+
+            if (pieceTable == null)
+            {
+                Log.LogError($"Could not find piece table: {pieceTableName}");
+            }
+
+            foreach (var name in prefabsToRemove)
+            {
+                RemovePieceFromPieceTable(name, pieceTable);
+            }
+            Log.LogInfo($"Removed {numCustomPieces - AddedPrefabs.Count} custom pieces");
+        }
+
+        /// <summary>
+        ///     Remove piece from PieceTable
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="pieceTable"></param>
+        /// <returns></returns>
         internal static bool RemovePieceFromPieceTable(string name, PieceTable pieceTable)
         {
-            try // Remove customPiece from PieceTable
+            try
             {
                 var prefab = ZNetScene.instance.GetPrefab(name);
                 pieceTable.m_pieces.Remove(prefab);
@@ -242,206 +298,85 @@ namespace MoreVanillaBuildPrefabs.Helpers
                 return false;
             }
         }
-
-
-        /// <summary>
-        ///     Helper to get existing crafting station names
-        /// </summary>
-        public static class CraftingStations
-        {
-            /// <summary>
-            ///     No crafting station
-            /// </summary>
-            internal static string None => string.Empty;
-
-            /// <summary>
-            ///    Workbench crafting station
-            /// </summary>
-            internal static string Workbench => "piece_workbench";
-
-            /// <summary>
-            ///    Forge crafting station
-            /// </summary>
-            internal static string Forge => "forge";
-
-            /// <summary>
-            ///     Stonecutter crafting station
-            /// </summary>
-            internal static string Stonecutter => "piece_stonecutter";
-
-            /// <summary>
-            ///     Cauldron crafting station
-            /// </summary>
-            internal static string Cauldron => "piece_cauldron";
-
-            /// <summary>
-            ///     Artisan table crafting station
-            /// </summary>
-            internal static string ArtisanTable => "piece_artisanstation";
-
-            /// <summary>
-            ///     Black forge crafting station
-            /// </summary>
-            internal static string BlackForge => "blackforge";
-
-            /// <summary>
-            ///     Galdr table crafting station
-            /// </summary>
-            internal static string GaldrTable => "piece_magetable";
-
-
-            private static readonly Dictionary<string, string> NamesMap = new()
-                    {
-                        { nameof(None), None },
-                        { nameof(Workbench), Workbench },
-                        { nameof(Forge), Forge },
-                        { nameof(Stonecutter), Stonecutter },
-                        { nameof(Cauldron), Cauldron },
-                        { nameof(ArtisanTable), ArtisanTable },
-                        { nameof(BlackForge), BlackForge },
-                        { nameof(GaldrTable), GaldrTable },
-                    };
-
-            private static readonly AcceptableValueList<string> AcceptableValues = new(NamesMap.Keys.ToArray());
-
-            /// <summary>
-            ///     Gets the human readable name to internal names map
-            /// </summary>
-            /// <returns></returns>
-            internal static Dictionary<string, string> GetNames()
-            {
-                return NamesMap;
-            }
-
-            /// <summary>
-            ///     Get a <see cref="AcceptableValueList{T}"/> of all crafting station names.
-            ///     This can be used to create a <see cref="ConfigEntry{T}"/> where only valid crafting stations can be selected.<br/><br/>
-            ///     Example:
-            ///     <code>
-            ///         var stationConfig = Config.Bind("Section", "Key", nameof(CraftingStations.Workbench), new ConfigDescription("Description", CraftingStations.GetAcceptableValueList()));
-            ///     </code>
-            /// </summary>
-            /// <returns></returns>
-            internal static AcceptableValueList<string> GetAcceptableValueList()
-            {
-                return AcceptableValues;
-            }
-
-            /// <summary>
-            ///     Get the internal name for a crafting station from its human readable name.
-            /// </summary>
-            /// <param name="craftingStation"></param>
-            /// <returns>
-            ///     The matched internal name.
-            ///     If the craftingStation parameter is null or empty, <see cref="None"/> is returned.
-            ///     Otherwise the unchanged craftingStation parameter is returned.
-            /// </returns>
-            /// 
-            internal static string GetInternalName(string craftingStation)
-            {
-                if (string.IsNullOrEmpty(craftingStation))
-                {
-                    return None;
-                }
-
-                if (NamesMap.TryGetValue(craftingStation, out string internalName))
-                {
-                    return internalName;
-                }
-
-                return craftingStation;
-            }
-
-            /// <summary>
-            ///     Get CraftingStation object from either the human readable or internal name.
-            /// </summary>
-            /// <param name="craftingStation"></param>
-            /// <returns></returns>
-            internal static CraftingStation GetCraftingStation(string name)
-            {
-                var internalName = GetInternalName(name);
-                var station = ZNetScene.instance?.GetPrefab(internalName)?.GetComponent<CraftingStation>();
-                return station;
-            }
-        } // End CraftingStations
-
-        // Jotunn based code
-
-        /// <summary>
-        ///     Method to configure and return CustomPiece.
-        /// </summary>
-        /// <param name = "piece" ></ param >
-        /// < returns ></ returns >
-        //internal static CustomPiece ConfigureCustomPiece(
-        //    Piece piece,
-        //    string name,
-        //    string description,
-        //    bool allowedInDungeons,
-        //    string category,
-        //    string pieceTable,
-        //    string craftingStation,
-        //    string requirements
-        //)
-        //{
-        //    PieceConfig pieceConfig = new()
-        //    {
-        //        Name = name,
-        //        Description = description,
-        //        AllowedInDungeons = allowedInDungeons,
-        //        Category = category,
-        //        PieceTable = pieceTable,
-        //        CraftingStation = craftingStation,
-        //        Requirements = PluginConfig.CreateRequirementConfigsArray(requirements)
-        //    };
-        //    CustomPiece customPiece = new(piece.gameObject, true, pieceConfig);
-        //    return customPiece;
-        //}
-
-        //internal static bool AddCustomPiece(CustomPiece customPiece)
-        //{
-        //    customPiece.PiecePrefab.FixReferences(true);
-        //    var flag = PieceManager.Instance.AddPiece(customPiece);
-        //    PieceManager.Instance.RegisterPieceInPieceTable(customPiece.PiecePrefab, customPiece.PieceTable, customPiece.Category);
-        //    AddedPrefabs.Add(customPiece.PiecePrefab.name);
-        //    return flag;
-        //}
-
-        /// <summary>
-        ///     Remove all custom pieces added by this mod.
-        /// </summary>
-        //internal static void RemoveCustomPieces()
-        //{
-        //    Log.LogInfo("RemoveCustomPieces()");
-
-        //    int numCustomPieces = AddedPrefabs.Count();
-        //    var prefabsToRemove = AddedPrefabs.ToList();
-        //    foreach (var name in prefabsToRemove)
-        //    {
-        //        RemoveCustomPiece(name);
-        //    }
-        //    Log.LogInfo($"Removed {numCustomPieces - AddedPrefabs.Count} custom pieces");
-        //}
-
-        //        internal static bool RemoveCustomPiece(string name)
-        //        {
-        //            try // Remove customPiece from PieceTable
-        //            {
-        //                var customPiece = PieceManager.Instance.GetPiece(name);
-        //                var pieceTable = PieceManager.Instance.GetPieceTable(customPiece.PieceTable);
-
-        //                pieceTable.m_pieces.Remove(customPiece.PiecePrefab);
-        //                PieceManager.Instance.RemovePiece(name);
-
-        //                AddedPrefabs.Remove(customPiece.PiecePrefab.name);
-        //                return true;
-        //            }
-        //            catch (Exception e)
-        //            {
-        //#if DEBUG
-        //                Log.LogInfo($"{name}: {e}");
-        //#endif
-        //                return false;
-        //            }
-        //        }
     }
 }
+
+
+// Jotunn based code
+
+/// <summary>
+///     Method to configure and return CustomPiece.
+/// </summary>
+/// <param name = "piece" ></ param >
+/// < returns ></ returns >
+//internal static CustomPiece ConfigureCustomPiece(
+//    Piece piece,
+//    string name,
+//    string description,
+//    bool allowedInDungeons,
+//    string category,
+//    string pieceTable,
+//    string craftingStation,
+//    string requirements
+//)
+//{
+//    PieceConfig pieceConfig = new()
+//    {
+//        Name = name,
+//        Description = description,
+//        AllowedInDungeons = allowedInDungeons,
+//        Category = category,
+//        PieceTable = pieceTable,
+//        CraftingStation = craftingStation,
+//        Requirements = PluginConfig.CreateRequirementConfigsArray(requirements)
+//    };
+//    CustomPiece customPiece = new(piece.gameObject, true, pieceConfig);
+//    return customPiece;
+//}
+
+//internal static bool AddCustomPiece(CustomPiece customPiece)
+//{
+//    customPiece.PiecePrefab.FixReferences(true);
+//    var flag = PieceManager.Instance.AddPiece(customPiece);
+//    PieceManager.Instance.RegisterPieceInPieceTable(customPiece.PiecePrefab, customPiece.PieceTable, customPiece.Category);
+//    AddedPrefabs.Add(customPiece.PiecePrefab.name);
+//    return flag;
+//}
+
+/// <summary>
+///     Remove all custom pieces added by this mod.
+/// </summary>
+//internal static void RemoveCustomPieces()
+//{
+//    Log.LogInfo("RemoveCustomPieces()");
+
+//    int numCustomPieces = AddedPrefabs.Count();
+//    var prefabsToRemove = AddedPrefabs.ToList();
+//    foreach (var name in prefabsToRemove)
+//    {
+//        RemoveCustomPiece(name);
+//    }
+//    Log.LogInfo($"Removed {numCustomPieces - AddedPrefabs.Count} custom pieces");
+//}
+
+//        internal static bool RemoveCustomPiece(string name)
+//        {
+//            try // Remove customPiece from PieceTable
+//            {
+//                var customPiece = PieceManager.Instance.GetPiece(name);
+//                var pieceTable = PieceManager.Instance.GetPieceTable(customPiece.PieceTable);
+
+//                pieceTable.m_pieces.Remove(customPiece.PiecePrefab);
+//                PieceManager.Instance.RemovePiece(name);
+
+//                AddedPrefabs.Remove(customPiece.PiecePrefab.name);
+//                return true;
+//            }
+//            catch (Exception e)
+//            {
+//#if DEBUG
+//                Log.LogInfo($"{name}: {e}");
+//#endif
+//                return false;
+//            }
+//        }

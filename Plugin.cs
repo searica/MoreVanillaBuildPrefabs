@@ -13,11 +13,11 @@ namespace MoreVanillaBuildPrefabs
         public const string PluginName = "MoreVanillaBuildPrefabs";
         internal const string Author = "Searica";
         public const string PluginGuid = $"{Author}.Valheim.{PluginName}";
-        public const string PluginVersion = "0.3.5";
+        public const string PluginVersion = "0.3.6";
 
         Harmony _harmony;
 
-        public static bool DisableDestructionDrops { get; set; } = false;
+        internal static bool DisableDestructionDrops { get; set; } = false;
 
         public void Awake()
         {

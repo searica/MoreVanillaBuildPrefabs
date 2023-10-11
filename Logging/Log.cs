@@ -23,7 +23,7 @@ namespace MoreVanillaBuildPrefabs.Logging
         internal static void LogMessage(object data) => _logSource.LogMessage(data);
         internal static void LogWarning(object data) => _logSource.LogWarning(data);
 
-        public static void LogPrefab(GameObject prefab)
+        internal static void LogPrefab(GameObject prefab)
         {
             LogInfo("***** " + prefab.name + " *****");
             foreach (Component compo in prefab.GetComponents<Component>())

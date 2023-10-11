@@ -2,7 +2,6 @@
 using UnityEngine;
 using Jotunn.Managers;
 using MoreVanillaBuildPrefabs.Logging;
-using Jotunn.Entities;
 
 
 namespace MoreVanillaBuildPrefabs.Helpers
@@ -16,7 +15,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
         /// <summary>
         ///     The singleton instance of this manager.
         /// </summary>
-        public static IconHelper Instance => CreateInstance();
+        internal static IconHelper Instance => CreateInstance();
 
         private static IconHelper CreateInstance()
         {
@@ -41,16 +40,20 @@ namespace MoreVanillaBuildPrefabs.Helpers
         ///     Create and add Icons for list of custom pieces.
         /// </summary>
         /// <param name="prefabs"></param>
-        internal void GeneratePrefabIcons(IEnumerable<CustomPiece> customPieces)
+        internal void GeneratePrefabIcons(IEnumerable<Piece> pieces)
         {
-            foreach (var customPiece in customPieces)
+            foreach (var piece in pieces)
             {
-                if (customPiece == null) { Log.LogInfo($"Null custom piece found"); }
+                if (piece == null)
+                {
+                    Log.LogInfo($"Null custom piece found");
+                    continue;
+                }
 
-                Sprite result = GenerateObjectIcon(customPiece.PiecePrefab);
+                Sprite result = GenerateObjectIcon(piece.gameObject);
                 if (result == null)
                 {
-                    PickableItem.RandomItem[] randomItemPrefabs = customPiece.PiecePrefab.GetComponent<PickableItem>()?.m_randomItemPrefabs;
+                    PickableItem.RandomItem[] randomItemPrefabs = piece.gameObject.GetComponent<PickableItem>()?.m_randomItemPrefabs;
                     if (randomItemPrefabs != null && randomItemPrefabs.Length > 0)
                     {
                         GameObject item = randomItemPrefabs[0].m_itemPrefab?.gameObject;
@@ -60,11 +63,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
                         }
                     }
                 }
-                var piece = customPiece.Piece;
-                if (piece != null)
-                {
-                    piece.m_icon = result;
-                }
+                piece.m_icon = result;
             }
         }
 

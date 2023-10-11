@@ -3,7 +3,7 @@ using System.Reflection;
 
 namespace MoreVanillaBuildPrefabs.Helpers
 {
-    public static class ReflectionUtils
+    internal static class ReflectionUtils
     {
         public const BindingFlags AllBindings =
             BindingFlags.Public
@@ -15,7 +15,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
             | BindingFlags.GetProperty
             | BindingFlags.SetProperty;
 
-        public static MethodInfo GetMethod(Type type, string name, int genericParameterCount, Type[] types)
+        internal static MethodInfo GetMethod(Type type, string name, int genericParameterCount, Type[] types)
         {
             foreach (MethodInfo method in type.GetMethods(AllBindings))
             {
@@ -29,7 +29,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
             return default;
         }
 
-        public static MethodInfo GetGenericMethod(Type type, string name, int genericParameterCount, Type[] types)
+        internal static MethodInfo GetGenericMethod(Type type, string name, int genericParameterCount, Type[] types)
         {
             foreach (MethodInfo method in type.GetMethods(AllBindings))
             {

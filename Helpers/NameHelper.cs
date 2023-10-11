@@ -21,7 +21,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
         };
 
         static readonly Regex PrefabNameRegex = new(@"([a-z])([A-Z])");
-        public static string FormatPrefabName(string prefabName)
+        internal static string FormatPrefabName(string prefabName)
         {
             if (NamesMap.ContainsKey(prefabName)) return NamesMap[prefabName];
 
@@ -41,7 +41,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
             return CapitalizeFirstLetter(name);
         }
 
-        public static string GetPrefabDescription(GameObject prefab)
+        internal static string GetPrefabDescription(GameObject prefab)
         {
             if (DescriptionMap.ContainsKey(prefab.name)) return DescriptionMap[prefab.name];
 
@@ -81,12 +81,12 @@ namespace MoreVanillaBuildPrefabs.Helpers
             return prefab.name;
         }
 
-        public static string GetPrefabName(Piece piece)
+        internal static string GetPrefabName(Piece piece)
         {
             return RemoveSuffix(piece.gameObject.name, "(Clone)");
         }
 
-        public static string RemoveSuffix(string s, string suffix)
+        internal static string RemoveSuffix(string s, string suffix)
         {
             if (s.EndsWith(suffix))
             {
@@ -96,7 +96,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
             return s;
         }
 
-        public static string RemovePrefix(string s, string prefix)
+        internal static string RemovePrefix(string s, string prefix)
         {
             if (s.StartsWith(prefix))
             {
