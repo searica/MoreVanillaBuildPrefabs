@@ -253,7 +253,7 @@ namespace MoreVanillaBuildPrefabs.Configs
             return default_config;
         }
 
-        internal static RequirementConfig[] CreateRequirementsConfigs(string data)
+        internal static RequirementConfig[] CreateRequirementConfigsArray(string data)
         {
             if (string.IsNullOrEmpty(data.Trim())) return null;
 
@@ -302,36 +302,36 @@ namespace MoreVanillaBuildPrefabs.Configs
 
         // Obsolete code
 
-        ///// <summary>
-        /////     Convert Requirements string to Piece.Requirement Array
-        ///// </summary>
-        ///// <param name="data"></param>
-        ///// <returns></returns>
-        //internal static Piece.Requirement[] CreateRequirementsArray(string data)
-        //{
-        //    if (string.IsNullOrEmpty(data)) return null;
+        /// <summary>
+        ///     Convert Requirements string to Piece.Requirement Array
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        internal static Piece.Requirement[] CreateRequirementsArray(string data)
+        {
+            if (string.IsNullOrEmpty(data.Trim())) return new Piece.Requirement[0];
 
-        //    // If not empty
-        //    List<Piece.Requirement> requirements = new();
+            // If not empty
+            List<Piece.Requirement> requirements = new();
 
-        //    foreach (var entry in data.Split(';'))
-        //    {
-        //        string[] values = entry.Split(',');
-        //        var itm = ObjectDB.instance.GetItemPrefab(values[0].Trim())?.GetComponent<ItemDrop>();
-        //        if (itm == null)
-        //        {
-        //            Log.LogWarning($"Unable to find requirement ID: {values[0].Trim()}");
-        //            continue;
-        //        }
-        //        Piece.Requirement req = new()
-        //        {
-        //            m_resItem = itm,
-        //            m_amount = int.Parse(values[1].Trim()),
-        //            m_recover = true
-        //        };
-        //        requirements.Add(req);
-        //    }
-        //    return requirements.ToArray();
-        //}
+            foreach (var entry in data.Split(';'))
+            {
+                string[] values = entry.Split(',');
+                var itm = ObjectDB.instance.GetItemPrefab(values[0].Trim())?.GetComponent<ItemDrop>();
+                if (itm == null)
+                {
+                    Log.LogWarning($"Unable to find requirement ID: {values[0].Trim()}");
+                    continue;
+                }
+                Piece.Requirement req = new()
+                {
+                    m_resItem = itm,
+                    m_amount = int.Parse(values[1].Trim()),
+                    m_recover = true
+                };
+                requirements.Add(req);
+            }
+            return requirements.ToArray();
+        }
     }
 }

@@ -88,23 +88,24 @@ namespace MoreVanillaBuildPrefabs.Helpers
                 PieceTable = pieceTable,
                 CraftingStation = craftingStation,
             };
-            var reqs = PluginConfig.CreateRequirementsConfigs(requirements);
-            if (reqs != null)
-            {
-                pieceConfig.Requirements = reqs;
-            }
+            piece.m_resources = PluginConfig.CreateRequirementsArray(requirements);
+            //var reqs = PluginConfig.CreateRequirementConfigsArray(requirements);
+            //if (reqs != null)
+            //{
+            //    pieceConfig.Requirements = reqs;
+            //}
 
-            CustomPiece customPiece = new(piece.gameObject, false, pieceConfig);
+            CustomPiece customPiece = new(piece.gameObject, true, pieceConfig);
 
             return customPiece;
         }
 
-        internal static bool AddCustomPiece(CustomPiece customPiece)
+        internal static void AddCustomPiece(CustomPiece customPiece)
         {
-            var flag = PieceManager.Instance.AddPiece(customPiece);
-            PieceManager.Instance.RegisterPieceInPieceTable(customPiece.PiecePrefab, customPiece.PieceTable);
-            if (flag) AddedPrefabs.Add(customPiece.PiecePrefab.name);
-            return flag;
+            //var flag = PieceManager.Instance.AddPiece(customPiece);
+            PieceManager.Instance.RegisterPieceInPieceTable(customPiece.PiecePrefab, customPiece.PieceTable, customPiece.Category);
+            AddedPrefabs.Add(customPiece.PiecePrefab.name);
+            //return flag;
         }
 
         internal static bool RemoveCustomPiece(string name)
@@ -115,7 +116,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
                 var pieceTable = PieceManager.Instance.GetPieceTable(customPiece.PieceTable);
 
                 pieceTable.m_pieces.Remove(customPiece.PiecePrefab);
-                PieceManager.Instance.RemovePiece(name);
+                //PieceManager.Instance.RemovePiece(name);
 
                 AddedPrefabs.Remove(customPiece.PiecePrefab.name);
                 return true;
