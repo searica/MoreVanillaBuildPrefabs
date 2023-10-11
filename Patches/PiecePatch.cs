@@ -44,7 +44,7 @@ namespace MoreVanillaBuildPrefabs
 #endif
             // Only interact if it is a piece added by this mod or
             // the prefab has previously had it's resources altered by the mod
-            string prefab_name = PrefabNames.GetPrefabName(__instance);
+            string prefab_name = NameHelper.GetPrefabName(__instance);
             if (PieceHelper.AddedPrefabs.Contains(prefab_name) || DefaultConfigs.DefaultResources.ContainsKey(prefab_name))
             {
                 // disable desctruction drops for player built pieces

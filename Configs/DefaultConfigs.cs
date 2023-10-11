@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using Jotunn.Configs;
 using MoreVanillaBuildPrefabs.Helpers;
+using MoreVanillaBuildPrefabs.Logging;
+using UnityEngine;
 using static MoreVanillaBuildPrefabs.Configs.PluginConfig;
 
 namespace MoreVanillaBuildPrefabs.Configs
@@ -46,6 +48,28 @@ namespace MoreVanillaBuildPrefabs.Configs
                 return DefaultConfigValues[prefab_name];
             }
             return new PrefabConfig();
+        }
+
+        /// <summary>
+        ///     If prefab has an existing piece with existing build requirements,
+        ///     then add the default build requirements to DefaultResources dictionary 
+        ///     if they have not already been added.
+        /// </summary>
+        /// <param name="prefab"></param>
+        internal static void SaveDefaultResources(GameObject prefab)
+        {
+            var piece = prefab?.GetComponent<Piece>();
+            if (piece?.m_resources != null)
+            {
+                // Stop errors on subsequent log ins
+                if (!DefaultConfigs.DefaultResources.ContainsKey(prefab.name))
+                {
+#if DEBUG
+                    Log.LogDebug($"Adding default resources for {prefab.name}");
+#endif
+                    DefaultConfigs.DefaultResources.Add(prefab.name, piece.m_resources);
+                }
+            }
         }
 
         internal static readonly HashSet<string> NeedsCollisionPatchForGhost = new()

@@ -87,27 +87,5 @@ namespace MoreVanillaBuildPrefabs.Helpers
 
             return views.Length <= 1;
         }
-
-        /// <summary>
-        ///     If prefab has an existing piece with existing build requirements,
-        ///     then add the default build requirements to DefaultResources dictionary 
-        ///     if they have not already been added.
-        /// </summary>
-        /// <param name="prefab"></param>
-        internal static void SaveDefaultResources(GameObject prefab)
-        {
-            var piece = prefab?.GetComponent<Piece>();
-            if (piece?.m_resources != null)
-            {
-                // Stop errors on subsequent log ins
-                if (!DefaultConfigs.DefaultResources.ContainsKey(prefab.name))
-                {
-#if DEBUG
-                    Log.LogDebug($"Adding default resources for {prefab.name}");
-#endif
-                    DefaultConfigs.DefaultResources.Add(prefab.name, piece.m_resources);
-                }
-            }
-        }
     }
 }

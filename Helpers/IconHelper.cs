@@ -8,18 +8,18 @@ using System.Linq;
 
 namespace MoreVanillaBuildPrefabs.Helpers
 {
-    internal class PrefabIcons : MonoBehaviour
+    internal class IconHelper : MonoBehaviour
     {
         private static GameObject _parent;
-        private static PrefabIcons _instance;
+        private static IconHelper _instance;
         private static Coroutine _coroutine;
 
         /// <summary>
         ///     The singleton instance of this manager.
         /// </summary>
-        public static PrefabIcons Instance => CreateInstance();
+        public static IconHelper Instance => CreateInstance();
 
-        private static PrefabIcons CreateInstance()
+        private static IconHelper CreateInstance()
         {
             if (_parent == null)
             {
@@ -28,7 +28,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
             }
             if (_instance == null)
             {
-                _instance = _parent.AddComponent<PrefabIcons>();
+                _instance = _parent.AddComponent<IconHelper>();
             }
             return _instance;
         }
@@ -36,7 +36,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
         /// <summary>
         ///     Hide .ctor to prevent other instances from being created
         /// </summary>
-        private PrefabIcons() { }
+        private IconHelper() { }
 
         /// <summary>
         ///     Create and add Icons for list of custom pieces.

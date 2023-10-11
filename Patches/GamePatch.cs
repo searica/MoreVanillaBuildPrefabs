@@ -9,19 +9,20 @@ using MoreVanillaBuildPrefabs.Logging;
 using MoreVanillaBuildPrefabs.Helpers;
 using Jotunn.Entities;
 using Jotunn.Managers;
+using Jotunn.Configs;
 
 namespace MoreVanillaBuildPrefabs.Patches
 {
-    [HarmonyPatch(typeof(Game))]
-    //[HarmonyPatch(typeof(ObjectDB))]
+    //[HarmonyPatch(typeof(Game))]
+    [HarmonyPatch(typeof(ObjectDB))]
     internal class GamePatch
     {
 
         // Hook here to add pieces after ServerSync recieves data
         [HarmonyPostfix]
         [HarmonyPriority(Priority.High)] // High priority for compatiability with WackyDB
-        [HarmonyPatch(nameof(Game._RequestRespawn))]
-        //[HarmonyPatch(nameof(ObjectDB.Awake))]
+        //[HarmonyPatch(nameof(Game._RequestRespawn))]
+        [HarmonyPatch(nameof(ObjectDB.Awake))]
         static void Game_RequestRespawnPostFix()
         {
 #if DEBUG
@@ -85,7 +86,7 @@ namespace MoreVanillaBuildPrefabs.Patches
             }
 
             // Create icons
-            PrefabIcons.Instance.GeneratePrefabIcons(customPieces);
+            IconHelper.Instance.GeneratePrefabIcons(customPieces);
 
             // Add pieces
             foreach (var customPiece in customPieces)
@@ -135,18 +136,18 @@ namespace MoreVanillaBuildPrefabs.Patches
                 }
             }
 
-            PrefabHelper.SaveDefaultResources(prefab);
+            DefaultConfigs.SaveDefaultResources(prefab);
             PieceHelper.InitPieceComponent(prefab);
             PrefabPatcher.PatchPrefabIfNeeded(prefab);
 
             var piece = prefab.GetComponent<Piece>();
             CustomPiece customPiece = PieceHelper.ConfigureCustomPiece(
                 piece,
-                PrefabNames.FormatPrefabName(prefab.name),
-                PrefabNames.GetPrefabDescription(prefab),
+                NameHelper.FormatPrefabName(prefab.name),
+                NameHelper.GetPrefabDescription(prefab),
                 prefabConfig.AllowedInDungeons,
                 prefabConfig.Category,
-                "_HammerPieceTable",
+                PieceTables.Hammer,
                 prefabConfig.CraftingStation,
                 prefabConfig.Requirements
             );
