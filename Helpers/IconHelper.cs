@@ -1,8 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using Jotunn.Managers;
 using MoreVanillaBuildPrefabs.Logging;
+using Jotunn.Entities;
+
 
 namespace MoreVanillaBuildPrefabs.Helpers
 {
@@ -10,7 +11,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
     {
         private static GameObject _parent;
         private static IconHelper _instance;
-        private static Coroutine _coroutine;
+        //private static Coroutine _coroutine;
 
         /// <summary>
         ///     The singleton instance of this manager.
@@ -22,7 +23,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
             if (_parent == null)
             {
                 _parent = new GameObject();
-                GameObject.DontDestroyOnLoad(_parent);
+                DontDestroyOnLoad(_parent);
             }
             if (_instance == null)
             {
@@ -37,55 +38,34 @@ namespace MoreVanillaBuildPrefabs.Helpers
         private IconHelper() { }
 
         /// <summary>
-        ///     Create and add Icons for list of prefabs with pieces.
+        ///     Create and add Icons for list of custom pieces.
         /// </summary>
         /// <param name="prefabs"></param>
-        internal void StartGeneratePrefabIcons(IEnumerable<GameObject> prefabs)
+        internal void GeneratePrefabIcons(IEnumerable<CustomPiece> customPieces)
         {
-            GeneratePrefabIconsCoroutine(prefabs);
-            //_coroutine = StartCoroutine(GeneratePrefabIconsCoroutine(prefabs));
-        }
-
-        //internal void StopGeneratePrefabIcons()
-        //{
-        //    if (_coroutine != null)
-        //    {
-        //        StopCoroutine(_coroutine);
-        //    }
-        //}
-
-        // Refs:
-        //  - CreatureSpawner.m_creaturePrefab
-        //  - PickableItem.m_randomItemPrefabs
-        //  - PickableItem.RandomItem.m_itemPrefab
-        private void GeneratePrefabIconsCoroutine(IEnumerable<GameObject> prefabs)
-        {
-            foreach (var prefab in prefabs)
+            foreach (var customPiece in customPieces)
             {
-                if (prefab == null) { Log.LogInfo($"Null prefab found"); }
+                if (customPiece == null) { Log.LogInfo($"Null custom piece found"); }
 
-                //yield return null;
-                Sprite result = GenerateObjectIcon(prefab);
+                Sprite result = GenerateObjectIcon(customPiece.PiecePrefab);
                 if (result == null)
                 {
-                    PickableItem.RandomItem[] randomItemPrefabs = prefab.GetComponent<PickableItem>()?.m_randomItemPrefabs;
+                    PickableItem.RandomItem[] randomItemPrefabs = customPiece.PiecePrefab.GetComponent<PickableItem>()?.m_randomItemPrefabs;
                     if (randomItemPrefabs != null && randomItemPrefabs.Length > 0)
                     {
                         GameObject item = randomItemPrefabs[0].m_itemPrefab?.gameObject;
                         if (item != null)
                         {
-                            //yield return null;
                             result = GenerateObjectIcon(item);
                         }
                     }
                 }
-                var piece = prefab.GetComponent<Piece>();
+                var piece = customPiece.Piece;
                 if (piece != null)
                 {
                     piece.m_icon = result;
                 }
             }
-            //yield return null;
         }
 
         private Sprite GenerateObjectIcon(GameObject obj)

@@ -7,7 +7,9 @@ using UnityEngine.SceneManagement;
 using MoreVanillaBuildPrefabs.Configs;
 using MoreVanillaBuildPrefabs.Logging;
 using MoreVanillaBuildPrefabs.Helpers;
+using Jotunn.Entities;
 using Jotunn.Managers;
+using Jotunn.Configs;
 
 namespace MoreVanillaBuildPrefabs.Patches
 {
@@ -16,7 +18,7 @@ namespace MoreVanillaBuildPrefabs.Patches
     {
 
         // Hook here to add pieces after ServerSync recieves data
-        [HarmonyPrefix]
+        [HarmonyPostfix]
         [HarmonyPriority(Priority.High)] // High priority for compatiability with WackyDB
         [HarmonyPatch(nameof(Game._RequestRespawn))]
         static void Game_RequestRespawnPostFix()
@@ -65,7 +67,7 @@ namespace MoreVanillaBuildPrefabs.Patches
             watch.Start();
 #endif
             // Create and configure pieces
-            List<GameObject> customPrefabs = new();
+            List<CustomPiece> customPieces = new();
             foreach (var prefab in EligiblePrefabs)
             {
                 // Check to fix rare incompatability with other mods.
@@ -74,23 +76,20 @@ namespace MoreVanillaBuildPrefabs.Patches
                     Log.LogWarning("Null prefab found in EligiblePrefabs");
                     continue;
                 }
-                var customPrefab = CreatePrefabPiece(prefab);
-                if (customPrefab != null)
+                var customPiece = CreatePrefabCustomPiece(prefab);
+                if (customPiece != null)
                 {
-                    customPrefabs.Add(customPrefab);
+                    customPieces.Add(customPiece);
                 }
             }
 
             // Create icons
-            IconHelper.Instance.StartGeneratePrefabIcons(customPrefabs);
+            IconHelper.Instance.GeneratePrefabIcons(customPieces);
 
-            // Add pieces to hammer piece table
-            var pieceTable = PieceHelper.GetPieceTable("_HammerPieceTable");
-            if (pieceTable == null) { Log.LogError("Could not find _HammerPieceTable"); }
-
-            foreach (var prefab in customPrefabs)
+            // Add pieces
+            foreach (var customPiece in customPieces)
             {
-                PieceHelper.AddPieceToPieceTable(prefab.GetComponent<Piece>(), pieceTable);
+                PieceHelper.AddCustomPiece(customPiece);
             }
 
             Log.LogInfo($"Added {PieceHelper.AddedPrefabs.Count} custom pieces");
@@ -101,13 +100,12 @@ namespace MoreVanillaBuildPrefabs.Patches
             PluginConfig.Save();
         }
 
-
         /// <summary>
         ///     Create and add custom pieces based on cfg file.
         /// </summary>
         /// <param name="prefab"></param>
         /// <param name="pieceTable"></param>
-        internal static GameObject CreatePrefabPiece(GameObject prefab)
+        internal static CustomPiece CreatePrefabCustomPiece(GameObject prefab)
         {
             if (!PrefabHelper.EnsureNoDuplicateZNetView(prefab))
             {
@@ -141,12 +139,13 @@ namespace MoreVanillaBuildPrefabs.Patches
             PrefabPatcher.PatchPrefabIfNeeded(prefab);
 
             var piece = prefab.GetComponent<Piece>();
-            piece = PieceHelper.ConfigurePiece(
+            CustomPiece customPiece = PieceHelper.ConfigureCustomPiece(
                 piece,
                 NameHelper.FormatPrefabName(prefab.name),
                 NameHelper.GetPrefabDescription(prefab),
                 prefabConfig.AllowedInDungeons,
                 prefabConfig.Category,
+                PieceTables.Hammer,
                 prefabConfig.CraftingStation,
                 prefabConfig.Requirements
             );
@@ -167,7 +166,7 @@ namespace MoreVanillaBuildPrefabs.Patches
                 return null;
             }
 
-            return prefab;
+            return customPiece;
         }
     }
 }
