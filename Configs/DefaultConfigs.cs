@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using MoreVanillaBuildPrefabs.Helpers;
+using MoreVanillaBuildPrefabs.Logging;
+using UnityEngine;
 using static MoreVanillaBuildPrefabs.Configs.PluginConfig;
 using static MoreVanillaBuildPrefabs.Helpers.PieceHelper;
 
@@ -8,6 +10,37 @@ namespace MoreVanillaBuildPrefabs.Configs
     internal class DefaultConfigs
     {
         internal static Dictionary<string, Piece.Requirement[]> DefaultResources = new();
+
+        /// <summary>
+        ///     If prefab has an existing piece with existing build requirements,
+        ///     then add the default build requirements to DefaultResources dictionary 
+        ///     if they have not already been added.
+        /// </summary>
+        /// <param name="prefab"></param>
+        internal static void SaveDefaultResources(GameObject prefab)
+        {
+            var piece = prefab?.GetComponent<Piece>();
+            if (piece?.m_resources != null)
+            {
+                // Stop errors on subsequent log ins
+                if (!DefaultConfigs.DefaultResources.ContainsKey(prefab.name))
+                {
+#if DEBUG
+                    Log.LogDebug($"Adding default resources for {prefab.name}");
+#endif
+                    DefaultConfigs.DefaultResources.Add(prefab.name, piece.m_resources);
+                }
+            }
+        }
+
+        internal static PrefabConfig GetDefaultPrefabConfigValues(string prefab_name)
+        {
+            if (DefaultConfigValues.ContainsKey(prefab_name))
+            {
+                return DefaultConfigValues[prefab_name];
+            }
+            return new PrefabConfig();
+        }
 
         internal static readonly HashSet<string> IgnoredPrefabs = new() {
             "Player",
@@ -38,15 +71,6 @@ namespace MoreVanillaBuildPrefabs.Configs
             "Pickable_BlackCoreStand",
             // "Pickable_Tar"
         };
-
-        internal static PrefabConfig GetDefaultPrefabConfigValues(string prefab_name)
-        {
-            if (DefaultConfigValues.ContainsKey(prefab_name))
-            {
-                return DefaultConfigValues[prefab_name];
-            }
-            return new PrefabConfig();
-        }
 
         internal static readonly HashSet<string> NeedsCollisionPatchForGhost = new()
         {

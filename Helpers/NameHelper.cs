@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace MoreVanillaBuildPrefabs.Helpers
 {
-    internal class PrefabNames
+    internal class NameHelper
     {
         static readonly Dictionary<string, string> NamesMap = new()
         {

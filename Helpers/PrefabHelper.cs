@@ -71,79 +71,11 @@ namespace MoreVanillaBuildPrefabs.Helpers
         }
 
         /// <summary>
-        ///     Create and add custom pieces based on cfg file.
-        /// </summary>
-        /// <param name="prefab"></param>
-        /// <param name="pieceTable"></param>
-        internal static GameObject CreatePrefabPiece(GameObject prefab)
-        {
-            if (!EnsureNoDuplicateZNetView(prefab))
-            {
-                // Just dont, as it will fuck over vanilla (non-mod) users
-                if (PluginConfig.IsVerbose())
-                {
-                    Log.LogInfo($"Prevent duplicate ZNetView for: {prefab.name}");
-                }
-                return null;
-            }
-
-            // load config data and create piece config
-            PluginConfig.PrefabConfig prefabConfig = PluginConfig.LoadPrefabConfig(prefab);
-
-            if (!prefabConfig.Enabled && !PluginConfig.IsForceAllPrefabs()) // prefab denied by config
-            {
-                return null;
-            }
-
-            if (PluginConfig.IsVerbose())
-            {
-                Log.LogInfo("Initialize '" + prefab.name + "'");
-                foreach (Component compo in prefab.GetComponents<Component>())
-                {
-                    Log.LogInfo("  - " + compo.GetType().Name);
-                }
-            }
-
-            SaveDefaultResources(prefab);
-            PieceHelper.InitPieceComponent(prefab);
-            PrefabPatcher.PatchPrefabIfNeeded(prefab);
-
-            var piece = prefab.GetComponent<Piece>();
-            piece = PieceHelper.ConfigurePiece(
-                piece,
-                PrefabNames.FormatPrefabName(prefab.name),
-                PrefabNames.GetPrefabDescription(prefab),
-                prefabConfig.AllowedInDungeons,
-                prefabConfig.Category,
-                prefabConfig.CraftingStation,
-                prefabConfig.Requirements
-            );
-
-            // Fix missing hover text if needed.
-            var hover = prefab.GetComponent<HoverText>() ?? prefab.AddComponent<HoverText>();
-            if (string.IsNullOrEmpty(hover.m_text))
-            {
-                hover.enabled = true;
-                hover.m_text = prefab.GetComponent<Piece>().m_name;
-            }
-
-            // Restrict CreatorShop pieces to Admins only
-            if (HammerCategories.IsCreatorShopPiece(piece)
-                && PluginConfig.AdminOnlyCreatorShop.Value
-                && !SynchronizationManager.Instance.PlayerIsAdmin)
-            {
-                return null;
-            }
-
-            return prefab;
-        }
-
-        /// <summary>
         ///     Prevents creation of duplicate ZNetViews
         /// </summary>
         /// <param name="prefab"></param>
         /// <returns></returns>
-        private static bool EnsureNoDuplicateZNetView(GameObject prefab)
+        internal static bool EnsureNoDuplicateZNetView(GameObject prefab)
         {
             var views = prefab?.GetComponents<ZNetView>();
 
@@ -155,28 +87,6 @@ namespace MoreVanillaBuildPrefabs.Helpers
             }
 
             return views.Length <= 1;
-        }
-
-        /// <summary>
-        ///     If prefab has an existing piece with existing build requirements,
-        ///     then add the default build requirements to DefaultResources dictionary 
-        ///     if they have not already been added.
-        /// </summary>
-        /// <param name="prefab"></param>
-        private static void SaveDefaultResources(GameObject prefab)
-        {
-            var piece = prefab?.GetComponent<Piece>();
-            if (piece?.m_resources != null)
-            {
-                // Stop errors on subsequent log ins
-                if (!DefaultConfigs.DefaultResources.ContainsKey(prefab.name))
-                {
-#if DEBUG
-                    Log.LogDebug($"Adding default resources for {prefab.name}");
-#endif
-                    DefaultConfigs.DefaultResources.Add(prefab.name, piece.m_resources);
-                }
-            }
         }
     }
 }
