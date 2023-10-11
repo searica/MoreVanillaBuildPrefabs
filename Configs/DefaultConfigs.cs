@@ -1,9 +1,7 @@
 ﻿using System.Collections.Generic;
-using Jotunn.Configs;
 using MoreVanillaBuildPrefabs.Helpers;
 using MoreVanillaBuildPrefabs.Logging;
 using UnityEngine;
-using static MoreVanillaBuildPrefabs.Configs.PluginConfig;
 
 namespace MoreVanillaBuildPrefabs.Configs
 {
@@ -27,11 +25,25 @@ namespace MoreVanillaBuildPrefabs.Configs
             "dvergrprops_wood_stake",
             "Hildir",
             "Flies",
-            "turf_roof_wall",
-            "rock_mistlands2", // explodes into a boulder
-            //Placement is glitchy
-            "demister_ball",
-            "CargoCrate"
+            "turf_roof_wall", // Visual duplicate of "wood_roof_wall"
+            "rock_mistlands2", // Explodes into a boulder "___MineRock5"
+            "demister_ball", // Placement is glitchy
+            "CargoCrate", // Deletes itself on placement because it's empty
+            "TreasureChest_blackforest", // Visual duplicate of wooden chest
+            "TreasureChest_heath", // Visual duplicate of wooden chest
+            "TreasureChest_heath_hildir", // Visual duplicate of wooden chest
+            "TreasureChest_heath_hildir", // Visual duplicate of wooden chest
+            "TreasureChest_meadows", // Visual duplicate of wooden chest
+            "TreasureChest_meadows_buried", // Visual duplicate of wooden chest
+            "TreasureChest_mountains", // Visual duplicate of wooden chest
+            "TreasureChest_fCrypt", // Visual duplicate of "TreasureChest_forestCrypt"
+            "TreasureChest_mountaincave_hildir", // Visual duplicate of "TreasureChest_forestcrypt_hildir"
+            "TreasureChest_plainsfortress_hildir", // Visual duplicate of "TreasureChest_forestcrypt_hildir"
+        };
+
+        internal static readonly HashSet<string> RemoveTreasure = new()
+        {
+            "TreasureChest_trollcave",
         };
 
         internal static readonly HashSet<string> RemovePickable = new()
@@ -108,7 +120,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     true,
                     false,
-                    HammerCategories.Names.Building,
+                    HammerCategories.Building,
                     nameof(CraftingStations.Stonecutter),
                     "BlackMarble,6"
                 )
@@ -118,7 +130,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     true,
                     false,
-                    HammerCategories.Names.Building,
+                    HammerCategories.Building,
                     nameof(CraftingStations.Stonecutter),
                     "BlackMarble,6"
                 )
@@ -128,7 +140,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     true,
                     false,
-                    HammerCategories.Names.Building,
+                    HammerCategories.Building,
                     nameof(CraftingStations.Stonecutter),
                     "BlackMarble,2"
                 )
@@ -138,7 +150,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     true,
                     false,
-                    HammerCategories.Names.Building,
+                    HammerCategories.Building,
                     nameof(CraftingStations.Stonecutter),
                     "BlackMarble,2"
                 )
@@ -148,7 +160,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     true,
                     false,
-                    HammerCategories.Names.Building,
+                    HammerCategories.Building,
                     nameof(CraftingStations.Stonecutter),
                     "BlackMarble,6"
                 )
@@ -158,7 +170,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     true,
                     false,
-                    HammerCategories.Names.Building,
+                    HammerCategories.Building,
                     nameof(CraftingStations.Stonecutter),
                     "BlackMarble,8"
                 )
@@ -168,7 +180,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     true,
                     false,
-                    HammerCategories.Names.Building,
+                    HammerCategories.Building,
                     nameof(CraftingStations.Stonecutter),
                     "BlackMarble,2"
                 )
@@ -178,7 +190,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     true,
                     false,
-                    HammerCategories.Names.Building,
+                    HammerCategories.Building,
                     nameof(CraftingStations.Stonecutter),
                     "BlackMarble,2"
                 )
@@ -188,7 +200,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     true,
                     false,
-                    HammerCategories.Names.Building,
+                    HammerCategories.Building,
                     nameof(CraftingStations.Stonecutter),
                     "BlackMarble,2"
                 )
@@ -198,7 +210,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     true,
                     false,
-                    HammerCategories.Names.Building,
+                    HammerCategories.Building,
                     nameof(CraftingStations.Stonecutter),
                     "BlackMarble,8"
                 )
@@ -208,7 +220,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     true,
                     false,
-                    HammerCategories.Names.Building,
+                    HammerCategories.Building,
                     nameof(CraftingStations.Stonecutter),
                     "BlackMarble,8"
                 )
@@ -218,7 +230,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     true,
                     false,
-                    HammerCategories.Names.Building,
+                    HammerCategories.Building,
                     nameof(CraftingStations.Stonecutter),
                     "BlackMarble,2"
                 )
@@ -228,7 +240,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     true,
                     false,
-                    HammerCategories.Names.Building,
+                    HammerCategories.Building,
                     nameof(CraftingStations.Stonecutter),
                     "BlackMarble,1"
                 )
@@ -238,7 +250,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     true,
                     false,
-                    HammerCategories.Names.Building,
+                    HammerCategories.Building,
                     nameof(CraftingStations.Stonecutter),
                     "BlackMarble,2"
                 )
@@ -248,7 +260,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     true,
                     false,
-                    HammerCategories.Names.Building,
+                    HammerCategories.Building,
                     nameof(CraftingStations.Stonecutter),
                     "BlackMarble,4"
                 )
@@ -258,7 +270,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     true,
                     false,
-                    HammerCategories.Names.Building,
+                    HammerCategories.Building,
                     nameof(CraftingStations.Stonecutter),
                     "BlackMarble,6"
                 )
@@ -268,7 +280,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     true,
                     false,
-                    HammerCategories.Names.Building,
+                    HammerCategories.Building,
                     nameof(CraftingStations.Stonecutter),
                     "BlackMarble,16"
                 )
@@ -278,7 +290,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     true,
                     false,
-                    HammerCategories.Names.Building,
+                    HammerCategories.Building,
                     nameof(CraftingStations.Stonecutter),
                     "BlackMarble,32"
                 )
@@ -288,7 +300,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     true,
                     false,
-                    HammerCategories.Names.Building,
+                    HammerCategories.Building,
                     nameof(CraftingStations.BlackForge),
                     "BlackMarble,2;Copper,1"
                 )
@@ -298,7 +310,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     true,
                     false,
-                    HammerCategories.Names.Building,
+                    HammerCategories.Building,
                     nameof(CraftingStations.BlackForge),
                     "BlackMarble,8;Copper,2"
                 )
@@ -310,7 +322,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     true,
                     false,
-                    HammerCategories.Names.Building,
+                    HammerCategories.Building,
                     nameof(CraftingStations.BlackForge),
                     "YggdrasilWood,1"
                 )
@@ -320,7 +332,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     true,
                     false,
-                    HammerCategories.Names.Building,
+                    HammerCategories.Building,
                     nameof(CraftingStations.BlackForge),
                     "YggdrasilWood,5"
                 )
@@ -330,7 +342,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     true,
                     false,
-                    HammerCategories.Names.Misc,
+                    HammerCategories.Misc,
                     nameof(CraftingStations.BlackForge),
                     "YggdrasilWood,5;BlackMarble,5;BlackCore,1"
                 )
@@ -340,7 +352,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     true,
                     false,
-                    HammerCategories.Names.Building,
+                    HammerCategories.Building,
                     nameof(CraftingStations.BlackForge),
                     "YggdrasilWood,4"
                 )
@@ -350,7 +362,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     true,
                     false,
-                    HammerCategories.Names.Building,
+                    HammerCategories.Building,
                     nameof(CraftingStations.BlackForge),
                     "YggdrasilWood,2"
                 )
@@ -360,7 +372,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     true,
                     false,
-                    HammerCategories.Names.Building,
+                    HammerCategories.Building,
                     nameof(CraftingStations.BlackForge),
                     "YggdrasilWood,2"
                 )
@@ -370,7 +382,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     true,
                     false,
-                    HammerCategories.Names.Building,
+                    HammerCategories.Building,
                     nameof(CraftingStations.BlackForge),
                     "YggdrasilWood,2"
                 )
@@ -380,7 +392,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     true,
                     false,
-                    HammerCategories.Names.Building,
+                    HammerCategories.Building,
                     nameof(CraftingStations.BlackForge),
                     "YggdrasilWood,10"
                 )
@@ -390,7 +402,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     true,
                     false,
-                    HammerCategories.Names.Building,
+                    HammerCategories.Building,
                     nameof(CraftingStations.BlackForge),
                     "YggdrasilWood,5;CopperScrap,2"
                 )
@@ -402,7 +414,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     true,
                     false,
-                    HammerCategories.Names.Furniture,
+                    HammerCategories.Furniture,
                     nameof(CraftingStations.BlackForge),
                     "Iron,1;Wisp,1"
                 )
@@ -412,7 +424,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     true,
                     false,
-                    HammerCategories.Names.Furniture,
+                    HammerCategories.Furniture,
                     nameof(CraftingStations.BlackForge),
                     "Iron,1;Wisp,2"
                 )
@@ -422,7 +434,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     true,
                     false,
-                    HammerCategories.Names.Furniture,
+                    HammerCategories.Furniture,
                     nameof(CraftingStations.Workbench),
                     "JuteBlue,6;FineWood,2"
                 )
@@ -432,7 +444,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     true,
                     false,
-                    HammerCategories.Names.Furniture,
+                    HammerCategories.Furniture,
                     nameof(CraftingStations.Workbench),
                     "YggdrasilWood,25;Bronze,5"
                 )
@@ -442,7 +454,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     true,
                     false,
-                    HammerCategories.Names.Furniture,
+                    HammerCategories.Furniture,
                     nameof(CraftingStations.BlackForge),
                     "YggdrasilWood,8;ScaleHide,2;IronNails,5"
                 )
@@ -452,7 +464,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     true,
                     false,
-                    HammerCategories.Names.Furniture,
+                    HammerCategories.Furniture,
                     nameof(CraftingStations.BlackForge),
                     "YggdrasilWood,4"
                 )
@@ -462,7 +474,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     true,
                     false,
-                    HammerCategories.Names.Misc,
+                    HammerCategories.Misc,
                     nameof(CraftingStations.BlackForge),
                     "YggdrasilWood,4"
                 )
@@ -472,7 +484,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     true,
                     false,
-                    HammerCategories.Names.Misc,
+                    HammerCategories.Misc,
                     nameof(CraftingStations.BlackForge),
                     "YggdrasilWood,4"
                 )
@@ -482,7 +494,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     true,
                     false,
-                    HammerCategories.Names.Furniture,
+                    HammerCategories.Furniture,
                     nameof(CraftingStations.Workbench),
                     "JuteBlue,6;FineWood,2"
                 )
@@ -492,7 +504,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     true,
                     false,
-                    HammerCategories.Names.Misc,
+                    HammerCategories.Misc,
                     nameof(CraftingStations.BlackForge),
                     "Chain,2;Iron,2"
                 )
@@ -502,7 +514,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     true,
                     false,
-                    HammerCategories.Names.Furniture,
+                    HammerCategories.Furniture,
                     nameof(CraftingStations.BlackForge),
                     "YggdrasilWood,4;IronNails,5"
                 )
@@ -512,7 +524,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     true,
                     false,
-                    HammerCategories.Names.Furniture,
+                    HammerCategories.Furniture,
                     nameof(CraftingStations.BlackForge),
                     "YggdrasilWood,2"
                 )
@@ -522,7 +534,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     true,
                     false,
-                    HammerCategories.Names.Furniture,
+                    HammerCategories.Furniture,
                     nameof(CraftingStations.BlackForge),
                     "YggdrasilWood,6;IronNails,10"
                 )
@@ -532,7 +544,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     true,
                     false,
-                    HammerCategories.Names.Furniture,
+                    HammerCategories.Furniture,
                     nameof(CraftingStations.BlackForge),
                     "Iron,2;BlackCore,1"
                 )
@@ -542,7 +554,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     true,
                     false,
-                    HammerCategories.Names.Furniture,
+                    HammerCategories.Furniture,
                     nameof(CraftingStations.BlackForge),
                     "FineWood,32"
                 )
@@ -555,7 +567,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     true,
                     false,
-                    HammerCategories.Names.Furniture,
+                    HammerCategories.Furniture,
                     nameof(CraftingStations.Workbench),
                     "Wood,1;DeerHide,1;Tar,1"
                 )
@@ -565,7 +577,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     true,
                     false,
-                    HammerCategories.Names.Furniture,
+                    HammerCategories.Furniture,
                     nameof(CraftingStations.Workbench),
                     "Wood,8;Tar,1"
                 )
@@ -575,7 +587,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     true,
                     false,
-                    HammerCategories.Names.Building,
+                    HammerCategories.Building,
                     nameof(CraftingStations.Workbench),
                     "Wood,2;Tar,1"
                 )
@@ -585,7 +597,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     true,
                     false,
-                    HammerCategories.Names.Building,
+                    HammerCategories.Building,
                     nameof(CraftingStations.Workbench),
                     "Wood,1;Tar,1"
                 )
@@ -595,7 +607,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     true,
                     false,
-                    HammerCategories.Names.Building,
+                    HammerCategories.Building,
                     nameof(CraftingStations.Workbench),
                     "Wood,1;Tar,1"
                 )
@@ -605,7 +617,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     true,
                     false,
-                    HammerCategories.Names.Building,
+                    HammerCategories.Building,
                     nameof(CraftingStations.Workbench),
                     "Wood,1;DeerHide,1;Tar,1"
                 )
@@ -615,7 +627,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     true,
                     false,
-                    HammerCategories.Names.Building,
+                    HammerCategories.Building,
                     nameof(CraftingStations.Workbench),
                     "Wood,1;DeerHide,1;Tar,1"
                 )
@@ -625,7 +637,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     true,
                     false,
-                    HammerCategories.Names.Building,
+                    HammerCategories.Building,
                     nameof(CraftingStations.Workbench),
                     "Wood,4;DeerHide,4;Tar,1"
                 )
@@ -635,7 +647,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     true,
                     false,
-                    HammerCategories.Names.Building,
+                    HammerCategories.Building,
                     nameof(CraftingStations.Workbench),
                     "Wood,2;Tar,1"
                 )
@@ -645,7 +657,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     true,
                     false,
-                    HammerCategories.Names.Building,
+                    HammerCategories.Building,
                     nameof(CraftingStations.Workbench),
                     "Wood,2;Tar,1"
                 )
@@ -655,7 +667,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     true,
                     false,
-                    HammerCategories.Names.Building,
+                    HammerCategories.Building,
                     nameof(CraftingStations.Workbench),
                     "Wood,1;Tar,1"
                 )
@@ -665,7 +677,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     true,
                     false,
-                    HammerCategories.Names.Building,
+                    HammerCategories.Building,
                     nameof(CraftingStations.Workbench),
                     "Wood,2;Tar,1"
                 )
@@ -675,7 +687,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     false,
                     false,
-                    HammerCategories.Names.CreatorShop,
+                    HammerCategories.CreatorShop,
                     nameof(CraftingStations.Workbench),
                     "Wood,2;GoblinTotem,1"
                 )
@@ -685,7 +697,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     false,
                     false,
-                    HammerCategories.Names.CreatorShop,
+                    HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
                     "BoneFragments,6;Tar,1"
                 )
@@ -695,7 +707,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     false,
                     false,
-                    HammerCategories.Names.CreatorShop,
+                    HammerCategories.CreatorShop,
                     nameof(CraftingStations.Stonecutter),
                     "Stone,1;Tar,1"
                 )
@@ -707,7 +719,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     true,
                     false,
-                    HammerCategories.Names.Furniture,
+                    HammerCategories.Furniture,
                     nameof(CraftingStations.Workbench),
                     "FineWood,8;BronzeNails,2;Tar,4"
                 )
@@ -717,7 +729,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     true,
                     false,
-                    HammerCategories.Names.Furniture,
+                    HammerCategories.Furniture,
                     nameof(CraftingStations.Workbench),
                     "FineWood,8;BronzeNails,2;Tar,4"
                 )
@@ -729,7 +741,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     true,
                     false,
-                    HammerCategories.Names.Misc,
+                    HammerCategories.Misc,
                     nameof(CraftingStations.Workbench),
                     "Wood,2"
                 )
@@ -739,7 +751,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     true,
                     false,
-                    HammerCategories.Names.Building,
+                    HammerCategories.Building,
                     nameof(CraftingStations.Workbench),
                     "Wood,2"
                 )
@@ -749,7 +761,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     true,
                     false,
-                    HammerCategories.Names.Building,
+                    HammerCategories.Building,
                     nameof(CraftingStations.Workbench),
                     "Wood,2"
                 )
@@ -759,7 +771,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     false,
                     false,
-                    HammerCategories.Names.Building,
+                    HammerCategories.Building,
                     nameof(CraftingStations.Workbench),
                     "Wood,2"
                 )
@@ -769,7 +781,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     true,
                     false,
-                    HammerCategories.Names.Building,
+                    HammerCategories.Building,
                     nameof(CraftingStations.Stonecutter),
                     "Stone,16"
                 )
@@ -779,7 +791,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     true,
                     false,
-                    HammerCategories.Names.Misc,
+                    HammerCategories.Misc,
                     nameof(CraftingStations.Workbench),
                     "Wood,2"
                 )
@@ -789,7 +801,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     false,
                     false,
-                    HammerCategories.Names.Misc,
+                    HammerCategories.Misc,
                     nameof(CraftingStations.Workbench),
                     "Wood,2"
                 )
@@ -799,7 +811,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     true,
                     false,
-                    HammerCategories.Names.Furniture,
+                    HammerCategories.Furniture,
                     nameof(CraftingStations.Forge),
                     "Iron,2;SurtlingCore,1"
                 )
@@ -809,7 +821,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     true,
                     false,
-                    HammerCategories.Names.Furniture,
+                    HammerCategories.Furniture,
                     nameof(CraftingStations.Workbench),
                     "JuteRed,4"
                 )
@@ -819,7 +831,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     true,
                     false,
-                    HammerCategories.Names.Furniture,
+                    HammerCategories.Furniture,
                     nameof(CraftingStations.None),
                     "Wood,2"
                 )
@@ -829,7 +841,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     true,
                     false,
-                    HammerCategories.Names.Building,
+                    HammerCategories.Building,
                     nameof(CraftingStations.Workbench),
                     "Wood,1"
                 )
@@ -841,7 +853,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     true,
                     false,
-                    HammerCategories.Names.Furniture,
+                    HammerCategories.Furniture,
                     nameof(CraftingStations.Stonecutter),
                     "Stone,24"
                 )
@@ -851,7 +863,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     true,
                     false,
-                    HammerCategories.Names.Furniture,
+                    HammerCategories.Furniture,
                     nameof(CraftingStations.Stonecutter),
                     "Stone,24"
                 )
@@ -861,7 +873,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     true,
                     false,
-                    HammerCategories.Names.Furniture,
+                    HammerCategories.Furniture,
                     nameof(CraftingStations.Stonecutter),
                     "Stone,32"
                 )
@@ -871,7 +883,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     true,
                     false,
-                    HammerCategories.Names.Furniture,
+                    HammerCategories.Furniture,
                     nameof(CraftingStations.Stonecutter),
                     "Stone,24"
                 )
@@ -881,7 +893,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     true,
                     false,
-                    HammerCategories.Names.Furniture,
+                    HammerCategories.Furniture,
                     nameof(CraftingStations.Stonecutter),
                     "Stone,16"
                 )
@@ -893,7 +905,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     true,
                     false,
-                    HammerCategories.Names.CreatorShop,
+                    HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
                     "TrophySkeleton,1"
                 )
@@ -905,7 +917,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     true,
                     false,
-                    HammerCategories.Names.CreatorShop,
+                    HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
                     "Stone,32"
                 )
@@ -915,7 +927,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     true,
                     false,
-                    HammerCategories.Names.CreatorShop,
+                    HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
                     "Stone,32"
                 )
@@ -925,7 +937,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     true,
                     false,
-                    HammerCategories.Names.CreatorShop,
+                    HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
                     "Stone,4"
                 )
@@ -935,7 +947,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     true,
                     false,
-                    HammerCategories.Names.CreatorShop,
+                    HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
                     "Stone,4"
                 )
@@ -945,7 +957,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     true,
                     false,
-                    HammerCategories.Names.CreatorShop,
+                    HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
                     "Stone,24"
                 )
@@ -955,7 +967,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     true,
                     false,
-                    HammerCategories.Names.CreatorShop,
+                    HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
                     "Stone,16"
                 )
@@ -965,7 +977,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     true,
                     false,
-                    HammerCategories.Names.CreatorShop,
+                    HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
                     "Stone,24"
                 )
@@ -975,7 +987,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     true,
                     false,
-                    HammerCategories.Names.CreatorShop,
+                    HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
                     "Stone,32"
                 )
@@ -985,7 +997,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     true,
                     false,
-                    HammerCategories.Names.CreatorShop,
+                    HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
                     "Stone,24"
                 )
@@ -995,7 +1007,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     true,
                     false,
-                    HammerCategories.Names.CreatorShop,
+                    HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
                     "Stone,32"
                 )
@@ -1005,7 +1017,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     true,
                     false,
-                    HammerCategories.Names.CreatorShop,
+                    HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
                     "Stone,48"
                 )
@@ -1015,7 +1027,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     true,
                     false,
-                    HammerCategories.Names.CreatorShop,
+                    HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
                     "Stone,32"
                 )
@@ -1025,7 +1037,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     true,
                     false,
-                    HammerCategories.Names.CreatorShop,
+                    HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
                     "Stone,75"
                 )
@@ -1035,7 +1047,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     true,
                     false,
-                    HammerCategories.Names.CreatorShop,
+                    HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
                     "Stone,50"
                 )
@@ -1045,7 +1057,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     true,
                     false,
-                    HammerCategories.Names.CreatorShop,
+                    HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
                     "Stone,75"
                 )
@@ -1057,7 +1069,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     true,
                     false,
-                    HammerCategories.Names.CreatorShop,
+                    HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
                     "BirchSeeds,1;FineWood,2"
                 )
@@ -1067,7 +1079,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     true,
                     false,
-                    HammerCategories.Names.CreatorShop,
+                    HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
                     "BirchSeeds,1;FineWood,2"
                 )
@@ -1077,7 +1089,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     true,
                     false,
-                    HammerCategories.Names.CreatorShop,
+                    HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
                     "YggdrasilWood,64;Sap,10"
                 )
@@ -1089,7 +1101,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     false,
                     false,
-                    HammerCategories.Names.CreatorShop,
+                    HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
                     "TrophySkeleton,32"
                 )
@@ -1099,7 +1111,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     false,
                     false,
-                    HammerCategories.Names.CreatorShop,
+                    HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
                     "Wood,1"
                 )
@@ -1109,7 +1121,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     false,
                     false,
-                    HammerCategories.Names.CreatorShop,
+                    HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
                     "Wood,16"
                 )
@@ -1119,7 +1131,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     false,
                     false,
-                    HammerCategories.Names.CreatorShop,
+                    HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
                     "FineWood,16"
                 )
@@ -1129,7 +1141,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     false,
                     false,
-                    HammerCategories.Names.CreatorShop,
+                    HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
                     "FineWood,16"
                 )
@@ -1139,7 +1151,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     false,
                     false,
-                    HammerCategories.Names.Building,
+                    HammerCategories.Building,
                     nameof(CraftingStations.Stonecutter),
                     "BlackMarble,4"
                 )
@@ -1149,7 +1161,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     false,
                     false,
-                    HammerCategories.Names.Building,
+                    HammerCategories.Building,
                     nameof(CraftingStations.None),
                     "BlackMarble,4"
                 )
@@ -1159,7 +1171,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     false,
                     false,
-                    HammerCategories.Names.Building,
+                    HammerCategories.Building,
                     nameof(CraftingStations.None),
                     "BlackMarble,8"
                 )
@@ -1169,7 +1181,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     false,
                     false,
-                    HammerCategories.Names.Building,
+                    HammerCategories.Building,
                     nameof(CraftingStations.None),
                     "BlackMarble,2"
                 )
@@ -1179,7 +1191,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     false,
                     false,
-                    HammerCategories.Names.Building,
+                    HammerCategories.Building,
                     nameof(CraftingStations.None),
                     "BlackMarble,4"
                 )
@@ -1189,7 +1201,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     false,
                     false,
-                    HammerCategories.Names.Building,
+                    HammerCategories.Building,
                     nameof(CraftingStations.None),
                     "BlackMarble,8"
                 )
@@ -1199,7 +1211,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     false,
                     false,
-                    HammerCategories.Names.Building,
+                    HammerCategories.Building,
                     nameof(CraftingStations.None),
                     "Crystal,2"
                 )
@@ -1209,7 +1221,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     false,
                     false,
-                    HammerCategories.Names.Building,
+                    HammerCategories.Building,
                     nameof(CraftingStations.None),
                     "Crystal,4"
                 )
@@ -1219,7 +1231,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     false,
                     false,
-                    HammerCategories.Names.Building,
+                    HammerCategories.Building,
                     nameof(CraftingStations.None),
                     "Crystal,2"
                 )
@@ -1229,7 +1241,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     false,
                     false,
-                    HammerCategories.Names.CreatorShop,
+                    HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
                     "Stone,350"
                 )
@@ -1239,7 +1251,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     false,
                     false,
-                    HammerCategories.Names.CreatorShop,
+                    HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
                     "Stone,350"
                 )
@@ -1249,7 +1261,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     false,
                     false,
-                    HammerCategories.Names.CreatorShop,
+                    HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
                     "Stone,175"
                 )
@@ -1259,7 +1271,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     false,
                     false,
-                    HammerCategories.Names.Building,
+                    HammerCategories.Building,
                     nameof(CraftingStations.None),
                     "YggdrasilWood,2"
                 )
@@ -1269,7 +1281,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     false,
                     false,
-                    HammerCategories.Names.Building,
+                    HammerCategories.Building,
                     nameof(CraftingStations.None),
                     "YggdrasilWood,2"
                 )
@@ -1279,7 +1291,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     false,
                     false,
-                    HammerCategories.Names.Building,
+                    HammerCategories.Building,
                     nameof(CraftingStations.None),
                     "YggdrasilWood,2"
                 )
@@ -1289,7 +1301,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     false,
                     false,
-                    HammerCategories.Names.Building,
+                    HammerCategories.Building,
                     nameof(CraftingStations.None),
                     "YggdrasilWood,2"
                 )
@@ -1299,7 +1311,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     false,
                     false,
-                    HammerCategories.Names.Building,
+                    HammerCategories.Building,
                     nameof(CraftingStations.None),
                     "YggdrasilWood,2"
                 )
@@ -1309,7 +1321,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     false,
                     false,
-                    HammerCategories.Names.Building,
+                    HammerCategories.Building,
                     nameof(CraftingStations.None),
                     "YggdrasilWood,2"
                 )
@@ -1319,7 +1331,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     false,
                     false,
-                    HammerCategories.Names.Building,
+                    HammerCategories.Building,
                     nameof(CraftingStations.None),
                     "BlackMarble,40;DvergrKeyFragment,4;Iron,12"
                 )
@@ -1329,7 +1341,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     false,
                     false,
-                    HammerCategories.Names.Building,
+                    HammerCategories.Building,
                     nameof(CraftingStations.None),
                     "Iron,4"
                 )
@@ -1339,7 +1351,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     false,
                     false,
-                    HammerCategories.Names.Building,
+                    HammerCategories.Building,
                     nameof(CraftingStations.None),
                     "YggdrasilWood,4"
                 )
@@ -1349,7 +1361,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     false,
                     false,
-                    HammerCategories.Names.Building,
+                    HammerCategories.Building,
                     nameof(CraftingStations.None),
                     "YggdrasilWood,4"
                 )
@@ -1359,7 +1371,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     false,
                     false,
-                    HammerCategories.Names.CreatorShop,
+                    HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
                     "BlackMarble,12"
                 )
@@ -1369,7 +1381,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     false,
                     false,
-                    HammerCategories.Names.Building,
+                    HammerCategories.Building,
                     nameof(CraftingStations.None),
                     "BlackMarble,6"
                 )
@@ -1379,7 +1391,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     false,
                     false,
-                    HammerCategories.Names.Building,
+                    HammerCategories.Building,
                     nameof(CraftingStations.BlackForge),
                     "YggdrasilWood,4"
                 )
@@ -1389,7 +1401,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     false,
                     false,
-                    HammerCategories.Names.Building,
+                    HammerCategories.Building,
                     nameof(CraftingStations.BlackForge),
                     "YggdrasilWood,8;Chain,2;Iron,2"
                 )
@@ -1399,7 +1411,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     false,
                     false,
-                    HammerCategories.Names.Building,
+                    HammerCategories.Building,
                     nameof(CraftingStations.BlackForge),
                     "YggdrasilWood,1"
                 )
@@ -1409,7 +1421,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     false,
                     false,
-                    HammerCategories.Names.Building,
+                    HammerCategories.Building,
                     nameof(CraftingStations.BlackForge),
                     "YggdrasilWood,4"
                 )
@@ -1419,7 +1431,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     false,
                     false,
-                    HammerCategories.Names.Building,
+                    HammerCategories.Building,
                     nameof(CraftingStations.BlackForge),
                     "YggdrasilWood,10"
                 )
@@ -1429,7 +1441,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     false,
                     false,
-                    HammerCategories.Names.Building,
+                    HammerCategories.Building,
                     nameof(CraftingStations.BlackForge),
                     "YggdrasilWood,20"
                 )
@@ -1439,7 +1451,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     false,
                     false,
-                    HammerCategories.Names.Building,
+                    HammerCategories.Building,
                     nameof(CraftingStations.BlackForge),
                     "YggdrasilWood,12"
                 )
@@ -1449,7 +1461,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     false,
                     false,
-                    HammerCategories.Names.Building,
+                    HammerCategories.Building,
                     nameof(CraftingStations.BlackForge),
                     "YggdrasilWood,10;IronNails,6"
                 )
@@ -1459,7 +1471,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     false,
                     false,
-                    HammerCategories.Names.CreatorShop,
+                    HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
                     "Wood,16"
                 )
@@ -1469,7 +1481,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     false,
                     false,
-                    HammerCategories.Names.CreatorShop,
+                    HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
                     "BlackMarble,32"
                 )
@@ -1479,7 +1491,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     false,
                     false,
-                    HammerCategories.Names.CreatorShop,
+                    HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
                     "Iron,32"
                 )
@@ -1489,7 +1501,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     false,
                     false,
-                    HammerCategories.Names.CreatorShop,
+                    HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
                     "Iron,8"
                 )
@@ -1499,7 +1511,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     false,
                     false,
-                    HammerCategories.Names.CreatorShop,
+                    HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
                     "BlackMarble,64"
                 )
@@ -1509,7 +1521,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     false,
                     false,
-                    HammerCategories.Names.CreatorShop,
+                    HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
                     "BlackMarble,32"
                 )
@@ -1519,7 +1531,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     false,
                     false,
-                    HammerCategories.Names.CreatorShop,
+                    HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
                     "Iron,16"
                 )
@@ -1529,7 +1541,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     false,
                     false,
-                    HammerCategories.Names.CreatorShop,
+                    HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
                     "Iron,16"
                 )
@@ -1539,7 +1551,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     false,
                     false,
-                    HammerCategories.Names.CreatorShop,
+                    HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
                     "Wood,2"
                 )
@@ -1549,7 +1561,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     false,
                     false,
-                    HammerCategories.Names.CreatorShop,
+                    HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
                     "ElderBark,32"
                 )
@@ -1559,7 +1571,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     false,
                     false,
-                    HammerCategories.Names.Building,
+                    HammerCategories.Building,
                     nameof(CraftingStations.None),
                     "Wood,20;Bronze,4"
                 )
@@ -1569,7 +1581,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     false,
                     false,
-                    HammerCategories.Names.CreatorShop,
+                    HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
                     "Wood,20;FineWood,20"
                 )
@@ -1579,7 +1591,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     false,
                     false,
-                    HammerCategories.Names.Building,
+                    HammerCategories.Building,
                     nameof(CraftingStations.BlackForge),
                     "YggdrasilWood,16;IronNails,24"
                 )
@@ -1589,7 +1601,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     false,
                     false,
-                    HammerCategories.Names.CreatorShop,
+                    HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
                     "Wood,16;RoundLog,16"
                 )
@@ -1599,7 +1611,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     false,
                     false,
-                    HammerCategories.Names.CreatorShop,
+                    HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
                     "Stone,350"
                 )
@@ -1609,7 +1621,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     false,
                     false,
-                    HammerCategories.Names.CreatorShop,
+                    HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
                     "Stone,175"
                 )
@@ -1619,7 +1631,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     false,
                     false,
-                    HammerCategories.Names.CreatorShop,
+                    HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
                     "Stone,350"
                 )
@@ -1629,7 +1641,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     false,
                     false,
-                    HammerCategories.Names.CreatorShop,
+                    HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
                     "Stone,200"
                 )
@@ -1639,7 +1651,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     false,
                     false,
-                    HammerCategories.Names.CreatorShop,
+                    HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
                     "ElderBark,2"
                 )
@@ -1649,7 +1661,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     false,
                     false,
-                    HammerCategories.Names.CreatorShop,
+                    HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
                     "ElderBark,4"
                 )
@@ -1659,7 +1671,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     false,
                     false,
-                    HammerCategories.Names.CreatorShop,
+                    HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
                     "ElderBark,4"
                 )
@@ -1669,7 +1681,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     false,
                     false,
-                    HammerCategories.Names.CreatorShop,
+                    HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
                     "ElderBark,4"
                 )
@@ -1679,7 +1691,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     false,
                     false,
-                    HammerCategories.Names.Furniture,
+                    HammerCategories.Furniture,
                     nameof(CraftingStations.None),
                     "FineWood,8"
                 )
@@ -1689,7 +1701,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     false,
                     false,
-                    HammerCategories.Names.Furniture,
+                    HammerCategories.Furniture,
                     nameof(CraftingStations.None),
                     "FineWood,16"
                 )
@@ -1699,7 +1711,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     false,
                     false,
-                    HammerCategories.Names.Furniture,
+                    HammerCategories.Furniture,
                     nameof(CraftingStations.None),
                     "FineWood,16"
                 )
@@ -1709,7 +1721,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     true,
                     false,
-                    HammerCategories.Names.Building,
+                    HammerCategories.Building,
                     nameof(CraftingStations.Stonecutter),
                     "Stone,16"
                 )
@@ -1719,7 +1731,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     false,
                     false,
-                    HammerCategories.Names.CreatorShop,
+                    HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
                     "ElderBark,16"
                 )
@@ -1729,7 +1741,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     false,
                     false,
-                    HammerCategories.Names.CreatorShop,
+                    HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
                     "ElderBark,32"
                 )
@@ -1739,7 +1751,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     false,
                     false,
-                    HammerCategories.Names.CreatorShop,
+                    HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
                     "ElderBark,32"
                 )
@@ -1749,7 +1761,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     false,
                     false,
-                    HammerCategories.Names.CreatorShop,
+                    HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
                     "ElderBark,32"
                 )
@@ -1759,7 +1771,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     false,
                     false,
-                    HammerCategories.Names.CreatorShop,
+                    HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
                     "Stone,10;Crystal,1"
                 )
@@ -1769,7 +1781,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     false,
                     false,
-                    HammerCategories.Names.CreatorShop,
+                    HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
                     "YggdrasilWood,16"
                 )
@@ -1779,7 +1791,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     false,
                     false,
-                    HammerCategories.Names.CreatorShop,
+                    HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
                     "YggdrasilWood,16"
                 )
@@ -1789,7 +1801,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 new PrefabConfig(
                     false,
                     false,
-                    HammerCategories.Names.CreatorShop,
+                    HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
                     "YggdrasilWood,16"
                 )

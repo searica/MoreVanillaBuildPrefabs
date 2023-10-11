@@ -6,40 +6,12 @@ using ServerSync;
 using System.Collections.Generic;
 using MoreVanillaBuildPrefabs.Helpers;
 using MoreVanillaBuildPrefabs.Logging;
-using Jotunn.Configs;
-using System;
+
 
 namespace MoreVanillaBuildPrefabs.Configs
 {
     internal class PluginConfig
     {
-        public struct PrefabConfig
-        {
-            public bool Enabled;
-            public bool AllowedInDungeons;
-            public string Category;
-            public string CraftingStation;
-            public string Requirements;
-            public bool PlacementPatch;
-
-            public PrefabConfig(
-                bool Enabled = false,
-                bool AllowedInDungeons = false,
-                string Category = HammerCategories.Names.CreatorShop,
-                string CraftingStation = nameof(CraftingStations.None),
-                string Requirements = null,
-                bool PlacementPatch = false
-            )
-            {
-                this.Enabled = Enabled;
-                this.AllowedInDungeons = AllowedInDungeons;
-                this.Category = Category;
-                this.CraftingStation = CraftingStation;
-                this.Requirements = Requirements;
-                this.PlacementPatch = PlacementPatch;
-            }
-        }
-
         private static readonly string ConfigFileName = Plugin.PluginGuid + ".cfg";
         private static readonly string ConfigFileFullPath = Paths.ConfigPath + Path.DirectorySeparatorChar + ConfigFileName;
         private static ConfigFile configFile;
@@ -75,42 +47,42 @@ namespace MoreVanillaBuildPrefabs.Configs
 
 
         private const string MainSectionName = "\u200BGlobal";
-        public static ConfigEntry<bool> IsModEnabled { get; private set; }
-        public static ConfigEntry<bool> LockConfiguration { get; private set; }
-        public static ConfigEntry<bool> AdminDeconstructCreatorShop { get; private set; }
-        public static ConfigEntry<bool> AdminOnlyCreatorShop { get; private set; }
-        public static ConfigEntry<bool> ForceAllPrefabs { get; private set; }
-        public static ConfigEntry<bool> VerboseMode { get; private set; }
+        internal static ConfigEntry<bool> IsModEnabled { get; private set; }
+        internal static ConfigEntry<bool> LockConfiguration { get; private set; }
+        internal static ConfigEntry<bool> AdminDeconstructCreatorShop { get; private set; }
+        internal static ConfigEntry<bool> AdminOnlyCreatorShop { get; private set; }
+        internal static ConfigEntry<bool> ForceAllPrefabs { get; private set; }
+        internal static ConfigEntry<bool> VerboseMode { get; private set; }
 
         private static readonly AcceptableValueList<bool> AcceptableToggleValuesList = new(new bool[] { false, true });
 
-        public static void Init(ConfigFile config)
+        internal static void Init(ConfigFile config)
         {
             configFile = config;
             configFile.SaveOnConfigSet = false;
         }
 
-        public static void Save()
+        internal static void Save()
         {
             configFile.Save();
         }
 
-        public static void SaveOnConfigSet(bool value)
+        internal static void SaveOnConfigSet(bool value)
         {
             configFile.SaveOnConfigSet = value;
         }
 
-        public static bool IsVerbose()
+        internal static bool IsVerbose()
         {
             return VerboseMode.Value;
         }
 
-        public static bool IsForceAllPrefabs()
+        internal static bool IsForceAllPrefabs()
         {
             return ForceAllPrefabs.Value;
         }
 
-        public static void SetUpConfig()
+        internal static void SetUpConfig()
         {
             IsModEnabled = BindConfig(
                 MainSectionName,
@@ -175,7 +147,7 @@ namespace MoreVanillaBuildPrefabs.Configs
             Save();
         }
 
-        public static PrefabConfig LoadPrefabConfig(GameObject prefab)
+        internal static PrefabConfig LoadPrefabConfig(GameObject prefab)
         {
             string sectionName = prefab.name;
 
@@ -207,7 +179,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 default_config.Category,
                 new ConfigDescription(
                     "A string defining the tab the prefab shows up on in the hammer build table.",
-                    HammerCategories.Names.GetAcceptableValueList()
+                    HammerCategories.GetAcceptableValueList()
                 )
             ).Value;
 
@@ -254,27 +226,6 @@ namespace MoreVanillaBuildPrefabs.Configs
             return default_config;
         }
 
-        internal static RequirementConfig[] CreateRequirementConfigsArray(string data)
-        {
-            if (string.IsNullOrEmpty(data.Trim())) return Array.Empty<RequirementConfig>();
-
-            // If not empty
-            List<RequirementConfig> requirements = new();
-
-            foreach (var entry in data.Split(';'))
-            {
-                string[] values = entry.Split(',');
-                RequirementConfig reqConfig = new()
-                {
-                    Item = values[0].Trim(),
-                    Amount = int.Parse(values[1].Trim()),
-                    Recover = true
-                };
-                requirements.Add(reqConfig);
-            }
-            return requirements.ToArray();
-        }
-
         internal static void SetupWatcher()
         {
             FileSystemWatcher watcher = new(Paths.ConfigPath, ConfigFileName);
@@ -301,10 +252,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             }
         }
 
-        // Obsolete code
-
         /// <summary>
-        ///     Convert Requirements string to Piece.Requirement Array
+        ///     Convert Requirements string from cfg file to Piece.Requirement Array
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
@@ -336,3 +285,32 @@ namespace MoreVanillaBuildPrefabs.Configs
         }
     }
 }
+
+
+// Jotunn based code
+
+/// <summary>
+///     Create array of Requirement Configs for use with Jotunn
+/// </summary>
+/// <param name="data"></param>
+/// <returns></returns>
+//internal static RequirementConfig[] CreateRequirementConfigsArray(string data)
+//{
+//    if (string.IsNullOrEmpty(data.Trim())) return Array.Empty<RequirementConfig>();
+
+//    // If not empty
+//    List<RequirementConfig> requirements = new();
+
+//    foreach (var entry in data.Split(';'))
+//    {
+//        string[] values = entry.Split(',');
+//        RequirementConfig reqConfig = new()
+//        {
+//            Item = values[0].Trim(),
+//            Amount = int.Parse(values[1].Trim()),
+//            Recover = true
+//        };
+//        requirements.Add(reqConfig);
+//    }
+//    return requirements.ToArray();
+//}
