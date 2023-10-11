@@ -154,6 +154,7 @@ Specifically, when a piece is set to the CreatorShop category player's can only 
 - Automatically add missing sfx to placement and deconstruction of prefabs based on the required crafting station.
 - Consider adding vanilla functionality to custom pieces like sitting in chairs.
 - Add a config option to enable comfort values for custom pieces.
+- Add default build costs for treasure chests and add snap points.
 
 ## Compatibility
 These are non-exhaustive lists.
@@ -167,6 +168,10 @@ Likely incompatible with other mods that add Vanilla prefabs to the build hammer
 - PotteryBarn (by ComfyMods)
 
 ### Compatible Mods
+<details>
+
+<summary>Click to expand list</summary>
+
 - AdventureBackpacks (by Vapok)
 - Aegir (by blbrdv)
 - AAACrafting (by Azumatt)
@@ -243,6 +248,8 @@ Likely incompatible with other mods that add Vanilla prefabs to the build hammer
 - WackysDatabase (by WackyMole)
 - WieldEquipmentWhileSwimming (by blacks7ar)
 - Probably even more, it's pretty compatible.
+
+</details>
 
 ### Source Code
 Github: https://github.com/searica/MoreVanillaBuildPrefabs

@@ -36,14 +36,23 @@ namespace MoreVanillaBuildPrefabs.Configs
             "TreasureChest_meadows", // Visual duplicate of wooden chest
             "TreasureChest_meadows_buried", // Visual duplicate of wooden chest
             "TreasureChest_mountains", // Visual duplicate of wooden chest
+            "TreasureChest_swamp", // Visual duplicate of wooden chest
             "TreasureChest_fCrypt", // Visual duplicate of "TreasureChest_forestCrypt"
-            "TreasureChest_mountaincave_hildir", // Visual duplicate of "TreasureChest_forestcrypt_hildir"
-            "TreasureChest_plainsfortress_hildir", // Visual duplicate of "TreasureChest_forestcrypt_hildir"
+            "TreasureChest_mountaincave_hildir", // Visual duplicate of "TreasureChest_dvergrtown"
+            "TreasureChest_plainsfortress_hildir", // Visual duplicate of "TreasureChest_dvergrtown"
+            "TreasureChest_forestcrypt_hildir", // Visual duplicate of "TreasureChest_dvergrtown"
         };
 
-        internal static readonly HashSet<string> RemoveTreasure = new()
+        private static readonly HashSet<string> RemoveTreasure = new()
         {
+            "TreasureChest_forestcrypt",
+            "TreasureChest_mountaincave",
+            "TreasureChest_plains_stone",
             "TreasureChest_trollcave",
+            "TreasureChest_dvergr_loose_stone",
+            "TreasureChest_sunkencrypt",
+            "TreasureChest_dvergrtown",
+            "TreasureChest_dvergrtower",
         };
 
         internal static readonly HashSet<string> RemovePickable = new()
@@ -52,6 +61,17 @@ namespace MoreVanillaBuildPrefabs.Configs
             "Pickable_BlackCoreStand",
             // "Pickable_Tar"
         };
+
+        /// <summary>
+        ///     Get a bool indicating if the prefab is a treasure chest 
+        ///     and the contents should be removed when placing it.
+        /// </summary>
+        /// <param name="PrefabName"></param>
+        /// <returns></returns>
+        internal static bool ShouldRemoveTreasure(string PrefabName)
+        {
+            return RemoveTreasure.Contains(PrefabName) || PrefabName.StartsWith("TreasureChest");
+        }
 
         internal static PrefabConfig GetDefaultPrefabConfigValues(string prefab_name)
         {
@@ -67,7 +87,7 @@ namespace MoreVanillaBuildPrefabs.Configs
         ///     then add the default build requirements to DefaultResources dictionary 
         ///     if they have not already been added.
         /// </summary>
-        /// <param name="prefab"></param>
+        /// <param PrefabName="prefab"></param>
         internal static void SaveDefaultResources(GameObject prefab)
         {
             var piece = prefab?.GetComponent<Piece>();

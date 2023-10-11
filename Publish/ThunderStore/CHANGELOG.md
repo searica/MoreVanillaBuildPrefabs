@@ -1,3 +1,11 @@
+### Version 0.3.6
+- Switched back to custom methods to add pieces.
+    - Removing pieces added by Jotunn on log out led to unintended behaviour.
+- Slightly reduced load times.
+- Patched placement of treasure chests so they no longer contain random loot (world-generated treasure chests are unaffected).
+- Removed treasure chests that were visual duplicates of each other.
+
+
 ### Version 0.3.5
 - Switched back to adding pieces via Jotunn.
 - More automatic naming improvements.
@@ -42,6 +50,9 @@
 - Changed when custom pieces are added to wait until after receiving data from ServerSync (Thanks to Cass for reporting the issue and to Wackymole for helping figure out which method to patch).
 - Changed method of adding custom pieces due to Null Exception error caused by adding pieces with Jotunn after ZNet.Start(), will probably switch back after Jotunn updates.
 
+### Versions 0.2.X
+<details>
+<summary>details</summary>
 ### Version 0.2.2
 - Added null check to EnsureNoDuplicateZNetView(), should resolve issues caused when rejoining servers (Thanks to Cass on the Odinplus for reporting the bug).
 - Mod now saves the cfg file on logout, should hopefully preserve changes made to it before reading from it when rejoining a server.
@@ -56,6 +67,7 @@
 - Reduced load time from ~30 seconds to ~0.5 seconds (Thanks to onnan for reporting the issue and to Margmas on the OdinPlus discord for the tip on reducing config file load times.)
 - Switched to using ZNetScene for patch to trigger removal of custom pieces on logout.
 - Internal code refactoring and clean up.
+</details>
 
 ### Versions 0.1.X
 <details>

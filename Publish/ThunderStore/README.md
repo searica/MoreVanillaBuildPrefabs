@@ -159,7 +159,7 @@ Specifically, when a piece is set to the CreatorShop category player's can only 
 These are non-exhaustive lists.
 
 ### Partial Incompatiabily
-**PlanBuild (by MathiasDecrock)** The mods do work together but PlanBuild does not detect any of the pieces added by this mod so they will not show up in the plan hammer. Currently working on a fix.
+**PlanBuild (by MathiasDecrock)** The mods do work together but PlanBuild does not detect any of the pieces added by this mod so they will not show up in the plan hammer. Currently working on a fix but it seems that PlanBuild is not working at the moment so will need to wait for it to update.
 
 ### Incompatible Mods
 Likely incompatible with other mods that add Vanilla prefabs to the build hammer unless you disable the prefabs from this mod that overlap with the other one since conflicting build requirements can cause unexpected behavior.

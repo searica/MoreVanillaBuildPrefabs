@@ -2,7 +2,8 @@
 - Switched back to custom methods to add pieces.
     - Removing pieces added by Jotunn on log out led to unintended behaviour.
 - Slightly reduced load times.
-- 
+- Patched placement of treasure chests so they no longer contain random loot (world-generated treasure chests are unaffected).
+- Removed treasure chests that were visual duplicates of each other.
 
 
 ### Version 0.3.5

@@ -76,14 +76,15 @@ namespace MoreVanillaBuildPrefabs
                 //    }
                 //}
                 var prefabName = gameObject.name;
-                if (DefaultConfigs.RemoveTreasure.Contains(prefabName))
+                if (DefaultConfigs.ShouldRemoveTreasure(prefabName))
                 {
-                    Log.LogInfo("Remove Treasure");
                     var container = result.GetComponent<Container>();
                     if (container != null)
                     {
                         container.m_inventory.RemoveAll();
-                        Log.LogInfo("Removed");
+#if DEBUG
+                        Log.LogInfo($"Removed treasure for: {prefabName}");
+#endif
                     }
                 }
             }
