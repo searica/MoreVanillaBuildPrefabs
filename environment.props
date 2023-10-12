@@ -13,7 +13,7 @@
 		<!-- This is where the output DLL will be copied to after building. The templates support doing this for up to three locations. Duplicate this line and append a number. Example below -->
 		<!--<CopyOutputDLLPath2>$(ValheimGamePath)\BepInEx\plugins</CopyOutputDLLPath2>-->
 		<!--<CopyOutputDLLPath3>$(ValheimGamePath)\BepInEx\plugins</CopyOutputDLLPath3>-->
-		<AfterTargets>ILRepacker</AfterTargets>
+		<AfterTargets>Build</AfterTargets>
 		<PublishDir>$(ProjectDir)\Publish</PublishDir>
 		<ThunderstoreDir>$(PublishDir)\Thunderstore</ThunderstoreDir>
 		<NexusDir>$(PublishDir)\Nexus</NexusDir>

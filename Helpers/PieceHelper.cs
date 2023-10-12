@@ -13,12 +13,14 @@ namespace MoreVanillaBuildPrefabs.Helpers
     {
         internal static HashSet<string> AddedPrefabs = new();
 
+        internal static List<GameObject> VanillaPrefabClones = new();
+
         /// <summary>
         ///     Returns a bool indicating if the piece was added by this mod.
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
-        internal static bool IsAddedByMod(string name)
+        public static bool IsAddedByMod(string name)
         {
             return AddedPrefabs.Contains(name);
         }
@@ -62,6 +64,25 @@ namespace MoreVanillaBuildPrefabs.Helpers
                 .Select(piece => piece.name);
             return new HashSet<string>(result);
 
+        }
+
+        /// <summary>
+        ///     Prevents creation of duplicate ZNetViews
+        /// </summary>
+        /// <param name="prefab"></param>
+        /// <returns></returns>
+        internal static bool EnsureNoDuplicateZNetView(GameObject prefab)
+        {
+            var views = prefab?.GetComponents<ZNetView>();
+
+            if (views == null) return true;
+
+            for (int i = 1; i < views.Length; ++i)
+            {
+                GameObject.DestroyImmediate(views[i]);
+            }
+
+            return views.Length <= 1;
         }
 
         /// <summary>

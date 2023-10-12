@@ -53,7 +53,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
                 .Replace("dverger", "dvergr")
                 .Replace("dvergrtown", "dvergr")
                 .Replace("dvergrprops", "dvergr");
-            name = RemovePrefix(name, "pickable");
+            // name = RemovePrefix(name, "pickable");
             name = RemovePrefix(name, "piece");
             name = RemoveSuffix(name, "destructable").Trim();
 

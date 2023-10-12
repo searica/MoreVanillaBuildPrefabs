@@ -2,49 +2,53 @@
 using BepInEx;
 using BepInEx.Configuration;
 using UnityEngine;
-using ServerSync;
 using System.Collections.Generic;
-using MoreVanillaBuildPrefabs.Helpers;
 using MoreVanillaBuildPrefabs.Logging;
-
+using System;
 
 namespace MoreVanillaBuildPrefabs.Configs
 {
     internal class PluginConfig
     {
         private static readonly string ConfigFileName = Plugin.PluginGuid + ".cfg";
-        private static readonly string ConfigFileFullPath = Paths.ConfigPath + Path.DirectorySeparatorChar + ConfigFileName;
+        private static readonly string ConfigFileFullPath = string.Concat(
+            Paths.ConfigPath,
+            Path.DirectorySeparatorChar,
+            ConfigFileName
+        );
+
         private static ConfigFile configFile;
 
-        private static readonly ConfigSync configSync = new(Plugin.PluginGuid)
+        private static readonly ConfigurationManagerAttributes AdminConfig = new() { IsAdminOnly = true };
+        private static readonly ConfigurationManagerAttributes ClientConfig = new() { IsAdminOnly = false };
+
+        internal static ConfigEntry<T> BindConfig<T>(
+            string section,
+            string name,
+            T value,
+            string description,
+            AcceptableValueBase acceptVals = null,
+            bool synced = true
+        )
         {
-            DisplayName = Plugin.PluginName,
-            CurrentVersion = Plugin.PluginVersion,
-            MinimumRequiredVersion = Plugin.PluginVersion
-        };
-
-        internal static ConfigEntry<T> BindConfig<T>(string group, string name, T value, ConfigDescription description, bool synchronizedSetting = true)
-        {
-            ConfigEntry<T> configEntry = configFile.Bind(group, name, value, description);
-
-            SyncedConfigEntry<T> syncedConfigEntry = configSync.AddConfigEntry(configEntry);
-            syncedConfigEntry.SynchronizedConfig = synchronizedSetting;
-
+            string extendedDescription = GetExtendedDescription(description, synced);
+            ConfigEntry<T> configEntry = configFile.Bind(
+                section,
+                name,
+                value,
+                new ConfigDescription(
+                    extendedDescription,
+                    acceptVals,
+                    synced ? AdminConfig : ClientConfig
+                )
+            );
             return configEntry;
         }
 
-        internal static ConfigEntry<bool> BindLockingConfig(string group, string name, bool value, ConfigDescription description, bool synchronizedSetting = true)
+        internal static string GetExtendedDescription(string description, bool synchronizedSetting)
         {
-            ConfigEntry<bool> configEntry = configFile.Bind(group, name, value, description);
-
-            SyncedConfigEntry<bool> syncedConfigEntry = configSync.AddLockingConfigEntry(configEntry);
-            syncedConfigEntry.SynchronizedConfig = synchronizedSetting;
-
-            return configEntry;
+            return description + (synchronizedSetting ? " [Synced with Server]" : " [Not Synced with Server]");
         }
-
-        internal static ConfigEntry<T> BindConfig<T>(string group, string name, T value, string description, bool synchronizedSetting = true) => BindConfig(group, name, value, new ConfigDescription(description), synchronizedSetting);
-
 
         private const string MainSectionName = "\u200BGlobal";
         internal static ConfigEntry<bool> IsModEnabled { get; private set; }
@@ -54,7 +58,14 @@ namespace MoreVanillaBuildPrefabs.Configs
         internal static ConfigEntry<bool> ForceAllPrefabs { get; private set; }
         internal static ConfigEntry<bool> VerboseMode { get; private set; }
 
-        private static readonly AcceptableValueList<bool> AcceptableToggleValuesList = new(new bool[] { false, true });
+        private static readonly AcceptableValueList<bool> AcceptableBoolValuesList = new(new bool[] { false, true });
+
+        public static event EventHandler<SettingChangedEventArgs> SettingChanged
+        {
+            add => configFile.SettingChanged += value;
+            remove => configFile.SettingChanged -= value;
+        }
+
 
         internal static void Init(ConfigFile config)
         {
@@ -88,61 +99,42 @@ namespace MoreVanillaBuildPrefabs.Configs
                 MainSectionName,
                 "EnableMod",
                 true,
-                new ConfigDescription(
-                    "Globally enable or disable this mod (restart required).",
-                    AcceptableToggleValuesList
-                )
+                "Globally enable or disable this mod (restart required).",
+                AcceptableBoolValuesList
              );
 
-            LockConfiguration = BindLockingConfig(
-                MainSectionName,
-                "LockConfiguration",
-                true,
-                new ConfigDescription(
-                    "If true, the configuration is locked and can be changed by server admins only.",
-                    AcceptableToggleValuesList
-                )
-            );
 
             AdminOnlyCreatorShop = BindConfig(
                 MainSectionName,
                 "AdminOnlyCreatorShop",
                 false,
-                new ConfigDescription(
-                    "Set to true to restrict placement and deconstruction of CreatorShop pieces to players with Admin status.",
-                    AcceptableToggleValuesList
-                )
+                "Set to true to restrict placement and deconstruction of CreatorShop pieces to players with Admin status.",
+                AcceptableBoolValuesList
             );
 
             AdminDeconstructCreatorShop = BindConfig(
                 MainSectionName,
                 "AdminDeconstructCreatorShop",
                 true,
-                new ConfigDescription(
-                    "Set to true to allow admin players to deconstruct any CreatorShop pieces built by players." +
-                    " Intended to prevent griefing via placement of indestructible objects.",
-                    AcceptableToggleValuesList
-                )
+                "Set to true to allow admin players to deconstruct any CreatorShop pieces built by players." +
+                " Intended to prevent griefing via placement of indestructible objects.",
+                AcceptableBoolValuesList
             );
 
             ForceAllPrefabs = BindConfig(
                 MainSectionName,
                 "ForceAllPrefabs",
                 false,
-                new ConfigDescription(
-                    "If enabled, adds all prefabs from the configuration file to the hammer based on their current configuration (requirements).",
-                    AcceptableToggleValuesList
-                )
+                "If enabled, adds all prefabs from the configuration file to the hammer based on their current configuration (requirements).",
+                AcceptableBoolValuesList
             );
 
             VerboseMode = BindConfig(
                 MainSectionName,
                 "VerboseMode",
                 false,
-                new ConfigDescription(
-                    "If enable, print debug informations in console.",
-                    AcceptableToggleValuesList
-                )
+                "If enable, print debug informations in console.",
+                AcceptableBoolValuesList
             );
             Save();
         }
@@ -157,40 +149,32 @@ namespace MoreVanillaBuildPrefabs.Configs
                 sectionName,
                 "\u200BEnabled",
                 default_config.Enabled,
-                new ConfigDescription(
-                    "If true then add the prefab as a buildable piece. Note: this setting is ignored if ForceAllPrefabs is true.",
-                    AcceptableToggleValuesList
-                )
+                "If true then add the prefab as a buildable piece. Note: this setting is ignored if ForceAllPrefabs is true.",
+                AcceptableBoolValuesList
             ).Value;
 
             default_config.AllowedInDungeons = BindConfig(
                 sectionName,
                 "AllowedInDungeons",
                 default_config.AllowedInDungeons,
-                new ConfigDescription(
-                    "If true then this prefab can be built inside dungeon zones.",
-                    AcceptableToggleValuesList
-                )
+                "If true then this prefab can be built inside dungeon zones.",
+                AcceptableBoolValuesList
             ).Value;
 
             default_config.Category = BindConfig(
                 sectionName,
                 "Category",
                 default_config.Category,
-                new ConfigDescription(
-                    "A string defining the tab the prefab shows up on in the hammer build table.",
-                    HammerCategories.GetAcceptableValueList()
-                )
+                "A string defining the tab the prefab shows up on in the hammer build table.",
+                HammerCategories.GetAcceptableValueList()
             ).Value;
 
             default_config.CraftingStation = BindConfig(
                 sectionName,
                 "CraftingStation",
                 default_config.CraftingStation,
-                new ConfigDescription(
-                    "A string defining the crafting station required to built the prefab.",
-                    CraftingStations.GetAcceptableValueList()
-                )
+                "A string defining the crafting station required to built the prefab.",
+                CraftingStations.GetAcceptableValueList()
             ).Value;
 
             default_config.Requirements = BindConfig(
@@ -208,13 +192,11 @@ namespace MoreVanillaBuildPrefabs.Configs
                     sectionName,
                     "PlacementPatch",
                     false,
-                    new ConfigDescription(
-                        "Set to true to enable collision patching during placement of the piece.\n" +
-                        "Reccomended to try this if the piece is not appearing when you go to place it.\n\n" +
-                        " If enabling the placement patch via this setting fixes the issue please open an issue on Github" +
-                        " letting me know so I can make sure the collision patch is always applied to this piece.",
-                        AcceptableToggleValuesList
-                    )
+                    "Set to true to enable collision patching during placement of the piece.\n" +
+                    "Reccomended to try this if the piece is not appearing when you go to place it.\n\n" +
+                    " If enabling the placement patch via this setting fixes the issue please open an issue on Github" +
+                    " letting me know so I can make sure the collision patch is always applied to this piece.",
+                    AcceptableBoolValuesList
                 ).Value;
 
                 if (default_config.PlacementPatch)

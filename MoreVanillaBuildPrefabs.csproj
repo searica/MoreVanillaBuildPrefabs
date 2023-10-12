@@ -20,7 +20,6 @@
 		<AllowUnsafeBlocks>True</AllowUnsafeBlocks>
 	</PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="ILRepack.Lib.MSBuild.Task" Version="2.0.18.2" />
 		<PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
 		<PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
 	</ItemGroup>
@@ -29,10 +28,6 @@
 	</ItemGroup>
 	<ItemGroup>
 		<Content Include="UpdateManifest.ps1" />
-		<Content Include="ILRepack.targets" />
-		<Content Include="Libs\ServerSync.dll">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</Content>
 		<Content Include="LICENSE" />
 		<Content Include="README.md" />
 		<Content Include="Publish\Thunderstore\icon.png" />
@@ -58,10 +53,7 @@
 			<HintPath>$(BepInExPath)\core\BepInEx.dll</HintPath>
 		</Reference>
 		<Reference Include="Jotunn">
-			<HintPath>..\Libs\Jotunn.dll</HintPath>
-		</Reference>
-		<Reference Include="ServerSync">
-			<HintPath>Libs\ServerSync.dll</HintPath>
+			<HintPath>Libs\Jotunn.dll</HintPath>
 		</Reference>
 		<Reference Include="UnityEngine">
 			<HintPath>$(CorlibPath)\UnityEngine.dll</HintPath>
