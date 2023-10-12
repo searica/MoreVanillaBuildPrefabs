@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using MoreVanillaBuildPrefabs.Logging;
+using System.Linq;
 
 namespace MoreVanillaBuildPrefabs.Helpers
 {
@@ -26,6 +27,27 @@ namespace MoreVanillaBuildPrefabs.Helpers
                 case "ArmorStand_Male":
                 case "ArmorStand_Female":
                     SnapPointHelper.AddCenterSnapPoint(prefab);
+                    break;
+                case "Trailership":
+                    Log.LogInfo(prefab.name);
+
+                    foreach (var meshFilter in prefab.GetComponentsInChildren<MeshFilter>())
+                    {
+                        if (meshFilter.name == "hull")
+                        {
+                            var longShip = ZNetScene.instance?.m_prefabs?.Where(go => go.name == "VikingShip")?.First();
+
+                            if (longShip == null) { break; }
+
+                            foreach (var longShipMeshFilter in longShip.GetComponentsInChildren<MeshFilter>())
+                                if (longShipMeshFilter.name == "hull")
+                                {
+                                    meshFilter.mesh = longShipMeshFilter.mesh;
+                                    break;
+                                }
+
+                        }
+                    }
                     break;
                 case "TreasureChest_mountaincave":
                 case "TreasureChest_trollcave":
