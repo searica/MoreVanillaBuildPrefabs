@@ -1,3 +1,8 @@
+### Version 0.3.7
+- Fixed compatiability with WackyDB, (my bad, while rewriting the code to add pieces I switched from a prefix to a postfix).
+- Switch stone chest to prefer the one with animations.
+- Renaming of custom chests to be more descriptive.
+
 ### Version 0.3.6
 - Switched back to custom methods to add pieces.
     - Removing pieces added by Jotunn on log out led to unintended behaviour.

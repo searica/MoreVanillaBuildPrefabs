@@ -21,6 +21,9 @@ namespace MoreVanillaBuildPrefabs.Helpers
             {"TreasureChest_sunkencrypt", "Stone chest (dark moss)"},
             {"TreasureChest_dvergrtower", "Dvergr chest"},
             {"TreasureChest_dvergrtown", "Dvergr chest (large)"},
+            {"stonechest", "Stone chest"},
+            {"fire_pit_hildir", "Firepit iron (everburning)"},
+            {"fire_pit_haldor", "Campfire (everburning)"}
         };
 
         private static readonly Dictionary<string, string> DescriptionMap = new()
@@ -29,6 +32,14 @@ namespace MoreVanillaBuildPrefabs.Helpers
         };
 
         private static readonly Regex PrefabNameRegex = new(@"([a-z])([A-Z])");
+
+        /// <summary>
+        ///     Formats the prefab name to something friendlier 
+        ///     to use as a piece name, or applies a custom name map
+        ///     if one exists.
+        /// </summary>
+        /// <param name="prefabName"></param>
+        /// <returns></returns>
         internal static string FormatPrefabName(string prefabName)
         {
             if (NamesMap.ContainsKey(prefabName)) return NamesMap[prefabName];

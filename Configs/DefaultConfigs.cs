@@ -41,6 +41,28 @@ namespace MoreVanillaBuildPrefabs.Configs
 
         internal static readonly Dictionary<string, PrefabConfig> DefaultConfigValues = new()
         {
+            // fire pits
+            {
+                "fire_pit_haldor",
+                new PrefabConfig(
+                    true,
+                    false,
+                    HammerCategories.Misc,
+                    nameof(CraftingStations.BlackForge),
+                    "Stone,5;Wood,2;BlackCore,1"
+                )
+            },
+            {
+                "fire_pit_hildir",
+                new PrefabConfig(
+                    true,
+                    false,
+                    HammerCategories.Misc,
+                    nameof(CraftingStations.BlackForge),
+                    "Ironpit,1;Wood,1;BlackCore,1"
+                )
+            },
+
             // black marble pieces
             {
                 "blackmarble_head_big01",
@@ -373,7 +395,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Furniture,
                     nameof(CraftingStations.Workbench),
-                    "YggdrasilWood,25;Bronze,5"
+                    "YggdrasilWood,20;Bronze,5;Resin,10"
                 )
             },
             {

@@ -1,23 +1,60 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using MoreVanillaBuildPrefabs.Logging;
 
 namespace MoreVanillaBuildPrefabs.Helpers
 {
     internal class PrefabPatcher
     {
+
+
         /// <summary>
         ///     Fix collider and snap points on the prefab if necessary
         /// </summary>
         /// <param name="prefab"></param>
         internal static void PatchPrefabIfNeeded(GameObject prefab)
         {
+            if (prefab == null)
+            {
+                return;
+            }
+
             List<Vector3> pts = new();
             switch (prefab.name)
             {
                 case "ArmorStand_Male":
                 case "ArmorStand_Female":
                     SnapPointHelper.AddCenterSnapPoint(prefab);
+                    break;
+                case "TreasureChest_mountaincave":
+                case "TreasureChest_trollcave":
+                    SnapPointHelper.AddSnapPointsToMeshCorners(prefab, "stonechest", true);
+                    break;
+                //case "TreasureChest_dvergr_loose_stone":
+                //    break;
+                //case "TreasureChest_dvergrtown":
+                //    break;
+                //case "TreasureChest_dvergrtower":
+                //    break;
+                case "TreasureChest_plains_stone":
+                case "TreasureChest_fCrypt":
+                case "TreasureChest_sunkencrypt":
+                    SnapPointHelper.AddSnapPoints(
+                       prefab,
+                       new[] {
+                            new Vector3(0.0f, -0.01f, 0.0f),
+                            new Vector3(1.0f, -0.01f, 0.37f),
+                            new Vector3(1.0f, -0.01f, -0.37f),
+                            new Vector3(-1.0f, -0.01f, 0.37f),
+                            new Vector3(-1.0f, -0.01f, -0.37f),
+                            new Vector3(0.65f, 0.8f, 0.35f),
+                            new Vector3(0.65f, 0.8f, -0.35f),
+                            new Vector3(-0.65f, 0.8f, 0.35f),
+                            new Vector3(-0.65f, 0.8f, -0.35f)
+                       },
+                       true
+                    );
                     break;
                 case "blackmarble_column_3":
                     SnapPointHelper.AddSnapPoints(

@@ -21,9 +21,9 @@ namespace MoreVanillaBuildPrefabs.Configs
             "TreasureChest_fCrypt",
             "TreasureChest_mountaincave",
             "TreasureChest_plains_stone",
+            "TreasureChest_sunkencrypt",
             "TreasureChest_trollcave",
             "TreasureChest_dvergr_loose_stone",
-            "TreasureChest_sunkencrypt",
             "TreasureChest_dvergrtown",
             "TreasureChest_dvergrtower",
         };
