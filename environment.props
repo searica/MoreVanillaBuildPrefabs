@@ -1,12 +1,12 @@
 <Project>
 	<PropertyGroup>
-		<ValheimGamePath>C:\Program Files (x86)\Steam\steamapps\common\Valheim_Clean</ValheimGamePath>
+		<ValheimGamePath>C:\Program Files (x86)\Steam\steamapps\common\Valheim</ValheimGamePath>
 		<CorlibPath>$(ValheimGamePath)\unstripped_corlib</CorlibPath>
-		<BepInExPath>$(ValheimGamePath)\BepInEx</BepInExPath>
 		<PublicizedAssembliesPath>$(ValheimGamePath)\valheim_Data\Managed\publicized_assemblies</PublicizedAssembliesPath>
 		<Pdb2MdbPath>$(SolutionDir)\pdb2mdb.exe</Pdb2MdbPath>
 		<AppDataDir>$([System.Environment]::GetFolderPath(SpecialFolder.ApplicationData))</AppDataDir>
 		<r2ModManPath>$(AppDataDir)\r2modmanPlus-local\Valheim\profiles</r2ModManPath>
+		<BepInExPath>$(r2ModManPath)\Mod-Debug\BepInEx</BepInExPath>
 		<PluginsPath>$(r2ModManPath)\Mod-Debug\BepInEx\plugins</PluginsPath>
 		<CopyOutputDLLPath>$(r2ModManPath)\Mod-Debug\BepInEx\plugins</CopyOutputDLLPath>
 
