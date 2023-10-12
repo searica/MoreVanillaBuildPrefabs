@@ -86,8 +86,8 @@ namespace MoreVanillaBuildPrefabs.Helpers
                     piece.m_notOnFloor = false;
                     piece.m_onlyInTeleportArea = false;
                     piece.m_allowedInDungeons = false;
-                    piece.m_clipEverything = !DefaultConfigs.RestrictClipping.Contains(prefab.name);
-                    piece.m_clipGround = DefaultConfigs.CanClipGround.Contains(prefab.name);
+                    piece.m_clipEverything = PiecePlacement.CanClipEverything(prefab.name);
+                    piece.m_clipGround = PiecePlacement.CanClipGround(prefab.name);
                     piece.m_allowRotatedOverlap = true;
                     piece.m_repairPiece = false; // setting to true prevents placement
                     piece.m_canBeRemoved = true;

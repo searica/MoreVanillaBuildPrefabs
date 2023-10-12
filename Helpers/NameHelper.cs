@@ -6,21 +6,29 @@ namespace MoreVanillaBuildPrefabs.Helpers
 {
     internal class NameHelper
     {
-        static readonly Dictionary<string, string> NamesMap = new()
+        private static readonly Dictionary<string, string> NamesMap = new()
         {
             {"stoneblock_fracture", "Stone floor2 4x4"},
             {"dvergrprops_hooknchain", "Dvergr hook & chain"},
             {"dvergrprops_wood_wall", "Dvergr wood wall 4x4"},
             {"piece_dvergr_wood_wall", "Dvergr wood wall"},
             {"blackmarble_floor_large", "Black marble floor 8x8"},
+            {"TreasureChest_fCrypt", "Stone chest (mossy)" },
+            {"TreasureChest_mountaincave", "Stone chest (snow)" },
+            {"TreasureChest_plains_stone", "Stone chest (light moss)"},
+            {"TreasureChest_trollcave", "Stone chest (mossy, big)"},
+            {"TreasureChest_dvergr_loose_stone", "Black marble chest"},
+            {"TreasureChest_sunkencrypt", "Stone chest (dark moss)"},
+            {"TreasureChest_dvergrtower", "Dvergr chest"},
+            {"TreasureChest_dvergrtown", "Dvergr chest (large)"},
         };
 
-        static readonly Dictionary<string, string> DescriptionMap = new()
+        private static readonly Dictionary<string, string> DescriptionMap = new()
         {
             {"metalbar_1x2", "Enforced marble 1x2"},
         };
 
-        static readonly Regex PrefabNameRegex = new(@"([a-z])([A-Z])");
+        private static readonly Regex PrefabNameRegex = new(@"([a-z])([A-Z])");
         internal static string FormatPrefabName(string prefabName)
         {
             if (NamesMap.ContainsKey(prefabName)) return NamesMap[prefabName];
@@ -105,7 +113,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
             return s;
         }
 
-        static string CapitalizeFirstLetter(string s)
+        internal static string CapitalizeFirstLetter(string s)
         {
             if (s.Length == 0)
                 return s;

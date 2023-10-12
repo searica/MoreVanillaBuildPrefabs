@@ -76,7 +76,7 @@ namespace MoreVanillaBuildPrefabs
                 //    }
                 //}
                 var prefabName = gameObject.name;
-                if (DefaultConfigs.ShouldRemoveTreasure(prefabName))
+                if (TreasureChests.ShouldRemoveTreasure(prefabName))
                 {
                     var container = result.GetComponent<Container>();
                     if (container != null)
@@ -141,7 +141,7 @@ namespace MoreVanillaBuildPrefabs
 
             if (
                 PieceHelper.AddedPrefabs.Contains(selectedPrefab.name)
-                && DefaultConfigs.NeedsCollisionPatchForGhost.Contains(selectedPrefab.name)
+                && PiecePlacement.NeedsCollisionPatchForGhost(selectedPrefab.name)
                 )
             {
                 // Needed to make some things work, like Stalagmite, blackmarble_corner_stair, silvervein, etc.

@@ -17,7 +17,7 @@ namespace MoreVanillaBuildPrefabs.Patches
     {
 
         // Hook here to add pieces after ServerSync recieves data
-        [HarmonyPostfix]
+        [HarmonyPrefix]
         [HarmonyPriority(Priority.High)] // High priority for compatiability with WackyDB
         [HarmonyPatch(nameof(Game._RequestRespawn))]
         static void Game_RequestRespawnPostFix()
@@ -54,7 +54,7 @@ namespace MoreVanillaBuildPrefabs.Patches
             .Where(
                 go => go.transform.parent == null
                 && !PieceNameCache.Contains(go.name)
-                && !PrefabHelper.ShouldIgnorePrefab(go)
+                && !IgnoredPrefabs.ShouldIgnorePrefab(go)
             )
             .OrderBy(go => go.name)
             .ToList();

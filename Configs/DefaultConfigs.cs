@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using MoreVanillaBuildPrefabs.Helpers;
 using MoreVanillaBuildPrefabs.Logging;
 using UnityEngine;
 
@@ -8,70 +7,6 @@ namespace MoreVanillaBuildPrefabs.Configs
     internal class DefaultConfigs
     {
         internal static Dictionary<string, Piece.Requirement[]> DefaultResources = new();
-
-        internal static readonly HashSet<string> IgnoredPrefabs = new() {
-            "Player",
-            "Valkyrie",
-            "HelmetOdin",
-            "CapeOdin",
-            "CastleKit_pot03",
-            "Ravens",
-            "TERRAIN_TEST",
-            "PlaceMarker",
-            "Circle_section",
-            "guard_stone_test",
-            "Haldor",
-            "odin",
-            "dvergrprops_wood_stake",
-            "Hildir",
-            "Flies",
-            "turf_roof_wall", // Visual duplicate of "wood_roof_wall"
-            "rock_mistlands2", // Explodes into a boulder "___MineRock5"
-            "demister_ball", // Placement is glitchy
-            "CargoCrate", // Deletes itself on placement because it's empty
-            "TreasureChest_blackforest", // Visual duplicate of wooden chest
-            "TreasureChest_heath", // Visual duplicate of wooden chest
-            "TreasureChest_heath_hildir", // Visual duplicate of wooden chest
-            "TreasureChest_heath_hildir", // Visual duplicate of wooden chest
-            "TreasureChest_meadows", // Visual duplicate of wooden chest
-            "TreasureChest_meadows_buried", // Visual duplicate of wooden chest
-            "TreasureChest_mountains", // Visual duplicate of wooden chest
-            "TreasureChest_swamp", // Visual duplicate of wooden chest
-            "TreasureChest_fCrypt", // Visual duplicate of "TreasureChest_forestCrypt"
-            "TreasureChest_mountaincave_hildir", // Visual duplicate of "TreasureChest_dvergrtown"
-            "TreasureChest_plainsfortress_hildir", // Visual duplicate of "TreasureChest_dvergrtown"
-            "TreasureChest_forestcrypt_hildir", // Visual duplicate of "TreasureChest_dvergrtown"
-        };
-
-        private static readonly HashSet<string> RemoveTreasure = new()
-        {
-            "TreasureChest_forestcrypt",
-            "TreasureChest_mountaincave",
-            "TreasureChest_plains_stone",
-            "TreasureChest_trollcave",
-            "TreasureChest_dvergr_loose_stone",
-            "TreasureChest_sunkencrypt",
-            "TreasureChest_dvergrtown",
-            "TreasureChest_dvergrtower",
-        };
-
-        internal static readonly HashSet<string> RemovePickable = new()
-        {
-            "Pickable_SurtlingCoreStand",
-            "Pickable_BlackCoreStand",
-            // "Pickable_Tar"
-        };
-
-        /// <summary>
-        ///     Get a bool indicating if the prefab is a treasure chest 
-        ///     and the contents should be removed when placing it.
-        /// </summary>
-        /// <param name="PrefabName"></param>
-        /// <returns></returns>
-        internal static bool ShouldRemoveTreasure(string PrefabName)
-        {
-            return RemoveTreasure.Contains(PrefabName) || PrefabName.StartsWith("TreasureChest");
-        }
 
         internal static PrefabConfig GetDefaultPrefabConfigValues(string prefab_name)
         {
@@ -94,43 +29,15 @@ namespace MoreVanillaBuildPrefabs.Configs
             if (piece?.m_resources != null)
             {
                 // Stop errors on subsequent log ins
-                if (!DefaultConfigs.DefaultResources.ContainsKey(prefab.name))
+                if (!DefaultResources.ContainsKey(prefab.name))
                 {
 #if DEBUG
                     Log.LogDebug($"Adding default resources for {prefab.name}");
 #endif
-                    DefaultConfigs.DefaultResources.Add(prefab.name, piece.m_resources);
+                    DefaultResources.Add(prefab.name, piece.m_resources);
                 }
             }
         }
-
-        internal static readonly HashSet<string> NeedsCollisionPatchForGhost = new()
-        {
-            "blackmarble_stair_corner",
-            "blackmarble_stair_corner_left",
-        };
-
-        // EligiblePrefabs that should not be set to allow clipping everything
-        internal static readonly HashSet<string> RestrictClipping = new()
-        {
-            "blackmarble_post01",
-            "dverger_demister",
-            "dverger_demister_large",
-            "dvergrprops_hooknchain",
-            "barrell",
-            "MountainKit_brazier_blue",
-            "MountainKit_brazier",
-            "stoneblock_fracture",
-            "piece_dvergr_pole",
-            "dvergrprops_wood_pole",
-            "dvergrprops_wood_wall"
-        };
-
-        internal static readonly HashSet<string> CanClipGround = new()
-        {
-            "stoneblock_fracture",
-            "blackmarble_post01",
-        };
 
         internal static readonly Dictionary<string, PrefabConfig> DefaultConfigValues = new()
         {
