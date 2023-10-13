@@ -881,8 +881,11 @@ namespace MoreVanillaBuildPrefabs.Helpers
                     );
                     break;
                 default:
+                    // prefab may not have a piece component
+                    //Transform transform = prefab.GetComponent<Piece>().transform;
+
                     // Add SnapPoint to Local Center if there is not already one present there
-                    Transform transform = prefab.GetComponent<Piece>().transform;
+                    Transform transform = prefab.transform;
                     for (var index = 0; index < transform.childCount; ++index)
                     {
                         var child = transform.GetChild(index);

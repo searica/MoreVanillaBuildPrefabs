@@ -85,6 +85,12 @@ namespace MoreVanillaBuildPrefabs
             foreach (var prefab in EligiblePrefabs)
             {
                 SaveDefaultResources(prefab);
+                // currently always applies patches to all prefabs
+                // regardless of whether the pieces are enabled
+                // only has to run once this way
+                // also prevents trailership instances from
+                // becoming unusable if you disable it as a build piece
+                PrefabPatcher.PatchPrefabIfNeeded(prefab);
                 PrefabRefs.Add(prefab.name, prefab);
             }
             Log.LogInfo($"Found {EligiblePrefabs.Count()} prefabs");
@@ -123,7 +129,12 @@ namespace MoreVanillaBuildPrefabs
         /// <returns></returns>
         internal static bool IsChangedByMod(string prefabName)
         {
-            return PieceRefs.ContainsKey(prefabName);
+            // Unsure if I should access PieceRefs or PrefabRefs here
+            // both could work but PrefabRefs is unchanging after initial log in
+            // Unchanging could be good but could also be a bad thing
+            // That PieceRefs changes could maybe lead to errors or prevent me
+            // trying to access something that isn't a thing anymore somehow?
+            return PrefabRefs.ContainsKey(prefabName);
         }
 
         internal static void InitPieceRefs()
@@ -181,7 +192,6 @@ namespace MoreVanillaBuildPrefabs
         private static Piece CreatePiece(PieceDB pieceDB)
         {
             var prefab = pieceDB.Prefab;
-            PrefabPatcher.PatchPrefabIfNeeded(prefab);
             var piece = PieceHelper.ConfigurePiece(
                 pieceDB.piece,
                 NameHelper.FormatPrefabName(prefab.name),

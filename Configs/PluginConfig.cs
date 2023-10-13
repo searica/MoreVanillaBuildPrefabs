@@ -55,8 +55,7 @@ namespace MoreVanillaBuildPrefabs.Configs
         }
 
         private const string MainSectionName = "\u200BGlobal";
-        internal static ConfigEntry<bool> IsModEnabled { get; private set; }
-        internal static ConfigEntry<bool> LockConfiguration { get; private set; }
+
         internal static ConfigEntry<bool> CreatorShopAdminOnly { get; private set; }
         internal static ConfigEntry<bool> CreatorShopDeconstructAdminOnly { get; private set; }
         internal static ConfigEntry<bool> ForceAllPrefabs { get; private set; }
@@ -73,7 +72,7 @@ namespace MoreVanillaBuildPrefabs.Configs
             internal ConfigEntry<bool> placementPatch;
         }
 
-        internal static Dictionary<string, PieceConfigEntries> PieceConfigEntriesMap { get; private set; }
+        internal static readonly Dictionary<string, PieceConfigEntries> PieceConfigEntriesMap = new();
 
         private static readonly AcceptableValueList<bool> AcceptableBoolValuesList = new(new bool[] { false, true });
 

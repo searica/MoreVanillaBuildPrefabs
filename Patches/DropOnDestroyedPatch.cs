@@ -14,13 +14,10 @@ namespace MoreVanillaBuildPrefabs
         [HarmonyPatch(nameof(DropOnDestroyed.OnDestroyed))]
         static bool OnDestroyedPrefix(DropOnDestroyed __instance)
         {
-            if (PluginConfig.IsModEnabled.Value)
+            if (MoreVanillaBuildPrefabs.DisableDestructionDrops)
             {
-                if (MoreVanillaBuildPrefabs.DisableDestructionDrops)
-                {
-                    MoreVanillaBuildPrefabs.DisableDestructionDrops = false;
-                    return false;
-                }
+                MoreVanillaBuildPrefabs.DisableDestructionDrops = false;
+                return false;
             }
             return true;
         }

@@ -59,10 +59,6 @@ namespace MoreVanillaBuildPrefabs
             Log.LogInfo("PlacePieceInstantiateDelegate()");
             var result = UnityEngine.Object.Instantiate(gameObject, position, rotation);
 
-            if (!PluginConfig.IsModEnabled.Value)
-            {
-                return result;
-            }
 
             if (PieceHelper.AddedPrefabs.Contains(gameObject.name))
             {
@@ -120,8 +116,9 @@ namespace MoreVanillaBuildPrefabs
 
         private static GameObject SetupPlacementGhostInstantiateDelegate(GameObject selectedPrefab)
         {
-            if (!PluginConfig.IsModEnabled.Value)
+            if (!MoreVanillaBuildPrefabs.IsChangedByMod(selectedPrefab.name))
             {
+                // ignore pieces not touched by this mod
                 return UnityEngine.Object.Instantiate(selectedPrefab);
             }
 
@@ -195,28 +192,26 @@ namespace MoreVanillaBuildPrefabs
         static bool CheckCanRemovePrefix(Player __instance, Piece piece, ref bool __result)
 #pragma warning restore IDE0060 // Remove unused parameter
         {
-            if (PluginConfig.IsModEnabled.Value)
-            {
-                // Prevents world generated piece from player removal with build hammer.
-                if (!piece.IsPlacedByPlayer() && HammerHelper.IsCreatorShopPiece(piece))
-                {
-                    __result = false;
-                    return false;
-                }
 
-                // Prevents player from breaking pottery barn pieces they didn't
-                // create themselves unless admin check and config is true.
-                if (HammerHelper.IsCreatorShopPiece(piece) && !piece.IsCreator())
+            // Prevents world generated piece from player removal with build hammer.
+            if (!piece.IsPlacedByPlayer() && HammerHelper.IsCreatorShopPiece(piece))
+            {
+                __result = false;
+                return false;
+            }
+
+            // Prevents player from breaking pottery barn pieces they didn't
+            // create themselves unless admin check and config is true.
+            if (HammerHelper.IsCreatorShopPiece(piece) && !piece.IsCreator())
+            {
+                // Allow admins to deconstruct CreatorShop pieces built by other players if setting is enabled in config
+                if (PluginConfig.IsCreatorShopDeconstructAdminOnly && SynchronizationManager.Instance.PlayerIsAdmin)
                 {
-                    // Allow admins to deconstruct CreatorShop pieces built by other players if setting is enabled in config
-                    if (PluginConfig.IsCreatorShopDeconstructAdminOnly && SynchronizationManager.Instance.PlayerIsAdmin)
-                    {
-                        __result = true;
-                        return true;
-                    }
-                    __result = false;
-                    return false;
+                    __result = true;
+                    return true;
                 }
+                __result = false;
+                return false;
             }
 
             return true;

@@ -21,8 +21,6 @@ namespace MoreVanillaBuildPrefabs
         [HarmonyPatch(nameof(Piece.SetCreator))]
         static void PieceSetCreatorPrefix(long uid, Piece __instance)
         {
-            if (!PluginConfig.IsModEnabled.Value) { return; }
-
             // Synchronize the positions and rotations of otherwise non-persistent objects
             var view = __instance.GetComponent<ZNetView>();
             if (view && !view.m_persistent)
@@ -51,7 +49,6 @@ namespace MoreVanillaBuildPrefabs
         static void PieceDropResourcesPrefix(Piece __instance, out Piece.Requirement[] __state)
         {
             __state = null;
-            if (!PluginConfig.IsModEnabled.Value) { return; }
 #if DEBUG
             Log.LogInfo($"DropResourcesPrefix() for {__instance.gameObject.name}");
 #endif

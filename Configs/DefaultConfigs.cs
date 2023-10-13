@@ -588,9 +588,9 @@ namespace MoreVanillaBuildPrefabs.Configs
                 )
             },
             {
-                "goblin_pole_small",
+                "goblin_roof_45d",
                 new PrefabDB(
-                    "goblin_pole_small",
+                    "goblin_roof_45d",
                     true,
                     false,
                     HammerCategories.Building,

@@ -14,11 +14,6 @@ namespace MoreVanillaBuildPrefabs.Patches
         [HarmonyPatch(nameof(EffectList.Create))]
         static void CreatePrefix(ref EffectList __instance)
         {
-            if (!PluginConfig.IsModEnabled.Value)
-            {
-                return;
-            }
-
             foreach (EffectList.EffectData effectData in __instance.m_effectPrefabs)
             {
                 if (effectData != null && effectData.m_enabled && !effectData.m_prefab)
