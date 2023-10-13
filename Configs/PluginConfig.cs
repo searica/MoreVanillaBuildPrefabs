@@ -67,7 +67,6 @@ namespace MoreVanillaBuildPrefabs.Configs
         {
             internal ConfigEntry<bool> enabled;
             internal ConfigEntry<bool> allowedInDungeons;
-            internal ConfigEntry<string> resources;
             internal ConfigEntry<string> category;
             internal ConfigEntry<string> craftingStation;
             internal ConfigEntry<string> requirements;
@@ -77,13 +76,6 @@ namespace MoreVanillaBuildPrefabs.Configs
         internal static Dictionary<string, PieceConfigEntries> PieceConfigEntriesMap { get; private set; }
 
         private static readonly AcceptableValueList<bool> AcceptableBoolValuesList = new(new bool[] { false, true });
-
-        public static event EventHandler<SettingChangedEventArgs> SettingChanged
-        {
-            add => configFile.SettingChanged += value;
-            remove => configFile.SettingChanged -= value;
-        }
-
 
         internal static void Init(ConfigFile config)
         {
@@ -151,57 +143,57 @@ namespace MoreVanillaBuildPrefabs.Configs
             string sectionName = prefab.name;
 
             // get predefined configs or generic settings if no predefined config
-            PrefabDB default_config = DefaultConfigs.GetDefaultPieceDB(prefab.name);
+            PrefabDB defaultPieceDB = DefaultConfigs.GetDefaultPieceDB(prefab.name);
             PieceConfigEntries pieceConfigEntries = new();
 
             pieceConfigEntries.enabled = BindConfig(
                 sectionName,
                 "\u200BEnabled",
-                default_config.enabled,
+                defaultPieceDB.enabled,
                 "If true then add the prefab as a buildable piece. Note: this setting is ignored if ForceAllPrefabs is true.",
                 AcceptableBoolValuesList
             );
             pieceConfigEntries.enabled.SettingChanged += PieceSettingChanged;
-            default_config.enabled = pieceConfigEntries.enabled.Value;
+            defaultPieceDB.enabled = pieceConfigEntries.enabled.Value;
 
             pieceConfigEntries.allowedInDungeons = BindConfig(
                 sectionName,
                 "AllowedInDungeons",
-                default_config.allowedInDungeons,
+                defaultPieceDB.allowedInDungeons,
                 "If true then this prefab can be built inside dungeon zones.",
                 AcceptableBoolValuesList
             );
             pieceConfigEntries.allowedInDungeons.SettingChanged += PieceSettingChanged;
-            default_config.allowedInDungeons = pieceConfigEntries.allowedInDungeons.Value;
+            defaultPieceDB.allowedInDungeons = pieceConfigEntries.allowedInDungeons.Value;
 
             pieceConfigEntries.category = BindConfig(
                 sectionName,
                 "Category",
-                default_config.category,
+                defaultPieceDB.category,
                 "A string defining the tab the prefab shows up on in the hammer build table.",
                 HammerCategories.GetAcceptableValueList()
             );
             pieceConfigEntries.category.SettingChanged += PieceSettingChanged;
-            default_config.category = pieceConfigEntries.category.Value;
+            defaultPieceDB.category = pieceConfigEntries.category.Value;
 
             pieceConfigEntries.craftingStation = BindConfig(
                 sectionName,
                 "CraftingStation",
-                default_config.craftingStation,
+                defaultPieceDB.craftingStation,
                 "A string defining the crafting station required to built the prefab.",
                 CraftingStations.GetAcceptableValueList()
             );
             pieceConfigEntries.craftingStation.SettingChanged += PieceSettingChanged;
-            default_config.craftingStation = pieceConfigEntries.craftingStation.Value;
+            defaultPieceDB.craftingStation = pieceConfigEntries.craftingStation.Value;
 
             pieceConfigEntries.requirements = BindConfig(
                 sectionName,
                 "Requirements",
-                default_config.requirements,
+                defaultPieceDB.requirements,
                 "Resources required to build the prefab. Formatted as: itemID,amount;itemID,amount where itemID is the in-game identifier for the resource and amount is an integer. "
             );
             pieceConfigEntries.requirements.SettingChanged += PieceSettingChanged;
-            default_config.requirements = pieceConfigEntries.requirements.Value;
+            defaultPieceDB.requirements = pieceConfigEntries.requirements.Value;
 
             // if the prefab is not already included in the list of prefabs that need a 
             // collision patch then add a config option to enable the placement collision patch.
@@ -218,9 +210,9 @@ namespace MoreVanillaBuildPrefabs.Configs
                     AcceptableBoolValuesList
                 );
                 pieceConfigEntries.placementPatch.SettingChanged += PlacementSettingChanged;
-                default_config.placementPatch = pieceConfigEntries.placementPatch.Value;
+                defaultPieceDB.placementPatch = pieceConfigEntries.placementPatch.Value;
 
-                if (default_config.placementPatch)
+                if (defaultPieceDB.placementPatch)
                 {
                     // add prefab to list of prefabs needing a collision patch if setting is true
                     PiecePlacement._NeedsCollisionPatchForGhost.Add(prefab.name);
@@ -230,7 +222,7 @@ namespace MoreVanillaBuildPrefabs.Configs
             // keep a reference to the config entries
             // to make sure the events fire as intended
             PieceConfigEntriesMap[prefab.name] = pieceConfigEntries;
-            return default_config;
+            return defaultPieceDB;
         }
 
         internal static void SetupWatcher()

@@ -1,4 +1,6 @@
-﻿using HarmonyLib;
+﻿using System;
+using HarmonyLib;
+
 using MoreVanillaBuildPrefabs.Logging;
 using MoreVanillaBuildPrefabs.Configs;
 using MoreVanillaBuildPrefabs.Helpers;
@@ -56,7 +58,7 @@ namespace MoreVanillaBuildPrefabs
             // Only interact if it is a piece added by this mod or
             // the prefab has previously had it's resources altered by the mod
             string prefabName = NameHelper.GetPrefabName(__instance);
-            if (PieceHelper.IsAddedByMod(prefabName) || DefaultResources.ContainsKey(prefabName))
+            if (IsChangedByMod(prefabName) || DefaultResources.ContainsKey(prefabName))
             {
                 if (__instance.IsPlacedByPlayer())
                 {
@@ -74,12 +76,7 @@ namespace MoreVanillaBuildPrefabs
                     }
                     else
                     {
-                        // could try this instead of the loop
-                        //__instance.m_resources = new Piece.Requirement[0];
-                        foreach (var resource in __instance.m_resources)
-                        {
-                            resource.m_resItem = null;
-                        }
+                        __instance.m_resources = Array.Empty<Piece.Requirement>();
                     }
                 }
             }

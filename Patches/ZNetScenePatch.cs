@@ -9,16 +9,13 @@ namespace MoreVanillaBuildPrefabs
     [HarmonyPatch(typeof(ZNetScene))]
     internal class ZNetScenePatch
     {
-
-        [HarmonyPatch(typeof(ZNetScene), "Awake")]
-        public static class ZNetSceneAwake
+        [HarmonyPostfix]
+        [HarmonyPatch(nameof(ZNetScene.Awake))]
+        public static void ZNetSceneAwakePostfix(ZNetScene __instance)
         {
-            public static void Postfix(ZNetScene __instance)
-            {
-                Log.LogInfo("ZNetSceneAwake");
-                Log.LogInfo("Performing final mod initialization");
-                FinalInit();
-            }
+            Log.LogInfo("ZNetSceneAwake");
+            Log.LogInfo("Performing final mod initialization");
+            FinalInit();
         }
     }
 }

@@ -26,7 +26,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
             {
                 case "ArmorStand_Male":
                 case "ArmorStand_Female":
-                    SnapPointHelper.AddCenterSnapPoint(prefab);
+                    SnapPointHelper.AddSnapPointToCenter(prefab);
                     break;
                 case "Trailership":
                     Log.LogInfo(prefab.name);
@@ -894,7 +894,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
                             }
                         }
                     }
-                    SnapPointHelper.AddCenterSnapPoint(prefab);
+                    SnapPointHelper.AddSnapPointToCenter(prefab);
                     break;
             }
         }

@@ -44,40 +44,34 @@ namespace MoreVanillaBuildPrefabs.Helpers
         };
 
         /// <summary>
-        ///     Adds snap points for the prefab to the corners of the specified mesh.
+        ///     Adds snap points for the game object to the corners of the specified mesh.
         /// </summary>
         /// <param name="target"></param>
         /// <param name="meshName"></param>
-        internal static void AddSnapPointsToMeshCorners(GameObject target, string meshName, bool fixPiece = false)
+        internal static void AddSnapPointsToMeshCorners(
+            GameObject target,
+            string meshName,
+            bool fixPiece = false
+        )
         {
-            foreach (var meshFilter in target.GetComponentsInChildren<MeshFilter>())
-            {
-                var mesh = meshFilter.mesh;
-                if (mesh == null)
-                {
-                    continue;
-                }
+            var mesh = target.GetMesh(meshName);
 
-                if (NameHelper.RemoveSuffix(mesh.name, "Instance").Trim() == meshName)
-                {
-                    List<Vector3> pts = new();
-                    var bounds = mesh.bounds;
-                    foreach (var corner in corners)
-                    {
-                        pts.Add(bounds.center + Vector3.Scale(corner, bounds.extents));
-                    }
-                    AddSnapPoints(
-                       target,
-                       pts,
-                       fixPiece
-                    );
-                    return;
-                }
+            if (mesh == null) return;
+
+            List<Vector3> pts = new();
+            var bounds = mesh.bounds;
+            foreach (var corner in corners)
+            {
+                pts.Add(bounds.center + Vector3.Scale(corner, bounds.extents));
             }
-            Log.LogWarning($"Could not find mesh: {meshName} for prefab: {target.name}");
+            AddSnapPoints(target, pts, fixPiece);
         }
 
-        internal static void AddCenterSnapPoint(GameObject target)
+        /// <summary>
+        ///     Adds a snap point to the local center of the game object's transform.
+        /// </summary>
+        /// <param name="target"></param>
+        internal static void AddSnapPointToCenter(GameObject target)
         {
             AddSnapPoints(
                 target,

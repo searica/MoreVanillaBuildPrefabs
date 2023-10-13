@@ -16,6 +16,7 @@ namespace MoreVanillaBuildPrefabs.Patchess
         static void ObjectDBAwakePostfix()
         {
             Log.LogInfo("ObjectDBAwakePostfix()");
+
             HammerHelper.AddCustomCategories();
             MoreVanillaBuildPrefabs.InitPrefabRefs();
         }

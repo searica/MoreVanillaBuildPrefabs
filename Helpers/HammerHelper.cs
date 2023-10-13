@@ -1,4 +1,6 @@
 ﻿using Jotunn.Managers;
+using Jotunn.Configs;
+
 using MoreVanillaBuildPrefabs.Logging;
 using MoreVanillaBuildPrefabs.Configs;
 

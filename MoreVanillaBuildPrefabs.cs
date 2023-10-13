@@ -30,7 +30,7 @@ namespace MoreVanillaBuildPrefabs
         Harmony _harmony;
 
         internal static readonly Dictionary<string, GameObject> PrefabRefs = new();
-        internal static List<PieceDB> PieceRefs = new();
+        internal static Dictionary<string, PieceDB> PieceRefs = new();
         internal static Dictionary<string, Piece.Requirement[]> DefaultResources = new();
 
         internal static bool DisableDestructionDrops { get; set; } = false;
@@ -98,18 +98,29 @@ namespace MoreVanillaBuildPrefabs
         /// <param PrefabName="prefab"></param>
         internal static void SaveDefaultResources(GameObject prefab)
         {
-            var piece = prefab?.GetComponent<Piece>();
-            if (piece?.m_resources != null)
+            // Stop errors on subsequent log ins
+            if (!DefaultResources.ContainsKey(prefab.name))
             {
-                // Stop errors on subsequent log ins
-                if (!DefaultResources.ContainsKey(prefab.name))
-                {
 #if DEBUG
-                    Log.LogDebug($"Adding default resources for {prefab.name}");
+                Log.LogInfo($"Adding default resources for {prefab.name}");
 #endif
+                var piece = prefab?.GetComponent<Piece>();
+                if (piece != null)
+                {
                     DefaultResources.Add(prefab.name, piece.m_resources);
                 }
+                DefaultResources.Add(prefab.name, Array.Empty<Piece.Requirement>());
             }
+        }
+
+        /// <summary>
+        ///     Returns a bool indicating if the prefab has been changed by mod.
+        /// </summary>
+        /// <param name="prefabName"></param>
+        /// <returns></returns>
+        internal static bool IsChangedByMod(string prefabName)
+        {
+            return PieceRefs.ContainsKey(prefabName);
         }
 
         internal static void InitPieceRefs()
@@ -119,7 +130,7 @@ namespace MoreVanillaBuildPrefabs
             if (PieceRefs.Count > 0)
             {
                 PieceTable hammerTable = PieceHelper.GetPieceTable(PieceTables.Hammer);
-                foreach (PieceDB pdb in PieceRefs)
+                foreach (PieceDB pdb in PieceRefs.Values)
                 {
                     PieceHelper.RemovePieceFromPieceTable(pdb.Prefab, hammerTable);
                     // Not sure if I have the right name for the hammer here
@@ -135,14 +146,15 @@ namespace MoreVanillaBuildPrefabs
             PieceRefs = GeneratePieceRefs();
         }
 
-        private static List<PieceDB> GeneratePieceRefs()
+        private static Dictionary<string, PieceDB> GeneratePieceRefs()
         {
-            List<PieceDB> newPieceRefs = new();
+            Dictionary<string, PieceDB> newPieceRefs = new();
             foreach (var prefab in PrefabRefs.Values)
             {
                 PrefabDB prefabDB = PluginConfig.LoadPrefabDB(prefab);
 
                 newPieceRefs.Add(
+                    prefab.name,
                     new PieceDB(prefabDB, PieceHelper.InitPieceComponent(prefab))
                 );
             }
@@ -152,7 +164,7 @@ namespace MoreVanillaBuildPrefabs
         internal static void InitPieces()
         {
             List<Piece> pieces = new();
-            foreach (var pieceDB in PieceRefs)
+            foreach (var pieceDB in PieceRefs.Values)
             {
                 pieces.Add(CreatePiece(pieceDB));
             }
@@ -185,13 +197,14 @@ namespace MoreVanillaBuildPrefabs
                 hover.enabled = true;
                 hover.m_text = piece.m_name;
             }
+
             return piece;
         }
 
         internal static void InitHammer()
         {
             PieceTable hammerTable = PieceHelper.GetPieceTable(PieceTables.Hammer);
-            foreach (var pieceDB in PieceRefs)
+            foreach (var pieceDB in PieceRefs.Values)
             {
                 // check if piece is enabled by the mod
                 if (!pieceDB.enabled && !PluginConfig.IsForceAllPrefabs)
