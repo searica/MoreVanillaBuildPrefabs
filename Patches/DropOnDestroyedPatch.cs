@@ -1,5 +1,5 @@
 ﻿using HarmonyLib;
-using MoreVanillaBuildPrefabs.Configs;
+using MoreVanillaBuildPrefabs.Logging;
 
 namespace MoreVanillaBuildPrefabs
 {
@@ -14,9 +14,9 @@ namespace MoreVanillaBuildPrefabs
         [HarmonyPatch(nameof(DropOnDestroyed.OnDestroyed))]
         static bool OnDestroyedPrefix(DropOnDestroyed __instance)
         {
-            if (MoreVanillaBuildPrefabs.DisableDestructionDrops)
+            if (MoreVanillaBuildPrefabs.DisableDropOnDestroyed)
             {
-                MoreVanillaBuildPrefabs.DisableDestructionDrops = false;
+                MoreVanillaBuildPrefabs.DisableDropOnDestroyed = false;
                 return false;
             }
             return true;
