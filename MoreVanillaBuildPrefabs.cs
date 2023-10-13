@@ -109,7 +109,10 @@ namespace MoreVanillaBuildPrefabs
                 {
                     DefaultResources.Add(prefab.name, piece.m_resources);
                 }
-                DefaultResources.Add(prefab.name, Array.Empty<Piece.Requirement>());
+                else
+                {
+                    DefaultResources.Add(prefab.name, Array.Empty<Piece.Requirement>());
+                }
             }
         }
 
@@ -152,7 +155,6 @@ namespace MoreVanillaBuildPrefabs
             foreach (var prefab in PrefabRefs.Values)
             {
                 PrefabDB prefabDB = PluginConfig.LoadPrefabDB(prefab);
-
                 newPieceRefs.Add(
                     prefab.name,
                     new PieceDB(prefabDB, PieceHelper.InitPieceComponent(prefab))

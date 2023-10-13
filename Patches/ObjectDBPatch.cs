@@ -1,4 +1,6 @@
-﻿using HarmonyLib;
+﻿using UnityEngine.SceneManagement;
+using HarmonyLib;
+
 using MoreVanillaBuildPrefabs.Helpers;
 using MoreVanillaBuildPrefabs.Logging;
 
@@ -17,8 +19,26 @@ namespace MoreVanillaBuildPrefabs.Patchess
         {
             Log.LogInfo("ObjectDBAwakePostfix()");
 
-            HammerHelper.AddCustomCategories();
-            MoreVanillaBuildPrefabs.InitPrefabRefs();
+            //HammerHelper.AddCustomCategories();
+            //MoreVanillaBuildPrefabs.InitPrefabRefs();
+
+            //Log.LogInfo("Performing final mod initialization");
+            //MoreVanillaBuildPrefabs.FinalInit();
+
+            if (SceneManager.GetActiveScene() == null)
+            {
+                return;
+            }
+
+            // If loading into game world and prefabs have not been added
+            if (SceneManager.GetActiveScene().name == "main")
+            {
+                HammerHelper.AddCustomCategories();
+                MoreVanillaBuildPrefabs.InitPrefabRefs();
+
+                Log.LogInfo("Performing final mod initialization");
+                MoreVanillaBuildPrefabs.FinalInit();
+            }
         }
     }
 }

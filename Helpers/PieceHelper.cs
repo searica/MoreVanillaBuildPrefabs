@@ -348,9 +348,13 @@ namespace MoreVanillaBuildPrefabs.Helpers
         {
             try
             {
-                pieceTable.m_pieces.Remove(prefab);
-                AddedPrefabs.Remove(prefab.name);
-                return true;
+                if (pieceTable.m_pieces.Contains(prefab))
+                {
+                    pieceTable.m_pieces.Remove(prefab);
+                    AddedPrefabs.Remove(prefab.name);
+                    return true;
+                }
+                return false;
             }
             catch (Exception e)
             {
