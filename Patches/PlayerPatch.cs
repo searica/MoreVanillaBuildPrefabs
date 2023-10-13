@@ -56,7 +56,9 @@ namespace MoreVanillaBuildPrefabs
             Quaternion rotation
         )
         {
+#if DEBUG
             Log.LogInfo("PlacePieceInstantiateDelegate()");
+#endif 
             var result = UnityEngine.Object.Instantiate(gameObject, position, rotation);
 
 
@@ -188,13 +190,17 @@ namespace MoreVanillaBuildPrefabs
 
         [HarmonyPrefix]
         [HarmonyPatch(nameof(Player.CheckCanRemovePiece))]
-#pragma warning disable IDE0060 // Remove unused parameter
         static bool CheckCanRemovePrefix(Player __instance, Piece piece, ref bool __result)
-#pragma warning restore IDE0060 // Remove unused parameter
         {
+            // Only modify results for pieces affected by this mod
+            var prefabName = NameHelper.GetPrefabName(piece);
+            if (!MoreVanillaBuildPrefabs.IsChangedByMod(prefabName))
+            {
+                return true; // run CheckCanRemove method as normal
+            }
 
             // Prevents world generated piece from player removal with build hammer.
-            if (!piece.IsPlacedByPlayer() && HammerHelper.IsCreatorShopPiece(piece))
+            if (!piece.IsPlacedByPlayer() && CreatorShopHelper.IsCreatorShopPiece(piece))
             {
                 __result = false;
                 return false;
@@ -202,7 +208,7 @@ namespace MoreVanillaBuildPrefabs
 
             // Prevents player from breaking pottery barn pieces they didn't
             // create themselves unless admin check and config is true.
-            if (HammerHelper.IsCreatorShopPiece(piece) && !piece.IsCreator())
+            if (CreatorShopHelper.IsCreatorShopPiece(piece) && !piece.IsCreator())
             {
                 // Allow admins to deconstruct CreatorShop pieces built by other players if setting is enabled in config
                 if (PluginConfig.IsCreatorShopDeconstructAdminOnly && SynchronizationManager.Instance.PlayerIsAdmin)

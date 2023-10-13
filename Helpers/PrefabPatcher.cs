@@ -29,7 +29,6 @@ namespace MoreVanillaBuildPrefabs.Helpers
                     SnapPointHelper.AddSnapPointToCenter(prefab);
                     break;
                 case "Trailership":
-                    Log.LogInfo(prefab.name);
 
                     foreach (var meshFilter in prefab.GetComponentsInChildren<MeshFilter>())
                     {

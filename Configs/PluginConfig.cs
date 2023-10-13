@@ -283,32 +283,3 @@ namespace MoreVanillaBuildPrefabs.Configs
         }
     }
 }
-
-
-// Jotunn based code
-
-/// <summary>
-///     Create array of Requirement Configs for use with Jotunn
-/// </summary>
-/// <param name="data"></param>
-/// <returns></returns>
-//internal static RequirementConfig[] CreateRequirementConfigsArray(string data)
-//{
-//    if (string.IsNullOrEmpty(data.Trim())) return Array.Empty<RequirementConfig>();
-
-//    // If not empty
-//    List<RequirementConfig> requirements = new();
-
-//    foreach (var entry in data.Split(';'))
-//    {
-//        string[] values = entry.Split(',');
-//        RequirementConfig reqConfig = new()
-//        {
-//            Item = values[0].Trim(),
-//            Amount = int.Parse(values[1].Trim()),
-//            Recover = true
-//        };
-//        requirements.Add(reqConfig);
-//    }
-//    return requirements.ToArray();
-//}

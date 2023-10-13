@@ -6,20 +6,25 @@ using MoreVanillaBuildPrefabs.Configs;
 
 namespace MoreVanillaBuildPrefabs.Helpers
 {
-    internal class HammerHelper
+    internal class CreatorShopHelper
     {
 
         internal static Piece.PieceCategory CreatorShop;
 
-        internal static void AddCustomCategories()
+        internal static void AddCreatorShopPieceCategory()
         {
-            Log.LogInfo("AddCustomCategories()");
-            CreatorShop = PieceManager.Instance.AddPieceCategory(PieceTables.Hammer, HammerCategories.CreatorShop);
+            if (PieceManager.Instance.GetPieceCategory(HammerCategories.CreatorShop) == null)
+            {
+#if DEBUG
+                Log.LogInfo("AddCreatorShopPieceCategory()");
+#endif
+                CreatorShop = PieceManager.Instance.AddPieceCategory(PieceTables.Hammer, HammerCategories.CreatorShop);
+            }
         }
 
-        internal static void RemoveCustomCategories()
+        internal static void RemoveCreatorShopPieceCategory()
         {
-            Log.LogInfo("RemoveCustomCategories()");
+            Log.LogInfo("RemoveCreatorShopPieceCategory()");
             PieceManager.Instance.RemovePieceCategory(PieceTables.Hammer, HammerCategories.CreatorShop);
         }
 

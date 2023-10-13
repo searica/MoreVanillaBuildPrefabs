@@ -92,7 +92,9 @@ namespace MoreVanillaBuildPrefabs.Helpers
         }
 
         /// <summary>
-        ///     Create and initalize piece component if needed.
+        ///     Create and initalize piece component if needed. 
+        ///     Sets m_canBeRemoved to false by default when adding 
+        ///     piece components prefabs that are missing them.
         /// </summary>
         /// <param name="prefab"></param>
         internal static Piece InitPieceComponent(GameObject prefab)
@@ -120,11 +122,10 @@ namespace MoreVanillaBuildPrefabs.Helpers
                     piece.m_clipGround = PiecePlacement.CanClipGround(prefab.name);
                     piece.m_allowRotatedOverlap = true;
                     piece.m_repairPiece = false; // setting to true prevents placement
-                    piece.m_canBeRemoved = true;
                     piece.m_onlyInBiome = Heightmap.Biome.None;
 
                     // to prevent deconstruction of pieces that are not enabled by the mod
-                    piece.m_targetNonPlayerBuilt = false;
+                    piece.m_canBeRemoved = false;
 
                     if (PluginConfig.IsVerbose)
                     {
@@ -292,7 +293,9 @@ namespace MoreVanillaBuildPrefabs.Helpers
         /// <param name="pieceTableName"></param>
         internal static void RemoveAllCustomPiecesFromPieceTable(string pieceTableName)
         {
+#if DEBUG
             Log.LogInfo("RemoveAllCustomPiecesFromPieceTable()");
+#endif 
 
             int numCustomPieces = AddedPrefabs.Count();
             var prefabsToRemove = AddedPrefabs.ToList();
@@ -366,83 +369,3 @@ namespace MoreVanillaBuildPrefabs.Helpers
         }
     }
 }
-
-
-// Jotunn based code
-
-/// <summary>
-///     Method to configure and return CustomPiece.
-/// </summary>
-/// <param name = "piece" ></ param >
-/// < returns ></ returns >
-//internal static CustomPiece ConfigureCustomPiece(
-//    Piece piece,
-//    string name,
-//    string description,
-//    bool allowedInDungeons,
-//    string category,
-//    string pieceTable,
-//    string craftingStation,
-//    string requirements
-//)
-//{
-//    PieceConfig pieceConfig = new()
-//    {
-//        name = name,
-//        Description = description,
-//        allowedInDungeons = allowedInDungeons,
-//        category = category,
-//        PieceTable = pieceTable,
-//        craftingStation = craftingStation,
-//        requirements = PluginConfig.CreateRequirementConfigsArray(requirements)
-//    };
-//    CustomPiece customPiece = new(piece.gameObject, true, pieceConfig);
-//    return customPiece;
-//}
-
-//internal static bool AddCustomPiece(CustomPiece customPiece)
-//{
-//    customPiece.PiecePrefab.FixReferences(true);
-//    var flag = PieceManager.Instance.AddPiece(customPiece);
-//    PieceManager.Instance.RegisterPieceInPieceTable(customPiece.PiecePrefab, customPiece.PieceTable, customPiece.category);
-//    AddedPrefabs.Add(customPiece.PiecePrefab.name);
-//    return flag;
-//}
-
-/// <summary>
-///     Remove all custom pieces added by this mod.
-/// </summary>
-//internal static void RemoveCustomPieces()
-//{
-//    Log.LogInfo("RemoveCustomPieces()");
-
-//    int numCustomPieces = AddedPrefabs.Count();
-//    var prefabsToRemove = AddedPrefabs.ToList();
-//    foreach (var name in prefabsToRemove)
-//    {
-//        RemoveCustomPiece(name);
-//    }
-//    Log.LogInfo($"Removed {numCustomPieces - AddedPrefabs.Count} custom pieces");
-//}
-
-//        internal static bool RemoveCustomPiece(string name)
-//        {
-//            try // Remove customPiece from PieceTable
-//            {
-//                var customPiece = PieceManager.Instance.GetPiece(name);
-//                var pieceTable = PieceManager.Instance.GetPieceTable(customPiece.PieceTable);
-
-//                pieceTable.m_pieces.Remove(customPiece.PiecePrefab);
-//                PieceManager.Instance.RemovePiece(name);
-
-//                AddedPrefabs.Remove(customPiece.PiecePrefab.name);
-//                return true;
-//            }
-//            catch (Exception e)
-//            {
-//#if DEBUG
-//                Log.LogInfo($"{name}: {e}");
-//#endif
-//                return false;
-//            }
-//        }

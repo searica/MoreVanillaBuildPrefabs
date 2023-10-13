@@ -33,7 +33,10 @@ namespace MoreVanillaBuildPrefabs
         internal static Dictionary<string, PieceDB> PieceRefs = new();
         internal static Dictionary<string, Piece.Requirement[]> DefaultResources = new();
 
-        internal static bool DisableDestructionDrops { get; set; } = false;
+        internal static bool DisableDropOnDestroyed { get; set; } = false;
+
+        private static bool HasInitializedPrefabs => PrefabRefs.Count > 0;
+
 
         public void Awake()
         {
@@ -47,18 +50,6 @@ namespace MoreVanillaBuildPrefabs
             Game.isModded = true;
 
             PluginConfig.SetupWatcher();
-
-            SynchronizationManager.OnConfigurationSynchronized += (obj, attr) =>
-            {
-                if (attr.InitialSynchronization)
-                {
-                    Log.LogInfo("Initial Config sync event received");
-                }
-                else
-                {
-                    Log.LogInfo("Config sync event received");
-                }
-            };
         }
 
         public void OnDestroy()
@@ -67,12 +58,44 @@ namespace MoreVanillaBuildPrefabs
             _harmony?.UnpatchSelf();
         }
 
+        /// <summary>
+        ///     Returns a bool indicating if the prefab has been changed by mod.
+        /// </summary>
+        /// <param name="prefabName"></param>
+        /// <returns></returns>
+        internal static bool IsChangedByMod(string prefabName)
+        {
+            // Unsure if I should access PieceRefs or PrefabRefs here
+            // both could work but PrefabRefs is unchanging after initial log in
+            // Unchanging could be good but could also be a bad thing
+            // That PieceRefs changes could maybe lead to errors or prevent me
+            // trying to access something that isn't a thing anymore somehow?
+            return PrefabRefs.ContainsKey(prefabName);
+        }
+
+        /// <summary>
+        ///     Returns true if the piece is one the mod touches and it 
+        ///     is currently enabled for building. Returns false if the
+        ///     piece is not a custom piece or it is not enabled.
+        /// </summary>
+        /// <param name="prefabName"></param>
+        /// <returns></returns>
+        internal static bool IsCustomPieceEnabled(string prefabName)
+        {
+            if (PieceRefs.ContainsKey(prefabName))
+            {
+                return PieceRefs[prefabName].enabled;
+            }
+            return false;
+        }
+
         internal static void InitPrefabRefs()
         {
             if (PrefabRefs.Count > 0)
             {
                 return;
             }
+            Log.LogInfo("Initializing prefabs");
             var PieceNameCache = PieceHelper.GetExistingPieceNames();
 
             var EligiblePrefabs = ZNetScene.instance.m_prefabs
@@ -108,9 +131,13 @@ namespace MoreVanillaBuildPrefabs
             if (!DefaultResources.ContainsKey(prefab.name))
             {
 #if DEBUG
-                Log.LogInfo($"Adding default resources for {prefab.name}");
+                if (PluginConfig.IsVerbose)
+                {
+                    Log.LogInfo($"Adding default resources for {prefab.name}");
+                }
 #endif
                 var piece = prefab?.GetComponent<Piece>();
+
                 if (piece != null)
                 {
                     DefaultResources.Add(prefab.name, piece.m_resources);
@@ -122,37 +149,24 @@ namespace MoreVanillaBuildPrefabs
             }
         }
 
-        /// <summary>
-        ///     Returns a bool indicating if the prefab has been changed by mod.
-        /// </summary>
-        /// <param name="prefabName"></param>
-        /// <returns></returns>
-        internal static bool IsChangedByMod(string prefabName)
-        {
-            // Unsure if I should access PieceRefs or PrefabRefs here
-            // both could work but PrefabRefs is unchanging after initial log in
-            // Unchanging could be good but could also be a bad thing
-            // That PieceRefs changes could maybe lead to errors or prevent me
-            // trying to access something that isn't a thing anymore somehow?
-            return PrefabRefs.ContainsKey(prefabName);
-        }
-
         internal static void InitPieceRefs()
         {
-            Log.LogInfo("InitPieceRefs");
+            Log.LogInfo("Initializing piece refs");
 
             if (PieceRefs.Count > 0)
             {
                 PieceTable hammerTable = PieceHelper.GetPieceTable(PieceTables.Hammer);
+
                 foreach (PieceDB pdb in PieceRefs.Values)
                 {
                     PieceHelper.RemovePieceFromPieceTable(pdb.Prefab, hammerTable);
-                    // Not sure if I have the right name for the hammer here
+
                     if (Player.m_localPlayer?.GetRightItem()?.m_shared.m_name == "$item_hammer")
                     {
                         Log.LogWarning("Hammer updated through config change, unequipping hammer");
                         Player.m_localPlayer.HideHandItems();
                     }
+
                     DestroyImmediate(pdb.Prefab.GetComponent<Piece>());
                 }
                 PieceRefs.Clear();
@@ -176,6 +190,7 @@ namespace MoreVanillaBuildPrefabs
 
         internal static void InitPieces()
         {
+            Log.LogInfo("Initializing pieces");
             List<Piece> pieces = new();
             foreach (var pieceDB in PieceRefs.Values)
             {
@@ -215,6 +230,7 @@ namespace MoreVanillaBuildPrefabs
 
         internal static void InitHammer()
         {
+            Log.LogInfo("Initializing hammer build table");
             PieceTable hammerTable = PieceHelper.GetPieceTable(PieceTables.Hammer);
             foreach (var pieceDB in PieceRefs.Values)
             {
@@ -225,12 +241,12 @@ namespace MoreVanillaBuildPrefabs
                 }
 
                 // to allow deconstruction of pieces enabled by the mod
-                pieceDB.piece.m_targetNonPlayerBuilt = true;
+                pieceDB.piece.m_canBeRemoved = true;
 
 
                 // Restrict placement of CreatorShop pieces to Admins only
                 if (PluginConfig.IsCreatorShopAdminOnly
-                    && HammerHelper.IsCreatorShopPiece(pieceDB.piece)
+                    && CreatorShopHelper.IsCreatorShopPiece(pieceDB.piece)
                     && !SynchronizationManager.Instance.PlayerIsAdmin)
                 {
                     continue;
@@ -240,15 +256,6 @@ namespace MoreVanillaBuildPrefabs
             }
         }
 
-        /// <summary>
-        ///     Method to perform final intialization on start up
-        /// </summary>
-        internal static void FinalInit()
-        {
-            InitPieceRefs();
-            InitPieces();
-            InitHammer();
-        }
 
         /// <summary>
         ///     Method update mod intialization when settings 
@@ -258,10 +265,14 @@ namespace MoreVanillaBuildPrefabs
         /// <param name="e"></param>
         internal static void PieceSettingChanged(object o, EventArgs e)
         {
-            Log.LogInfo("Config setting changed, re-initializing pieces");
-            InitPieceRefs();
-            InitPieces();
-            InitHammer();
+            if (HasInitializedPrefabs)
+            {
+                Log.LogInfo("Config setting changed, re-initializing");
+                InitPieceRefs();
+                InitPieces();
+                InitHammer();
+                Log.LogInfo("Re-initializing complete");
+            }
         }
 
         /// <summary>

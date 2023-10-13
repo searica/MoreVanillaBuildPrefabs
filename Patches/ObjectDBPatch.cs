@@ -17,14 +17,9 @@ namespace MoreVanillaBuildPrefabs.Patchess
         [HarmonyPatch(nameof(ObjectDB.Awake))]
         static void ObjectDBAwakePostfix()
         {
+#if DEBUG
             Log.LogInfo("ObjectDBAwakePostfix()");
-
-            //HammerHelper.AddCustomCategories();
-            //MoreVanillaBuildPrefabs.InitPrefabRefs();
-
-            //Log.LogInfo("Performing final mod initialization");
-            //MoreVanillaBuildPrefabs.FinalInit();
-
+#endif
             if (SceneManager.GetActiveScene() == null)
             {
                 return;
@@ -33,11 +28,12 @@ namespace MoreVanillaBuildPrefabs.Patchess
             // If loading into game world and prefabs have not been added
             if (SceneManager.GetActiveScene().name == "main")
             {
-                HammerHelper.AddCustomCategories();
+                Log.LogInfo("Performing mod initialization");
+                CreatorShopHelper.AddCreatorShopPieceCategory();
                 MoreVanillaBuildPrefabs.InitPrefabRefs();
-
-                Log.LogInfo("Performing final mod initialization");
-                MoreVanillaBuildPrefabs.FinalInit();
+                MoreVanillaBuildPrefabs.InitPieceRefs();
+                MoreVanillaBuildPrefabs.InitPieces();
+                MoreVanillaBuildPrefabs.InitHammer();
             }
         }
     }
