@@ -6,41 +6,13 @@ using MoreVanillaBuildPrefabs.Logging;
 
 namespace MoreVanillaBuildPrefabs.Helpers
 {
-    internal class IconHelper : MonoBehaviour
+    internal class IconHelper
     {
-        private static GameObject _parent;
-        private static IconHelper _instance;
-        // private static Coroutine _coroutine;
-
-        /// <summary>
-        ///     The singleton instance of this manager.
-        /// </summary>
-        internal static IconHelper Instance => CreateInstance();
-
-        private static IconHelper CreateInstance()
-        {
-            if (_parent == null)
-            {
-                _parent = new GameObject();
-                DontDestroyOnLoad(_parent);
-            }
-            if (_instance == null)
-            {
-                _instance = _parent.AddComponent<IconHelper>();
-            }
-            return _instance;
-        }
-
-        /// <summary>
-        ///     Hide .ctor to prevent other instances from being created
-        /// </summary>
-        private IconHelper() { }
-
         /// <summary>
         ///     Create and add Icons for list of custom pieces.
         /// </summary>
         /// <param name="prefabs"></param>
-        internal void GeneratePrefabIcons(IEnumerable<Piece> pieces)
+        internal static void GeneratePrefabIcons(IEnumerable<Piece> pieces)
         {
             foreach (var piece in pieces)
             {
@@ -67,7 +39,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
             }
         }
 
-        private Sprite GenerateObjectIcon(GameObject obj)
+        private static Sprite GenerateObjectIcon(GameObject obj)
         {
             var request = new RenderManager.RenderRequest(obj)
             {

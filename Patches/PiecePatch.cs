@@ -2,6 +2,7 @@
 using MoreVanillaBuildPrefabs.Logging;
 using MoreVanillaBuildPrefabs.Configs;
 using MoreVanillaBuildPrefabs.Helpers;
+using static MoreVanillaBuildPrefabs.MoreVanillaBuildPrefabs;
 
 
 namespace MoreVanillaBuildPrefabs
@@ -16,9 +17,7 @@ namespace MoreVanillaBuildPrefabs
         /// <param name="__instance"></param>
         [HarmonyPrefix]
         [HarmonyPatch(nameof(Piece.SetCreator))]
-#pragma warning disable IDE0060 // Remove unused parameter
         static void PieceSetCreatorPrefix(long uid, Piece __instance)
-#pragma warning restore IDE0060 // Remove unused parameter
         {
             if (!PluginConfig.IsModEnabled.Value) { return; }
 
@@ -56,25 +55,27 @@ namespace MoreVanillaBuildPrefabs
 #endif
             // Only interact if it is a piece added by this mod or
             // the prefab has previously had it's resources altered by the mod
-            string prefab_name = NameHelper.GetPrefabName(__instance);
-            if (PieceHelper.AddedPrefabs.Contains(prefab_name) || DefaultConfigs.DefaultResources.ContainsKey(prefab_name))
+            string prefabName = NameHelper.GetPrefabName(__instance);
+            if (PieceHelper.IsAddedByMod(prefabName) || DefaultResources.ContainsKey(prefabName))
             {
                 if (__instance.IsPlacedByPlayer())
                 {
-                    Plugin.DisableDestructionDrops = true;
+                    DisableDestructionDrops = true;
                 }
                 else
                 {
                     // set drops to defaults and store the current drops
                     __state = __instance.m_resources;
 
-                    if (DefaultConfigs.DefaultResources.ContainsKey(prefab_name))
+                    if (DefaultResources.ContainsKey(prefabName))
                     {
                         Log.LogInfo("Resetting drop resources to defaults.");
-                        __instance.m_resources = DefaultConfigs.DefaultResources[prefab_name];
+                        __instance.m_resources = DefaultResources[prefabName];
                     }
                     else
                     {
+                        // could try this instead of the loop
+                        //__instance.m_resources = new Piece.Requirement[0];
                         foreach (var resource in __instance.m_resources)
                         {
                             resource.m_resItem = null;

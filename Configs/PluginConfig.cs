@@ -1,16 +1,20 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
+using System.Collections.Generic;
 using BepInEx;
 using BepInEx.Configuration;
 using UnityEngine;
-using System.Collections.Generic;
+using Jotunn.Configs;
+
+using static MoreVanillaBuildPrefabs.MoreVanillaBuildPrefabs;
 using MoreVanillaBuildPrefabs.Logging;
-using System;
+
 
 namespace MoreVanillaBuildPrefabs.Configs
 {
     internal class PluginConfig
     {
-        private static readonly string ConfigFileName = Plugin.PluginGuid + ".cfg";
+        private static readonly string ConfigFileName = PluginGuid + ".cfg";
         private static readonly string ConfigFileFullPath = string.Concat(
             Paths.ConfigPath,
             Path.DirectorySeparatorChar,
@@ -53,10 +57,24 @@ namespace MoreVanillaBuildPrefabs.Configs
         private const string MainSectionName = "\u200BGlobal";
         internal static ConfigEntry<bool> IsModEnabled { get; private set; }
         internal static ConfigEntry<bool> LockConfiguration { get; private set; }
-        internal static ConfigEntry<bool> AdminDeconstructCreatorShop { get; private set; }
-        internal static ConfigEntry<bool> AdminOnlyCreatorShop { get; private set; }
+        internal static ConfigEntry<bool> CreatorShopAdminOnly { get; private set; }
+        internal static ConfigEntry<bool> CreatorShopDeconstructAdminOnly { get; private set; }
         internal static ConfigEntry<bool> ForceAllPrefabs { get; private set; }
         internal static ConfigEntry<bool> VerboseMode { get; private set; }
+
+
+        internal class PieceConfigEntries
+        {
+            internal ConfigEntry<bool> enabled;
+            internal ConfigEntry<bool> allowedInDungeons;
+            internal ConfigEntry<string> resources;
+            internal ConfigEntry<string> category;
+            internal ConfigEntry<string> craftingStation;
+            internal ConfigEntry<string> requirements;
+            internal ConfigEntry<bool> placementPatch;
+        }
+
+        internal static Dictionary<string, PieceConfigEntries> PieceConfigEntriesMap { get; private set; }
 
         private static readonly AcceptableValueList<bool> AcceptableBoolValuesList = new(new bool[] { false, true });
 
@@ -83,38 +101,24 @@ namespace MoreVanillaBuildPrefabs.Configs
             configFile.SaveOnConfigSet = value;
         }
 
-        internal static bool IsVerbose()
-        {
-            return VerboseMode.Value;
-        }
-
-        internal static bool IsForceAllPrefabs()
-        {
-            return ForceAllPrefabs.Value;
-        }
+        internal static bool IsVerbose => VerboseMode.Value;
+        internal static bool IsForceAllPrefabs => ForceAllPrefabs.Value;
+        internal static bool IsCreatorShopAdminOnly => CreatorShopAdminOnly.Value;
+        internal static bool IsCreatorShopDeconstructAdminOnly => CreatorShopDeconstructAdminOnly.Value;
 
         internal static void SetUpConfig()
         {
-            IsModEnabled = BindConfig(
+            CreatorShopAdminOnly = BindConfig(
                 MainSectionName,
-                "EnableMod",
-                true,
-                "Globally enable or disable this mod (restart required).",
-                AcceptableBoolValuesList
-             );
-
-
-            AdminOnlyCreatorShop = BindConfig(
-                MainSectionName,
-                "AdminOnlyCreatorShop",
+                "CreatorShopAdminOnly",
                 false,
                 "Set to true to restrict placement and deconstruction of CreatorShop pieces to players with Admin status.",
                 AcceptableBoolValuesList
             );
 
-            AdminDeconstructCreatorShop = BindConfig(
+            CreatorShopDeconstructAdminOnly = BindConfig(
                 MainSectionName,
-                "AdminDeconstructCreatorShop",
+                "CreatorShopDeconstructAdminOnly",
                 true,
                 "Set to true to allow admin players to deconstruct any CreatorShop pieces built by players." +
                 " Intended to prevent griefing via placement of indestructible objects.",
@@ -136,59 +140,74 @@ namespace MoreVanillaBuildPrefabs.Configs
                 "If enable, print debug informations in console.",
                 AcceptableBoolValuesList
             );
+
+            CreatorShopAdminOnly.SettingChanged += PieceSettingChanged;
+            ForceAllPrefabs.SettingChanged += PieceSettingChanged;
             Save();
         }
 
-        internal static PrefabConfig LoadPrefabConfig(GameObject prefab)
+        internal static PrefabDB LoadPrefabDB(GameObject prefab)
         {
             string sectionName = prefab.name;
 
             // get predefined configs or generic settings if no predefined config
-            PrefabConfig default_config = DefaultConfigs.GetDefaultPrefabConfigValues(prefab.name);
-            default_config.Enabled = BindConfig(
+            PrefabDB default_config = DefaultConfigs.GetDefaultPieceDB(prefab.name);
+            PieceConfigEntries pieceConfigEntries = new();
+
+            pieceConfigEntries.enabled = BindConfig(
                 sectionName,
                 "\u200BEnabled",
-                default_config.Enabled,
+                default_config.enabled,
                 "If true then add the prefab as a buildable piece. Note: this setting is ignored if ForceAllPrefabs is true.",
                 AcceptableBoolValuesList
-            ).Value;
+            );
+            pieceConfigEntries.enabled.SettingChanged += PieceSettingChanged;
+            default_config.enabled = pieceConfigEntries.enabled.Value;
 
-            default_config.AllowedInDungeons = BindConfig(
+            pieceConfigEntries.allowedInDungeons = BindConfig(
                 sectionName,
                 "AllowedInDungeons",
-                default_config.AllowedInDungeons,
+                default_config.allowedInDungeons,
                 "If true then this prefab can be built inside dungeon zones.",
                 AcceptableBoolValuesList
-            ).Value;
+            );
+            pieceConfigEntries.allowedInDungeons.SettingChanged += PieceSettingChanged;
+            default_config.allowedInDungeons = pieceConfigEntries.allowedInDungeons.Value;
 
-            default_config.Category = BindConfig(
+            pieceConfigEntries.category = BindConfig(
                 sectionName,
                 "Category",
-                default_config.Category,
+                default_config.category,
                 "A string defining the tab the prefab shows up on in the hammer build table.",
                 HammerCategories.GetAcceptableValueList()
-            ).Value;
+            );
+            pieceConfigEntries.category.SettingChanged += PieceSettingChanged;
+            default_config.category = pieceConfigEntries.category.Value;
 
-            default_config.CraftingStation = BindConfig(
+            pieceConfigEntries.craftingStation = BindConfig(
                 sectionName,
                 "CraftingStation",
-                default_config.CraftingStation,
+                default_config.craftingStation,
                 "A string defining the crafting station required to built the prefab.",
                 CraftingStations.GetAcceptableValueList()
-            ).Value;
+            );
+            pieceConfigEntries.craftingStation.SettingChanged += PieceSettingChanged;
+            default_config.craftingStation = pieceConfigEntries.craftingStation.Value;
 
-            default_config.Requirements = BindConfig(
+            pieceConfigEntries.requirements = BindConfig(
                 sectionName,
                 "Requirements",
-                default_config.Requirements,
+                default_config.requirements,
                 "Resources required to build the prefab. Formatted as: itemID,amount;itemID,amount where itemID is the in-game identifier for the resource and amount is an integer. "
-            ).Value;
+            );
+            pieceConfigEntries.requirements.SettingChanged += PieceSettingChanged;
+            default_config.requirements = pieceConfigEntries.requirements.Value;
 
             // if the prefab is not already included in the list of prefabs that need a 
             // collision patch then add a config option to enable the placement collision patch.
             if (!PiecePlacement.NeedsCollisionPatchForGhost(prefab.name))
             {
-                default_config.PlacementPatch = BindConfig(
+                pieceConfigEntries.placementPatch = BindConfig(
                     sectionName,
                     "PlacementPatch",
                     false,
@@ -197,14 +216,20 @@ namespace MoreVanillaBuildPrefabs.Configs
                     " If enabling the placement patch via this setting fixes the issue please open an issue on Github" +
                     " letting me know so I can make sure the collision patch is always applied to this piece.",
                     AcceptableBoolValuesList
-                ).Value;
+                );
+                pieceConfigEntries.placementPatch.SettingChanged += PlacementSettingChanged;
+                default_config.placementPatch = pieceConfigEntries.placementPatch.Value;
 
-                if (default_config.PlacementPatch)
+                if (default_config.placementPatch)
                 {
                     // add prefab to list of prefabs needing a collision patch if setting is true
-                    PiecePlacement.NeedsCollisionPatchForGhost(prefab.name);
+                    PiecePlacement._NeedsCollisionPatchForGhost.Add(prefab.name);
                 }
             }
+
+            // keep a reference to the config entries
+            // to make sure the events fire as intended
+            PieceConfigEntriesMap[prefab.name] = pieceConfigEntries;
             return default_config;
         }
 
@@ -235,7 +260,7 @@ namespace MoreVanillaBuildPrefabs.Configs
         }
 
         /// <summary>
-        ///     Convert Requirements string from cfg file to Piece.Requirement Array
+        ///     Convert requirements string from cfg file to Piece.Requirement Array
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>

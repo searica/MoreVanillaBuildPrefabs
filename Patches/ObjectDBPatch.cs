@@ -1,28 +1,23 @@
-﻿//using HarmonyLib;
-//using System.Collections.Generic;
-//using System.Linq;
-//using UnityEngine;
-//using UnityEngine.SceneManagement;
-
-//using MoreVanillaBuildPrefabs.Configs;
-//using MoreVanillaBuildPrefabs.Logging;
-//using MoreVanillaBuildPrefabs.Helpers;
-//using Jotunn.Managers;
+﻿using HarmonyLib;
+using MoreVanillaBuildPrefabs.Helpers;
+using MoreVanillaBuildPrefabs.Logging;
 
 
-//namespace MoreVanillaBuildPrefabs.Patches
-//{
-//    [HarmonyPatch(typeof(ObjectDB))]
-//    internal class ObjectDBPatch
-//    {
-//        // Hook here to add pieces
-//        [HarmonyPrefix]
-//        // [HarmonyPriority(Priority.High)] // High priority for compatiability with WackyDB
-//        [HarmonyPatch(nameof(ObjectDB.Awake))]
-//        static void ObjectDBAwakePrefix()
-//        {
-//            Log.LogInfo("ObjectDB.Awake()");
-//            //PieceAdder.AddPieces();
-//        }
-//    }
-//}
+
+namespace MoreVanillaBuildPrefabs.Patchess
+{
+    [HarmonyPatch(typeof(ObjectDB))]
+    internal class ObjectDBPatch
+    {
+        // Hook here to add pieces
+        [HarmonyPostfix]
+        [HarmonyPriority(Priority.Low)]
+        [HarmonyPatch(nameof(ObjectDB.Awake))]
+        static void ObjectDBAwakePostfix()
+        {
+            Log.LogInfo("ObjectDBAwakePostfix()");
+            HammerHelper.AddCustomCategories();
+            MoreVanillaBuildPrefabs.InitPrefabRefs();
+        }
+    }
+}

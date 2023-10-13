@@ -8,7 +8,6 @@ namespace MoreVanillaBuildPrefabs.Configs
 {
     internal class PiecePlacement
     {
-
         /// <summary>
         ///     Get a bool indicating if the prefab should be
         ///     allowed to clip through everything.
@@ -43,7 +42,7 @@ namespace MoreVanillaBuildPrefabs.Configs
         }
 
 
-        private static readonly HashSet<string> _NeedsCollisionPatchForGhost = new()
+        internal static readonly HashSet<string> _NeedsCollisionPatchForGhost = new()
         {
             "blackmarble_stair_corner",
             "blackmarble_stair_corner_left",

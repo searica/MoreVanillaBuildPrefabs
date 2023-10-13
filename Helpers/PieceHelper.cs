@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using Jotunn.Managers;
+using Jotunn.Configs;
 using MoreVanillaBuildPrefabs.Configs;
 using MoreVanillaBuildPrefabs.Logging;
 
@@ -13,8 +14,6 @@ namespace MoreVanillaBuildPrefabs.Helpers
     {
         internal static HashSet<string> AddedPrefabs = new();
 
-        internal static List<GameObject> VanillaPrefabClones = new();
-
         /// <summary>
         ///     Returns a bool indicating if the piece was added by this mod.
         /// </summary>
@@ -23,6 +22,13 @@ namespace MoreVanillaBuildPrefabs.Helpers
         public static bool IsAddedByMod(string name)
         {
             return AddedPrefabs.Contains(name);
+        }
+
+        internal static CraftingStation GetCraftingStation(string name)
+        {
+            var internalName = CraftingStations.GetInternalName(name);
+            var station = ZNetScene.instance?.GetPrefab(internalName)?.GetComponent<CraftingStation>();
+            return station;
         }
 
         /// <summary>
@@ -89,13 +95,16 @@ namespace MoreVanillaBuildPrefabs.Helpers
         ///     Create and initalize piece component if needed.
         /// </summary>
         /// <param name="prefab"></param>
-        internal static void InitPieceComponent(GameObject prefab)
+        internal static Piece InitPieceComponent(GameObject prefab)
         {
-            if (prefab?.GetComponent<Piece>() == null)
+            var piece = prefab?.GetComponent<Piece>();
+            if (piece == null)
             {
-                var piece = prefab.AddComponent<Piece>();
+                piece = prefab.AddComponent<Piece>();
                 if (piece != null)
                 {
+                    piece.m_name = prefab.name;
+                    piece.m_description = prefab.name;
                     piece.m_groundOnly = false;
                     piece.m_groundPiece = false;
                     piece.m_cultivatedGroundOnly = false;
@@ -113,12 +122,17 @@ namespace MoreVanillaBuildPrefabs.Helpers
                     piece.m_repairPiece = false; // setting to true prevents placement
                     piece.m_canBeRemoved = true;
                     piece.m_onlyInBiome = Heightmap.Biome.None;
-                    if (PluginConfig.IsVerbose())
+
+                    // to prevent deconstruction of pieces that are not enabled by the mod
+                    piece.m_targetNonPlayerBuilt = false;
+
+                    if (PluginConfig.IsVerbose)
                     {
-                        Log.LogInfo($"Creating Piece for: {prefab.name}");
+                        Log.LogInfo($"Created Piece component for: {prefab.name}");
                     }
                 }
             }
+            return piece;
         }
 
         /// <summary>
@@ -138,7 +152,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
         {
             var pieceCategory = (Piece.PieceCategory)PieceManager.Instance.GetPieceCategory(category);
             var reqs = PluginConfig.CreateRequirementsArray(requirements);
-            var station = CraftingStations.GetCraftingStation(craftingStation);
+            var station = GetCraftingStation(craftingStation);
             return ConfigurePiece(
                 piece,
                 name,
@@ -228,7 +242,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
 
             pieceTable.m_pieces.Add(prefab);
 
-            if (PluginConfig.IsVerbose())
+            if (PluginConfig.IsVerbose)
             {
                 Log.LogInfo($"Added Piece {piece.m_name} to PieceTable {pieceTable.name}");
             }
@@ -307,6 +321,33 @@ namespace MoreVanillaBuildPrefabs.Helpers
             try
             {
                 var prefab = ZNetScene.instance.GetPrefab(name);
+                if (pieceTable.m_pieces.Contains(prefab))
+                {
+                    pieceTable.m_pieces.Remove(prefab);
+                    AddedPrefabs.Remove(prefab.name);
+                    return true;
+                }
+                return false;
+            }
+            catch (Exception e)
+            {
+#if DEBUG
+                Log.LogInfo($"{name}: {e}");
+#endif
+                return false;
+            }
+        }
+
+        /// <summary>
+        ///     Remove piece from PieceTable
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="pieceTable"></param>
+        /// <returns></returns>
+        internal static bool RemovePieceFromPieceTable(GameObject prefab, PieceTable pieceTable)
+        {
+            try
+            {
                 pieceTable.m_pieces.Remove(prefab);
                 AddedPrefabs.Remove(prefab.name);
                 return true;
@@ -314,7 +355,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
             catch (Exception e)
             {
 #if DEBUG
-                Log.LogInfo($"{name}: {e}");
+                Log.LogInfo($"{prefab.name}: {e}");
 #endif
                 return false;
             }
@@ -343,13 +384,13 @@ namespace MoreVanillaBuildPrefabs.Helpers
 //{
 //    PieceConfig pieceConfig = new()
 //    {
-//        Name = name,
+//        name = name,
 //        Description = description,
-//        AllowedInDungeons = allowedInDungeons,
-//        Category = category,
+//        allowedInDungeons = allowedInDungeons,
+//        category = category,
 //        PieceTable = pieceTable,
-//        CraftingStation = craftingStation,
-//        Requirements = PluginConfig.CreateRequirementConfigsArray(requirements)
+//        craftingStation = craftingStation,
+//        requirements = PluginConfig.CreateRequirementConfigsArray(requirements)
 //    };
 //    CustomPiece customPiece = new(piece.gameObject, true, pieceConfig);
 //    return customPiece;
@@ -359,7 +400,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
 //{
 //    customPiece.PiecePrefab.FixReferences(true);
 //    var flag = PieceManager.Instance.AddPiece(customPiece);
-//    PieceManager.Instance.RegisterPieceInPieceTable(customPiece.PiecePrefab, customPiece.PieceTable, customPiece.Category);
+//    PieceManager.Instance.RegisterPieceInPieceTable(customPiece.PiecePrefab, customPiece.PieceTable, customPiece.category);
 //    AddedPrefabs.Add(customPiece.PiecePrefab.name);
 //    return flag;
 //}

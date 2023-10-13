@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
 using UnityEngine;
 
@@ -23,7 +24,11 @@ namespace MoreVanillaBuildPrefabs.Helpers
             {"TreasureChest_dvergrtown", "Dvergr chest (large)"},
             {"stonechest", "Stone chest"},
             {"fire_pit_hildir", "Firepit iron (everburning)"},
-            {"fire_pit_haldor", "Campfire (everburning)"}
+            {"fire_pit_haldor", "Campfire (everburning)"},
+            {"Birch1_aut", "Birch1 (autumn)"},
+            {"Birch2_aut", "Birch2 (autumn)"},
+            {"dvergrtown_slidingdoor", "Dvergr sliding door"},
+            {"dvergrtown_secretdoor", "Dvergr secret door"},
         };
 
         private static readonly Dictionary<string, string> DescriptionMap = new()
@@ -52,11 +57,32 @@ namespace MoreVanillaBuildPrefabs.Helpers
                 .ToLower()
                 .Replace("dverger", "dvergr")
                 .Replace("dvergrtown", "dvergr")
-                .Replace("dvergrprops", "dvergr");
-            // name = RemovePrefix(name, "pickable");
-            name = RemovePrefix(name, "piece");
-            name = RemoveSuffix(name, "destructable").Trim();
+                .Replace("dvergrprops", "dvergr")
+                .Replace("destructable", "destructible")
+                .Replace("rockdolmen", "rock dolmen")
+                .Replace("blackmarble", "black marble")
+                .Replace("sunkencrypt", "sunken crypt")
+                .Replace("irongate", "iron gate");
+            //.Replace("secretdoor", "secret door")
+            //.Replace("slidngdoor", "sliding door");
 
+            name = RemovePrefix(name, "piece");
+
+            if (name.EndsWith("destructible"))
+            {
+                name = string.Concat(
+                    RemoveSuffix(name, "destructible").Trim(),
+                    " (destructible)"
+                );
+            }
+
+            if (name.StartsWith("pickable"))
+            {
+                name = string.Concat(
+                    RemovePrefix(name, "pickable").Trim(),
+                    " (pickable)"
+                );
+            }
             return CapitalizeFirstLetter(name);
         }
 

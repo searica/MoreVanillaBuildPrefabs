@@ -12,15 +12,13 @@ namespace MoreVanillaBuildPrefabs
     {
         [HarmonyPrefix]
         [HarmonyPatch(nameof(DropOnDestroyed.OnDestroyed))]
-#pragma warning disable IDE0060 // Remove unused parameter
         static bool OnDestroyedPrefix(DropOnDestroyed __instance)
-#pragma warning restore IDE0060 // Remove unused parameter
         {
             if (PluginConfig.IsModEnabled.Value)
             {
-                if (Plugin.DisableDestructionDrops)
+                if (MoreVanillaBuildPrefabs.DisableDestructionDrops)
                 {
-                    Plugin.DisableDestructionDrops = false;
+                    MoreVanillaBuildPrefabs.DisableDestructionDrops = false;
                     return false;
                 }
             }
