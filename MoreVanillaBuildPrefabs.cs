@@ -135,11 +135,7 @@ namespace MoreVanillaBuildPrefabs
             List<Piece> defaultPieces = new();
             foreach (var prefab in PrefabRefs.Values)
             {
-#if DEBUG
-                Log.LogInfo($"Setting default piece for {prefab.name}");
-#endif 
                 defaultPieces.Add(PieceHelper.InitPieceComponent(prefab));
-
             }
             Log.LogInfo("Initializing default piece icons");
             IconHelper.GeneratePrefabIcons(defaultPieces);
