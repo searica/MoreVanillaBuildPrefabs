@@ -258,8 +258,11 @@ namespace MoreVanillaBuildPrefabs.Configs
         /// <returns></returns>
         internal static Piece.Requirement[] CreateRequirementsArray(string data)
         {
-            Log.LogInfo($"Make requirements {data}");
-            if (string.IsNullOrEmpty(data)) return Array.Empty<Piece.Requirement>();
+            // avoid calling Trim() on null object
+            if (data == null || string.IsNullOrEmpty(data.Trim()))
+            {
+                return Array.Empty<Piece.Requirement>();
+            }
 
             // If not empty
             List<Piece.Requirement> requirements = new();
