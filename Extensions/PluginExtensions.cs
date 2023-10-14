@@ -25,7 +25,7 @@ namespace MoreVanillaBuildPrefabs
 
             var clone = UnityEngine.Object.Instantiate(obj);
 
-            // set object to original state
+            // set object and clone to original state
             obj.SetActive(setActive);
             return clone;
         }
