@@ -31,6 +31,7 @@ namespace MoreVanillaBuildPrefabs.Patchess
                 Log.LogInfo("Performing mod initialization");
                 CreatorShopHelper.AddCreatorShopPieceCategory();
                 MoreVanillaBuildPrefabs.InitPrefabRefs();
+                MoreVanillaBuildPrefabs.InitDefaultPieceClones();
                 MoreVanillaBuildPrefabs.InitPieceRefs();
                 MoreVanillaBuildPrefabs.InitPieces();
                 MoreVanillaBuildPrefabs.InitHammer();

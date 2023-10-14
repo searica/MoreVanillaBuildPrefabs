@@ -99,11 +99,16 @@ namespace MoreVanillaBuildPrefabs
             Log.LogInfo("DropResources_m_resources_Delegate()");
 #endif
             string prefabName = NameHelper.GetPrefabName(piece);
-            if (IsChangedByMod(prefabName) || DefaultResources.ContainsKey(prefabName))
+            if (DefaultPieceClones.ContainsKey(prefabName))
             {
                 if (!piece.IsPlacedByPlayer())
                 {
-                    return DefaultResources[prefabName];
+                    var resources = Array.Empty<Piece.Requirement>();
+                    if (DefaultPieceClones[prefabName].m_resources != null)
+                    {
+                        resources = DefaultPieceClones[prefabName].m_resources;
+                    }
+                    return resources;
                 }
                 else
                 {
@@ -114,54 +119,3 @@ namespace MoreVanillaBuildPrefabs
         }
     }
 }
-
-
-///// <summary>
-/////         Disable desctruction drops for player built pieces to prevent
-/////         things like player built dvergerprops_crate dropping dvergr 
-/////         extractors even if they're not a build requirement
-///// </summary>
-///// <param name="__instance"></param>
-///// <param name="__state"></param>
-//[HarmonyPrefix]
-//[HarmonyPatch(nameof(Piece.DropResources))]
-//static void PieceDropResourcesPrefix(Piece __instance, out Piece.Requirement[] __state)
-//{
-//    __state = null;
-//#if DEBUG
-//    Log.LogInfo($"DropResourcesPrefix() for {__instance.gameObject.name}");
-//#endif
-//    // Only interact if it is a piece added by this mod or
-//    // the prefab has previously had it's resources altered by the mod
-//    string prefabName = NameHelper.GetPrefabName(__instance);
-//    if (IsChangedByMod(prefabName) || DefaultResources.ContainsKey(prefabName))
-//    {
-//        if (__instance.IsPlacedByPlayer())
-//        {
-//            DisableDropOnDestroyed = true;
-//        }
-//        else
-//        {
-//            // set drops to defaults and store the current drops
-//            __state = __instance.m_resources;
-
-//            if (DefaultResources.ContainsKey(prefabName))
-//            {
-//                Log.LogInfo("Resetting drop resources to defaults.");
-//                __instance.m_resources = DefaultResources[prefabName];
-//            }
-//            else
-//            {
-//                __instance.m_resources = Array.Empty<Piece.Requirement>();
-//            }
-//        }
-//    }
-//}
-
-//[HarmonyPostfix]
-//[HarmonyPatch(nameof(Piece.DropResources))]
-//static void PieceDropResourcesPostfix(Piece __instance, Piece.Requirement[] __state)
-//{
-//    // restore original drops from before the prefix patch
-//    __instance.m_resources = __state;
-//}

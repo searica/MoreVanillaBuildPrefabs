@@ -30,8 +30,8 @@ namespace MoreVanillaBuildPrefabs
         Harmony _harmony;
 
         internal static readonly Dictionary<string, GameObject> PrefabRefs = new();
+        internal static readonly Dictionary<string, Piece> DefaultPieceClones = new();
         internal static Dictionary<string, PieceDB> PieceRefs = new();
-        internal static Dictionary<string, Piece.Requirement[]> DefaultResources = new();
 
         internal static bool DisableDropOnDestroyed { get; set; } = false;
 
@@ -107,7 +107,6 @@ namespace MoreVanillaBuildPrefabs
 
             foreach (var prefab in EligiblePrefabs)
             {
-                SaveDefaultResources(prefab);
                 // currently always applies patches to all prefabs
                 // regardless of whether the pieces are enabled
                 // only has to run once this way
@@ -120,33 +119,36 @@ namespace MoreVanillaBuildPrefabs
         }
 
         /// <summary>
-        ///     If prefab has an existing piece with existing build requirements,
-        ///     then add the default build requirements to DefaultResources dictionary 
-        ///     if they have not already been added.
+        ///     Initializes all prefabs to have pieces and
+        ///     stores a deep copy of the piece component
+        ///     to provide a template to reset to upon
+        ///     re-initialization.
         /// </summary>
-        /// <param PrefabName="prefab"></param>
-        internal static void SaveDefaultResources(GameObject prefab)
+        internal static void InitDefaultPieceClones()
         {
-            // Stop errors on subsequent log ins
-            if (!DefaultResources.ContainsKey(prefab.name))
+            if (DefaultPieceClones.Count > 0)
             {
+                return;
+            }
+            Log.LogInfo("Initializing default pieces");
+
+            foreach (var prefab in PrefabRefs.Values)
+            {
+                var clone = PieceHelper.InitPieceComponent(prefab).gameObject.DeepCopy();
 #if DEBUG
                 if (PluginConfig.IsVerbose)
                 {
-                    Log.LogInfo($"Adding default resources for {prefab.name}");
+                    Log.LogInfo($"Setting default piece for {prefab.name}");
+                    Log.LogInfo($"Default piece name {clone.GetComponent<Piece>().name}");
+                    Log.LogInfo($"Default piece m_name {clone.GetComponent<Piece>().m_name}");
                 }
 #endif
-                var piece = prefab?.GetComponent<Piece>();
-
-                if (piece != null)
-                {
-                    DefaultResources.Add(prefab.name, piece.m_resources);
-                }
-                else
-                {
-                    DefaultResources.Add(prefab.name, Array.Empty<Piece.Requirement>());
-                }
+                DefaultPieceClones.Add(prefab.name, clone.GetComponent<Piece>());
             }
+            // Generate icons for all the default piece clones.
+            // Copy fields will make sure all pieces have valid icons 
+            // but the GeneratePrefabIcons method only has to run once.
+            IconHelper.GeneratePrefabIcons(DefaultPieceClones.Values);
         }
 
         internal static void InitPieceRefs()
@@ -167,7 +169,7 @@ namespace MoreVanillaBuildPrefabs
                         Player.m_localPlayer.HideHandItems();
                     }
 
-                    DestroyImmediate(pdb.Prefab.GetComponent<Piece>());
+                    //DestroyImmediate(pdb.Prefab.GetComponent<Piece>());
                 }
                 PieceRefs.Clear();
             }
@@ -179,10 +181,12 @@ namespace MoreVanillaBuildPrefabs
             Dictionary<string, PieceDB> newPieceRefs = new();
             foreach (var prefab in PrefabRefs.Values)
             {
+                // reset piece component to match the default piece clone
+                prefab.GetComponent<Piece>().CopyFields(DefaultPieceClones[prefab.name]);
                 PrefabDB prefabDB = PluginConfig.LoadPrefabDB(prefab);
                 newPieceRefs.Add(
                     prefab.name,
-                    new PieceDB(prefabDB, PieceHelper.InitPieceComponent(prefab))
+                    new PieceDB(prefabDB, prefab.GetComponent<Piece>())
                 );
             }
             return newPieceRefs;
@@ -196,7 +200,6 @@ namespace MoreVanillaBuildPrefabs
             {
                 pieces.Add(CreatePiece(pieceDB));
             }
-            IconHelper.GeneratePrefabIcons(pieces);
         }
 
         /// <summary>
