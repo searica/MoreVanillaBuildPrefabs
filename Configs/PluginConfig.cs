@@ -5,6 +5,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using MoreVanillaBuildPrefabs.Logging;
 using System;
+using Jotunn.Managers;
 
 namespace MoreVanillaBuildPrefabs.Configs
 {
@@ -249,7 +250,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             foreach (var entry in data.Split(';'))
             {
                 string[] values = entry.Split(',');
-                var itm = ObjectDB.instance.GetItemPrefab(values[0].Trim())?.GetComponent<ItemDrop>();
+                var itm = PrefabManager.Cache.GetPrefab<GameObject>(values[0].Trim())?.GetComponent<ItemDrop>();
+                //var itm = ObjectDB.instance.GetItemPrefab(values[0].Trim())?.GetComponent<ItemDrop>();
                 if (itm == null)
                 {
                     Log.LogWarning($"Unable to find requirement ID: {values[0].Trim()}");
