@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using UnityEngine;
-using MoreVanillaBuildPrefabs.Logging;
 using System.Linq;
+using UnityEngine;
+
+using MoreVanillaBuildPrefabs.Logging;
 
 namespace MoreVanillaBuildPrefabs.Helpers
 {
@@ -44,7 +45,6 @@ namespace MoreVanillaBuildPrefabs.Helpers
                                     meshFilter.mesh = longShipMeshFilter.mesh;
                                     break;
                                 }
-
                         }
                     }
                     break;

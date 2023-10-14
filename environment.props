@@ -1,8 +1,8 @@
 <Project>
 	<PropertyGroup>
-		<ValheimGamePath>C:\Program Files (x86)\Steam\steamapps\common\Valheim</ValheimGamePath>
-		<CorlibPath>$(ValheimGamePath)\unstripped_corlib</CorlibPath>
-		<PublicizedAssembliesPath>$(ValheimGamePath)\valheim_Data\Managed\publicized_assemblies</PublicizedAssembliesPath>
+		<VALHEIM_INSTALL>C:\Program Files (x86)\Steam\steamapps\common\Valheim</VALHEIM_INSTALL>
+		<CorlibPath>$(VALHEIM_INSTALL)\unstripped_corlib</CorlibPath>
+		<PublicizedAssembliesPath>$(VALHEIM_INSTALL)\valheim_Data\Managed\publicized_assemblies</PublicizedAssembliesPath>
 		<Pdb2MdbPath>$(SolutionDir)\pdb2mdb.exe</Pdb2MdbPath>
 		<AppDataDir>$([System.Environment]::GetFolderPath(SpecialFolder.ApplicationData))</AppDataDir>
 		<r2ModManPath>$(AppDataDir)\r2modmanPlus-local\Valheim\profiles</r2ModManPath>

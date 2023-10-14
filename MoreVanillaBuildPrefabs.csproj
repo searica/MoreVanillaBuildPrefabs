@@ -1,5 +1,5 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-	<Import Project="environment.props" />
+	<Import Project="..\packages\JotunnLib.2.14.4\build\JotunnLib.props" Condition="Exists('..\packages\JotunnLib.2.14.4\build\JotunnLib.props')" />
 	<Import Project="ModPackageTool.targets" />
 	<PropertyGroup>
 		<!--<LangVersion>latest</LangVersion>-->
@@ -20,11 +20,9 @@
 		<AllowUnsafeBlocks>True</AllowUnsafeBlocks>
 	</PropertyGroup>
 	<ItemGroup>
+		<PackageReference Include="JotunnLib" Version="2.14.4" />
 		<PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
 		<PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
-	</ItemGroup>
-	<ItemGroup>
-		<Folder Include="Libs\" />
 	</ItemGroup>
 	<ItemGroup>
 		<Content Include="UpdateManifest.ps1" />
@@ -37,44 +35,25 @@
 		<None Include="App.config" />
 	</ItemGroup>
 	<ItemGroup>
-		<Reference Include="0Harmony">
-			<HintPath>$(BepInExPath)\core\0Harmony.dll</HintPath>
-		</Reference>
-		<Reference Include="assembly_guiutils">
-			<HintPath>$(PublicizedAssembliesPath)\assembly_guiutils_publicized.dll</HintPath>
-		</Reference>
-		<Reference Include="assembly_utils">
-			<HintPath>$(PublicizedAssembliesPath)\assembly_utils_publicized.dll</HintPath>
-		</Reference>
-		<Reference Include="assembly_valheim">
-			<HintPath>$(PublicizedAssembliesPath)\assembly_valheim_publicized.dll</HintPath>
-		</Reference>
-		<Reference Include="BepInEx">
+		<Reference Include="BepInEx, Version=5.4.5.0, Culture=neutral, processorArchitecture=MSIL">
+			<SpecificVersion>False</SpecificVersion>
+			<Private>false</Private>
 			<HintPath>$(BepInExPath)\core\BepInEx.dll</HintPath>
 		</Reference>
-		<Reference Include="Jotunn">
-			<HintPath>Libs\Jotunn.dll</HintPath>
+		<Reference Include="BepInEx.Harmony, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+			<SpecificVersion>False</SpecificVersion>
+			<Private>false</Private>
+			<HintPath>$(BepInExPath)\core\BepInEx.Harmony.dll</HintPath>
 		</Reference>
-		<Reference Include="UnityEngine">
-			<HintPath>$(CorlibPath)\UnityEngine.dll</HintPath>
+		<Reference Include="BepInEx.Preloader, Version=5.4.5.0, Culture=neutral, processorArchitecture=MSIL">
+			<SpecificVersion>False</SpecificVersion>
+			<Private>false</Private>
+			<HintPath>$(BepInExPath)\core\BepInEx.Preloader.dll</HintPath>
 		</Reference>
-		<Reference Include="UnityEngine.AssetBundleModule">
-			<HintPath>$(CorlibPath)\UnityEngine.AssetBundleModule.dll</HintPath>
-		</Reference>
-		<Reference Include="UnityEngine.ClothModule">
-			<HintPath>$(CorlibPath)\UnityEngine.ClothModule.dll</HintPath>
-		</Reference>
-		<Reference Include="UnityEngine.CoreModule">
-			<HintPath>$(CorlibPath)\UnityEngine.CoreModule.dll</HintPath>
-		</Reference>
-		<Reference Include="UnityEngine.PhysicsModule">
-			<HintPath>$(CorlibPath)\UnityEngine.PhysicsModule.dll</HintPath>
-		</Reference>
-		<Reference Include="UnityEngine.UI">
-			<HintPath>$(CorlibPath)\UnityEngine.UI.dll</HintPath>
-		</Reference>
-		<Reference Include="Unity.TextMeshPro">
-			<HintPath>$(CorlibPath)\Unity.TextMeshPro.dll</HintPath>
+		<Reference Include="HarmonyXInterop, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+			<SpecificVersion>False</SpecificVersion>
+			<Private>false</Private>
+			<HintPath>$(BepInExPath)\core\HarmonyXInterop.dll</HintPath>
 		</Reference>
 	</ItemGroup>
 </Project>
