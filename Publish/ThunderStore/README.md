@@ -1,9 +1,6 @@
 # MoreVanillaBuildPrefabs
 MoreVanillaBuildPrefabs is a Valheim mod to make all vanilla prefabs buildable with the hammer (survival way) while allowing you to configure the requirements to build them. It also now has ServerSync! The mod can still be used as a purely Client-Side mod though.
 
-### Acknowledgements
-This mod was inspired by MoreVanillaBuilds by Galathil and PotteryBarn by ComfyMods. The core functionality of the code is based on those two mods. Also, thanks to blaxxun-boop for creating ServerSync and the developers of Jotunn.
-
 ## Key Feature
 Because all the added build pieces are pre-existing vanilla prefabs, any pieces you build with this mod will persist in your world even if you uninstall the mod. This means that pieces you build on a server will also be visible for players without the mod and any builds using the pieces from this mod will load for players without the mod.
 
@@ -261,3 +258,23 @@ My mods will always be free to use but if you feel like saying thanks you can ti
 If you would like to provide suggestions, make feature requests, or reports bugs and compatability issues you can either open an issue on the Github repository or tag me (@searica) with a message on the [Odin Plus discord](https://discord.gg/mbkPcvu9ax).
 
 Over time I will slowly patch more prefabs and hopefully come up with a more generalizable method of patching them, but if you'd really like a specific prefab to work better then let me know via one of the methods above. I'm a grad student and have a lot of personal responsibilities on top of that so I can't promise I will always respond quickly, but I do intend to maintain and improve the mod in my free time.
+
+### Credits
+This mod was inspired by and partially based on MoreVanillaBuilds by Galathil and PotteryBarn by ComfyMods. Also, thanks to blaxxun-boop for creating ServerSync and the developers of Jotunn.
+
+Thanks to Margmas for Jotunn and their help with figuring out how to resolve several issues.
+
+And a thank you to onnan and Cass for all their testing, suggestions, and bug reporting.
+
+### Shameless Self Plug (Other Mods By Me)
+If you like this mod you might like some of my other ones.
+
+#### Building Mods
+- [Extra Snap Points Made Easy](https://valheim.thunderstore.io/package/Searica/Extra_Snap_Points_Made_Easy/)
+
+
+#### Gameplay Mods
+- [FortifySkillsRedux](https://valheim.thunderstore.io/package/Searica/FortifySkillsRedux/)
+- [DodgeShortcut](https://valheim.thunderstore.io/package/Searica/DodgeShortcut/)
+
+
