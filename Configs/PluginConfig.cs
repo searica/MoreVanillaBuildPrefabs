@@ -258,7 +258,8 @@ namespace MoreVanillaBuildPrefabs.Configs
         /// <returns></returns>
         internal static Piece.Requirement[] CreateRequirementsArray(string data)
         {
-            if (string.IsNullOrEmpty(data.Trim())) return Array.Empty<Piece.Requirement>();
+            Log.LogInfo($"Make requirements {data}");
+            if (string.IsNullOrEmpty(data)) return Array.Empty<Piece.Requirement>();
 
             // If not empty
             List<Piece.Requirement> requirements = new();
@@ -266,8 +267,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             foreach (var entry in data.Split(';'))
             {
                 string[] values = entry.Split(',');
-                var itm = PrefabManager.Cache.GetPrefab<GameObject>(values[0].Trim())?.GetComponent<ItemDrop>();
-                //var itm = ObjectDB.instance.GetItemPrefab(values[0].Trim())?.GetComponent<ItemDrop>();
+                //var itm = PrefabManager.Cache.GetPrefab<GameObject>(values[0].Trim())?.GetComponent<ItemDrop>();
+                var itm = ObjectDB.instance.GetItemPrefab(values[0].Trim())?.GetComponent<ItemDrop>();
                 if (itm == null)
                 {
                     Log.LogWarning($"Unable to find requirement ID: {values[0].Trim()}");
