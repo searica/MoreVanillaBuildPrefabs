@@ -16,7 +16,7 @@ namespace MoreVanillaBuildPrefabs.Configs
             bool AllowedInDungeons = false,
             string Category = HammerCategories.CreatorShop,
             string CraftingStation = nameof(CraftingStations.None),
-            string Requirements = null,
+            string Requirements = "",
             bool PlacementPatch = false
         )
         {

@@ -260,7 +260,7 @@ If you would like to provide suggestions, make feature requests, or reports bugs
 Over time I will slowly patch more prefabs and hopefully come up with a more generalizable method of patching them, but if you'd really like a specific prefab to work better then let me know via one of the methods above. I'm a grad student and have a lot of personal responsibilities on top of that so I can't promise I will always respond quickly, but I do intend to maintain and improve the mod in my free time.
 
 ### Credits
-This mod was inspired by and partially based on MoreVanillaBuilds by Galathil and PotteryBarn by ComfyMods. Also, thanks to blaxxun-boop for creating ServerSync and the developers of Jotunn.
+This mod was inspired by and partially based on MoreVanillaBuilds by Galathil and PotteryBarn by ComfyMods. Also, massive thanks to the developers of Jotunn.
 
 Thanks to Margmas for Jotunn and their help with figuring out how to resolve several issues.
 
