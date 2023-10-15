@@ -102,6 +102,7 @@ namespace MoreVanillaBuildPrefabs.Configs
             "TreasureChest_plainsfortress_hildir", // Visual duplicate of "TreasureChest_dvergrtown"
             "TreasureChest_forestcrypt_hildir", // Visual duplicate of "TreasureChest_dvergrtown"
             "horizontal_web", // has no mesh
+            "vertical_web",
             "SunkenKit_int_towerwall_LOD", // is not an actual prefab for building
         };
     }

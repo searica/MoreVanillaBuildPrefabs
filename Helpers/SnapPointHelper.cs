@@ -1,7 +1,5 @@
-﻿using MoreVanillaBuildPrefabs.Logging;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.UI.GridLayoutGroup;
 
 /* In Unity
  * X = left/right

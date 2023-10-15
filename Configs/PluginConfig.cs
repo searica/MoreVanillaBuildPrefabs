@@ -242,13 +242,19 @@ namespace MoreVanillaBuildPrefabs.Configs
             try
             {
                 Log.LogInfo("ReadConfigValues called");
+
+                PauseIndividualConfigEvents = true; // disable individual config entry events
                 configFile.Reload();
+                PauseIndividualConfigEvents = false; // enable individual config entry events
+                Log.LogInfo("Reloaded config file");
             }
             catch
             {
                 Log.LogError($"There was an issue loading your {ConfigFileName}");
                 Log.LogError("Please check your config entries for spelling and format!");
             }
+            // run a single re-initialization to deal with all changed data
+            ConfigDataSynced();
         }
 
         /// <summary>

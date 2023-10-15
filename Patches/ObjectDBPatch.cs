@@ -29,13 +29,20 @@ namespace MoreVanillaBuildPrefabs.Patchess
             if (SceneManager.GetActiveScene().name == "main")
             {
                 Log.LogInfo("Performing mod initialization");
-
+#if DEBUG
+                var watch = new System.Diagnostics.Stopwatch();
+                watch.Start();
+#endif
                 CreatorShopHelper.AddCreatorShopPieceCategory();
                 MoreVanillaBuildPrefabs.InitPrefabRefs();
                 MoreVanillaBuildPrefabs.InitDefaultPieceClones();
                 MoreVanillaBuildPrefabs.InitPieceRefs();
                 MoreVanillaBuildPrefabs.InitPieces();
                 MoreVanillaBuildPrefabs.InitHammer();
+#if DEBUG
+                watch.Stop();
+                Log.LogInfo($"Time to initialize: {watch.ElapsedMilliseconds} ms");
+#endif
             }
         }
     }

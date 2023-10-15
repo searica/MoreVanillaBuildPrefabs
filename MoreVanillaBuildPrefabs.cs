@@ -33,7 +33,7 @@ namespace MoreVanillaBuildPrefabs
         internal static readonly Dictionary<string, Piece> DefaultPieceClones = new();
         internal static Dictionary<string, PieceDB> PieceRefs = new();
 
-        private static bool ShouldPauseIndividualConfigEvents = false;
+        internal static bool PauseIndividualConfigEvents = false;
 
         internal static bool DisableDropOnDestroyed { get; set; } = false;
 
@@ -55,7 +55,7 @@ namespace MoreVanillaBuildPrefabs
 
             SynchronizationManager.OnConfigurationSynchronized += (obj, attr) =>
             {
-                ShouldPauseIndividualConfigEvents = true;
+                //PauseIndividualConfigEvents = true;
                 Log.LogInfo("Recieved config data from server");
             };
         }
@@ -272,13 +272,26 @@ namespace MoreVanillaBuildPrefabs
         /// <param name="e"></param>
         internal static void PieceSettingChanged(object o, EventArgs e)
         {
+            if (PauseIndividualConfigEvents)
+            {
+                return; // skip event
+            }
+
             if (HasInitializedPrefabs)
             {
+#if DEBUG
+                var watch = new System.Diagnostics.Stopwatch();
+                watch.Start();
+#endif
                 Log.LogInfo("Config setting changed, re-initializing");
                 InitPieceRefs();
                 InitPieces();
                 InitHammer();
                 Log.LogInfo("Re-initializing complete");
+#if DEBUG
+                watch.Stop();
+                Log.LogInfo($"Time to re-initialize: {watch.ElapsedMilliseconds} ms");
+#endif
             }
         }
 
@@ -290,6 +303,27 @@ namespace MoreVanillaBuildPrefabs
         /// <param name="e"></param>
         internal static void PlacementSettingChanged(object o, EventArgs e)
         {
+            if (PauseIndividualConfigEvents)
+            {
+                return; // skip event
+            }
+            UpdateNeedsCollisionPatchForGhost();
+        }
+
+        /// <summary>
+        ///     Method allow both the PlacementSettingChanged 
+        ///     and ConfigDataSynced methods to update collision 
+        ///     patches when events fire
+        /// </summary>
+        private static void UpdateNeedsCollisionPatchForGhost()
+        {
+            if (!HasInitializedPrefabs)
+            {
+                return;
+            }
+#if DEBUG
+            Log.LogInfo("Re-initializing CollisionPatch list");
+#endif
             foreach (var prefabName in PrefabRefs.Keys)
             {
                 if (PluginConfig.PieceConfigEntriesMap[prefabName].placementPatch.Value)
@@ -305,6 +339,27 @@ namespace MoreVanillaBuildPrefabs
                     // config is false so remove it from list if it's in HashSet
                     PiecePlacement._NeedsCollisionPatchForGhost.Remove(prefabName);
                 }
+            }
+        }
+
+        internal static void ConfigDataSynced()
+        {
+            if (HasInitializedPrefabs)
+            {
+#if DEBUG
+                var watch = new System.Diagnostics.Stopwatch();
+                watch.Start();
+#endif
+                Log.LogInfo("Config settings changed, re-initializing");
+                InitPieceRefs();
+                InitPieces();
+                InitHammer();
+                UpdateNeedsCollisionPatchForGhost();
+                Log.LogInfo("Re-initializing complete");
+#if DEBUG
+                watch.Stop();
+                Log.LogInfo($"Time to re-initialize: {watch.ElapsedMilliseconds} ms");
+#endif
             }
         }
     }
