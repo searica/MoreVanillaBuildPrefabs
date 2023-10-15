@@ -65,7 +65,6 @@ namespace MoreVanillaBuildPrefabs
              * // 	foreach (Requirement requirement in resources)
              */
             // want to be able to edit the resources that get dropped
-            Log.LogInfo(AccessTools.Field(typeof(Piece), nameof(Piece.m_resources)));
             return new CodeMatcher(instructions)
                 .MatchForward(
                     useEnd: false,
