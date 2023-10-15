@@ -1,6 +1,4 @@
-﻿using System;
-
-​​using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,21 +13,35 @@ namespace MoreVanillaBuildPrefabs.Helpers
     {
         private static GameObject _gameObject;
         private static IconHelper _instance;
-
-        public static IconHelper Instance { get { return _instance; } }
+        // private static Coroutine _coroutine;
 
         /// <summary>
-        ///     Create and add Icons for list of custom pieces.
+        ///     The singleton instance of this manager.
         /// </summary>
-        /// <param name="prefabs"></param>
-        internal void GeneratePrefabIcons(IEnumerable<GameObject> prefabs)
-        {
+        internal static IconHelper Instance => CreateInstance();
 
+        private static IconHelper CreateInstance()
+        {
+            if (_gameObject == null)
+            {
+                _gameObject = new GameObject();
+                DontDestroyOnLoad(_gameObject);
+            }
+            if (_instance == null)
+            {
+                _instance = _gameObject.AddComponent<IconHelper>();
+            }
+            return _instance;
         }
 
-        private IEnumerator StartRendering(IEnumerable<GameObject> prefabs)
+        /// <summary>
+        ///     Hide .ctor to prevent other instances from being created
+        /// </summary>
+        private IconHelper() { }
+
+        public void GeneratePrefabIcons(IEnumerable<GameObject> prefabs)
         {
-            yield return StartCoroutine(StartRendering(prefabs));
+            StartCoroutine(RenderCoroutine(prefabs));
         }
 
         private IEnumerator RenderCoroutine(IEnumerable<GameObject> gameObjects)
@@ -41,7 +53,9 @@ namespace MoreVanillaBuildPrefabs.Helpers
                     Log.LogWarning($"Null prefab, cannot render icon");
                     continue;
                 }
+
                 var piece = gameObject.GetComponent<Piece>();
+
                 if (piece == null)
                 {
                     Log.LogWarning($"Null piece, cannot render icon");
@@ -50,6 +64,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
 
                 yield return null;
                 Sprite result = GenerateObjectIcon(gameObject);
+
                 if (result == null)
                 {
                     PickableItem.RandomItem[] randomItemPrefabs = piece.gameObject.GetComponent<PickableItem>()?.m_randomItemPrefabs;
@@ -63,6 +78,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
                         }
                     }
                 }
+
                 piece.m_icon = result;
             }
         }
