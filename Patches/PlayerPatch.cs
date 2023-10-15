@@ -56,11 +56,12 @@ namespace MoreVanillaBuildPrefabs
             Quaternion rotation
         )
         {
-#if DEBUG
-            Log.LogInfo("PlacePieceInstantiateDelegate()");
-#endif 
-            var result = UnityEngine.Object.Instantiate(gameObject, position, rotation);
+            if (PluginConfig.IsVerbosityMedium)
+            {
+                Log.LogInfo("PlacePieceInstantiateDelegate()");
+            }
 
+            var result = UnityEngine.Object.Instantiate(gameObject, position, rotation);
 
             if (PieceHelper.AddedPrefabs.Contains(gameObject.name))
             {
@@ -80,9 +81,10 @@ namespace MoreVanillaBuildPrefabs
                     if (container != null)
                     {
                         container.m_inventory.RemoveAll();
-#if DEBUG
-                        Log.LogInfo($"Removed treasure for: {prefabName}");
-#endif
+                        if (PluginConfig.IsVerbosityMedium)
+                        {
+                            Log.LogInfo($"Removed treasure for: {prefabName}");
+                        }
                     }
                 }
             }

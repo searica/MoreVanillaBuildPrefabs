@@ -15,16 +15,20 @@ namespace MoreVanillaBuildPrefabs.Helpers
         {
             if (PieceManager.Instance.GetPieceCategory(HammerCategories.CreatorShop) == null)
             {
-#if DEBUG
-                Log.LogInfo("AddCreatorShopPieceCategory()");
-#endif
+                if (PluginConfig.IsVerbosityMedium)
+                {
+                    Log.LogInfo("AddCreatorShopPieceCategory()");
+                }
                 CreatorShop = PieceManager.Instance.AddPieceCategory(PieceTables.Hammer, HammerCategories.CreatorShop);
             }
         }
 
         internal static void RemoveCreatorShopPieceCategory()
         {
-            Log.LogInfo("RemoveCreatorShopPieceCategory()");
+            if (PluginConfig.IsVerbosityMedium)
+            {
+                Log.LogInfo("RemoveCreatorShopPieceCategory()");
+            }
             PieceManager.Instance.RemovePieceCategory(PieceTables.Hammer, HammerCategories.CreatorShop);
         }
 

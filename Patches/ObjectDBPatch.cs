@@ -3,8 +3,7 @@ using HarmonyLib;
 
 using MoreVanillaBuildPrefabs.Helpers;
 using MoreVanillaBuildPrefabs.Logging;
-
-
+using MoreVanillaBuildPrefabs.Configs;
 
 namespace MoreVanillaBuildPrefabs.Patchess
 {
@@ -17,9 +16,11 @@ namespace MoreVanillaBuildPrefabs.Patchess
         [HarmonyPatch(nameof(ObjectDB.Awake))]
         static void ObjectDBAwakePostfix()
         {
-#if DEBUG
-            Log.LogInfo("ObjectDBAwakePostfix()");
-#endif
+            if (PluginConfig.IsVerbosityMedium)
+            {
+                Log.LogInfo("ObjectDBAwakePostfix()");
+            }
+
             if (SceneManager.GetActiveScene() == null)
             {
                 return;
@@ -28,20 +29,28 @@ namespace MoreVanillaBuildPrefabs.Patchess
             // If loading into game world and prefabs have not been added
             if (SceneManager.GetActiveScene().name == "main")
             {
-                Log.LogInfo("Performing mod initialization");
-#if DEBUG
+                if (PluginConfig.IsVerbosityLow)
+                {
+                    Log.LogInfo("Performing mod initialization");
+                }
+
                 var watch = new System.Diagnostics.Stopwatch();
-                watch.Start();
-#endif
+                if (PluginConfig.IsVerbosityMedium)
+                {
+                    watch.Start();
+                }
+
                 CreatorShopHelper.AddCreatorShopPieceCategory();
                 MoreVanillaBuildPrefabs.InitPrefabRefs();
                 MoreVanillaBuildPrefabs.InitPieceRefs();
                 MoreVanillaBuildPrefabs.InitPieces();
                 MoreVanillaBuildPrefabs.InitHammer();
-#if DEBUG
-                watch.Stop();
-                Log.LogInfo($"Time to initialize: {watch.ElapsedMilliseconds} ms");
-#endif
+
+                if (PluginConfig.IsVerbosityMedium)
+                {
+                    watch.Stop();
+                    Log.LogInfo($"Time to initialize: {watch.ElapsedMilliseconds} ms");
+                }
             }
         }
     }

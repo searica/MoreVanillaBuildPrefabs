@@ -105,7 +105,10 @@ namespace MoreVanillaBuildPrefabs
             {
                 return;
             }
-            Log.LogInfo("Initializing prefabs");
+            if (PluginConfig.IsVerbosityLow)
+            {
+                Log.LogInfo("Initializing prefabs");
+            }
             var PieceNameCache = PieceHelper.GetExistingPieceNames();
 
             var EligiblePrefabs = ZNetScene.instance.m_prefabs
@@ -125,7 +128,10 @@ namespace MoreVanillaBuildPrefabs
                 PrefabPatcher.PatchPrefabIfNeeded(prefab);
                 PrefabRefs.Add(prefab.name, prefab);
             }
-            Log.LogInfo($"Found {EligiblePrefabs.Count()} prefabs");
+            if (PluginConfig.IsVerbosityLow)
+            {
+                Log.LogInfo($"Found {EligiblePrefabs.Count()} prefabs");
+            }
             InitDefaultPieceClones();
         }
 
@@ -141,18 +147,28 @@ namespace MoreVanillaBuildPrefabs
             {
                 return; // can't run without PrefabRefs
             }
+
             if (DefaultPieceClones.Count > 0)
             {
                 return; // should only ever run once
             }
-            Log.LogInfo("Initializing default pieces");
+
+            if (PluginConfig.IsVerbosityLow)
+            {
+                Log.LogInfo("Initializing default pieces");
+            }
 
             List<Piece> defaultPieces = new();
             foreach (var prefab in PrefabRefs.Values)
             {
                 defaultPieces.Add(PieceHelper.InitPieceComponent(prefab));
             }
-            Log.LogInfo("Initializing default piece icons");
+
+            if (PluginConfig.IsVerbosityMedium)
+            {
+                Log.LogInfo("Initializing default piece icons");
+            }
+
             IconHelper.Instance.GeneratePrefabIcons(PrefabRefs.Values);
 
             foreach (var prefab in PrefabRefs.Values)

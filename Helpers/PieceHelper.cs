@@ -127,7 +127,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
                     // to prevent deconstruction of pieces that are not enabled by the mod
                     piece.m_canBeRemoved = false;
 
-                    if (PluginConfig.IsVerbose)
+                    if (PluginConfig.IsVerbosityMedium)
                     {
                         Log.LogInfo($"Created Piece component for: {prefab.name}");
                     }
@@ -228,7 +228,10 @@ namespace MoreVanillaBuildPrefabs.Helpers
             {
                 AddPieceToPieceTable(piece, pieceTable);
             }
-            Log.LogInfo($"Added {AddedPrefabs.Count} custom pieces");
+            if (PluginConfig.IsVerbosityLow)
+            {
+                Log.LogInfo($"Added {AddedPrefabs.Count} custom pieces");
+            }
         }
 
         /// <summary>
@@ -268,12 +271,12 @@ namespace MoreVanillaBuildPrefabs.Helpers
 
             pieceTable.m_pieces.Add(prefab);
 
-            if (PluginConfig.IsVerbose)
+            AddedPrefabs.Add(prefab.name);
+
+            if (PluginConfig.IsVerbosityHigh)
             {
                 Log.LogInfo($"Added Piece {piece.m_name} to PieceTable {pieceTable.name}");
             }
-
-            AddedPrefabs.Add(prefab.name);
 
             return true;
         }
@@ -318,9 +321,10 @@ namespace MoreVanillaBuildPrefabs.Helpers
         /// <param name="pieceTableName"></param>
         internal static void RemoveAllCustomPiecesFromPieceTable(string pieceTableName)
         {
-#if DEBUG
-            Log.LogInfo("RemoveAllCustomPiecesFromPieceTable()");
-#endif 
+            if (PluginConfig.IsVerbosityMedium)
+            {
+                Log.LogInfo("RemoveAllCustomPiecesFromPieceTable()");
+            }
 
             int numCustomPieces = AddedPrefabs.Count();
             var prefabsToRemove = AddedPrefabs.ToList();
@@ -335,7 +339,10 @@ namespace MoreVanillaBuildPrefabs.Helpers
             {
                 RemovePieceFromPieceTable(name, pieceTable);
             }
-            Log.LogInfo($"Removed {numCustomPieces - AddedPrefabs.Count} custom pieces");
+            if (PluginConfig.IsVerbosityMedium)
+            {
+                Log.LogInfo($"Removed {numCustomPieces - AddedPrefabs.Count} custom pieces");
+            }
         }
 
         /// <summary>
@@ -359,9 +366,10 @@ namespace MoreVanillaBuildPrefabs.Helpers
             }
             catch (Exception e)
             {
-#if DEBUG
-                Log.LogInfo($"{name}: {e}");
-#endif
+                if (PluginConfig.IsVerbosityLow)
+                {
+                    Log.LogInfo($"{name}: {e}");
+                }
                 return false;
             }
         }
@@ -386,9 +394,10 @@ namespace MoreVanillaBuildPrefabs.Helpers
             }
             catch (Exception e)
             {
-#if DEBUG
-                Log.LogInfo($"{prefab.name}: {e}");
-#endif
+                if (PluginConfig.IsVerbosityMedium)
+                {
+                    Log.LogInfo($"{prefab.name}: {e}");
+                }
                 return false;
             }
         }

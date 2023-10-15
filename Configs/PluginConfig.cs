@@ -27,6 +27,34 @@ namespace MoreVanillaBuildPrefabs.Configs
         private static readonly ConfigurationManagerAttributes AdminConfig = new() { IsAdminOnly = true };
         private static readonly ConfigurationManagerAttributes ClientConfig = new() { IsAdminOnly = false };
 
+        internal enum LoggerLevel
+        {
+            Low = 0,
+            Medium = 1,
+            High = 2,
+        }
+
+        private const string MainSectionName = "\u200BGlobal";
+
+        internal static ConfigEntry<bool> CreatorShopAdminOnly { get; private set; }
+        internal static ConfigEntry<bool> CreatorShopDeconstructAdminOnly { get; private set; }
+        internal static ConfigEntry<bool> ForceAllPrefabs { get; private set; }
+        internal static ConfigEntry<LoggerLevel> Verbosity { get; private set; }
+
+        internal class PieceConfigEntries
+        {
+            internal ConfigEntry<bool> enabled;
+            internal ConfigEntry<bool> allowedInDungeons;
+            internal ConfigEntry<string> category;
+            internal ConfigEntry<string> craftingStation;
+            internal ConfigEntry<string> requirements;
+            internal ConfigEntry<bool> placementPatch;
+        }
+
+        internal static readonly Dictionary<string, PieceConfigEntries> PieceConfigEntriesMap = new();
+
+        private static readonly AcceptableValueList<bool> AcceptableBoolValuesList = new(new bool[] { false, true });
+
         internal static ConfigEntry<T> BindConfig<T>(
             string section,
             string name,
@@ -55,28 +83,6 @@ namespace MoreVanillaBuildPrefabs.Configs
             return description + (synchronizedSetting ? " [Synced with Server]" : " [Not Synced with Server]");
         }
 
-        private const string MainSectionName = "\u200BGlobal";
-
-        internal static ConfigEntry<bool> CreatorShopAdminOnly { get; private set; }
-        internal static ConfigEntry<bool> CreatorShopDeconstructAdminOnly { get; private set; }
-        internal static ConfigEntry<bool> ForceAllPrefabs { get; private set; }
-        internal static ConfigEntry<bool> VerboseMode { get; private set; }
-
-
-        internal class PieceConfigEntries
-        {
-            internal ConfigEntry<bool> enabled;
-            internal ConfigEntry<bool> allowedInDungeons;
-            internal ConfigEntry<string> category;
-            internal ConfigEntry<string> craftingStation;
-            internal ConfigEntry<string> requirements;
-            internal ConfigEntry<bool> placementPatch;
-        }
-
-        internal static readonly Dictionary<string, PieceConfigEntries> PieceConfigEntriesMap = new();
-
-        private static readonly AcceptableValueList<bool> AcceptableBoolValuesList = new(new bool[] { false, true });
-
         internal static void Init(ConfigFile config)
         {
             configFile = config;
@@ -93,7 +99,11 @@ namespace MoreVanillaBuildPrefabs.Configs
             configFile.SaveOnConfigSet = value;
         }
 
-        internal static bool IsVerbose => VerboseMode.Value;
+        internal static LoggerLevel VerbosityLevel => Verbosity.Value;
+
+        internal static bool IsVerbosityLow => Verbosity.Value >= LoggerLevel.Low;
+        internal static bool IsVerbosityMedium => Verbosity.Value >= LoggerLevel.Medium;
+        internal static bool IsVerbosityHigh => Verbosity.Value >= LoggerLevel.High;
         internal static bool IsForceAllPrefabs => ForceAllPrefabs.Value;
         internal static bool IsCreatorShopAdminOnly => CreatorShopAdminOnly.Value;
         internal static bool IsCreatorShopDeconstructAdminOnly => CreatorShopDeconstructAdminOnly.Value;
@@ -125,12 +135,11 @@ namespace MoreVanillaBuildPrefabs.Configs
                 AcceptableBoolValuesList
             );
 
-            VerboseMode = BindConfig(
+            Verbosity = BindConfig(
                 MainSectionName,
-                "VerboseMode",
-                false,
-                "If enable, print debug informations in console.",
-                AcceptableBoolValuesList
+                "Verbosity",
+                LoggerLevel.Low,
+                "Low will log basic information about the mod. Medium will log information that is useful for troubleshooting. High will log a lot of information, do not set it to this without good reason as it will slow down your game."
             );
 
             CreatorShopAdminOnly.SettingChanged += PieceSettingChanged;

@@ -94,9 +94,10 @@ namespace MoreVanillaBuildPrefabs
         {
             // Only interact if it is a piece added by this mod or
             // the prefab has previously had it's resources altered by the mod
-#if DEBUG
-            Log.LogInfo("DropResources_m_resources_Delegate()");
-#endif
+            if (PluginConfig.IsVerbosityMedium)
+            {
+                Log.LogInfo("DropResources_m_resources_Delegate()");
+            }
             string prefabName = NameHelper.GetPrefabName(piece);
             if (DefaultPieceClones.ContainsKey(prefabName))
             {
