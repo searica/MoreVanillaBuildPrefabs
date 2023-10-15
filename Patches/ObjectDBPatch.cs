@@ -29,6 +29,7 @@ namespace MoreVanillaBuildPrefabs.Patchess
             if (SceneManager.GetActiveScene().name == "main")
             {
                 Log.LogInfo("Performing mod initialization");
+
                 CreatorShopHelper.AddCreatorShopPieceCategory();
                 MoreVanillaBuildPrefabs.InitPrefabRefs();
                 MoreVanillaBuildPrefabs.InitDefaultPieceClones();

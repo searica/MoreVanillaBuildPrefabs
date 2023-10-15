@@ -33,6 +33,8 @@ namespace MoreVanillaBuildPrefabs
         internal static readonly Dictionary<string, Piece> DefaultPieceClones = new();
         internal static Dictionary<string, PieceDB> PieceRefs = new();
 
+        private static bool ShouldPauseIndividualConfigEvents = false;
+
         internal static bool DisableDropOnDestroyed { get; set; } = false;
 
         private static bool HasInitializedPrefabs => PrefabRefs.Count > 0;
@@ -50,6 +52,12 @@ namespace MoreVanillaBuildPrefabs
             Game.isModded = true;
 
             PluginConfig.SetupWatcher();
+
+            SynchronizationManager.OnConfigurationSynchronized += (obj, attr) =>
+            {
+                ShouldPauseIndividualConfigEvents = true;
+                Log.LogInfo("Recieved config data from server");
+            };
         }
 
         public void OnDestroy()
@@ -146,36 +154,6 @@ namespace MoreVanillaBuildPrefabs
                 DefaultPieceClones.Add(prefab.name, clone.GetComponent<Piece>());
             }
         }
-        // Generate icons for all the default piece clones.
-        // Copy fields will make sure all pieces have valid icons 
-        // but the GeneratePrefabIcons method only has to run once.
-
-        //        internal static void InitDefaultPieceClones()
-        //        {
-        //            if (DefaultPieceClones.Count > 0)
-        //            {
-        //                return;
-        //            }
-        //            Log.LogInfo("Initializing default pieces");
-
-        //            foreach (var prefab in PrefabRefs.Values)
-        //            {
-        //                var clone = PieceHelper.InitPieceComponent(prefab).gameObject.DeepCopy();
-        //#if DEBUG
-        //                if (PluginConfig.IsVerbose)
-        //                {
-        //                    Log.LogInfo($"Setting default piece for {prefab.name}");
-        //                    Log.LogInfo($"Default piece name {clone.GetComponent<Piece>().name}");
-        //                    Log.LogInfo($"Default piece m_name {clone.GetComponent<Piece>().m_name}");
-        //                }
-        //#endif
-        //                DefaultPieceClones.Add(prefab.name, clone.GetComponent<Piece>());
-        //            }
-        //            // Generate icons for all the default piece clones.
-        //            // Copy fields will make sure all pieces have valid icons 
-        //            // but the GeneratePrefabIcons method only has to run once.
-        //            IconHelper.GeneratePrefabIcons(DefaultPieceClones.Values);
-        //        }
 
         internal static void InitPieceRefs()
         {
