@@ -126,6 +126,7 @@ namespace MoreVanillaBuildPrefabs
                 PrefabRefs.Add(prefab.name, prefab);
             }
             Log.LogInfo($"Found {EligiblePrefabs.Count()} prefabs");
+            InitDefaultPieceClones();
         }
 
         /// <summary>
@@ -134,11 +135,15 @@ namespace MoreVanillaBuildPrefabs
         ///     to provide a template to reset to upon
         ///     re-initialization.
         /// </summary>
-        internal static void InitDefaultPieceClones()
+        private static void InitDefaultPieceClones()
         {
+            if (!HasInitializedPrefabs)
+            {
+                return; // can't run without PrefabRefs
+            }
             if (DefaultPieceClones.Count > 0)
             {
-                return;
+                return; // should only ever run once
             }
             Log.LogInfo("Initializing default pieces");
 
@@ -157,6 +162,11 @@ namespace MoreVanillaBuildPrefabs
             }
         }
 
+
+        /// <summary>
+        ///     Initializes references to pieces 
+        ///     and their configuration settings
+        /// </summary>
         internal static void InitPieceRefs()
         {
             Log.LogInfo("Initializing piece refs");
@@ -167,6 +177,8 @@ namespace MoreVanillaBuildPrefabs
 
                 foreach (PieceDB pdb in PieceRefs.Values)
                 {
+                    // remove pieces from hammer build table
+                    // and sheath hammer if table is open
                     PieceHelper.RemovePieceFromPieceTable(pdb.Prefab, hammerTable);
 
                     if (Player.m_localPlayer?.GetRightItem()?.m_shared.m_name == "$item_hammer")
@@ -174,14 +186,18 @@ namespace MoreVanillaBuildPrefabs
                         Log.LogWarning("Hammer updated through config change, unequipping hammer");
                         Player.m_localPlayer.HideHandItems();
                     }
-
-                    //DestroyImmediate(pdb.Prefab.GetComponent<Piece>());
                 }
                 PieceRefs.Clear();
             }
             PieceRefs = GeneratePieceRefs();
         }
 
+        /// <summary>
+        ///     Create a set of piece refs with each prefab's
+        ///     piece reset to the default state and the PieceDB
+        ///     containing the configuration settings to apply.
+        /// </summary>
+        /// <returns></returns>
         private static Dictionary<string, PieceDB> GeneratePieceRefs()
         {
             Dictionary<string, PieceDB> newPieceRefs = new();
@@ -189,15 +205,23 @@ namespace MoreVanillaBuildPrefabs
             {
                 // reset piece component to match the default piece clone
                 prefab.GetComponent<Piece>().CopyFields(DefaultPieceClones[prefab.name]);
-                PrefabDB prefabDB = PluginConfig.LoadPrefabDB(prefab);
+
+                // create piece ref
                 newPieceRefs.Add(
                     prefab.name,
-                    new PieceDB(prefabDB, prefab.GetComponent<Piece>())
+                    new PieceDB(
+                        PluginConfig.LoadPrefabDB(prefab),
+                        prefab.GetComponent<Piece>()
+                    )
                 );
             }
             return newPieceRefs;
         }
 
+        /// <summary>
+        ///     Apply the configuration settings from the 
+        ///     PieceDB for each piece in PieceRefs.
+        /// </summary>
         internal static void InitPieces()
         {
             Log.LogInfo("Initializing pieces");
@@ -209,7 +233,7 @@ namespace MoreVanillaBuildPrefabs
         }
 
         /// <summary>
-        ///     Creates a piece if needed and configures it based on PrefabDB values.
+        ///     Creates a piece if needed and configures it based on PieceDB values.
         /// </summary>
         /// <param name="prefabDB"></param>
         /// <returns></returns>
@@ -237,6 +261,11 @@ namespace MoreVanillaBuildPrefabs
             return piece;
         }
 
+        /// <summary>
+        ///     Add all pieces that are enabled in the cfg file to the hammer build 
+        ///     table according to CreatorShop related cfg settings. Allow sets
+        ///     all pieces added to the hammer permit deconstruction by players.
+        /// </summary>
         internal static void InitHammer()
         {
             Log.LogInfo("Initializing hammer build table");
@@ -249,9 +278,12 @@ namespace MoreVanillaBuildPrefabs
                     continue;
                 }
 
-                // to allow deconstruction of pieces enabled by the mod
-                pieceDB.piece.m_canBeRemoved = true;
-
+                // Allows pieces added to the hammer to be deconstructed
+                // unless they are a ship (to respect vanilla behaviour). 
+                if (pieceDB.piece.gameObject.GetComponent<Ship>() == null)
+                {
+                    pieceDB.piece.m_canBeRemoved = true;
+                }
 
                 // Restrict placement of CreatorShop pieces to Admins only
                 if (PluginConfig.IsCreatorShopAdminOnly
@@ -265,6 +297,7 @@ namespace MoreVanillaBuildPrefabs
             }
         }
 
+        // TODO: Rework event handlers to only update the single piece/thing related to the setting that changed when the SettingChanged event fires, and make different handlers for when Config.Reload or Server Data synced fires. (https://github.com/BepInEx/BepInEx/blob/0d06996b52c0215a8327b8c69a747f425bbb0023/BepInEx/Configuration/ConfigEntryBase.cs#L146)
 
         /// <summary>
         ///     Method update mod intialization when settings 

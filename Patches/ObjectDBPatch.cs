@@ -35,7 +35,6 @@ namespace MoreVanillaBuildPrefabs.Patchess
 #endif
                 CreatorShopHelper.AddCreatorShopPieceCategory();
                 MoreVanillaBuildPrefabs.InitPrefabRefs();
-                MoreVanillaBuildPrefabs.InitDefaultPieceClones();
                 MoreVanillaBuildPrefabs.InitPieceRefs();
                 MoreVanillaBuildPrefabs.InitPieces();
                 MoreVanillaBuildPrefabs.InitHammer();
