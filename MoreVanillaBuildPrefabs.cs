@@ -119,6 +119,16 @@ namespace MoreVanillaBuildPrefabs
 
             foreach (var prefab in EligiblePrefabs)
             {
+                if (PluginConfig.IsVerbosityHigh)
+                {
+                    Log.LogInfo("Initialize '" + prefab.name + "'");
+                    Log.LogInfo($"  - Has piece component: {prefab.GetComponent<Piece>() != null}");
+                    foreach (Component compo in prefab.GetComponents<Component>())
+                    {
+                        Log.LogInfo("  - " + compo.GetType().Name);
+                    }
+                }
+
                 // currently always applies patches to all prefabs
                 // regardless of whether the pieces are enabled
                 // only has to run once this way
@@ -172,7 +182,6 @@ namespace MoreVanillaBuildPrefabs
                 DefaultPieceClones.Add(prefab.name, clone.GetComponent<Piece>());
             }
         }
-
 
         /// <summary>
         ///     Initializes references to pieces 
