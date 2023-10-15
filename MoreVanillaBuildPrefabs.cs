@@ -33,7 +33,7 @@ namespace MoreVanillaBuildPrefabs
         internal static readonly Dictionary<string, Piece> DefaultPieceClones = new();
         internal static Dictionary<string, PieceDB> PieceRefs = new();
 
-        internal static bool PauseIndividualConfigEvents = false;
+        internal static bool DisableIndividualConfigEvents = false;
 
         internal static bool DisableDropOnDestroyed { get; set; } = false;
 
@@ -55,8 +55,10 @@ namespace MoreVanillaBuildPrefabs
 
             SynchronizationManager.OnConfigurationSynchronized += (obj, attr) =>
             {
-                //PauseIndividualConfigEvents = true;
-                Log.LogInfo("Recieved config data from server");
+                // Re-initialize after syncing data with server
+                // and re-enable individual config entry events
+                ConfigDataSynced("Config settings synced with server, re-initializing");
+                DisableIndividualConfigEvents = false;
             };
         }
 
@@ -272,7 +274,7 @@ namespace MoreVanillaBuildPrefabs
         /// <param name="e"></param>
         internal static void PieceSettingChanged(object o, EventArgs e)
         {
-            if (PauseIndividualConfigEvents)
+            if (DisableIndividualConfigEvents)
             {
                 return; // skip event
             }
@@ -303,7 +305,7 @@ namespace MoreVanillaBuildPrefabs
         /// <param name="e"></param>
         internal static void PlacementSettingChanged(object o, EventArgs e)
         {
-            if (PauseIndividualConfigEvents)
+            if (DisableIndividualConfigEvents)
             {
                 return; // skip event
             }
@@ -326,6 +328,13 @@ namespace MoreVanillaBuildPrefabs
 #endif
             foreach (var prefabName in PrefabRefs.Keys)
             {
+                if (PluginConfig.PieceConfigEntriesMap[prefabName].placementPatch == null)
+                {
+                    // No placement patch config entry means that prefab is already
+                    // placed in the NeedsCollisionPatchForGhost HashSet by default
+                    continue;
+                }
+
                 if (PluginConfig.PieceConfigEntriesMap[prefabName].placementPatch.Value)
                 {
                     // config is true so add it if not already in HashSet
@@ -342,7 +351,7 @@ namespace MoreVanillaBuildPrefabs
             }
         }
 
-        internal static void ConfigDataSynced()
+        internal static void ConfigDataSynced(string msg)
         {
             if (HasInitializedPrefabs)
             {
@@ -350,7 +359,7 @@ namespace MoreVanillaBuildPrefabs
                 var watch = new System.Diagnostics.Stopwatch();
                 watch.Start();
 #endif
-                Log.LogInfo("Config settings changed, re-initializing");
+                Log.LogInfo(msg);
                 InitPieceRefs();
                 InitPieces();
                 InitHammer();
