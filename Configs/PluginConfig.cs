@@ -241,12 +241,10 @@ namespace MoreVanillaBuildPrefabs.Configs
             if (!File.Exists(ConfigFileFullPath)) return;
             try
             {
-                Log.LogInfo("ReadConfigValues called");
-
-                PauseIndividualConfigEvents = true; // disable individual config entry events
+                Log.LogInfo("Reloading config file");
+                DisableIndividualConfigEvents = true; // disable individual config entry events
                 configFile.Reload();
-                PauseIndividualConfigEvents = false; // enable individual config entry events
-                Log.LogInfo("Reloaded config file");
+                DisableIndividualConfigEvents = false; // enable individual config entry events
             }
             catch
             {
@@ -254,7 +252,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 Log.LogError("Please check your config entries for spelling and format!");
             }
             // run a single re-initialization to deal with all changed data
-            ConfigDataSynced();
+            ConfigDataSynced("Config settings reloaded from file, re-initializing");
         }
 
         /// <summary>
