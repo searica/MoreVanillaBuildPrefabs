@@ -25,7 +25,7 @@ namespace MoreVanillaBuildPrefabs
         public const string PluginName = "MoreVanillaBuildPrefabs";
         internal const string Author = "Searica";
         public const string PluginGuid = $"{Author}.Valheim.{PluginName}";
-        public const string PluginVersion = "0.3.7";
+        public const string PluginVersion = "1.0.0";
 
         Harmony _harmony;
 
@@ -138,7 +138,7 @@ namespace MoreVanillaBuildPrefabs
                 defaultPieces.Add(PieceHelper.InitPieceComponent(prefab));
             }
             Log.LogInfo("Initializing default piece icons");
-            IconHelper.GeneratePrefabIcons(defaultPieces);
+            IconHelper.Instance.GeneratePrefabIcons(PrefabRefs.Values);
 
             foreach (var prefab in PrefabRefs.Values)
             {
