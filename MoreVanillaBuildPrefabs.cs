@@ -239,18 +239,10 @@ namespace MoreVanillaBuildPrefabs
         /// <returns></returns>
         private static Piece CreatePiece(PieceDB pieceDB)
         {
-            var prefab = pieceDB.Prefab;
-            var piece = PieceHelper.ConfigurePiece(
-                pieceDB.piece,
-                NameHelper.FormatPrefabName(prefab.name),
-                NameHelper.GetPrefabDescription(prefab),
-                pieceDB.allowedInDungeons,
-                pieceDB.category,
-                pieceDB.craftingStation,
-                pieceDB.requirements
-            );
+            var piece = PieceHelper.ConfigurePiece(pieceDB);
 
             // Fix missing hover text if needed.
+            var prefab = pieceDB.Prefab;
             var hover = prefab.GetComponent<HoverText>() ?? prefab.AddComponent<HoverText>();
             if (string.IsNullOrEmpty(hover.m_text))
             {

@@ -137,6 +137,31 @@ namespace MoreVanillaBuildPrefabs.Helpers
         }
 
         /// <summary>
+        ///     Method to configure Piece fields based on a PieceDB instance.
+        /// </summary>
+        /// <param name="piece"></param>
+        /// <returns></returns>
+        internal static Piece ConfigurePiece(PieceDB pieceDB)
+        {
+            var prefab = pieceDB.Prefab;
+            var name = NameHelper.FormatPrefabName(prefab.name);
+            var description = NameHelper.GetPrefabDescription(prefab);
+            var piece = pieceDB.piece;
+            var pieceCategory = (Piece.PieceCategory)PieceManager.Instance.GetPieceCategory(pieceDB.category);
+            var reqs = PluginConfig.CreateRequirementsArray(pieceDB.requirements);
+            var station = GetCraftingStation(pieceDB.craftingStation);
+            return ConfigurePiece(
+                piece,
+                name,
+                description,
+                pieceDB.allowedInDungeons,
+                pieceCategory,
+                station,
+                reqs
+            );
+        }
+
+        /// <summary>
         ///     Method to configure Piece fields based on cfg file data.
         /// </summary>
         /// <param name="piece"></param>
@@ -191,7 +216,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
 
 
         /// <summary>
-        ///     Method to add a iece to a piece table.
+        ///     Method to add a piece to a piece table.
         /// </summary>
         /// <param name="piece"></param>
         /// <param name="pieceTable"></param>
