@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace MoreVanillaBuildPrefabs.Helpers
 {
-    public class SnapPointHelper
+    internal class SnapPointHelper
     {
         // List of points in a 2x2 box that would be the corners
         private static readonly List<Vector3> corners = new()
