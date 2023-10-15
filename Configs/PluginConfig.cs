@@ -197,7 +197,7 @@ namespace MoreVanillaBuildPrefabs.Configs
 
             // if the prefab is not already included in the list of prefabs that need a 
             // collision patch then add a config option to enable the placement collision patch.
-            if (!PiecePlacement.NeedsCollisionPatchForGhost(prefab.name))
+            if (!PlacementConfigs.NeedsCollisionPatchForGhost(prefab.name))
             {
                 pieceConfigEntries.placementPatch = BindConfig(
                     sectionName,
@@ -215,7 +215,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 if (defaultPieceDB.placementPatch)
                 {
                     // add prefab to list of prefabs needing a collision patch if setting is true
-                    PiecePlacement._NeedsCollisionPatchForGhost.Add(prefab.name);
+                    PlacementConfigs._NeedsCollisionPatchForGhost.Add(prefab.name);
                 }
             }
 
