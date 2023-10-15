@@ -105,10 +105,9 @@ namespace MoreVanillaBuildPrefabs
             {
                 return;
             }
-            if (PluginConfig.IsVerbosityLow)
-            {
-                Log.LogInfo("Initializing prefabs");
-            }
+
+            Log.LogInfo("Initializing prefabs");
+
             var PieceNameCache = PieceHelper.GetExistingPieceNames();
 
             var EligiblePrefabs = ZNetScene.instance.m_prefabs
@@ -128,10 +127,9 @@ namespace MoreVanillaBuildPrefabs
                 PrefabPatcher.PatchPrefabIfNeeded(prefab);
                 PrefabRefs.Add(prefab.name, prefab);
             }
-            if (PluginConfig.IsVerbosityLow)
-            {
-                Log.LogInfo($"Found {EligiblePrefabs.Count()} prefabs");
-            }
+
+            Log.LogInfo($"Found {EligiblePrefabs.Count()} prefabs");
+
             InitDefaultPieceClones();
         }
 
@@ -153,10 +151,7 @@ namespace MoreVanillaBuildPrefabs
                 return; // should only ever run once
             }
 
-            if (PluginConfig.IsVerbosityLow)
-            {
-                Log.LogInfo("Initializing default pieces");
-            }
+            Log.LogInfo("Initializing default pieces");
 
             List<Piece> defaultPieces = new();
             foreach (var prefab in PrefabRefs.Values)
@@ -322,19 +317,24 @@ namespace MoreVanillaBuildPrefabs
 
             if (HasInitializedPrefabs)
             {
-#if DEBUG
+
                 var watch = new System.Diagnostics.Stopwatch();
-                watch.Start();
-#endif
+                if (PluginConfig.IsVerbosityMedium)
+                {
+                    watch.Start();
+                }
+
                 Log.LogInfo("Config setting changed, re-initializing");
                 InitPieceRefs();
                 InitPieces();
                 InitHammer();
                 Log.LogInfo("Re-initializing complete");
-#if DEBUG
-                watch.Stop();
-                Log.LogInfo($"Time to re-initialize: {watch.ElapsedMilliseconds} ms");
-#endif
+
+                if (PluginConfig.IsVerbosityMedium)
+                {
+                    watch.Stop();
+                    Log.LogInfo($"Time to re-initialize: {watch.ElapsedMilliseconds} ms");
+                }
             }
         }
 
@@ -364,9 +364,12 @@ namespace MoreVanillaBuildPrefabs
             {
                 return;
             }
-#if DEBUG
-            Log.LogInfo("Re-initializing CollisionPatch list");
-#endif
+
+            if (PluginConfig.IsVerbosityMedium)
+            {
+                Log.LogInfo("Initializing collision patches");
+            }
+
             foreach (var prefabName in PrefabRefs.Keys)
             {
                 if (PluginConfig.PieceConfigEntriesMap[prefabName].placementPatch == null)
@@ -396,20 +399,25 @@ namespace MoreVanillaBuildPrefabs
         {
             if (HasInitializedPrefabs)
             {
-#if DEBUG
+
                 var watch = new System.Diagnostics.Stopwatch();
-                watch.Start();
-#endif
+                if (PluginConfig.IsVerbosityMedium)
+                {
+                    watch.Start();
+                }
+
                 Log.LogInfo(msg);
                 InitPieceRefs();
                 InitPieces();
                 InitHammer();
                 UpdateNeedsCollisionPatchForGhost();
                 Log.LogInfo("Re-initializing complete");
-#if DEBUG
-                watch.Stop();
-                Log.LogInfo($"Time to re-initialize: {watch.ElapsedMilliseconds} ms");
-#endif
+
+                if (PluginConfig.IsVerbosityMedium)
+                {
+                    watch.Stop();
+                    Log.LogInfo($"Time to re-initialize: {watch.ElapsedMilliseconds} ms");
+                }
             }
         }
     }

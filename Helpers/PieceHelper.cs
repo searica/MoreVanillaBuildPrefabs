@@ -228,10 +228,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
             {
                 AddPieceToPieceTable(piece, pieceTable);
             }
-            if (PluginConfig.IsVerbosityLow)
-            {
-                Log.LogInfo($"Added {AddedPrefabs.Count} custom pieces");
-            }
+            Log.LogInfo($"Added {AddedPrefabs.Count} custom pieces");
         }
 
         /// <summary>
@@ -366,10 +363,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
             }
             catch (Exception e)
             {
-                if (PluginConfig.IsVerbosityLow)
-                {
-                    Log.LogInfo($"{name}: {e}");
-                }
+                Log.LogInfo($"{name}: {e}");
                 return false;
             }
         }

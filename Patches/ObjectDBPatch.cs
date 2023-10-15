@@ -29,10 +29,8 @@ namespace MoreVanillaBuildPrefabs.Patchess
             // If loading into game world and prefabs have not been added
             if (SceneManager.GetActiveScene().name == "main")
             {
-                if (PluginConfig.IsVerbosityLow)
-                {
-                    Log.LogInfo("Performing mod initialization");
-                }
+
+                Log.LogInfo("Performing mod initialization");
 
                 var watch = new System.Diagnostics.Stopwatch();
                 if (PluginConfig.IsVerbosityMedium)
