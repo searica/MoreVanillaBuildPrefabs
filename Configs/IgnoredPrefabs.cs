@@ -107,6 +107,19 @@ namespace MoreVanillaBuildPrefabs.Configs
             "tolroko_flyer", // I don't want to patch this and instantiating it throws errors
             "fuling_turret", // Duplicate of vanilla ballista
             "dragoneggcup", // It's invisible and I don't want to patch it
+            "tarlump",  // environmental thing and too easy to use for griefing
+            "mistvolume", // environmental thing and too easy to use for griefing
+        };
+
+        /// <summary>
+        ///  These are prefabs I think people may want to be able to use but they 
+        ///  aren't really normal build pieces and could be used for griefing.
+        /// </summary>
+        private static readonly HashSet<string> _CreativeModePrefabs = new()
+        {
+            "tarlump", // environmental thing and too easy to use for griefing
+            "mistvolume", // environmental thing and too easy to use for griefing
+            "tolroko_flyer", // It's a little space ship! Instantiating it throws errors though.
         };
     }
 }
