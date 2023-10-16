@@ -167,10 +167,20 @@ namespace MoreVanillaBuildPrefabs
 
             Log.LogInfo("Initializing default pieces");
 
-            List<Piece> defaultPieces = new();
+            // Get a default icon to use if piece doesn't have an icon.
+            // Need this to prevent NRE's if other code references the piece
+            // before the coroutine that is rendering the icons finishes. (Such as PlanBuild)
+            var defaultIcon = Resources.FindObjectsOfTypeAll<Sprite>()
+                ?.Where(spr => spr.name == "mapicon_hildir1")
+                ?.First();
+
             foreach (var prefab in PrefabRefs.Values)
             {
-                defaultPieces.Add(PieceHelper.InitPieceComponent(prefab));
+                var defaultPiece = PieceHelper.InitPieceComponent(prefab);
+                if (defaultPiece.m_icon == null)
+                {
+                    defaultPiece.m_icon = defaultIcon;
+                }
             }
 
             if (PluginConfig.IsVerbosityMedium)
