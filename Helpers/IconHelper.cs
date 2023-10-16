@@ -10,6 +10,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
     {
         private static GameObject _gameObject;
         private static IconHelper _instance;
+        private static Sprite _iconSprite;
         // private static Coroutine _coroutine;
 
         /// <summary>
@@ -60,19 +61,25 @@ namespace MoreVanillaBuildPrefabs.Helpers
                     continue;
                 }
 
-                yield return null;
                 Sprite result = GenerateObjectIcon(gameObject);
+                // returning WaitForEndOfFrame seems to
+                // fix the lighting bug in the icons
+                yield return new WaitForEndOfFrame();
 
                 if (result == null)
                 {
-                    PickableItem.RandomItem[] randomItemPrefabs = piece.gameObject.GetComponent<PickableItem>()?.m_randomItemPrefabs;
+                    PickableItem.RandomItem[] randomItemPrefabs = piece.gameObject.GetComponent<PickableItem>()
+                        ?.m_randomItemPrefabs;
+
                     if (randomItemPrefabs != null && randomItemPrefabs.Length > 0)
                     {
                         GameObject item = randomItemPrefabs[0].m_itemPrefab?.gameObject;
                         if (item != null)
                         {
-                            yield return null;
                             result = GenerateObjectIcon(item);
+                            // returning WaitForEndOfFrame seems to
+                            // fix the lighting bug in the icons
+                            yield return new WaitForEndOfFrame();
                         }
                     }
                 }
@@ -96,3 +103,56 @@ namespace MoreVanillaBuildPrefabs.Helpers
         }
     }
 }
+
+//public void GeneratePrefabIcons(IEnumerable<GameObject> prefabs)
+//{
+//    foreach (var gameObject in gameObjects)
+//    {
+//        if (gameObject == null)
+//        {
+//            Log.LogWarning($"Null prefab, cannot render icon");
+//            continue;
+//        }
+
+//        var piece = gameObject.GetComponent<Piece>();
+
+//        if (piece == null)
+//        {
+//            Log.LogWarning($"Null piece, cannot render icon");
+//            continue;
+//        }
+
+//        Sprite result = GenerateObjectIcon(gameObject);
+
+//        if (result == null)
+//        {
+//            PickableItem.RandomItem[] randomItemPrefabs = piece.gameObject.GetComponent<PickableItem>()
+//                ?.m_randomItemPrefabs;
+
+//            if (randomItemPrefabs != null && randomItemPrefabs.Length > 0)
+//            {
+//                GameObject item = randomItemPrefabs[0].m_itemPrefab?.gameObject;
+//                if (item != null)
+//                {
+//                    result = GenerateObjectIcon(item);
+//                }
+//            }
+//        }
+
+//        piece.m_icon = result;
+//    }
+//}
+
+//private Sprite GenerateObjectIcon(GameObject obj)
+//{
+//    var cache = true;
+//#if DEBUG
+//    cache = false;
+//#endif
+//    var request = new RenderManager.RenderRequest(obj)
+//    {
+//        Rotation = RenderManager.IsometricRotation,
+//        UseCache = cache
+//    };
+//    return RenderManager.Instance.Render(request);
+//}
