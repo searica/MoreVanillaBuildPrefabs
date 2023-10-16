@@ -9,9 +9,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
         private static readonly Dictionary<string, string> NamesMap = new()
         {
             {"stoneblock_fracture", "Stone floor2 4x4"},
-            {"dvergrprops_hooknchain", "Dvergr hook & chain"},
-            {"dvergrprops_wood_wall", "Dvergr wood wall 4x4"},
-            {"piece_dvergr_wood_wall", "Dvergr wood wall"},
+
             {"blackmarble_floor_large", "Black marble floor 8x8"},
             {"TreasureChest_fCrypt", "Stone chest (mossy)" },
             {"TreasureChest_mountaincave", "Stone chest (snow)" },
@@ -21,13 +19,19 @@ namespace MoreVanillaBuildPrefabs.Helpers
             {"TreasureChest_sunkencrypt", "Stone chest (dark moss)"},
             {"TreasureChest_dvergrtower", "Dvergr chest"},
             {"TreasureChest_dvergrtown", "Dvergr chest (large)"},
+            {"dvergrtown_slidingdoor", "Dvergr sliding door"},
+            {"dvergrtown_secretdoor", "Dvergr secret door"},
+            {"dvergrprops_hooknchain", "Dvergr hook & chain"},
+            {"dvergrprops_wood_wall", "Dvergr wood wall 4x4"},
+            {"piece_dvergr_wood_wall", "Dvergr wood wall"},
+            {"dvergrprops_wood_pole", "Dvergr wood pole"},
+            {"dvergrtown_wood_pole", "Dvergr wood pole (creep)"},
             {"stonechest", "Stone chest"},
             {"fire_pit_hildir", "Firepit iron (everburning)"},
             {"fire_pit_haldor", "Campfire (everburning)"},
             {"Birch1_aut", "Birch1 (autumn)"},
             {"Birch2_aut", "Birch2 (autumn)"},
-            {"dvergrtown_slidingdoor", "Dvergr sliding door"},
-            {"dvergrtown_secretdoor", "Dvergr secret door"},
+
             {"CastleKit_braided_box01", "Wood box"},
             {"Trailership", "Trader ship"},
         };
