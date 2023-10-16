@@ -210,7 +210,7 @@ namespace MoreVanillaBuildPrefabs
             if (CreatorShopHelper.IsCreatorShopPiece(piece) && !piece.IsCreator())
             {
                 // Allow admins to deconstruct CreatorShop pieces built by other players if setting is enabled in config
-                if (PluginConfig.IsCreatorShopDeconstructAdminOnly && SynchronizationManager.Instance.PlayerIsAdmin)
+                if (PluginConfig.IsCreatorShopAdminDeconstructAll && SynchronizationManager.Instance.PlayerIsAdmin)
                 {
                     __result = true;
                     return true;

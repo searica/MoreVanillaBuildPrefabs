@@ -34,7 +34,7 @@ namespace MoreVanillaBuildPrefabs.Configs
         private const string MainSectionName = "\u200BGlobal";
 
         internal static ConfigEntry<bool> CreatorShopAdminOnly { get; private set; }
-        internal static ConfigEntry<bool> CreatorShopDeconstructAdminOnly { get; private set; }
+        internal static ConfigEntry<bool> CreatorShopAdminDeconstructAll { get; private set; }
         internal static ConfigEntry<bool> ForceAllPrefabs { get; private set; }
         internal static ConfigEntry<LoggerLevel> Verbosity { get; private set; }
 
@@ -103,7 +103,7 @@ namespace MoreVanillaBuildPrefabs.Configs
         internal static bool IsVerbosityHigh => Verbosity.Value >= LoggerLevel.High;
         internal static bool IsForceAllPrefabs => ForceAllPrefabs.Value;
         internal static bool IsCreatorShopAdminOnly => CreatorShopAdminOnly.Value;
-        internal static bool IsCreatorShopDeconstructAdminOnly => CreatorShopDeconstructAdminOnly.Value;
+        internal static bool IsCreatorShopAdminDeconstructAll => CreatorShopAdminDeconstructAll.Value;
 
         internal static void SetUpConfig()
         {
@@ -115,9 +115,9 @@ namespace MoreVanillaBuildPrefabs.Configs
                 AcceptableBoolValuesList
             );
 
-            CreatorShopDeconstructAdminOnly = BindConfig(
+            CreatorShopAdminDeconstructAll = BindConfig(
                 MainSectionName,
-                "CreatorShopDeconstructAdminOnly",
+                "CreatorShopAdminDeconstructAll",
                 true,
                 "Set to true to allow admin players to deconstruct any CreatorShop pieces built by players." +
                 " Intended to prevent griefing via placement of indestructible objects.",
