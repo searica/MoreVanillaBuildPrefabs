@@ -1,15 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using UnityEngine;
-using MoreVanillaBuildPrefabs.Logging;
 using System.Linq;
+using UnityEngine;
 
 namespace MoreVanillaBuildPrefabs.Helpers
 {
     internal class PrefabPatcher
     {
-
-
         /// <summary>
         ///     Fix collider and snap points on the prefab if necessary
         /// </summary>
@@ -26,29 +23,92 @@ namespace MoreVanillaBuildPrefabs.Helpers
             {
                 case "ArmorStand_Male":
                 case "ArmorStand_Female":
-                    SnapPointHelper.AddCenterSnapPoint(prefab);
+                    SnapPointHelper.AddSnapPointToCenter(prefab);
                     break;
+
                 case "Trailership":
-                    Log.LogInfo(prefab.name);
+                    // Fix hull
+                    var meshFilter = prefab.GetMeshFilter("hull");
+                    if (meshFilter == null) { break; }
 
-                    foreach (var meshFilter in prefab.GetComponentsInChildren<MeshFilter>())
+                    var longShip = ZNetScene.instance?.m_prefabs?.Where(go => go.name == "VikingShip")?.First();
+                    var longShipMeshFilter = longShip?.GetMeshFilter("hull");
+                    if (longShipMeshFilter == null) { break; }
+
+                    meshFilter.mesh = longShipMeshFilter.mesh;
+
+                    // Fix shields
+                    var shieldBanded = ZNetScene.instance?.m_prefabs?.Where(go => go.name == "ShieldBanded")?.First();
+                    var mat = shieldBanded?.GetComponentInChildren<MeshRenderer>()?.material;
+                    if (mat == null) { break; }
+
+                    var storage = prefab.transform.Find("ship")
+                        ?.transform?.Find("visual")
+                        ?.transform?.Find("Customize")
+                        ?.transform?.Find("storage");
+                    if (storage == null) { break; }
+
+                    int children = storage.transform.childCount;
+                    for (int i = 0; i < children; ++i)
                     {
-                        if (meshFilter.name == "hull")
+                        var child = storage.transform.GetChild(i);
+                        if (child != null && child.name.StartsWith("Shield"))
                         {
-                            var longShip = ZNetScene.instance?.m_prefabs?.Where(go => go.name == "VikingShip")?.First();
-
-                            if (longShip == null) { break; }
-
-                            foreach (var longShipMeshFilter in longShip.GetComponentsInChildren<MeshFilter>())
-                                if (longShipMeshFilter.name == "hull")
-                                {
-                                    meshFilter.mesh = longShipMeshFilter.mesh;
-                                    break;
-                                }
-
+                            child.GetComponent<MeshRenderer>().material = mat;
                         }
                     }
+
+                    // Fix sail skinned mesh renderer
+                    //var longShipSailFull = longShip?.transform?.Find("ship")
+                    //    ?.transform?.Find("visual")
+                    //    ?.transform?.Find("Mast")
+                    //    ?.transform?.Find("Sail")
+                    //    ?.transform?.Find("sail_full")?.gameObject;
+                    //if (longShipSailFull == null) { break; }
+
+                    //var sailFull = prefab?.transform?.Find("ship")
+                    //    ?.transform?.Find("visual")
+                    //    ?.transform?.Find("Mast")
+                    //    ?.transform?.Find("Sail")
+                    //    ?.transform?.Find("sail_full").gameObject;
+                    //if (sailFull == null) { break; }
+                    //var skinMeshRender = sailFull.GetComponent<SkinnedMeshRenderer>();
+                    //skinMeshRender.bounds.extents.Scale(new Vector3(1, 1.1f, 1));
+
+                    // Fix missing control GUI position
+                    var ship = prefab.GetComponent<Ship>();
+                    if (ship == null) { break; }
+                    var controlGui = new GameObject("ControlGui");
+                    controlGui.transform.parent = prefab.transform;
+                    controlGui.transform.localPosition = new Vector3(1.0f, 1.696f, -6.54f);
+                    ship.m_controlGuiPos = controlGui.transform;
+
+                    // Fix missing rudder button attachpoint
+                    var shipControls = prefab.transform?.Find("ship")
+                        ?.transform?.Find("buttons")
+                        ?.transform?.Find("rudder (1)")
+                        ?.transform?.Find("rudder_button")
+                        ?.GetComponent<ShipControlls>();
+                    if (shipControls == null) { break; }
+
+                    var rudderAttach = prefab?.transform?.Find("sit locations")
+                        ?.transform?.Find("sit_box (4)")
+                        ?.transform?.Find("attachpoint");
+                    if (rudderAttach == null) { break; }
+
+                    shipControls.m_attachPoint = rudderAttach.transform;
+
+                    // Fix sail not catching wind
+                    ship.m_sailForceOffset = 2; // same as longship
+                    ship.m_sailForceFactor = 0.05f; // same as longship
                     break;
+
+                case "TreasureChest_dvergr_loose_stone":
+                    var boxCollider = prefab.AddComponent<BoxCollider>();
+                    boxCollider.size = new Vector3(2, 1, 2);
+                    SnapPointHelper.AddSnapPointsToBoxColliderCorners(prefab, boxCollider);
+                    break;
+
                 case "TreasureChest_mountaincave":
                 case "TreasureChest_trollcave":
                     SnapPointHelper.AddSnapPointsToMeshCorners(prefab, "stonechest", true);
@@ -78,6 +138,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
                        true
                     );
                     break;
+
                 case "blackmarble_column_3":
                     SnapPointHelper.AddSnapPoints(
                         prefab,
@@ -109,6 +170,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
                         }
                     );
                     break;
+
                 case "blackmarble_creep_4x1x1":
                     SnapPointHelper.AddSnapPoints(
                         prefab,
@@ -132,6 +194,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
                     UnityEngine.Object.DestroyImmediate(prefab.transform.Find("new").gameObject.GetComponent<RandomPieceRotation>());
 
                     break;
+
                 case "blackmarble_creep_4x2x1":
                     SnapPointHelper.AddSnapPoints(
                         prefab,
@@ -154,6 +217,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
                     // ? Place the piece randomly in horizontal or vertical position ?
                     UnityEngine.Object.DestroyImmediate(prefab.transform.Find("new").gameObject.GetComponent<RandomPieceRotation>());
                     break;
+
                 case "blackmarble_creep_slope_inverted_1x1x2":
                     SnapPointHelper.AddSnapPoints(
                         prefab,
@@ -168,6 +232,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
                         }
                     );
                     break;
+
                 case "blackmarble_creep_slope_inverted_2x2x1":
                     SnapPointHelper.AddSnapPoints(prefab, new Vector3[] {
                         new Vector3(-1, 0.5f, -1),
@@ -179,6 +244,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
                         new Vector3(1, -0.5f, -1),
                     });
                     break;
+
                 case "blackmarble_creep_stair":
                     SnapPointHelper.AddSnapPoints(prefab, new Vector3[] {
                         new Vector3(-1, 1, -1),
@@ -189,6 +255,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
                         new Vector3(1, 0, 1),
                     });
                     break;
+
                 case "blackmarble_floor_large":
                     for (int y = -1; y <= 1; y += 2)
                     {
@@ -202,6 +269,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
                     }
                     SnapPointHelper.AddSnapPoints(prefab, pts);
                     break;
+
                 case "blackmarble_head_big01":
                     SnapPointHelper.AddSnapPoints(prefab, new Vector3[] {
                         new Vector3(-1, 1, -1),
@@ -213,6 +281,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
                         new Vector3(-1, -1, -1),
                     });
                     break;
+
                 case "blackmarble_head_big02":
                     SnapPointHelper.AddSnapPoints(
                         prefab,
@@ -227,23 +296,27 @@ namespace MoreVanillaBuildPrefabs.Helpers
                         }
                     );
                     break;
+
                 case "blackmarble_out_2":
                     // Fix piece colliders via layers
                     UnityEngine.Object.DestroyImmediate(prefab.GetComponent<MeshCollider>());
                     SnapPointHelper.FixPiece(prefab);
                     break;
+
                 case "blackmarble_tile_floor_1x1":
                     prefab.transform.Find("_snappoint").gameObject.transform.localPosition = new Vector3(0.5f, 0.1f, 0.5f);
                     prefab.transform.Find("_snappoint (1)").gameObject.transform.localPosition = new Vector3(0.5f, 0.1f, -0.5f);
                     prefab.transform.Find("_snappoint (2)").gameObject.transform.localPosition = new Vector3(-0.5f, 0.1f, 0.5f);
                     prefab.transform.Find("_snappoint (3)").gameObject.transform.localPosition = new Vector3(-0.5f, 0.1f, -0.5f);
                     break;
+
                 case "blackmarble_tile_floor_2x2":
                     prefab.transform.Find("_snappoint").gameObject.transform.localPosition = new Vector3(1, 0.1f, 1);
                     prefab.transform.Find("_snappoint (1)").gameObject.transform.localPosition = new Vector3(1, 0.1f, -1);
                     prefab.transform.Find("_snappoint (2)").gameObject.transform.localPosition = new Vector3(-1, 0.1f, 1);
                     prefab.transform.Find("_snappoint (3)").gameObject.transform.localPosition = new Vector3(-1, 0.1f, -1);
                     break;
+
                 case "blackmarble_tile_wall_1x1":
                     prefab.transform.Find("_snappoint").gameObject.transform.localPosition = new Vector3(0.5f, 0, 0.1f);
                     prefab.transform.Find("_snappoint (1)").gameObject.transform.localPosition = new Vector3(0.5f, 1, 0.1f);
@@ -254,6 +327,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
                     prefab.transform.Find("_snappoint (6)").gameObject.transform.localPosition = new Vector3(-0.25f, 0, 0.1f);
                     prefab.transform.Find("_snappoint (7)").gameObject.transform.localPosition = new Vector3(-0.25f, 0.5f, 0.1f);
                     break;
+
                 case "blackmarble_tile_wall_2x2":
                     prefab.transform.Find("_snappoint").gameObject.transform.localPosition = new Vector3(1, 0, 0.1f);
                     prefab.transform.Find("_snappoint (1)").gameObject.transform.localPosition = new Vector3(1, 2, 0.1f);
@@ -264,6 +338,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
                     prefab.transform.Find("_snappoint (6)").gameObject.transform.localPosition = new Vector3(-0.5f, 0, 0.1f);
                     prefab.transform.Find("_snappoint (7)").gameObject.transform.localPosition = new Vector3(-0.5f, 1, 0.1f);
                     break;
+
                 case "blackmarble_tile_wall_2x4":
                     prefab.transform.Find("_snappoint").gameObject.transform.localPosition = new Vector3(1, 0, 0.1f);
                     prefab.transform.Find("_snappoint (1)").gameObject.transform.localPosition = new Vector3(1, 4, 0.1f);
@@ -274,6 +349,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
                     prefab.transform.Find("_snappoint (6)").gameObject.transform.localPosition = new Vector3(-0.5f, 0, 0.1f);
                     prefab.transform.Find("_snappoint (7)").gameObject.transform.localPosition = new Vector3(-0.5f, 2, 0.1f);
                     break;
+
                 case "dungeon_queen_door":
                     SnapPointHelper.AddSnapPoints(
                         prefab,
@@ -283,6 +359,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
                         }
                     );
                     break;
+
                 case "dungeon_sunkencrypt_irongate":
                     SnapPointHelper.AddSnapPoints(
                         prefab,
@@ -292,6 +369,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
                         }
                     );
                     break;
+
                 case "sunken_crypt_gate":
                     SnapPointHelper.AddSnapPoints(
                         prefab,
@@ -301,10 +379,11 @@ namespace MoreVanillaBuildPrefabs.Helpers
                         }
                     );
                     break;
+
                 case "dvergrprops_wood_beam":
                     /*
                     SnapPointHelper.AddSnapPoints(
-                        prefab, 
+                        prefab,
                         new Vector3[] {
                             new Vector3(3, 0.45f, 0.45f),
                             new Vector3(3, 0.45f, -0.42f),
@@ -326,10 +405,11 @@ namespace MoreVanillaBuildPrefabs.Helpers
                         }
                     );
                     break;
+
                 case "dvergrprops_wood_pole":
                     /*
                     SnapPointHelper.AddSnapPoints(
-                        prefab, 
+                        prefab,
                         new Vector3[] {
                             new Vector3(0.45f, 2, 0.45f),
                             new Vector3(-0.45f, 2, 0.45f),
@@ -350,6 +430,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
                         }
                     );
                     break;
+
                 case "dvergrprops_wood_wall":
                     // Patch only the floor
                     /*generateSnapPoints(prefab, new Vector3[] {
@@ -368,10 +449,11 @@ namespace MoreVanillaBuildPrefabs.Helpers
                         }
                     );
                     break;
+
                 case "dvergrtown_arch":
                     /*
                     SnapPointHelper.AddSnapPoints(
-                        prefab, 
+                        prefab,
                         new Vector3[] {
                             new Vector3(1, 0, -0.5f),
                             new Vector3(1, 0, 0.5f),
@@ -399,13 +481,13 @@ namespace MoreVanillaBuildPrefabs.Helpers
                 case "dvergrtown_secretdoor":
                     /*
                      SnapPointHelper.AddSnapPoints(
-                        prefab, 
+                        prefab,
                         new Vector3[] {
                             new Vector3(2, 0, -0.35f),
                             new Vector3(2, 0, 0.4f),
                             new Vector3(-2, 0, -0.35f),
                             new Vector3(-2, 0, 0.4f),
-                        
+
                             new Vector3(2, 4, -0.35f),
                             new Vector3(2, 4, 0.4f),
                             new Vector3(-2, 4, -0.35f),
@@ -423,10 +505,11 @@ namespace MoreVanillaBuildPrefabs.Helpers
                         }
                     );
                     break;
+
                 case "dvergrtown_slidingdoor":
                     /*
                     SnapPointHelper.AddSnapPoints(
-                        prefab, 
+                        prefab,
                         new Vector3[] {
                             new Vector3(2, 0, 0),
                             new Vector3(2, 0, 0.2f),
@@ -450,6 +533,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
                         }
                     );
                     break;
+
                 case "dvergrtown_stair_corner_wood_left":
                     SnapPointHelper.AddSnapPoints(
                         prefab,
@@ -466,10 +550,11 @@ namespace MoreVanillaBuildPrefabs.Helpers
                         }
                     );
                     break;
+
                 case "dvergrtown_wood_beam":
                     /*
                      SnapPointHelper.AddSnapPoints(
-                        prefab, 
+                        prefab,
                         new Vector3[] {
                             new Vector3(3, 0.45f, 0.45f),
                             new Vector3(3, 0.45f, -0.42f),
@@ -491,10 +576,11 @@ namespace MoreVanillaBuildPrefabs.Helpers
                         }
                     );
                     break;
+
                 case "dvergrtown_wood_pole":
                     /*
                     SnapPointHelper.AddSnapPoints(
-                        prefab, 
+                        prefab,
                         new Vector3[] {
                             new Vector3(0.45f, 2, 0.45f),
                             new Vector3(-0.45f, 2, 0.45f),
@@ -515,11 +601,12 @@ namespace MoreVanillaBuildPrefabs.Helpers
                         }
                     );
                     break;
+
                 case "dvergrtown_wood_stake":
                     // Patch only the floor
                     /*
                     SnapPointHelper.AddSnapPoints(
-                        prefab, 
+                        prefab,
                         new Vector3[] {
                             new Vector3(0.15f, 0, 0.15f),
                             new Vector3(-0.15f, 0, 0.15f),
@@ -535,10 +622,11 @@ namespace MoreVanillaBuildPrefabs.Helpers
                         }
                     );
                     break;
+
                 case "dvergrtown_wood_crane":
                     /*
                     SnapPointHelper.AddSnapPoints(
-                        prefab, 
+                        prefab,
                         new Vector3[] {
                             new Vector3(0.4f, -3, 0.4f),
                             new Vector3(-0.4f, -3, 0.4f),
@@ -554,10 +642,11 @@ namespace MoreVanillaBuildPrefabs.Helpers
                         }
                     );
                     break;
+
                 case "dvergrtown_wood_support":
                     /*
                     SnapPointHelper.AddSnapPoints(
-                        prefab, 
+                        prefab,
                         new Vector3[] {
                             new Vector3(-2.4f, 0, -0.4f),
                             new Vector3(-2.4f, 0, 0.4f),
@@ -579,12 +668,13 @@ namespace MoreVanillaBuildPrefabs.Helpers
                         }
                     );
                     break;
+
                 case "dvergrtown_wood_wall01":
                     // Fix collider y
                     prefab.transform.Find("wallcollider").transform.localPosition = new Vector3(0, 0, 0);
                     /*
                     SnapPointHelper.AddSnapPoints(
-                        prefab, 
+                        prefab,
                         new Vector3[] {
                         new Vector3(3, -2.7f, -0.45f),
                         new Vector3(3, -2.7f, 0.45f),
@@ -608,11 +698,12 @@ namespace MoreVanillaBuildPrefabs.Helpers
                         }
                     );
                     break;
+
                 case "dvergrtown_wood_wall02":
                     /*
-                 
+
                     SnapPointHelper.AddSnapPoints(
-                        prefab, 
+                        prefab,
                         new Vector3[] {
                             new Vector3(3, -0.6f, -0.25f),
                             new Vector3(3, -0.6f, 0.25f),
@@ -637,6 +728,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
                         }
                     );
                     break;
+
                 case "dvergrtown_wood_wall03":
                     SnapPointHelper.AddSnapPoints(
                         prefab,
@@ -652,6 +744,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
                         }
                     );
                     break;
+
                 case "goblin_roof_45d":
                     SnapPointHelper.AddSnapPoints(
                         prefab,
@@ -663,6 +756,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
                         }
                     );
                     break;
+
                 case "goblin_roof_45d_corner":
                     SnapPointHelper.AddSnapPoints(
                         prefab,
@@ -672,6 +766,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
                         }
                     );
                     break;
+
                 case "goblin_woodwall_1m":
                     SnapPointHelper.AddSnapPoints(
                         prefab,
@@ -683,6 +778,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
                         }
                     );
                     break;
+
                 case "goblin_woodwall_2m":
                     SnapPointHelper.AddSnapPoints(
                         prefab,
@@ -694,6 +790,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
                         }
                     );
                     break;
+
                 case "Ice_floor":
                     SnapPointHelper.AddSnapPoints(
                         prefab,
@@ -710,6 +807,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
                         }
                     );
                     break;
+
                 case "turf_roof": // 26 degree
                     SnapPointHelper.AddSnapPoints(
                         prefab,
@@ -723,6 +821,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
                         }
                     );
                     break;
+
                 case "turf_roof_top":
                     SnapPointHelper.AddSnapPoints(
                         prefab,
@@ -734,6 +833,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
                         }
                     );
                     break;
+
                 case "metalbar_1x2":
                     SnapPointHelper.AddSnapPoints(
                         prefab,
@@ -747,6 +847,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
                         }
                     );
                     break;
+
                 case "stone_floor":
                     for (float y = -0.5f; y <= 0.5f; y += 1)
                     {
@@ -763,6 +864,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
                     }
                     SnapPointHelper.AddSnapPoints(prefab, pts);
                     break;
+
                 case "stoneblock_fracture":
                     // x and y scale is strange for this one
                     for (float y = -0.5f; y <= 0.5f; y += 1)
@@ -781,6 +883,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
                     UnityEngine.Object.DestroyImmediate(prefab.GetComponent<MineRock>());
                     CollisionHelper.AddBoxCollider(prefab, Vector3.zero, new Vector3(2, 1, 2));
                     break;
+
                 case "blackmarble_post01":
                     SnapPointHelper.AddSnapPoints(
                         prefab,
@@ -813,6 +916,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
                         }
                     }
                     break;
+
                 case "wood_ledge":
                     SnapPointHelper.AddSnapPoints(
                         prefab,
@@ -826,6 +930,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
                         }
                     );
                     break;
+
                 case "dverger_demister":
                     CollisionHelper.RemoveColliders(prefab); //remove large box collider
 
@@ -844,6 +949,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
                         }
                     );
                     break;
+
                 case "dverger_demister_large":
                     CollisionHelper.RemoveColliders(prefab); //remove large box collider
 
@@ -862,6 +968,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
                         }
                     );
                     break;
+
                 case "dvergrprops_hooknchain":
                     SnapPointHelper.AddSnapPoints(
                         prefab,
@@ -871,6 +978,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
                         }
                     );
                     break;
+
                 case "barrell":
                     SnapPointHelper.AddSnapPoints(
                         prefab,
@@ -880,9 +988,13 @@ namespace MoreVanillaBuildPrefabs.Helpers
                         }
                     );
                     break;
+
                 default:
+                    // prefab may not have a piece component
+                    //Transform transform = prefab.GetComponent<Piece>().transform;
+
                     // Add SnapPoint to Local Center if there is not already one present there
-                    Transform transform = prefab.GetComponent<Piece>().transform;
+                    Transform transform = prefab.transform;
                     for (var index = 0; index < transform.childCount; ++index)
                     {
                         var child = transform.GetChild(index);
@@ -894,7 +1006,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
                             }
                         }
                     }
-                    SnapPointHelper.AddCenterSnapPoint(prefab);
+                    SnapPointHelper.AddSnapPointToCenter(prefab);
                     break;
             }
         }

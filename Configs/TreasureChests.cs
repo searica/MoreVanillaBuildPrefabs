@@ -1,12 +1,11 @@
 ﻿using System.Collections.Generic;
 
-
 namespace MoreVanillaBuildPrefabs.Configs
 {
     internal class TreasureChests
     {
         /// <summary>
-        ///     Get a bool indicating if the prefab is a treasure chest 
+        ///     Get a bool indicating if the prefab is a treasure chest
         ///     and the contents should be removed when placing it.
         /// </summary>
         /// <param name="PrefabName"></param>

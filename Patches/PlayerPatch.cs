@@ -1,24 +1,21 @@
 ﻿using HarmonyLib;
+using Jotunn.Managers;
+using MoreVanillaBuildPrefabs.Configs;
+using MoreVanillaBuildPrefabs.Helpers;
+using MoreVanillaBuildPrefabs.Logging;
 using System;
 using System.Collections.Generic;
-using UnityEngine;
 using System.Reflection.Emit;
-using Jotunn.Managers;
-
-using MoreVanillaBuildPrefabs.Configs;
-using MoreVanillaBuildPrefabs.Logging;
-using MoreVanillaBuildPrefabs.Helpers;
-
+using UnityEngine;
 
 namespace MoreVanillaBuildPrefabs
 {
-
     [HarmonyPatch(typeof(Player))]
-    static class PlayerPatch
+    internal static class PlayerPatch
     {
         [HarmonyTranspiler]
         [HarmonyPatch(nameof(Player.PlacePiece))]
-        static IEnumerable<CodeInstruction> PlacePieceTranspiler(IEnumerable<CodeInstruction> instructions)
+        private static IEnumerable<CodeInstruction> PlacePieceTranspiler(IEnumerable<CodeInstruction> instructions)
         {
             // Targeting code
             // GameObject result = Object.Instantiate(gameObject, position, rotation);
@@ -28,7 +25,7 @@ namespace MoreVanillaBuildPrefabs
             //  IL_012f: call !!0 [UnityEngine.CoreModule] UnityEngine.Object::Instantiate<class [UnityEngine.CoreModule] UnityEngine.GameObject>(!!0, valuetype[UnityEngine.CoreModule] UnityEngine.Vector3, valuetype[UnityEngine.CoreModule] UnityEngine.Quaternion)
             //      IL_0134: stloc.3
 
-            // want to be able to edit the instantiated result 
+            // want to be able to edit the instantiated result
             // such that I can remove things like the pickable property from the surtling core stands
             return new CodeMatcher(instructions)
                 .MatchForward(
@@ -56,13 +53,12 @@ namespace MoreVanillaBuildPrefabs
             Quaternion rotation
         )
         {
-            Log.LogInfo("PlacePieceInstantiateDelegate()");
-            var result = UnityEngine.Object.Instantiate(gameObject, position, rotation);
-
-            if (!PluginConfig.IsModEnabled.Value)
+            if (PluginConfig.IsVerbosityMedium)
             {
-                return result;
+                Log.LogInfo("PlacePieceInstantiateDelegate()");
             }
+
+            var result = UnityEngine.Object.Instantiate(gameObject, position, rotation);
 
             if (PieceHelper.AddedPrefabs.Contains(gameObject.name))
             {
@@ -82,9 +78,10 @@ namespace MoreVanillaBuildPrefabs
                     if (container != null)
                     {
                         container.m_inventory.RemoveAll();
-#if DEBUG
-                        Log.LogInfo($"Removed treasure for: {prefabName}");
-#endif
+                        if (PluginConfig.IsVerbosityMedium)
+                        {
+                            Log.LogInfo($"Removed treasure for: {prefabName}");
+                        }
                     }
                 }
             }
@@ -93,7 +90,7 @@ namespace MoreVanillaBuildPrefabs
 
         [HarmonyTranspiler]
         [HarmonyPatch(nameof(Player.SetupPlacementGhost))]
-        static IEnumerable<CodeInstruction> SetupPlacementGhostTranspiler(IEnumerable<CodeInstruction> instructions)
+        private static IEnumerable<CodeInstruction> SetupPlacementGhostTranspiler(IEnumerable<CodeInstruction> instructions)
         {
             // Targeting this code:
             // m_placementGhost = Object.Instantiate(selectedPrefab);
@@ -120,8 +117,9 @@ namespace MoreVanillaBuildPrefabs
 
         private static GameObject SetupPlacementGhostInstantiateDelegate(GameObject selectedPrefab)
         {
-            if (!PluginConfig.IsModEnabled.Value)
+            if (!MoreVanillaBuildPrefabs.IsChangedByMod(selectedPrefab.name))
             {
+                // ignore pieces not touched by this mod
                 return UnityEngine.Object.Instantiate(selectedPrefab);
             }
 
@@ -141,7 +139,7 @@ namespace MoreVanillaBuildPrefabs
 
             if (
                 PieceHelper.AddedPrefabs.Contains(selectedPrefab.name)
-                && PiecePlacement.NeedsCollisionPatchForGhost(selectedPrefab.name)
+                && PlacementConfigs.NeedsCollisionPatchForGhost(selectedPrefab.name)
                 )
             {
                 // Needed to make some things work, like Stalagmite, blackmarble_corner_stair, silvervein, etc.
@@ -191,32 +189,34 @@ namespace MoreVanillaBuildPrefabs
 
         [HarmonyPrefix]
         [HarmonyPatch(nameof(Player.CheckCanRemovePiece))]
-#pragma warning disable IDE0060 // Remove unused parameter
-        static bool CheckCanRemovePrefix(Player __instance, Piece piece, ref bool __result)
-#pragma warning restore IDE0060 // Remove unused parameter
+        private static bool CheckCanRemovePrefix(Player __instance, Piece piece, ref bool __result)
         {
-            if (PluginConfig.IsModEnabled.Value)
+            // Only modify results for pieces affected by this mod
+            var prefabName = NameHelper.GetPrefabName(piece);
+            if (!MoreVanillaBuildPrefabs.IsChangedByMod(prefabName))
             {
-                // Prevents world generated piece from player removal with build hammer.
-                if (!piece.IsPlacedByPlayer() && HammerHelper.IsCreatorShopPiece(piece))
-                {
-                    __result = false;
-                    return false;
-                }
+                return true; // run CheckCanRemove method as normal
+            }
 
-                // Prevents player from breaking pottery barn pieces they didn't
-                // create themselves unless admin check and config is true.
-                if (HammerHelper.IsCreatorShopPiece(piece) && !piece.IsCreator())
+            // Prevents world generated piece from player removal with build hammer.
+            if (!piece.IsPlacedByPlayer() && CreatorShopHelper.IsCreatorShopPiece(piece))
+            {
+                __result = false;
+                return false;
+            }
+
+            // Prevents player from breaking pottery barn pieces they didn't
+            // create themselves unless admin check and config is true.
+            if (CreatorShopHelper.IsCreatorShopPiece(piece) && !piece.IsCreator())
+            {
+                // Allow admins to deconstruct CreatorShop pieces built by other players if setting is enabled in config
+                if (PluginConfig.IsCreatorShopAdminDeconstructAll && SynchronizationManager.Instance.PlayerIsAdmin)
                 {
-                    // Allow admins to deconstruct CreatorShop pieces built by other players if setting is enabled in config
-                    if (PluginConfig.AdminDeconstructCreatorShop.Value && SynchronizationManager.Instance.PlayerIsAdmin)
-                    {
-                        __result = true;
-                        return true;
-                    }
-                    __result = false;
-                    return false;
+                    __result = true;
+                    return true;
                 }
+                __result = false;
+                return false;
             }
 
             return true;

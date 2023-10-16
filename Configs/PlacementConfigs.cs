@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace MoreVanillaBuildPrefabs.Configs
 {
-    internal class PiecePlacement
+    internal class PlacementConfigs
     {
-
         /// <summary>
         ///     Get a bool indicating if the prefab should be
         ///     allowed to clip through everything.
@@ -21,7 +16,7 @@ namespace MoreVanillaBuildPrefabs.Configs
         }
 
         /// <summary>
-        ///     Get a bool indicating if the prefab should be 
+        ///     Get a bool indicating if the prefab should be
         ///     allowed to clip into the ground..
         /// </summary>
         /// <param name="PrefabName"></param>
@@ -32,7 +27,7 @@ namespace MoreVanillaBuildPrefabs.Configs
         }
 
         /// <summary>
-        ///     Get a bool indicating if the prefab is in the 
+        ///     Get a bool indicating if the prefab is in the
         ///     HashSet of prefabs that need a collision patch.
         /// </summary>
         /// <param name="PrefabName"></param>
@@ -42,11 +37,11 @@ namespace MoreVanillaBuildPrefabs.Configs
             return _NeedsCollisionPatchForGhost.Contains(prefabName);
         }
 
-
-        private static readonly HashSet<string> _NeedsCollisionPatchForGhost = new()
+        internal static readonly HashSet<string> _NeedsCollisionPatchForGhost = new()
         {
             "blackmarble_stair_corner",
             "blackmarble_stair_corner_left",
+            "Ice_floor",
         };
 
         // EligiblePrefabs that should not be set to allow clipping everything
@@ -62,7 +57,11 @@ namespace MoreVanillaBuildPrefabs.Configs
             "stoneblock_fracture",
             "piece_dvergr_pole",
             "dvergrprops_wood_pole",
-            "dvergrprops_wood_wall"
+            "dvergrtown_wood_pole",
+            "dvergrprops_wood_wall",
+            "TreasureChest_dvergr_loose_stone",
+            "Ice_floor",
+            "CastleKit_braided_box01",
         };
 
         private static readonly HashSet<string> _CanClipGround = new()

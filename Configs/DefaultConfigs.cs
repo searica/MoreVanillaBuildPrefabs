@@ -1,50 +1,26 @@
-﻿using System.Collections.Generic;
-using MoreVanillaBuildPrefabs.Logging;
-using UnityEngine;
+﻿using Jotunn.Configs;
+using System.Collections.Generic;
 
 namespace MoreVanillaBuildPrefabs.Configs
 {
     internal class DefaultConfigs
     {
-        internal static Dictionary<string, Piece.Requirement[]> DefaultResources = new();
-
-        internal static PrefabConfig GetDefaultPrefabConfigValues(string prefab_name)
+        internal static PrefabDB GetDefaultPieceDB(string prefab_name)
         {
             if (DefaultConfigValues.ContainsKey(prefab_name))
             {
                 return DefaultConfigValues[prefab_name];
             }
-            return new PrefabConfig();
+            return new PrefabDB(prefab_name);
         }
 
-        /// <summary>
-        ///     If prefab has an existing piece with existing build requirements,
-        ///     then add the default build requirements to DefaultResources dictionary 
-        ///     if they have not already been added.
-        /// </summary>
-        /// <param PrefabName="prefab"></param>
-        internal static void SaveDefaultResources(GameObject prefab)
-        {
-            var piece = prefab?.GetComponent<Piece>();
-            if (piece?.m_resources != null)
-            {
-                // Stop errors on subsequent log ins
-                if (!DefaultResources.ContainsKey(prefab.name))
-                {
-#if DEBUG
-                    Log.LogDebug($"Adding default resources for {prefab.name}");
-#endif
-                    DefaultResources.Add(prefab.name, piece.m_resources);
-                }
-            }
-        }
-
-        internal static readonly Dictionary<string, PrefabConfig> DefaultConfigValues = new()
+        internal static readonly Dictionary<string, PrefabDB> DefaultConfigValues = new()
         {
             // fire pits
             {
                 "fire_pit_haldor",
-                new PrefabConfig(
+                new PrefabDB(
+                    "fire_pit_haldor",
                     true,
                     false,
                     HammerCategories.Misc,
@@ -54,7 +30,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "fire_pit_hildir",
-                new PrefabConfig(
+                new PrefabDB(
+                    "fire_pit_hildir",
                     true,
                     false,
                     HammerCategories.Misc,
@@ -66,7 +43,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             // black marble pieces
             {
                 "blackmarble_head_big01",
-                new PrefabConfig(
+                new PrefabDB(
+                    "blackmarble_head_big01",
                     true,
                     false,
                     HammerCategories.Building,
@@ -76,7 +54,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "blackmarble_head_big02",
-                new PrefabConfig(
+                new PrefabDB(
+                    "blackmarble_head_big02",
                     true,
                     false,
                     HammerCategories.Building,
@@ -86,7 +65,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "blackmarble_head01",
-                new PrefabConfig(
+                new PrefabDB(
+                    "blackmarble_head01",
                     true,
                     false,
                     HammerCategories.Building,
@@ -96,7 +76,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "blackmarble_head02",
-                new PrefabConfig(
+                new PrefabDB(
+                    "blackmarble_head02",
                     true,
                     false,
                     HammerCategories.Building,
@@ -106,7 +87,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "blackmarble_out_2",
-                new PrefabConfig(
+                new PrefabDB(
+                    "blackmarble_out_2",
                     true,
                     false,
                     HammerCategories.Building,
@@ -116,7 +98,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "blackmarble_post01",
-                new PrefabConfig(
+                new PrefabDB(
+                    "blackmarble_post01",
                     true,
                     false,
                     HammerCategories.Building,
@@ -126,7 +109,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "blackmarble_slope_1x2",
-                new PrefabConfig(
+                new PrefabDB(
+                    "blackmarble_slope_1x2",
                     true,
                     false,
                     HammerCategories.Building,
@@ -136,7 +120,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "blackmarble_tile_floor_1x1",
-                new PrefabConfig(
+                new PrefabDB(
+                    "blackmarble_tile_floor_1x1",
                     true,
                     false,
                     HammerCategories.Building,
@@ -146,7 +131,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "blackmarble_slope_inverted_1x2",
-                new PrefabConfig(
+                new PrefabDB(
+                    "blackmarble_slope_inverted_1x2",
                     true,
                     false,
                     HammerCategories.Building,
@@ -156,7 +142,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "blackmarble_stair_corner_left",
-                new PrefabConfig(
+                new PrefabDB(
+                    "blackmarble_stair_corner_left",
                     true,
                     false,
                     HammerCategories.Building,
@@ -166,7 +153,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "blackmarble_stair_corner",
-                new PrefabConfig(
+                new PrefabDB(
+                    "blackmarble_stair_corner",
                     true,
                     false,
                     HammerCategories.Building,
@@ -176,7 +164,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "blackmarble_tile_floor_2x2",
-                new PrefabConfig(
+                new PrefabDB(
+                    "blackmarble_tile_floor_2x2",
                     true,
                     false,
                     HammerCategories.Building,
@@ -186,7 +175,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "blackmarble_tile_wall_1x1",
-                new PrefabConfig(
+                new PrefabDB(
+                    "blackmarble_tile_wall_1x1",
                     true,
                     false,
                     HammerCategories.Building,
@@ -196,7 +186,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "blackmarble_tile_wall_2x2",
-                new PrefabConfig(
+                new PrefabDB(
+                    "blackmarble_tile_wall_2x2",
                     true,
                     false,
                     HammerCategories.Building,
@@ -206,7 +197,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "blackmarble_tile_wall_2x4",
-                new PrefabConfig(
+                new PrefabDB(
+                    "blackmarble_tile_wall_2x4",
                     true,
                     false,
                     HammerCategories.Building,
@@ -216,7 +208,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "blackmarble_base_2",
-                new PrefabConfig(
+                new PrefabDB(
+                    "blackmarble_base_2",
                     true,
                     false,
                     HammerCategories.Building,
@@ -226,7 +219,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "blackmarble_column_3",
-                new PrefabConfig(
+                new PrefabDB(
+                    "blackmarble_column_3",
                     true,
                     false,
                     HammerCategories.Building,
@@ -236,7 +230,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "blackmarble_floor_large",
-                new PrefabConfig(
+                new PrefabDB(
+                    "blackmarble_floor_large",
                     true,
                     false,
                     HammerCategories.Building,
@@ -246,7 +241,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "metalbar_1x2",
-                new PrefabConfig(
+                new PrefabDB(
+                    "metalbar_1x2",
                     true,
                     false,
                     HammerCategories.Building,
@@ -256,7 +252,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "blackmarble_2x2_enforced",
-                new PrefabConfig(
+                new PrefabDB(
+                    "blackmarble_2x2_enforced",
                     true,
                     false,
                     HammerCategories.Building,
@@ -268,7 +265,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             // dvergr pieces
             {
                 "piece_dvergr_pole",
-                new PrefabConfig(
+                new PrefabDB(
+                    "piece_dvergr_pole",
                     true,
                     false,
                     HammerCategories.Building,
@@ -278,7 +276,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "piece_dvergr_wood_wall",
-                new PrefabConfig(
+                new PrefabDB(
+                    "piece_dvergr_wood_wall",
                     true,
                     false,
                     HammerCategories.Building,
@@ -288,7 +287,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "dverger_guardstone",
-                new PrefabConfig(
+                new PrefabDB(
+                    "dverger_guardstone",
                     true,
                     false,
                     HammerCategories.Misc,
@@ -298,7 +298,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "dvergrprops_wood_beam",
-                new PrefabConfig(
+                new PrefabDB(
+                    "dvergrprops_wood_beam",
                     true,
                     false,
                     HammerCategories.Building,
@@ -308,7 +309,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "dvergrprops_wood_floor",
-                new PrefabConfig(
+                new PrefabDB(
+                    "dvergrprops_wood_floor",
                     true,
                     false,
                     HammerCategories.Building,
@@ -318,7 +320,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "dvergrprops_wood_pole",
-                new PrefabConfig(
+                new PrefabDB(
+                    "dvergrprops_wood_pole",
                     true,
                     false,
                     HammerCategories.Building,
@@ -328,7 +331,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "dvergrprops_wood_stair",
-                new PrefabConfig(
+                new PrefabDB(
+                    "dvergrprops_wood_stair",
                     true,
                     false,
                     HammerCategories.Building,
@@ -338,7 +342,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "dvergrprops_wood_wall",
-                new PrefabConfig(
+                new PrefabDB(
+                    "dvergrprops_wood_wall",
                     true,
                     false,
                     HammerCategories.Building,
@@ -348,7 +353,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "dvergrtown_stair_corner_wood_left",
-                new PrefabConfig(
+                new PrefabDB(
+                    "dvergrtown_stair_corner_wood_left",
                     true,
                     false,
                     HammerCategories.Building,
@@ -360,7 +366,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             // dvergr furniture
             {
                 "dverger_demister",
-                new PrefabConfig(
+                new PrefabDB(
+                    "dverger_demister",
                     true,
                     false,
                     HammerCategories.Furniture,
@@ -370,7 +377,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "dverger_demister_large",
-                new PrefabConfig(
+                new PrefabDB(
+                    "dverger_demister_large",
                     true,
                     false,
                     HammerCategories.Furniture,
@@ -380,7 +388,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "dvergrprops_banner",
-                new PrefabConfig(
+                new PrefabDB(
+                    "dvergrprops_banner",
                     true,
                     false,
                     HammerCategories.Furniture,
@@ -390,7 +399,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "dvergrprops_barrel",
-                new PrefabConfig(
+                new PrefabDB(
+                    "dvergrprops_barrel",
                     true,
                     false,
                     HammerCategories.Furniture,
@@ -400,7 +410,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "dvergrprops_bed",
-                new PrefabConfig(
+                new PrefabDB(
+                    "dvergrprops_bed",
                     true,
                     false,
                     HammerCategories.Furniture,
@@ -410,7 +421,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "dvergrprops_chair",
-                new PrefabConfig(
+                new PrefabDB(
+                    "dvergrprops_chair",
                     true,
                     false,
                     HammerCategories.Furniture,
@@ -420,7 +432,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "dvergrprops_crate",
-                new PrefabConfig(
+                new PrefabDB(
+                    "dvergrprops_crate",
                     true,
                     false,
                     HammerCategories.Misc,
@@ -430,7 +443,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "dvergrprops_crate_long",
-                new PrefabConfig(
+                new PrefabDB(
+                    "dvergrprops_crate_long",
                     true,
                     false,
                     HammerCategories.Misc,
@@ -440,7 +454,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "dvergrprops_curtain",
-                new PrefabConfig(
+                new PrefabDB(
+                    "dvergrprops_curtain",
                     true,
                     false,
                     HammerCategories.Furniture,
@@ -450,7 +465,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "dvergrprops_hooknchain",
-                new PrefabConfig(
+                new PrefabDB(
+                    "dvergrprops_hooknchain",
                     true,
                     false,
                     HammerCategories.Misc,
@@ -460,7 +476,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "dvergrprops_shelf",
-                new PrefabConfig(
+                new PrefabDB(
+                    "dvergrprops_shelf",
                     true,
                     false,
                     HammerCategories.Furniture,
@@ -470,7 +487,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "dvergrprops_stool",
-                new PrefabConfig(
+                new PrefabDB(
+                    "dvergrprops_stool",
                     true,
                     false,
                     HammerCategories.Furniture,
@@ -480,7 +498,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "dvergrprops_table",
-                new PrefabConfig(
+                new PrefabDB(
+                    "dvergrprops_table",
                     true,
                     false,
                     HammerCategories.Furniture,
@@ -490,7 +509,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "Pickable_BlackCoreStand",
-                new PrefabConfig(
+                new PrefabDB(
+                    "Pickable_BlackCoreStand",
                     true,
                     false,
                     HammerCategories.Furniture,
@@ -500,7 +520,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "trader_wagon_destructable",
-                new PrefabConfig(
+                new PrefabDB(
+                    "trader_wagon_destructable",
                     true,
                     false,
                     HammerCategories.Furniture,
@@ -509,11 +530,11 @@ namespace MoreVanillaBuildPrefabs.Configs
                 )
             },
 
-
             // goblin pieces
             {
                 "goblin_banner",
-                new PrefabConfig(
+                new PrefabDB(
+                    "goblin_banner",
                     true,
                     false,
                     HammerCategories.Furniture,
@@ -523,7 +544,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "goblin_bed",
-                new PrefabConfig(
+                new PrefabDB(
+                    "goblin_bed",
                     true,
                     false,
                     HammerCategories.Furniture,
@@ -533,7 +555,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "goblin_fence",
-                new PrefabConfig(
+                new PrefabDB(
+                    "goblin_fence",
                     true,
                     false,
                     HammerCategories.Building,
@@ -543,7 +566,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "goblin_pole",
-                new PrefabConfig(
+                new PrefabDB(
+                    "goblin_pole",
                     true,
                     false,
                     HammerCategories.Building,
@@ -553,7 +577,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "goblin_pole_small",
-                new PrefabConfig(
+                new PrefabDB(
+                    "goblin_pole_small",
                     true,
                     false,
                     HammerCategories.Building,
@@ -563,7 +588,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "goblin_roof_45d",
-                new PrefabConfig(
+                new PrefabDB(
+                    "goblin_roof_45d",
                     true,
                     false,
                     HammerCategories.Building,
@@ -573,7 +599,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "goblin_roof_45d_corner",
-                new PrefabConfig(
+                new PrefabDB(
+                    "goblin_roof_45d_corner",
                     true,
                     false,
                     HammerCategories.Building,
@@ -583,7 +610,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "goblin_roof_cap",
-                new PrefabConfig(
+                new PrefabDB(
+                    "goblin_roof_cap",
                     true,
                     false,
                     HammerCategories.Building,
@@ -593,7 +621,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "goblin_stairs",
-                new PrefabConfig(
+                new PrefabDB(
+                    "goblin_stairs",
                     true,
                     false,
                     HammerCategories.Building,
@@ -603,7 +632,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "goblin_stepladder",
-                new PrefabConfig(
+                new PrefabDB(
+                    "goblin_stepladder",
                     true,
                     false,
                     HammerCategories.Building,
@@ -613,7 +643,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "goblin_woodwall_1m",
-                new PrefabConfig(
+                new PrefabDB(
+                    "goblin_woodwall_1m",
                     true,
                     false,
                     HammerCategories.Building,
@@ -623,7 +654,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "goblin_woodwall_2m",
-                new PrefabConfig(
+                new PrefabDB(
+                    "goblin_woodwall_2m",
                     true,
                     false,
                     HammerCategories.Building,
@@ -633,7 +665,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "goblin_totempole",
-                new PrefabConfig(
+                new PrefabDB(
+                    "goblin_totempole",
                     false,
                     false,
                     HammerCategories.CreatorShop,
@@ -643,7 +676,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "goblin_woodwall_2m_ribs",
-                new PrefabConfig(
+                new PrefabDB(
+                    "goblin_woodwall_2m_ribs",
                     false,
                     false,
                     HammerCategories.CreatorShop,
@@ -653,7 +687,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "goblinking_totemholder",
-                new PrefabConfig(
+                new PrefabDB(
+                    "goblinking_totemholder",
                     false,
                     false,
                     HammerCategories.CreatorShop,
@@ -665,7 +700,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             // Furniture
             {
                 "ArmorStand_Male",
-                new PrefabConfig(
+                new PrefabDB(
+                    "ArmorStand_Male",
                     true,
                     false,
                     HammerCategories.Furniture,
@@ -675,7 +711,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "ArmorStand_Female",
-                new PrefabConfig(
+                new PrefabDB(
+                    "ArmorStand_Female",
                     true,
                     false,
                     HammerCategories.Furniture,
@@ -687,7 +724,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             // misc pieces
             {
                 "barrell",
-                new PrefabConfig(
+                new PrefabDB(
+                    "barrell",
                     true,
                     false,
                     HammerCategories.Misc,
@@ -697,7 +735,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "turf_roof",
-                new PrefabConfig(
+                new PrefabDB(
+                    "turf_roof",
                     true,
                     false,
                     HammerCategories.Building,
@@ -707,7 +746,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "turf_roof_top",
-                new PrefabConfig(
+                new PrefabDB(
+                    "turf_roof_top",
                     true,
                     false,
                     HammerCategories.Building,
@@ -717,7 +757,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "turf_roof_wall", // it's just a wood 26 degree wall
-                new PrefabConfig(
+                new PrefabDB(
+                    "turf_roof_wall",
                     false,
                     false,
                     HammerCategories.Building,
@@ -727,7 +768,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "stone_floor",
-                new PrefabConfig(
+                new PrefabDB(
+                    "stone_floor",
                     true,
                     false,
                     HammerCategories.Building,
@@ -737,7 +779,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "bucket",
-                new PrefabConfig(
+                new PrefabDB(
+                    "bucket",
                     true,
                     false,
                     HammerCategories.Misc,
@@ -747,7 +790,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "CargoCrate",
-                new PrefabConfig(
+                new PrefabDB(
+                    "CargoCrate",
                     false,
                     false,
                     HammerCategories.Misc,
@@ -757,7 +801,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "Pickable_SurtlingCoreStand",
-                new PrefabConfig(
+                new PrefabDB(
+                    "Pickable_SurtlingCoreStand",
                     true,
                     false,
                     HammerCategories.Furniture,
@@ -767,7 +812,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "cloth_hanging_door_double",
-                new PrefabConfig(
+                new PrefabDB(
+                    "cloth_hanging_door_double",
                     true,
                     false,
                     HammerCategories.Furniture,
@@ -777,7 +823,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "rug_straw",
-                new PrefabConfig(
+                new PrefabDB(
+                    "rug_straw",
                     true,
                     false,
                     HammerCategories.Furniture,
@@ -787,7 +834,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "wood_ledge",
-                new PrefabConfig(
+                new PrefabDB(
+                    "wood_ledge",
                     true,
                     false,
                     HammerCategories.Building,
@@ -799,7 +847,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             // statues
             {
                 "StatueCorgi",
-                new PrefabConfig(
+                new PrefabDB(
+                    "StatueCorgi",
                     true,
                     false,
                     HammerCategories.Furniture,
@@ -809,7 +858,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "StatueDeer",
-                new PrefabConfig(
+                new PrefabDB(
+                    "StatueDeer",
                     true,
                     false,
                     HammerCategories.Furniture,
@@ -819,7 +869,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "StatueEvil",
-                new PrefabConfig(
+                new PrefabDB(
+                    "StatueEvil",
                     true,
                     false,
                     HammerCategories.Furniture,
@@ -829,7 +880,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "StatueHare",
-                new PrefabConfig(
+                new PrefabDB(
+                    "StatueHare",
                     true,
                     false,
                     HammerCategories.Furniture,
@@ -839,7 +891,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "StatueSeed",
-                new PrefabConfig(
+                new PrefabDB(
+                    "StatueSeed",
                     true,
                     false,
                     HammerCategories.Furniture,
@@ -851,7 +904,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             // CreatorShop
             {
                 "Skull1",
-                new PrefabConfig(
+                new PrefabDB(
+                    "Skull1",
                     true,
                     false,
                     HammerCategories.CreatorShop,
@@ -863,7 +917,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             // CreatorShop Rocks
             {
                 "highstone",
-                new PrefabConfig(
+                new PrefabDB(
+                    "highstone",
                     true,
                     false,
                     HammerCategories.CreatorShop,
@@ -873,7 +928,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "widestone",
-                new PrefabConfig(
+                new PrefabDB(
+                    "widestone",
                     true,
                     false,
                     HammerCategories.CreatorShop,
@@ -883,7 +939,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "marker01",
-                new PrefabConfig(
+                new PrefabDB(
+                    "marker01",
                     true,
                     false,
                     HammerCategories.CreatorShop,
@@ -893,7 +950,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "marker02",
-                new PrefabConfig(
+                new PrefabDB(
+                    "marker02",
                     true,
                     false,
                     HammerCategories.CreatorShop,
@@ -903,7 +961,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "Rock_3",
-                new PrefabConfig(
+                new PrefabDB(
+                    "Rock_3",
                     true,
                     false,
                     HammerCategories.CreatorShop,
@@ -913,7 +972,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "Rock_4",
-                new PrefabConfig(
+                new PrefabDB(
+                    "Rock_4",
                     true,
                     false,
                     HammerCategories.CreatorShop,
@@ -923,7 +983,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "Rock_4_plains",
-                new PrefabConfig(
+                new PrefabDB(
+                    "Rock_4_plains",
                     true,
                     false,
                     HammerCategories.CreatorShop,
@@ -933,7 +994,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "Rock_7",
-                new PrefabConfig(
+                new PrefabDB(
+                    "Rock_7",
                     true,
                     false,
                     HammerCategories.CreatorShop,
@@ -943,7 +1005,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "Rock_destructible",
-                new PrefabConfig(
+                new PrefabDB(
+                    "Rock_destructible",
                     true,
                     false,
                     HammerCategories.CreatorShop,
@@ -953,7 +1016,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "Rock_destructible_test",
-                new PrefabConfig(
+                new PrefabDB(
+                    "Rock_destructible_test",
                     true,
                     false,
                     HammerCategories.CreatorShop,
@@ -963,7 +1027,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "rock_mistlands1",
-                new PrefabConfig(
+                new PrefabDB(
+                    "rock_mistlands1",
                     true,
                     false,
                     HammerCategories.CreatorShop,
@@ -973,7 +1038,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "rock_mistlands2",
-                new PrefabConfig(
+                new PrefabDB(
+                    "rock_mistlands2",
                     true,
                     false,
                     HammerCategories.CreatorShop,
@@ -983,7 +1049,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "RockDolmen_1",
-                new PrefabConfig(
+                new PrefabDB(
+                    "RockDolmen_1",
                     true,
                     false,
                     HammerCategories.CreatorShop,
@@ -993,7 +1060,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "RockDolmen_2",
-                new PrefabConfig(
+                new PrefabDB(
+                    "RockDolmen_2",
                     true,
                     false,
                     HammerCategories.CreatorShop,
@@ -1003,7 +1071,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "RockDolmen_3",
-                new PrefabConfig(
+                new PrefabDB(
+                    "RockDolmen_3",
                     true,
                     false,
                     HammerCategories.CreatorShop,
@@ -1015,7 +1084,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             // CreatorShop Plants
             {
                 "Birch1_aut",
-                new PrefabConfig(
+                new PrefabDB(
+                    "Birch1_aut",
                     true,
                     false,
                     HammerCategories.CreatorShop,
@@ -1025,7 +1095,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "Birch2_aut",
-                new PrefabConfig(
+                new PrefabDB(
+                    "Birch2_aut",
                     true,
                     false,
                     HammerCategories.CreatorShop,
@@ -1035,7 +1106,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "YggdrasilRoot",
-                new PrefabConfig(
+                new PrefabDB(
+                    "YggdrasilRoot",
                     true,
                     false,
                     HammerCategories.CreatorShop,
@@ -1047,7 +1119,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             // Disabled
             {
                 "ancient_skull",
-                new PrefabConfig(
+                new PrefabDB(
+                    "ancient_skull",
                     false,
                     false,
                     HammerCategories.CreatorShop,
@@ -1057,7 +1130,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "Beech_small2",
-                new PrefabConfig(
+                new PrefabDB(
+                    "Beech_small2",
                     false,
                     false,
                     HammerCategories.CreatorShop,
@@ -1067,7 +1141,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "Beech1",
-                new PrefabConfig(
+                new PrefabDB(
+                    "Beech1",
                     false,
                     false,
                     HammerCategories.CreatorShop,
@@ -1077,7 +1152,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "Birch1",
-                new PrefabConfig(
+                new PrefabDB(
+                    "Birch1",
                     false,
                     false,
                     HammerCategories.CreatorShop,
@@ -1087,7 +1163,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "Birch2",
-                new PrefabConfig(
+                new PrefabDB(
+                    "Birch2",
                     false,
                     false,
                     HammerCategories.CreatorShop,
@@ -1097,7 +1174,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "blackmarble_2x2x1",
-                new PrefabConfig(
+                new PrefabDB(
+                    "blackmarble_2x2x1",
                     false,
                     false,
                     HammerCategories.Building,
@@ -1107,7 +1185,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "blackmarble_creep_4x1x1",
-                new PrefabConfig(
+                new PrefabDB(
+                    "blackmarble_creep_4x1x1",
                     false,
                     false,
                     HammerCategories.Building,
@@ -1117,7 +1196,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "blackmarble_creep_4x2x1",
-                new PrefabConfig(
+                new PrefabDB(
+                    "blackmarble_creep_4x2x1",
                     false,
                     false,
                     HammerCategories.Building,
@@ -1127,7 +1207,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "blackmarble_creep_slope_inverted_1x1x2",
-                new PrefabConfig(
+                new PrefabDB(
+                    "blackmarble_creep_slope_inverted_1x1x2",
                     false,
                     false,
                     HammerCategories.Building,
@@ -1137,7 +1218,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "blackmarble_creep_slope_inverted_2x2x1",
-                new PrefabConfig(
+                new PrefabDB(
+                    "blackmarble_creep_slope_inverted_2x2x1",
                     false,
                     false,
                     HammerCategories.Building,
@@ -1147,7 +1229,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "blackmarble_creep_stair",
-                new PrefabConfig(
+                new PrefabDB(
+                    "blackmarble_creep_stair",
                     false,
                     false,
                     HammerCategories.Building,
@@ -1157,7 +1240,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "caverock_ice_stalagmite",
-                new PrefabConfig(
+                new PrefabDB(
+                    "caverock_ice_stalagmite",
                     false,
                     false,
                     HammerCategories.Building,
@@ -1167,7 +1251,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "caverock_ice_stalagmite_broken",
-                new PrefabConfig(
+                new PrefabDB(
+                    "caverock_ice_stalagmite_broken",
                     false,
                     false,
                     HammerCategories.Building,
@@ -1177,7 +1262,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "caverock_ice_stalagtite",
-                new PrefabConfig(
+                new PrefabDB(
+                    "caverock_ice_stalagtite",
                     false,
                     false,
                     HammerCategories.Building,
@@ -1187,7 +1273,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "cliff_mistlands1",
-                new PrefabConfig(
+                new PrefabDB(
+                    "cliff_mistlands1",
                     false,
                     false,
                     HammerCategories.CreatorShop,
@@ -1197,7 +1284,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "cliff_mistlands1_creep",
-                new PrefabConfig(
+                new PrefabDB(
+                    "cliff_mistlands1_creep",
                     false,
                     false,
                     HammerCategories.CreatorShop,
@@ -1207,7 +1295,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "cliff_mistlands2",
-                new PrefabConfig(
+                new PrefabDB(
+                    "cliff_mistlands2",
                     false,
                     false,
                     HammerCategories.CreatorShop,
@@ -1217,7 +1306,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "CreepProp_egg_hanging01",
-                new PrefabConfig(
+                new PrefabDB(
+                    "CreepProp_egg_hanging01",
                     false,
                     false,
                     HammerCategories.Building,
@@ -1227,7 +1317,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "CreepProp_egg_hanging02",
-                new PrefabConfig(
+                new PrefabDB(
+                    "CreepProp_egg_hanging02",
                     false,
                     false,
                     HammerCategories.Building,
@@ -1237,7 +1328,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "CreepProp_entrance1",
-                new PrefabConfig(
+                new PrefabDB(
+                    "CreepProp_entrance1",
                     false,
                     false,
                     HammerCategories.Building,
@@ -1247,7 +1339,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "CreepProp_entrance2",
-                new PrefabConfig(
+                new PrefabDB(
+                    "CreepProp_entrance2",
                     false,
                     false,
                     HammerCategories.Building,
@@ -1257,7 +1350,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "CreepProp_hanging01",
-                new PrefabConfig(
+                new PrefabDB(
+                    "CreepProp_hanging01",
                     false,
                     false,
                     HammerCategories.Building,
@@ -1267,7 +1361,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "CreepProp_wall01",
-                new PrefabConfig(
+                new PrefabDB(
+                    "CreepProp_wall01",
                     false,
                     false,
                     HammerCategories.Building,
@@ -1277,7 +1372,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "dungeon_queen_door",
-                new PrefabConfig(
+                new PrefabDB(
+                    "dungeon_queen_door",
                     false,
                     false,
                     HammerCategories.Building,
@@ -1287,7 +1383,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "dungeon_sunkencrypt_irongate",
-                new PrefabConfig(
+                new PrefabDB(
+                    "dungeon_sunkencrypt_irongate",
                     false,
                     false,
                     HammerCategories.Building,
@@ -1297,7 +1394,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "dvergrprops_wood_stakewall",
-                new PrefabConfig(
+                new PrefabDB(
+                    "dvergrprops_wood_stakewall",
                     false,
                     false,
                     HammerCategories.Building,
@@ -1307,7 +1405,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "dvergrtown_creep_door",
-                new PrefabConfig(
+                new PrefabDB(
+                    "dvergrtown_creep_door",
                     false,
                     false,
                     HammerCategories.Building,
@@ -1317,7 +1416,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "dvergrtown_secretdoor",
-                new PrefabConfig(
+                new PrefabDB(
+                    "dvergrtown_secretdoor",
                     false,
                     false,
                     HammerCategories.CreatorShop,
@@ -1327,7 +1427,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "dvergrtown_slidingdoor",
-                new PrefabConfig(
+                new PrefabDB(
+                    "dvergrtown_slidingdoor",
                     false,
                     false,
                     HammerCategories.Building,
@@ -1337,7 +1438,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "dvergrtown_wood_beam",
-                new PrefabConfig(
+                new PrefabDB(
+                    "dvergrtown_wood_beam",
                     false,
                     false,
                     HammerCategories.Building,
@@ -1347,7 +1449,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "dvergrtown_wood_crane",
-                new PrefabConfig(
+                new PrefabDB(
+                    "dvergrtown_wood_crane",
                     false,
                     false,
                     HammerCategories.Building,
@@ -1357,7 +1460,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "dvergrtown_wood_stake",
-                new PrefabConfig(
+                new PrefabDB(
+                    "dvergrtown_wood_stake",
                     false,
                     false,
                     HammerCategories.Building,
@@ -1367,7 +1471,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "dvergrtown_wood_stakewall",
-                new PrefabConfig(
+                new PrefabDB(
+                    "dvergrtown_wood_stakewall",
                     false,
                     false,
                     HammerCategories.Building,
@@ -1377,7 +1482,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "dvergrtown_wood_support",
-                new PrefabConfig(
+                new PrefabDB(
+                    "dvergrtown_wood_support",
                     false,
                     false,
                     HammerCategories.Building,
@@ -1387,7 +1493,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "dvergrtown_wood_wall01",
-                new PrefabConfig(
+                new PrefabDB(
+                    "dvergrtown_wood_wall01",
                     false,
                     false,
                     HammerCategories.Building,
@@ -1397,7 +1504,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "dvergrtown_wood_wall02",
-                new PrefabConfig(
+                new PrefabDB(
+                    "dvergrtown_wood_wall02",
                     false,
                     false,
                     HammerCategories.Building,
@@ -1407,7 +1515,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "dvergrtown_wood_wall03",
-                new PrefabConfig(
+                new PrefabDB(
+                    "dvergrtown_wood_wall03",
                     false,
                     false,
                     HammerCategories.Building,
@@ -1417,7 +1526,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "FirTree",
-                new PrefabConfig(
+                new PrefabDB(
+                    "FirTree",
                     false,
                     false,
                     HammerCategories.CreatorShop,
@@ -1427,7 +1537,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "giant_arm",
-                new PrefabConfig(
+                new PrefabDB(
+                    "giant_arm",
                     false,
                     false,
                     HammerCategories.CreatorShop,
@@ -1437,7 +1548,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "giant_helmet1",
-                new PrefabConfig(
+                new PrefabDB(
+                    "giant_helmet1",
                     false,
                     false,
                     HammerCategories.CreatorShop,
@@ -1447,7 +1559,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "giant_helmet2",
-                new PrefabConfig(
+                new PrefabDB(
+                    "giant_helmet2",
                     false,
                     false,
                     HammerCategories.CreatorShop,
@@ -1457,7 +1570,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "giant_ribs",
-                new PrefabConfig(
+                new PrefabDB(
+                    "giant_ribs",
                     false,
                     false,
                     HammerCategories.CreatorShop,
@@ -1467,7 +1581,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "giant_skull",
-                new PrefabConfig(
+                new PrefabDB(
+                    "giant_skull",
                     false,
                     false,
                     HammerCategories.CreatorShop,
@@ -1477,7 +1592,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "giant_sword1",
-                new PrefabConfig(
+                new PrefabDB(
+                    "giant_sword1",
                     false,
                     false,
                     HammerCategories.CreatorShop,
@@ -1487,7 +1603,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "giant_sword2",
-                new PrefabConfig(
+                new PrefabDB(
+                    "giant_sword2",
                     false,
                     false,
                     HammerCategories.CreatorShop,
@@ -1497,7 +1614,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "Greydwarf_Root",
-                new PrefabConfig(
+                new PrefabDB(
+                    "Greydwarf_Root",
                     false,
                     false,
                     HammerCategories.CreatorShop,
@@ -1507,7 +1625,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "HugeRoot1",
-                new PrefabConfig(
+                new PrefabDB(
+                    "HugeRoot1",
                     false,
                     false,
                     HammerCategories.CreatorShop,
@@ -1517,7 +1636,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "MountainKit_wood_gate",
-                new PrefabConfig(
+                new PrefabDB(
+                    "MountainKit_wood_gate",
                     false,
                     false,
                     HammerCategories.Building,
@@ -1527,7 +1647,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "Oak1",
-                new PrefabConfig(
+                new PrefabDB(
+                    "Oak1",
                     false,
                     false,
                     HammerCategories.CreatorShop,
@@ -1537,7 +1658,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "piece_dvergr_wood_door",
-                new PrefabConfig(
+                new PrefabDB(
+                    "piece_dvergr_wood_door",
                     false,
                     false,
                     HammerCategories.Building,
@@ -1547,7 +1669,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "Pinetree_01",
-                new PrefabConfig(
+                new PrefabDB(
+                    "Pinetree_01",
                     false,
                     false,
                     HammerCategories.CreatorShop,
@@ -1557,7 +1680,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "RockFinger",
-                new PrefabConfig(
+                new PrefabDB(
+                    "RockFinger",
                     false,
                     false,
                     HammerCategories.CreatorShop,
@@ -1567,7 +1691,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "RockFingerBroken",
-                new PrefabConfig(
+                new PrefabDB(
+                    "RockFingerBroken",
                     false,
                     false,
                     HammerCategories.CreatorShop,
@@ -1577,7 +1702,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "rockformation1",
-                new PrefabConfig(
+                new PrefabDB(
+                    "rockformation1",
                     false,
                     false,
                     HammerCategories.CreatorShop,
@@ -1587,7 +1713,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "RockThumb",
-                new PrefabConfig(
+                new PrefabDB(
+                    "RockThumb",
                     false,
                     false,
                     HammerCategories.CreatorShop,
@@ -1597,7 +1724,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "root07",
-                new PrefabConfig(
+                new PrefabDB(
+                    "root07",
                     false,
                     false,
                     HammerCategories.CreatorShop,
@@ -1607,7 +1735,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "root08",
-                new PrefabConfig(
+                new PrefabDB(
+                    "root08",
                     false,
                     false,
                     HammerCategories.CreatorShop,
@@ -1617,7 +1746,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "root11",
-                new PrefabConfig(
+                new PrefabDB(
+                    "root11",
                     false,
                     false,
                     HammerCategories.CreatorShop,
@@ -1627,7 +1757,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "root12",
-                new PrefabConfig(
+                new PrefabDB(
+                    "root12",
                     false,
                     false,
                     HammerCategories.CreatorShop,
@@ -1637,7 +1768,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "shipwreck_karve_bottomboards",
-                new PrefabConfig(
+                new PrefabDB(
+                    "shipwreck_karve_bottomboards",
                     false,
                     false,
                     HammerCategories.Furniture,
@@ -1647,7 +1779,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "shipwreck_karve_bow",
-                new PrefabConfig(
+                new PrefabDB(
+                    "shipwreck_karve_bow",
                     false,
                     false,
                     HammerCategories.Furniture,
@@ -1657,7 +1790,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "shipwreck_karve_stern",
-                new PrefabConfig(
+                new PrefabDB(
+                    "shipwreck_karve_stern",
                     false,
                     false,
                     HammerCategories.Furniture,
@@ -1667,7 +1801,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "stoneblock_fracture",
-                new PrefabConfig(
+                new PrefabDB(
+                    "stoneblock_fracture",
                     true,
                     false,
                     HammerCategories.Building,
@@ -1677,7 +1812,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "SwampTree1",
-                new PrefabConfig(
+                new PrefabDB(
+                    "SwampTree1",
                     false,
                     false,
                     HammerCategories.CreatorShop,
@@ -1687,7 +1823,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "SwampTree2",
-                new PrefabConfig(
+                new PrefabDB(
+                    "SwampTree2",
                     false,
                     false,
                     HammerCategories.CreatorShop,
@@ -1697,7 +1834,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "SwampTree2_darkland",
-                new PrefabConfig(
+                new PrefabDB(
+                    "SwampTree2_darkland",
                     false,
                     false,
                     HammerCategories.CreatorShop,
@@ -1707,7 +1845,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "SwampTree2_log",
-                new PrefabConfig(
+                new PrefabDB(
+                    "SwampTree2_log",
                     false,
                     false,
                     HammerCategories.CreatorShop,
@@ -1717,7 +1856,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "TreasureChest_mountaincave",
-                new PrefabConfig(
+                new PrefabDB(
+                    "TreasureChest_mountaincave",
                     false,
                     false,
                     HammerCategories.CreatorShop,
@@ -1727,7 +1867,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "YggaShoot1",
-                new PrefabConfig(
+                new PrefabDB(
+                    "YggaShoot1",
                     false,
                     false,
                     HammerCategories.CreatorShop,
@@ -1737,7 +1878,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "YggaShoot2",
-                new PrefabConfig(
+                new PrefabDB(
+                    "YggaShoot2",
                     false,
                     false,
                     HammerCategories.CreatorShop,
@@ -1747,7 +1889,8 @@ namespace MoreVanillaBuildPrefabs.Configs
             },
             {
                 "YggaShoot3",
-                new PrefabConfig(
+                new PrefabDB(
+                    "YggaShoot3",
                     false,
                     false,
                     HammerCategories.CreatorShop,
@@ -1755,6 +1898,28 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "YggdrasilWood,16"
                 )
             },
+            {
+                "CastleKit_braided_box01",
+                new PrefabDB(
+                    "CastleKit_braided_box01",
+                    true,
+                    false,
+                    HammerCategories.Misc,
+                    nameof(CraftingStations.Workbench),
+                    "Wood,2"
+                )
+            },
+            {
+                "Trailership",
+                new PrefabDB(
+                    "Trailership",
+                    true,
+                    false,
+                    HammerCategories.Misc,
+                    nameof(CraftingStations.Workbench),
+                    "IronNails,100;DeerHide,10;FineWood,40;ElderBark,40"
+                )
+            }
         };
     }
 }

@@ -1,7 +1,5 @@
-﻿using MoreVanillaBuildPrefabs.Logging;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.UI.GridLayoutGroup;
 
 /* In Unity
  * X = left/right
@@ -11,7 +9,7 @@ using static UnityEngine.UI.GridLayoutGroup;
 
 namespace MoreVanillaBuildPrefabs.Helpers
 {
-    public class SnapPointHelper
+    internal class SnapPointHelper
     {
         // List of points in a 2x2 box that would be the corners
         private static readonly List<Vector3> corners = new()
@@ -27,57 +25,73 @@ namespace MoreVanillaBuildPrefabs.Helpers
         };
 
         // List of points in a 2x2 box that would be the middle of each edge
-        private static readonly List<Vector3> edgeMidPoints = new()
-        {
-            new Vector3(-1, -1, 0),
-            new Vector3(0, -1, -1),
-            new Vector3(0, -1, 1),
-            new Vector3(1, -1, 0),
-            new Vector3(-1, 0, 0),
-            new Vector3(0, 0, -1),
-            new Vector3(0, 0, 1),
-            new Vector3(1, 0, 0),
-            new Vector3(-1, 1, 0),
-            new Vector3(0, 1, -1),
-            new Vector3(0, 1, 1),
-            new Vector3(1, 1, 0),
-        };
+        //private static readonly List<Vector3> edgeMidPoints = new()
+        //{
+        //    new Vector3(-1, -1, 0),
+        //    new Vector3(0, -1, -1),
+        //    new Vector3(0, -1, 1),
+        //    new Vector3(1, -1, 0),
+        //    new Vector3(-1, 0, 0),
+        //    new Vector3(0, 0, -1),
+        //    new Vector3(0, 0, 1),
+        //    new Vector3(1, 0, 0),
+        //    new Vector3(-1, 1, 0),
+        //    new Vector3(0, 1, -1),
+        //    new Vector3(0, 1, 1),
+        //    new Vector3(1, 1, 0),
+        //};
 
         /// <summary>
-        ///     Adds snap points for the prefab to the corners of the specified mesh.
+        ///     Adds snap points for the game object to the corners of the specified mesh.
         /// </summary>
         /// <param name="target"></param>
         /// <param name="meshName"></param>
-        internal static void AddSnapPointsToMeshCorners(GameObject target, string meshName, bool fixPiece = false)
+        internal static void AddSnapPointsToBoxColliderCorners(
+            GameObject target,
+            BoxCollider boxCollider,
+            bool fixPiece = false
+        )
         {
-            foreach (var meshFilter in target.GetComponentsInChildren<MeshFilter>())
-            {
-                var mesh = meshFilter.mesh;
-                if (mesh == null)
-                {
-                    continue;
-                }
+            if (target == null || boxCollider == null) return;
 
-                if (NameHelper.RemoveSuffix(mesh.name, "Instance").Trim() == meshName)
-                {
-                    List<Vector3> pts = new();
-                    var bounds = mesh.bounds;
-                    foreach (var corner in corners)
-                    {
-                        pts.Add(bounds.center + Vector3.Scale(corner, bounds.extents));
-                    }
-                    AddSnapPoints(
-                       target,
-                       pts,
-                       fixPiece
-                    );
-                    return;
-                }
+            List<Vector3> pts = new();
+            var extents = boxCollider.size / 2;
+            foreach (var corner in corners)
+            {
+                pts.Add(boxCollider.center + Vector3.Scale(corner, extents));
             }
-            Log.LogWarning($"Could not find mesh: {meshName} for prefab: {target.name}");
+            AddSnapPoints(target, pts, fixPiece);
         }
 
-        internal static void AddCenterSnapPoint(GameObject target)
+        /// <summary>
+        ///     Adds snap points for the game object to the corners of the specified mesh.
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="meshName"></param>
+        internal static void AddSnapPointsToMeshCorners(
+            GameObject target,
+            string meshName,
+            bool fixPiece = false
+        )
+        {
+            var mesh = target.GetMesh(meshName);
+
+            if (mesh == null) return;
+
+            List<Vector3> pts = new();
+            var bounds = mesh.bounds;
+            foreach (var corner in corners)
+            {
+                pts.Add(bounds.center + Vector3.Scale(corner, bounds.extents));
+            }
+            AddSnapPoints(target, pts, fixPiece);
+        }
+
+        /// <summary>
+        ///     Adds a snap point to the local center of the game object's transform.
+        /// </summary>
+        /// <param name="target"></param>
+        internal static void AddSnapPointToCenter(GameObject target)
         {
             AddSnapPoints(
                 target,
@@ -116,7 +130,6 @@ namespace MoreVanillaBuildPrefabs.Helpers
             }
         }
 
-
         private static void CreateSnapPoint(Vector3 pos, Transform parent)
         {
             GameObject snappoint = new("_snappoint");
@@ -125,7 +138,6 @@ namespace MoreVanillaBuildPrefabs.Helpers
             snappoint.tag = "snappoint";
             snappoint.SetActive(false);
         }
-
 
         internal static void FixPiece(GameObject target)
         {
