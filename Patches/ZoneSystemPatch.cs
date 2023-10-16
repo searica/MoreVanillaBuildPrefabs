@@ -1,24 +1,27 @@
-﻿using UnityEngine.SceneManagement;
-using HarmonyLib;
-
+﻿using HarmonyLib;
+using MoreVanillaBuildPrefabs.Configs;
 using MoreVanillaBuildPrefabs.Helpers;
 using MoreVanillaBuildPrefabs.Logging;
-using MoreVanillaBuildPrefabs.Configs;
+using UnityEngine.SceneManagement;
 
-namespace MoreVanillaBuildPrefabs.Patchess
+namespace MoreVanillaBuildPrefabs.Patches
 {
-    [HarmonyPatch(typeof(ObjectDB))]
-    internal class ObjectDBPatch
+
+    [HarmonyPatch(typeof(ZoneSystem))]
+    internal class ZoneSystemPatch
     {
-        // Hook here to add pieces
+        /// <summary>
+        ///     Hook to initialize the mod. This is after both PlantEverything
+        ///     and PotteryBarn add pieces but before PlanBuild scans for them.
+        /// </summary>
+        /// <param name="__instance"></param>
         [HarmonyPostfix]
-        [HarmonyPriority(Priority.Low)]
-        [HarmonyPatch(nameof(ObjectDB.Awake))]
-        static void ObjectDBAwakePostfix()
+        [HarmonyPatch(nameof(ZoneSystem.Start))]
+        public static void ZoneSystemStartPostfix()
         {
             if (PluginConfig.IsVerbosityMedium)
             {
-                Log.LogInfo("ObjectDBAwakePostfix()");
+                Log.LogInfo("ZoneSystemStartPostfix()");
             }
 
             if (SceneManager.GetActiveScene() == null)
@@ -53,3 +56,4 @@ namespace MoreVanillaBuildPrefabs.Patchess
         }
     }
 }
+
