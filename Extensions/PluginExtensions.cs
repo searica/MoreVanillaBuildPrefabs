@@ -1,18 +1,17 @@
-﻿using System;
+﻿using MoreVanillaBuildPrefabs.Helpers;
+using MoreVanillaBuildPrefabs.Logging;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using UnityEngine;
-
-using MoreVanillaBuildPrefabs.Helpers;
-using MoreVanillaBuildPrefabs.Logging;
 
 namespace MoreVanillaBuildPrefabs
 {
     internal static class PickableExtensions
     {
         /// <summary>
-        ///     Get the amount of the resource that will be returned when it is picked, 
+        ///     Get the amount of the resource that will be returned when it is picked,
         ///     based on current world modifier settings for scaling resources
         /// </summary>
         /// <param name="pickable"></param>

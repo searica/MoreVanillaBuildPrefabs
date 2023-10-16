@@ -1,6 +1,5 @@
 ﻿using BepInEx.Configuration;
 
-
 namespace MoreVanillaBuildPrefabs.Configs
 {
     /// <summary>

@@ -40,7 +40,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
         private static readonly Regex PrefabNameRegex = new(@"([a-z])([A-Z])");
 
         /// <summary>
-        ///     Formats the prefab name to something friendlier 
+        ///     Formats the prefab name to something friendlier
         ///     to use as a piece name, or applies a custom name map
         ///     if one exists.
         /// </summary>
@@ -160,6 +160,5 @@ namespace MoreVanillaBuildPrefabs.Helpers
             else
                 return char.ToUpper(s[0]) + s.Substring(1);
         }
-
     }
 }

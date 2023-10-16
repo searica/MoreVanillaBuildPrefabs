@@ -1,19 +1,16 @@
 ﻿using HarmonyLib;
 using MoreVanillaBuildPrefabs.Configs;
-using MoreVanillaBuildPrefabs.Helpers;
 using MoreVanillaBuildPrefabs.Logging;
 using UnityEngine.SceneManagement;
 
 namespace MoreVanillaBuildPrefabs.Patches
 {
-
     [HarmonyPatch(typeof(ZNet))]
     internal class ZNetPatch
     {
-
         /// <summary>
-        ///     Patch to check if world modifiers for resources are active 
-        ///     and re-initialize the mod if they are so pickables have the 
+        ///     Patch to check if world modifiers for resources are active
+        ///     and re-initialize the mod if they are so pickables have the
         ///     correct build requirement costs.
         /// </summary>
         [HarmonyPostfix]
@@ -33,7 +30,6 @@ namespace MoreVanillaBuildPrefabs.Patches
             // If loading into game world and prefabs have not been added
             if (SceneManager.GetActiveScene().name == "main")
             {
-
                 if (Game.m_resourceRate == 1.0f)
                 {
                     return;
@@ -58,6 +54,5 @@ namespace MoreVanillaBuildPrefabs.Patches
                 }
             }
         }
-
     }
 }

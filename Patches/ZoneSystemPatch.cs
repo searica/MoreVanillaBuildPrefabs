@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 
 namespace MoreVanillaBuildPrefabs.Patches
 {
-
     [HarmonyPatch(typeof(ZoneSystem))]
     internal class ZoneSystemPatch
     {
@@ -32,7 +31,6 @@ namespace MoreVanillaBuildPrefabs.Patches
             // If loading into game world and prefabs have not been added
             if (SceneManager.GetActiveScene().name == "main")
             {
-
                 Log.LogInfo("Performing mod initialization");
 
                 var watch = new System.Diagnostics.Stopwatch();
@@ -56,4 +54,3 @@ namespace MoreVanillaBuildPrefabs.Patches
         }
     }
 }
-

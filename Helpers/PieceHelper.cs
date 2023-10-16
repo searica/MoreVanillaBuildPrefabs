@@ -1,12 +1,11 @@
-﻿using System;
+﻿using Jotunn.Configs;
+using Jotunn.Managers;
+using MoreVanillaBuildPrefabs.Configs;
+using MoreVanillaBuildPrefabs.Logging;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using Jotunn.Managers;
-using Jotunn.Configs;
-using MoreVanillaBuildPrefabs.Configs;
-using MoreVanillaBuildPrefabs.Logging;
-
 
 namespace MoreVanillaBuildPrefabs.Helpers
 {
@@ -58,7 +57,6 @@ namespace MoreVanillaBuildPrefabs.Helpers
             return null;
         }
 
-
         /// <summary>
         ///     Get HashSet of all customPiece name attached to existing PieceTable objects.
         /// </summary>
@@ -69,7 +67,6 @@ namespace MoreVanillaBuildPrefabs.Helpers
                 .SelectMany(pieceTable => pieceTable.m_pieces)
                 .Select(piece => piece.name);
             return new HashSet<string>(result);
-
         }
 
         /// <summary>
@@ -92,8 +89,8 @@ namespace MoreVanillaBuildPrefabs.Helpers
         }
 
         /// <summary>
-        ///     Create and initalize piece component if needed. 
-        ///     Sets m_canBeRemoved to false by default when adding 
+        ///     Create and initalize piece component if needed.
+        ///     Sets m_canBeRemoved to false by default when adding
         ///     piece components prefabs that are missing them.
         /// </summary>
         /// <param name="prefab"></param>
@@ -228,7 +225,6 @@ namespace MoreVanillaBuildPrefabs.Helpers
             return piece;
         }
 
-
         /// <summary>
         ///     Method to add a piece to a piece table.
         /// </summary>
@@ -265,7 +261,6 @@ namespace MoreVanillaBuildPrefabs.Helpers
         /// <returns> bool indicating if customPiece was added. </returns>
         internal static bool AddPieceToPieceTable(Piece piece, PieceTable pieceTable)
         {
-
             if (!piece || !pieceTable || pieceTable.m_pieces == null || pieceTable.m_pieces.Contains(piece.gameObject))
             {
                 return false;

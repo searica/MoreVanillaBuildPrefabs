@@ -1,14 +1,12 @@
-﻿using Jotunn.Managers;
-using Jotunn.Configs;
-
-using MoreVanillaBuildPrefabs.Logging;
+﻿using Jotunn.Configs;
+using Jotunn.Managers;
 using MoreVanillaBuildPrefabs.Configs;
+using MoreVanillaBuildPrefabs.Logging;
 
 namespace MoreVanillaBuildPrefabs.Helpers
 {
     internal class CreatorShopHelper
     {
-
         internal static Piece.PieceCategory CreatorShop;
 
         internal static void AddCreatorShopPieceCategory()

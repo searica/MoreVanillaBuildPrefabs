@@ -137,21 +137,31 @@ Prefabs set to the custom CreatorShop category on the hammer will behave differe
 Specifically, when a piece is set to the CreatorShop category player's can only deconstruct instances of that piece that they have placed themselves. This prevents player's from deconstructing world-generated prefabs like trees while still allowing you to build and deconstruct player-placed trees. If multiple player's have this mod enabled they can still only deconstruct CreatorShop pieces that they have placed themselves. If the AdminDeconstructCreatorShop option is set to True, then admins can deconstruct CreatorShop pieces placed by other players.
 
 ## Known Issues
-**Custom Armor Stand Clipping**: Armor placed on the Male Armor Stand and Female Armor Stand prefabs has clipping issues causing parts of the armor to not be displayed. I have not been able to fix this as of yet.
+**Custom Armor Stand Clipping**: Armor placed on the Male Armor Stand and Female Armor Stand prefabs has clipping issues causing parts of the armor to not be displayed. I have not been able to fix this as of yet. Feel free to reach out if you know things about meshing and you have ideas for a solution.
 
 **Piece Icons**: Lighting can be variable between icons for different pieces and/or have color artifacting can occur.
 - A fix has been implemented, but icons are cached by Jotunn so you will need to reset them to fix the issue.
 - Go to this directory: %userprofile%\appdata\LocalLow\IronGate\Valheim\Jotunn\CachedIcons 
 - Delete all the pngs in that directory.
-- Restart the game and the mod should regenerate the icons correctly.
+- Restart the game and the mod should hopefully regenerate the icons correctly.
+
+**Stuttering while Editing Piece Resources Costs via In-Game Configuration Manager**: Editting the string to define resource costs for a piece via the in-game configuration manager can result in the mod constantly re-initializing as it thinks the config settings is constantly changing while the string is being editted. I am currently looking into fixing this by pausing mod re-initialization while the in-game configuration manager is open and then re-initalizing once it closes.
 
 ## Planned Improvements
 - Resolve known issues.
 - Patch and enable more prefabs by default.
-- Automatically add missing sfx to placement and deconstruction of prefabs based on the required crafting station.
+    - Add default build costs for treasure chests and add snap points.
+- Automatically add missing sfx and vfx for placement and deconstruction of prefabs based on the required crafting station.
+- Fix player built barrells dropping random loot when destroyed via damage (the fixes I have worked for every piece except barrels for some reason 🙃).
+- Do a performance optimization pass/re-write to improve performance when changing settings via in-game configuration manager.
+
+
+## Considererd Improvements
 - Consider adding vanilla functionality to custom pieces like sitting in chairs.
 - Add a config option to enable comfort values for custom pieces.
-- Add default build costs for treasure chests and add snap points.
+- Consider adding a setting to enable patches that are "unsafe" unless used in single player or with the mod installed on the server (ie changing inventory sizes for some prefabs or other patches that could make you lose items if you loaded the world without the mod)
+- Learn how to save/read data to/from the world file so I can alter just the pieces that are player built and have it persist after a restart.
+- Add Wear-N-Tear or Destructible components all to player built pieces upon placement.
 
 ## Compatibility
 These are non-exhaustive lists.

@@ -6,7 +6,6 @@ namespace MoreVanillaBuildPrefabs.Configs
 {
     internal class IgnoredPrefabs
     {
-
         /// <summary>
         ///     Checks prefab to see if it is eligble for making a custom piece.
         /// </summary>
@@ -112,7 +111,7 @@ namespace MoreVanillaBuildPrefabs.Configs
         };
 
         /// <summary>
-        ///  These are prefabs I think people may want to be able to use but they 
+        ///  These are prefabs I think people may want to be able to use but they
         ///  aren't really normal build pieces and could be used for griefing.
         /// </summary>
         private static readonly HashSet<string> _CreativeModePrefabs = new()

@@ -11,8 +11,8 @@
             <td align="center">0.4.0</td>
             <td align="left">
                 <ul>
-                    <li></li>
-                    <li></li>
+                    <li> I just solved the pickables drop resources exploit last night as well. Now when you deconstruct something that has a pickables component it reduces the resources returned by the amount that the pickables drops (if it was already picked when deconstructing) and it accounts for world modifiers to loot drops.</li>
+                    <li>I'm considering setting up the mod so that creating pieces with a pickables component always requires uses the pickables component and the amount has to be at least as much as the pickables would drop when picked (while accounting for world modifiers). This would override the resoucprce costs set in the cfg file.</li>
                     <li></li>
                 </ul>
             </td>

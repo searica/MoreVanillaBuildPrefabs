@@ -1,24 +1,21 @@
 ﻿using HarmonyLib;
+using Jotunn.Managers;
+using MoreVanillaBuildPrefabs.Configs;
+using MoreVanillaBuildPrefabs.Helpers;
+using MoreVanillaBuildPrefabs.Logging;
 using System;
 using System.Collections.Generic;
-using UnityEngine;
 using System.Reflection.Emit;
-using Jotunn.Managers;
-
-using MoreVanillaBuildPrefabs.Configs;
-using MoreVanillaBuildPrefabs.Logging;
-using MoreVanillaBuildPrefabs.Helpers;
-
+using UnityEngine;
 
 namespace MoreVanillaBuildPrefabs
 {
-
     [HarmonyPatch(typeof(Player))]
-    static class PlayerPatch
+    internal static class PlayerPatch
     {
         [HarmonyTranspiler]
         [HarmonyPatch(nameof(Player.PlacePiece))]
-        static IEnumerable<CodeInstruction> PlacePieceTranspiler(IEnumerable<CodeInstruction> instructions)
+        private static IEnumerable<CodeInstruction> PlacePieceTranspiler(IEnumerable<CodeInstruction> instructions)
         {
             // Targeting code
             // GameObject result = Object.Instantiate(gameObject, position, rotation);
@@ -28,7 +25,7 @@ namespace MoreVanillaBuildPrefabs
             //  IL_012f: call !!0 [UnityEngine.CoreModule] UnityEngine.Object::Instantiate<class [UnityEngine.CoreModule] UnityEngine.GameObject>(!!0, valuetype[UnityEngine.CoreModule] UnityEngine.Vector3, valuetype[UnityEngine.CoreModule] UnityEngine.Quaternion)
             //      IL_0134: stloc.3
 
-            // want to be able to edit the instantiated result 
+            // want to be able to edit the instantiated result
             // such that I can remove things like the pickable property from the surtling core stands
             return new CodeMatcher(instructions)
                 .MatchForward(
@@ -93,7 +90,7 @@ namespace MoreVanillaBuildPrefabs
 
         [HarmonyTranspiler]
         [HarmonyPatch(nameof(Player.SetupPlacementGhost))]
-        static IEnumerable<CodeInstruction> SetupPlacementGhostTranspiler(IEnumerable<CodeInstruction> instructions)
+        private static IEnumerable<CodeInstruction> SetupPlacementGhostTranspiler(IEnumerable<CodeInstruction> instructions)
         {
             // Targeting this code:
             // m_placementGhost = Object.Instantiate(selectedPrefab);
@@ -192,7 +189,7 @@ namespace MoreVanillaBuildPrefabs
 
         [HarmonyPrefix]
         [HarmonyPatch(nameof(Player.CheckCanRemovePiece))]
-        static bool CheckCanRemovePrefix(Player __instance, Piece piece, ref bool __result)
+        private static bool CheckCanRemovePrefix(Player __instance, Piece piece, ref bool __result)
         {
             // Only modify results for pieces affected by this mod
             var prefabName = NameHelper.GetPrefabName(piece);

@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using Jotunn.Configs;
+﻿using Jotunn.Configs;
+using System.Collections.Generic;
 
 namespace MoreVanillaBuildPrefabs.Configs
 {
@@ -529,7 +529,6 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "FineWood,32"
                 )
             },
-
 
             // goblin pieces
             {

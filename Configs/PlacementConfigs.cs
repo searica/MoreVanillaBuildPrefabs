@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 
-
 namespace MoreVanillaBuildPrefabs.Configs
 {
     internal class PlacementConfigs
@@ -17,7 +16,7 @@ namespace MoreVanillaBuildPrefabs.Configs
         }
 
         /// <summary>
-        ///     Get a bool indicating if the prefab should be 
+        ///     Get a bool indicating if the prefab should be
         ///     allowed to clip into the ground..
         /// </summary>
         /// <param name="PrefabName"></param>
@@ -28,7 +27,7 @@ namespace MoreVanillaBuildPrefabs.Configs
         }
 
         /// <summary>
-        ///     Get a bool indicating if the prefab is in the 
+        ///     Get a bool indicating if the prefab is in the
         ///     HashSet of prefabs that need a collision patch.
         /// </summary>
         /// <param name="PrefabName"></param>
@@ -37,7 +36,6 @@ namespace MoreVanillaBuildPrefabs.Configs
         {
             return _NeedsCollisionPatchForGhost.Contains(prefabName);
         }
-
 
         internal static readonly HashSet<string> _NeedsCollisionPatchForGhost = new()
         {

@@ -3,7 +3,6 @@
 
 //namespace MoreVanillaBuildPrefabs.Patches
 //{
-
 //    [HarmonyPatch(typeof(ZNetScene))]
 //    internal class ZNetScenePatch
 //    {
@@ -15,4 +14,3 @@
 //        }
 //    }
 //}
-

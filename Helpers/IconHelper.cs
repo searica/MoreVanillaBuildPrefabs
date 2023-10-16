@@ -1,11 +1,8 @@
-﻿using System.Collections;
+﻿using Jotunn.Managers;
+using MoreVanillaBuildPrefabs.Logging;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-using Jotunn.Managers;
-
-using MoreVanillaBuildPrefabs.Logging;
-
 
 namespace MoreVanillaBuildPrefabs.Helpers
 {
@@ -37,7 +34,8 @@ namespace MoreVanillaBuildPrefabs.Helpers
         /// <summary>
         ///     Hide .ctor to prevent other instances from being created
         /// </summary>
-        private IconHelper() { }
+        private IconHelper()
+        { }
 
         public void GeneratePrefabIcons(IEnumerable<GameObject> prefabs)
         {

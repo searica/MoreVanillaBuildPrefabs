@@ -45,7 +45,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
             return default;
         }
 
-        static bool HasMatchingParameterTypes(int genericParameterCount, Type[] types, ParameterInfo[] parameters)
+        private static bool HasMatchingParameterTypes(int genericParameterCount, Type[] types, ParameterInfo[] parameters)
         {
             if (parameters.Length < genericParameterCount || parameters.Length != types.Length)
             {
@@ -89,12 +89,11 @@ namespace MoreVanillaBuildPrefabs.Helpers
             Type typeTarget = source.GetType();
             Type typeSrc = target.GetType();
 
-            // Iterate over the fields of the source instance and copy 
-            // them them to their counterparts in the target instance  
+            // Iterate over the fields of the source instance and copy
+            // them them to their counterparts in the target instance
             FieldInfo[] srcFields = typeSrc.GetFields(AllBindings);
             foreach (FieldInfo srcField in srcFields)
             {
-
                 FieldInfo targetField = typeTarget.GetField(srcField.Name, AllBindings);
                 if (targetField == null)
                 {

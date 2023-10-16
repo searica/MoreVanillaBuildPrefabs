@@ -3,7 +3,6 @@
 
 //namespace MoreVanillaBuildPrefabs.Patches
 //{
-
 //    [HarmonyPatch(typeof(Game))]
 //    internal class GamePatch
 //    {

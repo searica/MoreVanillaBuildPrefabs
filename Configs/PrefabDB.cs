@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using Jotunn.Configs;
+﻿using Jotunn.Configs;
+using UnityEngine;
 
 namespace MoreVanillaBuildPrefabs.Configs
 {
@@ -12,13 +12,15 @@ namespace MoreVanillaBuildPrefabs.Configs
         public string craftingStation;
         public string requirements;
         public bool placementPatch;
+
         internal GameObject Prefab
         {
             get { return MoreVanillaBuildPrefabs.PrefabRefs[name]; }
         }
 
         // for inheiritance
-        public PrefabDB() { }
+        public PrefabDB()
+        { }
 
         public PrefabDB(
             string name,

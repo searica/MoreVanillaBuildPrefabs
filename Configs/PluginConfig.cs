@@ -1,21 +1,18 @@
-﻿using System;
-using System.IO;
-using System.Collections.Generic;
-using BepInEx;
+﻿using BepInEx;
 using BepInEx.Configuration;
-using UnityEngine;
 using Jotunn.Configs;
-using Jotunn.Managers;
-
-using static MoreVanillaBuildPrefabs.MoreVanillaBuildPrefabs;
 using MoreVanillaBuildPrefabs.Logging;
-
+using System.Collections.Generic;
+using System.IO;
+using UnityEngine;
+using static MoreVanillaBuildPrefabs.MoreVanillaBuildPrefabs;
 
 namespace MoreVanillaBuildPrefabs.Configs
 {
     internal class PluginConfig
     {
         private static readonly string ConfigFileName = PluginGuid + ".cfg";
+
         private static readonly string ConfigFileFullPath = string.Concat(
             Paths.ConfigPath,
             Path.DirectorySeparatorChar,
@@ -204,7 +201,7 @@ namespace MoreVanillaBuildPrefabs.Configs
             pieceConfigEntries.requirements.SettingChanged += PieceSettingChanged;
             defaultPieceDB.requirements = pieceConfigEntries.requirements.Value;
 
-            // if the prefab is not already included in the list of prefabs that need a 
+            // if the prefab is not already included in the list of prefabs that need a
             // collision patch then add a config option to enable the placement collision patch.
             if (!PlacementConfigs.NeedsCollisionPatchForGhost(prefab.name))
             {

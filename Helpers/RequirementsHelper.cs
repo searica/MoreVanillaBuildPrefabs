@@ -2,8 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace MoreVanillaBuildPrefabs.Helpers
@@ -47,12 +45,11 @@ namespace MoreVanillaBuildPrefabs.Helpers
             return requirements.ToArray();
         }
 
-
         // TODO: solve issue causes by world modifiers not being available until game instance starts
         /// <summary>
         ///     If the pickable is not null and drops an item, then modify the
-        ///     requirements array to require the item dropped by the pickable to 
-        ///     build and cost a minimum amount equal to the amount dropped by the 
+        ///     requirements array to require the item dropped by the pickable to
+        ///     build and cost a minimum amount equal to the amount dropped by the
         ///     pickable  (accounts for world modifiers to resource drops).
         /// </summary>
         /// <param name="requirements"></param>
@@ -63,7 +60,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
            Pickable pickable
         )
         {
-            // If the [ickable does not exist or does not drop an item, return the requirements array unchanged. 
+            // If the [ickable does not exist or does not drop an item, return the requirements array unchanged.
             var pickableDrop = pickable?.m_itemPrefab?.GetComponent<ItemDrop>()?.m_itemData;
             if (requirements == null || pickable == null || pickableDrop == null)
             {
@@ -99,7 +96,6 @@ namespace MoreVanillaBuildPrefabs.Helpers
             return requirements.Append(pickableReq).ToArray();
         }
 
-
         /// <summary>
         ///     Used when deconstructing pickable pieces to prevent infinite item exploits.
         ///     Checks if the resources defined by the requirements array include
@@ -115,7 +111,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
         )
         {
             // If the pickable does not drop an item or has not been picked, return the
-            // requirements array unchanged. 
+            // requirements array unchanged.
             var pickableDrop = pickable?.m_itemPrefab?.GetComponent<ItemDrop>()?.m_itemData;
             if (requirements == null || pickable == null || !pickable.m_picked || pickableDrop == null)
             {
@@ -145,7 +141,5 @@ namespace MoreVanillaBuildPrefabs.Helpers
             // If pickable item is not present then return the requirements array unchanged.
             return requirements;
         }
-
-
     }
 }

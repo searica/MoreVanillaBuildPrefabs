@@ -1,7 +1,6 @@
 ﻿//using Jotunn.Managers;
 //using MoreVanillaBuildPrefabs.Logging;
 
-
 //namespace MoreVanillaBuildPrefabs.Patches.CompatabilityChecks
 //{
 //    internal class PotteryBarnCheck

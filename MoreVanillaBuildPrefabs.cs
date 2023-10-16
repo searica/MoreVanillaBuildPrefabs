@@ -1,19 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Reflection;
-using System.Linq;
-using UnityEngine;
-using BepInEx;
+﻿using BepInEx;
 using HarmonyLib;
+using Jotunn.Configs;
 using Jotunn.Managers;
 using Jotunn.Utils;
-using Jotunn.Configs;
-
 using MoreVanillaBuildPrefabs.Configs;
-using MoreVanillaBuildPrefabs.Logging;
 using MoreVanillaBuildPrefabs.Helpers;
-
-
+using MoreVanillaBuildPrefabs.Logging;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using UnityEngine;
 
 namespace MoreVanillaBuildPrefabs
 {
@@ -27,7 +24,7 @@ namespace MoreVanillaBuildPrefabs
         public const string PluginGuid = $"{Author}.Valheim.{PluginName}";
         public const string PluginVersion = "0.4.0";
 
-        Harmony _harmony;
+        private Harmony _harmony;
 
         internal static readonly Dictionary<string, GameObject> PrefabRefs = new();
         internal static readonly Dictionary<string, Piece> DefaultPieceClones = new();
@@ -38,7 +35,6 @@ namespace MoreVanillaBuildPrefabs
         internal static bool DisableDropOnDestroyed { get; set; } = false;
 
         private static bool HasInitializedPrefabs => PrefabRefs.Count > 0;
-
 
         public void Awake()
         {
@@ -84,7 +80,7 @@ namespace MoreVanillaBuildPrefabs
         }
 
         /// <summary>
-        ///     Returns true if the piece is one the mod touches and it 
+        ///     Returns true if the piece is one the mod touches and it
         ///     is currently enabled for building. Returns false if the
         ///     piece is not a custom piece or it is not enabled.
         /// </summary>
@@ -192,7 +188,7 @@ namespace MoreVanillaBuildPrefabs
         }
 
         /// <summary>
-        ///     Initializes references to pieces 
+        ///     Initializes references to pieces
         ///     and their configuration settings
         /// </summary>
         internal static void InitPieceRefs()
@@ -247,7 +243,7 @@ namespace MoreVanillaBuildPrefabs
         }
 
         /// <summary>
-        ///     Apply the configuration settings from the 
+        ///     Apply the configuration settings from the
         ///     PieceDB for each piece in PieceRefs.
         /// </summary>
         internal static void InitPieces()
@@ -282,7 +278,7 @@ namespace MoreVanillaBuildPrefabs
         }
 
         /// <summary>
-        ///     Add all pieces that are enabled in the cfg file to the hammer build 
+        ///     Add all pieces that are enabled in the cfg file to the hammer build
         ///     table according to CreatorShop related cfg settings. Allow sets
         ///     all pieces added to the hammer permit deconstruction by players.
         /// </summary>
@@ -299,7 +295,7 @@ namespace MoreVanillaBuildPrefabs
                 }
 
                 // Allows pieces added to the hammer to be deconstructed
-                // unless they are a ship (to respect vanilla behaviour). 
+                // unless they are a ship (to respect vanilla behaviour).
                 if (pieceDB.piece.gameObject.GetComponent<Ship>() == null)
                 {
                     pieceDB.piece.m_canBeRemoved = true;
@@ -320,7 +316,7 @@ namespace MoreVanillaBuildPrefabs
         // TODO: Rework event handlers to only update the single piece/thing related to the setting that changed when the SettingChanged event fires, and make different handlers for when Config.Reload or Server Data synced fires. (https://github.com/BepInEx/BepInEx/blob/0d06996b52c0215a8327b8c69a747f425bbb0023/BepInEx/Configuration/ConfigEntryBase.cs#L146)
 
         /// <summary>
-        ///     Method update mod intialization when settings 
+        ///     Method update mod intialization when settings
         ///     related to piece configuration are changed
         /// </summary>
         /// <param name="o"></param>
@@ -334,7 +330,6 @@ namespace MoreVanillaBuildPrefabs
 
             if (HasInitializedPrefabs)
             {
-
                 var watch = new System.Diagnostics.Stopwatch();
                 if (PluginConfig.IsVerbosityMedium)
                 {
@@ -371,8 +366,8 @@ namespace MoreVanillaBuildPrefabs
         }
 
         /// <summary>
-        ///     Method allow both the PlacementSettingChanged 
-        ///     and ConfigDataSynced methods to update collision 
+        ///     Method allow both the PlacementSettingChanged
+        ///     and ConfigDataSynced methods to update collision
         ///     patches when events fire
         /// </summary>
         private static void UpdateNeedsCollisionPatchForGhost()

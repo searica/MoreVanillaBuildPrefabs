@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-using MoreVanillaBuildPrefabs.Logging;
-
 /* In Unity
  * X = left/right
  * Y = up/down
@@ -27,21 +25,21 @@ namespace MoreVanillaBuildPrefabs.Helpers
         };
 
         // List of points in a 2x2 box that would be the middle of each edge
-        private static readonly List<Vector3> edgeMidPoints = new()
-        {
-            new Vector3(-1, -1, 0),
-            new Vector3(0, -1, -1),
-            new Vector3(0, -1, 1),
-            new Vector3(1, -1, 0),
-            new Vector3(-1, 0, 0),
-            new Vector3(0, 0, -1),
-            new Vector3(0, 0, 1),
-            new Vector3(1, 0, 0),
-            new Vector3(-1, 1, 0),
-            new Vector3(0, 1, -1),
-            new Vector3(0, 1, 1),
-            new Vector3(1, 1, 0),
-        };
+        //private static readonly List<Vector3> edgeMidPoints = new()
+        //{
+        //    new Vector3(-1, -1, 0),
+        //    new Vector3(0, -1, -1),
+        //    new Vector3(0, -1, 1),
+        //    new Vector3(1, -1, 0),
+        //    new Vector3(-1, 0, 0),
+        //    new Vector3(0, 0, -1),
+        //    new Vector3(0, 0, 1),
+        //    new Vector3(1, 0, 0),
+        //    new Vector3(-1, 1, 0),
+        //    new Vector3(0, 1, -1),
+        //    new Vector3(0, 1, 1),
+        //    new Vector3(1, 1, 0),
+        //};
 
         /// <summary>
         ///     Adds snap points for the game object to the corners of the specified mesh.
@@ -132,7 +130,6 @@ namespace MoreVanillaBuildPrefabs.Helpers
             }
         }
 
-
         private static void CreateSnapPoint(Vector3 pos, Transform parent)
         {
             GameObject snappoint = new("_snappoint");
@@ -141,7 +138,6 @@ namespace MoreVanillaBuildPrefabs.Helpers
             snappoint.tag = "snappoint";
             snappoint.SetActive(false);
         }
-
 
         internal static void FixPiece(GameObject target)
         {

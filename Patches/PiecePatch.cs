@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Reflection.Emit;
-using UnityEngine;
-using HarmonyLib;
-
-using MoreVanillaBuildPrefabs.Logging;
+﻿using HarmonyLib;
 using MoreVanillaBuildPrefabs.Configs;
 using MoreVanillaBuildPrefabs.Helpers;
+using MoreVanillaBuildPrefabs.Logging;
+using System;
+using System.Collections.Generic;
+using System.Reflection.Emit;
 using static MoreVanillaBuildPrefabs.MoreVanillaBuildPrefabs;
-
 
 namespace MoreVanillaBuildPrefabs
 {
@@ -23,7 +20,7 @@ namespace MoreVanillaBuildPrefabs
         /// <param name="__instance"></param>
         [HarmonyPrefix]
         [HarmonyPatch(nameof(Piece.SetCreator))]
-        static void PieceSetCreatorPrefix(long uid, Piece __instance)
+        private static void PieceSetCreatorPrefix(long uid, Piece __instance)
         {
             var view = __instance.GetComponent<ZNetView>();
             if (view && !view.m_persistent)
@@ -41,22 +38,22 @@ namespace MoreVanillaBuildPrefabs
         }
 
         /// <summary>
-        ///     Transpiler to set dropped resources to default resources 
-        ///     for any piece altered by this mod if the piece was not built 
-        ///     by a player. Also indicates if drops from DropOnDestroyed should 
+        ///     Transpiler to set dropped resources to default resources
+        ///     for any piece altered by this mod if the piece was not built
+        ///     by a player. Also indicates if drops from DropOnDestroyed should
         ///     be disabled via setting DisableDesctructionDrops = true;
         /// </summary>
         /// <param name="__instance"></param>
         /// <param name="__state"></param>
         [HarmonyTranspiler]
         [HarmonyPatch(nameof(Piece.DropResources))]
-        static IEnumerable<CodeInstruction> DropResourcesTranspiler(
+        private static IEnumerable<CodeInstruction> DropResourcesTranspiler(
             IEnumerable<CodeInstruction> instructions
         )
         {
             /* Target this IL code
              * // Requirement[] resources = m_resources;
-             * IL_0011: ldarg.0 
+             * IL_0011: ldarg.0
              * IL_0012: ldfld class Piece/Requirement[] Piece::m_resources
              * IL_0017: stloc.1
              * // (no C# code)
@@ -79,13 +76,13 @@ namespace MoreVanillaBuildPrefabs
         }
 
         /// <summary>
-        ///     Delegate that sets dropped resources to default resources 
-        ///     for any piece altered by this mod if the piece was not built 
-        ///     by a player. Also indicates if drops from DropOnDestroyed should 
+        ///     Delegate that sets dropped resources to default resources
+        ///     for any piece altered by this mod if the piece was not built
+        ///     by a player. Also indicates if drops from DropOnDestroyed should
         ///     be disabled via setting DisableDesctructionDrops = true;
-        ///     
+        ///
         ///     Disabling destruction drops for player built pieces to prevents
-        ///     things like player built dvergerprops_crate dropping dvergr 
+        ///     things like player built dvergerprops_crate dropping dvergr
         ///     extractors even when they're not a build requirement.
         /// </summary>
         /// <param name="__instance"></param>
@@ -126,7 +123,7 @@ namespace MoreVanillaBuildPrefabs
                 }
             }
 
-            // If piece has a pickable component then adjust resource drops 
+            // If piece has a pickable component then adjust resource drops
             // to prevent infinite item exploits by placing a pickable,
             // picking it, and then deconstructing it to get extra items.
             resources = RequirementsHelper.RemovePickableFromRequirements(resources, piece.GetComponent<Pickable>());

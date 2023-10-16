@@ -1,5 +1,4 @@
 ﻿using HarmonyLib;
-using MoreVanillaBuildPrefabs.Logging;
 
 namespace MoreVanillaBuildPrefabs
 {
@@ -8,11 +7,11 @@ namespace MoreVanillaBuildPrefabs
     // Prevents things like player built dvergerprops_crate dropping
     // dvergr extractors when extractors were not used to build it.
     [HarmonyPatch(typeof(DropOnDestroyed))]
-    static class DropOnDestroyedPatch
+    internal static class DropOnDestroyedPatch
     {
         [HarmonyPrefix]
         [HarmonyPatch(nameof(DropOnDestroyed.OnDestroyed))]
-        static bool OnDestroyedPrefix(DropOnDestroyed __instance)
+        private static bool OnDestroyedPrefix(DropOnDestroyed __instance)
         {
             if (MoreVanillaBuildPrefabs.DisableDropOnDestroyed)
             {
