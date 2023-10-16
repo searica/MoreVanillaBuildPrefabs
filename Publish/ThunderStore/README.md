@@ -276,7 +276,7 @@ This mod was inspired by MoreVanillaBuilds by Galathil and PotteryBarn by ComfyM
 - Huge shoutout and thanks to the developers of Jötunn for all their work making the library and to Margmas specifically for all their help and advice.
 - Thanks to Advize for the advice and examples for re-writing the mod to respond to configuration settings changes while in-game.
 - Thanks to Wackymole for the help figuring out when to hook the game and resolving server sync issues.
-- Thanks to redseiko for the advice and pointing me to resources to learn more about Unity.
+- Thanks to redseiko for the advice and pointing me to resources to learn more about Unity and also for making PotteryBarn.
 - Thanks to probablykory for the advice and examples on optimizing how mods respond to configuration settings changes.
 - Thanks to OrianaVenture for the example of using Jötunn's server sync features.
 - Thanks to Jules and MarcoPogo for their help with figuring out a solution for compatiability with PlanBuild.
