@@ -416,7 +416,6 @@ namespace MoreVanillaBuildPrefabs
         {
             if (HasInitializedPrefabs)
             {
-
                 var watch = new System.Diagnostics.Stopwatch();
                 if (PluginConfig.IsVerbosityMedium)
                 {
