@@ -127,7 +127,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
                     // to prevent deconstruction of pieces that are not enabled by the mod
                     piece.m_canBeRemoved = false;
 
-                    if (PluginConfig.IsVerbosityMedium)
+                    if (PluginConfig.IsVerbosityHigh)
                     {
                         Log.LogInfo($"Created Piece component for: {prefab.name}");
                     }
@@ -147,8 +147,9 @@ namespace MoreVanillaBuildPrefabs.Helpers
             var name = NameHelper.FormatPrefabName(prefab.name);
             var description = NameHelper.GetPrefabDescription(prefab);
             var piece = pieceDB.piece;
+            var reqs = ConfigurePieceRequirements(pieceDB);
             var pieceCategory = (Piece.PieceCategory)PieceManager.Instance.GetPieceCategory(pieceDB.category);
-            var reqs = PluginConfig.CreateRequirementsArray(pieceDB.requirements);
+
             var station = GetCraftingStation(pieceDB.craftingStation);
             return ConfigurePiece(
                 piece,
@@ -159,6 +160,19 @@ namespace MoreVanillaBuildPrefabs.Helpers
                 station,
                 reqs
             );
+        }
+
+        /// <summary>
+        ///     Create piece requirements array from pieceDB and modify it to prevent
+        ///     exploits if the piece has a pickable component.
+        /// </summary>
+        /// <param name="pieceDB"></param>
+        /// <returns></returns>
+        private static Piece.Requirement[] ConfigurePieceRequirements(PieceDB pieceDB)
+        {
+            var reqs = RequirementsHelper.CreateRequirementsArray(pieceDB.requirements);
+            reqs = RequirementsHelper.AddPickableToRequirements(reqs, pieceDB.piece.GetComponent<Pickable>());
+            return reqs;
         }
 
         /// <summary>
@@ -177,7 +191,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
         )
         {
             var pieceCategory = (Piece.PieceCategory)PieceManager.Instance.GetPieceCategory(category);
-            var reqs = PluginConfig.CreateRequirementsArray(requirements);
+            var reqs = RequirementsHelper.CreateRequirementsArray(requirements);
             var station = GetCraftingStation(craftingStation);
             return ConfigurePiece(
                 piece,
