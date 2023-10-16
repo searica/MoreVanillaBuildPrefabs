@@ -49,7 +49,7 @@ Changes made to the configuration settings will be reflected in-game immediately
 The rest of the configuration files contains ["Prefab-Name"] sections to configure each prefab. Each section contains:
 
 **Enabled** [Synced with Server]
-- If true then add the prefab as a buildable piece. Note: this setting is ignored if ForceAllPrefabs is true.
+- If true then allow this prefab to be built and deconstructed. Note: this setting is ignored if ForceAllPrefabs is true.
   - Acceptable values: False, True
   - Default value: false
 
@@ -100,7 +100,7 @@ The mod has a default configuration that enables ~100 new pieces by default. The
 </details>
 
 ## Detailed Mechanics
-This mod enables prefabs that were not intended to used for building by players, so they may lack things like proper collision or snap points. All of the prefabs enabled by the default configuration have been patched to fix those sorts of issues and make them behave similarly to vanilla build pieces.
+This mod enables prefabs that were not intended to used for building by players, so they may lack things like proper collision or snap points. All of the prefabs enabled by the default configuration have been patched to fix those sorts of issues and make them behave similarly to vanilla build pieces. These patches are applied whether the prefab is enabled for building or not to make sure that prefabs that have been placed previously still behave as intended (ie they don't lose their collision and fall though the world).
 
 If a prefab is not enabled by default then there is no guarantee that it will behave nicely. While many of them have been patched, I currently have to make custom patchess for each prefab so not all of them have been patched yet. It also takes a long time to test and patch 300+ prefabs.
 

@@ -156,7 +156,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 sectionName,
                 "\u200BEnabled",
                 defaultPieceDB.enabled,
-                "If true then add the prefab as a buildable piece. Note: this setting is ignored if ForceAllPrefabs is true.",
+                "If true then allow this prefab to be built and deconstructed. Note: this setting is ignored if ForceAllPrefabs is true.",
                 AcceptableBoolValuesList
             );
             pieceConfigEntries.enabled.SettingChanged += PieceSettingChanged;
