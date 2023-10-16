@@ -126,35 +126,11 @@ namespace MoreVanillaBuildPrefabs
                 }
             }
 
-            // check if piece has a pickable component that has been picked
-            var pickable = piece.GetComponent<Pickable>();
-            var pickableDrop = pickable?.m_itemPrefab?.GetComponent<ItemDrop>()?.m_itemData;
-            if (pickable == null || !pickable.m_picked || pickable == null)
-            {
-                return resources;
-            }
+            // If piece has a pickable component then adjust resource drops 
+            // to prevent infinite item exploits by placing a pickable,
+            // picking it, and then deconstructing it to get extra items.
+            resources = RequirementsHelper.RemovePickableFromRequirements(resources, piece.GetComponent<Pickable>());
 
-            // check if pickable is included in piece build requirements
-            for (int i = 0; i < resources.Length; i++)
-            {
-                var req = resources[i];
-                Log.LogInfo($"req item name {req.m_resItem.m_itemData.m_shared.m_name}");
-                if (req.m_resItem.m_itemData.m_shared.m_name == pickableDrop.m_shared.m_name)
-                {
-                    // make a copy before altering drops
-                    var pickedResources = new Piece.Requirement[resources.Length];
-                    resources.CopyTo(pickedResources, 0);
-
-                    // get amount returned on picking based on world modifiers
-                    var pickedAmount = pickable.m_dontScale ? pickable.m_amount : Mathf.Max(pickable.m_minAmountScaled, Game.instance.ScaleDrops(pickable.m_itemPrefab, pickable.m_amount));
-
-                    // reduce resource drops for the picked item by the amount that picking the item gave
-                    // this is to prevent infinite resource exploits.
-                    pickedResources[i].m_amount = Mathf.Clamp(req.m_amount - pickedAmount, 0, req.m_amount);
-                    Log.LogInfo($"Reduced amount: {pickedResources[i].m_amount}");
-                    return pickedResources;
-                }
-            }
             return resources;
         }
     }
