@@ -99,23 +99,63 @@ namespace MoreVanillaBuildPrefabs
                 Log.LogInfo("DropResources_m_resources_Delegate()");
             }
             string prefabName = NameHelper.GetPrefabName(piece);
+
+            if (!IsChangedByMod(prefabName))
+            {
+                // do nothing it not a piece the mod changes
+                return piece.m_resources;
+            }
+
+            // Set resources to defaults is piece is not placed by player
+            // or disable desctruction drops if it is placed by player
+            var resources = Array.Empty<Piece.Requirement>();
             if (DefaultPieceClones.ContainsKey(prefabName))
             {
                 if (!piece.IsPlacedByPlayer())
                 {
-                    var resources = Array.Empty<Piece.Requirement>();
                     if (DefaultPieceClones[prefabName].m_resources != null)
                     {
+                        // set to default resources for world-generated pieces
                         resources = DefaultPieceClones[prefabName].m_resources;
                     }
-                    return resources;
                 }
                 else
                 {
+                    resources = piece.m_resources;
                     DisableDropOnDestroyed = true;
                 }
             }
-            return piece.m_resources;
+
+            // check if piece has a pickable component that has been picked
+            var pickable = piece.GetComponent<Pickable>();
+            var pickableDrop = pickable?.m_itemPrefab?.GetComponent<ItemDrop>()?.m_itemData;
+            if (pickable == null || !pickable.m_picked || pickable == null)
+            {
+                return resources;
+            }
+
+            // check if pickable is included in piece build requirements
+            for (int i = 0; i < resources.Length; i++)
+            {
+                var req = resources[i];
+                Log.LogInfo($"req item name {req.m_resItem.m_itemData.m_shared.m_name}");
+                if (req.m_resItem.m_itemData.m_shared.m_name == pickableDrop.m_shared.m_name)
+                {
+                    // make a copy before altering drops
+                    var pickedResources = new Piece.Requirement[resources.Length];
+                    resources.CopyTo(pickedResources, 0);
+
+                    // get amount returned on picking based on world modifiers
+                    var pickedAmount = pickable.m_dontScale ? pickable.m_amount : Mathf.Max(pickable.m_minAmountScaled, Game.instance.ScaleDrops(pickable.m_itemPrefab, pickable.m_amount));
+
+                    // reduce resource drops for the picked item by the amount that picking the item gave
+                    // this is to prevent infinite resource exploits.
+                    pickedResources[i].m_amount = Mathf.Clamp(req.m_amount - pickedAmount, 0, req.m_amount);
+                    Log.LogInfo($"Reduced amount: {pickedResources[i].m_amount}");
+                    return pickedResources;
+                }
+            }
+            return resources;
         }
     }
 }
