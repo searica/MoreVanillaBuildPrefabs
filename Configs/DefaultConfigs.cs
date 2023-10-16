@@ -1899,6 +1899,28 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "YggdrasilWood,16"
                 )
             },
+            {
+                "CastleKit_braided_box01",
+                new PrefabDB(
+                    "CastleKit_braided_box01",
+                    true,
+                    false,
+                    HammerCategories.Misc,
+                    nameof(CraftingStations.Workbench),
+                    "Wood,2"
+                )
+            },
+            {
+                "Trailership",
+                new PrefabDB(
+                    "Trailership",
+                    true,
+                    false,
+                    HammerCategories.Misc,
+                    nameof(CraftingStations.Workbench),
+                    "IronNails,100;DeerHide,10;FineWood,40;ElderBark,40"
+                )
+            }
         };
     }
 }

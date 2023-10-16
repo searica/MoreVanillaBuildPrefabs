@@ -104,6 +104,9 @@ namespace MoreVanillaBuildPrefabs.Configs
             "horizontal_web", // has no mesh
             "vertical_web",
             "SunkenKit_int_towerwall_LOD", // is not an actual prefab for building
+            "tolroko_flyer", // I don't want to patch this and instantiating it throws errors
+            "fuling_turret", // Duplicate of vanilla ballista
+            "dragoneggcup", // It's invisible and I don't want to patch it
         };
     }
 }

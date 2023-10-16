@@ -25,7 +25,7 @@ namespace MoreVanillaBuildPrefabs
         public const string PluginName = "MoreVanillaBuildPrefabs";
         internal const string Author = "Searica";
         public const string PluginGuid = $"{Author}.Valheim.{PluginName}";
-        public const string PluginVersion = "1.0.0";
+        public const string PluginVersion = "0.4.0";
 
         Harmony _harmony;
 
@@ -134,7 +134,15 @@ namespace MoreVanillaBuildPrefabs
                 // only has to run once this way
                 // also prevents trailership instances from
                 // becoming unusable if you disable it as a build piece
-                PrefabPatcher.PatchPrefabIfNeeded(prefab);
+                try
+                {
+                    PrefabPatcher.PatchPrefabIfNeeded(prefab);
+                }
+                catch (Exception ex)
+                {
+                    Log.LogWarning($"Failed to patch prefab {prefab.name}: {ex}");
+                }
+
                 PrefabRefs.Add(prefab.name, prefab);
             }
 
@@ -280,7 +288,7 @@ namespace MoreVanillaBuildPrefabs
         /// </summary>
         internal static void InitHammer()
         {
-            Log.LogInfo("Initializing hammer build table");
+            Log.LogInfo("Initializing hammer");
             PieceTable hammerTable = PieceHelper.GetPieceTable(PieceTables.Hammer);
             foreach (var pieceDB in PieceRefs.Values)
             {

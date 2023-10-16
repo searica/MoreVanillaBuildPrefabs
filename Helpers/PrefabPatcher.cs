@@ -30,23 +30,85 @@ namespace MoreVanillaBuildPrefabs.Helpers
                     SnapPointHelper.AddSnapPointToCenter(prefab);
                     break;
                 case "Trailership":
+                    // Fix hull
+                    var meshFilter = prefab.GetMeshFilter("hull");
+                    if (meshFilter == null) { break; }
 
-                    foreach (var meshFilter in prefab.GetComponentsInChildren<MeshFilter>())
+                    var longShip = ZNetScene.instance?.m_prefabs?.Where(go => go.name == "VikingShip")?.First();
+                    var longShipMeshFilter = longShip?.GetMeshFilter("hull");
+                    if (longShipMeshFilter == null) { break; }
+
+                    meshFilter.mesh = longShipMeshFilter.mesh;
+
+                    // Fix shields
+                    var shieldBanded = ZNetScene.instance?.m_prefabs?.Where(go => go.name == "ShieldBanded")?.First();
+                    var mat = shieldBanded?.GetComponentInChildren<MeshRenderer>()?.material;
+                    if (mat == null) { break; }
+
+                    var storage = prefab.transform.Find("ship")
+                        ?.transform?.Find("visual")
+                        ?.transform?.Find("Customize")
+                        ?.transform?.Find("storage");
+                    if (storage == null) { break; }
+
+                    int children = storage.transform.childCount;
+                    for (int i = 0; i < children; ++i)
                     {
-                        if (meshFilter.name == "hull")
+                        var child = storage.transform.GetChild(i);
+                        if (child != null && child.name.StartsWith("Shield"))
                         {
-                            var longShip = ZNetScene.instance?.m_prefabs?.Where(go => go.name == "VikingShip")?.First();
-
-                            if (longShip == null) { break; }
-
-                            foreach (var longShipMeshFilter in longShip.GetComponentsInChildren<MeshFilter>())
-                                if (longShipMeshFilter.name == "hull")
-                                {
-                                    meshFilter.mesh = longShipMeshFilter.mesh;
-                                    break;
-                                }
+                            child.GetComponent<MeshRenderer>().material = mat;
                         }
                     }
+
+                    // Fix sail skinned mesh renderer
+                    //var longShipSailFull = longShip?.transform?.Find("ship")
+                    //    ?.transform?.Find("visual")
+                    //    ?.transform?.Find("Mast")
+                    //    ?.transform?.Find("Sail")
+                    //    ?.transform?.Find("sail_full")?.gameObject;
+                    //if (longShipSailFull == null) { break; }
+
+                    //var sailFull = prefab?.transform?.Find("ship")
+                    //    ?.transform?.Find("visual")
+                    //    ?.transform?.Find("Mast")
+                    //    ?.transform?.Find("Sail")
+                    //    ?.transform?.Find("sail_full").gameObject;
+                    //if (sailFull == null) { break; }
+                    //var skinMeshRender = sailFull.GetComponent<SkinnedMeshRenderer>();
+                    //skinMeshRender.bounds.extents.Scale(new Vector3(1, 1.1f, 1));
+
+                    // Fix missing control GUI position
+                    var ship = prefab.GetComponent<Ship>();
+                    if (ship == null) { break; }
+                    var controlGui = new GameObject("ControlGui");
+                    controlGui.transform.parent = prefab.transform;
+                    controlGui.transform.localPosition = new Vector3(1.0f, 1.696f, -6.54f);
+                    ship.m_controlGuiPos = controlGui.transform;
+
+                    // Fix missing rudder button attachpoint
+                    var shipControls = prefab.transform?.Find("ship")
+                        ?.transform?.Find("buttons")
+                        ?.transform?.Find("rudder (1)")
+                        ?.transform?.Find("rudder_button")
+                        ?.GetComponent<ShipControlls>();
+                    if (shipControls == null) { break; }
+
+                    var rudderAttach = prefab?.transform?.Find("sit locations")
+                        ?.transform?.Find("sit_box (4)")
+                        ?.transform?.Find("attachpoint");
+                    if (rudderAttach == null) { break; }
+
+                    shipControls.m_attachPoint = rudderAttach.transform;
+
+                    // Fix sail not catching wind
+                    ship.m_sailForceOffset = 2; // same as longship
+                    ship.m_sailForceFactor = 0.05f; // same as longship
+                    break;
+                case "TreasureChest_dvergr_loose_stone":
+                    var boxCollider = prefab.AddComponent<BoxCollider>();
+                    boxCollider.size = new Vector3(2, 1, 2);
+                    SnapPointHelper.AddSnapPointsToBoxColliderCorners(prefab, boxCollider);
                     break;
                 case "TreasureChest_mountaincave":
                 case "TreasureChest_trollcave":
@@ -404,7 +466,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
                             new Vector3(2, 0, 0.4f),
                             new Vector3(-2, 0, -0.35f),
                             new Vector3(-2, 0, 0.4f),
-                        
+
                             new Vector3(2, 4, -0.35f),
                             new Vector3(2, 4, 0.4f),
                             new Vector3(-2, 4, -0.35f),
@@ -609,7 +671,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
                     break;
                 case "dvergrtown_wood_wall02":
                     /*
-                 
+
                     SnapPointHelper.AddSnapPoints(
                         prefab, 
                         new Vector3[] {

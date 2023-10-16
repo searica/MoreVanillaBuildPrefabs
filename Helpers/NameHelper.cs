@@ -28,6 +28,8 @@ namespace MoreVanillaBuildPrefabs.Helpers
             {"Birch2_aut", "Birch2 (autumn)"},
             {"dvergrtown_slidingdoor", "Dvergr sliding door"},
             {"dvergrtown_secretdoor", "Dvergr secret door"},
+            {"CastleKit_braided_box01", "Wood box"},
+            {"Trailership", "Trader ship"},
         };
 
         private static readonly Dictionary<string, string> DescriptionMap = new()

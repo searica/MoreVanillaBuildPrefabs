@@ -43,6 +43,7 @@ namespace MoreVanillaBuildPrefabs.Configs
         {
             "blackmarble_stair_corner",
             "blackmarble_stair_corner_left",
+            "Ice_floor",
         };
 
         // EligiblePrefabs that should not be set to allow clipping everything
@@ -58,7 +59,10 @@ namespace MoreVanillaBuildPrefabs.Configs
             "stoneblock_fracture",
             "piece_dvergr_pole",
             "dvergrprops_wood_pole",
-            "dvergrprops_wood_wall"
+            "dvergrprops_wood_wall",
+            "TreasureChest_dvergr_loose_stone",
+            "Ice_floor",
+            "CastleKit_braided_box01",
         };
 
         private static readonly HashSet<string> _CanClipGround = new()

@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
+using MoreVanillaBuildPrefabs.Logging;
+
 /* In Unity
  * X = left/right
  * Y = up/down
@@ -40,6 +42,28 @@ namespace MoreVanillaBuildPrefabs.Helpers
             new Vector3(0, 1, 1),
             new Vector3(1, 1, 0),
         };
+
+        /// <summary>
+        ///     Adds snap points for the game object to the corners of the specified mesh.
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="meshName"></param>
+        internal static void AddSnapPointsToBoxColliderCorners(
+            GameObject target,
+            BoxCollider boxCollider,
+            bool fixPiece = false
+        )
+        {
+            if (target == null || boxCollider == null) return;
+
+            List<Vector3> pts = new();
+            var extents = boxCollider.size / 2;
+            foreach (var corner in corners)
+            {
+                pts.Add(boxCollider.center + Vector3.Scale(corner, extents));
+            }
+            AddSnapPoints(target, pts, fixPiece);
+        }
 
         /// <summary>
         ///     Adds snap points for the game object to the corners of the specified mesh.
