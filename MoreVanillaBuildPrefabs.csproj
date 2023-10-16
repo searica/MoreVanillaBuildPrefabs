@@ -32,6 +32,9 @@
 		<Content Include="Publish\Thunderstore\manifest.json" />
 	</ItemGroup>
 	<ItemGroup>
+		<Folder Include="Libs\" />
+	</ItemGroup>
+	<ItemGroup>
 		<None Include="App.config" />
 	</ItemGroup>
 	<ItemGroup>
@@ -55,5 +58,10 @@
 			<Private>false</Private>
 			<HintPath>$(BepInExPath)\core\HarmonyXInterop.dll</HintPath>
 		</Reference>
+		<Reference Include="PlanBuild.dll">
+			<Private>false</Private>
+			<HintPath>Libs\PlanBuild\PlanBuild.dll</HintPath>
+		</Reference>
 	</ItemGroup>
+
 </Project>
