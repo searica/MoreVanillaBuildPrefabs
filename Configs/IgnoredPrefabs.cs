@@ -100,14 +100,15 @@ namespace MoreVanillaBuildPrefabs.Configs
             "TreasureChest_mountaincave_hildir", // Visual duplicate of "TreasureChest_dvergrtown"
             "TreasureChest_plainsfortress_hildir", // Visual duplicate of "TreasureChest_dvergrtown"
             "TreasureChest_forestcrypt_hildir", // Visual duplicate of "TreasureChest_dvergrtown"
+            "SunkenKit_int_towerwall_LOD", // is not an actual prefab for building
             "horizontal_web", // has no mesh
             "vertical_web",
-            "SunkenKit_int_towerwall_LOD", // is not an actual prefab for building
-            "tolroko_flyer", // I don't want to patch this and instantiating it throws errors
             "fuling_turret", // Duplicate of vanilla ballista
             "dragoneggcup", // It's invisible and I don't want to patch it
             "tarlump",  // environmental thing and too easy to use for griefing
             "mistvolume", // environmental thing and too easy to use for griefing
+            "tunnel_web", // environmental thing and too easy to use for griefing
+            "tolroko_flyer", // I don't want to patch this and instantiating it throws errors
         };
 
         /// <summary>
@@ -118,6 +119,7 @@ namespace MoreVanillaBuildPrefabs.Configs
         {
             "tarlump", // environmental thing and too easy to use for griefing
             "mistvolume", // environmental thing and too easy to use for griefing
+            "tunnel_web", // environmental thing and too easy to use for griefing
             "tolroko_flyer", // It's a little space ship! Instantiating it throws errors though.
         };
     }

@@ -57,6 +57,7 @@ namespace MoreVanillaBuildPrefabs.Configs
             "stoneblock_fracture",
             "piece_dvergr_pole",
             "dvergrprops_wood_pole",
+            "dvergrtown_wood_pole",
             "dvergrprops_wood_wall",
             "TreasureChest_dvergr_loose_stone",
             "Ice_floor",
