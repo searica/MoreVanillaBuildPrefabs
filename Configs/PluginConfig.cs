@@ -1,9 +1,13 @@
 ﻿using BepInEx;
+using BepInEx.Bootstrap;
 using BepInEx.Configuration;
 using Jotunn.Configs;
+using Jotunn.Managers;
 using MoreVanillaBuildPrefabs.Logging;
+using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Reflection;
 using UnityEngine;
 using static MoreVanillaBuildPrefabs.MoreVanillaBuildPrefabs;
 
@@ -11,6 +15,8 @@ namespace MoreVanillaBuildPrefabs.Configs
 {
     internal class PluginConfig
     {
+        private static BaseUnityPlugin configurationManager;
+
         private static readonly string ConfigFileName = PluginGuid + ".cfg";
 
         private static readonly string ConfigFileFullPath = string.Concat(
@@ -234,23 +240,21 @@ namespace MoreVanillaBuildPrefabs.Configs
         internal static void SetupWatcher()
         {
             FileSystemWatcher watcher = new(Paths.ConfigPath, ConfigFileName);
-            watcher.Changed += ReadConfigValues;
-            watcher.Created += ReadConfigValues;
-            watcher.Renamed += ReadConfigValues;
+            watcher.Changed += ReloadConfigFile;
+            watcher.Created += ReloadConfigFile;
+            watcher.Renamed += ReloadConfigFile;
             watcher.IncludeSubdirectories = true;
             watcher.SynchronizingObject = ThreadingHelper.SynchronizingObject;
             watcher.EnableRaisingEvents = true;
         }
 
-        private static void ReadConfigValues(object sender, FileSystemEventArgs e)
+        private static void ReloadConfigFile(object sender, FileSystemEventArgs e)
         {
             if (!File.Exists(ConfigFileFullPath)) return;
             try
             {
                 Log.LogInfo("Reloading config file");
-                DisableIndividualConfigEvents = true; // disable individual config entry events
                 configFile.Reload();
-                DisableIndividualConfigEvents = false; // enable individual config entry events
             }
             catch
             {
@@ -258,7 +262,53 @@ namespace MoreVanillaBuildPrefabs.Configs
                 Log.LogError("Please check your config entries for spelling and format!");
             }
             // run a single re-initialization to deal with all changed data
-            ConfigDataSynced("Config settings reloaded from file, re-initializing");
+            ReInitPlugin("Config settings reloaded from file, re-initializing");
+        }
+
+        internal static void CheckForConfigManager()
+        {
+            if (GUIManager.IsHeadless())
+            {
+                return;
+            }
+
+            if (
+                Chainloader.PluginInfos.TryGetValue(
+                    "com.bepis.bepinex.configurationmanager",
+                    out PluginInfo configManagerInfo
+                )
+                && configManagerInfo.Instance
+            )
+            {
+                configurationManager = configManagerInfo.Instance;
+                Log.LogDebug("Configuration manager found, hooking DisplayingWindowChanged");
+
+                EventInfo eventinfo = configurationManager.GetType()
+                    .GetEvent("DisplayingWindowChanged");
+
+                if (eventinfo != null)
+                {
+                    Action<object, object> local = new(OnConfigManagerDisplayingWindowChanged);
+                    Delegate converted = Delegate.CreateDelegate(
+                        eventinfo.EventHandlerType,
+                        local.Target,
+                        local.Method
+                    );
+                    eventinfo.AddEventHandler(configurationManager, converted);
+                }
+            }
+        }
+
+        private static void OnConfigManagerDisplayingWindowChanged(object sender, object e)
+        {
+            //Jotunn.Logger.LogDebug("OnConfigManagerDisplayingWindowChanged recieved.");
+            PropertyInfo pi = configurationManager.GetType().GetProperty("DisplayingWindow");
+            bool cmActive = (bool)pi.GetValue(configurationManager, null);
+
+            if (!cmActive)
+            {
+                ReInitPlugin("Config settings changed via in-game manager, re-intializing");
+            }
         }
     }
 }

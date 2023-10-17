@@ -23,7 +23,7 @@ namespace MoreVanillaBuildPrefabs
         public const string PluginName = "MoreVanillaBuildPrefabs";
         internal const string Author = "Searica";
         public const string PluginGuid = $"{Author}.Valheim.{PluginName}";
-        public const string PluginVersion = "0.4.0";
+        public const string PluginVersion = "0.4.1";
 
         private Harmony _harmony;
 
@@ -31,11 +31,10 @@ namespace MoreVanillaBuildPrefabs
         internal static readonly Dictionary<string, Piece> DefaultPieceClones = new();
         internal static Dictionary<string, PieceDB> PieceRefs = new();
 
-        internal static bool DisableIndividualConfigEvents = false;
-
         internal static bool DisableDropOnDestroyed { get; set; } = false;
-
         private static bool HasInitializedPrefabs => PrefabRefs.Count > 0;
+        internal static bool UpdatePieceSettings { get; set; } = false;
+        internal static bool UpdatePlacementSettings { get; set; } = false;
 
         public void Awake()
         {
@@ -49,13 +48,12 @@ namespace MoreVanillaBuildPrefabs
             Game.isModded = true;
 
             PluginConfig.SetupWatcher();
+            PluginConfig.CheckForConfigManager();
 
             SynchronizationManager.OnConfigurationSynchronized += (obj, attr) =>
             {
                 // Re-initialize after syncing data with server
-                // and re-enable individual config entry events
-                ConfigDataSynced("Config settings synced with server, re-initializing");
-                DisableIndividualConfigEvents = false;
+                ReInitPlugin("Config settings synced with server, re-initializing");
             };
         }
 
@@ -324,61 +322,9 @@ namespace MoreVanillaBuildPrefabs
             }
         }
 
-        // TODO: Rework event handlers to only update the single piece/thing related to the setting that changed when the SettingChanged event fires, and make different handlers for when Config.Reload or Server Data synced fires. (https://github.com/BepInEx/BepInEx/blob/0d06996b52c0215a8327b8c69a747f425bbb0023/BepInEx/Configuration/ConfigEntryBase.cs#L146)
-
-        /// <summary>
-        ///     Method update mod intialization when settings
-        ///     related to piece configuration are changed
-        /// </summary>
-        /// <param name="o"></param>
-        /// <param name="e"></param>
-        internal static void PieceSettingChanged(object o, EventArgs e)
-        {
-            if (DisableIndividualConfigEvents)
-            {
-                return; // skip event
-            }
-
-            if (HasInitializedPrefabs)
-            {
-                var watch = new System.Diagnostics.Stopwatch();
-                if (PluginConfig.IsVerbosityMedium)
-                {
-                    watch.Start();
-                }
-
-                Log.LogInfo("Config setting changed, re-initializing");
-                InitPieceRefs();
-                InitPieces();
-                InitHammer();
-                Log.LogInfo("Re-initializing complete");
-
-                if (PluginConfig.IsVerbosityMedium)
-                {
-                    watch.Stop();
-                    Log.LogInfo($"Time to re-initialize: {watch.ElapsedMilliseconds} ms");
-                }
-            }
-        }
-
-        /// <summary>
-        ///     Method to update HashSet of prefabs
-        ///     that require placement collision patch
-        /// </summary>
-        /// <param name="o"></param>
-        /// <param name="e"></param>
-        internal static void PlacementSettingChanged(object o, EventArgs e)
-        {
-            if (DisableIndividualConfigEvents)
-            {
-                return; // skip event
-            }
-            UpdateNeedsCollisionPatchForGhost();
-        }
-
         /// <summary>
         ///     Method allow both the PlacementSettingChanged
-        ///     and ConfigDataSynced methods to update collision
+        ///     and ReInitPlugin methods to update collision
         ///     patches when events fire
         /// </summary>
         private static void UpdateNeedsCollisionPatchForGhost()
@@ -418,10 +364,50 @@ namespace MoreVanillaBuildPrefabs
             }
         }
 
-        internal static void ConfigDataSynced(string msg)
+        /// <summary>
+        ///     Event hook to set whether a config entry
+        ///     for a piece setting hass been changed.
+        /// </summary>
+        /// <param name="o"></param>
+        /// <param name="e"></param>
+        internal static void PieceSettingChanged(object o, EventArgs e)
+        {
+            if (!UpdatePieceSettings)
+            {
+                UpdatePieceSettings = true;
+            }
+        }
+
+        /// <summary>
+        ///     Event hook to set whether a config entry
+        ///     for placement patches has been changed.
+        /// </summary>
+        /// <param name="o"></param>
+        /// <param name="e"></param>
+        internal static void PlacementSettingChanged(object o, EventArgs e)
+        {
+            if (!UpdatePlacementSettings)
+            {
+                UpdatePlacementSettings = true;
+            }
+        }
+
+        /// <summary>
+        ///     Method to re-intialize the plugin when the configuration
+        ///     has been updated based on whether the piece or placement
+        ///     settings have been changed for any of the config entries.
+        /// </summary>
+        /// <param name="msg"></param>
+        internal static void ReInitPlugin(string msg)
         {
             if (HasInitializedPrefabs)
             {
+                if (!UpdatePieceSettings && !UpdatePlacementSettings)
+                {
+                    // Don't update unless settings have actually changed
+                    return;
+                }
+
                 var watch = new System.Diagnostics.Stopwatch();
                 if (PluginConfig.IsVerbosityMedium)
                 {
@@ -429,16 +415,27 @@ namespace MoreVanillaBuildPrefabs
                 }
 
                 Log.LogInfo(msg);
-                InitPieceRefs();
-                InitPieces();
-                InitHammer();
-                UpdateNeedsCollisionPatchForGhost();
-                Log.LogInfo("Re-initializing complete");
+                if (UpdatePieceSettings)
+                {
+                    InitPieceRefs();
+                    InitPieces();
+                    InitHammer();
+                    UpdatePieceSettings = false;
+                }
+                if (UpdatePlacementSettings)
+                {
+                    UpdateNeedsCollisionPatchForGhost();
+                    UpdatePlacementSettings = false;
+                }
 
                 if (PluginConfig.IsVerbosityMedium)
                 {
                     watch.Stop();
                     Log.LogInfo($"Time to re-initialize: {watch.ElapsedMilliseconds} ms");
+                }
+                else
+                {
+                    Log.LogInfo("Re-initializing complete");
                 }
             }
         }
