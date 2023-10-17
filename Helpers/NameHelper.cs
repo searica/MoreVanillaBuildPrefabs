@@ -33,6 +33,12 @@ namespace MoreVanillaBuildPrefabs.Helpers
             {"Birch2_aut", "Birch2 (autumn)"},
 
             {"CastleKit_braided_box01", "Wood box"},
+            {"MountainKit_brazier", "Standing brazier (everburning)"},
+            {"MountainKit_brazier_blue", "Standing blue-burning brazier (everburning)" },
+            {"CastleKit_groundtorch", "Standing iron torch (everburning)" },
+            {"CastleKit_groundtorch_blue", "Standing blue-burning iron torch (everburning)" },
+            {"CastleKit_groundtorch_green", "Standing green-burning iron torch (everburning)" },
+
             {"Trailership", "Trader ship"},
         };
 
