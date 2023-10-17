@@ -16,7 +16,7 @@ If you are using a mod manager for Thunderstore simply install the mod from ther
 **Recommended:** Install SearsCatalog (https://valheim.thunderstore.io/package/ComfyMods/SearsCatalog/) to extend the hammer build table and allow you to access all the pieces this mod adds even if there are too many added pieces for the vanilla build table. If you install the mod from Thunderstore via r2modman or Thunderstore mod manager then SearsCatalog will automatically be installed as well.
 
 ## Configuration
-Changes made to the configuration settings will be reflected in-game immediately (no restart required) and they will also sync to clients if the mod is one the server. The mod also has a built in file watcher so you can edit settings via an in-game configuration manager or by changing values in the file via a text editor or mod manager.
+Changes made to the configuration settings will be reflected in-game immediately (no restart required) and they will also sync to clients if the mod is one the server. The mod also has a built in file watcher so you can edit settings via an in-game configuration manager (changes applied upon closing the in-game configuration manager) or by changing values in the file via a text editor or mod manager.
 
 ### Global Section Configuration:
 
@@ -141,18 +141,13 @@ If multiple player's have this mod, the same restrictions still apply and they w
 - Delete all the pngs in that directory.
 - Restart the game and the mod should hopefully regenerate the icons correctly.
 
-**Stuttering While Editing Resources Costs via In-Game Configuration Manager**: Editing the string to define resource costs for a piece via the in-game configuration manager can result in the mod constantly re-initializing as it thinks the config settings is constantly changing while the string is being edited. I am currently looking into fixing this by pausing mod re-initialization while the in-game configuration manager is open and then re-initializing once it closes.
 
 ## Planned Improvements
-- Copy probablykory's approach of only re-initalizing the mod when the in-game configuration manager is closed or based on the file watcher.
-    - This would mean that the mod only re-initializes when the cfg file changes, data is synced from the server, or the in-game config manager window is closed
-    - Then I could reconfigure the individual config settings to just set a flag that an update is needed and that's it.
 - Resolve known issues.
 - Patch and enable more prefabs by default.
     - Add default build costs for treasure chests and add snap points.
 - Automatically add missing sfx and vfx for placement and deconstruction of prefabs based on the required crafting station.
 - Fix player built barrels dropping random loot when destroyed via damage (the fixes I have worked for every piece except barrels for some reason 🙃).
-- Do a performance optimization pass/re-write to improve performance when changing settings via in-game configuration manager.
 - Learn how localization works and add localization options to the mod.
 
 

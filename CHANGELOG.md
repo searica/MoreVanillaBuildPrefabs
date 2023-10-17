@@ -8,6 +8,16 @@
 			<th align="center">Notes</th>
 		</tr>
 		<tr>
+			<td align="center">0.4.1</td>
+			<td align="left">
+				<ul>
+					<li>Minor update to fix the stuttering issue when editing the configuration via the in-game configuration manager. The mod now only updates after closing the configuration manager.</li>
+					<li>Tweaked update logic to avoid re-initalizing if recieving config data from server or reloading the config file doesn't actually change any config setting values.</li>
+					<li>Added some everburning torches and braziers that do not require fuel to the default configuration. Currently they are configured to unlock sometime during the last biome in the current update.</li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
 			<td align="center">0.4.0</td>
 			<td align="left">
 				<ul>
