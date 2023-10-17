@@ -3,6 +3,18 @@ using System.Collections.Generic;
 
 namespace MoreVanillaBuildPrefabs.Configs
 {
+    /* Want to try finding these prefabs:
+     * MountainKit_int_wall_4x2
+     * SunkenKit_int_arch
+     * SunkenKit_int_floor_2x2
+     * SunkenKit_int_floor_2x2
+     * SunkenKit_int_wall_1x4
+     * SunkenKit_int_wall_2x4
+     * SunkenKit_int_wall_4x4
+     * SunkenKit_slope1x2
+     * SunkenKit_stair_corner_left
+     */
+
     internal class DefaultConfigs
     {
         internal static PrefabDB GetDefaultPieceDB(string prefab_name)
