@@ -8,17 +8,22 @@ namespace MoreVanillaBuildPrefabs.Helpers
     {
         private static readonly Dictionary<string, string> NamesMap = new()
         {
+            {"CastleKit_braided_box01", "Wood box"},
             {"stoneblock_fracture", "Stone floor2 4x4"},
+            {"Birch1_aut", "Birch1 (autumn)"},
+            {"Birch2_aut", "Birch2 (autumn)"},
 
-            {"blackmarble_floor_large", "Black marble floor 8x8"},
             {"TreasureChest_fCrypt", "Stone chest (mossy)" },
             {"TreasureChest_mountaincave", "Stone chest (snow)" },
             {"TreasureChest_plains_stone", "Stone chest (light moss)"},
             {"TreasureChest_trollcave", "Stone chest (mossy, big)"},
             {"TreasureChest_dvergr_loose_stone", "Black marble chest"},
             {"TreasureChest_sunkencrypt", "Stone chest (dark moss)"},
+            {"stonechest", "Stone chest"},
+
             {"TreasureChest_dvergrtower", "Dvergr chest"},
             {"TreasureChest_dvergrtown", "Dvergr chest (large)"},
+
             {"dvergrtown_slidingdoor", "Dvergr sliding door"},
             {"dvergrtown_secretdoor", "Dvergr secret door"},
             {"dvergrprops_hooknchain", "Dvergr hook & chain"},
@@ -26,13 +31,14 @@ namespace MoreVanillaBuildPrefabs.Helpers
             {"piece_dvergr_wood_wall", "Dvergr wood wall"},
             {"dvergrprops_wood_pole", "Dvergr wood pole"},
             {"dvergrtown_wood_pole", "Dvergr wood pole (creep)"},
-            {"stonechest", "Stone chest"},
+            {"blackmarble_head01", "Bronze head (1)" },
+            {"blackmarble_head02", "Bronze head (2)" },
+            {"blackmarble_floor_large", "Black marble floor 8x8"},
+            {"blackmarble_out_2", "Black marble cornice (wide)" },
+            {"blackmarble_base_2", "Black marble plinth (wide)" },
+
             {"fire_pit_hildir", "Firepit iron (everburning)"},
             {"fire_pit_haldor", "Campfire (everburning)"},
-            {"Birch1_aut", "Birch1 (autumn)"},
-            {"Birch2_aut", "Birch2 (autumn)"},
-
-            {"CastleKit_braided_box01", "Wood box"},
             {"MountainKit_brazier", "Standing brazier (everburning)"},
             {"MountainKit_brazier_blue", "Standing blue-burning brazier (everburning)" },
             {"CastleKit_groundtorch", "Standing iron torch (everburning)" },
