@@ -24,7 +24,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     true,
                     false,
                     HammerCategories.Misc,
-                    nameof(CraftingStations.BlackForge),
+                    nameof(CraftingStations.None),
                     "Stone,5;Wood,2;BlackCore,1"
                 )
             },
@@ -35,7 +35,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     true,
                     false,
                     HammerCategories.Misc,
-                    nameof(CraftingStations.BlackForge),
+                    nameof(CraftingStations.Forge),
                     "Ironpit,1;Wood,1;BlackCore,1"
                 )
             },
@@ -1919,7 +1919,62 @@ namespace MoreVanillaBuildPrefabs.Configs
                     nameof(CraftingStations.Workbench),
                     "IronNails,100;DeerHide,10;FineWood,40;ElderBark,40"
                 )
-            }
+            },
+            {
+                "MountainKit_brazier",
+                new PrefabDB(
+                    "MountainKit_brazier",
+                    true,
+                    false,
+                    HammerCategories.Furniture,
+                    nameof(CraftingStations.Forge),
+                    "Bronze,5;Coal,2;BlackCore,1;WolfClaw,3"
+                )
+            },
+            {
+                "MountainKit_brazier_blue",
+                new PrefabDB(
+                    "MountainKit_brazier_blue",
+                    true,
+                    false,
+                    HammerCategories.Furniture,
+                    nameof(CraftingStations.Forge),
+                    "Bronze,5;GreydwarfEye,2;BlackCore,1;WolfClaw,3"
+                )
+            },
+            {
+                "CastleKit_groundtorch",
+                new PrefabDB(
+                    "CastleKit_groundtorch",
+                    true,
+                    false,
+                    HammerCategories.Furniture,
+                    nameof(CraftingStations.Forge),
+                    "Iron,2;Resin,2;BlackCore,1"
+                )
+            },
+            {
+                "CastleKit_groundtorch_blue",
+                new PrefabDB(
+                    "CastleKit_groundtorch_blue",
+                    true,
+                    false,
+                    HammerCategories.Furniture,
+                    nameof(CraftingStations.Forge),
+                    "Iron,2;GreydwarfEye,2;BlackCore,1"
+                )
+            },
+            {
+                "CastleKit_groundtorch_green",
+                new PrefabDB(
+                    "CastleKit_groundtorch_green",
+                    true,
+                    false,
+                    HammerCategories.Furniture,
+                    nameof(CraftingStations.Forge),
+                    "Iron,2;Guck,2;BlackCore,1"
+                )
+            },
         };
     }
 }
