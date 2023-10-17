@@ -144,6 +144,9 @@ If multiple player's have this mod, the same restrictions still apply and they w
 **Stuttering While Editing Resources Costs via In-Game Configuration Manager**: Editing the string to define resource costs for a piece via the in-game configuration manager can result in the mod constantly re-initializing as it thinks the config settings is constantly changing while the string is being edited. I am currently looking into fixing this by pausing mod re-initialization while the in-game configuration manager is open and then re-initializing once it closes.
 
 ## Planned Improvements
+- Copy probablykory's approach of only re-initalizing the mod when the in-game configuration manager is closed or based on the file watcher.
+    - This would mean that the mod only re-initializes when the cfg file changes, data is synced from the server, or the in-game config manager window is closed
+    - Then I could reconfigure the individual config settings to just set a flag that an update is needed and that's it.
 - Resolve known issues.
 - Patch and enable more prefabs by default.
     - Add default build costs for treasure chests and add snap points.
@@ -151,6 +154,7 @@ If multiple player's have this mod, the same restrictions still apply and they w
 - Fix player built barrels dropping random loot when destroyed via damage (the fixes I have worked for every piece except barrels for some reason 🙃).
 - Do a performance optimization pass/re-write to improve performance when changing settings via in-game configuration manager.
 - Learn how localization works and add localization options to the mod.
+
 
 ## Potential Improvements
 - Adding vanilla functionality to pieces added by the mod, like being able to sit in chairs.
