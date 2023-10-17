@@ -21,14 +21,13 @@
 			<td align="center">0.4.0</td>
 			<td align="left">
 				<ul>
-					<li>Massive update, I basically re-wrote the mod to allow it to dynamically respond to configuration setting changes while in-game.</li>
+					<li><b>Massive update</b>, I basically re-wrote the mod to allow it to dynamically respond to configuration setting changes while in-game.</li>
 					<li>Switched to using Jotunn's server syncing features instead of ServerSync.</li>
 					<li>Removed Locking Configuration setting. If you install the mod on the server it will now always sync data to clients.</li>
 					<li>Change `VerboseMode` to `Verbosity`. There are now three logging levels you can select from to output more or less information. This should make debugging easier when issues are reported.</li>
 					<li>Changed some Global configuration setting names to more descriptive.</li>
 					<li>Fixed issue where sometimes configuration data from the server wouldn't sync correctly. The mod now always re-intializes the configuration whenever configuration data is recieved from the server.</li>
 					<li>Changed how building and deconstructing pickable objects is handled to prevent exploits.</li>
-					<li>Changed how building treasure chests works so they will always have an empty inventory when placed to prevent getting free resources.</li>
 					<li>Optimized load times for dynamic syncing. The very first time the mod loads on a clean install it takes about ~300 ms as it generates new icons. After that, when the mod initializes or responds to configuration settings changes it averages ~110-160 ms.</li>
 					<li>Patched some more prefabs, including making a hidden sailing ship fully functional.</li>
 					<li>Various internal tweaks to reduce the odds of compatability issues with other mods.</li>
@@ -159,8 +158,6 @@
 						<li>Fixed crashing issue with some prefabs and re-enabled them by default.</li>
 						<li>Changed when custom pieces are added to wait until after receiving data from ServerSync (Thanks to Cass for reporting the issue and to Wackymole for helping figure out which method to patch).</li>
 						<li>Changed method of adding custom pieces due to Null Exception error caused by adding pieces with Jotunn after ZNet.Start(), will probably switch back after Jotunn updates.</li>
-						<li>item</li>
-						<li>item</li>
 					</ul>
 				</td>
 			</tr>
@@ -193,26 +190,6 @@
 						<li>Adjusted snap points on a few prefabs.</li>
 						<li>Disabled CargoCrate prefab due to it deleting itself when placed because the inventory is empty.</li>
 						<li>Code clean up.</li>
-					</ul>
-				</td>
-			</tr>
-			<tr>
-				<td align="center">0.2.0</td>
-				<td align="left">
-					<ul>
-						<li>Reduced load time from ~30 seconds to ~0.5 seconds (Thanks to onnan for reporting the issue and to Margmas on the OdinPlus discord for the tip on reducing config file load times).</li>
-						<li>Switched to using ZNetScene for patch to trigger removal of custom pieces on logout.</li>
-						<li>item</li>
-					</ul>
-				</td>
-			</tr>
-			<tr>
-				<td align="center">0.2.0</td>
-				<td align="left">
-					<ul>
-						<li>Reduced load time from ~30 seconds to ~0.5 seconds (Thanks to onnan for reporting the issue and to Margmas on the OdinPlus discord for the tip on reducing config file load times).</li>
-						<li>Switched to using ZNetScene for patch to trigger removal of custom pieces on logout.</li>
-						<li>item</li>
 					</ul>
 				</td>
 			</tr>
@@ -288,6 +265,18 @@
 					</ul>
 				</td>
 			</tr>
+		</tbody>
+	</table>
+</details>
+
+<div class="header">
+	<h2>Versions 0.0.X</h2>
+</div>
+
+<details>
+	<summary>Click to expand</summary>
+	<table>
+		<tbody>
 			<tr>
 				<td align="center">0.0.3</td>
 				<td align="left">
@@ -297,8 +286,6 @@
 						<li>
 							Configuration file naming scheme changed due to automating the process. <b>You need to regenerate your configuration file and copy over any customizations you made.</b>
 						</li>
-						<li>item</li>
-						<li>item</li>
 					</ul>
 				</td>
 			</tr>
