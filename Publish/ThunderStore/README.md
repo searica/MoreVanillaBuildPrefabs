@@ -164,10 +164,10 @@ If multiple player's have this mod, the same restrictions still apply and they w
 These are non-exhaustive lists.
 
 ### Partial Incompatibly
-**PlanBuild (by MathiasDecrock)** The two mods do work together but PlanBuild not all of the icons for custom pieces added by MoreVanillaBuildPieces show on correctly in the build table for PlanBuild's Plan Hammer. PlanBuild also does not respond to in-game changes made to pieces added by MoreVanillaBuildPrefabs. A fix is currently being worked on in collaboration with the authors of PlanBuild though. Also, The current version of PlanBuild on Thunderstore is not fully updated for the newest game version but a fix has been made and will be included in the next update.
+**PlanBuild (by MathiasDecrock)** The two mods do work together but not all of the icons for custom pieces added by MoreVanillaBuildPieces show on correctly in the build table for PlanBuild's Plan Hammer. PlanBuild also does not respond to in-game changes made to pieces added by MoreVanillaBuildPrefabs. A fix is currently being worked on in collaboration with the authors of PlanBuild though. Also, The current version of PlanBuild on Thunderstore is not fully updated for the newest game version but a fix has been made and will be included in the next update.
 
 ### Incompatible Mods
-**PotteryBarn (by ComfyMods)** Currently both mod apply a transpiler patch to `Player.SetUpPlacementGhost()` and using MoreVanillaBuildPrefabs while PotteryBarn is installed will cause MoreVanillaBuildPrefabs to fail to load correctly. I am looking into a possible fix for this but it is not high priory as I think it is unlikely someone would use both mods at the same time given their functions directly overlap (I could be wrong though).
+**PotteryBarn (by ComfyMods)** Currently both mods apply a transpiler patch to `Player.SetUpPlacementGhost()` and using MoreVanillaBuildPrefabs while PotteryBarn is installed will cause MoreVanillaBuildPrefabs to fail to load correctly. I am looking into a possible fix for this but it is not high priory as I think it is unlikely someone would use both mods at the same time given their functions directly overlap (I could be wrong though).
 
 **MoreVanillaBuilds (by Galathil)** The original mod that this one is a remake of. I haven't actually checked what happens if you use both at once but they do modify the same pieces so I wouldn't recommend it.
 

@@ -12,7 +12,7 @@
 			<td align="left">
 				<ul>
 					<li>Massive update, I basically re-wrote the mod to allow it to dynamically respond to configuration setting changes while in-game.</li>
-					<li>Switched to using Joutnn's server syncing features instead of ServerSync.</li>
+					<li>Switched to using Jotunn's server syncing features instead of ServerSync.</li>
 					<li>Removed Locking Configuration setting. If you install the mod on the server it will now always sync data to clients.</li>
 					<li>Change `VerboseMode` to `Verbosity`. There are now three logging levels you can select from to output more or less information. This should make debugging easier when issues are reported.</li>
 					<li>Changed some Global configuration setting names to more descriptive.</li>

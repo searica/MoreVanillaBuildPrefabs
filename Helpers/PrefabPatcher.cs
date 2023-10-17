@@ -43,15 +43,15 @@ namespace MoreVanillaBuildPrefabs.Helpers
                     if (mat == null) { break; }
 
                     var storage = prefab.transform.Find("ship")
-                        ?.transform?.Find("visual")
-                        ?.transform?.Find("Customize")
-                        ?.transform?.Find("storage");
+                        ?.Find("visual")
+                        ?.Find("Customize")
+                        ?.Find("storage");
                     if (storage == null) { break; }
 
-                    int children = storage.transform.childCount;
+                    int children = storage.childCount;
                     for (int i = 0; i < children; ++i)
                     {
-                        var child = storage.transform.GetChild(i);
+                        var child = storage.GetChild(i);
                         if (child != null && child.name.StartsWith("Shield"))
                         {
                             child.GetComponent<MeshRenderer>().material = mat;
@@ -85,15 +85,15 @@ namespace MoreVanillaBuildPrefabs.Helpers
 
                     // Fix missing rudder button attachpoint
                     var shipControls = prefab.transform?.Find("ship")
-                        ?.transform?.Find("buttons")
-                        ?.transform?.Find("rudder (1)")
-                        ?.transform?.Find("rudder_button")
+                        ?.Find("buttons")
+                        ?.Find("rudder (1)")
+                        ?.Find("rudder_button")
                         ?.GetComponent<ShipControlls>();
                     if (shipControls == null) { break; }
 
                     var rudderAttach = prefab?.transform?.Find("sit locations")
-                        ?.transform?.Find("sit_box (4)")
-                        ?.transform?.Find("attachpoint");
+                        ?.Find("sit_box (4)")
+                        ?.Find("attachpoint");
                     if (rudderAttach == null) { break; }
 
                     shipControls.m_attachPoint = rudderAttach.transform;
