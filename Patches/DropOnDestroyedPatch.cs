@@ -1,4 +1,7 @@
 ﻿using HarmonyLib;
+using MoreVanillaBuildPrefabs.Configs;
+using MoreVanillaBuildPrefabs.Logging;
+using MoreVanillaBuildPrefabs.Helpers;
 
 namespace MoreVanillaBuildPrefabs
 {
@@ -13,10 +16,18 @@ namespace MoreVanillaBuildPrefabs
         [HarmonyPatch(nameof(DropOnDestroyed.OnDestroyed))]
         private static bool OnDestroyedPrefix(DropOnDestroyed __instance)
         {
-            if (MoreVanillaBuildPrefabs.DisableDropOnDestroyed)
+            var prefabName = NameHelper.RemoveSuffix(__instance.name, "(Clone)");
+            if (MoreVanillaBuildPrefabs.IsChangedByMod(prefabName))
             {
-                MoreVanillaBuildPrefabs.DisableDropOnDestroyed = false;
-                return false;
+                var piece = __instance.gameObject.GetComponent<Piece>();
+                if (piece != null && piece.IsPlacedByPlayer())
+                {
+                    if (PluginConfig.IsVerbosityMedium)
+                    {
+                        Log.LogInfo("Disabling on destroyed drops for player-built object");
+                    }
+                    return false;
+                }
             }
             return true;
         }

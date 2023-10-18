@@ -119,7 +119,6 @@ namespace MoreVanillaBuildPrefabs
                 else
                 {
                     resources = piece.m_resources;
-                    DisableDropOnDestroyed = true;
                 }
             }
 

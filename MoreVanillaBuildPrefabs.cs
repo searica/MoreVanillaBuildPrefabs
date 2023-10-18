@@ -31,7 +31,6 @@ namespace MoreVanillaBuildPrefabs
         internal static readonly Dictionary<string, Piece> DefaultPieceClones = new();
         internal static Dictionary<string, PieceDB> PieceRefs = new();
 
-        internal static bool DisableDropOnDestroyed { get; set; } = false;
         private static bool HasInitializedPrefabs => PrefabRefs.Count > 0;
         internal static bool UpdatePieceSettings { get; set; } = false;
         internal static bool UpdatePlacementSettings { get; set; } = false;
