@@ -81,20 +81,6 @@ namespace MoreVanillaBuildPrefabs
                         Log.LogInfo($"Emptied inventory for: {gameObject.name}");
                     }
                 }
-
-                //var prefabName = gameObject.name;
-                //if (TreasureChests.ShouldRemoveTreasure(prefabName))
-                //{
-                //    var container = result.GetComponent<Container>();
-                //    if (container != null)
-                //    {
-                //        container.m_inventory.RemoveAll();
-                //        if (PluginConfig.IsVerbosityMedium)
-                //        {
-                //            Log.LogInfo($"Removed treasure for: {prefabName}");
-                //        }
-                //    }
-                //}
             }
             return result;
         }
