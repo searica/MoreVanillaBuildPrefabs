@@ -46,17 +46,33 @@ namespace MoreVanillaBuildPrefabs
             return clone;
         }
 
-        internal static MeshFilter GetMeshFilter(this GameObject gameObject, string meshFilterName)
+        /// <summary>
+        ///     Extension method to return the first component
+        ///     found while searching for components in children
+        ///     that has the specified name.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="gameObject"></param>
+        /// <param name="name"></param>
+        /// <param name="includeInactive"></param>
+        /// <returns></returns>
+        internal static T GetComponentInChildren<T>(
+            this GameObject gameObject,
+            string name,
+            bool includeInactive = false
+        ) where T : Component
         {
-            foreach (var meshFilter in gameObject.GetComponentsInChildren<MeshFilter>())
+            foreach (
+                var compo in gameObject.GetComponentsInChildren<T>(includeInactive)
+            )
             {
-                if (meshFilter.name == meshFilterName)
+                if (compo.name == name)
                 {
-                    return meshFilter;
+                    return compo;
                 }
             }
             Log.LogWarning(
-                $"Could not find MeshFilter: {meshFilterName} for GameObject: {gameObject.name}"
+                $"No {nameof(T)} with name {name} found for GameObject: {gameObject.name}"
             );
             return null;
         }

@@ -28,11 +28,11 @@ namespace MoreVanillaBuildPrefabs.Helpers
 
                 case "Trailership":
                     // Fix hull
-                    var meshFilter = prefab.GetMeshFilter("hull");
+                    var meshFilter = prefab.GetComponentInChildren<MeshFilter>("hull");
                     if (meshFilter == null) { break; }
 
                     var longShip = ZNetScene.instance?.m_prefabs?.Where(go => go.name == "VikingShip")?.First();
-                    var longShipMeshFilter = longShip?.GetMeshFilter("hull");
+                    var longShipMeshFilter = longShip?.GetComponentInChildren<MeshFilter>("hull");
                     if (longShipMeshFilter == null) { break; }
 
                     meshFilter.mesh = longShipMeshFilter.mesh;
