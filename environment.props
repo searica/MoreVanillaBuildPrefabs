@@ -1,21 +1,15 @@
-<Project>
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 	<PropertyGroup>
-		<VALHEIM_INSTALL>C:\Program Files (x86)\Steam\steamapps\common\Valheim</VALHEIM_INSTALL>
-		<CorlibPath>$(VALHEIM_INSTALL)\unstripped_corlib</CorlibPath>
-		<PublicizedAssembliesPath>$(VALHEIM_INSTALL)\valheim_Data\Managed\publicized_assemblies</PublicizedAssembliesPath>
-		<Pdb2MdbPath>$(SolutionDir)\pdb2mdb.exe</Pdb2MdbPath>
-		<AppDataDir>$([System.Environment]::GetFolderPath(SpecialFolder.ApplicationData))</AppDataDir>
-		<r2ModManPath>$(AppDataDir)\r2modmanPlus-local\Valheim\profiles</r2ModManPath>
-		<BepInExPath>$(r2ModManPath)\Mod-Debug\BepInEx</BepInExPath>
-		<PluginsPath>$(r2ModManPath)\Mod-Debug\BepInEx\plugins</PluginsPath>
-		<CopyOutputDLLPath>$(r2ModManPath)\Mod-Debug\BepInEx\plugins</CopyOutputDLLPath>
-
-		<!-- This is where the output DLL will be copied to after building. The templates support doing this for up to three locations. Duplicate this line and append a number. Example below -->
-		<!--<CopyOutputDLLPath2>$(ValheimGamePath)\BepInEx\plugins</CopyOutputDLLPath2>-->
-		<!--<CopyOutputDLLPath3>$(ValheimGamePath)\BepInEx\plugins</CopyOutputDLLPath3>-->
 		<AfterTargets>Build</AfterTargets>
-		<PublishDir>$(ProjectDir)\Publish</PublishDir>
-		<ThunderstoreDir>$(PublishDir)\Thunderstore</ThunderstoreDir>
-		<NexusDir>$(PublishDir)\Nexus</NexusDir>
+		<Pdb2MdbPath Condition="!Exists('$(Pdb2MdbPath)')">$(ProjectDir)\libraries\Debug\pdb2mdb.exe</Pdb2MdbPath>
+
+		<!-- Needs to be your path to the base Valheim folder -->
+		<VALHEIM_INSTALL Condition="!Exists('$(VALHEIM_INSTALL)')">c:\Program Files (x86)\Steam\steamapps\common\Valheim</VALHEIM_INSTALL>
+
+		<!-- This is the folder where your build gets copied to when using the post-build automations -->
+		<r2ModManPath>$(AppData)\r2modmanPlus-local\Valheim\profiles</r2ModManPath>
+		<BepInExPath>$(r2ModManPath)\Mod-Debug\BepInEx</BepInExPath>
+		<MOD_DEPLOYPATH>$(r2ModManPath)\Mod-Debug\BepInEx\plugins</MOD_DEPLOYPATH>
 	</PropertyGroup>
 </Project>
