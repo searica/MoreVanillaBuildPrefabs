@@ -15,12 +15,11 @@ namespace MoreVanillaBuildPrefabs.Helpers
 
             {"TreasureChest_fCrypt", "Stone chest (mossy)" },
             {"TreasureChest_mountaincave", "Stone chest (snow)" },
-            {"TreasureChest_plains_stone", "Stone chest (light moss)"},
+            {"loot_chest_stone", "Stone chest (light moss)"},
             {"TreasureChest_trollcave", "Stone chest (mossy, big)"},
             {"TreasureChest_dvergr_loose_stone", "Black marble chest"},
             {"TreasureChest_sunkencrypt", "Stone chest (dark moss)"},
             {"stonechest", "Stone chest"},
-
             {"TreasureChest_dvergrtower", "Dvergr chest"},
             {"TreasureChest_dvergrtown", "Dvergr chest (large)"},
 
@@ -143,6 +142,11 @@ namespace MoreVanillaBuildPrefabs.Helpers
             return prefab.name;
         }
 
+        /// <summary>
+        ///     Get name of parent prefab by stripping suffix "(Clone)" if nessecary
+        /// </summary>
+        /// <param name="piece"></param>
+        /// <returns></returns>
         internal static string GetPrefabName(Piece piece)
         {
             return RemoveSuffix(piece.gameObject.name, "(Clone)");

@@ -42,6 +42,7 @@ namespace MoreVanillaBuildPrefabs.Configs
         internal static ConfigEntry<bool> CreatorShopAdminOnly { get; private set; }
         internal static ConfigEntry<bool> CreatorShopAdminDeconstructAll { get; private set; }
         internal static ConfigEntry<bool> ForceAllPrefabs { get; private set; }
+        internal static ConfigEntry<bool> CreativeMode { get; private set; }
         internal static ConfigEntry<LoggerLevel> Verbosity { get; private set; }
 
         internal class PieceConfigEntries
@@ -104,6 +105,7 @@ namespace MoreVanillaBuildPrefabs.Configs
 
         internal static LoggerLevel VerbosityLevel => Verbosity.Value;
 
+        internal static bool IsCreativeMode => CreativeMode.Value;
         internal static bool IsVerbosityLow => Verbosity.Value >= LoggerLevel.Low;
         internal static bool IsVerbosityMedium => Verbosity.Value >= LoggerLevel.Medium;
         internal static bool IsVerbosityHigh => Verbosity.Value >= LoggerLevel.High;
@@ -113,6 +115,14 @@ namespace MoreVanillaBuildPrefabs.Configs
 
         internal static void SetUpConfig()
         {
+            CreativeMode = BindConfig(
+                MainSectionName,
+                "CreativeMode",
+                false,
+                "Setting to toggle whether environmental prefabs like mist volumes that are not suitable for general play and building, are enabled. Requires a game/server restart to take effect.",
+                AcceptableBoolValuesList
+            );
+
             CreatorShopAdminOnly = BindConfig(
                 MainSectionName,
                 "CreatorShopAdminOnly",
