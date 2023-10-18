@@ -15,7 +15,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
             {
                 if (PluginConfig.IsVerbosityMedium)
                 {
-                    Log.LogInfo("AddCreatorShopPieceCategory()");
+                    Log.LogInfo("Adding custom piece category");
                 }
                 CreatorShop = PieceManager.Instance.AddPieceCategory(PieceTables.Hammer, HammerCategories.CreatorShop);
             }
@@ -25,7 +25,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
         {
             if (PluginConfig.IsVerbosityMedium)
             {
-                Log.LogInfo("RemoveCreatorShopPieceCategory()");
+                Log.LogInfo("Removing custom piece category");
             }
             PieceManager.Instance.RemovePieceCategory(PieceTables.Hammer, HammerCategories.CreatorShop);
         }
