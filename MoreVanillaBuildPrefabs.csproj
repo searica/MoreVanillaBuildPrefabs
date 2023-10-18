@@ -1,67 +1,102 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-	<Import Project="..\packages\JotunnLib.2.14.4\build\JotunnLib.props" Condition="Exists('..\packages\JotunnLib.2.14.4\build\JotunnLib.props')" />
-	<Import Project="ModPackageTool.targets" />
 	<PropertyGroup>
+		<NuGetPackages>$(UserProfile)\.nuget\packages</NuGetPackages>
+		<JotunnProps>$(NuGetPackages)\jotunnlib\2.14.4\build\JotunnLib.props</JotunnProps>
+	</PropertyGroup>
+
+	<Import Project="environment.props" Condition="Exists('environment.props')" />
+	<Import Project="$(JotunnProps)" Condition="Exists('$(JotunnProps)')" />
+	<Import Project="ModPackageTool.targets" Condition="Exists('ModPackageTool.targets')" />
+
+	<PropertyGroup>
+		<TargetFramework>net481</TargetFramework>
+		<OutputType>Library</OutputType>
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 		<!--<LangVersion>latest</LangVersion>-->
 		<!--<LangVersion>preview</LangVersion>-->
 		<LangVersion>10.0</LangVersion>
 	</PropertyGroup>
-	<PropertyGroup>
-		<TargetFramework>net481</TargetFramework>
-		<OutputType>Library</OutputType>
-		<GenerateAssemblyInfo>False</GenerateAssemblyInfo>
-	</PropertyGroup>
+
 	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-		<DefineConstants>$(DefineConstants);DefineConstants</DefineConstants>
+		<DebugSymbols>true</DebugSymbols>
+		<DebugType>full</DebugType>
+		<Optimize>false</Optimize>
+		<OutputPath>bin\Debug\</OutputPath>
+		<DefineConstants>$(DefineConstants);DefineConstants;TRACE;DEBUG</DefineConstants>
+		<ErrorReport>prompt</ErrorReport>
+		<WarningLevel>4</WarningLevel>
+		<EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
+		<AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+		<Prefer32Bit>false</Prefer32Bit>
 	</PropertyGroup>
+
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+		<DebugType>pdbonly</DebugType>
+		<Optimize>true</Optimize>
+		<OutputPath>bin\Release\</OutputPath>
+		<DefineConstants>
+		</DefineConstants>
+		<ErrorReport>prompt</ErrorReport>
+		<WarningLevel>4</WarningLevel>
+		<EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
+		<AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+		<Prefer32Bit>false</Prefer32Bit>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(OS)' == 'Windows_NT'">
+		<StartAction>Program</StartAction>
+		<StartProgram>$(VALHEIM_INSTALL)\valheim.exe</StartProgram>
+		<StartArguments>-console</StartArguments>
+		<StartWorkingDirectory>$(VALHEIM_INSTALL)</StartWorkingDirectory>
+	</PropertyGroup>
+
 	<PropertyGroup>
 		<EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
 		<AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+		<GeneratePackageOnBuild>False</GeneratePackageOnBuild>
 	</PropertyGroup>
+
 	<ItemGroup>
-		<PackageReference Include="JotunnLib" Version="2.14.4" />
-		<PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
-		<PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
-	</ItemGroup>
-	<ItemGroup>
-		<Content Include="UpdateManifest.ps1" />
 		<Content Include="LICENSE" />
 		<Content Include="README.md" />
-		<Content Include="Publish\Thunderstore\icon.png" />
-		<Content Include="Publish\Thunderstore\manifest.json" />
 	</ItemGroup>
+
 	<ItemGroup>
-		<Folder Include="Libs\" />
+		<Folder Include="Libraries" />
+		<Folder Include="Libraries\Debug\" />
+		<Folder Include="Package\" />
+		<Folder Include="Publish\Nexus\" />
+		<Folder Include="Publish\ThunderStore\" />
 	</ItemGroup>
+
 	<ItemGroup>
 		<None Include="App.config" />
 	</ItemGroup>
+
 	<ItemGroup>
-		<Reference Include="BepInEx, Version=5.4.5.0, Culture=neutral, processorArchitecture=MSIL">
-			<SpecificVersion>False</SpecificVersion>
-			<Private>false</Private>
-			<HintPath>$(BepInExPath)\core\BepInEx.dll</HintPath>
-		</Reference>
-		<Reference Include="BepInEx.Harmony, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-			<SpecificVersion>False</SpecificVersion>
-			<Private>false</Private>
-			<HintPath>$(BepInExPath)\core\BepInEx.Harmony.dll</HintPath>
-		</Reference>
-		<Reference Include="BepInEx.Preloader, Version=5.4.5.0, Culture=neutral, processorArchitecture=MSIL">
-			<SpecificVersion>False</SpecificVersion>
-			<Private>false</Private>
-			<HintPath>$(BepInExPath)\core\BepInEx.Preloader.dll</HintPath>
-		</Reference>
-		<Reference Include="HarmonyXInterop, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-			<SpecificVersion>False</SpecificVersion>
-			<Private>false</Private>
-			<HintPath>$(BepInExPath)\core\HarmonyXInterop.dll</HintPath>
-		</Reference>
+		<PackageReference Include="HarmonyX" Version="2.9.0" />
+		<PackageReference Include="JotunnLib" Version="2.14.4" />
+		<PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+		<PackageReference Include="Mono.Cecil" Version="0.11.4" />
+		<PackageReference Include="MonoMod" Version="21.9.19.1" />
+		<PackageReference Include="MonoMod.RuntimeDetour" Version="22.1.29.1" />
+		<PackageReference Include="MonoMod.Utils" Version="22.1.29.1" />
+		<PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<Reference Include="PlanBuild.dll">
 			<Private>false</Private>
-			<HintPath>Libs\PlanBuild\PlanBuild.dll</HintPath>
+			<HintPath>Libraries\PlanBuild\PlanBuild.dll</HintPath>
 		</Reference>
 	</ItemGroup>
 
+
+
+	<Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+		<PropertyGroup>
+			<ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+		</PropertyGroup>
+		<Error Condition="!Exists('$(JotunnProps)')" Text="$([System.String]::Format('$(ErrorText)', '$(JotunnProps)'))" />
+	</Target>
 </Project>
