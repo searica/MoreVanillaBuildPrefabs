@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Numerics;
+using System.Reflection;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
+using UnityEngine.UI;
 
 namespace MoreVanillaBuildPrefabs.Configs
 {
@@ -89,30 +93,54 @@ namespace MoreVanillaBuildPrefabs.Configs
             "dvergrprops_wood_stake",
             "Hildir",
             "Flies",
-            "turf_roof_wall", // Visual duplicate of "wood_roof_wall"
+            "Pickable_DvergerThing",
             "rock_mistlands2", // Explodes into a boulder "___MineRock5"
             "demister_ball", // Placement is glitchy
             "CargoCrate", // Deletes itself on placement because it's empty
-            "TreasureChest_blackforest", // Visual duplicate of wooden chest
-            "TreasureChest_heath", // Visual duplicate of wooden chest
-            "TreasureChest_heath_hildir", // Visual duplicate of wooden chest
-            "TreasureChest_heath_hildir", // Visual duplicate of wooden chest
-            "TreasureChest_meadows", // Visual duplicate of wooden chest
-            "TreasureChest_meadows_buried", // Visual duplicate of wooden chest
-            "TreasureChest_mountains", // Visual duplicate of wooden chest
-            "TreasureChest_swamp", // Visual duplicate of wooden chest
-            "TreasureChest_forestcrypt", // Visual duplicate of "TreasureChest_fCrypt"
-            "TreasureChest_mountaincave_hildir", // Visual duplicate of "TreasureChest_dvergrtown"
-            "TreasureChest_plainsfortress_hildir", // Visual duplicate of "TreasureChest_dvergrtown"
-            "shipwreck_karve_chest",
-            "stonechest", // duplicate of fcrypt but with weird naming when you open the chest
-            "TreasureChest_plains_stone", // duplicate of loot_chest_stone
-            "TreasureChest_forestcrypt_hildir", // Visual duplicate of "TreasureChest_dvergrtown"
             "SunkenKit_int_towerwall_LOD", // is not an actual prefab for building
-            "horizontal_web", // has no mesh
-            "vertical_web",
             "fuling_turret", // Duplicate of vanilla ballista
             "dragoneggcup", // It's invisible and I don't want to patch it
+            "FishingRodFloat", // placement is broken
+            "Pickable_RandomFood", // not sure what this is meant to be
+            "horizontal_web", // has no mesh?
+            "tolroko_flyer", // It's a little space ship! Instantiating it throws errors though.
+            "turf_roof_wall", // Duplicate of "wood_roof_wall"
+
+            // Duplicates of wood chest
+            "TreasureChest_blackforest",
+            "TreasureChest_heath",
+            "TreasureChest_heath_hildir",
+            "TreasureChest_heath_hildir",
+            "TreasureChest_meadows",
+            "TreasureChest_meadows_buried",
+            "TreasureChest_mountains",
+            "TreasureChest_swamp",
+            "shipwreck_karve_chest",
+            "loot_chest_wood",
+
+            // Duplicate of fcrypt
+            "TreasureChest_forestcrypt",
+            "stonechest", // Inventory name is weird
+
+            // Duplicate of loot_chest_stone
+            "TreasureChest_plains_stone",
+
+            // Duplicate of "TreasureChest_dvergrtown"
+            "TreasureChest_mountaincave_hildir",
+            "TreasureChest_plainsfortress_hildir",
+            "TreasureChest_forestcrypt_hildir",
+
+            // Ignore crops you can already plant
+            "Pickable_SeedCarrot",
+            "Pickable_SeedTurnip",
+            "Pickable_SeedOnion",
+            "Pickable_Onion",
+            "Pickable_Flax",
+            "Pickable_Flax_Wild",
+            "Pickable_Barley",
+            "Pickable_Barley_Wild",
+            "Pickable_Mushroom_Magecap",
+            "Pickable_Mushroom_JotunPuffs"
         };
 
         /// <summary>
@@ -122,11 +150,64 @@ namespace MoreVanillaBuildPrefabs.Configs
         private static readonly HashSet<string> _CreativeModePrefabs = new()
         {
             "tarlump1", // environmental thing and too easy to use for griefing
-            "tarlump", // environmental thing and too easy to use for griefing
             "mistvolume", // environmental thing and too easy to use for griefing
             "tunnel_web", // environmental thing and too easy to use for griefing
-            "tolroko_flyer", // It's a little space ship! Instantiating it throws errors though.
             "crypt_skeleton_chest", // This is for building dungeons
+            "BossStone_Bonemass",
+            "BossStone_DragonQueen",
+            "BossStone_Eikthyr",
+            "BossStone_TheElder",
+            "BossStone_TheQueen",
+            "BossStone_Yagluth",
+            "giant_helmet1",
+            "giant_helmet2",
+            "giant_ribs",
+            "giant_skull",
+            "giant_sword1",
+            "giant_sword2",
+            "goblinking_totemholder",
+            "GuckSack",
+            "GuckSack_small",
+            "LuredWisp",
+            "MineRock_Iron",
+            "MineRock_Copper",
+            "giant_brain",
+            "giant_arm",
+            "CreepProp_egg_hanging01",
+            "CreepProp_egg_hanging02",
+            "CreepProp_entrance1",
+            "CreepProp_entrance2",
+            "CreepProp_hanging01",
+            "CreepProp_wall01",
+            "dungeon_queen_door",
+            "dvergrtown_creep_door",
+            "MineRock_Meteorite",
+            "MineRock_Obsidian",
+            "MineRock_Stone",
+            "MineRock_Tin",
+            "mudpile",
+            "mudpile_beacon",
+            "mudpile_old",
+            "mudpile2",
+            "Pickable_Meteorite",
+            "Pickable_MountainCaveObsidian",
+            "Pickable_Tin",
+            "RockFinger",
+            "RockFingerBroken",
+            "silvervein",
+            "vertical_web",
+            "SeekerEgg_alwayshatch",
+            "SeekerEgg",
+            "blackmarble_altar_crystal_broken",
+            "blackmarble_altar_crystal",
+            "Pickable_BogIronOre",
+            "Pickable_DragonEgg",
+            "Pickable_RoyalJelly",
+            "Pickable_Obsidian",
+            "Pickable_Tar",
+            "Pickable_TarBig",
+            "mountainkit_chair",
+            "mountainkit_table",
         };
     }
 }

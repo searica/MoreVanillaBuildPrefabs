@@ -28,31 +28,325 @@ namespace MoreVanillaBuildPrefabs.Configs
 
         internal static readonly Dictionary<string, PrefabDB> DefaultConfigValues = new()
         {
-            // fire pits
             {
-                "fire_pit_haldor",
+                "ancient_skull",
                 new PrefabDB(
-                    "fire_pit_haldor",
-                    true,
+                    "ancient_skull",
                     false,
-                    HammerCategories.Misc,
+                    false,
+                    HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
-                    "Stone,5;Wood,2;BlackCore,1"
+                    "TrophySkeleton,32"
                 )
             },
             {
-                "fire_pit_hildir",
+                "ArmorStand_Female",
                 new PrefabDB(
-                    "fire_pit_hildir",
+                    "ArmorStand_Female",
+                    true,
+                    false,
+                    HammerCategories.Furniture,
+                    nameof(CraftingStations.Workbench),
+                    "FineWood,8;BronzeNails,2;Tar,4"
+                )
+            },
+            {
+                "ArmorStand_Male",
+                new PrefabDB(
+                    "ArmorStand_Male",
+                    true,
+                    false,
+                    HammerCategories.Furniture,
+                    nameof(CraftingStations.Workbench),
+                    "FineWood,8;BronzeNails,2;Tar,4"
+                )
+            },
+            {
+                "barrell",
+                new PrefabDB(
+                    "barrell",
                     true,
                     false,
                     HammerCategories.Misc,
-                    nameof(CraftingStations.Forge),
-                    "Ironpit,1;Wood,1;BlackCore,1"
+                    nameof(CraftingStations.Workbench),
+                    "Wood,2"
                 )
             },
-
-            // black marble pieces
+            {
+                "beech_log",
+                new PrefabDB(
+                    "beech_log",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    "BeechSeeds,1,Wood,20"
+                )
+            },
+            {
+                "beech_log_half",
+                new PrefabDB(
+                    "beech_log_half",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    "BeechSeeds,1,Wood,10"
+                )
+            },
+            {
+                "Beech_small1",
+                new PrefabDB(
+                    "Beech_small1",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "Beech_small2",
+                new PrefabDB(
+                    "Beech_small2",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    "Wood,1"
+                )
+            },
+            {
+                "Beech_Stub",
+                new PrefabDB(
+                    "Beech_Stub",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "Beech1",
+                new PrefabDB(
+                    "Beech1",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    "Wood,16"
+                )
+            },
+            {
+                "Birch_log",
+                new PrefabDB(
+                    "Birch_log",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "Birch_log_half",
+                new PrefabDB(
+                    "Birch_log_half",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "Birch1",
+                new PrefabDB(
+                    "Birch1",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    "FineWood,16"
+                )
+            },
+            {
+                "Birch1_aut",
+                new PrefabDB(
+                    "Birch1_aut",
+                    true,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    "BirchSeeds,1;FineWood,2"
+                )
+            },
+            {
+                "Birch2",
+                new PrefabDB(
+                    "Birch2",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    "FineWood,16"
+                )
+            },
+            {
+                "Birch2_aut",
+                new PrefabDB(
+                    "Birch2_aut",
+                    true,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    "BirchSeeds,1;FineWood,2"
+                )
+            },
+            {
+                "BirchStub",
+                new PrefabDB(
+                    "BirchStub",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "blackmarble_2x2_enforced",
+                new PrefabDB(
+                    "blackmarble_2x2_enforced",
+                    true,
+                    false,
+                    HammerCategories.Building,
+                    nameof(CraftingStations.BlackForge),
+                    "BlackMarble,8;Copper,2"
+                )
+            },
+            {
+                "blackmarble_2x2x1",
+                new PrefabDB(
+                    "blackmarble_2x2x1",
+                    false,
+                    false,
+                    HammerCategories.Building,
+                    nameof(CraftingStations.Stonecutter),
+                    "BlackMarble,4"
+                )
+            },
+            {
+                "blackmarble_altar_crystal",
+                new PrefabDB(
+                    "blackmarble_altar_crystal",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "blackmarble_altar_crystal_broken",
+                new PrefabDB(
+                    "blackmarble_altar_crystal_broken",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "blackmarble_base_2",
+                new PrefabDB(
+                    "blackmarble_base_2",
+                    true,
+                    false,
+                    HammerCategories.Building,
+                    nameof(CraftingStations.Stonecutter),
+                    "BlackMarble,6"
+                )
+            },
+            {
+                "blackmarble_column_3",
+                new PrefabDB(
+                    "blackmarble_column_3",
+                    true,
+                    false,
+                    HammerCategories.Building,
+                    nameof(CraftingStations.Stonecutter),
+                    "BlackMarble,16"
+                )
+            },
+            {
+                "blackmarble_creep_4x1x1",
+                new PrefabDB(
+                    "blackmarble_creep_4x1x1",
+                    false,
+                    false,
+                    HammerCategories.Building,
+                    nameof(CraftingStations.Stonecutter),
+                    "BlackMarble,4"
+                )
+            },
+            {
+                "blackmarble_creep_4x2x1",
+                new PrefabDB(
+                    "blackmarble_creep_4x2x1",
+                    false,
+                    false,
+                    HammerCategories.Building,
+                    nameof(CraftingStations.Stonecutter),
+                    "BlackMarble,8"
+                )
+            },
+            {
+                "blackmarble_creep_slope_inverted_1x1x2",
+                new PrefabDB(
+                    "blackmarble_creep_slope_inverted_1x1x2",
+                    false,
+                    false,
+                    HammerCategories.Building,
+                    nameof(CraftingStations.Stonecutter),
+                    "BlackMarble,2"
+                )
+            },
+            {
+                "blackmarble_creep_slope_inverted_2x2x1",
+                new PrefabDB(
+                    "blackmarble_creep_slope_inverted_2x2x1",
+                    false,
+                    false,
+                    HammerCategories.Building,
+                    nameof(CraftingStations.Stonecutter),
+                    "BlackMarble,4"
+                )
+            },
+            {
+                "blackmarble_creep_stair",
+                new PrefabDB(
+                    "blackmarble_creep_stair",
+                    false,
+                    false,
+                    HammerCategories.Building,
+                    nameof(CraftingStations.Stonecutter),
+                    "BlackMarble,8"
+                )
+            },
+            {
+                "blackmarble_floor_large",
+                new PrefabDB(
+                    "blackmarble_floor_large",
+                    true,
+                    false,
+                    HammerCategories.Building,
+                    nameof(CraftingStations.Stonecutter),
+                    "BlackMarble,32"
+                )
+            },
             {
                 "blackmarble_head_big01",
                 new PrefabDB(
@@ -131,17 +425,6 @@ namespace MoreVanillaBuildPrefabs.Configs
                 )
             },
             {
-                "blackmarble_tile_floor_1x1",
-                new PrefabDB(
-                    "blackmarble_tile_floor_1x1",
-                    true,
-                    false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.Stonecutter),
-                    "BlackMarble,2"
-                )
-            },
-            {
                 "blackmarble_slope_inverted_1x2",
                 new PrefabDB(
                     "blackmarble_slope_inverted_1x2",
@@ -150,6 +433,17 @@ namespace MoreVanillaBuildPrefabs.Configs
                     HammerCategories.Building,
                     nameof(CraftingStations.Stonecutter),
                     "BlackMarble,2"
+                )
+            },
+            {
+                "blackmarble_stair_corner",
+                new PrefabDB(
+                    "blackmarble_stair_corner",
+                    true,
+                    false,
+                    HammerCategories.Building,
+                    nameof(CraftingStations.Stonecutter),
+                    "BlackMarble,8"
                 )
             },
             {
@@ -164,14 +458,14 @@ namespace MoreVanillaBuildPrefabs.Configs
                 )
             },
             {
-                "blackmarble_stair_corner",
+                "blackmarble_tile_floor_1x1",
                 new PrefabDB(
-                    "blackmarble_stair_corner",
+                    "blackmarble_tile_floor_1x1",
                     true,
                     false,
                     HammerCategories.Building,
                     nameof(CraftingStations.Stonecutter),
-                    "BlackMarble,8"
+                    "BlackMarble,2"
                 )
             },
             {
@@ -219,163 +513,467 @@ namespace MoreVanillaBuildPrefabs.Configs
                 )
             },
             {
-                "blackmarble_base_2",
+                "BlueberryBush",
                 new PrefabDB(
-                    "blackmarble_base_2",
-                    true,
+                    "BlueberryBush",
                     false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.Stonecutter),
-                    "BlackMarble,6"
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    "Blueberry,5"
                 )
             },
             {
-                "blackmarble_column_3",
+                "BossStone_Bonemass",
                 new PrefabDB(
-                    "blackmarble_column_3",
-                    true,
+                    "BossStone_Bonemass",
                     false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.Stonecutter),
-                    "BlackMarble,16"
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
                 )
             },
             {
-                "blackmarble_floor_large",
+                "BossStone_DragonQueen",
                 new PrefabDB(
-                    "blackmarble_floor_large",
-                    true,
+                    "BossStone_DragonQueen",
                     false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.Stonecutter),
-                    "BlackMarble,32"
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
                 )
             },
             {
-                "metalbar_1x2",
+                "BossStone_Eikthyr",
                 new PrefabDB(
-                    "metalbar_1x2",
-                    true,
+                    "BossStone_Eikthyr",
                     false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.BlackForge),
-                    "BlackMarble,2;Copper,1"
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
                 )
             },
             {
-                "blackmarble_2x2_enforced",
+                "BossStone_TheElder",
                 new PrefabDB(
-                    "blackmarble_2x2_enforced",
-                    true,
+                    "BossStone_TheElder",
                     false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.BlackForge),
-                    "BlackMarble,8;Copper,2"
-                )
-            },
-
-            // dvergr pieces
-            {
-                "piece_dvergr_pole",
-                new PrefabDB(
-                    "piece_dvergr_pole",
-                    true,
                     false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.BlackForge),
-                    "YggdrasilWood,1"
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
                 )
             },
             {
-                "piece_dvergr_wood_wall",
+                "BossStone_TheQueen",
                 new PrefabDB(
-                    "piece_dvergr_wood_wall",
-                    true,
+                    "BossStone_TheQueen",
                     false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.BlackForge),
-                    "YggdrasilWood,5"
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
                 )
             },
             {
-                "dverger_guardstone",
+                "BossStone_Yagluth",
                 new PrefabDB(
-                    "dverger_guardstone",
+                    "BossStone_Yagluth",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "bucket",
+                new PrefabDB(
+                    "bucket",
                     true,
                     false,
                     HammerCategories.Misc,
-                    nameof(CraftingStations.BlackForge),
-                    "YggdrasilWood,5;BlackMarble,5;BlackCore,1"
+                    nameof(CraftingStations.Workbench),
+                    "Wood,2"
                 )
             },
             {
-                "dvergrprops_wood_beam",
+                "Bush01",
                 new PrefabDB(
-                    "dvergrprops_wood_beam",
-                    true,
+                    "Bush01",
                     false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.BlackForge),
-                    "YggdrasilWood,4"
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
                 )
             },
             {
-                "dvergrprops_wood_floor",
+                "Bush01_heath",
                 new PrefabDB(
-                    "dvergrprops_wood_floor",
+                    "Bush01_heath",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "Bush02_en",
+                new PrefabDB(
+                    "Bush02_en",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "CastleKit_braided_box01",
+                new PrefabDB(
+                    "CastleKit_braided_box01",
                     true,
                     false,
+                    HammerCategories.Misc,
+                    nameof(CraftingStations.Workbench),
+                    "Wood,2"
+                )
+            },
+            {
+                "CastleKit_brazier",
+                new PrefabDB(
+                    "CastleKit_brazier",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "CastleKit_groundtorch",
+                new PrefabDB(
+                    "CastleKit_groundtorch",
+                    true,
+                    false,
+                    HammerCategories.Furniture,
+                    nameof(CraftingStations.Forge),
+                    "Iron,2;Resin,2;BlackCore,1"
+                )
+            },
+            {
+                "CastleKit_groundtorch_blue",
+                new PrefabDB(
+                    "CastleKit_groundtorch_blue",
+                    true,
+                    false,
+                    HammerCategories.Furniture,
+                    nameof(CraftingStations.Forge),
+                    "Iron,2;GreydwarfEye,2;BlackCore,1"
+                )
+            },
+            {
+                "CastleKit_groundtorch_green",
+                new PrefabDB(
+                    "CastleKit_groundtorch_green",
+                    true,
+                    false,
+                    HammerCategories.Furniture,
+                    nameof(CraftingStations.Forge),
+                    "Iron,2;Guck,2;BlackCore,1"
+                )
+            },
+            {
+                "CastleKit_groundtorch_unlit",
+                new PrefabDB(
+                    "CastleKit_groundtorch_unlit",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "CastleKit_metal_groundtorch_unlit",
+                new PrefabDB(
+                    "CastleKit_metal_groundtorch_unlit",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "caverock_ice_pillar_wall",
+                new PrefabDB(
+                    "caverock_ice_pillar_wall",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "caverock_ice_stalagmite",
+                new PrefabDB(
+                    "caverock_ice_stalagmite",
+                    false,
+                    false,
                     HammerCategories.Building,
-                    nameof(CraftingStations.BlackForge),
+                    nameof(CraftingStations.None),
+                    "Crystal,2"
+                )
+            },
+            {
+                "caverock_ice_stalagmite_broken",
+                new PrefabDB(
+                    "caverock_ice_stalagmite_broken",
+                    false,
+                    false,
+                    HammerCategories.Building,
+                    nameof(CraftingStations.None),
+                    "Crystal,4"
+                )
+            },
+            {
+                "caverock_ice_stalagtite",
+                new PrefabDB(
+                    "caverock_ice_stalagtite",
+                    false,
+                    false,
+                    HammerCategories.Building,
+                    nameof(CraftingStations.None),
+                    "Crystal,2"
+                )
+            },
+            {
+                "caverock_ice_stalagtite_falling",
+                new PrefabDB(
+                    "caverock_ice_stalagtite_falling",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "Chest",
+                new PrefabDB(
+                    "Chest",
+                    true,
+                    false,
+                    HammerCategories.Furniture,
+                    nameof(CraftingStations.Forge),
+                    "Wood,10;Iron,1"
+                )
+            },
+            {
+                "cliff_mistlands1",
+                new PrefabDB(
+                    "cliff_mistlands1",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    "Stone,350"
+                )
+            },
+            {
+                "cliff_mistlands1_creep",
+                new PrefabDB(
+                    "cliff_mistlands1_creep",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    "Stone,350"
+                )
+            },
+            {
+                "cliff_mistlands2",
+                new PrefabDB(
+                    "cliff_mistlands2",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    "Stone,175"
+                )
+            },
+            {
+                "cloth_hanging_door",
+                new PrefabDB(
+                    "cloth_hanging_door",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "cloth_hanging_door_double",
+                new PrefabDB(
+                    "cloth_hanging_door_double",
+                    true,
+                    false,
+                    HammerCategories.Furniture,
+                    nameof(CraftingStations.Workbench),
+                    "JuteRed,4"
+                )
+            },
+            {
+                "cloth_hanging_long",
+                new PrefabDB(
+                    "cloth_hanging_long",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "CloudberryBush",
+                new PrefabDB(
+                    "CloudberryBush",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    "Cloudberry,5"
+                )
+            },
+            {
+                "CreepProp_egg_hanging01",
+                new PrefabDB(
+                    "CreepProp_egg_hanging01",
+                    false,
+                    false,
+                    HammerCategories.Building,
+                    nameof(CraftingStations.None),
                     "YggdrasilWood,2"
                 )
             },
             {
-                "dvergrprops_wood_pole",
+                "CreepProp_egg_hanging02",
                 new PrefabDB(
-                    "dvergrprops_wood_pole",
-                    true,
+                    "CreepProp_egg_hanging02",
+                    false,
                     false,
                     HammerCategories.Building,
-                    nameof(CraftingStations.BlackForge),
+                    nameof(CraftingStations.None),
                     "YggdrasilWood,2"
                 )
             },
             {
-                "dvergrprops_wood_stair",
+                "CreepProp_entrance1",
                 new PrefabDB(
-                    "dvergrprops_wood_stair",
-                    true,
+                    "CreepProp_entrance1",
+                    false,
                     false,
                     HammerCategories.Building,
-                    nameof(CraftingStations.BlackForge),
+                    nameof(CraftingStations.None),
                     "YggdrasilWood,2"
                 )
             },
             {
-                "dvergrprops_wood_wall",
+                "CreepProp_entrance2",
                 new PrefabDB(
-                    "dvergrprops_wood_wall",
-                    true,
+                    "CreepProp_entrance2",
+                    false,
                     false,
                     HammerCategories.Building,
-                    nameof(CraftingStations.BlackForge),
-                    "YggdrasilWood,10"
+                    nameof(CraftingStations.None),
+                    "YggdrasilWood,2"
                 )
             },
             {
-                "dvergrtown_stair_corner_wood_left",
+                "CreepProp_hanging01",
                 new PrefabDB(
-                    "dvergrtown_stair_corner_wood_left",
-                    true,
+                    "CreepProp_hanging01",
+                    false,
                     false,
                     HammerCategories.Building,
-                    nameof(CraftingStations.BlackForge),
-                    "YggdrasilWood,5;CopperScrap,2"
+                    nameof(CraftingStations.None),
+                    "YggdrasilWood,2"
                 )
             },
-
-            // dvergr furniture
+            {
+                "CreepProp_wall01",
+                new PrefabDB(
+                    "CreepProp_wall01",
+                    false,
+                    false,
+                    HammerCategories.Building,
+                    nameof(CraftingStations.None),
+                    "YggdrasilWood,2"
+                )
+            },
+            {
+                "crypt_skeleton_chest",
+                new PrefabDB(
+                    "crypt_skeleton_chest",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "dungeon_forestcrypt_door",
+                new PrefabDB(
+                    "dungeon_forestcrypt_door",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "dungeon_queen_door",
+                new PrefabDB(
+                    "dungeon_queen_door",
+                    false,
+                    false,
+                    HammerCategories.Building,
+                    nameof(CraftingStations.None),
+                    "BlackMarble,40;DvergrKeyFragment,4;Iron,12"
+                )
+            },
+            {
+                "dungeon_sunkencrypt_irongate",
+                new PrefabDB(
+                    "dungeon_sunkencrypt_irongate",
+                    false,
+                    false,
+                    HammerCategories.Building,
+                    nameof(CraftingStations.None),
+                    "Iron,4"
+                )
+            },
+            {
+                "dungeon_sunkencrypt_irongate_rusty",
+                new PrefabDB(
+                    "dungeon_sunkencrypt_irongate_rusty",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
             {
                 "dverger_demister",
                 new PrefabDB(
@@ -388,6 +986,17 @@ namespace MoreVanillaBuildPrefabs.Configs
                 )
             },
             {
+                "dverger_demister_broken",
+                new PrefabDB(
+                    "dverger_demister_broken",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.BlackForge),
+                    "Iron,1"
+                )
+            },
+            {
                 "dverger_demister_large",
                 new PrefabDB(
                     "dverger_demister_large",
@@ -396,6 +1005,28 @@ namespace MoreVanillaBuildPrefabs.Configs
                     HammerCategories.Furniture,
                     nameof(CraftingStations.BlackForge),
                     "Iron,1;Wisp,2"
+                )
+            },
+            {
+                "dverger_demister_ruins",
+                new PrefabDB(
+                    "dverger_demister_ruins",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.BlackForge),
+                    "Iron,1"
+                )
+            },
+            {
+                "dverger_guardstone",
+                new PrefabDB(
+                    "dverger_guardstone",
+                    true,
+                    false,
+                    HammerCategories.Misc,
+                    nameof(CraftingStations.BlackForge),
+                    "YggdrasilWood,5;BlackMarble,5;BlackCore,1"
                 )
             },
             {
@@ -487,6 +1118,39 @@ namespace MoreVanillaBuildPrefabs.Configs
                 )
             },
             {
+                "dvergrprops_lantern",
+                new PrefabDB(
+                    "dvergrprops_lantern",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "dvergrprops_lantern_standing",
+                new PrefabDB(
+                    "dvergrprops_lantern_standing",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "dvergrprops_pickaxe",
+                new PrefabDB(
+                    "dvergrprops_pickaxe",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
                 "dvergrprops_shelf",
                 new PrefabDB(
                     "dvergrprops_shelf",
@@ -520,29 +1184,467 @@ namespace MoreVanillaBuildPrefabs.Configs
                 )
             },
             {
-                "Pickable_BlackCoreStand",
+                "dvergrprops_wood_beam",
                 new PrefabDB(
-                    "Pickable_BlackCoreStand",
+                    "dvergrprops_wood_beam",
                     true,
                     false,
-                    HammerCategories.Furniture,
+                    HammerCategories.Building,
                     nameof(CraftingStations.BlackForge),
-                    "Iron,2;BlackCore,1"
+                    "YggdrasilWood,4"
                 )
             },
             {
-                "trader_wagon_destructable",
+                "dvergrprops_wood_floor",
                 new PrefabDB(
-                    "trader_wagon_destructable",
+                    "dvergrprops_wood_floor",
                     true,
                     false,
-                    HammerCategories.Furniture,
+                    HammerCategories.Building,
                     nameof(CraftingStations.BlackForge),
-                    "FineWood,32"
+                    "YggdrasilWood,2"
                 )
             },
-
-            // goblin pieces
+            {
+                "dvergrprops_wood_pole",
+                new PrefabDB(
+                    "dvergrprops_wood_pole",
+                    true,
+                    false,
+                    HammerCategories.Building,
+                    nameof(CraftingStations.BlackForge),
+                    "YggdrasilWood,2"
+                )
+            },
+            {
+                "dvergrprops_wood_stair",
+                new PrefabDB(
+                    "dvergrprops_wood_stair",
+                    true,
+                    false,
+                    HammerCategories.Building,
+                    nameof(CraftingStations.BlackForge),
+                    "YggdrasilWood,2"
+                )
+            },
+            {
+                "dvergrprops_wood_stakewall",
+                new PrefabDB(
+                    "dvergrprops_wood_stakewall",
+                    false,
+                    false,
+                    HammerCategories.Building,
+                    nameof(CraftingStations.None),
+                    "YggdrasilWood,4"
+                )
+            },
+            {
+                "dvergrprops_wood_wall",
+                new PrefabDB(
+                    "dvergrprops_wood_wall",
+                    true,
+                    false,
+                    HammerCategories.Building,
+                    nameof(CraftingStations.BlackForge),
+                    "YggdrasilWood,10"
+                )
+            },
+            {
+                "dvergrtown_arch",
+                new PrefabDB(
+                    "dvergrtown_arch",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "dvergrtown_creep_door",
+                new PrefabDB(
+                    "dvergrtown_creep_door",
+                    false,
+                    false,
+                    HammerCategories.Building,
+                    nameof(CraftingStations.None),
+                    "YggdrasilWood,4"
+                )
+            },
+            {
+                "dvergrtown_secretdoor",
+                new PrefabDB(
+                    "dvergrtown_secretdoor",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    "BlackMarble,12"
+                )
+            },
+            {
+                "dvergrtown_slidingdoor",
+                new PrefabDB(
+                    "dvergrtown_slidingdoor",
+                    false,
+                    false,
+                    HammerCategories.Building,
+                    nameof(CraftingStations.None),
+                    "BlackMarble,6"
+                )
+            },
+            {
+                "dvergrtown_stair_corner_wood_left",
+                new PrefabDB(
+                    "dvergrtown_stair_corner_wood_left",
+                    true,
+                    false,
+                    HammerCategories.Building,
+                    nameof(CraftingStations.BlackForge),
+                    "YggdrasilWood,5;CopperScrap,2"
+                )
+            },
+            {
+                "dvergrtown_wood_beam",
+                new PrefabDB(
+                    "dvergrtown_wood_beam",
+                    false,
+                    false,
+                    HammerCategories.Building,
+                    nameof(CraftingStations.BlackForge),
+                    "YggdrasilWood,4"
+                )
+            },
+            {
+                "dvergrtown_wood_crane",
+                new PrefabDB(
+                    "dvergrtown_wood_crane",
+                    false,
+                    false,
+                    HammerCategories.Building,
+                    nameof(CraftingStations.BlackForge),
+                    "YggdrasilWood,8;Chain,2;Iron,2"
+                )
+            },
+            {
+                "dvergrtown_wood_pole",
+                new PrefabDB(
+                    "dvergrtown_wood_pole",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "dvergrtown_wood_stake",
+                new PrefabDB(
+                    "dvergrtown_wood_stake",
+                    false,
+                    false,
+                    HammerCategories.Building,
+                    nameof(CraftingStations.BlackForge),
+                    "YggdrasilWood,1"
+                )
+            },
+            {
+                "dvergrtown_wood_stakewall",
+                new PrefabDB(
+                    "dvergrtown_wood_stakewall",
+                    false,
+                    false,
+                    HammerCategories.Building,
+                    nameof(CraftingStations.BlackForge),
+                    "YggdrasilWood,4"
+                )
+            },
+            {
+                "dvergrtown_wood_support",
+                new PrefabDB(
+                    "dvergrtown_wood_support",
+                    false,
+                    false,
+                    HammerCategories.Building,
+                    nameof(CraftingStations.BlackForge),
+                    "YggdrasilWood,10"
+                )
+            },
+            {
+                "dvergrtown_wood_wall01",
+                new PrefabDB(
+                    "dvergrtown_wood_wall01",
+                    false,
+                    false,
+                    HammerCategories.Building,
+                    nameof(CraftingStations.BlackForge),
+                    "YggdrasilWood,20"
+                )
+            },
+            {
+                "dvergrtown_wood_wall02",
+                new PrefabDB(
+                    "dvergrtown_wood_wall02",
+                    false,
+                    false,
+                    HammerCategories.Building,
+                    nameof(CraftingStations.BlackForge),
+                    "YggdrasilWood,12"
+                )
+            },
+            {
+                "dvergrtown_wood_wall03",
+                new PrefabDB(
+                    "dvergrtown_wood_wall03",
+                    false,
+                    false,
+                    HammerCategories.Building,
+                    nameof(CraftingStations.BlackForge),
+                    "YggdrasilWood,10;IronNails,6"
+                )
+            },
+            {
+                "fenrirhide_hanging",
+                new PrefabDB(
+                    "fenrirhide_hanging",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "fenrirhide_hanging_door",
+                new PrefabDB(
+                    "fenrirhide_hanging_door",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "fire_pit_haldor",
+                new PrefabDB(
+                    "fire_pit_haldor",
+                    true,
+                    false,
+                    HammerCategories.Misc,
+                    nameof(CraftingStations.None),
+                    "Stone,5;Wood,2;BlackCore,1"
+                )
+            },
+            {
+                "fire_pit_hildir",
+                new PrefabDB(
+                    "fire_pit_hildir",
+                    true,
+                    false,
+                    HammerCategories.Misc,
+                    nameof(CraftingStations.Forge),
+                    "Ironpit,1;Wood,1;BlackCore,1"
+                )
+            },
+            {
+                "FirTree",
+                new PrefabDB(
+                    "FirTree",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    "Wood,16"
+                )
+            },
+            {
+                "FirTree_log",
+                new PrefabDB(
+                    "FirTree_log",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "FirTree_log_half",
+                new PrefabDB(
+                    "FirTree_log_half",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "FirTree_oldLog",
+                new PrefabDB(
+                    "FirTree_oldLog",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "FirTree_small",
+                new PrefabDB(
+                    "FirTree_small",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "FirTree_small_dead",
+                new PrefabDB(
+                    "FirTree_small_dead",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "FirTree_Stub",
+                new PrefabDB(
+                    "FirTree_Stub",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "flying_core",
+                new PrefabDB(
+                    "flying_core",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "fuling_trap",
+                new PrefabDB(
+                    "fuling_trap",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "giant_arm",
+                new PrefabDB(
+                    "giant_arm",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    "BlackMarble,32"
+                )
+            },
+            {
+                "giant_brain",
+                new PrefabDB(
+                    "giant_brain",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "giant_helmet1",
+                new PrefabDB(
+                    "giant_helmet1",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    "Iron,32"
+                )
+            },
+            {
+                "giant_helmet2",
+                new PrefabDB(
+                    "giant_helmet2",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    "Iron,8"
+                )
+            },
+            {
+                "giant_ribs",
+                new PrefabDB(
+                    "giant_ribs",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    "BlackMarble,64"
+                )
+            },
+            {
+                "giant_skull",
+                new PrefabDB(
+                    "giant_skull",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    "BlackMarble,32"
+                )
+            },
+            {
+                "giant_sword1",
+                new PrefabDB(
+                    "giant_sword1",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    "Iron,16"
+                )
+            },
+            {
+                "giant_sword2",
+                new PrefabDB(
+                    "giant_sword2",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    "Iron,16"
+                )
+            },
+            {
+                "GlowingMushroom",
+                new PrefabDB(
+                    "GlowingMushroom",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
             {
                 "goblin_banner",
                 new PrefabDB(
@@ -654,6 +1756,39 @@ namespace MoreVanillaBuildPrefabs.Configs
                 )
             },
             {
+                "goblin_strawpile",
+                new PrefabDB(
+                    "goblin_strawpile",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "goblin_totempole",
+                new PrefabDB(
+                    "goblin_totempole",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.Workbench),
+                    "Wood,2;GoblinTotem,1"
+                )
+            },
+            {
+                "goblin_trashpile",
+                new PrefabDB(
+                    "goblin_trashpile",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
                 "goblin_woodwall_1m",
                 new PrefabDB(
                     "goblin_woodwall_1m",
@@ -673,17 +1808,6 @@ namespace MoreVanillaBuildPrefabs.Configs
                     HammerCategories.Building,
                     nameof(CraftingStations.Workbench),
                     "Wood,2;Tar,1"
-                )
-            },
-            {
-                "goblin_totempole",
-                new PrefabDB(
-                    "goblin_totempole",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.Workbench),
-                    "Wood,2;GoblinTotem,1"
                 )
             },
             {
@@ -708,225 +1832,50 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "Stone,1;Tar,1"
                 )
             },
-
-            // Furniture
             {
-                "ArmorStand_Male",
+                "Greydwarf_Root",
                 new PrefabDB(
-                    "ArmorStand_Male",
-                    true,
+                    "Greydwarf_Root",
                     false,
-                    HammerCategories.Furniture,
-                    nameof(CraftingStations.Workbench),
-                    "FineWood,8;BronzeNails,2;Tar,4"
-                )
-            },
-            {
-                "ArmorStand_Female",
-                new PrefabDB(
-                    "ArmorStand_Female",
-                    true,
-                    false,
-                    HammerCategories.Furniture,
-                    nameof(CraftingStations.Workbench),
-                    "FineWood,8;BronzeNails,2;Tar,4"
-                )
-            },
-
-            // misc pieces
-            {
-                "barrell",
-                new PrefabDB(
-                    "barrell",
-                    true,
-                    false,
-                    HammerCategories.Misc,
-                    nameof(CraftingStations.Workbench),
-                    "Wood,2"
-                )
-            },
-            {
-                "turf_roof",
-                new PrefabDB(
-                    "turf_roof",
-                    true,
-                    false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.Workbench),
-                    "Wood,2"
-                )
-            },
-            {
-                "turf_roof_top",
-                new PrefabDB(
-                    "turf_roof_top",
-                    true,
-                    false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.Workbench),
-                    "Wood,2"
-                )
-            },
-            {
-                "turf_roof_wall", // it's just a wood 26 degree wall
-                new PrefabDB(
-                    "turf_roof_wall",
-                    false,
-                    false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.Workbench),
-                    "Wood,2"
-                )
-            },
-            {
-                "stone_floor",
-                new PrefabDB(
-                    "stone_floor",
-                    true,
-                    false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.Stonecutter),
-                    "Stone,16"
-                )
-            },
-            {
-                "bucket",
-                new PrefabDB(
-                    "bucket",
-                    true,
-                    false,
-                    HammerCategories.Misc,
-                    nameof(CraftingStations.Workbench),
-                    "Wood,2"
-                )
-            },
-            {
-                "CargoCrate",
-                new PrefabDB(
-                    "CargoCrate",
-                    false,
-                    false,
-                    HammerCategories.Misc,
-                    nameof(CraftingStations.Workbench),
-                    "Wood,2"
-                )
-            },
-            {
-                "Pickable_SurtlingCoreStand",
-                new PrefabDB(
-                    "Pickable_SurtlingCoreStand",
-                    true,
-                    false,
-                    HammerCategories.Furniture,
-                    nameof(CraftingStations.Forge),
-                    "Iron,2;SurtlingCore,1"
-                )
-            },
-            {
-                "cloth_hanging_door_double",
-                new PrefabDB(
-                    "cloth_hanging_door_double",
-                    true,
-                    false,
-                    HammerCategories.Furniture,
-                    nameof(CraftingStations.Workbench),
-                    "JuteRed,4"
-                )
-            },
-            {
-                "rug_straw",
-                new PrefabDB(
-                    "rug_straw",
-                    true,
-                    false,
-                    HammerCategories.Furniture,
-                    nameof(CraftingStations.None),
-                    "Wood,2"
-                )
-            },
-            {
-                "wood_ledge",
-                new PrefabDB(
-                    "wood_ledge",
-                    true,
-                    false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.Workbench),
-                    "Wood,1"
-                )
-            },
-
-            // statues
-            {
-                "StatueCorgi",
-                new PrefabDB(
-                    "StatueCorgi",
-                    true,
-                    false,
-                    HammerCategories.Furniture,
-                    nameof(CraftingStations.Stonecutter),
-                    "Stone,24"
-                )
-            },
-            {
-                "StatueDeer",
-                new PrefabDB(
-                    "StatueDeer",
-                    true,
-                    false,
-                    HammerCategories.Furniture,
-                    nameof(CraftingStations.Stonecutter),
-                    "Stone,24"
-                )
-            },
-            {
-                "StatueEvil",
-                new PrefabDB(
-                    "StatueEvil",
-                    true,
-                    false,
-                    HammerCategories.Furniture,
-                    nameof(CraftingStations.Stonecutter),
-                    "Stone,32"
-                )
-            },
-            {
-                "StatueHare",
-                new PrefabDB(
-                    "StatueHare",
-                    true,
-                    false,
-                    HammerCategories.Furniture,
-                    nameof(CraftingStations.Stonecutter),
-                    "Stone,24"
-                )
-            },
-            {
-                "StatueSeed",
-                new PrefabDB(
-                    "StatueSeed",
-                    true,
-                    false,
-                    HammerCategories.Furniture,
-                    nameof(CraftingStations.Stonecutter),
-                    "Stone,16"
-                )
-            },
-
-            // CreatorShop
-            {
-                "Skull1",
-                new PrefabDB(
-                    "Skull1",
-                    true,
                     false,
                     HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
-                    "TrophySkeleton,1"
+                    "Wood,2"
                 )
             },
-
-            // CreatorShop Rocks
+            {
+                "GuckSack",
+                new PrefabDB(
+                    "GuckSack",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "GuckSack_small",
+                new PrefabDB(
+                    "GuckSack_small",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "hanging_hairstrands",
+                new PrefabDB(
+                    "hanging_hairstrands",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
             {
                 "highstone",
                 new PrefabDB(
@@ -939,14 +1888,113 @@ namespace MoreVanillaBuildPrefabs.Configs
                 )
             },
             {
-                "widestone",
+                "HugeRoot1",
                 new PrefabDB(
-                    "widestone",
-                    true,
+                    "HugeRoot1",
+                    false,
                     false,
                     HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
-                    "Stone,32"
+                    "ElderBark,32"
+                )
+            },
+            {
+                "Ice_floor",
+                new PrefabDB(
+                    "Ice_floor",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "ice_rock1",
+                new PrefabDB(
+                    "ice_rock1",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "ice1",
+                new PrefabDB(
+                    "ice1",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "IceBlocker",
+                new PrefabDB(
+                    "IceBlocker",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "iron_wall_1x1_rusty",
+                new PrefabDB(
+                    "iron_wall_1x1_rusty",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "Leviathan",
+                new PrefabDB(
+                    "Leviathan",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "loot_chest_stone",
+                new PrefabDB(
+                    "loot_chest_stone",
+                    true,
+                    false,
+                    HammerCategories.Furniture,
+                    nameof(CraftingStations.Stonecutter),
+                    "Stone,10"
+                )
+            },
+            {
+                "lox_ribs",
+                new PrefabDB(
+                    "lox_ribs",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    "BoneFragments,30"
+                )
+            },
+            {
+                "LuredWisp",
+                new PrefabDB(
+                    "LuredWisp",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    "Wisp,1"
                 )
             },
             {
@@ -969,6 +2017,798 @@ namespace MoreVanillaBuildPrefabs.Configs
                     HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
                     "Stone,4"
+                )
+            },
+            {
+                "metalbar_1x2",
+                new PrefabDB(
+                    "metalbar_1x2",
+                    true,
+                    false,
+                    HammerCategories.Building,
+                    nameof(CraftingStations.BlackForge),
+                    "BlackMarble,2;Copper,1"
+                )
+            },
+            {
+                "MineRock_Copper",
+                new PrefabDB(
+                    "MineRock_Copper",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "MineRock_Iron",
+                new PrefabDB(
+                    "MineRock_Iron",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "MineRock_Meteorite",
+                new PrefabDB(
+                    "MineRock_Meteorite",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "MineRock_Obsidian",
+                new PrefabDB(
+                    "MineRock_Obsidian",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "MineRock_Stone",
+                new PrefabDB(
+                    "MineRock_Stone",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "MineRock_Tin",
+                new PrefabDB(
+                    "MineRock_Tin",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "mistvolume",
+                new PrefabDB(
+                    "mistvolume",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "MountainGraveStone01",
+                new PrefabDB(
+                    "MountainGraveStone01",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "MountainKit_brazier",
+                new PrefabDB(
+                    "MountainKit_brazier",
+                    true,
+                    false,
+                    HammerCategories.Furniture,
+                    nameof(CraftingStations.Forge),
+                    "Bronze,5;Coal,2;BlackCore,1;WolfClaw,3"
+                )
+            },
+            {
+                "MountainKit_brazier_blue",
+                new PrefabDB(
+                    "MountainKit_brazier_blue",
+                    true,
+                    false,
+                    HammerCategories.Furniture,
+                    nameof(CraftingStations.Forge),
+                    "Bronze,5;GreydwarfEye,2;BlackCore,1;WolfClaw,3"
+                )
+            },
+            {
+                "mountainkit_chair",
+                new PrefabDB(
+                    "mountainkit_chair",
+                    false,
+                    false,
+                    HammerCategories.Furniture,
+                    nameof(CraftingStations.Workbench),
+                    "FineWood,4"
+                )
+            },
+            {
+                "mountainkit_table",
+                new PrefabDB(
+                    "mountainkit_table",
+                    false,
+                    false,
+                    HammerCategories.Furniture,
+                    nameof(CraftingStations.Workbench),
+                    "FineWood,10;IronNails,20"
+                )
+            },
+            {
+                "MountainKit_wood_gate",
+                new PrefabDB(
+                    "MountainKit_wood_gate",
+                    false,
+                    false,
+                    HammerCategories.Building,
+                    nameof(CraftingStations.Workbench),
+                    "Wood,20;Bronze,4"
+                )
+            },
+            {
+                "mudpile",
+                new PrefabDB(
+                    "mudpile",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "mudpile_beacon",
+                new PrefabDB(
+                    "mudpile_beacon",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "mudpile_old",
+                new PrefabDB(
+                    "mudpile_old",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "mudpile2",
+                new PrefabDB(
+                    "mudpile2",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "Oak_log",
+                new PrefabDB(
+                    "Oak_log",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "Oak_log_half",
+                new PrefabDB(
+                    "Oak_log_half",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "Oak1",
+                new PrefabDB(
+                    "Oak1",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    "Wood,20;FineWood,20"
+                )
+            },
+            {
+                "OakStub",
+                new PrefabDB(
+                    "OakStub",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "Pickable_BlackCoreStand",
+                new PrefabDB(
+                    "Pickable_BlackCoreStand",
+                    true,
+                    false,
+                    HammerCategories.Furniture,
+                    nameof(CraftingStations.BlackForge),
+                    "Iron,2;BlackCore,1"
+                )
+            },
+            {
+                "Pickable_BogIronOre",
+                new PrefabDB(
+                    "Pickable_BogIronOre",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "Pickable_Branch",
+                new PrefabDB(
+                    "Pickable_Branch",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    "Wood,5"
+                )
+            },
+            {
+                "Pickable_Carrot",
+                new PrefabDB(
+                    "Pickable_Carrot",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "Pickable_Dandelion",
+                new PrefabDB(
+                    "Pickable_Dandelion",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    "Dandelion,5"
+                )
+            },
+            {
+                "Pickable_DolmenTreasure",
+                new PrefabDB(
+                    "Pickable_DolmenTreasure",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "Pickable_DragonEgg",
+                new PrefabDB(
+                    "Pickable_DragonEgg",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "Pickable_DvergrLantern",
+                new PrefabDB(
+                    "Pickable_DvergrLantern",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "Pickable_DvergrMineTreasure",
+                new PrefabDB(
+                    "Pickable_DvergrMineTreasure",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "Pickable_DvergrStein",
+                new PrefabDB(
+                    "Pickable_DvergrStein",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "Pickable_Fishingrod",
+                new PrefabDB(
+                    "Pickable_Fishingrod",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "Pickable_Flint",
+                new PrefabDB(
+                    "Pickable_Flint",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "Pickable_ForestCryptRandom",
+                new PrefabDB(
+                    "Pickable_ForestCryptRandom",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "Pickable_ForestCryptRemains01",
+                new PrefabDB(
+                    "Pickable_ForestCryptRemains01",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "Pickable_ForestCryptRemains02",
+                new PrefabDB(
+                    "Pickable_ForestCryptRemains02",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "Pickable_ForestCryptRemains03",
+                new PrefabDB(
+                    "Pickable_ForestCryptRemains03",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "Pickable_ForestCryptRemains04",
+                new PrefabDB(
+                    "Pickable_ForestCryptRemains04",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "Pickable_Hairstrands01",
+                new PrefabDB(
+                    "Pickable_Hairstrands01",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "Pickable_Hairstrands02",
+                new PrefabDB(
+                    "Pickable_Hairstrands02",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "Pickable_Item",
+                new PrefabDB(
+                    "Pickable_Item",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "Pickable_MeatPile",
+                new PrefabDB(
+                    "Pickable_MeatPile",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "Pickable_Meteorite",
+                new PrefabDB(
+                    "Pickable_Meteorite",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "Pickable_MountainCaveCrystal",
+                new PrefabDB(
+                    "Pickable_MountainCaveCrystal",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "Pickable_MountainCaveObsidian",
+                new PrefabDB(
+                    "Pickable_MountainCaveObsidian",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "Pickable_MountainCaveRandom",
+                new PrefabDB(
+                    "Pickable_MountainCaveRandom",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "Pickable_MountainRemains01_buried",
+                new PrefabDB(
+                    "Pickable_MountainRemains01_buried",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "Pickable_Mushroom",
+                new PrefabDB(
+                    "Pickable_Mushroom",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    "Mushroom,5"
+                )
+            },
+            {
+                "Pickable_Mushroom_blue",
+                new PrefabDB(
+                    "Pickable_Mushroom_blue",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    "MushroomBlue,5"
+                )
+            },
+            {
+                "Pickable_Mushroom_yellow",
+                new PrefabDB(
+                    "Pickable_Mushroom_yellow",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    "MushroomYellow,5"
+                )
+            },
+            {
+                "Pickable_Obsidian",
+                new PrefabDB(
+                    "Pickable_Obsidian",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "Pickable_RoyalJelly",
+                new PrefabDB(
+                    "Pickable_RoyalJelly",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "Pickable_Stone",
+                new PrefabDB(
+                    "Pickable_Stone",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "Pickable_SunkenCryptRandom",
+                new PrefabDB(
+                    "Pickable_SunkenCryptRandom",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "Pickable_SurtlingCoreStand",
+                new PrefabDB(
+                    "Pickable_SurtlingCoreStand",
+                    true,
+                    false,
+                    HammerCategories.Furniture,
+                    nameof(CraftingStations.Forge),
+                    "Iron,2;SurtlingCore,1"
+                )
+            },
+            {
+                "Pickable_Tar",
+                new PrefabDB(
+                    "Pickable_Tar",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "Pickable_TarBig",
+                new PrefabDB(
+                    "Pickable_TarBig",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "Pickable_Thistle",
+                new PrefabDB(
+                    "Pickable_Thistle",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    "Thistle,5"
+                )
+            },
+            {
+                "Pickable_Tin",
+                new PrefabDB(
+                    "Pickable_Tin",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "Pickable_Turnip",
+                new PrefabDB(
+                    "Pickable_Turnip",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "piece_dvergr_pole",
+                new PrefabDB(
+                    "piece_dvergr_pole",
+                    true,
+                    false,
+                    HammerCategories.Building,
+                    nameof(CraftingStations.BlackForge),
+                    "YggdrasilWood,1"
+                )
+            },
+            {
+                "piece_dvergr_wood_door",
+                new PrefabDB(
+                    "piece_dvergr_wood_door",
+                    false,
+                    false,
+                    HammerCategories.Building,
+                    nameof(CraftingStations.BlackForge),
+                    "YggdrasilWood,16;IronNails,24"
+                )
+            },
+            {
+                "piece_dvergr_wood_wall",
+                new PrefabDB(
+                    "piece_dvergr_wood_wall",
+                    true,
+                    false,
+                    HammerCategories.Building,
+                    nameof(CraftingStations.BlackForge),
+                    "YggdrasilWood,5"
+                )
+            },
+            {
+                "PineTree",
+                new PrefabDB(
+                    "PineTree",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "Pinetree_01",
+                new PrefabDB(
+                    "Pinetree_01",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    "Wood,16;RoundLog,16"
+                )
+            },
+            {
+                "Pinetree_01_Stub",
+                new PrefabDB(
+                    "Pinetree_01_Stub",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "PineTree_log",
+                new PrefabDB(
+                    "PineTree_log",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "PineTree_log_half",
+                new PrefabDB(
+                    "PineTree_log_half",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "PineTree_log_halfOLD",
+                new PrefabDB(
+                    "PineTree_log_halfOLD",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "PineTree_logOLD",
+                new PrefabDB(
+                    "PineTree_logOLD",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "RaspberryBush",
+                new PrefabDB(
+                    "RaspberryBush",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    "Raspberry,5"
                 )
             },
             {
@@ -1049,14 +2889,124 @@ namespace MoreVanillaBuildPrefabs.Configs
                 )
             },
             {
-                "rock_mistlands2",
+                "rock1_mistlands",
                 new PrefabDB(
-                    "rock_mistlands2",
-                    true,
+                    "rock1_mistlands",
+                    false,
                     false,
                     HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
-                    "Stone,32"
+                    ""
+                )
+            },
+            {
+                "rock1_mountain",
+                new PrefabDB(
+                    "rock1_mountain",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "rock2_heath",
+                new PrefabDB(
+                    "rock2_heath",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "rock2_mountain",
+                new PrefabDB(
+                    "rock2_mountain",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "rock3_ice",
+                new PrefabDB(
+                    "rock3_ice",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "rock3_mountain",
+                new PrefabDB(
+                    "rock3_mountain",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "rock3_silver",
+                new PrefabDB(
+                    "rock3_silver",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "rock4_coast",
+                new PrefabDB(
+                    "rock4_coast",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "rock4_copper",
+                new PrefabDB(
+                    "rock4_copper",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "rock4_forest",
+                new PrefabDB(
+                    "rock4_forest",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "rock4_heath",
+                new PrefabDB(
+                    "rock4_heath",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
                 )
             },
             {
@@ -1090,604 +3040,6 @@ namespace MoreVanillaBuildPrefabs.Configs
                     HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
                     "Stone,75"
-                )
-            },
-
-            // CreatorShop Plants
-            {
-                "Birch1_aut",
-                new PrefabDB(
-                    "Birch1_aut",
-                    true,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    "BirchSeeds,1;FineWood,2"
-                )
-            },
-            {
-                "Birch2_aut",
-                new PrefabDB(
-                    "Birch2_aut",
-                    true,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    "BirchSeeds,1;FineWood,2"
-                )
-            },
-            {
-                "YggdrasilRoot",
-                new PrefabDB(
-                    "YggdrasilRoot",
-                    true,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    "YggdrasilWood,64;Sap,10"
-                )
-            },
-
-            // Disabled
-            {
-                "ancient_skull",
-                new PrefabDB(
-                    "ancient_skull",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    "TrophySkeleton,32"
-                )
-            },
-            {
-                "Beech_small2",
-                new PrefabDB(
-                    "Beech_small2",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    "Wood,1"
-                )
-            },
-            {
-                "Beech1",
-                new PrefabDB(
-                    "Beech1",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    "Wood,16"
-                )
-            },
-            {
-                "Birch1",
-                new PrefabDB(
-                    "Birch1",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    "FineWood,16"
-                )
-            },
-            {
-                "Birch2",
-                new PrefabDB(
-                    "Birch2",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    "FineWood,16"
-                )
-            },
-            {
-                "blackmarble_2x2x1",
-                new PrefabDB(
-                    "blackmarble_2x2x1",
-                    false,
-                    false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.Stonecutter),
-                    "BlackMarble,4"
-                )
-            },
-            {
-                "blackmarble_creep_4x1x1",
-                new PrefabDB(
-                    "blackmarble_creep_4x1x1",
-                    false,
-                    false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.None),
-                    "BlackMarble,4"
-                )
-            },
-            {
-                "blackmarble_creep_4x2x1",
-                new PrefabDB(
-                    "blackmarble_creep_4x2x1",
-                    false,
-                    false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.None),
-                    "BlackMarble,8"
-                )
-            },
-            {
-                "blackmarble_creep_slope_inverted_1x1x2",
-                new PrefabDB(
-                    "blackmarble_creep_slope_inverted_1x1x2",
-                    false,
-                    false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.None),
-                    "BlackMarble,2"
-                )
-            },
-            {
-                "blackmarble_creep_slope_inverted_2x2x1",
-                new PrefabDB(
-                    "blackmarble_creep_slope_inverted_2x2x1",
-                    false,
-                    false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.None),
-                    "BlackMarble,4"
-                )
-            },
-            {
-                "blackmarble_creep_stair",
-                new PrefabDB(
-                    "blackmarble_creep_stair",
-                    false,
-                    false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.None),
-                    "BlackMarble,8"
-                )
-            },
-            {
-                "caverock_ice_stalagmite",
-                new PrefabDB(
-                    "caverock_ice_stalagmite",
-                    false,
-                    false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.None),
-                    "Crystal,2"
-                )
-            },
-            {
-                "caverock_ice_stalagmite_broken",
-                new PrefabDB(
-                    "caverock_ice_stalagmite_broken",
-                    false,
-                    false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.None),
-                    "Crystal,4"
-                )
-            },
-            {
-                "caverock_ice_stalagtite",
-                new PrefabDB(
-                    "caverock_ice_stalagtite",
-                    false,
-                    false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.None),
-                    "Crystal,2"
-                )
-            },
-            {
-                "cliff_mistlands1",
-                new PrefabDB(
-                    "cliff_mistlands1",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    "Stone,350"
-                )
-            },
-            {
-                "cliff_mistlands1_creep",
-                new PrefabDB(
-                    "cliff_mistlands1_creep",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    "Stone,350"
-                )
-            },
-            {
-                "cliff_mistlands2",
-                new PrefabDB(
-                    "cliff_mistlands2",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    "Stone,175"
-                )
-            },
-            {
-                "CreepProp_egg_hanging01",
-                new PrefabDB(
-                    "CreepProp_egg_hanging01",
-                    false,
-                    false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.None),
-                    "YggdrasilWood,2"
-                )
-            },
-            {
-                "CreepProp_egg_hanging02",
-                new PrefabDB(
-                    "CreepProp_egg_hanging02",
-                    false,
-                    false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.None),
-                    "YggdrasilWood,2"
-                )
-            },
-            {
-                "CreepProp_entrance1",
-                new PrefabDB(
-                    "CreepProp_entrance1",
-                    false,
-                    false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.None),
-                    "YggdrasilWood,2"
-                )
-            },
-            {
-                "CreepProp_entrance2",
-                new PrefabDB(
-                    "CreepProp_entrance2",
-                    false,
-                    false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.None),
-                    "YggdrasilWood,2"
-                )
-            },
-            {
-                "CreepProp_hanging01",
-                new PrefabDB(
-                    "CreepProp_hanging01",
-                    false,
-                    false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.None),
-                    "YggdrasilWood,2"
-                )
-            },
-            {
-                "CreepProp_wall01",
-                new PrefabDB(
-                    "CreepProp_wall01",
-                    false,
-                    false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.None),
-                    "YggdrasilWood,2"
-                )
-            },
-            {
-                "dungeon_queen_door",
-                new PrefabDB(
-                    "dungeon_queen_door",
-                    false,
-                    false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.None),
-                    "BlackMarble,40;DvergrKeyFragment,4;Iron,12"
-                )
-            },
-            {
-                "dungeon_sunkencrypt_irongate",
-                new PrefabDB(
-                    "dungeon_sunkencrypt_irongate",
-                    false,
-                    false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.None),
-                    "Iron,4"
-                )
-            },
-            {
-                "dvergrprops_wood_stakewall",
-                new PrefabDB(
-                    "dvergrprops_wood_stakewall",
-                    false,
-                    false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.None),
-                    "YggdrasilWood,4"
-                )
-            },
-            {
-                "dvergrtown_creep_door",
-                new PrefabDB(
-                    "dvergrtown_creep_door",
-                    false,
-                    false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.None),
-                    "YggdrasilWood,4"
-                )
-            },
-            {
-                "dvergrtown_secretdoor",
-                new PrefabDB(
-                    "dvergrtown_secretdoor",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    "BlackMarble,12"
-                )
-            },
-            {
-                "dvergrtown_slidingdoor",
-                new PrefabDB(
-                    "dvergrtown_slidingdoor",
-                    false,
-                    false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.None),
-                    "BlackMarble,6"
-                )
-            },
-            {
-                "dvergrtown_wood_beam",
-                new PrefabDB(
-                    "dvergrtown_wood_beam",
-                    false,
-                    false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.BlackForge),
-                    "YggdrasilWood,4"
-                )
-            },
-            {
-                "dvergrtown_wood_crane",
-                new PrefabDB(
-                    "dvergrtown_wood_crane",
-                    false,
-                    false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.BlackForge),
-                    "YggdrasilWood,8;Chain,2;Iron,2"
-                )
-            },
-            {
-                "dvergrtown_wood_stake",
-                new PrefabDB(
-                    "dvergrtown_wood_stake",
-                    false,
-                    false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.BlackForge),
-                    "YggdrasilWood,1"
-                )
-            },
-            {
-                "dvergrtown_wood_stakewall",
-                new PrefabDB(
-                    "dvergrtown_wood_stakewall",
-                    false,
-                    false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.BlackForge),
-                    "YggdrasilWood,4"
-                )
-            },
-            {
-                "dvergrtown_wood_support",
-                new PrefabDB(
-                    "dvergrtown_wood_support",
-                    false,
-                    false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.BlackForge),
-                    "YggdrasilWood,10"
-                )
-            },
-            {
-                "dvergrtown_wood_wall01",
-                new PrefabDB(
-                    "dvergrtown_wood_wall01",
-                    false,
-                    false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.BlackForge),
-                    "YggdrasilWood,20"
-                )
-            },
-            {
-                "dvergrtown_wood_wall02",
-                new PrefabDB(
-                    "dvergrtown_wood_wall02",
-                    false,
-                    false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.BlackForge),
-                    "YggdrasilWood,12"
-                )
-            },
-            {
-                "dvergrtown_wood_wall03",
-                new PrefabDB(
-                    "dvergrtown_wood_wall03",
-                    false,
-                    false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.BlackForge),
-                    "YggdrasilWood,10;IronNails,6"
-                )
-            },
-            {
-                "FirTree",
-                new PrefabDB(
-                    "FirTree",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    "Wood,16"
-                )
-            },
-            {
-                "giant_arm",
-                new PrefabDB(
-                    "giant_arm",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    "BlackMarble,32"
-                )
-            },
-            {
-                "giant_helmet1",
-                new PrefabDB(
-                    "giant_helmet1",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    "Iron,32"
-                )
-            },
-            {
-                "giant_helmet2",
-                new PrefabDB(
-                    "giant_helmet2",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    "Iron,8"
-                )
-            },
-            {
-                "giant_ribs",
-                new PrefabDB(
-                    "giant_ribs",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    "BlackMarble,64"
-                )
-            },
-            {
-                "giant_skull",
-                new PrefabDB(
-                    "giant_skull",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    "BlackMarble,32"
-                )
-            },
-            {
-                "giant_sword1",
-                new PrefabDB(
-                    "giant_sword1",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    "Iron,16"
-                )
-            },
-            {
-                "giant_sword2",
-                new PrefabDB(
-                    "giant_sword2",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    "Iron,16"
-                )
-            },
-            {
-                "Greydwarf_Root",
-                new PrefabDB(
-                    "Greydwarf_Root",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    "Wood,2"
-                )
-            },
-            {
-                "HugeRoot1",
-                new PrefabDB(
-                    "HugeRoot1",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    "ElderBark,32"
-                )
-            },
-            {
-                "MountainKit_wood_gate",
-                new PrefabDB(
-                    "MountainKit_wood_gate",
-                    false,
-                    false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.None),
-                    "Wood,20;Bronze,4"
-                )
-            },
-            {
-                "Oak1",
-                new PrefabDB(
-                    "Oak1",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    "Wood,20;FineWood,20"
-                )
-            },
-            {
-                "piece_dvergr_wood_door",
-                new PrefabDB(
-                    "piece_dvergr_wood_door",
-                    false,
-                    false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.BlackForge),
-                    "YggdrasilWood,16;IronNails,24"
-                )
-            },
-            {
-                "Pinetree_01",
-                new PrefabDB(
-                    "Pinetree_01",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    "Wood,16;RoundLog,16"
                 )
             },
             {
@@ -1779,12 +3131,45 @@ namespace MoreVanillaBuildPrefabs.Configs
                 )
             },
             {
+                "rug_straw",
+                new PrefabDB(
+                    "rug_straw",
+                    true,
+                    false,
+                    HammerCategories.Furniture,
+                    nameof(CraftingStations.None),
+                    "Wood,2"
+                )
+            },
+            {
+                "SeekerEgg",
+                new PrefabDB(
+                    "SeekerEgg",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "SeekerEgg_alwayshatch",
+                new PrefabDB(
+                    "SeekerEgg_alwayshatch",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
                 "shipwreck_karve_bottomboards",
                 new PrefabDB(
                     "shipwreck_karve_bottomboards",
                     false,
                     false,
-                    HammerCategories.Furniture,
+                    HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
                     "FineWood,8"
                 )
@@ -1795,9 +3180,20 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "shipwreck_karve_bow",
                     false,
                     false,
-                    HammerCategories.Furniture,
+                    HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
                     "FineWood,16"
+                )
+            },
+            {
+                "shipwreck_karve_dragonhead",
+                new PrefabDB(
+                    "shipwreck_karve_dragonhead",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
                 )
             },
             {
@@ -1806,9 +3202,163 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "shipwreck_karve_stern",
                     false,
                     false,
-                    HammerCategories.Furniture,
+                    HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
                     "FineWood,16"
+                )
+            },
+            {
+                "shipwreck_karve_sternpost",
+                new PrefabDB(
+                    "shipwreck_karve_sternpost",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "ShootStump",
+                new PrefabDB(
+                    "ShootStump",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "shrub_2",
+                new PrefabDB(
+                    "shrub_2",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "shrub_2_heath",
+                new PrefabDB(
+                    "shrub_2_heath",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "sign_notext",
+                new PrefabDB(
+                    "sign_notext",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "silvervein",
+                new PrefabDB(
+                    "silvervein",
+                    true,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "Skull1",
+                new PrefabDB(
+                    "Skull1",
+                    true,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    "TrophySkeleton,1"
+                )
+            },
+            {
+                "Skull2",
+                new PrefabDB(
+                    "Skull2",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "StatueCorgi",
+                new PrefabDB(
+                    "StatueCorgi",
+                    true,
+                    false,
+                    HammerCategories.Furniture,
+                    nameof(CraftingStations.Stonecutter),
+                    "Stone,24"
+                )
+            },
+            {
+                "StatueDeer",
+                new PrefabDB(
+                    "StatueDeer",
+                    true,
+                    false,
+                    HammerCategories.Furniture,
+                    nameof(CraftingStations.Stonecutter),
+                    "Stone,24"
+                )
+            },
+            {
+                "StatueEvil",
+                new PrefabDB(
+                    "StatueEvil",
+                    true,
+                    false,
+                    HammerCategories.Furniture,
+                    nameof(CraftingStations.Stonecutter),
+                    "Stone,32"
+                )
+            },
+            {
+                "StatueHare",
+                new PrefabDB(
+                    "StatueHare",
+                    true,
+                    false,
+                    HammerCategories.Furniture,
+                    nameof(CraftingStations.Stonecutter),
+                    "Stone,24"
+                )
+            },
+            {
+                "StatueSeed",
+                new PrefabDB(
+                    "StatueSeed",
+                    true,
+                    false,
+                    HammerCategories.Furniture,
+                    nameof(CraftingStations.Stonecutter),
+                    "Stone,16"
+                )
+            },
+            {
+                "stone_floor",
+                new PrefabDB(
+                    "stone_floor",
+                    true,
+                    false,
+                    HammerCategories.Building,
+                    nameof(CraftingStations.Stonecutter),
+                    "Stone,16"
                 )
             },
             {
@@ -1823,6 +3373,39 @@ namespace MoreVanillaBuildPrefabs.Configs
                 )
             },
             {
+                "stubbe",
+                new PrefabDB(
+                    "stubbe",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "stubbe_spawner",
+                new PrefabDB(
+                    "stubbe_spawner",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "sunken_crypt_gate",
+                new PrefabDB(
+                    "sunken_crypt_gate",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
                 "SwampTree1",
                 new PrefabDB(
                     "SwampTree1",
@@ -1831,6 +3414,28 @@ namespace MoreVanillaBuildPrefabs.Configs
                     HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
                     "ElderBark,16"
+                )
+            },
+            {
+                "SwampTree1_log",
+                new PrefabDB(
+                    "SwampTree1_log",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "SwampTree1_Stub",
+                new PrefabDB(
+                    "SwampTree1_Stub",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
                 )
             },
             {
@@ -1867,14 +3472,223 @@ namespace MoreVanillaBuildPrefabs.Configs
                 )
             },
             {
-                "TreasureChest_mountaincave",
+                "tarlump1",
                 new PrefabDB(
-                    "TreasureChest_mountaincave",
+                    "tarlump1",
                     false,
                     false,
                     HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "trader_wagon_destructable",
+                new PrefabDB(
+                    "trader_wagon_destructable",
+                    true,
+                    false,
+                    HammerCategories.Furniture,
+                    nameof(CraftingStations.BlackForge),
+                    "FineWood,32"
+                )
+            },
+            {
+                "Trailership",
+                new PrefabDB(
+                    "Trailership",
+                    true,
+                    false,
+                    HammerCategories.Misc,
+                    nameof(CraftingStations.Workbench),
+                    "IronNails,100;DeerHide,10;FineWood,40;ElderBark,40"
+                )
+            },
+            {
+                "TreasureChest_dvergr_loose_stone",
+                new PrefabDB(
+                    "TreasureChest_dvergr_loose_stone",
+                    true,
+                    false,
+                    HammerCategories.Furniture,
+                    nameof(CraftingStations.Stonecutter),
+                    "BlackMarble,10"
+                )
+            },
+            {
+                "TreasureChest_dvergrtower",
+                new PrefabDB(
+                    "TreasureChest_dvergrtower",
+                    true,
+                    false,
+                    HammerCategories.Furniture,
+                    nameof(CraftingStations.BlackForge),
+                    "YggdrasilWood,10"
+                )
+            },
+            {
+                "TreasureChest_dvergrtown",
+                new PrefabDB(
+                    "TreasureChest_dvergrtown",
+                    true,
+                    false,
+                    HammerCategories.Furniture,
+                    nameof(CraftingStations.BlackForge),
+                    "YggdrasilWood,10"
+                )
+            },
+            {
+                "TreasureChest_fCrypt",
+                new PrefabDB(
+                    "TreasureChest_fCrypt",
+                    true,
+                    false,
+                    HammerCategories.Furniture,
+                    nameof(CraftingStations.Stonecutter),
+                    "Stone,10;RoundLog,1"
+                )
+            },
+            {
+                "TreasureChest_mountaincave",
+                new PrefabDB(
+                    "TreasureChest_mountaincave",
+                    true,
+                    false,
+                    HammerCategories.Furniture,
+                    nameof(CraftingStations.Stonecutter),
                     "Stone,10;Crystal,1"
+                )
+            },
+            {
+                "TreasureChest_sunkencrypt",
+                new PrefabDB(
+                    "TreasureChest_sunkencrypt",
+                    true,
+                    false,
+                    HammerCategories.Furniture,
+                    nameof(CraftingStations.Stonecutter),
+                    "Stone,10;ElderBark,1"
+                )
+            },
+            {
+                "TreasureChest_trollcave",
+                new PrefabDB(
+                    "TreasureChest_trollcave",
+                    true,
+                    false,
+                    HammerCategories.Furniture,
+                    nameof(CraftingStations.Stonecutter),
+                    "Stone,10;RoundLog,1"
+                )
+            },
+            {
+                "tunnel_web",
+                new PrefabDB(
+                    "tunnel_web",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "turf_roof",
+                new PrefabDB(
+                    "turf_roof",
+                    true,
+                    false,
+                    HammerCategories.Building,
+                    nameof(CraftingStations.Workbench),
+                    "Wood,2"
+                )
+            },
+            {
+                "turf_roof_top",
+                new PrefabDB(
+                    "turf_roof_top",
+                    true,
+                    false,
+                    HammerCategories.Building,
+                    nameof(CraftingStations.Workbench),
+                    "Wood,2"
+                )
+            },
+            {
+                "vertical_web",
+                new PrefabDB(
+                    "vertical_web",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "vines",
+                new PrefabDB(
+                    "vines",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "widestone",
+                new PrefabDB(
+                    "widestone",
+                    true,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    "Stone,32"
+                )
+            },
+            {
+                "wood_ledge",
+                new PrefabDB(
+                    "wood_ledge",
+                    true,
+                    false,
+                    HammerCategories.Building,
+                    nameof(CraftingStations.Workbench),
+                    "Wood,1"
+                )
+            },
+            {
+                "yggashoot_log",
+                new PrefabDB(
+                    "yggashoot_log",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "yggashoot_log_half",
+                new PrefabDB(
+                    "yggashoot_log_half",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "YggaShoot_small1",
+                new PrefabDB(
+                    "YggaShoot_small1",
+                    false,
+                    false,
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
                 )
             },
             {
@@ -1911,80 +3725,14 @@ namespace MoreVanillaBuildPrefabs.Configs
                 )
             },
             {
-                "CastleKit_braided_box01",
+                "YggdrasilRoot",
                 new PrefabDB(
-                    "CastleKit_braided_box01",
+                    "YggdrasilRoot",
                     true,
                     false,
-                    HammerCategories.Misc,
-                    nameof(CraftingStations.Workbench),
-                    "Wood,2"
-                )
-            },
-            {
-                "Trailership",
-                new PrefabDB(
-                    "Trailership",
-                    true,
-                    false,
-                    HammerCategories.Misc,
-                    nameof(CraftingStations.Workbench),
-                    "IronNails,100;DeerHide,10;FineWood,40;ElderBark,40"
-                )
-            },
-            {
-                "MountainKit_brazier",
-                new PrefabDB(
-                    "MountainKit_brazier",
-                    true,
-                    false,
-                    HammerCategories.Furniture,
-                    nameof(CraftingStations.Forge),
-                    "Bronze,5;Coal,2;BlackCore,1;WolfClaw,3"
-                )
-            },
-            {
-                "MountainKit_brazier_blue",
-                new PrefabDB(
-                    "MountainKit_brazier_blue",
-                    true,
-                    false,
-                    HammerCategories.Furniture,
-                    nameof(CraftingStations.Forge),
-                    "Bronze,5;GreydwarfEye,2;BlackCore,1;WolfClaw,3"
-                )
-            },
-            {
-                "CastleKit_groundtorch",
-                new PrefabDB(
-                    "CastleKit_groundtorch",
-                    true,
-                    false,
-                    HammerCategories.Furniture,
-                    nameof(CraftingStations.Forge),
-                    "Iron,2;Resin,2;BlackCore,1"
-                )
-            },
-            {
-                "CastleKit_groundtorch_blue",
-                new PrefabDB(
-                    "CastleKit_groundtorch_blue",
-                    true,
-                    false,
-                    HammerCategories.Furniture,
-                    nameof(CraftingStations.Forge),
-                    "Iron,2;GreydwarfEye,2;BlackCore,1"
-                )
-            },
-            {
-                "CastleKit_groundtorch_green",
-                new PrefabDB(
-                    "CastleKit_groundtorch_green",
-                    true,
-                    false,
-                    HammerCategories.Furniture,
-                    nameof(CraftingStations.Forge),
-                    "Iron,2;Guck,2;BlackCore,1"
+                    HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    "YggdrasilWood,64;Sap,10"
                 )
             },
         };
