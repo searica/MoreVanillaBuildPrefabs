@@ -19,7 +19,7 @@ namespace MoreVanillaBuildPrefabs.Patches
         {
             if (PluginConfig.IsVerbosityMedium)
             {
-                Log.LogInfo("ZNetStartPostfix()");
+                Log.LogInfo("Checking world modifiers");
             }
 
             if (SceneManager.GetActiveScene() == null)
