@@ -20,10 +20,10 @@ Changes made to the configuration settings will be reflected in-game immediately
 
 ### Global Section Configuration:
 
-**EnableMod** [Synced with Server]
-- Globally enable or disable this mod (restart required).
+**CreativeMode** [Synced with Server, Requires Restart]
+- Setting to toggle whether environmental prefabs like mist volumes that are not suitable for general play and building, are enabled. Requires a game/server restart to take effect. These prefabs are also more likely to have bugs like being unable to remove them after placing them and are a lower priority for me to patch. That said, if you have access to devcommands and want to build new environmental locations or new dungeons then you probably want to enable CreativeMode.
   - Acceptable values: False, True
-  - Default value: true
+  - Default value: false
 
 **CreatorShopAdminOnly** [Synced with Server]
 - Set to true to restrict placement and deconstruction of CreatorShop pieces to players with Admin status.
@@ -147,7 +147,6 @@ If multiple player's have this mod, the same restrictions still apply and they w
 - Patch and enable more prefabs by default.
     - Add default build costs for treasure chests and add snap points.
 - Automatically add missing sfx and vfx for placement and deconstruction of prefabs based on the required crafting station.
-- Fix player built barrels dropping random loot when destroyed via damage (the fixes I have worked for every piece except barrels for some reason 🙃).
 - Learn how localization works and add localization options to the mod.
 
 

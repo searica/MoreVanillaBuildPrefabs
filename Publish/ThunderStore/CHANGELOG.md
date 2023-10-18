@@ -67,7 +67,7 @@
 						<li>Switched back to custom methods to add pieces as removing pieces added by Jotunn on log out led to unintended behaviour.</li>
 						<li>Slightly reduced load times.</li>
 						<li>Patched placement of treasure chests so they no longer contain random loot (world-generated treasure chests are unaffected).</li>
-						<li>Removed treasure chests that were visual duplicates of each other.</li>
+						<li>Removed treasure chests that were Duplicates of each other.</li>
 					</ul>
 				</td>
 			</tr>
