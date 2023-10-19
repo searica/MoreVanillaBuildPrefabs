@@ -8,6 +8,16 @@
 			<th align="center">Notes</th>
 		</tr>
 		<tr>
+			<td align="center">0.4.2</td>
+			<td align="left">
+				<ul>
+					<li>Fixed bug where deconstructing player-built pieces with world modifiers set to turn off build costs would cause world-generated destruction drops to occur.</li>
+					<li>Player-build barrels no longer drop random loot when destroyed. They also do not return the resources used to build them when destroyed (they still return build resources if deconstructed though).</li>
+					<li>Implemented a CreativeMode configuration option (see README for details).</li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
 			<td align="center">0.4.1</td>
 			<td align="left">
 				<ul>
@@ -21,7 +31,9 @@
 			<td align="center">0.4.0</td>
 			<td align="left">
 				<ul>
-					<li><b>Massive update</b>, I basically re-wrote the mod to allow it to dynamically respond to configuration setting changes while in-game.</li>
+					<li>
+						<b>Massive update</b>, I basically re-wrote the mod to allow it to dynamically respond to configuration setting changes while in-game.
+					</li>
 					<li>Switched to using Jotunn's server syncing features instead of ServerSync.</li>
 					<li>Removed Locking Configuration setting. If you install the mod on the server it will now always sync data to clients.</li>
 					<li>Change `VerboseMode` to `Verbosity`. There are now three logging levels you can select from to output more or less information. This should make debugging easier when issues are reported.</li>

@@ -5,7 +5,7 @@ MoreVanillaBuildPrefabs is a Valheim mod to make all vanilla prefabs buildable w
 Because all the added build pieces are pre-existing vanilla prefabs, any pieces you build with this mod will persist in your world even if you uninstall the mod. This means that pieces you build on a server will also be visible for players without the mod and any builds using the pieces from this mod will load for players without the mod.
 
 ## Instructions
-If you are using a mod manager for Thunderstore simply install the mod from there and skip to step 3 below. If you are not using a mod manager then, you need a modded instance of Valheim (BepInEx) and the JÃ¶tunn plugin installed.
+If you are using a mod manager for Thunderstore simply install the mod from there and skip to step 3 below. If you are not using a mod manager then, you need a modded instance of Valheim (BepInEx) and the Jötunn plugin installed.
 
 1. Download the MoreVanillaBuildPrefabs.dll from the Publish/Thunderstore directory.
 2. Place the MoreVanillaBuildPrefabs.dll into your BepInEx\plugins folder
@@ -20,10 +20,10 @@ Changes made to the configuration settings will be reflected in-game immediately
 
 ### Global Section Configuration:
 
-**EnableMod** [Synced with Server]
-- Globally enable or disable this mod (restart required).
+**CreativeMode** [Synced with Server, Requires Restart]
+- Setting to toggle whether environmental prefabs like mist volumes that are not suitable for general play and building, are enabled. Requires a game/server restart to take effect. These prefabs are also more likely to have bugs like being unable to remove them after placing them and are a lower priority for me to patch. That said, if you have access to devcommands and want to build new environmental locations or new dungeons then you probably want to enable CreativeMode.
   - Acceptable values: False, True
-  - Default value: true
+  - Default value: false
 
 **CreatorShopAdminOnly** [Synced with Server]
 - Set to true to restrict placement and deconstruction of CreatorShop pieces to players with Admin status.
@@ -136,7 +136,7 @@ If multiple player's have this mod, the same restrictions still apply and they w
 ## Known Issues
 **Custom Armor Stand Clipping**: Armor placed on the Male Armor Stand and Female Armor Stand prefabs has clipping issues causing parts of the armor to not be displayed. I have not been able to fix this as of yet. Feel free to reach out if you know things about meshing and you have ideas for a solution.
 
-**Piece Icons**: Variable lighting between icons for custom pieces where some appear much darker than others. A fix has been implemented, but icons are cached by JÃ¶tunn so to fix the issue you need to do the following:
+**Piece Icons**: Variable lighting between icons for custom pieces where some appear much darker than others. A fix has been implemented, but icons are cached by Jötunn so to fix the issue you need to do the following:
 - Go to this directory: %userprofile%\appdata\LocalLow\IronGate\Valheim\Jotunn\CachedIcons
 - Delete all the pngs in that directory.
 - Restart the game and the mod should hopefully regenerate the icons correctly.
@@ -147,7 +147,6 @@ If multiple player's have this mod, the same restrictions still apply and they w
 - Patch and enable more prefabs by default.
     - Add default build costs for treasure chests and add snap points.
 - Automatically add missing sfx and vfx for placement and deconstruction of prefabs based on the required crafting station.
-- Fix player built barrels dropping random loot when destroyed via damage (the fixes I have worked for every piece except barrels for some reason ðŸ™ƒ).
 - Learn how localization works and add localization options to the mod.
 
 
@@ -264,7 +263,7 @@ Github: https://github.com/searica/MoreVanillaBuildPrefabs
 My mods will always be free to use but if you feel like saying thanks you can tip/donate here: https://ko-fi.com/searica
 
 ### Contributions
-If you would like to provide suggestions, make feature requests, or reports bugs and compatibility issues you can either open an issue on the Github repository or tag me (@searica) with a message on the [JÃ¶tunn discord](https://discord.gg/DdUt6g7gyA) or the [Odin Plus discord](https://discord.gg/mbkPcvu9ax).
+If you would like to provide suggestions, make feature requests, or reports bugs and compatibility issues you can either open an issue on the Github repository or tag me (@searica) with a message on the [Jötunn discord](https://discord.gg/DdUt6g7gyA) or the [Odin Plus discord](https://discord.gg/mbkPcvu9ax).
 
 Over time I will slowly patch more prefabs and hopefully come up with a more generalizable method of patching them, but if you'd really like a specific prefab to work better then let me know via one of the methods above. I'm a grad student and have a lot of personal responsibilities on top of that so I can't promise I will always respond quickly, but I do intend to maintain and improve the mod in my free time.
 
@@ -272,12 +271,12 @@ Over time I will slowly patch more prefabs and hopefully come up with a more gen
 This mod was inspired by MoreVanillaBuilds by Galathil and PotteryBarn by ComfyMods.
 
 #### Development Credits
-- Huge shoutout and thanks to the developers of JÃ¶tunn for all their work making the library and to Margmas specifically for all their help and advice.
+- Huge shoutout and thanks to the developers of Jötunn for all their work making the library and to Margmas specifically for all their help and advice.
 - Thanks to Advize for the advice and examples for re-writing the mod to respond to configuration settings changes while in-game.
 - Thanks to Wackymole for the help figuring out when to hook the game and resolving server sync issues.
 - Thanks to redseiko for the advice and pointing me to resources to learn more about Unity and also for making PotteryBarn.
 - Thanks to probablykory for the advice and examples on optimizing how mods respond to configuration settings changes.
-- Thanks to OrianaVenture for the example of using JÃ¶tunn's server sync features.
+- Thanks to OrianaVenture for the example of using Jötunn's server sync features.
 - Thanks to Jules and MarcoPogo for their help with figuring out a solution for compatiability with PlanBuild.
 
 #### Community Credits
@@ -288,6 +287,7 @@ This mod was inspired by MoreVanillaBuilds by Galathil and PotteryBarn by ComfyM
 If you like this mod you might like some of my other ones.
 
 #### Building Mods
+<!--- [MoreVanillaBuildPrefabs](https://valheim.thunderstore.io/package/Searica/More_Vanilla_Build_Prefabs/)-->
 - [Extra Snap Points Made Easy](https://valheim.thunderstore.io/package/Searica/Extra_Snap_Points_Made_Easy/)
 
 
