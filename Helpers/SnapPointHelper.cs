@@ -44,15 +44,15 @@ namespace MoreVanillaBuildPrefabs.Helpers
         /// <summary>
         ///     Adds snap points for the game object to the corners of the specified mesh.
         /// </summary>
-        /// <param name="target"></param>
+        /// <param name="gameObject"></param>
         /// <param name="meshName"></param>
         internal static void AddSnapPointsToBoxColliderCorners(
-            GameObject target,
+            GameObject gameObject,
             BoxCollider boxCollider,
             bool fixPiece = false
         )
         {
-            if (target == null || boxCollider == null) return;
+            if (gameObject == null || boxCollider == null) return;
 
             List<Vector3> pts = new();
             var extents = boxCollider.size / 2;
@@ -60,21 +60,21 @@ namespace MoreVanillaBuildPrefabs.Helpers
             {
                 pts.Add(boxCollider.center + Vector3.Scale(corner, extents));
             }
-            AddSnapPoints(target, pts, fixPiece);
+            AddSnapPoints(gameObject, pts, fixPiece);
         }
 
         /// <summary>
         ///     Adds snap points for the game object to the corners of the specified mesh.
         /// </summary>
-        /// <param name="target"></param>
+        /// <param name="gameObject"></param>
         /// <param name="meshName"></param>
         internal static void AddSnapPointsToMeshCorners(
-            GameObject target,
+            GameObject gameObject,
             string meshName,
             bool fixPiece = false
         )
         {
-            var mesh = target.GetMesh(meshName);
+            var mesh = gameObject.GetMesh(meshName);
 
             if (mesh == null) return;
 
@@ -84,17 +84,17 @@ namespace MoreVanillaBuildPrefabs.Helpers
             {
                 pts.Add(bounds.center + Vector3.Scale(corner, bounds.extents));
             }
-            AddSnapPoints(target, pts, fixPiece);
+            AddSnapPoints(gameObject, pts, fixPiece);
         }
 
         /// <summary>
         ///     Adds a snap point to the local center of the game object's transform.
         /// </summary>
-        /// <param name="target"></param>
-        internal static void AddSnapPointToCenter(GameObject target)
+        /// <param name="gameObject"></param>
+        internal static void AddSnapPointToCenter(GameObject gameObject)
         {
             AddSnapPoints(
-                target,
+                gameObject,
                 new Vector3[]
                 {
                     new Vector3(0.0f, 0.0f, 0.0f),
@@ -103,7 +103,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
         }
 
         internal static void AddSnapPoints(
-            GameObject target,
+            GameObject gameObject,
             IEnumerable<Vector3> points,
             bool fixPiece = false,
             bool fixZClipping = false
@@ -111,7 +111,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
         {
             if (fixPiece)
             {
-                FixPiece(target);
+                FixPiece(gameObject);
             }
 
             float z = 0f;
@@ -126,7 +126,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
                     z += 0.0001f;
                 }
 
-                CreateSnapPoint(pos, target.transform);
+                CreateSnapPoint(pos, gameObject.transform);
             }
         }
 
@@ -139,9 +139,9 @@ namespace MoreVanillaBuildPrefabs.Helpers
             snappoint.SetActive(false);
         }
 
-        internal static void FixPiece(GameObject target)
+        internal static void FixPiece(GameObject gameObject)
         {
-            foreach (Collider collider in target.GetComponentsInChildren<Collider>())
+            foreach (Collider collider in gameObject.GetComponentsInChildren<Collider>())
             {
                 collider.gameObject.layer = LayerMask.NameToLayer("piece");
             }
