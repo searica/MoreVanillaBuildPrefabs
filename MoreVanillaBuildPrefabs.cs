@@ -17,7 +17,7 @@ namespace MoreVanillaBuildPrefabs
     [BepInPlugin(PluginGuid, PluginName, PluginVersion)]
     [BepInDependency(Jotunn.Main.ModGuid, Jotunn.Main.Version)]
     [BepInDependency(ModCompat.PlanBuildGUID, BepInDependency.DependencyFlags.SoftDependency)]
-    [NetworkCompatibility(CompatibilityLevel.VersionCheckOnly, VersionStrictness.Patch)]
+    [NetworkCompatibility(CompatibilityLevel.ServerMustHaveMod, VersionStrictness.Patch)]
     public class MoreVanillaBuildPrefabs : BaseUnityPlugin
     {
         public const string PluginName = "MoreVanillaBuildPrefabs";
@@ -260,7 +260,9 @@ namespace MoreVanillaBuildPrefabs
             List<Piece> pieces = new();
             foreach (var pieceDB in PieceRefs.Values)
             {
-                pieces.Add(CreatePiece(pieceDB));
+                var piece = CreatePiece(pieceDB);
+                SfxHelper.FixPlacementSfx(piece);
+                pieces.Add(piece);
             }
         }
 
