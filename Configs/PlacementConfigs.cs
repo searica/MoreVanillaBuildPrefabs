@@ -49,7 +49,9 @@ namespace MoreVanillaBuildPrefabs.Configs
         {
             "blackmarble_post01",
             "dverger_demister",
+            "dverger_demister_broken",
             "dverger_demister_large",
+            "dverger_demister_ruins",
             "dvergrprops_hooknchain",
             "barrell",
             "MountainKit_brazier_blue",
