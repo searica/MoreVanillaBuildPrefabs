@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using MoreVanillaBuildPrefabs.Logging;
 
 namespace MoreVanillaBuildPrefabs.Helpers
 {
@@ -58,6 +59,22 @@ namespace MoreVanillaBuildPrefabs.Helpers
                         }
                     }
 
+                    // fix sail
+                    //var sailFull = prefab?.transform?.Find("ship")
+                    //    ?.transform?.Find("visual")
+                    //    ?.transform?.Find("Mast")
+                    //    ?.transform?.Find("Sail")
+                    //    ?.transform?.Find("sail_full").gameObject;
+                    //var skinRender = sailFull?.GetComponent<SkinnedMeshRenderer>();
+                    //if (skinRender == null) { break; }
+
+                    //var localBounds = skinRender.localBounds;
+                    //localBounds.center = new Vector3(0f, 0.4849242f, 0f);
+                    //localBounds.extents = new Vector3(1.065068e-06f, 0.289977f, 4.467221f);
+                    //skinRender.localBounds = localBounds;
+                    //Log.LogInfo(skinRender.localBounds.center);
+                    //Log.LogInfo(skinRender.localBounds.extents);
+
                     // Fix sail skinned mesh renderer
                     //var longShipSailFull = longShip?.transform?.Find("ship")
                     //    ?.transform?.Find("visual")
@@ -113,8 +130,6 @@ namespace MoreVanillaBuildPrefabs.Helpers
                 case "TreasureChest_trollcave":
                     SnapPointHelper.AddSnapPointsToMeshCorners(prefab, "stonechest", true);
                     break;
-                //case "TreasureChest_dvergr_loose_stone":
-                //    break;
                 //case "TreasureChest_dvergrtown":
                 //    break;
                 //case "TreasureChest_dvergrtower":
@@ -549,6 +564,16 @@ namespace MoreVanillaBuildPrefabs.Helpers
                             new Vector3(-2, 1.1f, -0.25f)
                         }
                     );
+                    break;
+
+                case "dvergrprops_shelf":
+                case "dvergrprops_table":
+                    var wearNTear = prefab.GetComponent<WearNTear>();
+                    if (wearNTear != null)
+                    {
+                        // allow these pieces to support other pieces
+                        wearNTear.m_supports = true;
+                    }
                     break;
 
                 case "dvergrtown_wood_beam":
