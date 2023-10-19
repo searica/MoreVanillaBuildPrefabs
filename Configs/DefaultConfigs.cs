@@ -70,7 +70,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Misc,
                     nameof(CraftingStations.Workbench),
-                    "Wood,2"
+                    "FineWood,2"
                 )
             },
             {
