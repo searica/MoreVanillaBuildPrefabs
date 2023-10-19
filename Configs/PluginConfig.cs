@@ -264,7 +264,10 @@ namespace MoreVanillaBuildPrefabs.Configs
             try
             {
                 Log.LogInfo("Reloading config file");
+                var saveOnConfig = configFile.SaveOnConfigSet;
+                configFile.SaveOnConfigSet = false;
                 configFile.Reload();
+                configFile.SaveOnConfigSet = saveOnConfig;
             }
             catch
             {
