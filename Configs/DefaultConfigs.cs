@@ -12,6 +12,7 @@ namespace MoreVanillaBuildPrefabs.Configs
      * SunkenKit_int_wall_2x4
      * SunkenKit_int_wall_4x4
      * SunkenKit_slope1x2
+     * SunkenKit_int_stair
      * SunkenKit_stair_corner_left
      */
 
@@ -520,7 +521,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
-                    "Blueberry,5"
+                    "Blueberries,5"
                 )
             },
             {

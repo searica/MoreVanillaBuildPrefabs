@@ -2,6 +2,8 @@
 using MoreVanillaBuildPrefabs.Configs;
 using MoreVanillaBuildPrefabs.Helpers;
 using MoreVanillaBuildPrefabs.Logging;
+using System.Linq;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace MoreVanillaBuildPrefabs.Patches
@@ -27,6 +29,12 @@ namespace MoreVanillaBuildPrefabs.Patches
             {
                 return;
             }
+
+            // TODO: try to resolve getting some interior prefabs
+            //var stair = Resources.FindObjectsOfTypeAll<GameObject>().Where(go => go.name == "SunkenKit_stair_corner_left").First();
+
+            //Log.LogInfo($"{stair == null}");
+            //Log.LogInfo($"{stair.name}");
 
             // If loading into game world and prefabs have not been added
             if (SceneManager.GetActiveScene().name == "main")
