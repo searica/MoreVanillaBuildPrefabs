@@ -1,4 +1,5 @@
-﻿using MoreVanillaBuildPrefabs.Helpers;
+﻿using Jotunn.Configs;
+using MoreVanillaBuildPrefabs.Helpers;
 using MoreVanillaBuildPrefabs.Logging;
 using System;
 using System.Collections.Generic;
@@ -23,6 +24,63 @@ namespace MoreVanillaBuildPrefabs
                 return pickable.m_amount;
             }
             return pickable.m_dontScale ? pickable.m_amount : Mathf.Max(pickable.m_minAmountScaled, Game.instance.ScaleDrops(pickable.m_itemPrefab, pickable.m_amount));
+        }
+    }
+
+    internal static class PieceExtensions
+    {
+        internal static void FixPlacementSfx(this Piece piece)
+        {
+            // get effects
+            var effects = piece?.m_placeEffect?.m_effectPrefabs;
+            if (effects == null)
+            {
+                piece.m_placeEffect = new EffectList();
+            }
+
+            // check for sfx and enable them
+            foreach (var effect in effects)
+            {
+                if (effect.m_prefab != null
+                    && effect.m_prefab.name.Contains("sfx"))
+                {
+                    if (!effect.m_enabled)
+                    {
+                        effect.m_enabled = true;
+                    }
+                    return;
+                }
+            }
+
+            // assign sfx based on crafting station
+            var craftingStation = piece?.m_craftingStation;
+            Log.LogInfo($"Crafting Station name {craftingStation?.m_name}");
+            if (craftingStation?.m_name == CraftingStations.Stonecutter)
+            {
+            }
+        }
+
+        internal static bool HasPlacementSfx(this Piece piece)
+        {
+            var effects = piece?.m_placeEffect?.m_effectPrefabs;
+
+            if (effects == null)
+            {
+                piece.m_placeEffect = new EffectList();
+            }
+
+            foreach (var effect in effects)
+            {
+                if (
+                    effect.m_prefab != null
+                    && effect.m_prefab.name.Contains("sfx")
+                    && effect.m_enabled
+                )
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 
