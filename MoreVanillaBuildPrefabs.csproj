@@ -58,7 +58,6 @@
 
 	<ItemGroup>
 		<Content Include="LICENSE" />
-		<Content Include="README.md" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -90,8 +89,6 @@
 			<HintPath>Libraries\PlanBuild\PlanBuild.dll</HintPath>
 		</Reference>
 	</ItemGroup>
-
-
 
 	<Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
 		<PropertyGroup>
