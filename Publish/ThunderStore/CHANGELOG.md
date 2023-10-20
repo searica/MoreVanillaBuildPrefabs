@@ -11,9 +11,13 @@
 			<td align="center">0.4.2</td>
 			<td align="left">
 				<ul>
-					<li>Fixed bug where deconstructing player-built pieces with world modifiers set to turn off build costs would cause world-generated destruction drops to occur.</li>
-					<li>Player-build barrels no longer drop random loot when destroyed. They also do not return the resources used to build them when destroyed (they still return build resources if deconstructed though).</li>
+					<li>Changed mod so that if a client has the mod, then the server they are connecting to must also have the mod (see README for details).</li>
 					<li>Implemented a CreativeMode configuration option (see README for details).</li>
+					<li>All pieces that are missing placement sound effects now have default sfx assigned based on the required crafting staion. (Missing deconstruction sounds effects are not fixed though as that requires adding WearNTear or Destructable components to pieces).</li>
+					<li>Fixed bug where deconstructing player-built pieces with world modifiers set to turn off build costs would cause world-generated destruction drops to occur.</li>
+					<li>Player-buil5 barrels no longer drop random loot when destroyed. They still do not return the resources used to build them when destroyed (they do return build resources if deconstructed though).</li>
+					<li>Patched Dvergr furniture items so they provide support and you can now place item stands on them.</li>
+					<li>Patched some more prefabs and improved placement for others, as usual each update.</li>
 				</ul>
 			</td>
 		</tr>
