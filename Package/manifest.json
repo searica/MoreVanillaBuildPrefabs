@@ -6,7 +6,7 @@
   "description": "Adds configurable vanilla build prefabs to hammer in survival mode with a default configuration for ease of use. Now with ServerSync!",
   "dependencies": [
     "denikson-BepInExPack_Valheim-5.4.2200",
-    "ValheimModding-Jotunn-2.14.4",
+    "ValheimModding-Jotunn-2.14.5",
     "ComfyMods-SearsCatalog-1.3.0"
   ]
 }
