@@ -23,7 +23,7 @@ namespace MoreVanillaBuildPrefabs
         public const string PluginName = "MoreVanillaBuildPrefabs";
         internal const string Author = "Searica";
         public const string PluginGuid = $"{Author}.Valheim.{PluginName}";
-        public const string PluginVersion = "0.4.1";
+        public const string PluginVersion = "0.4.2";
 
         private Harmony _harmony;
 
@@ -190,8 +190,17 @@ namespace MoreVanillaBuildPrefabs
 
             foreach (var prefab in PrefabRefs.Values)
             {
-                var clone = prefab.DeepCopy();
-                DefaultPieceClones.Add(prefab.name, clone.GetComponent<Piece>());
+                // Old approach
+                //var clone = prefab.DeepCopy();
+                //DefaultPieceClones.Add(prefab.name, clone.GetComponent<Piece>());
+
+                // This should be a bit faster and use less memory
+                // Chance of NRE due to parent GameObject getting dereferenced?
+                // I think the old approach had that problem too though
+                var go = new GameObject();
+                var pieceClone = go.AddComponent<Piece>();
+                pieceClone.CopyFields(prefab.GetComponent<Piece>());
+                DefaultPieceClones.Add(prefab.name, pieceClone);
             }
         }
 
