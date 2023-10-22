@@ -6,7 +6,7 @@ namespace MoreVanillaBuildPrefabs.Patches
     internal static class EffectListPatch
     {
         /// <summary>
-        ///     Patch to fix null error when using ArmorStand_Male or ArmorStand_Female.
+        ///     Patch to fix null reference error when using ArmorStand_Male or ArmorStand_Female.
         /// </summary>
         /// <param name="__instance"></param>
         [HarmonyPrefix]

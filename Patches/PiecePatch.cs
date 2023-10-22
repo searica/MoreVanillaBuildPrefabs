@@ -40,8 +40,7 @@ namespace MoreVanillaBuildPrefabs
         /// <summary>
         ///     Transpiler to set dropped resources to default resources
         ///     for any piece altered by this mod if the piece was not built
-        ///     by a player. Also indicates if drops from DropOnDestroyed should
-        ///     be disabled via setting DisableDesctructionDrops = true;
+        ///     by a player. 
         /// </summary>
         /// <param name="__instance"></param>
         /// <param name="__state"></param>
@@ -78,12 +77,7 @@ namespace MoreVanillaBuildPrefabs
         /// <summary>
         ///     Delegate that sets dropped resources to default resources
         ///     for any piece altered by this mod if the piece was not built
-        ///     by a player. Also indicates if drops from DropOnDestroyed should
-        ///     be disabled via setting DisableDesctructionDrops = true;
-        ///
-        ///     Disabling destruction drops for player built pieces to prevents
-        ///     things like player built dvergerprops_crate dropping dvergr
-        ///     extractors even when they're not a build requirement.
+        ///     by a player. 
         /// </summary>
         /// <param name="__instance"></param>
         /// <param name="__state"></param>
