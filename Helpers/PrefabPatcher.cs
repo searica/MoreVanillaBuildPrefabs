@@ -396,22 +396,6 @@ namespace MoreVanillaBuildPrefabs.Helpers
                     break;
 
                 case "dvergrprops_wood_beam":
-                    /*
-                    SnapPointHelper.AddSnapPoints(
-                        prefab,
-                        new Vector3[] {
-                            new Vector3(3, 0.45f, 0.45f),
-                            new Vector3(3, 0.45f, -0.42f),
-                            new Vector3(3, -0.45f, -0.42f),
-                            new Vector3(3, -0.45f, -0.45f),
-
-                            new Vector3(-3, 0.45f, 0.45f),
-                            new Vector3(-3, 0.45f, -0.42f),
-                            new Vector3(-3, -0.45f, -0.42f),
-                            new Vector3(-3, -0.45f, -0.45f),
-                        }
-                    );
-                    */
                     SnapPointHelper.AddSnapPoints(
                         prefab,
                         new Vector3[] {
@@ -422,21 +406,6 @@ namespace MoreVanillaBuildPrefabs.Helpers
                     break;
 
                 case "dvergrprops_wood_pole":
-                    /*
-                    SnapPointHelper.AddSnapPoints(
-                        prefab,
-                        new Vector3[] {
-                            new Vector3(0.45f, 2, 0.45f),
-                            new Vector3(-0.45f, 2, 0.45f),
-                            new Vector3(0.45f, 2, -0.45f),
-                            new Vector3(-0.45f, 2, -0.45f),
-                            new Vector3(0.45f, -2, 0.45f),
-                            new Vector3(-0.45f, -2, 0.45f),
-                            new Vector3(0.45f, -2, -0.45f),
-                            new Vector3(-0.45f, -2, -0.45f),
-                        }
-                    );
-                    */
                     SnapPointHelper.AddSnapPoints(
                         prefab,
                         new Vector3[] {
@@ -466,25 +435,6 @@ namespace MoreVanillaBuildPrefabs.Helpers
                     break;
 
                 case "dvergrtown_arch":
-                    /*
-                    SnapPointHelper.AddSnapPoints(
-                        prefab,
-                        new Vector3[] {
-                            new Vector3(1, 0, -0.5f),
-                            new Vector3(1, 0, 0.5f),
-                            new Vector3(1, 1, -0.5f),
-                            new Vector3(1, 1, 0.5f),
-
-                            new Vector3(-1, 1, -0.5f),
-                            new Vector3(-1, 1, 0.5f),
-
-                            new Vector3(-1, -1, 0.5f),
-                            new Vector3(-1, -1, -0.5f),
-                            new Vector3(0, -1, 0.5f),
-                            new Vector3(0, -1, -0.5f),
-                        }
-                    );
-                    */
                     SnapPointHelper.AddSnapPoints(
                         prefab,
                         new Vector3[] {
@@ -494,22 +444,6 @@ namespace MoreVanillaBuildPrefabs.Helpers
                     break;
 
                 case "dvergrtown_secretdoor":
-                    /*
-                     SnapPointHelper.AddSnapPoints(
-                        prefab,
-                        new Vector3[] {
-                            new Vector3(2, 0, -0.35f),
-                            new Vector3(2, 0, 0.4f),
-                            new Vector3(-2, 0, -0.35f),
-                            new Vector3(-2, 0, 0.4f),
-
-                            new Vector3(2, 4, -0.35f),
-                            new Vector3(2, 4, 0.4f),
-                            new Vector3(-2, 4, -0.35f),
-                            new Vector3(-2, 4, 0.4f),
-                        }
-                    );
-                    */
                     SnapPointHelper.AddSnapPoints(
                         prefab,
                         new Vector3[] {
@@ -522,22 +456,6 @@ namespace MoreVanillaBuildPrefabs.Helpers
                     break;
 
                 case "dvergrtown_slidingdoor":
-                    /*
-                    SnapPointHelper.AddSnapPoints(
-                        prefab,
-                        new Vector3[] {
-                            new Vector3(2, 0, 0),
-                            new Vector3(2, 0, 0.2f),
-                            new Vector3(-2, 0, -0.2f),
-                            new Vector3(-2, 0, 0.2f),
-
-                            new Vector3(2, 4, -0.2f),
-                            new Vector3(2, 4, 0.2f),
-                            new Vector3(-2, 4, -0.2f),
-                            new Vector3(-2, 4, 0.2f),
-                        }
-                    );
-                    */
                     SnapPointHelper.AddSnapPoints(
                         prefab,
                         new Vector3[] {
@@ -571,28 +489,11 @@ namespace MoreVanillaBuildPrefabs.Helpers
                     var wearNTear = prefab.GetComponent<WearNTear>();
                     if (wearNTear != null)
                     {
-                        // allow these pieces to support other pieces
-                        wearNTear.m_supports = true;
+                        wearNTear.m_supports = true; // allow these pieces to support other pieces
                     }
                     break;
 
                 case "dvergrtown_wood_beam":
-                    /*
-                     SnapPointHelper.AddSnapPoints(
-                        prefab,
-                        new Vector3[] {
-                            new Vector3(3, 0.45f, 0.45f),
-                            new Vector3(3, 0.45f, -0.42f),
-                            new Vector3(3, -0.45f, -0.42f),
-                            new Vector3(3, -0.45f, -0.45f),
-
-                            new Vector3(-3, 0.45f, 0.45f),
-                            new Vector3(-3, 0.45f, -0.42f),
-                            new Vector3(-3, -0.45f, -0.42f),
-                            new Vector3(-3, -0.45f, -0.45f),
-                        }
-                    );
-                    */
                     SnapPointHelper.AddSnapPoints(
                         prefab,
                         new Vector3[] {
@@ -603,21 +504,6 @@ namespace MoreVanillaBuildPrefabs.Helpers
                     break;
 
                 case "dvergrtown_wood_pole":
-                    /*
-                    SnapPointHelper.AddSnapPoints(
-                        prefab,
-                        new Vector3[] {
-                            new Vector3(0.45f, 2, 0.45f),
-                            new Vector3(-0.45f, 2, 0.45f),
-                            new Vector3(0.45f, 2, -0.45f),
-                            new Vector3(-0.45f, 2, -0.45f),
-                            new Vector3(0.45f, -2, 0.45f),
-                            new Vector3(-0.45f, -2, 0.45f),
-                            new Vector3(0.45f, -2, -0.45f),
-                            new Vector3(-0.45f, -2, -0.45f),
-                        }
-                    );
-                    */
                     SnapPointHelper.AddSnapPoints(
                         prefab,
                         new Vector3[] {
@@ -643,23 +529,12 @@ namespace MoreVanillaBuildPrefabs.Helpers
                     SnapPointHelper.AddSnapPoints(
                         prefab,
                         new Vector3[] {
-                            new Vector3(0, 0, 0),
+                            Vector3.zero,
                         }
                     );
                     break;
 
                 case "dvergrtown_wood_crane":
-                    /*
-                    SnapPointHelper.AddSnapPoints(
-                        prefab,
-                        new Vector3[] {
-                            new Vector3(0.4f, -3, 0.4f),
-                            new Vector3(-0.4f, -3, 0.4f),
-                            new Vector3(0.4f, -3, -0.4f),
-                            new Vector3(-0.4f, -3, -0.4f),
-                        }
-                    );
-                    */
                     SnapPointHelper.AddSnapPoints(
                         prefab,
                         new Vector3[] {
@@ -669,22 +544,6 @@ namespace MoreVanillaBuildPrefabs.Helpers
                     break;
 
                 case "dvergrtown_wood_support":
-                    /*
-                    SnapPointHelper.AddSnapPoints(
-                        prefab,
-                        new Vector3[] {
-                            new Vector3(-2.4f, 0, -0.4f),
-                            new Vector3(-2.4f, 0, 0.4f),
-                            new Vector3(-1.6f, 0, -0.4f),
-                            new Vector3(-1.6f, 0, 0.4f),
-
-                            new Vector3(2.4f, 0, -0.4f),
-                            new Vector3(2.4f, 0, 0.4f),
-                            new Vector3(1.6f, 0, -0.4f),
-                            new Vector3(1.6f, 0, 0.4f),
-                        }
-                    );
-                    */
                     SnapPointHelper.AddSnapPoints(
                         prefab,
                         new Vector3[] {
@@ -696,23 +555,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
 
                 case "dvergrtown_wood_wall01":
                     // Fix collider y
-                    prefab.transform.Find("wallcollider").transform.localPosition = new Vector3(0, 0, 0);
-                    /*
-                    SnapPointHelper.AddSnapPoints(
-                        prefab,
-                        new Vector3[] {
-                        new Vector3(3, -2.7f, -0.45f),
-                        new Vector3(3, -2.7f, 0.45f),
-                        new Vector3(-3, -2.7f, -0.45f),
-                        new Vector3(-3, -2.7f, 0.45f),
-
-                        new Vector3(3, 2.7f, -0.45f),
-                        new Vector3(3, 2.7f, 0.45f),
-                        new Vector3(-3, 2.7f, -0.45f),
-                        new Vector3(-3, 2.7f, 0.45f),
-                        }
-                    );
-                    */
+                    prefab.transform.Find("wallcollider").transform.localPosition = Vector3.zero;
                     SnapPointHelper.AddSnapPoints(
                         prefab,
                         new Vector3[] {
@@ -725,24 +568,6 @@ namespace MoreVanillaBuildPrefabs.Helpers
                     break;
 
                 case "dvergrtown_wood_wall02":
-                    /*
-
-                    SnapPointHelper.AddSnapPoints(
-                        prefab,
-                        new Vector3[] {
-                            new Vector3(3, -0.6f, -0.25f),
-                            new Vector3(3, -0.6f, 0.25f),
-                            new Vector3(-3, -0.6f, -0.25f),
-                            new Vector3(-3, -0.6f, 0.25f),
-
-                            new Vector3(3, 4.6f, -0.25f),
-                            new Vector3(3, 4.6f, 0.25f),
-                            new Vector3(-3, 4.6f, -0.25f),
-                            new Vector3(-3, 4.6f, 0.25f),
-                        }
-                    );
-                    */
-
                     SnapPointHelper.AddSnapPoints(
                         prefab,
                         new Vector3[] {
@@ -915,11 +740,6 @@ namespace MoreVanillaBuildPrefabs.Helpers
                         new Vector3[]
                         {
                             new Vector3(0.0f, 0.0f, 0.0f),
-                            // these snap points are outside the rigid body
-                            //new Vector3(1.0f, -1.0f, 1.0f),
-                            //new Vector3(1.0f, -1.0f, -1.0f),
-                            //new Vector3(-1.0f, -1.0f, -1.0f),
-                            //new Vector3(-1.0f, -1.0f, 1.0f),
                             new Vector3(1.0f, 0.0f, 1.0f),
                             new Vector3(1.0f, 0.0f, -1.0f),
                             new Vector3(-1.0f, 0.0f, -1.0f),
@@ -928,7 +748,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
                             new Vector3(1.0f, 1.0f, -1.0f),
                             new Vector3(-1.0f, 1.0f, -1.0f),
                             new Vector3(-1.0f, 1.0f, 1.0f),
-                            new Vector3(0.0f, 3.5f, 0.0f), // for torches
+                            new Vector3(0.0f, 3.5f, 0.0f), // for demisters/torches
                         },
                         true
                     );
@@ -1015,9 +835,6 @@ namespace MoreVanillaBuildPrefabs.Helpers
                     break;
 
                 default:
-                    // prefab may not have a piece component
-                    //Transform transform = prefab.GetComponent<Piece>().transform;
-
                     // Add SnapPoint to Local Center if there is not already one present there
                     Transform transform = prefab.transform;
                     for (var index = 0; index < transform.childCount; ++index)
