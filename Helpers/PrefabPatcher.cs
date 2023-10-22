@@ -337,10 +337,10 @@ namespace MoreVanillaBuildPrefabs.Helpers
                     prefab.transform.Find("_snappoint (1)").gameObject.transform.localPosition = new Vector3(0.5f, 1, 0.1f);
                     prefab.transform.Find("_snappoint (2)").gameObject.transform.localPosition = new Vector3(-0.5f, 0, 0.1f);
                     prefab.transform.Find("_snappoint (3)").gameObject.transform.localPosition = new Vector3(-0.5f, 1, 0.1f);
-                    prefab.transform.Find("_snappoint (4)").gameObject.transform.localPosition = new Vector3(0.25f, 0, 0.1f);
-                    prefab.transform.Find("_snappoint (5)").gameObject.transform.localPosition = new Vector3(0.25f, 0.5f, 0.1f);
-                    prefab.transform.Find("_snappoint (6)").gameObject.transform.localPosition = new Vector3(-0.25f, 0, 0.1f);
-                    prefab.transform.Find("_snappoint (7)").gameObject.transform.localPosition = new Vector3(-0.25f, 0.5f, 0.1f);
+                    prefab.transform.Find("_snappoint (4)").gameObject.transform.localPosition = new Vector3(0, 0, 0.1f);
+                    prefab.transform.Find("_snappoint (5)").gameObject.transform.localPosition = new Vector3(0.5f, 0.5f, 0.1f);
+                    prefab.transform.Find("_snappoint (6)").gameObject.transform.localPosition = new Vector3(0, 1, 0.1f);
+                    prefab.transform.Find("_snappoint (7)").gameObject.transform.localPosition = new Vector3(-0.5f, 0.5f, 0.1f);
                     break;
 
                 case "blackmarble_tile_wall_2x2":
