@@ -311,6 +311,13 @@ namespace MoreVanillaBuildPrefabs
                     continue;
                 }
 
+                // prevent adding creative mode pieces if not in CreativeMode
+                if (!PluginConfig.IsCreativeMode
+                    && PieceCategoryHelper.IsCreativeModePiece(pieceDB.piece))
+                {
+                    continue;
+                }
+
                 // Allows pieces added to the hammer to be deconstructed
                 // unless they are a ship (to respect vanilla behaviour).
                 if (pieceDB.piece.gameObject.GetComponent<Ship>() == null)

@@ -157,6 +157,7 @@ namespace MoreVanillaBuildPrefabs.Configs
             );
 
             CreatorShopAdminOnly.SettingChanged += PieceSettingChanged;
+            CreativeMode.SettingChanged += PieceSettingChanged;
             ForceAllPrefabs.SettingChanged += PieceSettingChanged;
             Save();
         }
@@ -173,7 +174,10 @@ namespace MoreVanillaBuildPrefabs.Configs
                 sectionName,
                 "\u200BEnabled",
                 defaultPieceDB.enabled,
-                "If true then allow this prefab to be built and deconstructed. Note: this setting is ignored if ForceAllPrefabs is true.",
+                "If true then allow this prefab to be built and deconstructed. " +
+                "Note: this setting is ignored if ForceAllPrefabs is true. " +
+                "It is also ignored if the piece category is Creatorshop or Nature " +
+                "and CreativeMode is false.",
                 AcceptableBoolValuesList
             );
             pieceConfigEntries.enabled.SettingChanged += PieceSettingChanged;

@@ -196,7 +196,7 @@ namespace MoreVanillaBuildPrefabs
             }
 
             // Prevents world generated piece from player removal with build hammer.
-            if (!piece.IsPlacedByPlayer() && PieceCategoryHelper.IsPieceRemovalRestricted(piece))
+            if (!piece.IsPlacedByPlayer() && PieceCategoryHelper.IsCreativeModePiece(piece))
             {
                 __result = false;
                 return false;
@@ -204,7 +204,7 @@ namespace MoreVanillaBuildPrefabs
 
             // Prevents player from breaking pieces they didn't
             // create themselves unless admin check and config is true.
-            if (PieceCategoryHelper.IsPieceRemovalRestricted(piece) && !piece.IsCreator())
+            if (PieceCategoryHelper.IsCreativeModePiece(piece) && !piece.IsCreator())
             {
                 // Allow admins to deconstruct CreatorShop pieces built by other players if setting is enabled in config
                 if (PluginConfig.IsAdminDeconstructOtherPlayers && SynchronizationManager.Instance.PlayerIsAdmin)

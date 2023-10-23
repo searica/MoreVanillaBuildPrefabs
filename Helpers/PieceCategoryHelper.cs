@@ -12,7 +12,6 @@ namespace MoreVanillaBuildPrefabs.Helpers
 
         internal static void AddCreatorShopPieceCategory()
         {
-
             if (PieceManager.Instance.GetPieceCategory(HammerCategories.Nature) == null
                 || PieceManager.Instance.GetPieceCategory(HammerCategories.CreatorShop) == null)
             {
@@ -34,7 +33,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
             PieceManager.Instance.RemovePieceCategory(PieceTables.Hammer, HammerCategories.CreatorShop);
         }
 
-        internal static bool IsPieceRemovalRestricted(Piece piece)
+        internal static bool IsCreativeModePiece(Piece piece)
         {
             return IsCreatorShopPiece(piece) || IsNaturePiece(piece);
         }
