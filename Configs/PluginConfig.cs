@@ -148,7 +148,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 "ForceAllPrefabs",
                 false,
                 "If enabled, adds all prefabs to the hammer for building. Unless CreativeMode is " +
-                "also enabled it will not add pieces set to the CreatorShop or Nature category.",
+                "also enabled it will not add pieces set to the CreatorShop or Nature category though.",
                 AcceptableBoolValuesList
             );
 

@@ -8,6 +8,32 @@
 			<th align="center">Notes</th>
 		</tr>
 		<tr>
+			<td align="center">0.4.3</td>
+			<td align="left">
+				<ul>
+					<li>
+						Added a new piece category "Nature".
+						<ul>
+							<li>Changed Admin only settings to account for new category.</li>
+							<li>Tweaked default configuration to account for new category.</li>
+						</ul>
+					</li>
+					<li>
+						Changed how CreativeMode works.
+						<ul>
+							<li>CreativeMode now sets whether pieces from the CreatorShop and Nature categories are enabled for building.</li>
+							<li>Changing the CreativeMode setting now updates while in-game.</li>
+						</ul>
+					</li>
+					
+					<li>Fixed the cloth behaviour on the new ship.</li>
+					<li>Tweaked snap points to mimic vanilla pieces more. Can use ExtraSnapPointsMadeEasy if you want more precise snap points.</li>
+					<li>Pickable pieces now drop the pickable item when deconstructed if it has not already been picked.</li>
+					<li>ItemStand pieces now drop the attached item when deconstructed if an attached item exists.</li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
 			<td align="center">0.4.2</td>
 			<td align="left">
 				<ul>

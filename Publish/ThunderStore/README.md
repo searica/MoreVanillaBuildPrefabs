@@ -27,8 +27,8 @@ Changes made to the configuration settings will be reflected in-game immediately
 
 ### Global Section Configuration:
 
-**CreativeMode** [Synced with Server, Requires Restart]
-- Setting to toggle whether environmental prefabs like mist volumes that are not suitable for general play and building, are enabled. Requires a game/server restart to take effect. These prefabs are also more likely to have bugs like being unable to remove them after placing them and are a lower priority for me to patch.
+**CreativeMode** [Synced with Server]
+- Setting to enable pieces set to the custom CreatorShop or Nature piece categories. By default, the pieces set to those categories are not standard build pieces. These prefabs are also more likely to have bugs like being unable to remove them after placing them and are a lower priority for me to patch.
   - Acceptable values: False, True
   - Default value: false
 
@@ -39,13 +39,13 @@ Changes made to the configuration settings will be reflected in-game immediately
   - Acceptable values: False, True
   - Default value: false
 
-**CreatorShopAdminDeconstructAll** [Synced with Server]
-- Set to true to allow admin players to deconstruct any CreatorShop pieces built by players. Intended to prevent griefing via placement of indestructible objects.
+**AdminDeconstructOtherPlayers** [Synced with Server]
+- Set to true to allow admin players to deconstruct any pieces built by other players, even if doing so would normaly be prevented (such as for CreatorShop or Nature pieces). Intended to prevent griefing via placement of indestructible objects.
   - Acceptable values: False, True
   - Default value: true
 
 **ForceAllPrefabs** [Synced with Server]
-- Setting to true overrides individual configuration for all prefabs and enables them all for building with the hammer.
+- If enabled, adds all prefabs to the hammer for building. Unless CreativeMode is also enabled it will not add pieces set to the CreatorShop or Nature category though.
   - Acceptable values: False, True
   - Default value: false
 
@@ -69,7 +69,7 @@ The rest of the configuration files contains ["Prefab-Name"] sections to configu
 
 **Category** [Synced with Server]
 - A string defining the tab the prefab shows up on in the hammer build table.
-  - Acceptable values: CreatorShop, Misc, Crafting, Building, Furniture# Setting type: String
+  - Acceptable values: CreatorShop, Nature, Misc, Crafting, Building, Furniture
 - Default value: CreatorShop
 
 **CraftingStation** [Synced with Server]
@@ -133,14 +133,19 @@ If a prefab has a pickable component, such as a berry bush, then whatever resour
 **Example:** If building a berry bush drops 1 berry when you pick it then no matter what the settings are in the configuration file it will always cost at least 1 berry to build the berry bush. If world modifiers are set to 2 so the bush would drop 2 berries then it will always cost at least 2 berries to build.
 
 #### Deconstructing Pickables
-When you deconstruct a prefab with a pickable component if the pickable item has been picked then the resources dropped by deconstructing it will be adjusted to reduce the amount of the pickable item drops by the amount that was gained by picking the item (after accounting for world modifiers).
+When you deconstruct a prefab with a pickable component if the pickable item has not been picked then it will drop the pickable item. The resources dropped by deconstructing it will also be adjusted to reduce the amount of the pickable item drops by the amount that was gained by picking the item (after accounting for world modifiers).
 
 **Example:** If you built a berry bush that cost 5 berries to build, then picked the berries and got 2 berries, and then deconstructed the bush only 3 berries would drop.
 
-### CreatorShop Pieces
-Prefabs set to the custom CreatorShop category in the hammer build table have unique behavior compared to other pieces when it comes to deconstructing them. If a prefab is set to the CreatorShop category then player's can only deconstruct instances of that prefab that were placed by them. This is intended to prevent player's from deconstructing world-generated instances of prefabs like trees while still allowing player's to build and deconstruct their own trees.
+#### Decontructing ItemStands
+When you deconstruct a piece that has an ItemStand component it will always drop the attached item, even if you could not normally remove it.
 
-If multiple player's have this mod, the same restrictions still apply and they will not be able to deconstruct instances of CreatorShop pieces that are world-generated or built by other players. The CreatorShopAdminDeconstructAll setting can allow players with admin status to deconstruct CreatorShop pieces placed by other players though, to allow an option for admins to remove indestructible pieces.
+## Custom Piece Categories
+This mod adds two custom piece categories: **CreatorShop** and **Nature**. Pieces set to either of the custom categories will only be enabled for building if CreativeMode is set to True. Additionaly, these pieces can only be deconstructed by the player who placed them and world-generated instances of these pieces cannot be deconstructed. This prevents player's from deconstructing things like world-generated trees, while still allowing them to build and deconstruct their own trees.
+
+If multiple player's have this mod, the same restrictions still apply and they will not be able to deconstruct instances of  pieces set to either of the custom piece categories that were built by other players. 
+
+The AdminDeconstructOtherPlayers setting can allow players with admin status to deconstruct CreatorShop or Nature pieces built by other players, so that admins have a way to remove indestructible pieces. Even if you enable the AdminDeconstructOtherPlayers setting, admins are still not able to deconstruct world-generated instances of pieces set to the CreatorShop or Nature categories.
 
 ## Known Issues
 **Custom Armor Stand Clipping**: Armor placed on the Male Armor Stand and Female Armor Stand prefabs has clipping issues causing parts of the armor to not be displayed. I have not been able to fix this as of yet. Feel free to reach out if you know things about meshing and you have ideas for a solution.
@@ -149,9 +154,6 @@ If multiple player's have this mod, the same restrictions still apply and they w
 - Go to this directory: %userprofile%\appdata\LocalLow\IronGate\Valheim\Jotunn\CachedIcons
 - Delete all the pngs in that directory.
 - Restart the game and the mod should hopefully regenerate the icons correctly.
-
-**Sail Cloth Behaviour**: The sail on the ship enabled by this mod doesn't behave very well when wind hits it. Working on a fix but haven't had much luck yet. 
-
 
 ## Planned Improvements
 - Resolve known issues.
@@ -287,6 +289,7 @@ This mod was inspired by MoreVanillaBuilds by Galathil and PotteryBarn by ComfyM
 - Thanks to probablykory for the advice and examples on optimizing how mods respond to configuration settings changes.
 - Thanks to OrianaVenture for the example of using Jotunn's server sync features.
 - Thanks to Jules and MarcoPogo for their help with figuring out a solution for compatiability with PlanBuild.
+- Thanks to Marlthon for the help figuring out how to fix the wind physics on the new ship's sail.
 
 #### Community Credits
 - Thanks to onnan for all their suggestions, feedback, and testing
