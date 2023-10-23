@@ -646,7 +646,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
                         prefab,
                         new Vector3[]
                         {
-                            // mid edge points can get added by ExtraSnapPointsMadeEasy
+                            // mid edge points get added by ExtraSnapPointsMadeEasy
                             new Vector3(1.0f, 0.5f, 0.0f),  // top front
                             new Vector3(-1.0f, 0.5f, 0.0f),  // top back
                         }
@@ -673,8 +673,8 @@ namespace MoreVanillaBuildPrefabs.Helpers
                         for (int x = -2; x <= 2; x += 1)
                         {
                             for (int z = -2; z <= 2; z += 1)
-                            {
-                                if (!(Math.Abs(x) == 2 && Mathf.Abs(z) == 2))  // skip corners that already have snap points
+                            {   // skip corners that already have snap points
+                                if (!(Math.Abs(x) == 2 && Mathf.Abs(z) == 2))
                                 {
                                     pts.Add(new Vector3(x, y, z));
                                 }
