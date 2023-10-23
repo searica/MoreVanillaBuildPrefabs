@@ -605,7 +605,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 "Bush01",
                 new PrefabDB(
                     "Bush01",
-                    false,
+                    true,
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
@@ -616,7 +616,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 "Bush01_heath",
                 new PrefabDB(
                     "Bush01_heath",
-                    false,
+                    true,
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
@@ -627,7 +627,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 "Bush02_en",
                 new PrefabDB(
                     "Bush02_en",
-                    false,
+                    true,
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
@@ -1083,17 +1083,6 @@ namespace MoreVanillaBuildPrefabs.Configs
                     HammerCategories.Misc,
                     nameof(CraftingStations.BlackForge),
                     "Chain,2;Iron,2"
-                )
-            },
-            {
-                "dvergrprops_lantern",
-                new PrefabDB(
-                    "dvergrprops_lantern",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    ""
                 )
             },
             {
@@ -2725,28 +2714,6 @@ namespace MoreVanillaBuildPrefabs.Configs
                 )
             },
             {
-                "PineTree_log_halfOLD",
-                new PrefabDB(
-                    "PineTree_log_halfOLD",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    ""
-                )
-            },
-            {
-                "PineTree_logOLD",
-                new PrefabDB(
-                    "PineTree_logOLD",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    ""
-                )
-            },
-            {
                 "RaspberryBush",
                 new PrefabDB(
                     "RaspberryBush",
@@ -3179,7 +3146,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 "shrub_2",
                 new PrefabDB(
                     "shrub_2",
-                    false,
+                    true,
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
@@ -3190,7 +3157,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 "shrub_2_heath",
                 new PrefabDB(
                     "shrub_2_heath",
-                    false,
+                    true,
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
@@ -3212,7 +3179,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 "silvervein",
                 new PrefabDB(
                     "silvervein",
-                    true,
+                    false,
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
@@ -3608,7 +3575,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 "yggashoot_log",
                 new PrefabDB(
                     "yggashoot_log",
-                    true,
+                    false,
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
@@ -3619,7 +3586,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 "yggashoot_log_half",
                 new PrefabDB(
                     "yggashoot_log_half",
-                    true,
+                    false,
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
