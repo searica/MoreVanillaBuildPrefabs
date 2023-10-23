@@ -59,38 +59,21 @@ namespace MoreVanillaBuildPrefabs.Helpers
                         }
                     }
 
-                    // fix sail
-                    //var sailFull = prefab?.transform?.Find("ship")
-                    //    ?.transform?.Find("visual")
-                    //    ?.transform?.Find("Mast")
-                    //    ?.transform?.Find("Sail")
-                    //    ?.transform?.Find("sail_full").gameObject;
-                    //var skinRender = sailFull?.GetComponent<SkinnedMeshRenderer>();
-                    //if (skinRender == null) { break; }
+                    // Fix Sail cloth
+                    var sailFull = prefab?.transform?.Find("ship")
+                        ?.transform?.Find("visual")
+                        ?.transform?.Find("Mast")
+                        ?.transform?.Find("Sail")
+                        ?.transform?.Find("sail_full").gameObject;
+                    var cloth = sailFull.GetComponent<Cloth>();
 
-                    //var localBounds = skinRender.localBounds;
-                    //localBounds.center = new Vector3(0f, 0.4849242f, 0f);
-                    //localBounds.extents = new Vector3(1.065068e-06f, 0.289977f, 4.467221f);
-                    //skinRender.localBounds = localBounds;
-                    //Log.LogInfo(skinRender.localBounds.center);
-                    //Log.LogInfo(skinRender.localBounds.extents);
-
-                    // Fix sail skinned mesh renderer
-                    //var longShipSailFull = longShip?.transform?.Find("ship")
-                    //    ?.transform?.Find("visual")
-                    //    ?.transform?.Find("Mast")
-                    //    ?.transform?.Find("Sail")
-                    //    ?.transform?.Find("sail_full")?.gameObject;
-                    //if (longShipSailFull == null) { break; }
-
-                    //var sailFull = prefab?.transform?.Find("ship")
-                    //    ?.transform?.Find("visual")
-                    //    ?.transform?.Find("Mast")
-                    //    ?.transform?.Find("Sail")
-                    //    ?.transform?.Find("sail_full").gameObject;
-                    //if (sailFull == null) { break; }
-                    //var skinMeshRender = sailFull.GetComponent<SkinnedMeshRenderer>();
-                    //skinMeshRender.bounds.extents.Scale(new Vector3(1, 1.1f, 1));
+                    var longShipSailFull = longShip?.transform?.Find("ship")
+                        ?.transform?.Find("visual")
+                        ?.transform?.Find("Mast")
+                        ?.transform?.Find("Sail")
+                        ?.transform?.Find("sail_full").gameObject;
+                    var longShipCloth = longShipSailFull.GetComponent<Cloth>();
+                    cloth.coefficients = longShipCloth.coefficients;
 
                     // Fix missing control GUI position
                     var ship = prefab.GetComponent<Ship>();
