@@ -64,6 +64,7 @@ namespace MoreVanillaBuildPrefabs.Configs
             "TreasureChest_dvergr_loose_stone",
             "Ice_floor",
             "CastleKit_braided_box01",
+            "dvergrtown_arch",
         };
 
         private static readonly HashSet<string> _CanClipGround = new()
