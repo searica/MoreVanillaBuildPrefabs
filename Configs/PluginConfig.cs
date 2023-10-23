@@ -119,7 +119,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                 MainSectionName,
                 "CreativeMode",
                 false,
-                "Setting to enable pieces set to the CreatorShop or Nature piece categories. By default, the pieces set to those categories are not standard build pieces.",
+                "Setting to enable pieces set to the CreatorShop or Nature piece categories. " +
+                "By default, the pieces set to those categories are not standard build pieces.",
                 AcceptableBoolValuesList
             );
 
@@ -127,7 +128,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                 MainSectionName,
                 "CreatorShopAdminOnly",
                 false,
-                "Set to true to restrict placement and deconstruction of CreatorShop pieces to players with Admin status.",
+                "Set to true to restrict placement and deconstruction of CreatorShop pieces " +
+                "to players with Admin status.",
                 AcceptableBoolValuesList
             );
 
@@ -145,7 +147,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                 MainSectionName,
                 "ForceAllPrefabs",
                 false,
-                "If enabled, adds all prefabs from the configuration file to the hammer based on their current configuration (requirements).",
+                "If enabled, adds all prefabs to the hammer for building. Unless CreativeMode is " +
+                "also enabled it will not add pieces set to the CreatorShop or Nature category.",
                 AcceptableBoolValuesList
             );
 
@@ -153,7 +156,9 @@ namespace MoreVanillaBuildPrefabs.Configs
                 MainSectionName,
                 "Verbosity",
                 LoggerLevel.Low,
-                "Low will log basic information about the mod. Medium will log information that is useful for troubleshooting. High will log a lot of information, do not set it to this without good reason as it will slow down your game."
+                "Low will log basic information about the mod. Medium will log information that " +
+                "is useful for troubleshooting. High will log a lot of information, do not set " +
+                "it to this without good reason as it will slow down your game."
             );
 
             CreatorShopAdminOnly.SettingChanged += PieceSettingChanged;
