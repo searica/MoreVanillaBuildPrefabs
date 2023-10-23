@@ -266,12 +266,10 @@ namespace MoreVanillaBuildPrefabs
         internal static void InitPieces()
         {
             Log.LogInfo("Initializing pieces");
-            List<Piece> pieces = new();
             foreach (var pieceDB in PieceRefs.Values)
             {
                 var piece = CreatePiece(pieceDB);
                 SfxHelper.FixPlacementSfx(piece);
-                pieces.Add(piece);
             }
         }
 
