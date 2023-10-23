@@ -45,11 +45,14 @@ namespace MoreVanillaBuildPrefabs.Helpers
             {"CastleKit_groundtorch_green", "Standing green-burning iron torch (everburning)" },
 
             {"Trailership", "Trader ship"},
+            {"sign_notext", "Wood plank"},
+            {"goblin_strawpile", "Rug straw (large)"},
         };
 
         private static readonly Dictionary<string, string> DescriptionMap = new()
         {
             {"metalbar_1x2", "Enforced marble 1x2"},
+            {"goblin_strawpile", "Rug straw (large)"},
         };
 
         private static readonly Regex PrefabNameRegex = new(@"([a-z])([A-Z])");
@@ -78,7 +81,8 @@ namespace MoreVanillaBuildPrefabs.Helpers
                 .Replace("rockdolmen", "rock dolmen")
                 .Replace("blackmarble", "black marble")
                 .Replace("sunkencrypt", "sunken crypt")
-                .Replace("irongate", "iron gate");
+                .Replace("irongate", "iron gate")
+                .Replace("goblin", "fuling");
             //.Replace("secretdoor", "secret door")
             //.Replace("slidngdoor", "sliding door");
 

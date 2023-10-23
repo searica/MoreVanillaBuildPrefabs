@@ -79,7 +79,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "beech_log",
                     false,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     "BeechSeeds,1,Wood,20"
                 )
@@ -90,7 +90,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "beech_log_half",
                     false,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     "BeechSeeds,1,Wood,10"
                 )
@@ -101,7 +101,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "Beech_small1",
                     false,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     ""
                 )
@@ -112,7 +112,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "Beech_small2",
                     false,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     "Wood,1"
                 )
@@ -123,7 +123,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "Beech_Stub",
                     false,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     ""
                 )
@@ -134,7 +134,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "Beech1",
                     false,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     "Wood,16"
                 )
@@ -145,7 +145,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "Birch_log",
                     false,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     ""
                 )
@@ -156,7 +156,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "Birch_log_half",
                     false,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     ""
                 )
@@ -167,7 +167,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "Birch1",
                     false,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     "FineWood,16"
                 )
@@ -178,7 +178,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "Birch1_aut",
                     true,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     "BirchSeeds,1;FineWood,2"
                 )
@@ -189,7 +189,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "Birch2",
                     false,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     "FineWood,16"
                 )
@@ -200,7 +200,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "Birch2_aut",
                     true,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     "BirchSeeds,1;FineWood,2"
                 )
@@ -211,7 +211,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "BirchStub",
                     false,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     ""
                 )
@@ -519,7 +519,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "BlueberryBush",
                     false,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     "Blueberries,5"
                 )
@@ -607,9 +607,9 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "Bush01",
                     false,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    ""
+                    "Wood,2"
                 )
             },
             {
@@ -618,9 +618,9 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "Bush01_heath",
                     false,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    ""
+                    "Wood,2"
                 )
             },
             {
@@ -629,9 +629,9 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "Bush02_en",
                     false,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    ""
+                    "Wood,2"
                 )
             },
             {
@@ -643,17 +643,6 @@ namespace MoreVanillaBuildPrefabs.Configs
                     HammerCategories.Misc,
                     nameof(CraftingStations.Workbench),
                     "Wood,2"
-                )
-            },
-            {
-                "CastleKit_brazier",
-                new PrefabDB(
-                    "CastleKit_brazier",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    ""
                 )
             },
             {
@@ -690,34 +679,12 @@ namespace MoreVanillaBuildPrefabs.Configs
                 )
             },
             {
-                "CastleKit_groundtorch_unlit",
-                new PrefabDB(
-                    "CastleKit_groundtorch_unlit",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    ""
-                )
-            },
-            {
-                "CastleKit_metal_groundtorch_unlit",
-                new PrefabDB(
-                    "CastleKit_metal_groundtorch_unlit",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    ""
-                )
-            },
-            {
                 "caverock_ice_pillar_wall",
                 new PrefabDB(
                     "caverock_ice_pillar_wall",
                     false,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     ""
                 )
@@ -728,7 +695,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "caverock_ice_stalagmite",
                     false,
                     false,
-                    HammerCategories.Building,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     "Crystal,2"
                 )
@@ -739,7 +706,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "caverock_ice_stalagmite_broken",
                     false,
                     false,
-                    HammerCategories.Building,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     "Crystal,4"
                 )
@@ -750,7 +717,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "caverock_ice_stalagtite",
                     false,
                     false,
-                    HammerCategories.Building,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     "Crystal,2"
                 )
@@ -761,7 +728,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "caverock_ice_stalagtite_falling",
                     false,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     ""
                 )
@@ -770,10 +737,10 @@ namespace MoreVanillaBuildPrefabs.Configs
                 "Chest",
                 new PrefabDB(
                     "Chest",
-                    true,
+                    false,
                     false,
                     HammerCategories.Furniture,
-                    nameof(CraftingStations.Forge),
+                    nameof(CraftingStations.None),
                     "Wood,10;Iron,1"
                 )
             },
@@ -816,7 +783,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "cloth_hanging_door",
                     false,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Furniture,
                     nameof(CraftingStations.None),
                     ""
                 )
@@ -838,7 +805,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "cloth_hanging_long",
                     false,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Furniture,
                     nameof(CraftingStations.None),
                     ""
                 )
@@ -849,7 +816,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "CloudberryBush",
                     false,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     "Cloudberry,5"
                 )
@@ -860,7 +827,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "CreepProp_egg_hanging01",
                     false,
                     false,
-                    HammerCategories.Building,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     "YggdrasilWood,2"
                 )
@@ -871,7 +838,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "CreepProp_egg_hanging02",
                     false,
                     false,
-                    HammerCategories.Building,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     "YggdrasilWood,2"
                 )
@@ -882,7 +849,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "CreepProp_entrance1",
                     false,
                     false,
-                    HammerCategories.Building,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     "YggdrasilWood,2"
                 )
@@ -893,7 +860,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "CreepProp_entrance2",
                     false,
                     false,
-                    HammerCategories.Building,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     "YggdrasilWood,2"
                 )
@@ -904,7 +871,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "CreepProp_hanging01",
                     false,
                     false,
-                    HammerCategories.Building,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     "YggdrasilWood,2"
                 )
@@ -915,7 +882,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "CreepProp_wall01",
                     false,
                     false,
-                    HammerCategories.Building,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     "YggdrasilWood,2"
                 )
@@ -970,9 +937,9 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "dungeon_sunkencrypt_irongate_rusty",
                     false,
                     false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    ""
+                    HammerCategories.Building,
+                    nameof(CraftingStations.Forge),
+                    "Iron,4"
                 )
             },
             {
@@ -993,8 +960,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     false,
                     HammerCategories.CreatorShop,
-                    nameof(CraftingStations.BlackForge),
-                    "Iron,1"
+                    nameof(CraftingStations.None),
+                    ""
                 )
             },
             {
@@ -1015,8 +982,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     false,
                     HammerCategories.CreatorShop,
-                    nameof(CraftingStations.BlackForge),
-                    "Iron,1"
+                    nameof(CraftingStations.None),
+                    ""
                 )
             },
             {
@@ -1254,11 +1221,11 @@ namespace MoreVanillaBuildPrefabs.Configs
                 "dvergrtown_arch",
                 new PrefabDB(
                     "dvergrtown_arch",
+                    true,
                     false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    ""
+                    HammerCategories.Building,
+                    nameof(CraftingStations.Stonecutter),
+                    "BlackMarble,8"
                 )
             },
             {
@@ -1267,7 +1234,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "dvergrtown_creep_door",
                     false,
                     false,
-                    HammerCategories.Building,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     "YggdrasilWood,4"
                 )
@@ -1454,7 +1421,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "FirTree",
                     false,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     "Wood,16"
                 )
@@ -1465,7 +1432,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "FirTree_log",
                     false,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     ""
                 )
@@ -1476,7 +1443,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "FirTree_log_half",
                     false,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     ""
                 )
@@ -1487,7 +1454,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "FirTree_oldLog",
                     false,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     ""
                 )
@@ -1498,7 +1465,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "FirTree_small",
                     false,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     ""
                 )
@@ -1509,7 +1476,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "FirTree_small_dead",
                     false,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     ""
                 )
@@ -1520,7 +1487,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "FirTree_Stub",
                     false,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     ""
                 )
@@ -1641,7 +1608,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "GlowingMushroom",
                     false,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     ""
                 )
@@ -1760,11 +1727,11 @@ namespace MoreVanillaBuildPrefabs.Configs
                 "goblin_strawpile",
                 new PrefabDB(
                     "goblin_strawpile",
+                    true,
                     false,
-                    false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Furniture,
                     nameof(CraftingStations.None),
-                    ""
+                    "Wood,4"
                 )
             },
             {
@@ -1839,7 +1806,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "Greydwarf_Root",
                     false,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     "Wood,2"
                 )
@@ -1883,7 +1850,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "highstone",
                     true,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     "Stone,32"
                 )
@@ -1894,7 +1861,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "HugeRoot1",
                     false,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     "ElderBark,32"
                 )
@@ -1949,9 +1916,9 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "iron_wall_1x1_rusty",
                     false,
                     false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    ""
+                    HammerCategories.Building,
+                    nameof(CraftingStations.Forge),
+                    "Iron,1"
                 )
             },
             {
@@ -1969,7 +1936,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 "loot_chest_stone",
                 new PrefabDB(
                     "loot_chest_stone",
-                    true,
+                    false,
                     false,
                     HammerCategories.Furniture,
                     nameof(CraftingStations.Stonecutter),
@@ -2037,7 +2004,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "MineRock_Copper",
                     false,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     ""
                 )
@@ -2048,7 +2015,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "MineRock_Iron",
                     false,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     ""
                 )
@@ -2059,7 +2026,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "MineRock_Meteorite",
                     false,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     ""
                 )
@@ -2070,7 +2037,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "MineRock_Obsidian",
                     false,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     ""
                 )
@@ -2081,7 +2048,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "MineRock_Stone",
                     false,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     ""
                 )
@@ -2092,7 +2059,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "MineRock_Tin",
                     false,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     ""
                 )
@@ -2224,7 +2191,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "Oak_log",
                     false,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     ""
                 )
@@ -2235,7 +2202,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "Oak_log_half",
                     false,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     ""
                 )
@@ -2246,7 +2213,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "Oak1",
                     false,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     "Wood,20;FineWood,20"
                 )
@@ -2257,7 +2224,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "OakStub",
                     false,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     ""
                 )
@@ -2290,20 +2257,9 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "Pickable_Branch",
                     false,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     "Wood,5"
-                )
-            },
-            {
-                "Pickable_Carrot",
-                new PrefabDB(
-                    "Pickable_Carrot",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    ""
                 )
             },
             {
@@ -2312,7 +2268,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "Pickable_Dandelion",
                     false,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     "Dandelion,5"
                 )
@@ -2389,7 +2345,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "Pickable_Flint",
                     false,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     ""
                 )
@@ -2499,7 +2455,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "Pickable_Meteorite",
                     false,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     ""
                 )
@@ -2510,7 +2466,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "Pickable_MountainCaveCrystal",
                     false,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     ""
                 )
@@ -2521,7 +2477,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "Pickable_MountainCaveObsidian",
                     false,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     ""
                 )
@@ -2532,7 +2488,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "Pickable_MountainCaveRandom",
                     false,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     ""
                 )
@@ -2554,7 +2510,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "Pickable_Mushroom",
                     false,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     "Mushroom,5"
                 )
@@ -2565,7 +2521,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "Pickable_Mushroom_blue",
                     false,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     "MushroomBlue,5"
                 )
@@ -2576,7 +2532,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "Pickable_Mushroom_yellow",
                     false,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     "MushroomYellow,5"
                 )
@@ -2587,7 +2543,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "Pickable_Obsidian",
                     false,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     ""
                 )
@@ -2609,7 +2565,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "Pickable_Stone",
                     false,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     ""
                 )
@@ -2642,7 +2598,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "Pickable_Tar",
                     false,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     ""
                 )
@@ -2653,7 +2609,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "Pickable_TarBig",
                     false,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     ""
                 )
@@ -2664,7 +2620,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "Pickable_Thistle",
                     false,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     "Thistle,5"
                 )
@@ -2675,18 +2631,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "Pickable_Tin",
                     false,
                     false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    ""
-                )
-            },
-            {
-                "Pickable_Turnip",
-                new PrefabDB(
-                    "Pickable_Turnip",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     ""
                 )
@@ -2730,7 +2675,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "PineTree",
                     false,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     ""
                 )
@@ -2741,7 +2686,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "Pinetree_01",
                     false,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     "Wood,16;RoundLog,16"
                 )
@@ -2752,7 +2697,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "Pinetree_01_Stub",
                     false,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     ""
                 )
@@ -2763,7 +2708,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "PineTree_log",
                     false,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     ""
                 )
@@ -2774,7 +2719,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "PineTree_log_half",
                     false,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     ""
                 )
@@ -2785,7 +2730,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "PineTree_log_halfOLD",
                     false,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     ""
                 )
@@ -2796,7 +2741,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "PineTree_logOLD",
                     false,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     ""
                 )
@@ -2807,7 +2752,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "RaspberryBush",
                     false,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     "Raspberry,5"
                 )
@@ -2818,7 +2763,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "Rock_3",
                     true,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     "Stone,24"
                 )
@@ -2829,7 +2774,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "Rock_4",
                     true,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     "Stone,16"
                 )
@@ -2840,7 +2785,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "Rock_4_plains",
                     true,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     "Stone,24"
                 )
@@ -2851,7 +2796,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "Rock_7",
                     true,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     "Stone,32"
                 )
@@ -2862,7 +2807,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "Rock_destructible",
                     true,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     "Stone,24"
                 )
@@ -2873,7 +2818,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "Rock_destructible_test",
                     true,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     "Stone,32"
                 )
@@ -2884,7 +2829,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "rock_mistlands1",
                     true,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     "Stone,48"
                 )
@@ -2895,7 +2840,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "rock1_mistlands",
                     false,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     ""
                 )
@@ -2906,7 +2851,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "rock1_mountain",
                     false,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     ""
                 )
@@ -2917,7 +2862,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "rock2_heath",
                     false,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     ""
                 )
@@ -2928,7 +2873,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "rock2_mountain",
                     false,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     ""
                 )
@@ -2939,7 +2884,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "rock3_ice",
                     false,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     ""
                 )
@@ -2950,7 +2895,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "rock3_mountain",
                     false,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     ""
                 )
@@ -2961,7 +2906,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "rock3_silver",
                     false,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     ""
                 )
@@ -2972,7 +2917,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "rock4_coast",
                     false,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     ""
                 )
@@ -2983,7 +2928,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "rock4_copper",
                     false,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     ""
                 )
@@ -2994,7 +2939,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "rock4_forest",
                     false,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     ""
                 )
@@ -3005,7 +2950,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "rock4_heath",
                     false,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     ""
                 )
@@ -3016,7 +2961,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "RockDolmen_1",
                     true,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     "Stone,75"
                 )
@@ -3027,7 +2972,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "RockDolmen_2",
                     true,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     "Stone,50"
                 )
@@ -3038,7 +2983,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "RockDolmen_3",
                     true,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     "Stone,75"
                 )
@@ -3071,7 +3016,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "rockformation1",
                     false,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     "Stone,350"
                 )
@@ -3093,7 +3038,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "root07",
                     false,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     "ElderBark,2"
                 )
@@ -3104,7 +3049,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "root08",
                     false,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     "ElderBark,4"
                 )
@@ -3115,7 +3060,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "root11",
                     false,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     "ElderBark,4"
                 )
@@ -3126,7 +3071,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "root12",
                     false,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     "ElderBark,4"
                 )
@@ -3225,7 +3170,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "ShootStump",
                     false,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     ""
                 )
@@ -3236,7 +3181,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "shrub_2",
                     false,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     ""
                 )
@@ -3247,7 +3192,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "shrub_2_heath",
                     false,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     ""
                 )
@@ -3258,7 +3203,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "sign_notext",
                     false,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Building,
                     nameof(CraftingStations.None),
                     ""
                 )
@@ -3269,7 +3214,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "silvervein",
                     true,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     ""
                 )
@@ -3379,7 +3324,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "stubbe",
                     false,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     ""
                 )
@@ -3401,9 +3346,9 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "sunken_crypt_gate",
                     false,
                     false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    ""
+                    HammerCategories.Building,
+                    nameof(CraftingStations.Forge),
+                    "Iron,4"
                 )
             },
             {
@@ -3412,7 +3357,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "SwampTree1",
                     false,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     "ElderBark,16"
                 )
@@ -3423,7 +3368,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "SwampTree1_log",
                     false,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     ""
                 )
@@ -3434,7 +3379,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "SwampTree1_Stub",
                     false,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     ""
                 )
@@ -3445,7 +3390,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "SwampTree2",
                     false,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     "ElderBark,32"
                 )
@@ -3456,7 +3401,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "SwampTree2_darkland",
                     false,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     "ElderBark,32"
                 )
@@ -3467,7 +3412,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "SwampTree2_log",
                     false,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     "ElderBark,32"
                 )
@@ -3524,7 +3469,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Furniture,
                     nameof(CraftingStations.BlackForge),
-                    "YggdrasilWood,10"
+                    "YggdrasilWood,10;Copper,1"
                 )
             },
             {
@@ -3535,7 +3480,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Furniture,
                     nameof(CraftingStations.BlackForge),
-                    "YggdrasilWood,10"
+                    "YggdrasilWood,10;Copper,1"
                 )
             },
             {
@@ -3553,7 +3498,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 "TreasureChest_mountaincave",
                 new PrefabDB(
                     "TreasureChest_mountaincave",
-                    true,
+                    false,
                     false,
                     HammerCategories.Furniture,
                     nameof(CraftingStations.Stonecutter),
@@ -3630,11 +3575,11 @@ namespace MoreVanillaBuildPrefabs.Configs
                 "vines",
                 new PrefabDB(
                     "vines",
+                    true,
                     false,
-                    false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    ""
+                    "Wood,2"
                 )
             },
             {
@@ -3643,7 +3588,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "widestone",
                     true,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     "Stone,32"
                 )
@@ -3663,42 +3608,42 @@ namespace MoreVanillaBuildPrefabs.Configs
                 "yggashoot_log",
                 new PrefabDB(
                     "yggashoot_log",
+                    true,
                     false,
-                    false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    ""
+                    "YggdrasilWood,10"
                 )
             },
             {
                 "yggashoot_log_half",
                 new PrefabDB(
                     "yggashoot_log_half",
+                    true,
                     false,
-                    false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    ""
+                    "YggdrasilWood,10"
                 )
             },
             {
                 "YggaShoot_small1",
                 new PrefabDB(
                     "YggaShoot_small1",
+                    true,
                     false,
-                    false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    ""
+                    "YggdrasilWood,10"
                 )
             },
             {
                 "YggaShoot1",
                 new PrefabDB(
                     "YggaShoot1",
+                    true,
                     false,
-                    false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     "YggdrasilWood,16"
                 )
@@ -3707,9 +3652,9 @@ namespace MoreVanillaBuildPrefabs.Configs
                 "YggaShoot2",
                 new PrefabDB(
                     "YggaShoot2",
+                    true,
                     false,
-                    false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     "YggdrasilWood,16"
                 )
@@ -3718,9 +3663,9 @@ namespace MoreVanillaBuildPrefabs.Configs
                 "YggaShoot3",
                 new PrefabDB(
                     "YggaShoot3",
+                    true,
                     false,
-                    false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     "YggdrasilWood,16"
                 )
@@ -3731,7 +3676,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "YggdrasilRoot",
                     true,
                     false,
-                    HammerCategories.CreatorShop,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     "YggdrasilWood,64;Sap,10"
                 )

@@ -47,7 +47,7 @@ namespace MoreVanillaBuildPrefabs.Patches
                     watch.Start();
                 }
 
-                CreatorShopHelper.AddCreatorShopPieceCategory();
+                PieceCategoryHelper.AddCreatorShopPieceCategory();
                 SfxHelper.Init();
                 MoreVanillaBuildPrefabs.InitPrefabRefs();
                 MoreVanillaBuildPrefabs.InitPieceRefs();

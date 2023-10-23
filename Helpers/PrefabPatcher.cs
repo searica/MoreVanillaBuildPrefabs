@@ -641,28 +641,14 @@ namespace MoreVanillaBuildPrefabs.Helpers
                     );
                     break;
 
-                case "turf_roof": // 26 degree
-                    SnapPointHelper.AddSnapPoints(
-                        prefab,
-                        new Vector3[]
-                        {
-                            new Vector3(0.0f, 0.5f, 0.0f), // center
-                            new Vector3(0.0f, 0.0f, 1.0f), // Bottom mid edge
-                            new Vector3(0.0f, 1.0f, -1.0f), // top mid edge
-                            new Vector3(1.0f, 0.5f, 0.0f), // left mid edge
-                            new Vector3(-1.0f, 0.5f, 0.0f), // right mid edge
-                        }
-                    );
-                    break;
-
                 case "turf_roof_top":
                     SnapPointHelper.AddSnapPoints(
                         prefab,
                         new Vector3[]
                         {
-                            new Vector3(0.0f, 0.0f, 1.0f),  // side mid edge
-                            new Vector3(0.0f, 0.0f, -1.0f),  // side mid edge
-                            new Vector3(0.0f, 0.5f, 0.0f),  // top mid edge
+                            // mid edge points can get added by ExtraSnapPointsMadeEasy
+                            new Vector3(1.0f, 0.5f, 0.0f),  // top front
+                            new Vector3(-1.0f, 0.5f, 0.0f),  // top back
                         }
                     );
                     break;

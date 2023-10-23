@@ -8,6 +8,7 @@ namespace MoreVanillaBuildPrefabs.Configs
     internal static class HammerCategories
     {
         public const string CreatorShop = "CreatorShop";
+        public const string Nature = "Nature";
         public const string Misc = "Misc";
         public const string Crafting = "Crafting";
         public const string Building = "Building";

@@ -283,13 +283,13 @@ namespace MoreVanillaBuildPrefabs
             var piece = PieceHelper.ConfigurePiece(pieceDB);
 
             // Fix missing hover text if needed.
-            var prefab = pieceDB.Prefab;
-            var hover = prefab.GetComponent<HoverText>() ?? prefab.AddComponent<HoverText>();
-            if (string.IsNullOrEmpty(hover.m_text))
-            {
-                hover.enabled = true;
-                hover.m_text = piece.m_name;
-            }
+            //var prefab = pieceDB.Prefab;
+            //var hover = prefab.GetComponent<HoverText>() ?? prefab.AddComponent<HoverText>();
+            //if (string.IsNullOrEmpty(hover.m_text))
+            //{
+            //    hover.enabled = true;
+            //    hover.m_text = piece.m_name;
+            //}
 
             return piece;
         }
@@ -320,7 +320,7 @@ namespace MoreVanillaBuildPrefabs
 
                 // Restrict placement of CreatorShop pieces to Admins only
                 if (PluginConfig.IsCreatorShopAdminOnly
-                    && CreatorShopHelper.IsCreatorShopPiece(pieceDB.piece)
+                    && PieceCategoryHelper.IsCreatorShopPiece(pieceDB.piece)
                     && !SynchronizationManager.Instance.PlayerIsAdmin)
                 {
                     continue;

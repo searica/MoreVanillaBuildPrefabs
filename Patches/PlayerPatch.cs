@@ -196,18 +196,18 @@ namespace MoreVanillaBuildPrefabs
             }
 
             // Prevents world generated piece from player removal with build hammer.
-            if (!piece.IsPlacedByPlayer() && CreatorShopHelper.IsCreatorShopPiece(piece))
+            if (!piece.IsPlacedByPlayer() && PieceCategoryHelper.IsPieceRemovalRestricted(piece))
             {
                 __result = false;
                 return false;
             }
 
-            // Prevents player from breaking pottery barn pieces they didn't
+            // Prevents player from breaking pieces they didn't
             // create themselves unless admin check and config is true.
-            if (CreatorShopHelper.IsCreatorShopPiece(piece) && !piece.IsCreator())
+            if (PieceCategoryHelper.IsPieceRemovalRestricted(piece) && !piece.IsCreator())
             {
                 // Allow admins to deconstruct CreatorShop pieces built by other players if setting is enabled in config
-                if (PluginConfig.IsCreatorShopAdminDeconstructAll && SynchronizationManager.Instance.PlayerIsAdmin)
+                if (PluginConfig.IsAdminDeconstructOtherPlayers && SynchronizationManager.Instance.PlayerIsAdmin)
                 {
                     __result = true;
                     return true;

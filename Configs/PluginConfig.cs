@@ -40,7 +40,7 @@ namespace MoreVanillaBuildPrefabs.Configs
         private const string MainSectionName = "\u200BGlobal";
 
         internal static ConfigEntry<bool> CreatorShopAdminOnly { get; private set; }
-        internal static ConfigEntry<bool> CreatorShopAdminDeconstructAll { get; private set; }
+        internal static ConfigEntry<bool> AdminDeconstructOtherPlayers { get; private set; }
         internal static ConfigEntry<bool> ForceAllPrefabs { get; private set; }
         internal static ConfigEntry<bool> CreativeMode { get; private set; }
         internal static ConfigEntry<LoggerLevel> Verbosity { get; private set; }
@@ -111,7 +111,7 @@ namespace MoreVanillaBuildPrefabs.Configs
         internal static bool IsVerbosityHigh => Verbosity.Value >= LoggerLevel.High;
         internal static bool IsForceAllPrefabs => ForceAllPrefabs.Value;
         internal static bool IsCreatorShopAdminOnly => CreatorShopAdminOnly.Value;
-        internal static bool IsCreatorShopAdminDeconstructAll => CreatorShopAdminDeconstructAll.Value;
+        internal static bool IsAdminDeconstructOtherPlayers => AdminDeconstructOtherPlayers.Value;
 
         internal static void SetUpConfig()
         {
@@ -119,7 +119,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 MainSectionName,
                 "CreativeMode",
                 false,
-                "Setting to toggle whether environmental prefabs like mist volumes that are not suitable for general play and building, are enabled. Requires a game/server restart to take effect.",
+                "Setting to enable pieces set to the CreatorShop or Nature piece categories. By default, the pieces set to those categories are not standard build pieces.",
                 AcceptableBoolValuesList
             );
 
@@ -131,12 +131,13 @@ namespace MoreVanillaBuildPrefabs.Configs
                 AcceptableBoolValuesList
             );
 
-            CreatorShopAdminDeconstructAll = BindConfig(
+            AdminDeconstructOtherPlayers = BindConfig(
                 MainSectionName,
-                "CreatorShopAdminDeconstructAll",
+                "AdminDeconstructOtherPlayers",
                 true,
-                "Set to true to allow admin players to deconstruct any CreatorShop pieces built by players." +
-                " Intended to prevent griefing via placement of indestructible objects.",
+                "Set to true to allow admin players to deconstruct any pieces built by other players, " +
+                "even if doing so would normaly be prevented (such as for CreatorShop or Nature pieces). " +
+                "Intended to prevent griefing via placement of indestructible objects.",
                 AcceptableBoolValuesList
             );
 

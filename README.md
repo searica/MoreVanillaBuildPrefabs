@@ -150,14 +150,12 @@ If multiple player's have this mod, the same restrictions still apply and they w
 - Delete all the pngs in that directory.
 - Restart the game and the mod should hopefully regenerate the icons correctly.
 
-**Sail Cloth Behaviour**: The sail on the ship enabled by this mod doesn't behave very well when wind hits it. Working on a fix but haven't had much luck yet. 
-
-
 ## Planned Improvements
 - Resolve known issues.
 - Patch and enable more prefabs by default.
 - Adding vanilla functionality to pieces added by the mod, like being able to sit in chairs.
 - Adding comfort values to pieces added by the mod with a config setting to enable/disable them.
+- Changing pickables added by the mod to drop the pickable item when deconstructred if it has not already been picked.
 - Learn how localization works and add localization options to the mod.
 
 ## Potential Improvements
