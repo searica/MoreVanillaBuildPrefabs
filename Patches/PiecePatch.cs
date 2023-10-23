@@ -40,7 +40,8 @@ namespace MoreVanillaBuildPrefabs
         /// <summary>
         ///     Transpiler to set dropped resources to default resources
         ///     for any piece altered by this mod if the piece was not built
-        ///     by a player. 
+        ///     by a player. Also picks pickables (if not already picked) and
+        ///     forces ItemStand to drop attached item (if it has one).
         /// </summary>
         /// <param name="__instance"></param>
         /// <param name="__state"></param>
@@ -77,7 +78,9 @@ namespace MoreVanillaBuildPrefabs
         /// <summary>
         ///     Delegate that sets dropped resources to default resources
         ///     for any piece altered by this mod if the piece was not built
-        ///     by a player. 
+        ///     by a player and adjusts dropped resources for pickable items.
+        ///     Also picks pickables (if not already picked) and
+        ///     forces ItemStand to drop attached item (if it has one).
         /// </summary>
         /// <param name="__instance"></param>
         /// <param name="__state"></param>
@@ -116,10 +119,27 @@ namespace MoreVanillaBuildPrefabs
                 }
             }
 
-            // If piece has a pickable component then adjust resource drops
-            // to prevent infinite item exploits by placing a pickable,
-            // picking it, and then deconstructing it to get extra items.
-            resources = RequirementsHelper.RemovePickableFromRequirements(resources, piece.GetComponent<Pickable>());
+            var zNetView = piece?.gameObject?.GetComponent<ZNetView>();
+
+            // If piece has an ItemStand and it has an item, then drop it.
+            var itemStand = piece?.gameObject?.GetComponentInChildren<ItemStand>();
+            if (itemStand != null && zNetView != null)
+            {
+                var canBeRemoved = itemStand.m_canBeRemoved;
+                itemStand.m_canBeRemoved = true;
+                zNetView.InvokeRPC("DropItem");
+                itemStand.m_canBeRemoved = canBeRemoved;
+            }
+
+            // If piece is pickable and it has not been picked, then pick it.
+            var pickable = piece?.gameObject?.GetComponent<Pickable>();
+            if (pickable != null && zNetView != null)
+            {
+                zNetView.InvokeRPC("Pick");
+
+                // Adjust drops to avoid duplicating pickable item (avoid infinite resource exploits).
+                resources = RequirementsHelper.RemovePickableFromRequirements(resources, pickable);
+            }
 
             return resources;
         }
