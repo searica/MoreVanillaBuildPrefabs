@@ -25,7 +25,9 @@ namespace MoreVanillaBuildPrefabs.Patches
                 Log.LogInfo("ZoneSystemStartPostfix()");
             }
 
-            if (SceneManager.GetActiveScene() == null)
+            // If loading into game world and prefabs have not been added
+            if (SceneManager.GetActiveScene() == null
+                || SceneManager.GetActiveScene().name != "main")
             {
                 return;
             }
@@ -36,29 +38,25 @@ namespace MoreVanillaBuildPrefabs.Patches
             //Log.LogInfo($"{stair == null}");
             //Log.LogInfo($"{stair.name}");
 
-            // If loading into game world and prefabs have not been added
-            if (SceneManager.GetActiveScene().name == "main")
+            Log.LogInfo("Performing mod initialization");
+
+            var watch = new System.Diagnostics.Stopwatch();
+            if (PluginConfig.IsVerbosityMedium)
             {
-                Log.LogInfo("Performing mod initialization");
+                watch.Start();
+            }
 
-                var watch = new System.Diagnostics.Stopwatch();
-                if (PluginConfig.IsVerbosityMedium)
-                {
-                    watch.Start();
-                }
+            PieceCategoryHelper.AddCreatorShopPieceCategory();
+            SfxHelper.Init();
+            MoreVanillaBuildPrefabs.InitPrefabRefs();
+            MoreVanillaBuildPrefabs.InitPieceRefs();
+            MoreVanillaBuildPrefabs.InitPieces();
+            MoreVanillaBuildPrefabs.InitHammer();
 
-                PieceCategoryHelper.AddCreatorShopPieceCategory();
-                SfxHelper.Init();
-                MoreVanillaBuildPrefabs.InitPrefabRefs();
-                MoreVanillaBuildPrefabs.InitPieceRefs();
-                MoreVanillaBuildPrefabs.InitPieces();
-                MoreVanillaBuildPrefabs.InitHammer();
-
-                if (PluginConfig.IsVerbosityMedium)
-                {
-                    watch.Stop();
-                    Log.LogInfo($"Time to initialize: {watch.ElapsedMilliseconds} ms");
-                }
+            if (PluginConfig.IsVerbosityMedium)
+            {
+                watch.Stop();
+                Log.LogInfo($"Time to initialize: {watch.ElapsedMilliseconds} ms");
             }
         }
     }
