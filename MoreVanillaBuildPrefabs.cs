@@ -1,4 +1,5 @@
 ﻿using BepInEx;
+using BepInEx.Bootstrap;
 using HarmonyLib;
 using Jotunn.Configs;
 using Jotunn.Managers;
@@ -16,6 +17,7 @@ namespace MoreVanillaBuildPrefabs
 {
     [BepInPlugin(PluginGuid, PluginName, PluginVersion)]
     [BepInDependency(Jotunn.Main.ModGuid, Jotunn.Main.Version)]
+    [BepInDependency(ModCompat.ExtraSnapPointsMadeEasyGUID, BepInDependency.DependencyFlags.SoftDependency)]
     [BepInDependency(ModCompat.PlanBuildGUID, BepInDependency.DependencyFlags.SoftDependency)]
     [NetworkCompatibility(CompatibilityLevel.ServerMustHaveMod, VersionStrictness.Patch)]
     public class MoreVanillaBuildPrefabs : BaseUnityPlugin
@@ -451,6 +453,32 @@ namespace MoreVanillaBuildPrefabs
                 else
                 {
                     Log.LogInfo("Re-initializing complete");
+                }
+
+                if (ModCompat.IsExtraSnapPointsMadeEasyInstalled)
+                {
+                    var plugin = Chainloader.PluginInfos[ModCompat.ExtraSnapPointsMadeEasyGUID].Instance;
+                    if (plugin != null)
+                    {
+                        MethodInfo method = ReflectionUtils.GetMethod(
+                            plugin.GetType(),
+                            "ReInitExtraSnapPoints",
+                            new Type[] { typeof(string) }
+                        );
+
+                        if (method != null)
+                        {
+                            var parameters = new string[] {
+                                "MoreVanillaBuildPrefabs updated, re-initalizing extra snap points"
+                            };
+                            method.Invoke(plugin, parameters);
+                        }
+                    }
+
+                }
+                if (ModCompat.IsPlanBuildInstalled)
+                {
+                    // do nothing at the moment
                 }
             }
         }
