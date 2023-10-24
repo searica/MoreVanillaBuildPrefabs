@@ -28,6 +28,7 @@
 					
 					<li>Fixed the cloth behaviour on the new ship.</li>
 					<li>Tweaked snap points to mimic vanilla pieces more. Can use ExtraSnapPointsMadeEasy if you want more precise snap points.</li>
+					<li>Improved compatability with ExtraSnapPointsMadeEasy to allow dynamically changing extra snap points as MoreVanillaBuildPrefabs dynamically adds/removes build pieces.</li>
 					<li>Pickable pieces now drop the pickable item when deconstructed if it has not already been picked.</li>
 					<li>ItemStand pieces now drop the attached item when deconstructed if an attached item exists.</li>
 				</ul>
