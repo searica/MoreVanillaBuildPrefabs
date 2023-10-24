@@ -143,19 +143,17 @@ namespace MoreVanillaBuildPrefabs.Helpers
             var prefab = pieceDB.Prefab;
             var name = NameHelper.FormatPrefabName(prefab.name);
             var description = NameHelper.GetPrefabDescription(prefab);
-            var piece = pieceDB.piece;
-            var reqs = ConfigurePieceRequirements(pieceDB);
+            if (description == name) { description = ""; }
             var pieceCategory = (Piece.PieceCategory)PieceManager.Instance.GetPieceCategory(pieceDB.category);
 
-            var station = GetCraftingStation(pieceDB.craftingStation);
             return ConfigurePiece(
-                piece,
+                pieceDB.piece,
                 name,
                 description,
                 pieceDB.allowedInDungeons,
                 pieceCategory,
-                station,
-                reqs
+                GetCraftingStation(pieceDB.craftingStation),
+                ConfigurePieceRequirements(pieceDB)
             );
         }
 
