@@ -20,12 +20,6 @@ namespace MoreVanillaBuildPrefabs.Configs
                 return true;
             }
 
-            // Ignore pieces added by Azumat's BowsBeforeHoes mod
-            if (prefab.name.StartsWith("BBH_"))
-            {
-                return true;
-            }
-
             // Customs filters
             if (prefab.GetComponent("Projectile") != null ||
                 prefab.GetComponent("Humanoid") != null ||
@@ -63,6 +57,13 @@ namespace MoreVanillaBuildPrefabs.Configs
                 prefab.name.StartsWith("sfx_") ||
                 prefab.name.StartsWith("fx_")
             )
+            {
+                return true;
+            }
+
+            // Ignore pieces added by other mods
+            if (prefab.name.StartsWith("BBH_") || // Azumat's BowsBeforeHoes mod
+                prefab.name.StartsWith("rrr_")) // RRR prefabs
             {
                 return true;
             }
