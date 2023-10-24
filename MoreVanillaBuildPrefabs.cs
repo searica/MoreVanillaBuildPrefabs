@@ -474,7 +474,6 @@ namespace MoreVanillaBuildPrefabs
                             method.Invoke(plugin, parameters);
                         }
                     }
-
                 }
                 if (ModCompat.IsPlanBuildInstalled)
                 {
