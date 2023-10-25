@@ -215,5 +215,101 @@ namespace MoreVanillaBuildPrefabs
 
             return true;
         }
+
+        /// <summary>
+        ///     Patch to remove some code and replace it with code 
+        ///     that figures out the approach removal effects.
+        /// </summary>
+        /// <param name="instructions"></param>
+        /// <returns></returns>
+        [HarmonyTranspiler]
+        [HarmonyPatch(nameof(Player.RemovePiece))]
+        private static IEnumerable<CodeInstruction> RemovePieceTranspiler(IEnumerable<CodeInstruction> instructions)
+        {
+            // piece.m_placeEffect.Create(piece.transform.position, piece.transform.rotation, piece.gameObject.transform);
+            // IL_0162: ldloc.1
+            // IL_0163: ldfld private class EffectList private Piece::m_placeEffect
+            // IL_0168: ldloc.1
+            // IL_0169: private callvirt instance private class [UnityEngine.CoreModule] UnityEngine.Transform[UnityEngine.CoreModule] UnityEngine.Component::get_transform()
+            // IL_016e: private callvirt instance valuetype[UnityEngine.CoreModule] UnityEngine.Vector3 [UnityEngine.CoreModule] UnityEngine.Transform::get_position()
+            // IL_0173: ldloc.1
+            // IL_0174: callvirt instance private class [UnityEngine.CoreModule] UnityEngine.Transform[UnityEngine.CoreModule] UnityEngine.Component::get_transform()
+            // IL_0179: private callvirt instance valuetype[UnityEngine.CoreModule] UnityEngine.Quaternion [UnityEngine.CoreModule] UnityEngine.Transform::get_rotation()
+            // IL_017e: ldloc.1
+            // IL_017f: callvirt instance private class [UnityEngine.CoreModule] UnityEngine.GameObject[UnityEngine.CoreModule] UnityEngine.Component::get_gameObject()
+            // IL_0184: private callvirt instance private class [UnityEngine.CoreModule] UnityEngine.Transform[UnityEngine.CoreModule] UnityEngine.GameObject::get_transform()
+            // IL_0189: ldc.r4 1
+            // IL_018e: private ldc.i4.m1
+            // IL_018f: private callvirt instance private class [UnityEngine.CoreModule] private UnityEngine.GameObject[] EffectList::Create(valuetype[UnityEngine.CoreModule] UnityEngine.Vector3, valuetype[UnityEngine.CoreModule] UnityEngine.Quaternion, private class [UnityEngine.CoreModule] UnityEngine.Transform, float32, int32)
+            // IL_0194: pop
+
+            // m_removeEffects.Create(piece.transform.position, Quaternion.identity);
+            // IL_0195: ldarg.0
+            // IL_0196: ldfld class EffectList Player::m_removeEffects
+            // IL_019b: ldloc.1
+            // IL_019c: callvirt instance class [UnityEngine.CoreModule] UnityEngine.Transform[UnityEngine.CoreModule] UnityEngine.Component::get_transform()
+            // IL_01a1: callvirt instance valuetype[UnityEngine.CoreModule] UnityEngine.Vector3 [UnityEngine.CoreModule] UnityEngine.Transform::get_position()
+            // IL_01a6: call valuetype [UnityEngine.CoreModule] UnityEngine.Quaternion[UnityEngine.CoreModule] UnityEngine.Quaternion::get_identity()
+            // IL_01ab: ldnull
+            // IL_01ac: ldc.r4 1
+            // IL_01b1: ldc.i4.m1
+            // IL_01b2: callvirt instance class [UnityEngine.CoreModule] UnityEngine.GameObject[] EffectList::Create(valuetype[UnityEngine.CoreModule] UnityEngine.Vector3, valuetype[UnityEngine.CoreModule] UnityEngine.Quaternion, class [UnityEngine.CoreModule] UnityEngine.Transform, float32, int32)
+            //IL_01b7: pop
+            var codes = new CodeMatch[]
+            {
+                new CodeMatch(
+                    OpCodes.Ldfld,
+                    AccessTools.Field(typeof(Piece), nameof(Piece.m_placeEffect))
+                ),
+            };
+            return new CodeMatcher(instructions)
+                .MatchForward(useEnd: false, codes)
+                .RemoveInstructions(14 + 11)
+                .InsertAndAdvance(
+                Transpilers.EmitDelegate<Action<Piece>>(RemovePieceEffectsDelegate))
+                .InstructionEnumeration();
+        }
+
+        private static void RemovePieceEffectsDelegate(Piece piece)
+        {
+            if (!MoreVanillaBuildPrefabs.IsChangedByMod(NameHelper.GetPrefabName(piece)))
+            {
+                piece.m_placeEffect.Create(piece.transform.position, piece.transform.rotation, piece.gameObject.transform);
+                Player.s_players[0].m_removeEffects.Create(piece.transform.position, Quaternion.identity);
+                return;
+            }
+
+            // If this is called that means no WearNTear component on the piece.
+            if (PluginConfig.IsVerbosityMedium) { Log.LogInfo("RemovePieceEffectsDelegate"); }
+
+            var destructible = piece?.gameObject?.GetComponent<Destructible>();
+            if (destructible != null)
+            {
+                var effects = destructible.m_destroyedEffect?.m_effectPrefabs;
+                foreach (var effect in effects)
+                {
+                    if (effect != null
+                        && effect.m_prefab.name.StartsWith("sfx_")
+                        && effect.m_prefab.name.EndsWith("_destroyed"))
+                    {
+                        destructible.CreateDestructionEffects(Vector3.zero, Vector3.zero);
+                        if (destructible.m_destroyNoise > 0f)
+                        {
+                            Player closestPlayer = Player.GetClosestPlayer(piece.transform.position, 10f);
+                            if (closestPlayer)
+                            {
+                                closestPlayer.AddNoise(destructible.m_destroyNoise);
+                            }
+                        }
+                        return;
+                    }
+                }
+            }
+            SfxHelper.FixRemovalSfx(piece).Create(
+                piece.transform.position,
+                piece.transform.rotation,
+                piece.gameObject.transform
+            );
+        }
     }
 }
