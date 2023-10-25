@@ -2219,6 +2219,28 @@ namespace MoreVanillaBuildPrefabs.Configs
                 )
             },
             {
+                "Pickable_Barley",
+                new PrefabDB(
+                    "Pickable_Barley",
+                    false,
+                    false,
+                    HammerCategories.Nature,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "Pickable_Barley_Wild",
+                new PrefabDB(
+                    "Pickable_Barley_Wild",
+                    false,
+                    false,
+                    HammerCategories.Nature,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
                 "Pickable_BlackCoreStand",
                 new PrefabDB(
                     "Pickable_BlackCoreStand",
@@ -2249,6 +2271,17 @@ namespace MoreVanillaBuildPrefabs.Configs
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     "Wood,5"
+                )
+            },
+            {
+                "Pickable_Carrot",
+                new PrefabDB(
+                    "Pickable_Carrot",
+                    false,
+                    false,
+                    HammerCategories.Nature,
+                    nameof(CraftingStations.None),
+                    ""
                 )
             },
             {
@@ -2324,6 +2357,28 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     false,
                     HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "Pickable_Flax",
+                new PrefabDB(
+                    "Pickable_Flax",
+                    false,
+                    false,
+                    HammerCategories.Nature,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "Pickable_Flax_Wild",
+                new PrefabDB(
+                    "Pickable_Flax_Wild",
+                    false,
+                    false,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     ""
                 )
@@ -2516,6 +2571,28 @@ namespace MoreVanillaBuildPrefabs.Configs
                 )
             },
             {
+                "Pickable_Mushroom_JotunPuffs",
+                new PrefabDB(
+                    "Pickable_Mushroom_JotunPuffs",
+                    false,
+                    false,
+                    HammerCategories.Nature,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "Pickable_Mushroom_Magecap",
+                new PrefabDB(
+                    "Pickable_Mushroom_Magecap",
+                    false,
+                    false,
+                    HammerCategories.Nature,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
                 "Pickable_Mushroom_yellow",
                 new PrefabDB(
                     "Pickable_Mushroom_yellow",
@@ -2538,12 +2615,56 @@ namespace MoreVanillaBuildPrefabs.Configs
                 )
             },
             {
+                "Pickable_Onion",
+                new PrefabDB(
+                    "Pickable_Onion",
+                    false,
+                    false,
+                    HammerCategories.Nature,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
                 "Pickable_RoyalJelly",
                 new PrefabDB(
                     "Pickable_RoyalJelly",
                     false,
                     false,
                     HammerCategories.CreatorShop,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "Pickable_SeedCarrot",
+                new PrefabDB(
+                    "Pickable_SeedCarrot",
+                    false,
+                    false,
+                    HammerCategories.Nature,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "Pickable_SeedOnion",
+                new PrefabDB(
+                    "Pickable_SeedOnion",
+                    false,
+                    false,
+                    HammerCategories.Nature,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "Pickable_SeedTurnip",
+                new PrefabDB(
+                    "Pickable_SeedTurnip",
+                    false,
+                    false,
+                    HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     ""
                 )
@@ -2618,6 +2739,17 @@ namespace MoreVanillaBuildPrefabs.Configs
                 "Pickable_Tin",
                 new PrefabDB(
                     "Pickable_Tin",
+                    false,
+                    false,
+                    HammerCategories.Nature,
+                    nameof(CraftingStations.None),
+                    ""
+                )
+            },
+            {
+                "Pickable_Turnip",
+                new PrefabDB(
+                    "Pickable_Turnip",
                     false,
                     false,
                     HammerCategories.Nature,
