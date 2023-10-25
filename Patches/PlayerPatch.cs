@@ -62,16 +62,6 @@ namespace MoreVanillaBuildPrefabs
 
             if (PieceHelper.AddedPrefabs.Contains(gameObject.name))
             {
-                //if (DefaultConfigs.RemovePickable.Contains(gameObject.name))
-                //{
-                //    var pickable = result.GetComponent<Pickable>();
-                //    if (pickable != null)
-                //    {
-                //        Log.LogInfo("Destroying Pickable");
-                //        UnityEngine.Object.DestroyImmediate(pickable);
-                //    }
-                //}
-
                 var container = result.GetComponent<Container>();
                 if (container != null)
                 {
@@ -104,9 +94,16 @@ namespace MoreVanillaBuildPrefabs
                                 typeof(UnityEngine.Object),
                                 nameof(UnityEngine.Object.Instantiate),
                                 genericParameterCount: 1,
-                                new Type[] { typeof(Type) })
-                            .MakeGenericMethod(typeof(GameObject))),
-                    new CodeMatch(OpCodes.Stfld, AccessTools.Field(typeof(Player), nameof(Player.m_placementGhost))))
+                                new Type[] { typeof(Type) }
+                            )
+                            .MakeGenericMethod(typeof(GameObject))
+                    ),
+                    new CodeMatch(
+                        OpCodes.Stfld,
+                        AccessTools.Field(typeof(Player), nameof(Player.m_placementGhost)
+                        )
+                    )
+                )
                 .SetInstructionAndAdvance(
                     Transpilers.EmitDelegate<Func<GameObject, GameObject>>(SetupPlacementGhostInstantiateDelegate))
                 .InstructionEnumeration();
