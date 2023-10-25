@@ -150,7 +150,7 @@ The AdminDeconstructOtherPlayers setting can allow players with admin status to 
 ## Known Issues
 **Custom Armor Stand Clipping**: Armor placed on the Male Armor Stand and Female Armor Stand prefabs has clipping issues causing parts of the armor to not be displayed. I have not been able to fix this as of yet. Feel free to reach out if you know things about meshing and you have ideas for a solution.
 
-**Piece Icons**: Variable lighting between icons for custom pieces where some appear much darker than others. A fix has been implemented, but icons are cached by Jotunn so to fix the issue you need to do the following:
+**Piece Icons**: Variable lighting between icons for custom pieces where some appear much darker than others. A fix has been implemented, but icons are cached by Jotunn so if you previouslt had this issue and want to fix it, you need to do the following:
 - Go to this directory: %userprofile%\appdata\LocalLow\IronGate\Valheim\Jotunn\CachedIcons
 - Delete all the pngs in that directory.
 - Restart the game and the mod should hopefully regenerate the icons correctly.
