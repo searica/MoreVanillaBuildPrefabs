@@ -52,7 +52,14 @@ namespace MoreVanillaBuildPrefabs.Helpers
         private static readonly Dictionary<string, string> DescriptionMap = new()
         {
             {"metalbar_1x2", "Enforced marble 1x2"},
-            {"goblin_strawpile", "Rug straw (large)"},
+            {"goblin_strawpile", ""},
+            {"fire_pit_hildir", "Burns eternally without fuel."},
+            {"fire_pit_haldor", "Burns eternally without fuel."},
+            {"MountainKit_brazier", "Burns eternally without fuel, but does not prevent spawning of monsters."},
+            {"MountainKit_brazier_blue", "Burns eternally without fuel, but does not prevent spawning of monsters." },
+            {"CastleKit_groundtorch", "Burns eternally without fuel, but does not prevent spawning of monsters." },
+            {"CastleKit_groundtorch_blue", "Burns eternally without fuel, but does not prevent spawning of monsters." },
+            {"CastleKit_groundtorch_green", "Burns eternally without fuel, but does not prevent spawning of monsters." },
         };
 
         private static readonly Regex PrefabNameRegex = new(@"([a-z])([A-Z])");
