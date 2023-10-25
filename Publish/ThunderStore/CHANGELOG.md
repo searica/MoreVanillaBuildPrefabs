@@ -8,6 +8,20 @@
 			<th align="center">Notes</th>
 		</tr>
 		<tr>
+			<td align="center">0.4.4</td>
+			<td align="left">
+				<ul>
+					<li>Added a configuration option to re-enable placing Vanilla crops with the hammer.</li>
+					<li>Removed piece descriptions that were duplicates of piece names.</li>
+					<li>Disabled a prefab that would disappear 10 seconds after placing it.</li>
+					<li>Improved descriptions for several prefabs.</li>
+					<li>Removed the snap points added to the center of all prefabs (use ExtraSnapPointsMadeEasy instead).</li>
+					<li>Fixed minor compatability issue with RRR, warning should no longer trigger and MVBP will no longer detect prefabs added by RRR.</li>
+					<li></li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
 			<td align="center">0.4.3</td>
 			<td align="left">
 				<ul>
@@ -25,7 +39,7 @@
 							<li>Changing the CreativeMode setting now updates while in-game.</li>
 						</ul>
 					</li>
-					
+
 					<li>Fixed the cloth behaviour on the new ship.</li>
 					<li>Tweaked snap points to mimic vanilla pieces more. Can use ExtraSnapPointsMadeEasy if you want more precise snap points.</li>
 					<li>Improved compatability with ExtraSnapPointsMadeEasy to allow dynamically changing extra snap points as MoreVanillaBuildPrefabs dynamically adds/removes build pieces.</li>
