@@ -84,9 +84,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
             "Pickable_Carrot",
             "Pickable_Turnip",
             "Pickable_Flax",
-            "Pickable_Flax_Wild",
             "Pickable_Barley",
-            "Pickable_Barley_Wild",
             "Pickable_Mushroom_Magecap",
             "Pickable_Mushroom_JotunPuffs",
         };
