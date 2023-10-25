@@ -94,7 +94,7 @@ namespace MoreVanillaBuildPrefabs
             }
             string prefabName = NameHelper.GetPrefabName(piece);
 
-            if (!IsChangedByMod(prefabName))
+            if (!IsPatchedByMod(prefabName))
             {
                 // do nothing it not a piece the mod changes
                 return piece.m_resources;

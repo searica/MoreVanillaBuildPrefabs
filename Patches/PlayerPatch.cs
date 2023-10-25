@@ -111,7 +111,7 @@ namespace MoreVanillaBuildPrefabs
 
         private static GameObject SetupPlacementGhostInstantiateDelegate(GameObject selectedPrefab)
         {
-            if (!MoreVanillaBuildPrefabs.IsChangedByMod(selectedPrefab.name))
+            if (!MoreVanillaBuildPrefabs.IsPatchedByMod(selectedPrefab.name))
             {
                 // ignore pieces not touched by this mod
                 return UnityEngine.Object.Instantiate(selectedPrefab);
@@ -187,7 +187,7 @@ namespace MoreVanillaBuildPrefabs
         {
             // Only modify results for pieces affected by this mod
             var prefabName = NameHelper.GetPrefabName(piece);
-            if (!MoreVanillaBuildPrefabs.IsChangedByMod(prefabName))
+            if (!MoreVanillaBuildPrefabs.IsPatchedByMod(prefabName))
             {
                 return true; // run CheckCanRemove method as normal
             }
@@ -272,7 +272,7 @@ namespace MoreVanillaBuildPrefabs
 
         private static void RemovePieceEffectsDelegate(Piece piece)
         {
-            if (!MoreVanillaBuildPrefabs.IsChangedByMod(NameHelper.GetPrefabName(piece)))
+            if (!MoreVanillaBuildPrefabs.IsPatchedByMod(NameHelper.GetPrefabName(piece)))
             {
                 piece.m_placeEffect.Create(piece.transform.position, piece.transform.rotation, piece.gameObject.transform);
                 Player.s_players[0].m_removeEffects.Create(piece.transform.position, Quaternion.identity);
