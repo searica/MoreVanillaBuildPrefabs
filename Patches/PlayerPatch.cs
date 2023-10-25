@@ -217,7 +217,7 @@ namespace MoreVanillaBuildPrefabs
         }
 
         /// <summary>
-        ///     Patch to remove some code and replace it with code 
+        ///     Patch to remove some code and replace it with code
         ///     that figures out the approach removal effects.
         /// </summary>
         /// <param name="instructions"></param>
@@ -286,25 +286,30 @@ namespace MoreVanillaBuildPrefabs
             if (destructible != null)
             {
                 var effects = destructible.m_destroyedEffect?.m_effectPrefabs;
-                foreach (var effect in effects)
+                if (effects != null && effects.Length != 0)
                 {
-                    if (effect != null
-                        && effect.m_prefab.name.StartsWith("sfx_")
-                        && effect.m_prefab.name.EndsWith("_destroyed"))
+                    // Create destructible effects
+                    destructible.CreateDestructionEffects(Vector3.zero, Vector3.zero);
+                    if (destructible.m_destroyNoise > 0f)
                     {
-                        destructible.CreateDestructionEffects(Vector3.zero, Vector3.zero);
-                        if (destructible.m_destroyNoise > 0f)
+                        Player closestPlayer = Player.GetClosestPlayer(piece.transform.position, 10f);
+                        if (closestPlayer)
                         {
-                            Player closestPlayer = Player.GetClosestPlayer(piece.transform.position, 10f);
-                            if (closestPlayer)
-                            {
-                                closestPlayer.AddNoise(destructible.m_destroyNoise);
-                            }
+                            closestPlayer.AddNoise(destructible.m_destroyNoise);
                         }
-                        return;
+                    }
+
+                    // End script if a sfx was produced
+                    foreach (var effect in effects)
+                    {
+                        if (effect != null && effect.m_prefab.name.StartsWith("sfx_"))
+                        {
+                            return;
+                        }
                     }
                 }
             }
+            // Create sfx if needed.
             SfxHelper.FixRemovalSfx(piece).Create(
                 piece.transform.position,
                 piece.transform.rotation,
