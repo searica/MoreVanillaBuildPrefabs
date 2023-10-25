@@ -61,7 +61,7 @@ namespace MoreVanillaBuildPrefabs
         public void OnDestroy()
         {
             PluginConfig.Save();
-            _harmony?.UnpatchSelf();
+            //_harmony?.UnpatchSelf();
         }
 
         /// <summary>
@@ -192,13 +192,6 @@ namespace MoreVanillaBuildPrefabs
 
             foreach (var prefab in PrefabRefs.Values)
             {
-                // Old approach
-                //var clone = prefab.DeepCopy();
-                //DefaultPieceClones.Add(prefab.name, clone.GetComponent<Piece>());
-
-                // This should be a bit faster and use less memory
-                // Chance of NRE due to parent GameObject getting dereferenced?
-                // I think the old approach had that problem too though
                 var go = new GameObject();
                 var pieceClone = go.AddComponent<Piece>();
                 pieceClone.CopyFields(prefab.GetComponent<Piece>());
@@ -270,30 +263,9 @@ namespace MoreVanillaBuildPrefabs
             Log.LogInfo("Initializing pieces");
             foreach (var pieceDB in PieceRefs.Values)
             {
-                var piece = CreatePiece(pieceDB);
+                var piece = PieceHelper.ConfigurePiece(pieceDB);
                 SfxHelper.FixPlacementSfx(piece);
             }
-        }
-
-        /// <summary>
-        ///     Creates a piece if needed and configures it based on PieceDB values.
-        /// </summary>
-        /// <param name="prefabDB"></param>
-        /// <returns></returns>
-        private static Piece CreatePiece(PieceDB pieceDB)
-        {
-            var piece = PieceHelper.ConfigurePiece(pieceDB);
-
-            // Fix missing hover text if needed.
-            //var prefab = pieceDB.Prefab;
-            //var hover = prefab.GetComponent<HoverText>() ?? prefab.AddComponent<HoverText>();
-            //if (string.IsNullOrEmpty(hover.m_text))
-            //{
-            //    hover.enabled = true;
-            //    hover.m_text = piece.m_name;
-            //}
-
-            return piece;
         }
 
         /// <summary>
@@ -307,15 +279,22 @@ namespace MoreVanillaBuildPrefabs
             PieceTable hammerTable = PieceHelper.GetPieceTable(PieceTables.Hammer);
             foreach (var pieceDB in PieceRefs.Values)
             {
-                // check if piece is enabled by the mod
+                // Check if piece is enabled by the mod
                 if (!pieceDB.enabled && !PluginConfig.IsForceAllPrefabs)
                 {
                     continue;
                 }
 
-                // prevent adding creative mode pieces if not in CreativeMode
+                // Prevent adding creative mode pieces if not in CreativeMode
                 if (!PluginConfig.IsCreativeMode
                     && PieceCategoryHelper.IsCreativeModePiece(pieceDB.piece))
+                {
+                    continue;
+                }
+
+                // Only add vanilla crops if enabled
+                if (!PluginConfig.IsEnableHammerCrops
+                    && PieceCategoryHelper.IsVanillaCrop(pieceDB.name))
                 {
                     continue;
                 }
