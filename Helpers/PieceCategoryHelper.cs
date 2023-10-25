@@ -2,6 +2,7 @@
 using Jotunn.Managers;
 using MoreVanillaBuildPrefabs.Configs;
 using MoreVanillaBuildPrefabs.Logging;
+using System.Collections.Generic;
 
 namespace MoreVanillaBuildPrefabs.Helpers
 {
@@ -63,5 +64,31 @@ namespace MoreVanillaBuildPrefabs.Helpers
             }
             return false;
         }
+
+        /// <summary>
+        ///     Checks if prefab name is contained in HashSet of Vanilla crops
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        internal static bool IsVanillaCrop(string name)
+        {
+            return _VanillaCrops.Contains(name);
+        }
+
+        // Crops you can plant in Vanilla
+        private static readonly HashSet<string> _VanillaCrops = new() {
+            "Pickable_SeedCarrot",
+            "Pickable_SeedTurnip",
+            "Pickable_SeedOnion",
+            "Pickable_Onion",
+            "Pickable_Carrot",
+            "Pickable_Turnip",
+            "Pickable_Flax",
+            "Pickable_Flax_Wild",
+            "Pickable_Barley",
+            "Pickable_Barley_Wild",
+            "Pickable_Mushroom_Magecap",
+            "Pickable_Mushroom_JotunPuffs",
+        };
     }
 }

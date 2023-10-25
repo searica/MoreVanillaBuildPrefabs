@@ -39,10 +39,11 @@ namespace MoreVanillaBuildPrefabs.Configs
 
         private const string MainSectionName = "\u200BGlobal";
 
+        internal static ConfigEntry<bool> CreativeMode { get; private set; }
         internal static ConfigEntry<bool> CreatorShopAdminOnly { get; private set; }
         internal static ConfigEntry<bool> AdminDeconstructOtherPlayers { get; private set; }
         internal static ConfigEntry<bool> ForceAllPrefabs { get; private set; }
-        internal static ConfigEntry<bool> CreativeMode { get; private set; }
+        internal static ConfigEntry<bool> EnableHammerCrops { get; private set; }
         internal static ConfigEntry<LoggerLevel> Verbosity { get; private set; }
 
         internal class PieceConfigEntries
@@ -105,6 +106,7 @@ namespace MoreVanillaBuildPrefabs.Configs
 
         internal static LoggerLevel VerbosityLevel => Verbosity.Value;
 
+        internal static bool IsEnableHammerCrops => EnableHammerCrops.Value;
         internal static bool IsCreativeMode => CreativeMode.Value;
         internal static bool IsVerbosityLow => Verbosity.Value >= LoggerLevel.Low;
         internal static bool IsVerbosityMedium => Verbosity.Value >= LoggerLevel.Medium;
@@ -143,6 +145,16 @@ namespace MoreVanillaBuildPrefabs.Configs
                 AcceptableBoolValuesList
             );
 
+            EnableHammerCrops = BindConfig(
+                MainSectionName,
+                "EnableHammerCrops",
+                false,
+                "Setting to enable prefabs for crops that can already be planted  " +
+                "in the Vanilla game. Unless this setting is true Vanilla crops " +
+                "will not be available for placing with the hammer.",
+                AcceptableBoolValuesList
+            );
+
             ForceAllPrefabs = BindConfig(
                 MainSectionName,
                 "ForceAllPrefabs",
@@ -161,6 +173,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 "it to this without good reason as it will slow down your game."
             );
 
+            EnableHammerCrops.SettingChanged += PieceSettingChanged;
             CreatorShopAdminOnly.SettingChanged += PieceSettingChanged;
             CreativeMode.SettingChanged += PieceSettingChanged;
             ForceAllPrefabs.SettingChanged += PieceSettingChanged;

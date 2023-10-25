@@ -126,20 +126,6 @@ namespace MoreVanillaBuildPrefabs.Configs
             // Duplicate of mountainkit_brazier
             "CastleKit_brazier",
 
-            // Ignore crops you can already plant
-            "Pickable_SeedCarrot",
-            "Pickable_SeedTurnip",
-            "Pickable_SeedOnion",
-            "Pickable_Onion",
-            "Pickable_Carrot",
-            "Pickable_Turnip",
-            "Pickable_Flax",
-            "Pickable_Flax_Wild",
-            "Pickable_Barley",
-            "Pickable_Barley_Wild",
-            "Pickable_Mushroom_Magecap",
-            "Pickable_Mushroom_JotunPuffs",
-
             // Not useful or different
             "CastleKit_groundtorch_unlit",
             "CastleKit_metal_groundtorch_unlit",
