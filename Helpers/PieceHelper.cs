@@ -13,16 +13,6 @@ namespace MoreVanillaBuildPrefabs.Helpers
     {
         internal static HashSet<string> AddedPrefabs = new();
 
-        /// <summary>
-        ///     Returns a bool indicating if the piece was added by this mod.
-        /// </summary>
-        /// <param name="name"></param>
-        /// <returns></returns>
-        public static bool IsAddedByMod(string name)
-        {
-            return AddedPrefabs.Contains(name);
-        }
-
         internal static CraftingStation GetCraftingStation(string name)
         {
             var internalName = CraftingStations.GetInternalName(name);
@@ -140,9 +130,8 @@ namespace MoreVanillaBuildPrefabs.Helpers
         /// <returns></returns>
         internal static Piece ConfigurePiece(PieceDB pieceDB)
         {
-            var prefab = pieceDB.Prefab;
-            var name = NameHelper.FormatPrefabName(prefab.name);
-            var description = NameHelper.GetPrefabDescription(prefab);
+            var name = NameHelper.FormatPrefabName(pieceDB);
+            var description = NameHelper.GetPrefabDescription(pieceDB);
             if (description == name) { description = ""; }
             var pieceCategory = (Piece.PieceCategory)PieceManager.Instance.GetPieceCategory(pieceDB.category);
 

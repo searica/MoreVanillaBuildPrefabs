@@ -45,7 +45,6 @@ namespace MoreVanillaBuildPrefabs.Helpers
             return requirements.ToArray();
         }
 
-        // TODO: solve issue causes by world modifiers not being available until game instance starts
         /// <summary>
         ///     If the pickable is not null and drops an item, then modify the
         ///     requirements array to require the item dropped by the pickable to
