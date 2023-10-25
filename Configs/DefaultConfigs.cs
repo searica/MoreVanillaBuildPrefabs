@@ -2224,7 +2224,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "Pickable_BlackCoreStand",
                     true,
                     false,
-                    HammerCategories.Furniture,
+                    HammerCategories.CreatorShop,
                     nameof(CraftingStations.BlackForge),
                     "Iron,2;BlackCore,1"
                 )
@@ -2576,7 +2576,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "Pickable_SurtlingCoreStand",
                     true,
                     false,
-                    HammerCategories.Furniture,
+                    HammerCategories.CreatorShop,
                     nameof(CraftingStations.Forge),
                     "Iron,2;SurtlingCore,1"
                 )
