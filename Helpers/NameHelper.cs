@@ -1,67 +1,11 @@
-﻿using System.Collections.Generic;
-using System.Text.RegularExpressions;
+﻿using System.Text.RegularExpressions;
 using UnityEngine;
+using MoreVanillaBuildPrefabs.Configs;
 
 namespace MoreVanillaBuildPrefabs.Helpers
 {
     internal class NameHelper
     {
-        private static readonly Dictionary<string, string> NamesMap = new()
-        {
-            {"CastleKit_braided_box01", "Wood box"},
-            {"stoneblock_fracture", "Stone floor2 4x4"},
-            {"Birch1_aut", "Birch1 (autumn)"},
-            {"Birch2_aut", "Birch2 (autumn)"},
-
-            {"TreasureChest_fCrypt", "Stone chest (mossy)" },
-            {"TreasureChest_mountaincave", "Stone chest (snow)" },
-            {"loot_chest_stone", "Stone chest (light moss)"},
-            {"TreasureChest_trollcave", "Stone chest (mossy, big)"},
-            {"TreasureChest_dvergr_loose_stone", "Black marble chest"},
-            {"TreasureChest_sunkencrypt", "Stone chest (dark moss)"},
-            {"stonechest", "Stone chest"},
-            {"TreasureChest_dvergrtower", "Dvergr chest"},
-            {"TreasureChest_dvergrtown", "Dvergr chest (large)"},
-
-            {"dvergrtown_slidingdoor", "Dvergr sliding door"},
-            {"dvergrtown_secretdoor", "Dvergr secret door"},
-            {"dvergrprops_hooknchain", "Dvergr hook & chain"},
-            {"dvergrprops_wood_wall", "Dvergr wood wall 4x4"},
-            {"piece_dvergr_wood_wall", "Dvergr wood wall"},
-            {"dvergrprops_wood_pole", "Dvergr wood pole"},
-            {"dvergrtown_wood_pole", "Dvergr wood pole (creep)"},
-            {"blackmarble_head01", "Bronze head (1)" },
-            {"blackmarble_head02", "Bronze head (2)" },
-            {"blackmarble_floor_large", "Black marble floor 8x8"},
-            {"blackmarble_out_2", "Black marble cornice (wide)" },
-            {"blackmarble_base_2", "Black marble plinth (wide)" },
-
-            {"fire_pit_hildir", "Firepit iron (everburning)"},
-            {"fire_pit_haldor", "Campfire (everburning)"},
-            {"MountainKit_brazier", "Standing brazier (everburning)"},
-            {"MountainKit_brazier_blue", "Standing blue-burning brazier (everburning)" },
-            {"CastleKit_groundtorch", "Standing iron torch (everburning)" },
-            {"CastleKit_groundtorch_blue", "Standing blue-burning iron torch (everburning)" },
-            {"CastleKit_groundtorch_green", "Standing green-burning iron torch (everburning)" },
-
-            {"Trailership", "Trader ship"},
-            {"sign_notext", "Wood plank"},
-            {"goblin_strawpile", "Rug straw (large)"},
-        };
-
-        private static readonly Dictionary<string, string> DescriptionMap = new()
-        {
-            {"metalbar_1x2", "Enforced marble 1x2"},
-            {"goblin_strawpile", ""},
-            {"fire_pit_hildir", "Burns eternally without fuel."},
-            {"fire_pit_haldor", "Burns eternally without fuel."},
-            {"MountainKit_brazier", "Burns eternally without fuel, but does not prevent spawning of monsters."},
-            {"MountainKit_brazier_blue", "Burns eternally without fuel, but does not prevent spawning of monsters." },
-            {"CastleKit_groundtorch", "Burns eternally without fuel, but does not prevent spawning of monsters." },
-            {"CastleKit_groundtorch_blue", "Burns eternally without fuel, but does not prevent spawning of monsters." },
-            {"CastleKit_groundtorch_green", "Burns eternally without fuel, but does not prevent spawning of monsters." },
-        };
-
         private static readonly Regex PrefabNameRegex = new(@"([a-z])([A-Z])");
 
         /// <summary>
@@ -71,12 +15,12 @@ namespace MoreVanillaBuildPrefabs.Helpers
         /// </summary>
         /// <param name="prefabName"></param>
         /// <returns></returns>
-        internal static string FormatPrefabName(string prefabName)
+        internal static string FormatPrefabName(PieceDB pieceDB)
         {
-            if (NamesMap.ContainsKey(prefabName)) return NamesMap[prefabName];
+            if (pieceDB.pieceName != null) return pieceDB.pieceName;
 
             var name = PrefabNameRegex
-                .Replace(prefabName, "$1 $2")
+                .Replace(pieceDB.name, "$1 $2")
                 .TrimStart(' ')
                 .Replace('_', ' ')
                 .Replace("  ", " ")
@@ -113,10 +57,15 @@ namespace MoreVanillaBuildPrefabs.Helpers
             return CapitalizeFirstLetter(name);
         }
 
+        internal static string GetPrefabDescription(PieceDB pieceDB)
+        {
+            if (pieceDB.pieceDesc != null) return pieceDB.pieceDesc;
+
+            return GetPrefabDescription(pieceDB.Prefab);
+        }
+
         internal static string GetPrefabDescription(GameObject prefab)
         {
-            if (DescriptionMap.ContainsKey(prefab.name)) return DescriptionMap[prefab.name];
-
             HoverText hover = prefab.GetComponent<HoverText>();
             if (hover && !string.IsNullOrEmpty(hover.m_text)) return hover.m_text;
 

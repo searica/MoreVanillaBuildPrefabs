@@ -16,6 +16,9 @@ namespace MoreVanillaBuildPrefabs.Configs
             this.craftingStation = prefabDB.craftingStation;
             this.requirements = prefabDB.requirements;
             this.placementPatch = prefabDB.placementPatch;
+            this.pieceName = prefabDB.pieceName;
+            this.pieceDesc = prefabDB.pieceDesc;
+            this.pieceGroup = prefabDB.pieceGroup;
         }
 
         public PieceDB(
@@ -26,7 +29,10 @@ namespace MoreVanillaBuildPrefabs.Configs
             string category = HammerCategories.CreatorShop,
             string craftingStation = nameof(CraftingStations.None),
             string requirements = null,
-            bool placementPatch = false
+            bool placementPatch = false,
+            string pieceName = null,
+            string pieceDesc = null,
+            PieceGroup pieceGroup = default
         )
         {
             this.name = name;
@@ -37,6 +43,9 @@ namespace MoreVanillaBuildPrefabs.Configs
             this.craftingStation = craftingStation;
             this.requirements = requirements;
             this.placementPatch = placementPatch;
+            this.pieceName = pieceName;
+            this.pieceDesc = pieceDesc;
+            this.pieceGroup = pieceGroup;
         }
     }
 }

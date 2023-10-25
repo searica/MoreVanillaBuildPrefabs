@@ -48,7 +48,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Furniture,
                     nameof(CraftingStations.Workbench),
-                    "FineWood,8;BronzeNails,2;Tar,4"
+                    "FineWood,8;BronzeNails,2;Tar,4",
+                    pieceGroup: PieceGroup.ArmorStand
                 )
             },
             {
@@ -59,7 +60,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Furniture,
                     nameof(CraftingStations.Workbench),
-                    "FineWood,8;BronzeNails,2;Tar,4"
+                    "FineWood,8;BronzeNails,2;Tar,4",
+                    pieceGroup: PieceGroup.ArmorStand
                 )
             },
             {
@@ -70,7 +72,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Misc,
                     nameof(CraftingStations.Workbench),
-                    "FineWood,2"
+                    "FineWood,2",
+                    pieceGroup: PieceGroup.Misc
                 )
             },
             {
@@ -81,7 +84,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    "BeechSeeds,1,Wood,20"
+                    "BeechSeeds,1,Wood,20",
+                    pieceGroup: PieceGroup.Tree
                 )
             },
             {
@@ -92,7 +96,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    "BeechSeeds,1,Wood,10"
+                    "BeechSeeds,1,Wood,10",
+                    pieceGroup: PieceGroup.Tree
                 )
             },
             {
@@ -103,7 +108,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    ""
+                    "",
+                    pieceGroup: PieceGroup.Tree
                 )
             },
             {
@@ -114,7 +120,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    "Wood,1"
+                    "Wood,1",
+                    pieceGroup: PieceGroup.Tree
                 )
             },
             {
@@ -125,7 +132,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    ""
+                    "",
+                    pieceGroup: PieceGroup.Tree
                 )
             },
             {
@@ -136,7 +144,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    "Wood,16"
+                    "Wood,16",
+                    pieceGroup: PieceGroup.Tree
                 )
             },
             {
@@ -147,7 +156,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    ""
+                    "",
+                    pieceGroup: PieceGroup.Tree
                 )
             },
             {
@@ -158,7 +168,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    ""
+                    "",
+                    pieceGroup: PieceGroup.Tree
                 )
             },
             {
@@ -169,7 +180,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    "FineWood,16"
+                    "BirchSeeds,1;FineWood,2",
+                    pieceGroup: PieceGroup.Tree
                 )
             },
             {
@@ -180,7 +192,9 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    "BirchSeeds,1;FineWood,2"
+                    "BirchSeeds,1;FineWood,2",
+                    pieceName: "Birch1 (autumn)",
+                    pieceGroup: PieceGroup.Tree
                 )
             },
             {
@@ -191,7 +205,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    "FineWood,16"
+                    "BirchSeeds,1;FineWood,2",
+                    pieceGroup: PieceGroup.Tree
                 )
             },
             {
@@ -202,7 +217,9 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    "BirchSeeds,1;FineWood,2"
+                    "BirchSeeds,1;FineWood,2",
+                    pieceName: "Birch (autumn)",
+                    pieceGroup: PieceGroup.Tree
                 )
             },
             {
@@ -213,7 +230,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    ""
+                    "",
+                    pieceGroup: PieceGroup.Tree
                 )
             },
             {
@@ -224,7 +242,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Building,
                     nameof(CraftingStations.BlackForge),
-                    "BlackMarble,8;Copper,2"
+                    "BlackMarble,8;Copper,2",
+                    pieceGroup: PieceGroup.BlackMarble
                 )
             },
             {
@@ -235,7 +254,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Building,
                     nameof(CraftingStations.Stonecutter),
-                    "BlackMarble,4"
+                    "BlackMarble,4",
+                    pieceGroup: PieceGroup.BlackMarble
                 )
             },
             {
@@ -268,7 +288,9 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Building,
                     nameof(CraftingStations.Stonecutter),
-                    "BlackMarble,6"
+                    "BlackMarble,6",
+                    pieceName: "Black marble plinth (wide)",
+                    pieceGroup: PieceGroup.BlackMarble
                 )
             },
             {
@@ -279,7 +301,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Building,
                     nameof(CraftingStations.Stonecutter),
-                    "BlackMarble,16"
+                    "BlackMarble,16",
+                    pieceGroup: PieceGroup.BlackMarble
                 )
             },
             {
@@ -290,7 +313,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Building,
                     nameof(CraftingStations.Stonecutter),
-                    "BlackMarble,4"
+                    "BlackMarble,4",
+                    pieceGroup: PieceGroup.BlackMarble
                 )
             },
             {
@@ -301,7 +325,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Building,
                     nameof(CraftingStations.Stonecutter),
-                    "BlackMarble,8"
+                    "BlackMarble,8",
+                    pieceGroup: PieceGroup.BlackMarble
                 )
             },
             {
@@ -312,7 +337,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Building,
                     nameof(CraftingStations.Stonecutter),
-                    "BlackMarble,2"
+                    "BlackMarble,2",
+                    pieceGroup: PieceGroup.BlackMarble
                 )
             },
             {
@@ -323,7 +349,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Building,
                     nameof(CraftingStations.Stonecutter),
-                    "BlackMarble,4"
+                    "BlackMarble,4",
+                    pieceGroup: PieceGroup.BlackMarble
                 )
             },
             {
@@ -334,7 +361,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Building,
                     nameof(CraftingStations.Stonecutter),
-                    "BlackMarble,8"
+                    "BlackMarble,8",
+                    pieceGroup: PieceGroup.BlackMarble
                 )
             },
             {
@@ -345,7 +373,9 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Building,
                     nameof(CraftingStations.Stonecutter),
-                    "BlackMarble,32"
+                    "BlackMarble,32",
+                    pieceName: "Black marble floor 8x8",
+                    pieceGroup: PieceGroup.BlackMarble
                 )
             },
             {
@@ -356,7 +386,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Building,
                     nameof(CraftingStations.Stonecutter),
-                    "BlackMarble,6"
+                    "BlackMarble,6",
+                    pieceGroup: PieceGroup.BlackMarble
                 )
             },
             {
@@ -367,7 +398,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Building,
                     nameof(CraftingStations.Stonecutter),
-                    "BlackMarble,6"
+                    "BlackMarble,6",
+                    pieceGroup: PieceGroup.BlackMarble
                 )
             },
             {
@@ -378,7 +410,9 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Building,
                     nameof(CraftingStations.Stonecutter),
-                    "BlackMarble,2"
+                    "BlackMarble,2",
+                    pieceName: "Bronze head (1)",
+                    pieceGroup: PieceGroup.BlackMarble
                 )
             },
             {
@@ -389,7 +423,9 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Building,
                     nameof(CraftingStations.Stonecutter),
-                    "BlackMarble,2"
+                    "BlackMarble,2",
+                    pieceName: "Bronze head (2)",
+                    pieceGroup: PieceGroup.BlackMarble
                 )
             },
             {
@@ -400,7 +436,9 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Building,
                     nameof(CraftingStations.Stonecutter),
-                    "BlackMarble,6"
+                    "BlackMarble,6",
+                    pieceName: "Black marble cornice (wide)",
+                    pieceGroup: PieceGroup.BlackMarble
                 )
             },
             {
@@ -411,7 +449,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Building,
                     nameof(CraftingStations.Stonecutter),
-                    "BlackMarble,8"
+                    "BlackMarble,8",
+                    pieceGroup: PieceGroup.BlackMarble
                 )
             },
             {
@@ -422,7 +461,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Building,
                     nameof(CraftingStations.Stonecutter),
-                    "BlackMarble,2"
+                    "BlackMarble,2",
+                    pieceGroup: PieceGroup.BlackMarble
                 )
             },
             {
@@ -433,7 +473,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Building,
                     nameof(CraftingStations.Stonecutter),
-                    "BlackMarble,2"
+                    "BlackMarble,2",
+                    pieceGroup: PieceGroup.BlackMarble
                 )
             },
             {
@@ -444,7 +485,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Building,
                     nameof(CraftingStations.Stonecutter),
-                    "BlackMarble,8"
+                    "BlackMarble,8",
+                    pieceGroup: PieceGroup.BlackMarble
                 )
             },
             {
@@ -455,7 +497,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Building,
                     nameof(CraftingStations.Stonecutter),
-                    "BlackMarble,8"
+                    "BlackMarble,8",
+                    pieceGroup: PieceGroup.BlackMarble
                 )
             },
             {
@@ -466,7 +509,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Building,
                     nameof(CraftingStations.Stonecutter),
-                    "BlackMarble,2"
+                    "BlackMarble,2",
+                    pieceGroup: PieceGroup.BlackMarble
                 )
             },
             {
@@ -477,7 +521,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Building,
                     nameof(CraftingStations.Stonecutter),
-                    "BlackMarble,2"
+                    "BlackMarble,2",
+                    pieceGroup: PieceGroup.BlackMarble
                 )
             },
             {
@@ -488,7 +533,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Building,
                     nameof(CraftingStations.Stonecutter),
-                    "BlackMarble,1"
+                    "BlackMarble,1",
+                    pieceGroup: PieceGroup.BlackMarble
                 )
             },
             {
@@ -499,7 +545,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Building,
                     nameof(CraftingStations.Stonecutter),
-                    "BlackMarble,2"
+                    "BlackMarble,2",
+                    pieceGroup: PieceGroup.BlackMarble
                 )
             },
             {
@@ -510,7 +557,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Building,
                     nameof(CraftingStations.Stonecutter),
-                    "BlackMarble,4"
+                    "BlackMarble,4",
+                    pieceGroup: PieceGroup.BlackMarble
                 )
             },
             {
@@ -521,7 +569,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    "Blueberries,5"
+                    "Blueberries,5",
+                    pieceGroup: PieceGroup.Plant
                 )
             },
             {
@@ -532,7 +581,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
-                    ""
+                    "",
+                    pieceGroup: PieceGroup.Misc
                 )
             },
             {
@@ -543,7 +593,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
-                    ""
+                    "",
+                    pieceGroup: PieceGroup.Misc
                 )
             },
             {
@@ -554,7 +605,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
-                    ""
+                    "",
+                    pieceGroup: PieceGroup.Misc
                 )
             },
             {
@@ -565,7 +617,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
-                    ""
+                    "",
+                    pieceGroup: PieceGroup.Misc
                 )
             },
             {
@@ -576,7 +629,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
-                    ""
+                    "",
+                    pieceGroup: PieceGroup.Misc
                 )
             },
             {
@@ -587,7 +641,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
-                    ""
+                    "",
+                    pieceGroup: PieceGroup.Misc
                 )
             },
             {
@@ -598,7 +653,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Misc,
                     nameof(CraftingStations.Workbench),
-                    "Wood,2"
+                    "Wood,2",
+                    pieceGroup: PieceGroup.Misc
                 )
             },
             {
@@ -609,7 +665,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    "Wood,2"
+                    "Wood,2",
+                    pieceGroup: PieceGroup.Flora
                 )
             },
             {
@@ -620,7 +677,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    "Wood,2"
+                    "Wood,2",
+                    pieceGroup: PieceGroup.Flora
                 )
             },
             {
@@ -631,7 +689,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    "Wood,2"
+                    "Wood,2",
+                    pieceGroup: PieceGroup.Flora
                 )
             },
             {
@@ -642,7 +701,9 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Misc,
                     nameof(CraftingStations.Workbench),
-                    "Wood,2"
+                    "Wood,2",
+                    pieceName: "Wood box",
+                    pieceGroup: PieceGroup.Misc
                 )
             },
             {
@@ -653,7 +714,10 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Furniture,
                     nameof(CraftingStations.Forge),
-                    "Iron,2;Resin,2;BlackCore,1"
+                    "Iron,2;Resin,2;BlackCore,1",
+                    pieceName: "Standing iron torch (everburning)",
+                    pieceDesc: "Burns eternally without fuel, but does not prevent spawning of monsters.",
+                    pieceGroup: PieceGroup.Torch
                 )
             },
             {
@@ -664,7 +728,10 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Furniture,
                     nameof(CraftingStations.Forge),
-                    "Iron,2;GreydwarfEye,2;BlackCore,1"
+                    "Iron,2;GreydwarfEye,2;BlackCore,1",
+                    pieceName: "Standing blue-burning iron torch (everburning)",
+                    pieceDesc: "Burns eternally without fuel, but does not prevent spawning of monsters.",
+                    pieceGroup: PieceGroup.Torch
                 )
             },
             {
@@ -675,7 +742,10 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Furniture,
                     nameof(CraftingStations.Forge),
-                    "Iron,2;Guck,2;BlackCore,1"
+                    "Iron,2;Guck,2;BlackCore,1",
+                    pieceName: "Standing green-burning iron torch (everburning)",
+                    pieceDesc: "Burns eternally without fuel, but does not prevent spawning of monsters.",
+                    pieceGroup: PieceGroup.Torch
                 )
             },
             {
@@ -686,7 +756,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    ""
+                    "",
+                    pieceGroup: PieceGroup.Rock
                 )
             },
             {
@@ -697,7 +768,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    "Crystal,2"
+                    "Crystal,2",
+                    pieceGroup: PieceGroup.Rock
                 )
             },
             {
@@ -708,7 +780,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    "Crystal,4"
+                    "Crystal,4",
+                    pieceGroup: PieceGroup.Rock
                 )
             },
             {
@@ -719,7 +792,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    "Crystal,2"
+                    "Crystal,2",
+                    pieceGroup: PieceGroup.Rock
                 )
             },
             {
@@ -730,7 +804,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    ""
+                    "",
+                    pieceGroup: PieceGroup.Rock
                 )
             },
             {
@@ -741,7 +816,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Furniture,
                     nameof(CraftingStations.None),
-                    "Wood,10;Iron,1"
+                    "Wood,10;Iron,1",
+                    pieceGroup: PieceGroup.Chest
                 )
             },
             {
@@ -752,7 +828,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
-                    "Stone,350"
+                    "Stone,350",
+                    pieceGroup: PieceGroup.Rock
                 )
             },
             {
@@ -763,7 +840,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
-                    "Stone,350"
+                    "Stone,350",
+                    pieceGroup: PieceGroup.Rock
                 )
             },
             {
@@ -774,7 +852,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
-                    "Stone,175"
+                    "Stone,175",
+                    pieceGroup: PieceGroup.Rock
                 )
             },
             {
@@ -785,7 +864,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Furniture,
                     nameof(CraftingStations.None),
-                    ""
+                    "",
+                    pieceGroup: PieceGroup.Banner
                 )
             },
             {
@@ -796,7 +876,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Furniture,
                     nameof(CraftingStations.Workbench),
-                    "JuteRed,4"
+                    "JuteRed,4",
+                    pieceGroup: PieceGroup.Banner
                 )
             },
             {
@@ -807,7 +888,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Furniture,
                     nameof(CraftingStations.None),
-                    ""
+                    "",
+                    pieceGroup: PieceGroup.Banner
                 )
             },
             {
@@ -818,7 +900,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    "Cloudberry,5"
+                    "Cloudberry,5",
+                    pieceGroup: PieceGroup.Plant
                 )
             },
             {
@@ -928,7 +1011,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Building,
                     nameof(CraftingStations.None),
-                    "Iron,4"
+                    "Iron,4",
+                    pieceGroup: PieceGroup.Iron
                 )
             },
             {
@@ -939,7 +1023,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Building,
                     nameof(CraftingStations.Forge),
-                    "Iron,4"
+                    "Iron,4",
+                    pieceGroup: PieceGroup.Iron
                 )
             },
             {
@@ -950,7 +1035,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Furniture,
                     nameof(CraftingStations.BlackForge),
-                    "Iron,1;Wisp,1"
+                    "Iron,1;Wisp,1",
+                    pieceGroup: PieceGroup.Torch
                 )
             },
             {
@@ -961,7 +1047,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
-                    ""
+                    "",
+                    pieceGroup: PieceGroup.Misc
                 )
             },
             {
@@ -972,7 +1059,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Furniture,
                     nameof(CraftingStations.BlackForge),
-                    "Iron,1;Wisp,2"
+                    "Iron,1;Wisp,2",
+                    pieceGroup: PieceGroup.Torch
                 )
             },
             {
@@ -983,7 +1071,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
-                    ""
+                    "",
+                    pieceGroup: PieceGroup.Misc
                 )
             },
             {
@@ -1005,7 +1094,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Furniture,
                     nameof(CraftingStations.Workbench),
-                    "JuteBlue,6;FineWood,2"
+                    "JuteBlue,6;FineWood,2",
+                    pieceGroup: PieceGroup.Banner
                 )
             },
             {
@@ -1016,7 +1106,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Furniture,
                     nameof(CraftingStations.Workbench),
-                    "YggdrasilWood,20;Bronze,5;Resin,10"
+                    "YggdrasilWood,20;Bronze,5;Resin,10",
+                    pieceGroup: PieceGroup.Dvergr
                 )
             },
             {
@@ -1027,7 +1118,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Furniture,
                     nameof(CraftingStations.BlackForge),
-                    "YggdrasilWood,8;ScaleHide,2;IronNails,5"
+                    "YggdrasilWood,8;ScaleHide,2;IronNails,5",
+                    pieceGroup: PieceGroup.Dvergr
                 )
             },
             {
@@ -1038,7 +1130,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Furniture,
                     nameof(CraftingStations.BlackForge),
-                    "YggdrasilWood,4"
+                    "YggdrasilWood,4",
+                    pieceGroup: PieceGroup.Dvergr
                 )
             },
             {
@@ -1049,7 +1142,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Misc,
                     nameof(CraftingStations.BlackForge),
-                    "YggdrasilWood,4"
+                    "YggdrasilWood,4",
+                    pieceGroup: PieceGroup.Dvergr
                 )
             },
             {
@@ -1060,7 +1154,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Misc,
                     nameof(CraftingStations.BlackForge),
-                    "YggdrasilWood,4"
+                    "YggdrasilWood,4",
+                    pieceGroup: PieceGroup.Dvergr
                 )
             },
             {
@@ -1071,7 +1166,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Furniture,
                     nameof(CraftingStations.Workbench),
-                    "JuteBlue,6;FineWood,2"
+                    "JuteBlue,6;FineWood,2",
+                    pieceGroup: PieceGroup.Banner
                 )
             },
             {
@@ -1082,7 +1178,9 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Misc,
                     nameof(CraftingStations.BlackForge),
-                    "Chain,2;Iron,2"
+                    "Chain,2;Iron,2",
+                    pieceName: "Dvergr hook & chain",
+                    pieceGroup: PieceGroup.Dvergr
                 )
             },
             {
@@ -1093,7 +1191,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
-                    ""
+                    "",
+                    pieceGroup: PieceGroup.Dvergr
                 )
             },
             {
@@ -1104,7 +1203,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
-                    ""
+                    "",
+                    pieceGroup: PieceGroup.Dvergr
                 )
             },
             {
@@ -1115,7 +1215,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Furniture,
                     nameof(CraftingStations.BlackForge),
-                    "YggdrasilWood,4;IronNails,5"
+                    "YggdrasilWood,4;IronNails,5",
+                    pieceGroup: PieceGroup.Dvergr
                 )
             },
             {
@@ -1126,7 +1227,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Furniture,
                     nameof(CraftingStations.BlackForge),
-                    "YggdrasilWood,2"
+                    "YggdrasilWood,2",
+                    pieceGroup: PieceGroup.Dvergr
                 )
             },
             {
@@ -1137,7 +1239,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Furniture,
                     nameof(CraftingStations.BlackForge),
-                    "YggdrasilWood,6;IronNails,10"
+                    "YggdrasilWood,6;IronNails,10",
+                    pieceGroup: PieceGroup.Dvergr
                 )
             },
             {
@@ -1148,7 +1251,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Building,
                     nameof(CraftingStations.BlackForge),
-                    "YggdrasilWood,4"
+                    "YggdrasilWood,4",
+                    pieceGroup: PieceGroup.Dvergr
                 )
             },
             {
@@ -1159,7 +1263,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Building,
                     nameof(CraftingStations.BlackForge),
-                    "YggdrasilWood,2"
+                    "YggdrasilWood,2",
+                    pieceGroup: PieceGroup.Dvergr
                 )
             },
             {
@@ -1170,7 +1275,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Building,
                     nameof(CraftingStations.BlackForge),
-                    "YggdrasilWood,2"
+                    "YggdrasilWood,2",
+                    pieceGroup: PieceGroup.Dvergr
                 )
             },
             {
@@ -1181,7 +1287,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Building,
                     nameof(CraftingStations.BlackForge),
-                    "YggdrasilWood,2"
+                    "YggdrasilWood,2",
+                    pieceGroup: PieceGroup.Dvergr
                 )
             },
             {
@@ -1192,7 +1299,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Building,
                     nameof(CraftingStations.None),
-                    "YggdrasilWood,4"
+                    "YggdrasilWood,4",
+                    pieceGroup: PieceGroup.Dvergr
                 )
             },
             {
@@ -1203,7 +1311,9 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Building,
                     nameof(CraftingStations.BlackForge),
-                    "YggdrasilWood,10"
+                    "YggdrasilWood,10",
+                    pieceName: "Dvergr wood wall 4x4",
+                    pieceGroup: PieceGroup.Dvergr
                 )
             },
             {
@@ -1214,7 +1324,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Building,
                     nameof(CraftingStations.Stonecutter),
-                    "BlackMarble,8"
+                    "BlackMarble,8",
+                    pieceGroup: PieceGroup.Dvergr
                 )
             },
             {
@@ -1225,7 +1336,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    "YggdrasilWood,4"
+                    "YggdrasilWood,4",
+                    pieceGroup: PieceGroup.Dvergr
                 )
             },
             {
@@ -1236,7 +1348,9 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
-                    "BlackMarble,12"
+                    "BlackMarble,12",
+                    pieceName: "Dvergr secret door",
+                    pieceGroup: PieceGroup.Dvergr
                 )
             },
             {
@@ -1247,7 +1361,9 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Building,
                     nameof(CraftingStations.None),
-                    "BlackMarble,6"
+                    "BlackMarble,6",
+                    pieceName: "Dvergr sliding door",
+                    pieceGroup: PieceGroup.Dvergr
                 )
             },
             {
@@ -1258,7 +1374,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Building,
                     nameof(CraftingStations.BlackForge),
-                    "YggdrasilWood,5;CopperScrap,2"
+                    "YggdrasilWood,5;CopperScrap,2",
+                    pieceGroup: PieceGroup.Dvergr
                 )
             },
             {
@@ -1269,7 +1386,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Building,
                     nameof(CraftingStations.BlackForge),
-                    "YggdrasilWood,4"
+                    "YggdrasilWood,4",
+                    pieceGroup: PieceGroup.Dvergr
                 )
             },
             {
@@ -1280,7 +1398,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Building,
                     nameof(CraftingStations.BlackForge),
-                    "YggdrasilWood,8;Chain,2;Iron,2"
+                    "YggdrasilWood,8;Chain,2;Iron,2",
+                    pieceGroup: PieceGroup.Dvergr
                 )
             },
             {
@@ -1291,7 +1410,9 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
-                    ""
+                    "",
+                    pieceName: "Dvergr wood pole (creep)",
+                    pieceGroup: PieceGroup.Dvergr
                 )
             },
             {
@@ -1302,7 +1423,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Building,
                     nameof(CraftingStations.BlackForge),
-                    "YggdrasilWood,1"
+                    "YggdrasilWood,1",
+                    pieceGroup: PieceGroup.Dvergr
                 )
             },
             {
@@ -1313,7 +1435,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Building,
                     nameof(CraftingStations.BlackForge),
-                    "YggdrasilWood,4"
+                    "YggdrasilWood,4",
+                    pieceGroup: PieceGroup.Dvergr
                 )
             },
             {
@@ -1324,7 +1447,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Building,
                     nameof(CraftingStations.BlackForge),
-                    "YggdrasilWood,10"
+                    "YggdrasilWood,10",
+                    pieceGroup: PieceGroup.Dvergr
                 )
             },
             {
@@ -1335,7 +1459,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Building,
                     nameof(CraftingStations.BlackForge),
-                    "YggdrasilWood,20"
+                    "YggdrasilWood,20",
+                    pieceGroup: PieceGroup.Dvergr
                 )
             },
             {
@@ -1346,7 +1471,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Building,
                     nameof(CraftingStations.BlackForge),
-                    "YggdrasilWood,12"
+                    "YggdrasilWood,12",
+                    pieceGroup: PieceGroup.Dvergr
                 )
             },
             {
@@ -1357,7 +1483,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Building,
                     nameof(CraftingStations.BlackForge),
-                    "YggdrasilWood,10;IronNails,6"
+                    "YggdrasilWood,10;IronNails,6",
+                    pieceGroup: PieceGroup.Dvergr
                 )
             },
             {
@@ -1390,7 +1517,10 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Misc,
                     nameof(CraftingStations.None),
-                    "Stone,5;Wood,2;BlackCore,1"
+                    "Stone,5;Wood,2;BlackCore,1",
+                    pieceName: "Campfire (everburning)",
+                    pieceDesc: "Burns eternally without fuel.",
+                    pieceGroup: PieceGroup.Fire
                 )
             },
             {
@@ -1401,7 +1531,10 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Misc,
                     nameof(CraftingStations.Forge),
-                    "Ironpit,1;Wood,1;BlackCore,1"
+                    "Ironpit,1;Wood,1;BlackCore,1",
+                    pieceName: "Firepit iron (everburning)",
+                    pieceDesc: "Burns eternally without fuel.",
+                    pieceGroup: PieceGroup.Fire
                 )
             },
             {
@@ -1412,7 +1545,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    "Wood,16"
+                    "Wood,16",
+                    pieceGroup: PieceGroup.Tree
                 )
             },
             {
@@ -1423,7 +1557,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    ""
+                    "",
+                    pieceGroup: PieceGroup.Tree
                 )
             },
             {
@@ -1434,7 +1569,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    ""
+                    "",
+                    pieceGroup: PieceGroup.Tree
                 )
             },
             {
@@ -1445,7 +1581,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    ""
+                    "",
+                    pieceGroup: PieceGroup.Tree
                 )
             },
             {
@@ -1456,7 +1593,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    ""
+                    "",
+                    pieceGroup: PieceGroup.Tree
                 )
             },
             {
@@ -1467,7 +1605,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    ""
+                    "",
+                    pieceGroup: PieceGroup.Tree
                 )
             },
             {
@@ -1478,7 +1617,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    ""
+                    "",
+                    pieceGroup: PieceGroup.Tree
                 )
             },
             {
@@ -1599,7 +1739,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    ""
+                    "",
+                    pieceGroup: PieceGroup.Flora
                 )
             },
             {
@@ -1610,7 +1751,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Furniture,
                     nameof(CraftingStations.Workbench),
-                    "Wood,1;DeerHide,1;Tar,1"
+                    "Wood,1;DeerHide,1;Tar,1",
+                    pieceGroup: PieceGroup.Banner
                 )
             },
             {
@@ -1621,7 +1763,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Furniture,
                     nameof(CraftingStations.Workbench),
-                    "Wood,8;Tar,1"
+                    "Wood,8;Tar,1",
+                    pieceGroup: PieceGroup.Goblin
                 )
             },
             {
@@ -1632,7 +1775,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Building,
                     nameof(CraftingStations.Workbench),
-                    "Wood,2;Tar,1"
+                    "Wood,2;Tar,1",
+                    pieceGroup: PieceGroup.Goblin
                 )
             },
             {
@@ -1643,7 +1787,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Building,
                     nameof(CraftingStations.Workbench),
-                    "Wood,1;Tar,1"
+                    "Wood,1;Tar,1",
+                    pieceGroup: PieceGroup.Goblin
                 )
             },
             {
@@ -1654,7 +1799,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Building,
                     nameof(CraftingStations.Workbench),
-                    "Wood,1;Tar,1"
+                    "Wood,1;Tar,1",
+                    pieceGroup: PieceGroup.Goblin
                 )
             },
             {
@@ -1665,7 +1811,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Building,
                     nameof(CraftingStations.Workbench),
-                    "Wood,1;DeerHide,1;Tar,1"
+                    "Wood,1;DeerHide,1;Tar,1",
+                    pieceGroup: PieceGroup.Goblin
                 )
             },
             {
@@ -1676,7 +1823,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Building,
                     nameof(CraftingStations.Workbench),
-                    "Wood,1;DeerHide,1;Tar,1"
+                    "Wood,1;DeerHide,1;Tar,1",
+                    pieceGroup: PieceGroup.Goblin
                 )
             },
             {
@@ -1687,7 +1835,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Building,
                     nameof(CraftingStations.Workbench),
-                    "Wood,4;DeerHide,4;Tar,1"
+                    "Wood,4;DeerHide,4;Tar,1",
+                    pieceGroup: PieceGroup.Goblin
                 )
             },
             {
@@ -1698,7 +1847,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Building,
                     nameof(CraftingStations.Workbench),
-                    "Wood,2;Tar,1"
+                    "Wood,2;Tar,1",
+                    pieceGroup: PieceGroup.Goblin
                 )
             },
             {
@@ -1709,7 +1859,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Building,
                     nameof(CraftingStations.Workbench),
-                    "Wood,2;Tar,1"
+                    "Wood,2;Tar,1",
+                    pieceGroup: PieceGroup.Goblin
                 )
             },
             {
@@ -1720,7 +1871,10 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Furniture,
                     nameof(CraftingStations.None),
-                    "Wood,4"
+                    "Wood,4",
+                    pieceName: "Rug straw (large)",
+                    pieceDesc: "",
+                    pieceGroup: PieceGroup.Rug
                 )
             },
             {
@@ -1731,7 +1885,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.CreatorShop,
                     nameof(CraftingStations.Workbench),
-                    "Wood,2;GoblinTotem,1"
+                    "Wood,2;GoblinTotem,1",
+                    pieceGroup: PieceGroup.Goblin
                 )
             },
             {
@@ -1742,7 +1897,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
-                    ""
+                    "",
+                    pieceGroup: PieceGroup.Goblin
                 )
             },
             {
@@ -1753,7 +1909,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Building,
                     nameof(CraftingStations.Workbench),
-                    "Wood,1;Tar,1"
+                    "Wood,1;Tar,1",
+                    pieceGroup: PieceGroup.Goblin
                 )
             },
             {
@@ -1764,7 +1921,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Building,
                     nameof(CraftingStations.Workbench),
-                    "Wood,2;Tar,1"
+                    "Wood,2;Tar,1",
+                    pieceGroup: PieceGroup.Goblin
                 )
             },
             {
@@ -1775,7 +1933,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
-                    "BoneFragments,6;Tar,1"
+                    "BoneFragments,6;Tar,1",
+                    pieceGroup: PieceGroup.Goblin
                 )
             },
             {
@@ -1786,7 +1945,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.CreatorShop,
                     nameof(CraftingStations.Stonecutter),
-                    "Stone,1;Tar,1"
+                    "Stone,1;Tar,1",
+                    pieceGroup: PieceGroup.Goblin
                 )
             },
             {
@@ -1841,7 +2001,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    "Stone,32"
+                    "Stone,32",
+                    pieceGroup: PieceGroup.Rock
                 )
             },
             {
@@ -1852,7 +2013,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    "ElderBark,32"
+                    "ElderBark,32",
+                    pieceGroup: PieceGroup.Tree
                 )
             },
             {
@@ -1889,17 +2051,6 @@ namespace MoreVanillaBuildPrefabs.Configs
                 )
             },
             {
-                "IceBlocker",
-                new PrefabDB(
-                    "IceBlocker",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    ""
-                )
-            },
-            {
                 "iron_wall_1x1_rusty",
                 new PrefabDB(
                     "iron_wall_1x1_rusty",
@@ -1907,7 +2058,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Building,
                     nameof(CraftingStations.Forge),
-                    "Iron,1"
+                    "Iron,1",
+                    pieceGroup: PieceGroup.Iron
                 )
             },
             {
@@ -1929,7 +2081,9 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Furniture,
                     nameof(CraftingStations.Stonecutter),
-                    "Stone,10"
+                    "Stone,10",
+                    pieceName: "Stone chest (light moss)",
+                    pieceGroup: PieceGroup.Chest
                 )
             },
             {
@@ -1984,7 +2138,9 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Building,
                     nameof(CraftingStations.BlackForge),
-                    "BlackMarble,2;Copper,1"
+                    "BlackMarble,2;Copper,1",
+                    pieceDesc: "Enforced marble 1x2",
+                    pieceGroup: PieceGroup.BlackMarble
                 )
             },
             {
@@ -1995,7 +2151,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    ""
+                    "",
+                    pieceGroup: PieceGroup.Ore
                 )
             },
             {
@@ -2006,7 +2163,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    ""
+                    "",
+                    pieceGroup: PieceGroup.Ore
                 )
             },
             {
@@ -2017,7 +2175,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    ""
+                    "",
+                    pieceGroup: PieceGroup.Ore
                 )
             },
             {
@@ -2028,7 +2187,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    ""
+                    "",
+                    pieceGroup: PieceGroup.Ore
                 )
             },
             {
@@ -2039,7 +2199,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    ""
+                    "",
+                    pieceGroup: PieceGroup.Ore
                 )
             },
             {
@@ -2050,7 +2211,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    ""
+                    "",
+                    pieceGroup: PieceGroup.Ore
                 )
             },
             {
@@ -2083,7 +2245,10 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Furniture,
                     nameof(CraftingStations.Forge),
-                    "Bronze,5;Coal,2;BlackCore,1;WolfClaw,3"
+                    "Bronze,5;Coal,2;BlackCore,1;WolfClaw,3",
+                    pieceName: "Standing brazier (everburning)",
+                    pieceDesc: "Burns eternally without fuel, but does not prevent spawning of monsters.",
+                    pieceGroup: PieceGroup.Brazier
                 )
             },
             {
@@ -2094,7 +2259,10 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Furniture,
                     nameof(CraftingStations.Forge),
-                    "Bronze,5;GreydwarfEye,2;BlackCore,1;WolfClaw,3"
+                    "Bronze,5;GreydwarfEye,2;BlackCore,1;WolfClaw,3",
+                    pieceName: "Standing blue-burning brazier (everburning)",
+                    pieceDesc: "Burns eternally without fuel, but does not prevent spawning of monsters.",
+                    pieceGroup: PieceGroup.Brazier
                 )
             },
             {
@@ -2105,7 +2273,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Furniture,
                     nameof(CraftingStations.Workbench),
-                    "FineWood,4"
+                    "FineWood,4",
+                    pieceGroup: PieceGroup.Chair
                 )
             },
             {
@@ -2116,7 +2285,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Furniture,
                     nameof(CraftingStations.Workbench),
-                    "FineWood,10;IronNails,20"
+                    "FineWood,10;IronNails,20",
+                    pieceGroup: PieceGroup.Table
                 )
             },
             {
@@ -2182,7 +2352,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    ""
+                    "",
+                    pieceGroup: PieceGroup.Tree
                 )
             },
             {
@@ -2193,7 +2364,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    ""
+                    "",
+                    pieceGroup: PieceGroup.Tree
                 )
             },
             {
@@ -2204,7 +2376,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    "Wood,20;FineWood,20"
+                    "Wood,20;FineWood,20",
+                    pieceGroup: PieceGroup.Tree
                 )
             },
             {
@@ -2215,7 +2388,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    ""
+                    "",
+                    pieceGroup: PieceGroup.Tree
                 )
             },
             {
@@ -2226,18 +2400,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    ""
-                )
-            },
-            {
-                "Pickable_Barley_Wild",
-                new PrefabDB(
-                    "Pickable_Barley_Wild",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    ""
+                    "",
+                    pieceGroup: PieceGroup.VanillaCrop
                 )
             },
             {
@@ -2259,7 +2423,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
-                    ""
+                    "",
+                    pieceGroup: PieceGroup.Ore
                 )
             },
             {
@@ -2270,7 +2435,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    "Wood,5"
+                    "Wood,5",
+                    pieceGroup: PieceGroup.Flora
                 )
             },
             {
@@ -2281,7 +2447,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    ""
+                    "",
+                    pieceGroup: PieceGroup.VanillaCrop
                 )
             },
             {
@@ -2292,7 +2459,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    "Dandelion,5"
+                    "Dandelion,5",
+                    pieceGroup: PieceGroup.Plant
                 )
             },
             {
@@ -2303,7 +2471,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
-                    ""
+                    "",
+                    pieceGroup: PieceGroup.Treasure
                 )
             },
             {
@@ -2336,7 +2505,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
-                    ""
+                    "",
+                    pieceGroup: PieceGroup.Treasure
                 )
             },
             {
@@ -2347,7 +2517,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
-                    ""
+                    "",
+                    pieceGroup: PieceGroup.Treasure
                 )
             },
             {
@@ -2358,7 +2529,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
-                    ""
+                    "",
+                    pieceGroup: PieceGroup.Treasure
                 )
             },
             {
@@ -2369,18 +2541,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    ""
-                )
-            },
-            {
-                "Pickable_Flax_Wild",
-                new PrefabDB(
-                    "Pickable_Flax_Wild",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    ""
+                    "",
+                    pieceGroup: PieceGroup.VanillaCrop
                 )
             },
             {
@@ -2391,7 +2553,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    ""
+                    "",
+                    pieceGroup: PieceGroup.Flora
                 )
             },
             {
@@ -2402,7 +2565,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
-                    ""
+                    "",
+                    pieceGroup: PieceGroup.Treasure
                 )
             },
             {
@@ -2413,7 +2577,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
-                    ""
+                    "",
+                    pieceGroup: PieceGroup.Treasure
                 )
             },
             {
@@ -2424,7 +2589,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
-                    ""
+                    "",
+                    pieceGroup: PieceGroup.Treasure
                 )
             },
             {
@@ -2435,7 +2601,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
-                    ""
+                    "",
+                    pieceGroup: PieceGroup.Treasure
                 )
             },
             {
@@ -2446,7 +2613,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
-                    ""
+                    "",
+                    pieceGroup: PieceGroup.Treasure
                 )
             },
             {
@@ -2457,7 +2625,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
-                    ""
+                    "",
+                    pieceGroup: PieceGroup.Treasure
                 )
             },
             {
@@ -2468,7 +2637,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
-                    ""
+                    "",
+                    pieceGroup: PieceGroup.Treasure
                 )
             },
             {
@@ -2479,7 +2649,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
-                    ""
+                    "",
+                    pieceGroup: PieceGroup.Treasure
                 )
             },
             {
@@ -2490,7 +2661,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
-                    ""
+                    "",
+                    pieceGroup: PieceGroup.Treasure
                 )
             },
             {
@@ -2501,7 +2673,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    ""
+                    "",
+                    pieceGroup: PieceGroup.Ore
                 )
             },
             {
@@ -2512,7 +2685,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    ""
+                    "",
+                    pieceGroup: PieceGroup.Ore
                 )
             },
             {
@@ -2523,7 +2697,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    ""
+                    "",
+                    pieceGroup: PieceGroup.Ore
                 )
             },
             {
@@ -2534,7 +2709,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    ""
+                    "",
+                    pieceGroup: PieceGroup.Treasure
                 )
             },
             {
@@ -2545,7 +2721,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
-                    ""
+                    "",
+                    pieceGroup: PieceGroup.Treasure
                 )
             },
             {
@@ -2556,7 +2733,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    "Mushroom,5"
+                    "Mushroom,5",
+                    pieceGroup: PieceGroup.Plant
                 )
             },
             {
@@ -2567,7 +2745,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    "MushroomBlue,5"
+                    "MushroomBlue,5",
+                    pieceGroup: PieceGroup.Plant
                 )
             },
             {
@@ -2578,7 +2757,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    ""
+                    "",
+                    pieceGroup: PieceGroup.VanillaCrop
                 )
             },
             {
@@ -2589,7 +2769,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    ""
+                    "",
+                    pieceGroup: PieceGroup.VanillaCrop
                 )
             },
             {
@@ -2600,7 +2781,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    "MushroomYellow,5"
+                    "MushroomYellow,5",
+                    pieceGroup: PieceGroup.Plant
                 )
             },
             {
@@ -2611,7 +2793,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    ""
+                    "",
+                    pieceGroup: PieceGroup.Ore
                 )
             },
             {
@@ -2622,7 +2805,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    ""
+                    "",
+                    pieceGroup: PieceGroup.VanillaCrop
                 )
             },
             {
@@ -2644,7 +2828,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    ""
+                    "",
+                    pieceGroup: PieceGroup.VanillaCrop
                 )
             },
             {
@@ -2655,7 +2840,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    ""
+                    "",
+                    pieceGroup: PieceGroup.VanillaCrop
                 )
             },
             {
@@ -2666,7 +2852,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    ""
+                    "",
+                    pieceGroup: PieceGroup.VanillaCrop
                 )
             },
             {
@@ -2677,7 +2864,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    ""
+                    "",
+                    pieceGroup: PieceGroup.Flora
                 )
             },
             {
@@ -2688,7 +2876,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
-                    ""
+                    "",
+                    pieceGroup: PieceGroup.Treasure
                 )
             },
             {
@@ -2699,7 +2888,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.CreatorShop,
                     nameof(CraftingStations.Forge),
-                    "Iron,2;SurtlingCore,1"
+                    "Iron,2;SurtlingCore,1",
+                    pieceGroup: PieceGroup.Treasure
                 )
             },
             {
@@ -2710,7 +2900,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    ""
+                    "",
+                    pieceGroup: PieceGroup.Flora
                 )
             },
             {
@@ -2721,7 +2912,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    ""
+                    "",
+                    pieceGroup: PieceGroup.Flora
                 )
             },
             {
@@ -2732,7 +2924,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    "Thistle,5"
+                    "Thistle,5",
+                    pieceGroup: PieceGroup.Plant
                 )
             },
             {
@@ -2743,7 +2936,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    ""
+                    "",
+                    pieceGroup: PieceGroup.Ore
                 )
             },
             {
@@ -2754,7 +2948,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    ""
+                    "",
+                    pieceGroup: PieceGroup.VanillaCrop
                 )
             },
             {
@@ -2765,7 +2960,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Building,
                     nameof(CraftingStations.BlackForge),
-                    "YggdrasilWood,1"
+                    "YggdrasilWood,1",
+                    pieceGroup: PieceGroup.Dvergr
                 )
             },
             {
@@ -2776,7 +2972,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Building,
                     nameof(CraftingStations.BlackForge),
-                    "YggdrasilWood,16;IronNails,24"
+                    "YggdrasilWood,16;IronNails,24",
+                    pieceGroup: PieceGroup.Dvergr
                 )
             },
             {
@@ -2787,7 +2984,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Building,
                     nameof(CraftingStations.BlackForge),
-                    "YggdrasilWood,5"
+                    "YggdrasilWood,5",
+                    pieceGroup: PieceGroup.Dvergr
                 )
             },
             {
@@ -2798,7 +2996,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    ""
+                    "",
+                    pieceGroup: PieceGroup.Tree
                 )
             },
             {
@@ -2809,7 +3008,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    "Wood,16;RoundLog,16"
+                    "Wood,16;RoundLog,16",
+                    pieceGroup: PieceGroup.Tree
                 )
             },
             {
@@ -2820,7 +3020,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    ""
+                    "",
+                    pieceGroup: PieceGroup.Tree
                 )
             },
             {
@@ -2831,7 +3032,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    ""
+                    "",
+                    pieceGroup: PieceGroup.Tree
                 )
             },
             {
@@ -2853,7 +3055,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    "Raspberry,5"
+                    "Raspberry,5",
+                    pieceGroup: PieceGroup.Plant
                 )
             },
             {
@@ -2864,7 +3067,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    "Stone,24"
+                    "Stone,24",
+                    pieceGroup: PieceGroup.Rock
                 )
             },
             {
@@ -2875,7 +3079,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    "Stone,16"
+                    "Stone,16",
+                    pieceGroup: PieceGroup.Rock
                 )
             },
             {
@@ -2886,7 +3091,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    "Stone,24"
+                    "Stone,24",
+                    pieceGroup: PieceGroup.Rock
                 )
             },
             {
@@ -2897,7 +3103,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    "Stone,32"
+                    "Stone,32",
+                    pieceGroup: PieceGroup.Rock
                 )
             },
             {
@@ -2908,7 +3115,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    "Stone,24"
+                    "Stone,24",
+                    pieceGroup: PieceGroup.Rock
                 )
             },
             {
@@ -2919,7 +3127,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    "Stone,32"
+                    "Stone,32",
+                    pieceGroup: PieceGroup.Rock
                 )
             },
             {
@@ -2930,7 +3139,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    "Stone,48"
+                    "Stone,48",
+                    pieceGroup: PieceGroup.Rock
                 )
             },
             {
@@ -2941,7 +3151,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    ""
+                    "",
+                    pieceGroup: PieceGroup.Rock
                 )
             },
             {
@@ -2952,7 +3163,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    ""
+                    "",
+                    pieceGroup: PieceGroup.Rock
                 )
             },
             {
@@ -2963,7 +3175,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    ""
+                    "",
+                    pieceGroup: PieceGroup.Rock
                 )
             },
             {
@@ -2974,7 +3187,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    ""
+                    "",
+                    pieceGroup: PieceGroup.Rock
                 )
             },
             {
@@ -2985,7 +3199,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    ""
+                    "",
+                    pieceGroup: PieceGroup.Rock
                 )
             },
             {
@@ -2996,7 +3211,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    ""
+                    "",
+                    pieceGroup: PieceGroup.Rock
                 )
             },
             {
@@ -3007,7 +3223,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    ""
+                    "",
+                    pieceGroup: PieceGroup.Ore
                 )
             },
             {
@@ -3018,7 +3235,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    ""
+                    "",
+                    pieceGroup: PieceGroup.Rock
                 )
             },
             {
@@ -3029,7 +3247,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    ""
+                    "",
+                    pieceGroup: PieceGroup.Ore
                 )
             },
             {
@@ -3040,7 +3259,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    ""
+                    "",
+                    pieceGroup: PieceGroup.Rock
                 )
             },
             {
@@ -3051,7 +3271,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    ""
+                    "",
+                    pieceGroup: PieceGroup.Rock
                 )
             },
             {
@@ -3062,7 +3283,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    "Stone,75"
+                    "Stone,75",
+                    pieceGroup: PieceGroup.Rock
                 )
             },
             {
@@ -3073,7 +3295,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    "Stone,50"
+                    "Stone,50",
+                    pieceGroup: PieceGroup.Rock
                 )
             },
             {
@@ -3084,7 +3307,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    "Stone,75"
+                    "Stone,75",
+                    pieceGroup: PieceGroup.Rock
                 )
             },
             {
@@ -3117,7 +3341,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    "Stone,350"
+                    "Stone,350",
+                    pieceGroup: PieceGroup.Rock
                 )
             },
             {
@@ -3139,7 +3364,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    "ElderBark,2"
+                    "ElderBark,2",
+                    pieceGroup: PieceGroup.Tree
                 )
             },
             {
@@ -3150,7 +3376,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    "ElderBark,4"
+                    "ElderBark,4",
+                    pieceGroup: PieceGroup.Tree
                 )
             },
             {
@@ -3161,7 +3388,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    "ElderBark,4"
+                    "ElderBark,4",
+                    pieceGroup: PieceGroup.Tree
                 )
             },
             {
@@ -3172,7 +3400,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    "ElderBark,4"
+                    "ElderBark,4",
+                    pieceGroup: PieceGroup.Tree
                 )
             },
             {
@@ -3183,7 +3412,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Furniture,
                     nameof(CraftingStations.None),
-                    "Wood,2"
+                    "Wood,2",
+                    pieceGroup: PieceGroup.Rug
                 )
             },
             {
@@ -3271,7 +3501,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    ""
+                    "",
+                    pieceGroup: PieceGroup.Tree
                 )
             },
             {
@@ -3282,7 +3513,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    ""
+                    "",
+                    pieceGroup: PieceGroup.Flora
                 )
             },
             {
@@ -3293,18 +3525,22 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    ""
+                    "",
+                    pieceGroup: PieceGroup.Flora
                 )
             },
             {
                 "sign_notext",
                 new PrefabDB(
                     "sign_notext",
-                    false,
+                    true,
                     false,
                     HammerCategories.Building,
-                    nameof(CraftingStations.None),
-                    ""
+                    nameof(CraftingStations.Workbench),
+                    "Wood,1",
+                    pieceName: "Wood plank",
+                    pieceDesc: "",
+                    pieceGroup: PieceGroup.Wood
                 )
             },
             {
@@ -3315,9 +3551,11 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    ""
+                    "",
+                    pieceGroup: PieceGroup.Ore
                 )
             },
+
             {
                 "Skull1",
                 new PrefabDB(
@@ -3348,7 +3586,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Furniture,
                     nameof(CraftingStations.Stonecutter),
-                    "Stone,24"
+                    "Stone,24",
+                    pieceGroup: PieceGroup.Statue
                 )
             },
             {
@@ -3359,7 +3598,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Furniture,
                     nameof(CraftingStations.Stonecutter),
-                    "Stone,24"
+                    "Stone,24",
+                    pieceGroup: PieceGroup.Statue
                 )
             },
             {
@@ -3370,7 +3610,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Furniture,
                     nameof(CraftingStations.Stonecutter),
-                    "Stone,32"
+                    "Stone,32",
+                    pieceGroup: PieceGroup.Statue
                 )
             },
             {
@@ -3381,7 +3622,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Furniture,
                     nameof(CraftingStations.Stonecutter),
-                    "Stone,24"
+                    "Stone,24",
+                    pieceGroup: PieceGroup.Statue
                 )
             },
             {
@@ -3392,7 +3634,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Furniture,
                     nameof(CraftingStations.Stonecutter),
-                    "Stone,16"
+                    "Stone,16",
+                    pieceGroup: PieceGroup.Statue
                 )
             },
             {
@@ -3403,7 +3646,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Building,
                     nameof(CraftingStations.Stonecutter),
-                    "Stone,16"
+                    "Stone,16",
+                    pieceGroup: PieceGroup.Stone
                 )
             },
             {
@@ -3414,7 +3658,9 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Building,
                     nameof(CraftingStations.Stonecutter),
-                    "Stone,16"
+                    "Stone,16",
+                    pieceName: "Stone floor2 4x4",
+                    pieceGroup: PieceGroup.Stone
                 )
             },
             {
@@ -3425,7 +3671,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    ""
+                    "",
+                    pieceGroup: PieceGroup.Tree
                 )
             },
             {
@@ -3447,7 +3694,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Building,
                     nameof(CraftingStations.Forge),
-                    "Iron,4"
+                    "Iron,4",
+                    pieceGroup: PieceGroup.Iron
                 )
             },
             {
@@ -3458,7 +3706,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    "ElderBark,16"
+                    "ElderBark,10",
+                    pieceGroup: PieceGroup.Tree
                 )
             },
             {
@@ -3469,7 +3718,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    ""
+                    "",
+                    pieceGroup: PieceGroup.Tree
                 )
             },
             {
@@ -3480,7 +3730,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    ""
+                    "",
+                    pieceGroup: PieceGroup.Tree
                 )
             },
             {
@@ -3491,7 +3742,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    "ElderBark,32"
+                    "ElderBark,32",
+                    pieceGroup: PieceGroup.Tree
                 )
             },
             {
@@ -3502,7 +3754,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    "ElderBark,32"
+                    "ElderBark,32",
+                    pieceGroup: PieceGroup.Tree
                 )
             },
             {
@@ -3513,7 +3766,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    "ElderBark,32"
+                    "ElderBark,32",
+                    pieceGroup: PieceGroup.Tree
                 )
             },
             {
@@ -3546,7 +3800,9 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Misc,
                     nameof(CraftingStations.Workbench),
-                    "IronNails,100;DeerHide,10;FineWood,40;ElderBark,40"
+                    "IronNails,100;DeerHide,10;FineWood,40;ElderBark,40",
+                    pieceName: "Trader ship",
+                    pieceGroup: PieceGroup.Ship
                 )
             },
             {
@@ -3557,7 +3813,9 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Furniture,
                     nameof(CraftingStations.Stonecutter),
-                    "BlackMarble,10"
+                    "BlackMarble,10",
+                    pieceName: "Black marble chest",
+                    pieceGroup: PieceGroup.Chest
                 )
             },
             {
@@ -3568,7 +3826,9 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Furniture,
                     nameof(CraftingStations.BlackForge),
-                    "YggdrasilWood,10;Copper,1"
+                    "YggdrasilWood,10;Copper,1",
+                    pieceName: "Dvergr chest",
+                    pieceGroup: PieceGroup.Chest
                 )
             },
             {
@@ -3579,7 +3839,9 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Furniture,
                     nameof(CraftingStations.BlackForge),
-                    "YggdrasilWood,10;Copper,1"
+                    "YggdrasilWood,10;Copper,1",
+                    pieceName: "Dvergr chest (large)",
+                    pieceGroup: PieceGroup.Chest
                 )
             },
             {
@@ -3590,7 +3852,9 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Furniture,
                     nameof(CraftingStations.Stonecutter),
-                    "Stone,10;RoundLog,1"
+                    "Stone,10;RoundLog,1",
+                    pieceName: "Stone chest (mossy)",
+                    pieceGroup: PieceGroup.Chest
                 )
             },
             {
@@ -3601,7 +3865,9 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Furniture,
                     nameof(CraftingStations.Stonecutter),
-                    "Stone,10;Crystal,1"
+                    "Stone,10;Crystal,1",
+                    pieceName: "Stone chest (snow)",
+                    pieceGroup: PieceGroup.Chest
                 )
             },
             {
@@ -3612,7 +3878,9 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Furniture,
                     nameof(CraftingStations.Stonecutter),
-                    "Stone,10;ElderBark,1"
+                    "Stone,10;ElderBark,1",
+                    pieceName: "Stone chest (dark moss)",
+                    pieceGroup: PieceGroup.Chest
                 )
             },
             {
@@ -3623,7 +3891,9 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Furniture,
                     nameof(CraftingStations.Stonecutter),
-                    "Stone,10;RoundLog,1"
+                    "Stone,10;RoundLog,1",
+                    pieceName: "Stone chest (mossy, big)",
+                    pieceGroup: PieceGroup.Chest
                 )
             },
             {
@@ -3645,7 +3915,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Building,
                     nameof(CraftingStations.Workbench),
-                    "Wood,2"
+                    "Wood,2",
+                    pieceGroup: PieceGroup.Wood
                 )
             },
             {
@@ -3656,7 +3927,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Building,
                     nameof(CraftingStations.Workbench),
-                    "Wood,2"
+                    "Wood,2",
+                    pieceGroup: PieceGroup.Wood
                 )
             },
             {
@@ -3678,7 +3950,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    "Wood,2"
+                    "Wood,2",
+                    pieceGroup: PieceGroup.Flora
                 )
             },
             {
@@ -3689,7 +3962,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    "Stone,32"
+                    "Stone,32",
+                    pieceGroup: PieceGroup.Rock
                 )
             },
             {
@@ -3700,7 +3974,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Building,
                     nameof(CraftingStations.Workbench),
-                    "Wood,1"
+                    "Wood,1",
+                    pieceGroup: PieceGroup.Wood
                 )
             },
             {
@@ -3711,7 +3986,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    "YggdrasilWood,10"
+                    "YggdrasilWood,10",
+                    pieceGroup: PieceGroup.Tree
                 )
             },
             {
@@ -3722,7 +3998,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    "YggdrasilWood,10"
+                    "YggdrasilWood,10",
+                    pieceGroup: PieceGroup.Tree
                 )
             },
             {
@@ -3733,7 +4010,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    "YggdrasilWood,10"
+                    "YggdrasilWood,10",
+                    pieceGroup: PieceGroup.Tree
                 )
             },
             {
@@ -3744,7 +4022,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    "YggdrasilWood,16"
+                    "YggdrasilWood,16",
+                    pieceGroup: PieceGroup.Tree
                 )
             },
             {
@@ -3755,7 +4034,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    "YggdrasilWood,16"
+                    "YggdrasilWood,16",
+                    pieceGroup: PieceGroup.Tree
                 )
             },
             {
@@ -3767,6 +4047,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     "YggdrasilWood,16"
+                    ,
+                    pieceGroup: PieceGroup.Tree
                 )
             },
             {
@@ -3777,7 +4059,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    "YggdrasilWood,64;Sap,10"
+                    "YggdrasilWood,64;Sap,10",
+                    pieceGroup: PieceGroup.Tree
                 )
             },
         };
