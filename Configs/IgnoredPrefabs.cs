@@ -98,6 +98,9 @@ namespace MoreVanillaBuildPrefabs.Configs
             "horizontal_web", // has no mesh?
             "tolroko_flyer", // It's a little space ship! Instantiating it throws errors though.
             "turf_roof_wall", // Duplicate of "wood_roof_wall"
+            "IceBlocker", // disappears after placing
+            "Pickable_Barley_Wild",
+            "Pickable_Flax_Wild",
 
             // Duplicates of wood chest
             "TreasureChest_blackforest",
