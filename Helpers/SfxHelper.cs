@@ -1,11 +1,13 @@
 ﻿using Jotunn.Configs;
+using MoreVanillaBuildPrefabs.Configs;
 using MoreVanillaBuildPrefabs.Logging;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
 namespace MoreVanillaBuildPrefabs.Helpers
 {
-    /* Sound Effects
+    /* Placement Sound Effects
      * sfx_build_cultivator
      * sfx_build_hammer_crystal
      * sfx_build_hammer_default
@@ -15,33 +17,65 @@ namespace MoreVanillaBuildPrefabs.Helpers
      * sfx_build_hoe
      */
 
+    /* Removal Sound Effects
+     * sfx_barnacle_destroyed
+     * sfx_beehive_destroyed
+     * sfx_bonepile_destroyed
+     * sfx_coins_destroyed
+     * sfx_coins_pile_destroyed
+     * sfx_draugrpile_destroyed
+     * sfx_gdking_rock_destroyed
+     * sfx_greydwarfnest_destroyed
+     * sfx_GuckSackDestroyed
+     * sfx_ice_destroyed
+     * sfx_MudDestroyed
+     * sfx_rock_destroyed
+     * sfx_ship_destroyed
+     * sfx_treasurechest_destroyed
+     * sfx_troll_rock_destroyed
+     * sfx_wood_destroyed
+     */
+
+    // disable IceBlocker
+
     internal class SfxHelper
     {
-        private static readonly Dictionary<string, EffectList.EffectData> _sfx = new();
+        private static readonly Dictionary<string, EffectList.EffectData> PlacementSfx = new();
 
-        internal static Dictionary<string, EffectList.EffectData> SoundEffects => _sfx;
+        private static readonly Dictionary<string, EffectList.EffectData> RemovalSfx = new()
+        {
+            { "sfx_rock_destroyed", null },
+            { "sfx_wood_destroyed", null },
+            { "sfx_treasurechest_destroyed", null },
+            { "sfx_ship_destroyed", null }
+        };
 
         internal static void Init()
         {
-            if (_sfx.Count > 0)
-            {
-                _sfx.Clear();
-            }
+            if (PlacementSfx.Count > 0) { PlacementSfx.Clear(); }
 
-            var soundEffects = ZNetScene.instance.m_prefabs.Where(
-                go => go.transform.parent == null
-                && go.name.Contains("sfx_build")
-            ).ToDictionary(go => go.name, go => go.gameObject);
-
-            foreach (var key in soundEffects.Keys)
+            foreach (var prefab in ZNetScene.instance.m_prefabs)
             {
-                _sfx[key] = new EffectList.EffectData()
+                if (prefab.transform.parent != null) { continue; }
+                if (prefab.name.Contains("sfx_build"))
                 {
-                    m_prefab = soundEffects[key],
-                    m_enabled = true,
-                    m_variant = -1,
-                };
+                    PlacementSfx.Add(prefab.name, CreateEffectData(prefab));
+                }
+                else if (RemovalSfx.ContainsKey(prefab.name))
+                {
+                    RemovalSfx[prefab.name] = CreateEffectData(prefab);
+                }
             }
+        }
+
+        private static EffectList.EffectData CreateEffectData(GameObject prefab)
+        {
+            return new EffectList.EffectData()
+            {
+                m_prefab = prefab,
+                m_enabled = true,
+                m_variant = -1,
+            };
         }
 
         internal static void FixPlacementSfx(Piece piece)
@@ -73,39 +107,66 @@ namespace MoreVanillaBuildPrefabs.Helpers
             var craftingStation = piece?.m_craftingStation;
             if (craftingStation == null || string.IsNullOrEmpty(craftingStation?.m_name))
             {
-                if (SoundEffects.ContainsKey("sfx_build_hammer_default"))
+                if (PlacementSfx.ContainsKey("sfx_build_hammer_default"))
                 {
-                    piece.m_placeEffect.m_effectPrefabs = effects.Append(SoundEffects["sfx_build_hammer_default"]).ToArray();
+                    piece.m_placeEffect.m_effectPrefabs = effects.Append(PlacementSfx["sfx_build_hammer_default"]).ToArray();
                 }
             }
             else if (craftingStation?.name == CraftingStations.Stonecutter)
             {
-                if (SoundEffects.ContainsKey("sfx_build_hammer_stone"))
+                if (PlacementSfx.ContainsKey("sfx_build_hammer_stone"))
                 {
-                    piece.m_placeEffect.m_effectPrefabs = effects.Append(SoundEffects["sfx_build_hammer_stone"]).ToArray();
+                    piece.m_placeEffect.m_effectPrefabs = effects.Append(PlacementSfx["sfx_build_hammer_stone"]).ToArray();
                 }
             }
             else if (craftingStation?.name == CraftingStations.Workbench)
             {
-                if (SoundEffects.ContainsKey("sfx_build_hammer_default"))
+                if (PlacementSfx.ContainsKey("sfx_build_hammer_default"))
                 {
-                    piece.m_placeEffect.m_effectPrefabs = effects.Append(SoundEffects["sfx_build_hammer_default"]).ToArray();
+                    piece.m_placeEffect.m_effectPrefabs = effects.Append(PlacementSfx["sfx_build_hammer_default"]).ToArray();
                 }
             }
             else if (craftingStation?.name == CraftingStations.Forge)
             {
-                if (SoundEffects.ContainsKey("sfx_build_hammer_metal"))
+                if (PlacementSfx.ContainsKey("sfx_build_hammer_metal"))
                 {
-                    piece.m_placeEffect.m_effectPrefabs = effects.Append(SoundEffects["sfx_build_hammer_metal"]).ToArray();
+                    piece.m_placeEffect.m_effectPrefabs = effects.Append(PlacementSfx["sfx_build_hammer_metal"]).ToArray();
                 }
             }
             else if (craftingStation?.name == CraftingStations.BlackForge)
             {
-                if (SoundEffects.ContainsKey("sfx_build_hammer_default"))
+                if (PlacementSfx.ContainsKey("sfx_build_hammer_default"))
                 {
-                    piece.m_placeEffect.m_effectPrefabs = effects.Append(SoundEffects["sfx_build_hammer_default"]).ToArray();
+                    piece.m_placeEffect.m_effectPrefabs = effects.Append(PlacementSfx["sfx_build_hammer_default"]).ToArray();
                 }
             }
+        }
+
+        internal static EffectList FixRemovalSfx(Piece piece)
+        {
+            var effects = (piece.m_placeEffect?.m_effectPrefabs) ?? (new EffectList.EffectData[0]);
+            foreach (var effect in effects)
+            {
+                if (effect.m_prefab != null && effect.m_prefab.name.Contains("sfx_build"))
+                {
+                    if (effect.m_enabled) { effect.m_enabled = false; }
+                }
+            }
+
+            var craftingStation = piece?.m_craftingStation;
+            if (craftingStation != null && craftingStation?.name == CraftingStations.Stonecutter)
+            {
+                effects = effects.Append(RemovalSfx["sfx_rock_destroyed"]).ToArray();
+            }
+            else
+            {
+                effects = effects.Append(RemovalSfx["sfx_wood_destroyed"]).ToArray();
+            }
+
+            return new EffectList()
+            {
+                m_effectPrefabs = effects
+            };
         }
     }
 }
