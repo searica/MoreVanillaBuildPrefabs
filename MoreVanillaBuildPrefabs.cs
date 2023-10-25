@@ -69,13 +69,8 @@ namespace MoreVanillaBuildPrefabs
         /// </summary>
         /// <param name="prefabName"></param>
         /// <returns></returns>
-        internal static bool IsChangedByMod(string prefabName)
+        internal static bool IsPatchedByMod(string prefabName)
         {
-            // Unsure if I should access PieceRefs or PrefabRefs here
-            // both could work but PrefabRefs is unchanging after initial log in
-            // Unchanging could be good but could also be a bad thing
-            // That PieceRefs changes could maybe lead to errors or prevent me
-            // trying to access something that isn't a thing anymore somehow?
             return PrefabRefs.ContainsKey(prefabName);
         }
 
@@ -125,11 +120,10 @@ namespace MoreVanillaBuildPrefabs
                     }
                 }
 
-                // currently always applies patches to all prefabs
-                // regardless of whether the pieces are enabled
-                // only has to run once this way
-                // also prevents trailership instances from
-                // becoming unusable if you disable it as a build piece
+                // Always apply prefab patches regardless of
+                // whether the pieces are enabled. Only has to
+                // run once that way and prevents prevents trailership
+                // instances becoming unusable if you disable it as a build piece
                 try
                 {
                     PrefabPatcher.PatchPrefabIfNeeded(prefab);
@@ -276,7 +270,7 @@ namespace MoreVanillaBuildPrefabs
         internal static void InitHammer()
         {
             Log.LogInfo("Initializing hammer");
-            PieceTable hammerTable = PieceHelper.GetPieceTable(PieceTables.Hammer);
+            var insertionHelper = new InsertionGroupHelper();
             foreach (var pieceDB in PieceRefs.Values)
             {
                 // Check if piece is enabled by the mod
@@ -294,7 +288,7 @@ namespace MoreVanillaBuildPrefabs
 
                 // Only add vanilla crops if enabled
                 if (!PluginConfig.IsEnableHammerCrops
-                    && PieceCategoryHelper.IsVanillaCrop(pieceDB.name))
+                    && pieceDB.pieceGroup == PieceGroup.VanillaCrop)
                 {
                     continue;
                 }
@@ -313,9 +307,11 @@ namespace MoreVanillaBuildPrefabs
                 {
                     continue;
                 }
-
-                PieceHelper.AddPieceToPieceTable(pieceDB.Prefab, hammerTable);
+                insertionHelper.Add(pieceDB);
             }
+
+            PieceTable hammerTable = PieceHelper.GetPieceTable(PieceTables.Hammer);
+            insertionHelper.AddPieces(hammerTable);
         }
 
         /// <summary>
