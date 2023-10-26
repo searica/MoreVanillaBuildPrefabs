@@ -1,6 +1,4 @@
-﻿using Jotunn.Configs;
-using MoreVanillaBuildPrefabs.Helpers;
-using MoreVanillaBuildPrefabs.Logging;
+﻿using MoreVanillaBuildPrefabs.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,23 +42,23 @@ namespace MoreVanillaBuildPrefabs
         {
             if (breadthFirst)
             {
-            Queue<Transform> queue = new();
-            queue.Enqueue(transform);
-            while (queue.Count > 0)
-            {
-                var child = queue.Dequeue();
-                if (child.name == childName)
+                Queue<Transform> queue = new();
+                queue.Enqueue(transform);
+                while (queue.Count > 0)
                 {
-                    return child;
-                }
+                    var child = queue.Dequeue();
+                    if (child.name == childName)
+                    {
+                        return child;
+                    }
 
-                foreach (Transform t in child)
-                {
-                    queue.Enqueue(t);
+                    foreach (Transform t in child)
+                    {
+                        queue.Enqueue(t);
+                    }
                 }
+                return null;
             }
-            return null;
-        }
             else
             {
                 foreach (Transform child in transform)
@@ -68,7 +66,7 @@ namespace MoreVanillaBuildPrefabs
                     if (child.name == childName)
                     {
                         return child;
-    }
+                    }
                     var result = child.FindDeepChild(childName);
                     if (result != null)
                     {
@@ -157,7 +155,7 @@ namespace MoreVanillaBuildPrefabs
                 if (gameObject.GetComponent(compo) != null)
                 {
                     return true;
-        }
+                }
             }
             return false;
         }
@@ -178,7 +176,7 @@ namespace MoreVanillaBuildPrefabs
                 if (gameObject.GetComponent(name) != null)
                 {
                     return true;
-        }
+                }
             }
             return false;
         }
@@ -199,6 +197,9 @@ namespace MoreVanillaBuildPrefabs
                 if (gameObject.GetComponent(name) == null)
                 {
                     return false;
+                }
+            }
+            return true;
         }
 
         /// <summary>
@@ -217,7 +218,7 @@ namespace MoreVanillaBuildPrefabs
                 if (gameObject.GetComponent(compo) == null)
                 {
                     return false;
-        }
+                }
             }
             return true;
         }
@@ -428,12 +429,12 @@ namespace MoreVanillaBuildPrefabs
             }
 
             return s;
-    }
+        }
 
         internal static string RemovePrefix(this string s, string prefix)
         {
             if (s.StartsWith(prefix))
-    {
+            {
                 return s.Substring(prefix.Length, s.Length - prefix.Length);
             }
             return s;
