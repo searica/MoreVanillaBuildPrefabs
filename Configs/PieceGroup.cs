@@ -4,36 +4,43 @@
     {
         None = 0,
         Fire,
-        Wood,
-        Stone,
-        BlackMarble,
-        Torch,
-        Brazier,
-        Chair,
-        Table,
-        Ship,
-        Cart,
-        Misc,
-        Portal,
-        Dvergr,
-        Iron,
-        Crystal,
-        Rock,
-        VanillaCrop,
-        Ore,
-        Plant, // pickable plants
-        Flora, // non pickable plants (shrubs, trees, etc.)
-        Rug,
-        Banner,
-        Chest,
         Stack,
         Treasure,
-        Statue,
-        Goblin,
+
+        Bed,
+        Chest,
+        Chair,
+        Table,
+        Torch,
+        Brazier,
+        Rug,
+        Banner,
         ArmorStand,
-        Spawner,
-        Ward,
+        Statue,
+
+        Wood,
         Darkwood,
-        Crafting
+        Goblin,
+        Iron,
+        Crystal,
+        Stone,
+        BlackMarble,
+        Dvergr,
+
+        Portal,
+        Ward,
+        Cart,
+        Ship,
+
+        VanillaCrop,
+        Plant, // pickable plants
+        Flora, // non pickable plants (shrubs, trees, etc.)
+        Rock,
+        Ice,
+        Ore,
+
+        Crafting,
+        Misc,
+        Spawner,
     }
 }
