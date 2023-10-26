@@ -51,7 +51,6 @@ namespace MoreVanillaBuildPrefabs.Configs
 
                 prefab.name.StartsWith("_") ||
                 prefab.name.StartsWith("OLD_") ||
-                prefab.name.EndsWith("_OLD") ||
                 prefab.name.EndsWith("OLD") ||
                 prefab.name.StartsWith("vfx_") ||
                 prefab.name.StartsWith("sfx_") ||
