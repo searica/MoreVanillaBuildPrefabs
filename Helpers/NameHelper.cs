@@ -34,27 +34,22 @@ namespace MoreVanillaBuildPrefabs.Helpers
                 .Replace("sunkencrypt", "sunken crypt")
                 .Replace("irongate", "iron gate")
                 .Replace("goblin", "fuling");
-            //.Replace("secretdoor", "secret door")
-            //.Replace("slidngdoor", "sliding door");
 
-            name = RemovePrefix(name, "piece");
+            name = name.RemovePrefix("piece");
 
             if (name.EndsWith("destructible"))
             {
-                name = string.Concat(
-                    RemoveSuffix(name, "destructible").Trim(),
-                    " (destructible)"
-                );
+                name = name.RemoveSuffix("destructible").Trim();
+                name = string.Concat(name, " (destructible)");
             }
 
             if (name.StartsWith("pickable"))
             {
-                name = string.Concat(
-                    RemovePrefix(name, "pickable").Trim(),
-                    " (pickable)"
-                );
+                name = name.RemovePrefix("pickable").Trim();
+                name = string.Concat(name, " (pickable)");
             }
-            return CapitalizeFirstLetter(name);
+
+            return name.CapitalizeFirstLetter();
         }
 
         internal static string GetPrefabDescription(PieceDB pieceDB)
@@ -109,36 +104,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
         /// <returns></returns>
         internal static string GetPrefabName(Piece piece)
         {
-            return RemoveSuffix(piece.gameObject.name, "(Clone)");
-        }
-
-        internal static string RemoveSuffix(string s, string suffix)
-        {
-            if (s.EndsWith(suffix))
-            {
-                return s.Substring(0, s.Length - suffix.Length);
-            }
-
-            return s;
-        }
-
-        internal static string RemovePrefix(string s, string prefix)
-        {
-            if (s.StartsWith(prefix))
-            {
-                return s.Substring(prefix.Length, s.Length - prefix.Length);
-            }
-            return s;
-        }
-
-        internal static string CapitalizeFirstLetter(string s)
-        {
-            if (s.Length == 0)
-                return s;
-            else if (s.Length == 1)
-                return $"{char.ToUpper(s[0])}";
-            else
-                return char.ToUpper(s[0]) + s.Substring(1);
+            return piece.gameObject.name.RemoveSuffix("(Clone)");
         }
     }
 }
