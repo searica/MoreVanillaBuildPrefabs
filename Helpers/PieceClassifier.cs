@@ -7,51 +7,40 @@ using MoreVanillaBuildPrefabs.Logging;
 
 namespace MoreVanillaBuildPrefabs.Helpers
 {
-    internal class InsertionGroupHelper
+    internal class PieceClassifier
     {
+        private static readonly Dictionary<string, PieceGroup> Cache = new();
+
         internal Dictionary<PieceGroup, List<GameObject>> PieceGroupDict;
-
-        public InsertionGroupHelper()
-        {
-            PieceGroupDict = new();
-            foreach (PieceGroup group in Enum.GetValues(typeof(PieceGroup)))
-            {
-                if (group == PieceGroup.None) { continue; }
-                PieceGroupDict[group] = new List<GameObject>();
-            }
-        }
-
-        internal void AddPieces(PieceTable pieceTable)
-        {
-            // Loop through groups in based on the ordering in PieceGroup Enum
-            foreach (PieceGroup group in Enum.GetValues(typeof(PieceGroup)))
-            {
-                if (group == PieceGroup.None) { continue; }
-                var pieceGroup = PieceGroupDict[group];
-                foreach (var prefab in pieceGroup)
-                {
-                    PieceHelper.AddPieceToPieceTable(prefab, pieceTable);
-                }
-            }
-            // need to figure out an insertion point for each Enum group
-        }
-
-        internal void Add(PieceDB pieceDB)
-        {
-            var key = GetPieceGroup(pieceDB);
-            Log.LogInfo($"{pieceDB.name}: {key}");
-            key = GetPieceGroup(pieceDB.Prefab);
-            Log.LogInfo($"{pieceDB.name}: {key}");
-            PieceGroupDict[key].Add(pieceDB.Prefab);
-        }
 
         internal static PieceGroup GetPieceGroup(PieceDB pieceDB)
         {
-            if (pieceDB.pieceGroup != PieceGroup.None) return pieceDB.pieceGroup;
-            return GetPieceGroup(pieceDB.Prefab);
+            if (Cache.ContainsKey(pieceDB.name))
+            {
+                return Cache[pieceDB.name];
+            }
+            if (pieceDB.pieceGroup != PieceGroup.None)
+            {
+                Cache[pieceDB.name] = pieceDB.pieceGroup;
+                return pieceDB.pieceGroup;
+            }
+            var result = _GetPieceGroup(pieceDB.Prefab);
+            Cache[pieceDB.name] = result;
+            return result;
         }
 
         internal static PieceGroup GetPieceGroup(GameObject prefab)
+        {
+            if (Cache.ContainsKey(prefab.name))
+            {
+                return Cache[prefab.name];
+            }
+            var result = _GetPieceGroup(prefab);
+            Cache[prefab.name] = result;
+            return result;
+        }
+
+        private static PieceGroup _GetPieceGroup(GameObject prefab)
         {
             var prefabName = prefab.name.ToLower();
             var piece = prefab.GetComponent<Piece>();
@@ -75,6 +64,11 @@ namespace MoreVanillaBuildPrefabs.Helpers
             if (prefab.HasComponent<TeleportWorld>())
             {
                 return PieceGroup.Portal;
+            }
+
+            if (prefab.HasComponent<Bed>() || prefabName.Contains("bed"))
+            {
+                return PieceGroup.Bed;
             }
 
             if (
@@ -132,16 +126,21 @@ namespace MoreVanillaBuildPrefabs.Helpers
                 return PieceGroup.Iron;
             }
 
-            if (prefab.HasComponent<WearNTear>())
+            if (prefabName.ContainsAny("dvergr", "dverger"))
+            {
+                return PieceGroup.Dvergr;
+            }
+
+            if (prefab.HasAnyComponent(typeof(WearNTear), typeof(Door)))
             {
                 if (prefabName.Contains("darkwood")) return PieceGroup.Darkwood;
-                if (prefabName.Contains("wood")) return PieceGroup.Wood;
+                if (prefabName.ContainsAny("wood", "turf")) return PieceGroup.Wood;
                 if (prefabName.Contains("stone")) return PieceGroup.Stone;
             }
 
             if (
                 prefab.HasComponent<Chair>()
-                || prefabName.ContainsAny("chair", "throne", "bench")
+                || prefabName.ContainsAny("chair", "throne", "bench", "stool")
                 || piece.m_comfortGroup == Piece.ComfortGroup.Chair
             )
             {
@@ -195,6 +194,14 @@ namespace MoreVanillaBuildPrefabs.Helpers
             }
 
             if (
+                piece?.m_comfortGroup == Piece.ComfortGroup.Carpet
+                || prefabName.ContainsAny("rug", "carpet")
+            )
+            {
+                return PieceGroup.Rug;
+            }
+
+            if (
                 prefabName.ContainsAny(
                     "bush", "root", "shrub", "stubbe", "vines", "tree"
                 )
@@ -204,27 +211,19 @@ namespace MoreVanillaBuildPrefabs.Helpers
                 return PieceGroup.Flora;
             }
 
+            if (prefabName.Contains("ice"))
+            {
+                return PieceGroup.Ice;
+            }
+
             if (prefabName.ContainsAny("rock", "cliff"))
             {
                 return PieceGroup.Rock;
             }
 
-            if (
-                piece?.m_comfortGroup == Piece.ComfortGroup.Carpet
-                || prefabName.ContainsAny("rug", "carpet")
-            )
-            {
-                return PieceGroup.Rug;
-            }
-
             if (prefabName.Contains("blackmarble"))
             {
                 return PieceGroup.BlackMarble;
-            }
-
-            if (prefabName.ContainsAny("dvergr", "dverger"))
-            {
-                return PieceGroup.Dvergr;
             }
 
             if (prefabName.Contains("goblin"))
