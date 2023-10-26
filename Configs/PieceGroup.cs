@@ -22,8 +22,7 @@
         VanillaCrop,
         Ore,
         Plant, // pickable plants
-        Flora, // non pickable plants (shrubs, etc.)
-        Tree,
+        Flora, // non pickable plants (shrubs, trees, etc.)
         Rug,
         Banner,
         Chest,
@@ -31,6 +30,10 @@
         Treasure,
         Statue,
         Goblin,
-        ArmorStand
+        ArmorStand,
+        Spawner,
+        Ward,
+        Darkwood,
+        Crafting
     }
 }
