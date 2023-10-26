@@ -92,7 +92,7 @@ namespace MoreVanillaBuildPrefabs
             {
                 Log.LogInfo("DropResources_m_resources_Delegate()");
             }
-            string prefabName = NameHelper.GetPrefabName(piece);
+            string prefabName = NameHelper.GetRootPrefabName(piece);
 
             if (!IsPatchedByMod(prefabName))
             {

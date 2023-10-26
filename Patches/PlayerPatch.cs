@@ -186,7 +186,7 @@ namespace MoreVanillaBuildPrefabs
         private static bool CheckCanRemovePrefix(Player __instance, Piece piece, ref bool __result)
         {
             // Only modify results for pieces affected by this mod
-            var prefabName = NameHelper.GetPrefabName(piece);
+            var prefabName = NameHelper.GetRootPrefabName(piece);
             if (!MoreVanillaBuildPrefabs.IsPatchedByMod(prefabName))
             {
                 return true; // run CheckCanRemove method as normal
@@ -272,7 +272,7 @@ namespace MoreVanillaBuildPrefabs
 
         private static void RemovePieceEffectsDelegate(Piece piece)
         {
-            if (!MoreVanillaBuildPrefabs.IsPatchedByMod(NameHelper.GetPrefabName(piece)))
+            if (!MoreVanillaBuildPrefabs.IsPatchedByMod(NameHelper.GetRootPrefabName(piece)))
             {
                 piece.m_placeEffect.Create(piece.transform.position, piece.transform.rotation, piece.gameObject.transform);
                 Player.s_players[0].m_removeEffects.Create(piece.transform.position, Quaternion.identity);

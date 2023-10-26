@@ -1,7 +1,6 @@
 ﻿using HarmonyLib;
 using MoreVanillaBuildPrefabs.Configs;
 using MoreVanillaBuildPrefabs.Logging;
-using MoreVanillaBuildPrefabs.Helpers;
 
 namespace MoreVanillaBuildPrefabs
 {
@@ -17,7 +16,7 @@ namespace MoreVanillaBuildPrefabs
         [HarmonyPatch(nameof(DropOnDestroyed.OnDestroyed))]
         private static bool OnDestroyedPrefix(DropOnDestroyed __instance)
         {
-            var prefabName = NameHelper.RemoveSuffix(__instance.name, "(Clone)");
+            var prefabName = __instance.name.RemoveSuffix("(Clone)");
             if (MoreVanillaBuildPrefabs.IsPatchedByMod(prefabName))
             {
                 var piece = __instance.gameObject.GetComponent<Piece>();
