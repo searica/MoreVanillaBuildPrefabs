@@ -54,7 +54,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                 prefab.name.EndsWith("OLD") ||
                 prefab.name.StartsWith("vfx_") ||
                 prefab.name.StartsWith("sfx_") ||
-                prefab.name.StartsWith("fx_")
+                prefab.name.StartsWith("fx_") ||
+                prefab.name.Contains("Random")
             )
             {
                 return true;
