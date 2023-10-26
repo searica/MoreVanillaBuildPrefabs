@@ -27,60 +27,32 @@ namespace MoreVanillaBuildPrefabs
         }
     }
 
-    internal static class PieceExtensions
+    internal static class TransformExtensions
     {
-        internal static void FixPlacementSfx(this Piece piece)
+        /// <summary>
+        ///     Breadth-first search for transform child by name.
+        /// </summary>
+        /// <param name="transform"></param>
+        /// <param name="childName"></param>
+        /// <returns></returns>
+        public static Transform FindDeepChild(this Transform transform, string childName)
         {
-            // get effects
-            var effects = piece?.m_placeEffect?.m_effectPrefabs;
-            if (effects == null)
+            Queue<Transform> queue = new();
+            queue.Enqueue(transform);
+            while (queue.Count > 0)
             {
-                piece.m_placeEffect = new EffectList();
-            }
-
-            // check for sfx and enable them
-            foreach (var effect in effects)
-            {
-                if (effect.m_prefab != null
-                    && effect.m_prefab.name.Contains("sfx"))
+                var child = queue.Dequeue();
+                if (child.name == childName)
                 {
-                    if (!effect.m_enabled)
-                    {
-                        effect.m_enabled = true;
-                    }
-                    return;
+                    return child;
+                }
+
+                foreach (Transform t in child)
+                {
+                    queue.Enqueue(t);
                 }
             }
-
-            // assign sfx based on crafting station
-            var craftingStation = piece?.m_craftingStation;
-            Log.LogInfo($"Crafting Station name {craftingStation?.m_name}");
-            if (craftingStation?.m_name == CraftingStations.Stonecutter)
-            {
-            }
-        }
-
-        internal static bool HasPlacementSfx(this Piece piece)
-        {
-            var effects = piece?.m_placeEffect?.m_effectPrefabs;
-
-            if (effects == null)
-            {
-                piece.m_placeEffect = new EffectList();
-            }
-
-            foreach (var effect in effects)
-            {
-                if (
-                    effect.m_prefab != null
-                    && effect.m_prefab.name.Contains("sfx")
-                    && effect.m_enabled
-                )
-                {
-                    return true;
-                }
-            }
-            return false;
+            return null;
         }
     }
 
@@ -102,6 +74,40 @@ namespace MoreVanillaBuildPrefabs
             // set object and clone to original state
             obj.SetActive(setActive);
             return clone;
+        }
+
+        public static bool HasComponent<T>(this GameObject go) where T : Component
+        {
+            return go.GetComponent<T>() != null;
+        }
+
+        public static void DestroyComponent<T>(this GameObject go) where T : UnityEngine.Component
+        {
+            var components = go.GetComponentsInChildren<T>();
+            foreach (var component in components)
+            {
+                UnityEngine.Object.DestroyImmediate(component);
+            }
+        }
+
+        public static bool HasAnyComponent(this GameObject go, params string[] componentNames)
+        {
+            return componentNames.Any(component => go.GetComponent(component) != null);
+        }
+
+        public static bool HasAnyComponentInChildren(this GameObject go, params Type[] components)
+        {
+            return components.Any(component => go.GetComponentInChildren(component, true) != null);
+        }
+
+        public static bool HasComponentInChildren<T>(this GameObject go, bool includeInactive = false) where T : Component
+        {
+            return go.GetComponentInChildren<T>(includeInactive) != null;
+        }
+
+        public static bool HasAllComponents(this GameObject go, params string[] componentNames)
+        {
+            return componentNames.All(component => go.GetComponent(component) != null);
         }
 
         /// <summary>
@@ -173,6 +179,14 @@ namespace MoreVanillaBuildPrefabs
                 .Where(fi => fi.FieldType == typeof(T))
                 .Select(x => (T)x.GetValue(null))
                 .ToList();
+        }
+    }
+
+    internal static class UnityExtensions
+    {
+        public static bool ContainsAny(this string str, params string[] substrings)
+        {
+            return substrings.Any(s => str.Contains(s));
         }
     }
 
