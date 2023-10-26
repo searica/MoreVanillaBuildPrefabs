@@ -45,7 +45,8 @@ namespace MoreVanillaBuildPrefabs.Helpers
         ///     Adds snap points for the game object to the corners of the specified mesh.
         /// </summary>
         /// <param name="gameObject"></param>
-        /// <param name="meshName"></param>
+        /// <param name="boxCollider"></param>
+        /// <param name="fixPiece"></param>
         internal static void AddSnapPointsToBoxColliderCorners(
             GameObject gameObject,
             BoxCollider boxCollider,
@@ -68,6 +69,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
         /// </summary>
         /// <param name="gameObject"></param>
         /// <param name="meshName"></param>
+        /// <param name="fixPiece"></param>
         internal static void AddSnapPointsToMeshCorners(
             GameObject gameObject,
             string meshName,
@@ -111,7 +113,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
         {
             if (fixPiece)
             {
-                FixPiece(gameObject);
+                FixPieceLayers(gameObject);
             }
 
             float z = 0f;
@@ -139,7 +141,11 @@ namespace MoreVanillaBuildPrefabs.Helpers
             snappoint.SetActive(false);
         }
 
-        internal static void FixPiece(GameObject gameObject)
+        /// <summary>
+        ///     Set all colliders to the piece layer.
+        /// </summary>
+        /// <param name="gameObject"></param>
+        internal static void FixPieceLayers(GameObject gameObject)
         {
             foreach (Collider collider in gameObject.GetComponentsInChildren<Collider>())
             {

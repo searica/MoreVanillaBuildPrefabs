@@ -286,7 +286,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
                 case "blackmarble_out_2":
                     // Fix piece colliders via layers
                     UnityEngine.Object.DestroyImmediate(prefab.GetComponent<MeshCollider>());
-                    SnapPointHelper.FixPiece(prefab);
+                    SnapPointHelper.FixPieceLayers(prefab);
                     break;
 
                 case "blackmarble_tile_floor_1x1":
