@@ -30,13 +30,20 @@ namespace MoreVanillaBuildPrefabs
     internal static class TransformExtensions
     {
         /// <summary>
-        ///     Breadth-first search for transform child by name.
+        ///     Extension method to find nested children by name using either
+        ///     a breadth-first or depth-first search. Default is breadth-first.
         /// </summary>
         /// <param name="transform"></param>
         /// <param name="childName"></param>
         /// <returns></returns>
-        public static Transform FindDeepChild(this Transform transform, string childName)
+        public static Transform FindDeepChild(
+            this Transform transform,
+            string childName,
+            bool breadthFirst = true
+        )
         {
+            if (breadthFirst)
+            {
             Queue<Transform> queue = new();
             queue.Enqueue(transform);
             while (queue.Count > 0)
@@ -53,6 +60,23 @@ namespace MoreVanillaBuildPrefabs
                 }
             }
             return null;
+        }
+            else
+            {
+                foreach (Transform child in transform)
+                {
+                    if (child.name == childName)
+                    {
+                        return child;
+    }
+                    var result = child.FindDeepChild(childName);
+                    if (result != null)
+                    {
+                        return result;
+                    }
+                }
+                return null;
+            }
         }
     }
 
