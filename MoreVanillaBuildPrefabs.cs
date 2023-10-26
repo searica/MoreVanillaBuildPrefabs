@@ -179,7 +179,7 @@ namespace MoreVanillaBuildPrefabs
 
             if (PluginConfig.IsVerbosityMedium)
             {
-                Log.LogInfo("Initializing default piece icons");
+                Log.LogInfo("Initializing default icons");
             }
 
             IconHelper.Instance.GeneratePrefabIcons(PrefabRefs.Values);
@@ -270,7 +270,14 @@ namespace MoreVanillaBuildPrefabs
         internal static void InitHammer()
         {
             Log.LogInfo("Initializing hammer");
-            var insertionHelper = new InsertionGroupHelper();
+
+            var PieceGroupDict = new Dictionary<PieceGroup, List<GameObject>>();
+            foreach (PieceGroup group in Enum.GetValues(typeof(PieceGroup)))
+            {
+                if (group == PieceGroup.None) { continue; }
+                PieceGroupDict[group] = new List<GameObject>();
+            }
+
             foreach (var pieceDB in PieceRefs.Values)
             {
                 // Check if piece is enabled by the mod
@@ -307,11 +314,24 @@ namespace MoreVanillaBuildPrefabs
                 {
                     continue;
                 }
-                insertionHelper.Add(pieceDB);
+
+                var key = PieceClassifier.GetPieceGroup(pieceDB);
+                //Log.LogInfo($"{pieceDB.name}: {key}");
+                //key = GetPieceGroup(pieceDB.Prefab);
+                //Log.LogInfo($"{pieceDB.name}: {key}");
+                PieceGroupDict[key].Add(pieceDB.Prefab);
             }
 
             PieceTable hammerTable = PieceHelper.GetPieceTable(PieceTables.Hammer);
-            insertionHelper.AddPieces(hammerTable);
+            foreach (PieceGroup group in Enum.GetValues(typeof(PieceGroup)))
+            {
+                if (group == PieceGroup.None) { continue; }
+                var pieceGroup = PieceGroupDict[group];
+                foreach (var prefab in pieceGroup)
+                {
+                    PieceHelper.AddPieceToPieceTable(prefab, hammerTable);
+                }
+            }
         }
 
         /// <summary>
