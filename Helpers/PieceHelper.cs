@@ -132,7 +132,6 @@ namespace MoreVanillaBuildPrefabs.Helpers
         {
             var name = NameHelper.FormatPrefabName(pieceDB);
             var description = NameHelper.GetPrefabDescription(pieceDB);
-            if (description == name) { description = ""; }
             var pieceCategory = (Piece.PieceCategory)PieceManager.Instance.GetPieceCategory(pieceDB.category);
 
             return ConfigurePiece(
