@@ -2,9 +2,9 @@
 using MoreVanillaBuildPrefabs.Configs;
 using MoreVanillaBuildPrefabs.Helpers;
 using MoreVanillaBuildPrefabs.Logging;
-using System.Linq;
-using UnityEngine;
 using UnityEngine.SceneManagement;
+using Jotunn.Managers;
+using Jotunn.Configs;
 
 namespace MoreVanillaBuildPrefabs.Patches
 {
@@ -38,6 +38,12 @@ namespace MoreVanillaBuildPrefabs.Patches
             //Log.LogInfo($"{stair == null}");
             //Log.LogInfo($"{stair.name}");
 
+            var hammer = PieceManager.Instance.GetPieceTable(PieceTables.Hammer);
+
+            foreach (var prefab in hammer.m_pieces)
+            {
+                Log.LogInfo($"{prefab.name}: {InsertionGroupHelper.GetPieceGroup(prefab)}");
+            }
             Log.LogInfo("Performing mod initialization");
 
             var watch = new System.Diagnostics.Stopwatch();
