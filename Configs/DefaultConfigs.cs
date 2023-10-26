@@ -2223,7 +2223,9 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
-                    ""
+                    "",
+                    pieceName: "Mist volume",
+                    pieceDesc: "Warning: requires devcommands to remove."
                 )
             },
             {
