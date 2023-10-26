@@ -38,12 +38,13 @@ namespace MoreVanillaBuildPrefabs.Patches
             //Log.LogInfo($"{stair == null}");
             //Log.LogInfo($"{stair.name}");
 
-            var hammer = PieceManager.Instance.GetPieceTable(PieceTables.Hammer);
+            //var hammer = PieceManager.Instance.GetPieceTable(PieceTables.Hammer);
 
-            foreach (var prefab in hammer.m_pieces)
-            {
-                Log.LogInfo($"{prefab.name}: {InsertionGroupHelper.GetPieceGroup(prefab)}");
-            }
+            //foreach (var prefab in hammer.m_pieces)
+            //{
+            //    Log.LogInfo($"{prefab.name}: {PieceClassifier.GetPieceGroup(prefab)}");
+            //}
+
             Log.LogInfo("Performing mod initialization");
 
             var watch = new System.Diagnostics.Stopwatch();
