@@ -16,6 +16,7 @@ namespace MoreVanillaBuildPrefabs.Configs
             this.craftingStation = prefabDB.craftingStation;
             this.requirements = prefabDB.requirements;
             this.placementPatch = prefabDB.placementPatch;
+            this.clipEverything = prefabDB.clipEverything;
             this.pieceName = prefabDB.pieceName;
             this.pieceDesc = prefabDB.pieceDesc;
             this.pieceGroup = prefabDB.pieceGroup;
@@ -30,6 +31,7 @@ namespace MoreVanillaBuildPrefabs.Configs
             string craftingStation = nameof(CraftingStations.None),
             string requirements = null,
             bool placementPatch = false,
+            bool clipEverything = false,
             string pieceName = null,
             string pieceDesc = null,
             PieceGroup pieceGroup = default
@@ -43,6 +45,7 @@ namespace MoreVanillaBuildPrefabs.Configs
             this.craftingStation = craftingStation;
             this.requirements = requirements;
             this.placementPatch = placementPatch;
+            this.clipEverything = clipEverything;
             this.pieceName = pieceName;
             this.pieceDesc = pieceDesc;
             this.pieceGroup = pieceGroup;

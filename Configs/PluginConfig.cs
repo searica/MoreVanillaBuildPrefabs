@@ -54,11 +54,56 @@ namespace MoreVanillaBuildPrefabs.Configs
             internal ConfigEntry<string> craftingStation;
             internal ConfigEntry<string> requirements;
             internal ConfigEntry<bool> placementPatch;
+            internal ConfigEntry<bool> clipEverything;
         }
 
         internal static readonly Dictionary<string, PieceConfigEntries> PieceConfigEntriesMap = new();
 
         private static readonly AcceptableValueList<bool> AcceptableBoolValuesList = new(new bool[] { false, true });
+
+        internal static readonly HashSet<string> _NeedsCollisionPatch = new();
+
+        internal static readonly HashSet<string> _ClipEverything = new();
+
+        private static readonly HashSet<string> _CanClipGround = new()
+        {
+            "stoneblock_fracture",
+            "blackmarble_post01",
+            "dungeon_sunkencrypt_irongate_rusty",
+        };
+
+        /// <summary>
+        ///     Get a bool indicating if the prefab should be
+        ///     allowed to clip into the ground..
+        /// </summary>
+        /// <param name="PrefabName"></param>
+        /// <returns></returns>
+        internal static bool CanClipEverything(string prefabName)
+        {
+            return _ClipEverything.Contains(prefabName);
+        }
+
+        /// <summary>
+        ///     Get a bool indicating if the prefab should be
+        ///     allowed to clip into the ground.
+        /// </summary>
+        /// <param name="PrefabName"></param>
+        /// <returns></returns>
+        internal static bool CanClipGround(string prefabName)
+        {
+            return _CanClipGround.Contains(prefabName);
+        }
+
+        /// <summary>
+        ///     Get a bool indicating if the prefab is in the
+        ///     HashSet of prefabs that need a collision patch.
+        /// </summary>
+        /// <param name="PrefabName"></param>
+        /// <returns></returns>
+        internal static bool NeedsCollisionPatchForGhost(string prefabName)
+        {
+            return _NeedsCollisionPatch.Contains(prefabName);
+        }
 
         internal static ConfigEntry<T> BindConfig<T>(
             string section,
@@ -240,29 +285,41 @@ namespace MoreVanillaBuildPrefabs.Configs
             pieceConfigEntries.requirements.SettingChanged += PieceSettingChanged;
             defaultPieceDB.requirements = pieceConfigEntries.requirements.Value;
 
-            // if the prefab is not already included in the list of prefabs that need a
-            // collision patch then add a config option to enable the placement collision patch.
-            if (!PlacementConfigs.NeedsCollisionPatchForGhost(prefab.name))
+            // if the prefab is not already set to use the placement patch by default
+            // then add a config option to enable the placement collision patch.
+            if (!defaultPieceDB.placementPatch)
             {
                 pieceConfigEntries.placementPatch = BindConfig(
                     sectionName,
                     "PlacementPatch",
                     false,
                     "Set to true to enable collision patching during placement of the piece.\n" +
-                    "Reccomended to try this if the piece is not appearing when you go to place it.\n\n" +
+                    "Recommended to try this if the piece is not appearing when you go to place it.\n\n" +
                     " If enabling the placement patch via this setting fixes the issue please open an issue on Github" +
                     " letting me know so I can make sure the collision patch is always applied to this piece.",
                     AcceptableBoolValuesList
                 );
                 pieceConfigEntries.placementPatch.SettingChanged += PlacementSettingChanged;
                 defaultPieceDB.placementPatch = pieceConfigEntries.placementPatch.Value;
-
-                if (defaultPieceDB.placementPatch)
-                {
-                    // add prefab to list of prefabs needing a collision patch if setting is true
-                    PlacementConfigs._NeedsCollisionPatchForGhost.Add(prefab.name);
-                }
             }
+            if (defaultPieceDB.placementPatch) { _NeedsCollisionPatch.Add(prefab.name); }
+
+            // if the prefab is not already set to use the placement patch by default
+            // then add a config option to enable the placement collision patch.
+            if (!defaultPieceDB.clipEverything)
+            {
+                pieceConfigEntries.clipEverything = BindConfig(
+                    sectionName,
+                    "ClipEverything",
+                    false,
+                    "Set to true to allow piece to clip through everything during placement. Recommended to try this if the piece is not appearing when you go to place it.\n" +
+                    "If this setting fixes the issue please open an issue on Github letting me know so I can make sure the collision patch is always applied to this piece.",
+                    AcceptableBoolValuesList
+                );
+                pieceConfigEntries.placementPatch.SettingChanged += PieceSettingChanged;
+                defaultPieceDB.clipEverything = pieceConfigEntries.clipEverything.Value;
+            }
+            if (defaultPieceDB.clipEverything) { _ClipEverything.Add(prefab.name); }
 
             // keep a reference to the config entries
             // to make sure the events fire as intended
@@ -343,7 +400,7 @@ namespace MoreVanillaBuildPrefabs.Configs
 
             if (!cmActive)
             {
-                ReInitPlugin("Config settings changed via in-game manager, re-intializing");
+                ReInitPlugin("Config settings changed via in-game manager, re-initializing");
             }
         }
     }
