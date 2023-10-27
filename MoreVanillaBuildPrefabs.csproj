@@ -4,8 +4,8 @@
 		<JotunnProps>$(NuGetPackages)\jotunnlib\2.14.5\build\JotunnLib.props</JotunnProps>
 	</PropertyGroup>
 
-	<Import Project="environment.props" Condition="Exists('environment.props')" />
-	<Import Project="$(JotunnProps)" Condition="Exists('$(JotunnProps)')" />
+	<!--<Import Project="environment.props" Condition="Exists('environment.props')" />-->
+	<!--<Import Project="$(JotunnProps)" Condition="Exists('$(JotunnProps)')" />-->
 	<Import Project="ModPackageTool.targets" Condition="Exists('ModPackageTool.targets')" />
 
 	<PropertyGroup>
