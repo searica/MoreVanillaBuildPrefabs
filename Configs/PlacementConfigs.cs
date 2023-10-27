@@ -65,6 +65,13 @@ namespace MoreVanillaBuildPrefabs.Configs
             "Ice_floor",
             "CastleKit_braided_box01",
             "dvergrtown_arch",
+            "dvergrtown_wood_wall01",
+            "goblin_banner",
+            "dvergrprops_curtain",
+            "dvergrprops_banner",
+            "cloth_hanging_long",
+            "cloth_hanging_door_double",
+            "cloth_hanging_door"
         };
 
         private static readonly HashSet<string> _CanClipGround = new()
