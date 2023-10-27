@@ -59,7 +59,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
            Pickable pickable
         )
         {
-            // If the [ickable does not exist or does not drop an item, return the requirements array unchanged.
+            // If the pickable does not exist or does not drop an item, return the requirements array unchanged.
             var pickableDrop = pickable?.m_itemPrefab?.GetComponent<ItemDrop>()?.m_itemData;
             if (requirements == null || pickable == null || pickableDrop == null)
             {
@@ -92,7 +92,9 @@ namespace MoreVanillaBuildPrefabs.Helpers
                 m_amount = pickedAmount,
                 m_recover = true
             };
-            return requirements.Append(pickableReq).ToArray();
+            var reqList = requirements.ToList();
+            reqList.Add(pickableReq);
+            return reqList.ToArray();
         }
 
         /// <summary>

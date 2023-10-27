@@ -105,67 +105,62 @@ namespace MoreVanillaBuildPrefabs.Helpers
 
             // assign sfx based on crafting station
             var craftingStation = piece?.m_craftingStation;
+            var effectsList = effects.ToList();
             if (craftingStation == null || string.IsNullOrEmpty(craftingStation?.m_name))
             {
                 if (PlacementSfx.ContainsKey("sfx_build_hammer_default"))
                 {
-                    piece.m_placeEffect.m_effectPrefabs = effects.Append(PlacementSfx["sfx_build_hammer_default"]).ToArray();
+                    effectsList.Add(PlacementSfx["sfx_build_hammer_default"]);
                 }
             }
             else if (craftingStation?.name == CraftingStations.Stonecutter)
             {
                 if (PlacementSfx.ContainsKey("sfx_build_hammer_stone"))
                 {
-                    piece.m_placeEffect.m_effectPrefabs = effects.Append(PlacementSfx["sfx_build_hammer_stone"]).ToArray();
+                    effectsList.Add(PlacementSfx["sfx_build_hammer_stone"]);
                 }
             }
             else if (craftingStation?.name == CraftingStations.Workbench)
             {
                 if (PlacementSfx.ContainsKey("sfx_build_hammer_default"))
                 {
-                    piece.m_placeEffect.m_effectPrefabs = effects.Append(PlacementSfx["sfx_build_hammer_default"]).ToArray();
+                    effectsList.Add(PlacementSfx["sfx_build_hammer_default"]);
                 }
             }
             else if (craftingStation?.name == CraftingStations.Forge)
             {
                 if (PlacementSfx.ContainsKey("sfx_build_hammer_metal"))
                 {
-                    piece.m_placeEffect.m_effectPrefabs = effects.Append(PlacementSfx["sfx_build_hammer_metal"]).ToArray();
+                    effectsList.Add(PlacementSfx["sfx_build_hammer_metal"]);
                 }
             }
             else if (craftingStation?.name == CraftingStations.BlackForge)
             {
                 if (PlacementSfx.ContainsKey("sfx_build_hammer_default"))
                 {
-                    piece.m_placeEffect.m_effectPrefabs = effects.Append(PlacementSfx["sfx_build_hammer_default"]).ToArray();
+                    effectsList.Add(PlacementSfx["sfx_build_hammer_default"]);
                 }
             }
+            piece.m_placeEffect.m_effectPrefabs = effectsList.ToArray();
         }
 
         internal static EffectList FixRemovalSfx(Piece piece)
         {
             var effects = (piece.m_placeEffect?.m_effectPrefabs) ?? (new EffectList.EffectData[0]);
-            foreach (var effect in effects)
-            {
-                if (effect.m_prefab != null && effect.m_prefab.name.Contains("sfx_build"))
-                {
-                    if (effect.m_enabled) { effect.m_enabled = false; }
-                }
-            }
-
+            var effectsList = effects.ToList();
             var craftingStation = piece?.m_craftingStation;
             if (craftingStation != null && craftingStation?.name == CraftingStations.Stonecutter)
             {
-                effects = effects.Append(RemovalSfx["sfx_rock_destroyed"]).ToArray();
+                effectsList.Add(RemovalSfx["sfx_rock_destroyed"]);
             }
             else
             {
-                effects = effects.Append(RemovalSfx["sfx_wood_destroyed"]).ToArray();
+                effectsList.Add(RemovalSfx["sfx_wood_destroyed"]);
             }
 
             return new EffectList()
             {
-                m_effectPrefabs = effects
+                m_effectPrefabs = effectsList.ToArray()
             };
         }
     }

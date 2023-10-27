@@ -76,6 +76,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     HammerCategories.Misc,
                     nameof(CraftingStations.Workbench),
                     "FineWood,2",
+                    pieceName: "Barrel",
+                    pieceDesc: "",
                     pieceGroup: PieceGroup.Misc
                 )
             },
