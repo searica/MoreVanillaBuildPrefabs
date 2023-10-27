@@ -12,7 +12,7 @@ namespace MoreVanillaBuildPrefabs.Configs
         /// <returns></returns>
         internal static bool CanClipEverything(string prefabName)
         {
-            return !_RestrictClipping.Contains(prefabName);
+            return _ClipEverything.Contains(prefabName);
         }
 
         /// <summary>
@@ -42,6 +42,25 @@ namespace MoreVanillaBuildPrefabs.Configs
             "blackmarble_stair_corner",
             "blackmarble_stair_corner_left",
             "Ice_floor",
+            "goblin_roof_cap",
+            "trader_wagon_destructable",
+            "StatueDeer",
+            "StatueEvil",
+            "StatueHare",
+            "StatueSeed",
+            "StatueCorgi",
+            "Beech1",
+        };
+
+        // Prefabs that are allowed to clip everything
+        private static readonly HashSet<string> _ClipEverything = new()
+        {
+            "StatueDeer",
+            "StatueEvil",
+            "StatueHare",
+            "StatueSeed",
+            "StatueCorgi",
+            "Beech1",
         };
 
         // EligiblePrefabs that should not be set to allow clipping everything
@@ -78,6 +97,7 @@ namespace MoreVanillaBuildPrefabs.Configs
         {
             "stoneblock_fracture",
             "blackmarble_post01",
+            "dungeon_sunkencrypt_irongate_rusty",
         };
     }
 }
