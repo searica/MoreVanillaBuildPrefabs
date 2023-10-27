@@ -1,11 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using MoreVanillaBuildPrefabs.Logging;
 
 namespace MoreVanillaBuildPrefabs.Helpers
 {
     internal class PrefabPatcher
     {
+        private static readonly int RemoveMask = LayerMask.GetMask(
+            "Default",
+            "static_solid",
+            "Default_small",
+            "piece",
+            "piece_nonsolid",
+            "terrain",
+            "vehicle"
+        );
+
+        private static readonly int DoNotTouchLayers = LayerMask.GetMask(
+            "Ignore Raycast",
+            "UI",
+            "character",
+            "weapon",
+            "character_trigger",
+            "character_net",
+            "character_noenv"
+        );
+
         private static readonly int PieceLayer = LayerMask.NameToLayer("piece");
 
         /// <summary>
@@ -91,11 +112,12 @@ namespace MoreVanillaBuildPrefabs.Helpers
 
                     break;
 
-                case "TreasureChest_dvergr_loose_stone":
-                    var boxCollider = prefab.AddComponent<BoxCollider>();
-                    boxCollider.size = new Vector3(2, 1, 2);
-                    SnapPointHelper.AddSnapPointsToBoxColliderCorners(prefab, boxCollider);
-                    break;
+                // Causes the chest to break if loaded without mod
+                //case "TreasureChest_dvergr_loose_stone":
+                //    var boxCollider = prefab.AddComponent<BoxCollider>();
+                //    boxCollider.size = new Vector3(2, 1, 2);
+                //    SnapPointHelper.AddSnapPointsToBoxColliderCorners(prefab, boxCollider);
+                //    break;
 
                 case "TreasureChest_mountaincave":
                 case "TreasureChest_trollcave":
@@ -796,7 +818,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
                     CollisionHelper.AddBoxCollider(
                         prefab,
                         Vector3.zero,
-                        new Vector3(1.5f, 0.1f, 1.5f)
+                        new Vector3(1.5f, 0.02f, 1.5f)
                     );
                     break;
 
@@ -839,11 +861,21 @@ namespace MoreVanillaBuildPrefabs.Helpers
 
         internal static void PatchPieceLayers(GameObject gameObject)
         {
-            if (!HasNoPieceLayers(gameObject)) return;
+            if (!HasNoRemovalLayers(gameObject)) return;
 
             foreach (Collider collider in gameObject.GetComponentsInChildren<Collider>())
             {
                 if (collider.isTrigger == true) { continue; }
+
+                var layer = collider.gameObject.layer;
+                if (RemoveMask == (RemoveMask | (1 << layer)))
+                {
+                    continue;
+                }
+                if (DoNotTouchLayers == (DoNotTouchLayers | (1 << layer)))
+                {
+                    continue;
+                }
                 collider.gameObject.layer = PieceLayer;
             }
         }
@@ -852,11 +884,12 @@ namespace MoreVanillaBuildPrefabs.Helpers
         ///     Checks for existing piece layers.
         /// </summary>
         /// <param name="gameObject"></param>
-        internal static bool HasNoPieceLayers(GameObject gameObject)
+        internal static bool HasNoRemovalLayers(GameObject gameObject)
         {
             foreach (Collider collider in gameObject.GetComponentsInChildren<Collider>())
             {
-                if (collider.gameObject.layer == PieceLayer)
+                // check if RemoveMask contains the layer
+                if (RemoveMask == (RemoveMask | (1 << collider.gameObject.layer)))
                 {
                     return false;
                 }
