@@ -1,17 +1,98 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Collections.Specialized;
 using UnityEngine;
-
+using System;
+using System.Collections;
 using MoreVanillaBuildPrefabs.Configs;
-using MoreVanillaBuildPrefabs.Logging;
 
 namespace MoreVanillaBuildPrefabs.Helpers
 {
+    /// <summary>
+    ///     IEnumerable that has a list of prefabs for each PieceGroup
+    ///     and returns the PieceGroups in sorted order when iterated over.
+    /// </summary>
+    internal class SortedPieceGroups : IEnumerable
+    {
+        private readonly Dictionary<PieceGroup, List<GameObject>> pieceGroupLists;
+        private static readonly List<PieceGroup> _pieceGroupOrder = new();
+        private static List<PieceGroup> PieceGroupOrder => GetPieceGroupOrder();
+
+        private static List<PieceGroup> GetPieceGroupOrder()
+        {
+            if (_pieceGroupOrder.Count > 0) return _pieceGroupOrder;
+            foreach (PieceGroup pieceGroup in Enum.GetValues(typeof(PieceGroup)))
+            {
+                if (pieceGroup == PieceGroup.None) { continue; }
+                _pieceGroupOrder.Add(pieceGroup);
+            }
+            return _pieceGroupOrder;
+        }
+
+        /// <summary>
+        ///     IEnumerable that has a list of prefabs for each PieceGroup
+        ///     and returns the PieceGroups in sorted order when iterated over.
+        /// </summary>
+        public SortedPieceGroups()
+        {
+            pieceGroupLists = new Dictionary<PieceGroup, List<GameObject>>();
+            foreach (PieceGroup group in PieceGroupOrder)
+            {
+                pieceGroupLists[group] = new List<GameObject>();
+            }
+        }
+
+        public void Add(PieceDB pieceDB)
+        {
+            var key = PieceClassifier.GetPieceGroup(pieceDB);
+            pieceGroupLists[key].Add(pieceDB.Prefab);
+        }
+
+        public IEnumerator GetEnumerator()
+        {
+            return new SortedPieceGroupsEnumerator(pieceGroupLists);
+        }
+
+        private class SortedPieceGroupsEnumerator : IEnumerator
+        {
+            private int position = -1;
+            private readonly Dictionary<PieceGroup, List<GameObject>> pieceGroupLists;
+
+            public SortedPieceGroupsEnumerator(Dictionary<PieceGroup, List<GameObject>> pieceGroupLists)
+            {
+                this.pieceGroupLists = pieceGroupLists;
+            }
+
+            public bool MoveNext()
+            {
+                position++;
+                return position < PieceGroupOrder.Count;
+            }
+
+            public void Reset()
+            {
+                position = -1;
+            }
+
+            public object Current
+            {
+                get
+                {
+                    try
+                    {
+                        return pieceGroupLists[PieceGroupOrder[position]];
+                    }
+                    catch (IndexOutOfRangeException)
+                    {
+                        throw new InvalidOperationException();
+                    }
+                }
+            }
+        }
+    }
+
     internal class PieceClassifier
     {
         private static readonly Dictionary<string, PieceGroup> Cache = new();
-
-        internal Dictionary<PieceGroup, List<GameObject>> PieceGroupDict;
 
         internal static PieceGroup GetPieceGroup(PieceDB pieceDB)
         {
@@ -240,52 +321,3 @@ namespace MoreVanillaBuildPrefabs.Helpers
         }
     }
 }
-
-//private static string GetPrefabCategory(GameObject prefab)
-//{
-//    Destructible destructible = prefab.GetComponent<Destructible>();
-
-//    string category = "Extended";
-//    if (prefab.HasAnyComponent("Pickable", "PickableItem"))
-//    {
-//        category = "Pickable";
-//    }
-//    else if (prefab.HasAnyComponent("Humanoid", "Character", "Leviathan", "RandomFlyingBird", "Fish", "Trader", "Odin", "Valkyrie", "Player"))
-//    {
-//        category = "NPCs";
-//    }
-//    else if (prefab.HasAnyComponent("CreatureSpawner", "SpawnArea", "TriggerSpawner"))
-//    {
-//        category = "Spawners";
-//    }
-//    else if (prefab.name.ContainsAny("Bush", "Root", "root", "shrub", "stubbe", "vines", "SwampTree")
-//      || prefab.HasAnyComponent("TreeBase", "TreeLog") || destructible?.m_destructibleType == DestructibleType.Tree)
-//    {
-//        category = "Vegetation";
-//    }
-//    else if (prefab.HasAnyComponent("ArmorStand", "Container", "Fireplace") ||
-//      prefab.name.ContainsAny("groundtorch", "brazier", "cloth_hanging", "banner", "table", "chair", "sign", "bed"))
-//    {
-//        category = "Furniture";
-//    }
-//    else if (prefab.HasAnyComponent("WearNTear", "Door"))
-//    {
-//        category = "Building";
-//    }
-//    else if (prefab.HasAnyComponent("Destructible", "MineRock"))
-//    {
-//        category = "Destructible";
-//    }
-//    else if (prefab.GetComponent("ZNetView"))
-//    {
-//        category = "Other";
-//    }
-
-//    int pageNum = itemCounts[category] / NumPiecesPerPage + 1;
-//    itemCounts[category]++;
-//    if (pageNum > 1)
-//    {
-//        return $"{category} {pageNum}";
-//    }
-//    return category;
-//}
