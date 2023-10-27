@@ -43,8 +43,6 @@ namespace MoreVanillaBuildPrefabs
         ///     by a player. Also picks pickables (if not already picked) and
         ///     forces ItemStand to drop attached item (if it has one).
         /// </summary>
-        /// <param name="__instance"></param>
-        /// <param name="__state"></param>
         [HarmonyTranspiler]
         [HarmonyPatch(nameof(Piece.DropResources))]
         private static IEnumerable<CodeInstruction> DropResourcesTranspiler(
@@ -82,8 +80,7 @@ namespace MoreVanillaBuildPrefabs
         ///     Also picks pickables (if not already picked) and
         ///     forces ItemStand to drop attached item (if it has one).
         /// </summary>
-        /// <param name="__instance"></param>
-        /// <param name="__state"></param>
+        /// <param name="piece"></param>
         private static Piece.Requirement[] DropResources_m_resources_Delegate(Piece piece)
         {
             // Only interact if it is a piece added by this mod or
