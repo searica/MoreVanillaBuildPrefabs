@@ -27,7 +27,6 @@ namespace MoreVanillaBuildPrefabs.Helpers
             foreach (var entry in data.Split(';'))
             {
                 string[] values = entry.Split(',');
-                //var itm = PrefabManager.Cache.GetPrefab<GameObject>(values[0].Trim())?.GetComponent<ItemDrop>();
                 var itm = ObjectDB.instance.GetItemPrefab(values[0].Trim())?.GetComponent<ItemDrop>();
                 if (itm == null)
                 {
