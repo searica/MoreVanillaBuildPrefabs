@@ -8,6 +8,22 @@
 			<th align="center">Notes</th>
 		</tr>
 		<tr>
+			<td align="center">0.4.5</td>
+			<td align="left">
+				<ul>
+					<li>
+						Improved deconstruction of non-WearNTear pieces.
+						<ul>
+							<li>Destroying player-built pieces via damaging them will always drop the resources for building the piece now.</li>
+							<li>Deconstructing non-WearNTear pieces will now destroy them using the Destructible component if it is present (this means removing ice pieces makes them shatter and play the ice SFX).</li>
+						</ul>
+					</li>
+					<li>Patched MineRock script to prevent NRE on newly placed pieces.</li>
+					<li>Improved filtering to prevent detecting prefabs that create giant boulders when you remove them.</li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
 			<td align="center">0.4.4</td>
 			<td align="left">
 				<ul>
