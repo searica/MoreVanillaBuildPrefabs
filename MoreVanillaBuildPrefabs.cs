@@ -59,7 +59,6 @@ namespace MoreVanillaBuildPrefabs
         public void OnDestroy()
         {
             PluginConfig.Save();
-            //_harmony?.UnpatchSelf();
         }
 
         /// <summary>
@@ -269,12 +268,7 @@ namespace MoreVanillaBuildPrefabs
         {
             Log.LogInfo("Initializing hammer");
 
-            var PieceGroupDict = new Dictionary<PieceGroup, List<GameObject>>();
-            foreach (PieceGroup group in Enum.GetValues(typeof(PieceGroup)))
-            {
-                if (group == PieceGroup.None) { continue; }
-                PieceGroupDict[group] = new List<GameObject>();
-            }
+            var pieceGroups = new SortedPieceGroups();
 
             foreach (var pieceDB in PieceRefs.Values)
             {
@@ -313,18 +307,12 @@ namespace MoreVanillaBuildPrefabs
                     continue;
                 }
 
-                var key = PieceClassifier.GetPieceGroup(pieceDB);
-                //Log.LogInfo($"{pieceDB.name}: {key}");
-                //key = GetPieceGroup(pieceDB.Prefab);
-                //Log.LogInfo($"{pieceDB.name}: {key}");
-                PieceGroupDict[key].Add(pieceDB.Prefab);
+                pieceGroups.Add(pieceDB);
             }
 
             PieceTable hammerTable = PieceHelper.GetPieceTable(PieceTables.Hammer);
-            foreach (PieceGroup group in Enum.GetValues(typeof(PieceGroup)))
+            foreach (List<GameObject> pieceGroup in pieceGroups)
             {
-                if (group == PieceGroup.None) { continue; }
-                var pieceGroup = PieceGroupDict[group];
                 foreach (var prefab in pieceGroup)
                 {
                     PieceHelper.AddPieceToPieceTable(prefab, hammerTable);
