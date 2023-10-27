@@ -89,9 +89,9 @@ namespace MoreVanillaBuildPrefabs.Helpers
         private static Sprite GenerateObjectIcon(GameObject obj)
         {
             var cache = true;
-#if DEBUG
-            cache = false;
-#endif
+            //#if DEBUG
+            //            cache = false;
+            //#endif
             var request = new RenderManager.RenderRequest(obj)
             {
                 Rotation = RenderManager.IsometricRotation,
