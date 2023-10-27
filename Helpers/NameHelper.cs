@@ -81,6 +81,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
                 .Replace("swamp tree", "Ancient tree")
                 .Replace("ygga", "yggdrasil ")
                 .Replace("guardstone", "ward")
+                .Replace("woodwall", "wood wall")
                 .Trim();
 
             name = name.RemovePrefix("piece").TrimStart();
