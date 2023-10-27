@@ -349,15 +349,15 @@ namespace MoreVanillaBuildPrefabs
                 if (PluginConfig.PieceConfigEntriesMap[prefabName].placementPatch.Value)
                 {
                     // config is true so add it if not already in HashSet
-                    if (!PlacementConfigs.NeedsCollisionPatchForGhost(prefabName))
+                    if (!PluginConfig.NeedsCollisionPatchForGhost(prefabName))
                     {
-                        PlacementConfigs._NeedsCollisionPatchForGhost.Add(prefabName);
+                        PluginConfig._NeedsCollisionPatch.Add(prefabName);
                     }
                 }
-                else if (PlacementConfigs.NeedsCollisionPatchForGhost(prefabName))
+                else if (PluginConfig.NeedsCollisionPatchForGhost(prefabName))
                 {
                     // config is false so remove it from list if it's in HashSet
-                    PlacementConfigs._NeedsCollisionPatchForGhost.Remove(prefabName);
+                    PluginConfig._NeedsCollisionPatch.Remove(prefabName);
                 }
             }
         }

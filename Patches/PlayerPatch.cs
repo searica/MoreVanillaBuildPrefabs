@@ -133,7 +133,7 @@ namespace MoreVanillaBuildPrefabs
 
             if (
                 PieceHelper.AddedPrefabs.Contains(selectedPrefab.name)
-                && PlacementConfigs.NeedsCollisionPatchForGhost(selectedPrefab.name)
+                && PluginConfig.NeedsCollisionPatchForGhost(selectedPrefab.name)
                 )
             {
                 // Needed to make some things work, like Stalagmite, blackmarble_corner_stair, silvervein, etc.
