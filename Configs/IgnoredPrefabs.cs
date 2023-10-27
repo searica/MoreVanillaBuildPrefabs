@@ -48,6 +48,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 prefab.GetComponent("TriggerSpawner") != null ||
                 prefab.GetComponent("TeleportAbility") != null ||
                 prefab.GetComponent("TeleportWorld") != null ||
+                SpawnsMineRock5(prefab) ||
 
                 prefab.name.StartsWith("_") ||
                 prefab.name.StartsWith("OLD_") ||
@@ -55,7 +56,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                 prefab.name.StartsWith("vfx_") ||
                 prefab.name.StartsWith("sfx_") ||
                 prefab.name.StartsWith("fx_") ||
-                prefab.name.Contains("Random")
+                prefab.name.Contains("Random") ||
+                prefab.name.Contains("random")
             )
             {
                 return true;
@@ -66,6 +68,16 @@ namespace MoreVanillaBuildPrefabs.Configs
                 prefab.name.StartsWith("rrr_")) // RRR prefabs
             {
                 return true;
+            }
+            return false;
+        }
+
+        private static bool SpawnsMineRock5(GameObject prefab)
+        {
+            var destructible = prefab.GetComponent<Destructible>();
+            if (destructible != null && destructible.m_spawnWhenDestroyed)
+            {
+                return destructible.m_spawnWhenDestroyed.GetComponent<MineRock5>() != null;
             }
             return false;
         }
