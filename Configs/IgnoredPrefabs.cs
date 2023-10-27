@@ -99,6 +99,7 @@ namespace MoreVanillaBuildPrefabs.Configs
             "tolroko_flyer", // It's a little space ship! Instantiating it throws errors though.
             "turf_roof_wall", // Duplicate of "wood_roof_wall"
             "IceBlocker", // disappears after placing
+            "Pickable_Item", // buggy and weird
             "Pickable_Barley_Wild",
             "Pickable_Flax_Wild",
 
