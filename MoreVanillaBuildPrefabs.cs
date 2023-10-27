@@ -450,7 +450,7 @@ namespace MoreVanillaBuildPrefabs
                         if (method != null)
                         {
                             var parameters = new string[] {
-                                "MoreVanillaBuildPrefabs updated, re-initalizing extra snap points"
+                                "MoreVanillaBuildPrefabs updated, re-initializing extra snap points"
                             };
                             method.Invoke(plugin, parameters);
                         }
