@@ -6,6 +6,8 @@ namespace MoreVanillaBuildPrefabs.Helpers
 {
     internal class PrefabPatcher
     {
+        private static readonly int PieceLayer = LayerMask.NameToLayer("piece");
+
         /// <summary>
         ///     Fix collider and snap points on the prefab if necessary
         /// </summary>
@@ -832,8 +834,34 @@ namespace MoreVanillaBuildPrefabs.Helpers
                 default:
                     break;
             }
-            // Fix piece layers so that everything works for removal
-            SnapPointHelper.FixPieceLayers(prefab);
+            PatchPieceLayers(prefab);
+        }
+
+        internal static void PatchPieceLayers(GameObject gameObject)
+        {
+            if (!HasNoPieceLayers(gameObject)) return;
+
+            foreach (Collider collider in gameObject.GetComponentsInChildren<Collider>())
+            {
+                if (collider.isTrigger == true) { continue; }
+                collider.gameObject.layer = PieceLayer;
+            }
+        }
+
+        /// <summary>
+        ///     Checks for existing piece layers.
+        /// </summary>
+        /// <param name="gameObject"></param>
+        internal static bool HasNoPieceLayers(GameObject gameObject)
+        {
+            foreach (Collider collider in gameObject.GetComponentsInChildren<Collider>())
+            {
+                if (collider.gameObject.layer == PieceLayer)
+                {
+                    return false;
+                }
+            }
+            return true;
         }
     }
 }
