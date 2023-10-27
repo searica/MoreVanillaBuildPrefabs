@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
-using MoreVanillaBuildPrefabs.Logging;
 
 namespace MoreVanillaBuildPrefabs.Helpers
 {
@@ -791,9 +789,51 @@ namespace MoreVanillaBuildPrefabs.Helpers
                     );
                     break;
 
+                case "goblin_strawpile":
+                    // needs collider to allow removal
+                    CollisionHelper.AddBoxCollider(
+                        prefab,
+                        Vector3.zero,
+                        new Vector3(1.5f, 0.1f, 1.5f)
+                    );
+                    break;
+
+                case "mountainkit_chair":
+                    {
+                        var chair = prefab.AddComponent<Chair>();
+                        var attachPoint = new GameObject("attachPoint");
+                        attachPoint.transform.parent = prefab.transform;
+                        attachPoint.transform.localPosition = Vector3.zero;
+                        chair.m_attachPoint = attachPoint.transform;
+                    }
+                    break;
+
+                case "dvergrprops_chair":
+                    {
+                        var chair = prefab.AddComponent<Chair>();
+                        var attachPoint = new GameObject("attachPoint");
+                        attachPoint.transform.parent = prefab.transform;
+                        attachPoint.transform.localPosition = new Vector3(0.0f, -0.15f, 0.0f);
+                        chair.m_attachPoint = attachPoint.transform;
+                    }
+
+                    break;
+
+                case "dvergrprops_stool":
+                    {
+                        var chair = prefab.AddComponent<Chair>();
+                        var attachPoint = new GameObject("attachPoint");
+                        attachPoint.transform.parent = prefab.transform;
+                        attachPoint.transform.localPosition = new Vector3(0.0f, -0.1f, 0.0f);
+                        chair.m_attachPoint = attachPoint.transform;
+                    }
+                    break;
+
                 default:
                     break;
             }
+            // Fix piece layers so that everything works for removal
+            SnapPointHelper.FixPieceLayers(prefab);
         }
     }
 }
