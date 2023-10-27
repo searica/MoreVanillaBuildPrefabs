@@ -414,7 +414,6 @@ namespace MoreVanillaBuildPrefabs.Configs
                     HammerCategories.Building,
                     nameof(CraftingStations.Stonecutter),
                     "BlackMarble,2",
-                    pieceName: "Bronze head (1)",
                     pieceGroup: PieceGroup.BlackMarble
                 )
             },
@@ -427,7 +426,6 @@ namespace MoreVanillaBuildPrefabs.Configs
                     HammerCategories.Building,
                     nameof(CraftingStations.Stonecutter),
                     "BlackMarble,2",
-                    pieceName: "Bronze head (2)",
                     pieceGroup: PieceGroup.BlackMarble
                 )
             },
@@ -2147,7 +2145,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     HammerCategories.Building,
                     nameof(CraftingStations.BlackForge),
                     "BlackMarble,2;Copper,1",
-                    pieceDesc: "Enforced marble 1x2",
+                    pieceName: "Black marble 1x2 enforced",
+                    pieceDesc: "",
                     pieceGroup: PieceGroup.BlackMarble
                 )
             },
@@ -2270,7 +2269,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     HammerCategories.Furniture,
                     nameof(CraftingStations.Forge),
                     "Bronze,5;GreydwarfEye,2;BlackCore,1;WolfClaw,3",
-                    pieceName: "Standing blue-burning brazier (everburning)",
+                    pieceName: "Blue standing brazier (everburning)",
                     pieceDesc: "Burns eternally without fuel, but does not prevent spawning of monsters.",
                     pieceGroup: PieceGroup.Brazier
                 )
@@ -2306,8 +2305,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     false,
                     HammerCategories.Building,
-                    nameof(CraftingStations.Workbench),
-                    "Wood,20;Bronze,4"
+                    nameof(CraftingStations.Forge),
+                    "Wood,20;Iron,4"
                 )
             },
             {
@@ -3789,7 +3788,9 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
-                    ""
+                    "Tar,50",
+                    pieceName: "Tar volume",
+                    pieceDesc: "Warning: requires devcommands to remove"
                 )
             },
             {
