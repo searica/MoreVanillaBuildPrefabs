@@ -27,8 +27,6 @@ namespace MoreVanillaBuildPrefabs
         public const string PluginGuid = $"{Author}.Valheim.{PluginName}";
         public const string PluginVersion = "0.4.4";
 
-        private Harmony _harmony;
-
         internal static readonly Dictionary<string, GameObject> PrefabRefs = new();
         internal static readonly Dictionary<string, Piece> DefaultPieceClones = new();
         internal static Dictionary<string, PieceDB> PieceRefs = new();
@@ -44,7 +42,7 @@ namespace MoreVanillaBuildPrefabs
             PluginConfig.Init(Config);
             PluginConfig.SetUpConfig();
 
-            _harmony = Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), harmonyInstanceId: PluginGuid);
+            Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), harmonyInstanceId: PluginGuid);
 
             Game.isModded = true;
 
