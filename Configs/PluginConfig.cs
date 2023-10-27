@@ -140,7 +140,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 "AdminDeconstructOtherPlayers",
                 true,
                 "Set to true to allow admin players to deconstruct any pieces built by other players, " +
-                "even if doing so would normaly be prevented (such as for CreatorShop or Nature pieces). " +
+                "even if doing so would normally be prevented (such as for CreatorShop or Nature pieces). " +
                 "Intended to prevent griefing via placement of indestructible objects.",
                 AcceptableBoolValuesList
             );
