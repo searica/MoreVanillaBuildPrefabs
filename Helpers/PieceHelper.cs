@@ -105,8 +105,8 @@ namespace MoreVanillaBuildPrefabs.Helpers
                     piece.m_notOnFloor = false;
                     piece.m_onlyInTeleportArea = false;
                     piece.m_allowedInDungeons = false;
-                    piece.m_clipEverything = PlacementConfigs.CanClipEverything(prefab.name);
-                    piece.m_clipGround = PlacementConfigs.CanClipGround(prefab.name);
+                    piece.m_clipEverything = false;
+                    piece.m_clipGround = PluginConfig.CanClipGround(prefab.name);
                     piece.m_allowRotatedOverlap = true;
                     piece.m_repairPiece = false; // setting to true prevents placement
                     piece.m_onlyInBiome = Heightmap.Biome.None;
@@ -159,35 +159,6 @@ namespace MoreVanillaBuildPrefabs.Helpers
         }
 
         /// <summary>
-        ///     Method to configure Piece fields based on cfg file data.
-        /// </summary>
-        /// <param name="piece"></param>
-        /// <returns></returns>
-        internal static Piece ConfigurePiece(
-            Piece piece,
-            string name,
-            string description,
-            bool allowedInDungeons,
-            string category,
-            string craftingStation,
-            string requirements
-        )
-        {
-            var pieceCategory = (Piece.PieceCategory)PieceManager.Instance.GetPieceCategory(category);
-            var reqs = RequirementsHelper.CreateRequirementsArray(requirements);
-            var station = GetCraftingStation(craftingStation);
-            return ConfigurePiece(
-                piece,
-                name,
-                description,
-                allowedInDungeons,
-                pieceCategory,
-                station,
-                reqs
-            );
-        }
-
-        /// <summary>
         ///     Method to configure Piece fields.
         /// </summary>
         /// <param name="piece"></param>
@@ -208,6 +179,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
             piece.m_category = category;
             piece.m_craftingStation = craftingStation;
             piece.m_resources = requirements;
+            piece.m_clipEverything = PluginConfig.CanClipEverything(piece.name);
             return piece;
         }
 
