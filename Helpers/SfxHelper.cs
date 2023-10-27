@@ -144,12 +144,52 @@ namespace MoreVanillaBuildPrefabs.Helpers
             piece.m_placeEffect.m_effectPrefabs = effectsList.ToArray();
         }
 
+        internal static void CreateRemovalSfx(Piece piece)
+        {
+            var effects = FixRemovalSfx(piece);
+            effects.Create(
+                piece.transform.position,
+                piece.transform.rotation,
+                piece.gameObject.transform
+            );
+        }
+
+        /// <summary>
+        ///     Copies placeEffect list and adds sfx based on
+        ///     required crafting station if needed.
+        /// </summary>
+        /// <param name="piece"></param>
+        /// <returns></returns>
         internal static EffectList FixRemovalSfx(Piece piece)
         {
-            var effects = (piece.m_placeEffect?.m_effectPrefabs) ?? (new EffectList.EffectData[0]);
+            return FixRemovalSfx(piece?.m_placeEffect, piece?.m_craftingStation);
+        }
+
+        /// <summary>
+        ///     Copies destroyedEffect list and adds sfx based on
+        ///     required crafting station if needed.
+        /// </summary>
+        /// <param name="wearNTear"></param>
+        /// <returns></returns>
+        internal static EffectList FixRemovalSfx(WearNTear wearNTear)
+        {
+            var craftingStation = wearNTear?.gameObject?.GetComponent<Piece>()?.m_craftingStation;
+            return FixRemovalSfx(wearNTear?.m_destroyedEffect, craftingStation);
+        }
+
+        /// <summary>
+        ///     Copies effectList and adds sfx based on
+        ///     required crafting station if needed.
+        /// </summary>
+        internal static EffectList FixRemovalSfx(
+            EffectList effectList,
+            CraftingStation craftingStation
+        )
+        {
+            var effects = (effectList?.m_effectPrefabs) ?? (new EffectList.EffectData[0]);
             var effectsList = effects.ToList();
-            var craftingStation = piece?.m_craftingStation;
-            if (craftingStation != null && craftingStation?.name == CraftingStations.Stonecutter)
+            if (craftingStation != null
+                && craftingStation.name == CraftingStations.Stonecutter)
             {
                 effectsList.Add(RemovalSfx["sfx_rock_destroyed"]);
             }
@@ -162,6 +202,22 @@ namespace MoreVanillaBuildPrefabs.Helpers
             {
                 m_effectPrefabs = effectsList.ToArray()
             };
+        }
+
+        internal static bool HasSfx(EffectList effectList)
+        {
+            var effects = effectList?.m_effectPrefabs;
+            if (effects != null && effects.Length != 0)
+            {
+                foreach (var effect in effects)
+                {
+                    if (effect != null && effect.m_prefab.name.StartsWith("sfx_"))
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
     }
 }

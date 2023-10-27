@@ -217,8 +217,9 @@ namespace MoreVanillaBuildPrefabs
         }
 
         /// <summary>
-        ///     Patch to remove some code and replace it with code
-        ///     that figures out the approach removal effects.
+        ///     Patch to replace code for removing non-WearNTear objects
+        ///     with my own code that handles dropping piece build
+        ///     resources and destroying them.
         /// </summary>
         /// <param name="instructions"></param>
         /// <returns></returns>
@@ -226,6 +227,10 @@ namespace MoreVanillaBuildPrefabs
         [HarmonyPatch(nameof(Player.RemovePiece))]
         private static IEnumerable<CodeInstruction> RemovePieceTranspiler(IEnumerable<CodeInstruction> instructions)
         {
+            // piece.DropResources();
+            // IL_015c: ldloc.1
+            // IL_015d: callvirt instance void Piece::DropResources()
+
             // piece.m_placeEffect.Create(piece.transform.position, piece.transform.rotation, piece.gameObject.transform);
             // IL_0162: ldloc.1
             // IL_0163: ldfld private class EffectList private Piece::m_placeEffect
@@ -255,66 +260,85 @@ namespace MoreVanillaBuildPrefabs
             // IL_01b1: ldc.i4.m1
             // IL_01b2: callvirt instance class [UnityEngine.CoreModule] UnityEngine.GameObject[] EffectList::Create(valuetype[UnityEngine.CoreModule] UnityEngine.Vector3, valuetype[UnityEngine.CoreModule] UnityEngine.Quaternion, class [UnityEngine.CoreModule] UnityEngine.Transform, float32, int32)
             //IL_01b7: pop
+
+            // ZNetScene.instance.Destroy(piece.gameObject);
+            // IL_01b8: call class ZNetScene ZNetScene::get_instance()
+            // IL_01bd: ldloc.1
+            // IL_01be: callvirt instance class [UnityEngine.CoreModule] UnityEngine.GameObject[UnityEngine.CoreModule] UnityEngine.Component::get_gameObject()
+            // IL_01c3: callvirt instance void ZNetScene::Destroy(private class [UnityEngine.CoreModule] UnityEngine.GameObject)
+
             var codes = new CodeMatch[]
             {
                 new CodeMatch(
-                    OpCodes.Ldfld,
-                    AccessTools.Field(typeof(Piece), nameof(Piece.m_placeEffect))
+                    OpCodes.Callvirt,
+                    AccessTools.Method(typeof(Piece), nameof(Piece.DropResources))
                 ),
             };
+
             return new CodeMatcher(instructions)
                 .MatchForward(useEnd: false, codes)
-                .RemoveInstructions(14 + 11)
-                .InsertAndAdvance(
-                Transpilers.EmitDelegate<Action<Piece>>(RemovePieceEffectsDelegate))
+                .RemoveInstructions(1 + 15 + 11 + 4)
+                .InsertAndAdvance(Transpilers.EmitDelegate(RemoveNonWearNTearPiece))
                 .InstructionEnumeration();
         }
 
-        private static void RemovePieceEffectsDelegate(Piece piece)
+        private static void RemoveNonWearNTearPiece(Piece piece)
         {
-            if (!MoreVanillaBuildPrefabs.IsPatchedByMod(NameHelper.GetRootPrefabName(piece)))
+            if (PluginConfig.IsVerbosityMedium)
             {
-                piece.m_placeEffect.Create(piece.transform.position, piece.transform.rotation, piece.gameObject.transform);
-                Player.s_players[0].m_removeEffects.Create(piece.transform.position, Quaternion.identity);
-                return;
+                Log.LogInfo("RemoveNonWearNTearPiece");
             }
 
-            // If this is called that means no WearNTear component on the piece.
-            if (PluginConfig.IsVerbosityMedium) { Log.LogInfo("RemovePieceEffectsDelegate"); }
-
-            var destructible = piece?.gameObject?.GetComponent<Destructible>();
-            if (destructible != null)
+            var prefabName = piece.gameObject.name.RemoveSuffix("(Clone)");
+            if (MoreVanillaBuildPrefabs.IsPatchedByMod(prefabName))
             {
-                var effects = destructible.m_destroyedEffect?.m_effectPrefabs;
-                if (effects != null && effects.Length != 0)
+                var destructible = piece?.gameObject?.GetComponent<Destructible>();
+                if (destructible != null)
                 {
-                    // Create destructible effects
-                    destructible.CreateDestructionEffects(Vector3.zero, Vector3.zero);
-                    if (destructible.m_destroyNoise > 0f)
+                    // create deconstruction Sfx if needed
+                    if (
+                        !CreateHitEffects(destructible)
+                        && !SfxHelper.HasSfx(destructible.m_destroyedEffect)
+                    )
                     {
-                        Player closestPlayer = Player.GetClosestPlayer(piece.transform.position, 10f);
-                        if (closestPlayer)
-                        {
-                            closestPlayer.AddNoise(destructible.m_destroyNoise);
-                        }
+                        SfxHelper.CreateRemovalSfx(piece);
                     }
-
-                    // End script if a sfx was produced
-                    foreach (var effect in effects)
-                    {
-                        if (effect != null && effect.m_prefab.name.StartsWith("sfx_"))
-                        {
-                            return;
-                        }
-                    }
+                    destructible.DestroyNow();
+                    return;
                 }
             }
-            // Create sfx if needed.
-            SfxHelper.FixRemovalSfx(piece).Create(
+
+            // run the normal code I replace otherwise
+            piece.m_placeEffect.Create(
                 piece.transform.position,
                 piece.transform.rotation,
                 piece.gameObject.transform
             );
+            Player.s_players[0].m_removeEffects.Create(
+                piece.transform.position, Quaternion.identity
+            );
+            ZNetScene.instance.Destroy(piece.gameObject);
+        }
+
+        private static bool CreateHitEffects(Destructible destructible)
+        {
+            var hitEffects = destructible?.m_hitEffect?.m_effectPrefabs;
+            if (hitEffects != null && hitEffects.Length != 0)
+            {
+                destructible.m_hitEffect.Create(
+                    destructible.gameObject.transform.position,
+                    destructible.gameObject.transform.rotation,
+                    destructible.gameObject.transform
+                );
+                foreach (var effect in hitEffects)
+                {
+                    if (effect != null && effect.m_prefab.name.StartsWith("sfx_"))
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
     }
 }
