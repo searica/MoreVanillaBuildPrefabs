@@ -3,8 +3,6 @@ using MoreVanillaBuildPrefabs.Configs;
 using MoreVanillaBuildPrefabs.Helpers;
 using MoreVanillaBuildPrefabs.Logging;
 using UnityEngine.SceneManagement;
-using Jotunn.Managers;
-using Jotunn.Configs;
 
 namespace MoreVanillaBuildPrefabs.Patches
 {

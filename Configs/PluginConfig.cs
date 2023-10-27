@@ -17,7 +17,7 @@ namespace MoreVanillaBuildPrefabs.Configs
     {
         private static BaseUnityPlugin configurationManager;
 
-        private static readonly string ConfigFileName = PluginGuid + ".cfg";
+        private static readonly string ConfigFileName = PluginGUID + ".cfg";
 
         private static readonly string ConfigFileFullPath = string.Concat(
             Paths.ConfigPath,
@@ -55,6 +55,7 @@ namespace MoreVanillaBuildPrefabs.Configs
             internal ConfigEntry<string> requirements;
             internal ConfigEntry<bool> placementPatch;
             internal ConfigEntry<bool> clipEverything;
+            internal ConfigEntry<bool> clipGround;
         }
 
         internal static readonly Dictionary<string, PieceConfigEntries> PieceConfigEntriesMap = new();
@@ -65,7 +66,7 @@ namespace MoreVanillaBuildPrefabs.Configs
 
         internal static readonly HashSet<string> _ClipEverything = new();
 
-        private static readonly HashSet<string> _CanClipGround = new()
+        internal static readonly HashSet<string> _ClipGround = new()
         {
             "stoneblock_fracture",
             "blackmarble_post01",
@@ -91,7 +92,7 @@ namespace MoreVanillaBuildPrefabs.Configs
         /// <returns></returns>
         internal static bool CanClipGround(string prefabName)
         {
-            return _CanClipGround.Contains(prefabName);
+            return _ClipGround.Contains(prefabName);
         }
 
         /// <summary>
@@ -304,8 +305,6 @@ namespace MoreVanillaBuildPrefabs.Configs
             }
             if (defaultPieceDB.placementPatch) { _NeedsCollisionPatch.Add(prefab.name); }
 
-            // if the prefab is not already set to use the placement patch by default
-            // then add a config option to enable the placement collision patch.
             if (!defaultPieceDB.clipEverything)
             {
                 pieceConfigEntries.clipEverything = BindConfig(
@@ -316,7 +315,22 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "If this setting fixes the issue please open an issue on Github letting me know so I can make sure the collision patch is always applied to this piece.",
                     AcceptableBoolValuesList
                 );
-                pieceConfigEntries.placementPatch.SettingChanged += PieceSettingChanged;
+                pieceConfigEntries.clipEverything.SettingChanged += PieceSettingChanged;
+                defaultPieceDB.clipEverything = pieceConfigEntries.clipEverything.Value;
+            }
+            if (defaultPieceDB.clipEverything) { _ClipEverything.Add(prefab.name); }
+
+            if (!defaultPieceDB.clipGround)
+            {
+                pieceConfigEntries.clipGround = BindConfig(
+                sectionName,
+                "ClipGround",
+                false,
+                "Set to true to allow piece to clip through ground during placement.Recommended to try this if the piece is not floating when you try to place it.\n" +
+                "(If this setting fixes the issue please open an issue on Github letting me know so I can make sure the piece can always applied clip the ground.)",
+                    AcceptableBoolValuesList
+                );
+                pieceConfigEntries.clipEverything.SettingChanged += PieceSettingChanged;
                 defaultPieceDB.clipEverything = pieceConfigEntries.clipEverything.Value;
             }
             if (defaultPieceDB.clipEverything) { _ClipEverything.Add(prefab.name); }

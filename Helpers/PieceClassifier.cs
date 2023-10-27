@@ -1,9 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Collections.Specialized;
-using UnityEngine;
+﻿using MoreVanillaBuildPrefabs.Configs;
 using System;
 using System.Collections;
-using MoreVanillaBuildPrefabs.Configs;
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace MoreVanillaBuildPrefabs.Helpers
 {
@@ -105,7 +104,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
                 Cache[pieceDB.name] = pieceDB.pieceGroup;
                 return pieceDB.pieceGroup;
             }
-            var result = _GetPieceGroup(pieceDB.Prefab);
+            var result = DetectPieceGroup(pieceDB.Prefab);
             Cache[pieceDB.name] = result;
             return result;
         }
@@ -116,12 +115,12 @@ namespace MoreVanillaBuildPrefabs.Helpers
             {
                 return Cache[prefab.name];
             }
-            var result = _GetPieceGroup(prefab);
+            var result = DetectPieceGroup(prefab);
             Cache[prefab.name] = result;
             return result;
         }
 
-        private static PieceGroup _GetPieceGroup(GameObject prefab)
+        private static PieceGroup DetectPieceGroup(GameObject prefab)
         {
             var prefabName = prefab.name.ToLower();
             var piece = prefab.GetComponent<Piece>();

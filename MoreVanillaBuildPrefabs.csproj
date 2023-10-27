@@ -63,6 +63,7 @@
 	<ItemGroup>
 		<Folder Include="Libraries" />
 		<Folder Include="Libraries\Debug\" />
+		<Folder Include="Libraries\PlanBuild\" />
 		<Folder Include="Package\" />
 		<Folder Include="Publish\Nexus\" />
 		<Folder Include="Publish\ThunderStore\" />
@@ -83,12 +84,12 @@
 		<PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
 	</ItemGroup>
 
-	<ItemGroup>
+	<!--<ItemGroup>
 		<Reference Include="PlanBuild.dll">
 			<Private>false</Private>
 			<HintPath>Libraries\PlanBuild\PlanBuild.dll</HintPath>
 		</Reference>
-	</ItemGroup>
+	</ItemGroup>-->
 
 	<Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
 		<PropertyGroup>

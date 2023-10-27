@@ -1,6 +1,4 @@
 ﻿using Jotunn.Configs;
-using MoreVanillaBuildPrefabs.Configs;
-using MoreVanillaBuildPrefabs.Logging;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;

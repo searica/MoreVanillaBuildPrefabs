@@ -1,7 +1,6 @@
 ﻿using HarmonyLib;
-using UnityEngine;
-using MoreVanillaBuildPrefabs.Logging;
 using MoreVanillaBuildPrefabs.Configs;
+using MoreVanillaBuildPrefabs.Logging;
 
 namespace MoreVanillaBuildPrefabs.Patches
 {

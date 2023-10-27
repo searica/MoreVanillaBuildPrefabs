@@ -1,4 +1,6 @@
-﻿using BepInEx;
+﻿// Ignore Spelling: Plugin
+
+using BepInEx;
 using BepInEx.Bootstrap;
 using HarmonyLib;
 using Jotunn.Configs;
@@ -15,7 +17,7 @@ using UnityEngine;
 
 namespace MoreVanillaBuildPrefabs
 {
-    [BepInPlugin(PluginGuid, PluginName, PluginVersion)]
+    [BepInPlugin(PluginGUID, PluginName, PluginVersion)]
     [BepInDependency(Jotunn.Main.ModGuid, Jotunn.Main.Version)]
     [BepInDependency(ModCompat.ExtraSnapPointsMadeEasyGUID, BepInDependency.DependencyFlags.SoftDependency)]
     [BepInDependency(ModCompat.PlanBuildGUID, BepInDependency.DependencyFlags.SoftDependency)]
@@ -24,8 +26,8 @@ namespace MoreVanillaBuildPrefabs
     {
         public const string PluginName = "MoreVanillaBuildPrefabs";
         internal const string Author = "Searica";
-        public const string PluginGuid = $"{Author}.Valheim.{PluginName}";
-        public const string PluginVersion = "0.4.4";
+        public const string PluginGUID = $"{Author}.Valheim.{PluginName}";
+        public const string PluginVersion = "0.4.5";
 
         internal static readonly Dictionary<string, GameObject> PrefabRefs = new();
         internal static readonly Dictionary<string, Piece> DefaultPieceClones = new();
@@ -34,6 +36,7 @@ namespace MoreVanillaBuildPrefabs
         private static bool HasInitializedPrefabs => PrefabRefs.Count > 0;
         internal static bool UpdatePieceSettings { get; set; } = false;
         internal static bool UpdatePlacementSettings { get; set; } = false;
+        internal static bool UpdateClippingSettings { get; set; } = false;
 
         public void Awake()
         {
@@ -42,7 +45,7 @@ namespace MoreVanillaBuildPrefabs
             PluginConfig.Init(Config);
             PluginConfig.SetUpConfig();
 
-            Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), harmonyInstanceId: PluginGuid);
+            Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), harmonyInstanceId: PluginGUID);
 
             Game.isModded = true;
 
@@ -321,48 +324,6 @@ namespace MoreVanillaBuildPrefabs
         }
 
         /// <summary>
-        ///     Method allow both the PlacementSettingChanged
-        ///     and ReInitPlugin methods to update collision
-        ///     patches when events fire
-        /// </summary>
-        private static void UpdateNeedsCollisionPatchForGhost()
-        {
-            if (!HasInitializedPrefabs)
-            {
-                return;
-            }
-
-            if (PluginConfig.IsVerbosityMedium)
-            {
-                Log.LogInfo("Initializing collision patches");
-            }
-
-            foreach (var prefabName in PrefabRefs.Keys)
-            {
-                if (PluginConfig.PieceConfigEntriesMap[prefabName].placementPatch == null)
-                {
-                    // No placement patch config entry means that prefab is already
-                    // placed in the NeedsCollisionPatchForGhost HashSet by default
-                    continue;
-                }
-
-                if (PluginConfig.PieceConfigEntriesMap[prefabName].placementPatch.Value)
-                {
-                    // config is true so add it if not already in HashSet
-                    if (!PluginConfig.NeedsCollisionPatchForGhost(prefabName))
-                    {
-                        PluginConfig._NeedsCollisionPatch.Add(prefabName);
-                    }
-                }
-                else if (PluginConfig.NeedsCollisionPatchForGhost(prefabName))
-                {
-                    // config is false so remove it from list if it's in HashSet
-                    PluginConfig._NeedsCollisionPatch.Remove(prefabName);
-                }
-            }
-        }
-
-        /// <summary>
         ///     Event hook to set whether a config entry
         ///     for a piece setting hass been changed.
         /// </summary>
@@ -370,10 +331,7 @@ namespace MoreVanillaBuildPrefabs
         /// <param name="e"></param>
         internal static void PieceSettingChanged(object o, EventArgs e)
         {
-            if (!UpdatePieceSettings)
-            {
-                UpdatePieceSettings = true;
-            }
+            if (!UpdatePieceSettings) UpdatePieceSettings = true;
         }
 
         /// <summary>
@@ -384,14 +342,22 @@ namespace MoreVanillaBuildPrefabs
         /// <param name="e"></param>
         internal static void PlacementSettingChanged(object o, EventArgs e)
         {
-            if (!UpdatePlacementSettings)
-            {
-                UpdatePlacementSettings = true;
-            }
+            if (!UpdatePlacementSettings) UpdatePlacementSettings = true;
         }
 
         /// <summary>
-        ///     Method to re-intialize the plugin when the configuration
+        ///     Event hook to set whether a config entry
+        ///     for placement patches has been changed.
+        /// </summary>
+        /// <param name="o"></param>
+        /// <param name="e"></param>
+        internal static void ClippingSettingChanged(object o, EventArgs e)
+        {
+            if (!UpdateClippingSettings) UpdateClippingSettings = true;
+        }
+
+        /// <summary>
+        ///     Method to re-initialize the plugin when the configuration
         ///     has been updated based on whether the piece or placement
         ///     settings have been changed for any of the config entries.
         /// </summary>
@@ -413,6 +379,11 @@ namespace MoreVanillaBuildPrefabs
                 }
 
                 Log.LogInfo(msg);
+                if (UpdateClippingSettings)
+                {
+                    UpdateClipping();
+                    UpdateClippingSettings = false;
+                }
                 if (UpdatePieceSettings)
                 {
                     InitPieceRefs();
@@ -422,7 +393,7 @@ namespace MoreVanillaBuildPrefabs
                 }
                 if (UpdatePlacementSettings)
                 {
-                    UpdateNeedsCollisionPatchForGhost();
+                    UpdateNeedsCollisionPatch();
                     UpdatePlacementSettings = false;
                 }
 
@@ -459,6 +430,92 @@ namespace MoreVanillaBuildPrefabs
                 if (ModCompat.IsPlanBuildInstalled)
                 {
                     // do nothing at the moment
+                }
+            }
+        }
+
+        /// <summary>
+        ///     Updates HashSet of prefabs needing a collision patch.
+        /// </summary>
+        private static void UpdateClipping()
+        {
+            if (!HasInitializedPrefabs) return;
+
+            if (PluginConfig.IsVerbosityMedium)
+            {
+                Log.LogInfo("Initializing clipping");
+            }
+            foreach (var key in PrefabRefs.Keys)
+            {
+                if (PluginConfig.PieceConfigEntriesMap[key].clipEverything != null)
+                {
+                    if (PluginConfig.PieceConfigEntriesMap[key].clipEverything.Value)
+                    {
+                        // config is true so add it if not already in HashSet
+                        if (!PluginConfig.CanClipEverything(key))
+                        {
+                            PluginConfig._ClipEverything.Add(key);
+                        }
+                    }
+                    else if (PluginConfig.CanClipEverything(key))
+                    {
+                        // config is false so remove it from list if it's in HashSet
+                        PluginConfig._ClipEverything.Remove(key);
+                    }
+                }
+
+                if (PluginConfig.PieceConfigEntriesMap[key].clipGround != null)
+                {
+                    if (PluginConfig.PieceConfigEntriesMap[key].clipGround.Value)
+                    {
+                        // config is true so add it if not already in HashSet
+                        if (!PluginConfig.CanClipGround(key))
+                        {
+                            PluginConfig._ClipGround.Add(key);
+                        }
+                    }
+                    else if (PluginConfig.CanClipGround(key))
+                    {
+                        // config is false so remove it from list if it's in HashSet
+                        PluginConfig._ClipGround.Remove(key);
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        ///     Updates HashSet of prefabs needing a collision patch.
+        /// </summary>
+        private static void UpdateNeedsCollisionPatch()
+        {
+            if (!HasInitializedPrefabs) return;
+
+            if (PluginConfig.IsVerbosityMedium)
+            {
+                Log.LogInfo("Initializing collision patches");
+            }
+
+            foreach (var prefabName in PrefabRefs.Keys)
+            {
+                if (PluginConfig.PieceConfigEntriesMap[prefabName].placementPatch == null)
+                {
+                    // No placement patch config entry means that prefab is already
+                    // placed in the NeedsCollisionPatchForGhost HashSet by default
+                    continue;
+                }
+
+                if (PluginConfig.PieceConfigEntriesMap[prefabName].placementPatch.Value)
+                {
+                    // config is true so add it if not already in HashSet
+                    if (!PluginConfig.NeedsCollisionPatchForGhost(prefabName))
+                    {
+                        PluginConfig._NeedsCollisionPatch.Add(prefabName);
+                    }
+                }
+                else if (PluginConfig.NeedsCollisionPatchForGhost(prefabName))
+                {
+                    // config is false so remove it from list if it's in HashSet
+                    PluginConfig._NeedsCollisionPatch.Remove(prefabName);
                 }
             }
         }

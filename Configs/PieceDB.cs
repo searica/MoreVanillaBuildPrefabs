@@ -17,6 +17,7 @@ namespace MoreVanillaBuildPrefabs.Configs
             this.requirements = prefabDB.requirements;
             this.placementPatch = prefabDB.placementPatch;
             this.clipEverything = prefabDB.clipEverything;
+            this.clipGround = prefabDB.clipGround;
             this.pieceName = prefabDB.pieceName;
             this.pieceDesc = prefabDB.pieceDesc;
             this.pieceGroup = prefabDB.pieceGroup;
@@ -32,6 +33,7 @@ namespace MoreVanillaBuildPrefabs.Configs
             string requirements = null,
             bool placementPatch = false,
             bool clipEverything = false,
+            bool clipGround = false,
             string pieceName = null,
             string pieceDesc = null,
             PieceGroup pieceGroup = default
@@ -46,6 +48,7 @@ namespace MoreVanillaBuildPrefabs.Configs
             this.requirements = requirements;
             this.placementPatch = placementPatch;
             this.clipEverything = clipEverything;
+            this.clipGround = clipGround;
             this.pieceName = pieceName;
             this.pieceDesc = pieceDesc;
             this.pieceGroup = pieceGroup;

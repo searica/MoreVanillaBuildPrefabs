@@ -12,6 +12,7 @@ namespace MoreVanillaBuildPrefabs.Configs
         public string craftingStation;
         public string requirements;
         public bool clipEverything;
+        public bool clipGround;
         public bool placementPatch;
         public string pieceName;
         public string pieceDesc;
@@ -35,6 +36,7 @@ namespace MoreVanillaBuildPrefabs.Configs
             string requirements = null,
             bool placementPatch = false,
             bool clipEverything = false,
+            bool clipGround = false,
             string pieceName = null,
             string pieceDesc = null,
             PieceGroup pieceGroup = default
@@ -48,6 +50,7 @@ namespace MoreVanillaBuildPrefabs.Configs
             this.requirements = requirements;
             this.placementPatch = placementPatch;
             this.clipEverything = clipEverything;
+            this.clipGround = clipGround;
             this.pieceName = pieceName;
             this.pieceDesc = pieceDesc;
             this.pieceGroup = pieceGroup;
