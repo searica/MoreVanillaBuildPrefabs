@@ -11,13 +11,23 @@
 			<td align="center">0.4.4</td>
 			<td align="left">
 				<ul>
-					<li>Added a configuration option to re-enable placing Vanilla crops with the hammer.</li>
+					<li>Removed server requirement so that console players can enjoy the mod vicariously through crossplay.</li>
+					<li>Improved sorting of prefabs added by this mod (that took a while).</li>
+					<li>Added automatic piece classification to hopefully allow correct sorting of pieces from other mods and future updates.</li>
+					<li>Improved automatic naming of prefabs.</li>
+					<li>Fixed layer issue on some pieces that prevented targeting them for removal.</li>
+					<li>Removing pieces now triggers the destruction effects if they exist.</li>
+					<li>Fixed possible exploit involving pickables with extra random item drops.</li>
+					<li>Patched chair prefabs so you can now sit in them.</li>
+					<li>Minor performance optimizations.</li>
 					<li>Removed piece descriptions that were duplicates of piece names.</li>
 					<li>Disabled a prefab that would disappear 10 seconds after placing it.</li>
 					<li>Improved descriptions for several prefabs.</li>
 					<li>Removed the snap points added to the center of all prefabs (use ExtraSnapPointsMadeEasy instead).</li>
-					<li>Fixed minor compatability issue with RRR, warning should no longer trigger and MVBP will no longer detect prefabs added by RRR.</li>
-					<li></li>
+					<li>Fixed minor compatibility issue with RRR, warning should no longer trigger and MVBP will no longer detect prefabs added by RRR.</li>
+					<li>Added config option to enable placing vanilla crops so you can make pretty gardens if you want.</li>
+					<li>Added colliders to allow removing large straw rug.</li>
+					<li>Tweaked some default resource costs.</li>
 				</ul>
 			</td>
 		</tr>
@@ -39,10 +49,9 @@
 							<li>Changing the CreativeMode setting now updates while in-game.</li>
 						</ul>
 					</li>
-
 					<li>Fixed the cloth behaviour on the new ship.</li>
 					<li>Tweaked snap points to mimic vanilla pieces more. Can use ExtraSnapPointsMadeEasy if you want more precise snap points.</li>
-					<li>Improved compatability with ExtraSnapPointsMadeEasy to allow dynamically changing extra snap points as MoreVanillaBuildPrefabs dynamically adds/removes build pieces.</li>
+					<li>Improved compatibility with ExtraSnapPointsMadeEasy to allow dynamically changing extra snap points as MoreVanillaBuildPrefabs dynamically adds/removes build pieces.</li>
 					<li>Pickable pieces now drop the pickable item when deconstructed if it has not already been picked.</li>
 					<li>ItemStand pieces now drop the attached item when deconstructed if an attached item exists.</li>
 				</ul>
@@ -54,7 +63,7 @@
 				<ul>
 					<li>Changed mod so that if a client has the mod, then the server they are connecting to must also have the mod (see README for details).</li>
 					<li>Implemented a CreativeMode configuration option (see README for details).</li>
-					<li>All pieces that are missing placement sound effects now have default sfx assigned based on the required crafting staion. (Missing deconstruction sounds effects are not fixed though as that requires adding WearNTear or Destructable components to pieces).</li>
+					<li>All pieces that are missing placement sound effects now have default sfx assigned based on the required crafting station. (Missing deconstruction sounds effects are not fixed though as that requires adding WearNTear or Destructable components to pieces).</li>
 					<li>Fixed bug where deconstructing player-built pieces with world modifiers set to turn off build costs would cause world-generated destruction drops to occur.</li>
 					<li>Player-buil5 barrels no longer drop random loot when destroyed. They still do not return the resources used to build them when destroyed (they do return build resources if deconstructed though).</li>
 					<li>Patched Dvergr furniture items so they provide support and you can now place item stands on them.</li>
@@ -67,7 +76,7 @@
 			<td align="left">
 				<ul>
 					<li>Minor update to fix the stuttering issue when editing the configuration via the in-game configuration manager. The mod now only updates after closing the configuration manager.</li>
-					<li>Tweaked update logic to avoid re-initalizing if recieving config data from server or reloading the config file doesn't actually change any config setting values.</li>
+					<li>Tweaked update logic to avoid re-initializing if receiving config data from server or reloading the config file doesn't actually change any config setting values.</li>
 					<li>Added some everburning torches and braziers that do not require fuel to the default configuration. Currently they are configured to unlock sometime during the last biome in the current game version.</li>
 				</ul>
 			</td>
@@ -83,11 +92,11 @@
 					<li>Removed Locking Configuration setting. If you install the mod on the server it will now always sync data to clients.</li>
 					<li>Change `VerboseMode` to `Verbosity`. There are now three logging levels you can select from to output more or less information. This should make debugging easier when issues are reported.</li>
 					<li>Changed some Global configuration setting names to more descriptive.</li>
-					<li>Fixed issue where sometimes configuration data from the server wouldn't sync correctly. The mod now always re-intializes the configuration whenever configuration data is recieved from the server.</li>
+					<li>Fixed issue where sometimes configuration data from the server wouldn't sync correctly. The mod now always re-initializes the configuration whenever configuration data is received from the server.</li>
 					<li>Changed how building and deconstructing pickable objects is handled to prevent exploits.</li>
 					<li>Optimized load times for dynamic syncing. The very first time the mod loads on a clean install it takes about ~300 ms as it generates new icons. After that, when the mod initializes or responds to configuration settings changes it averages ~110-160 ms.</li>
 					<li>Patched some more prefabs, including making a hidden sailing ship fully functional.</li>
-					<li>Various internal tweaks to reduce the odds of compatability issues with other mods.</li>
+					<li>Various internal tweaks to reduce the odds of compatibility issues with other mods.</li>
 					<li>Possibly more stuff I forgot about, it was a pretty big re-write. The new README should still cover everything important though.</li>
 				</ul>
 			</td>
@@ -111,7 +120,7 @@
 				<td align="center">0.3.7</td>
 				<td align="left">
 					<ul>
-						<li>Fixed compatiability with WackyDB, (my bad, while rewriting the code to add pieces I switched from a prefix to a postfix).</li>
+						<li>Fixed compatibility with WackyDB, (my bad, while rewriting the code to add pieces I switched from a prefix to a postfix).</li>
 						<li>Switch stone chest to prefer the one with animations.</li>
 						<li>Renaming of custom chests to be more descriptive.</li>
 					</ul>
@@ -160,7 +169,7 @@
 							Patched placement of several pieces.
 							<ul>
 								<li>Improved placement of dvergr poles and wood pieces.</li>
-								<li>Fixed issue with some black marble pieces moving after placement due to discrepency between colliders and rigid bodies.</li>
+								<li>Fixed issue with some black marble pieces moving after placement due to discrepancy between colliders and rigid bodies.</li>
 							</ul>
 						</li>
 						<li>Changed how piece Icons are generated to hopefully fix the lighting issue with some icons.</li>
