@@ -35,7 +35,7 @@ namespace MoreVanillaBuildPrefabs.Patches
                     return;
                 }
 
-                Log.LogInfo("World modifiers for resource rate are active, re-initalizing");
+                Log.LogInfo("World modifiers for resource rate are active, re-initializing");
 
                 var watch = new System.Diagnostics.Stopwatch();
                 if (PluginConfig.IsVerbosityMedium)
@@ -53,6 +53,17 @@ namespace MoreVanillaBuildPrefabs.Patches
                     Log.LogInfo($"Time to re-initialize: {watch.ElapsedMilliseconds} ms");
                 }
             }
+        }
+
+        /// <summary>
+        ///     Patch to save config file on log out to
+        ///     ensure persistent settings on server.
+        /// </summary>
+        [HarmonyPrefix]
+        [HarmonyPatch(nameof(ZNet.Disconnect))]
+        public static void ZNetDisconnectPrefix()
+        {
+            PluginConfig.Save();
         }
     }
 }
