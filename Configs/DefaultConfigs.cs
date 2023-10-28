@@ -846,6 +846,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     "Stone,350",
+                    clipEverything: true,
                     pieceGroup: PieceGroup.Rock
                 )
             },
@@ -858,6 +859,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     "Stone,350",
+                    clipEverything: true,
                     pieceGroup: PieceGroup.Rock
                 )
             },
@@ -870,6 +872,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     "Stone,175",
+                    clipEverything: true,
                     pieceGroup: PieceGroup.Rock
                 )
             },
@@ -3221,6 +3224,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     nameof(CraftingStations.None),
                     "",
                     clipEverything: true,
+                    pieceName: "Boulder (large)",
                     pieceGroup: PieceGroup.Rock
                 )
             },
