@@ -28,6 +28,8 @@ namespace MoreVanillaBuildPrefabs.Helpers
         private static readonly Dictionary<string, string> NameCache = new();
         private static readonly Dictionary<string, string> DescCache = new();
 
+        private const string MineRock5Warn = "Warning: This prefab spawns a destructible rock when damaged and the new rock cannot be removed with the hammer.";
+
         internal static void ClearNameCache()
         {
             NameCache.Clear();
@@ -36,6 +38,14 @@ namespace MoreVanillaBuildPrefabs.Helpers
         internal static void ClearDescCache()
         {
             DescCache.Clear();
+        }
+
+        private static void SetDescWarning(PieceDB pieceDB)
+        {
+            if (SpawnsMineRock5(pieceDB.Prefab))
+            {
+                pieceDB.pieceDesc = pieceDB.pieceDesc.EmptyIfNull() + MineRock5Warn;
+            }
         }
 
         /// <summary>
@@ -134,22 +144,22 @@ namespace MoreVanillaBuildPrefabs.Helpers
             {
                 return DescCache[pieceDB.name];
             }
+
             if (pieceDB.pieceDesc != null)
             {
+                SetDescWarning(pieceDB);
                 DescCache[pieceDB.name] = pieceDB.pieceDesc;
                 return pieceDB.pieceDesc;
             }
 
-            return GetPrefabDescription(pieceDB.Prefab);
+            pieceDB.pieceDesc = FindPrefabDescription(pieceDB.Prefab);
+            SetDescWarning(pieceDB);
+            DescCache[pieceDB.name] = pieceDB.pieceDesc;
+            return pieceDB.pieceDesc;
         }
 
-        internal static string GetPrefabDescription(GameObject prefab)
+        private static string FindPrefabDescription(GameObject prefab)
         {
-            if (DescCache.ContainsKey(prefab.name))
-            {
-                return DescCache[prefab.name];
-            }
-
             HoverText hover = prefab.GetComponent<HoverText>();
             if (hover && !string.IsNullOrEmpty(hover.m_text))
             {
@@ -193,18 +203,16 @@ namespace MoreVanillaBuildPrefabs.Helpers
             }
 
             Pickable pickable = prefab.GetComponent<Pickable>();
-            if (pickable) return GetPrefabDescription(pickable.m_itemPrefab);
+            if (pickable) return FindPrefabDescription(pickable.m_itemPrefab);
 
             CreatureSpawner creatureSpawner = prefab.GetComponent<CreatureSpawner>();
-            if (creatureSpawner) return GetPrefabDescription(creatureSpawner.m_creaturePrefab);
+            if (creatureSpawner) return FindPrefabDescription(creatureSpawner.m_creaturePrefab);
 
             SpawnArea spawnArea = prefab.GetComponent<SpawnArea>();
             if (spawnArea && spawnArea.m_prefabs.Count > 0)
             {
-                return GetPrefabDescription(spawnArea.m_prefabs[0].m_prefab);
+                return FindPrefabDescription(spawnArea.m_prefabs[0].m_prefab);
             }
-
-            DescCache[prefab.name] = "";
             return "";
         }
 
@@ -216,6 +224,16 @@ namespace MoreVanillaBuildPrefabs.Helpers
         internal static string GetRootPrefabName(Piece piece)
         {
             return piece.gameObject.name.RemoveSuffix("(Clone)");
+        }
+
+        private static bool SpawnsMineRock5(GameObject prefab)
+        {
+            var destructible = prefab.GetComponent<Destructible>();
+            if (destructible != null && destructible.m_spawnWhenDestroyed)
+            {
+                return destructible.m_spawnWhenDestroyed.GetComponent<MineRock5>() != null;
+            }
+            return false;
         }
     }
 }
