@@ -2186,7 +2186,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    "",
+                    "Stone,10;CopperOre,10",
                     clipEverything: true,
                     pieceGroup: PieceGroup.Ore
                 )
@@ -2199,7 +2199,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    "",
+                    "Stone,10;IronScrap,10",
                     clipEverything: true,
                     pieceGroup: PieceGroup.Ore
                 )
@@ -2225,7 +2225,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    "",
+                    "Stone,10;Obsidian,10",
                     clipEverything: true,
                     pieceGroup: PieceGroup.Ore
                 )
@@ -2238,7 +2238,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    "",
+                    "Stone,10",
                     clipEverything: true,
                     pieceGroup: PieceGroup.Ore
                 )
@@ -2251,7 +2251,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    "",
+                    "Stone,10;TinOre,10",
                     clipEverything: true,
                     pieceGroup: PieceGroup.Ore
                 )
@@ -2264,7 +2264,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
-                    "",
+                    "Eitr,10;Wisp,4",
                     clipEverything: true,
                     pieceName: "Mist volume",
                     pieceDesc: "Warning: requires devcommands to remove."
@@ -2278,7 +2278,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
-                    ""
+                    "Stone,10"
                 )
             },
             {
@@ -2352,7 +2352,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
-                    ""
+                    "IronScrap,10"
                 )
             },
             {
@@ -2374,7 +2374,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
-                    ""
+                    "IronScrap,10"
                 )
             },
             {
@@ -2385,7 +2385,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
-                    ""
+                    "IronScrap,10"
                 )
             },
             {
@@ -2396,7 +2396,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    "",
+                    "Wood,10;FineWood,10",
                     pieceGroup: PieceGroup.Flora
                 )
             },
@@ -2408,7 +2408,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    "",
+                    "Wood,5;FineWood,5",
                     pieceGroup: PieceGroup.Flora
                 )
             },
@@ -2433,7 +2433,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    "",
+                    "Wood,5;FineWood,5",
                     clipEverything: true,
                     pieceGroup: PieceGroup.Flora
                 )
@@ -2446,7 +2446,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    "",
+                    "Barley,1",
                     pieceGroup: PieceGroup.VanillaCrop
                 )
             },
@@ -2458,7 +2458,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.CreatorShop,
                     nameof(CraftingStations.BlackForge),
-                    "Iron,2;BlackCore,1"
+                    "Iron,2;BlackCore,1",
+                    pieceGroup: PieceGroup.Treasure
                 )
             },
             {
@@ -2469,7 +2470,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
-                    "",
+                    "IronScap,1",
                     pieceGroup: PieceGroup.Ore
                 )
             },
@@ -2494,7 +2495,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    "Carrot,5",
+                    "Carrot,1",
                     pieceGroup: PieceGroup.VanillaCrop
                 )
             },
@@ -2519,7 +2520,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
-                    "",
+                    "Coins,5",
                     pieceGroup: PieceGroup.Treasure
                 )
             },
@@ -2531,7 +2532,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
-                    ""
+                    "DragonEgg,1"
                 )
             },
             {
@@ -2589,7 +2590,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    "Flax,5",
+                    "Flax,1",
                     pieceGroup: PieceGroup.VanillaCrop
                 )
             },
@@ -2604,18 +2605,6 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "Flint,5",
                     clipEverything: true,
                     pieceGroup: PieceGroup.Flora
-                )
-            },
-            {
-                "Pickable_ForestCryptRandom",
-                new PrefabDB(
-                    "Pickable_ForestCryptRandom",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    "",
-                    pieceGroup: PieceGroup.Treasure
                 )
             },
             {
@@ -2699,6 +2688,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
                     "",
+                    pieceName: "Coins (pickable)",
                     pieceGroup: PieceGroup.Treasure
                 )
             },
@@ -2751,18 +2741,6 @@ namespace MoreVanillaBuildPrefabs.Configs
                 )
             },
             {
-                "Pickable_MountainCaveRandom",
-                new PrefabDB(
-                    "Pickable_MountainCaveRandom",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "",
-                    pieceGroup: PieceGroup.Treasure
-                )
-            },
-            {
                 "Pickable_MountainRemains01_buried",
                 new PrefabDB(
                     "Pickable_MountainRemains01_buried",
@@ -2808,7 +2786,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    "",
+                    "MushroomJotunPuffs,1",
                     clipEverything: true,
                     pieceGroup: PieceGroup.VanillaCrop
                 )
@@ -2821,7 +2799,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    "",
+                    "MushroomMagecap,1",
                     clipEverything: true,
                     pieceGroup: PieceGroup.VanillaCrop
                 )
@@ -2847,7 +2825,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    "",
+                    "Obsidian,1",
                     clipEverything: true,
                     pieceGroup: PieceGroup.Ore
                 )
@@ -2860,7 +2838,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    "",
+                    "Obsidian,1",
                     pieceGroup: PieceGroup.VanillaCrop
                 )
             },
@@ -2922,21 +2900,9 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    "",
+                    "Stone,5",
                     clipEverything: true,
                     pieceGroup: PieceGroup.Flora
-                )
-            },
-            {
-                "Pickable_SunkenCryptRandom",
-                new PrefabDB(
-                    "Pickable_SunkenCryptRandom",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    "",
-                    pieceGroup: PieceGroup.Treasure
                 )
             },
             {
@@ -2959,7 +2925,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    "",
+                    "Tar,1",
                     clipEverything: true,
                     pieceGroup: PieceGroup.Flora
                 )
@@ -2997,7 +2963,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    "",
+                    "TinOre,1",
                     pieceGroup: PieceGroup.Ore
                 )
             },
@@ -3009,7 +2975,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    "",
+                    "Turnip,1",
                     pieceGroup: PieceGroup.VanillaCrop
                 )
             },
@@ -3070,7 +3036,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    "Wood,16;RoundLog,16",
+                    "Wood,10;RoundLog,10",
                     clipEverything: true,
                     pieceGroup: PieceGroup.Flora
                 )
@@ -3083,7 +3049,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    "",
+                    "Wood,5;RoundLog,5",
                     clipEverything: true,
                     pieceGroup: PieceGroup.Flora
                 )
@@ -3096,7 +3062,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    "",
+                    "Wood,10;RoundLog,10",
                     pieceGroup: PieceGroup.Flora
                 )
             },
@@ -3108,7 +3074,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    ""
+                    "Wood,5;RoundLog,5",
+                    pieceGroup: PieceGroup.Flora
                 )
             },
             {
@@ -3211,6 +3178,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     nameof(CraftingStations.None),
                     "Stone,48",
                     clipEverything: true,
+                    pieceName: "Rock (black)",
                     pieceGroup: PieceGroup.Rock
                 )
             },
@@ -3224,7 +3192,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     nameof(CraftingStations.None),
                     "",
                     clipEverything: true,
-                    pieceName: "Boulder (large)",
+                    pieceName: "Rock (black, large)",
                     pieceGroup: PieceGroup.Rock
                 )
             },
