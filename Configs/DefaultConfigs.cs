@@ -2504,6 +2504,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     "Dandelion,5",
+                    clipEverything: true,
                     pieceGroup: PieceGroup.Plant
                 )
             },
@@ -2779,6 +2780,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     "Mushroom,5",
+                    clipEverything: true,
                     pieceGroup: PieceGroup.Plant
                 )
             },
@@ -2791,6 +2793,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     "MushroomBlue,5",
+                    clipEverything: true,
                     pieceGroup: PieceGroup.Plant
                 )
             },
@@ -2803,6 +2806,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     "",
+                    clipEverything: true,
                     pieceGroup: PieceGroup.VanillaCrop
                 )
             },
@@ -2815,6 +2819,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     "",
+                    clipEverything: true,
                     pieceGroup: PieceGroup.VanillaCrop
                 )
             },
@@ -2827,6 +2832,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     "MushroomYellow,5",
+                    clipEverything: true,
                     pieceGroup: PieceGroup.Plant
                 )
             },
@@ -2839,6 +2845,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     "",
+                    clipEverything: true,
                     pieceGroup: PieceGroup.Ore
                 )
             },
@@ -2874,6 +2881,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     "",
+                    clipEverything: true,
                     pieceGroup: PieceGroup.VanillaCrop
                 )
             },
@@ -2886,6 +2894,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     "",
+                    clipEverything: true,
                     pieceGroup: PieceGroup.VanillaCrop
                 )
             },
@@ -2898,6 +2907,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     "",
+                    clipEverything: true,
                     pieceGroup: PieceGroup.VanillaCrop
                 )
             },
@@ -2910,6 +2920,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     "",
+                    clipEverything: true,
                     pieceGroup: PieceGroup.Flora
                 )
             },
@@ -2946,6 +2957,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     "",
+                    clipEverything: true,
                     pieceGroup: PieceGroup.Flora
                 )
             },
@@ -2958,6 +2970,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     "",
+                    clipEverything: true,
                     pieceGroup: PieceGroup.Flora
                 )
             },
@@ -3435,6 +3448,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     "ElderBark,2",
+                    clipEverything: true,
                     pieceGroup: PieceGroup.Flora
                 )
             },
@@ -3447,6 +3461,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     "ElderBark,4",
+                    clipEverything: true,
                     pieceGroup: PieceGroup.Flora
                 )
             },
@@ -3459,6 +3474,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     "ElderBark,4",
+                    clipEverything: true,
                     pieceGroup: PieceGroup.Flora
                 )
             },
@@ -3471,6 +3487,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     "ElderBark,4",
+                    clipEverything: true,
                     pieceGroup: PieceGroup.Flora
                 )
             },
@@ -3516,7 +3533,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
-                    "FineWood,8"
+                    "FineWood,8",
+                    clipEverything: true
                 )
             },
             {
@@ -3527,7 +3545,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
-                    "FineWood,16"
+                    "FineWood,16",
+                    clipEverything: true
                 )
             },
             {
@@ -3538,7 +3557,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
-                    ""
+                    "FineWood,8",
+                    clipEverything: true
                 )
             },
             {
@@ -3549,7 +3569,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
-                    "FineWood,16"
+                    "FineWood,16",
+                    clipEverything: true
                 )
             },
             {
@@ -3560,7 +3581,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
-                    ""
+                    "FineWood,10",
+                    clipEverything: true
                 )
             },
             {
@@ -3571,7 +3593,8 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    "",
+                    "YggdrasilWood,10",
+                    clipEverything: true,
                     pieceGroup: PieceGroup.Flora
                 )
             },
@@ -3798,6 +3821,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     "",
+                    clipEverything: true,
                     pieceGroup: PieceGroup.Flora
                 )
             },
@@ -3810,6 +3834,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     "",
+                    clipEverything: true,
                     pieceGroup: PieceGroup.Flora
                 )
             },

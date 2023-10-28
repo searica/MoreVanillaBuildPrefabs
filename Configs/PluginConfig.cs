@@ -240,7 +240,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 defaultPieceDB.enabled,
                 "If true then allow this prefab to be built and deconstructed. " +
                 "Note: this setting is ignored if ForceAllPrefabs is true. " +
-                "It is also ignored if the piece category is Creatorshop or Nature " +
+                "It is also ignored if the piece category is CreatorShop or Nature " +
                 "and CreativeMode is false.",
                 AcceptableBoolValuesList
             );
@@ -330,10 +330,10 @@ namespace MoreVanillaBuildPrefabs.Configs
                 "(If this setting fixes the issue please open an issue on Github letting me know so I can make sure the piece can always applied clip the ground.)",
                     AcceptableBoolValuesList
                 );
-                pieceConfigEntries.clipEverything.SettingChanged += PieceSettingChanged;
-                defaultPieceDB.clipEverything = pieceConfigEntries.clipEverything.Value;
+                pieceConfigEntries.clipGround.SettingChanged += PieceSettingChanged;
+                defaultPieceDB.clipGround = pieceConfigEntries.clipGround.Value;
             }
-            if (defaultPieceDB.clipEverything) { _ClipEverything.Add(prefab.name); }
+            if (defaultPieceDB.clipGround) { _ClipGround.Add(prefab.name); }
 
             // keep a reference to the config entries
             // to make sure the events fire as intended
