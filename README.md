@@ -319,7 +319,7 @@ This mod was inspired by MoreVanillaBuilds by Galathil and PotteryBarn by ComfyM
 
 #### Community Credits
 - Thanks to onnan for all their suggestions, feedback, and testing
-- Thanks to Cass, Blubbson, Katosan, and Havengrad for quickly finding and reporting issues or bugs.
+- Thanks to Cass, Blubbson, Katosan, Havengrad, LunaEversor for quickly finding and reporting issues or bugs.
 
 ### Shameless Self Plug (Other Mods By Me)
 If you like this mod you might like some of my other ones.

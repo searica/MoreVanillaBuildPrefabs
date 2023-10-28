@@ -18,8 +18,11 @@
 							<li>Deconstructing non-WearNTear pieces will now destroy them using the Destructible component if it is present (this means removing ice pieces makes them shatter and play the ice SFX).</li>
 						</ul>
 					</li>
+					<li>Added config settings to control piece clipping during placement.</li>
 					<li>Patched MineRock script to prevent NRE on newly placed pieces.</li>
 					<li>Improved filtering to prevent detecting prefabs that create giant boulders when you remove them.</li>
+					<li>Automatically adds missing removal SFX for WearNTear pieces.</li>
+					<li>Hotfix for issues with invalid placement due to changing collider layers.</li>
 				</ul>
 			</td>
 		</tr>

@@ -72,8 +72,22 @@ The rest of the configuration files contains ["Prefab-Name"] sections to configu
 
 **Category** [Synced with Server]
 - A string defining the tab the prefab shows up on in the hammer build table.
-  - Acceptable values: CreatorShop, Nature, Misc, Crafting, Building, Furniture
-- Default value: CreatorShop
+    - Acceptable values: CreatorShop, Nature, Misc, Crafting, Building, Furniture
+    - Default value: CreatorShop
+
+
+**ClipEverything** [Synced with Server]
+- et to true to allow piece to clip through everything during placement. Recommended to try this if the piece is not appearing when you go to place it. (If this setting fixes the issue please open an issue on Github letting me know so I can make sure the piece can always applied clip the ground.)
+    - Acceptable values: False, True
+    - Default value: false
+    - *Note:* this setting is not available on some prefabs because it needs to always be true.
+
+**ClipGround** [Synced with Server]
+- Set to true to allow piece to clip through ground during placement. Recommended to try this if the piece is not floating when you try to place it. (If this setting fixes the issue please open an issue on Github letting me know so I can make sure the piece can always applied clip the ground.)
+    - Acceptable values: False, True
+    - Default value: false
+    - *Note:* this setting is not available on some prefabs because it needs to always be true.
+
 
 **CraftingStation** [Synced with Server]
 - A string defining the crafting station required to built the prefab.
@@ -82,13 +96,13 @@ The rest of the configuration files contains ["Prefab-Name"] sections to configu
 
 **Requirements** [Synced with Server]
 - Resources required to build the prefab. Formatted as: itemID,amount;itemID,amount where itemID is the in-game identifier for the resource and amount is an integer. You can find itemID on Valheim Wiki or on this [link](https://valheim-modding.github.io/Jotunn/data/objects/item-list.html). Example: Requirements = Wood,5;Stone,2 would mean the prefab requires 5 wood and 2 stone to build.
-  - Default value:
+  - Default value: 
 
 **PlacementPatch** [Synced with Server]
 - Set to true to enable collision patching during placement of the piece. Recommended to try this if the piece is not appearing when attempting to place it. (If enabling the placement patch via this setting fixes the issue please open an issue on Github letting me know so I can make sure the collision patch is always applied to this piece.)
-  - Acceptable values: False, True
-  - Default value: false
-  - *Note:* this setting is not available on prefabs that I have already made custom placement patches for.
+    - Acceptable values: False, True
+    - Default value: false
+    - *Note:* this setting is not available on some prefabs because it needs to always be true.
 
 ### Default Prefab Configuration
 The mod has a default configuration that enables ~100 new pieces by default. The configuration settings for these pieces are intended to provide a reasonable balance and ensure that someone playing with the mod will only unlock various build pieces after encountering them in the world. As the default settings are based on my preferences and not yours, you are of course able to change these default configurations however you please.
@@ -305,7 +319,7 @@ This mod was inspired by MoreVanillaBuilds by Galathil and PotteryBarn by ComfyM
 
 #### Community Credits
 - Thanks to onnan for all their suggestions, feedback, and testing
-- Thanks to Cass, Blubbson, Katosan, and Havengrad for quickly finding and reporting issues or bugs.
+- Thanks to Cass, Blubbson, Katosan, Havengrad, LunaEversor for quickly finding and reporting issues or bugs.
 
 ### Shameless Self Plug (Other Mods By Me)
 If you like this mod you might like some of my other ones.
