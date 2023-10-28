@@ -79,7 +79,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
         }
 
         /// <summary>
-        ///     Create and initalize piece component if needed.
+        ///     Create and initialize piece component if needed.
         ///     Sets m_canBeRemoved to false by default when adding
         ///     piece components prefabs that are missing them.
         /// </summary>
@@ -186,8 +186,8 @@ namespace MoreVanillaBuildPrefabs.Helpers
         /// <summary>
         ///     Method to add a piece to a piece table.
         /// </summary>
-        /// <param name="piece"></param>
-        /// <param name="pieceTable"></param>
+        /// <param name="pieces"></param>
+        /// <param name="pieceTableName"></param>
         /// <returns> bool indicating if customPiece was added. </returns>
         internal static void AddPiecesListToPieceTable(IEnumerable<Piece> pieces, string pieceTableName)
         {
