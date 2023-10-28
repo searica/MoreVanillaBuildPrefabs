@@ -180,8 +180,6 @@ The AdminDeconstructOtherPlayers setting can allow players with admin status to 
 - Resolve known issues.
 - Patch and enable more prefabs by default.
 - Adding comfort values to pieces added by the mod with a config setting to enable/disable them.
-- Fix that damn barrell (make pieces that don't have WearNTear but do have a Destructible component drop piece resources when destroyed via damaging them).
-- Trigger hit effects when deconstructing a piece with a Destructible component (this should make ice pieces play the right deconstruction sounds and make the vfx of shattering happen).
 - Learn how localization works and add localization options to the mod.
 
 ## Potential Improvements
@@ -189,7 +187,7 @@ The AdminDeconstructOtherPlayers setting can allow players with admin status to 
     - Changing inventory sizes for some prefabs or other patches that could make you lose items if you loaded the world without the mod.
     - Adding fermenter functionality to some prefabs. Could result in losing the mead base if loaded without the mod.
     - Adding bed functionality to some prefabs. Could result in losing your spawn point if loaded without the mod.
-- Learn how to save/read data to/from the world file so I can alter just the pieces that are player built and have it persist after a restart.
+- Learn how to save/read data to/from the world file so I can alter just the pieces that are player built and have it persist after a restart. May just use the awake method on pieces instead.
 - Add Wear-N-Tear or Destructible components all to player built pieces upon placement.
 
 

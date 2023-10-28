@@ -8,6 +8,15 @@
 			<th align="center">Notes</th>
 		</tr>
 		<tr>
+			<td align="center">0.4.6</td>
+			<td align="left">
+				<ul>
+					<li>Fixed issue with server config changes not persisting after log-out unless the server was restarted. Config changes for the server are now saved to the server config file when you log-out.</li>
+					<li>Re-enabled prefabs that spawn a MineRock5 component as they can be useful for building islands. A warning about how they work is now automatically added to the piece description.</li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
 			<td align="center">0.4.5</td>
 			<td align="left">
 				<ul>

@@ -27,7 +27,7 @@ namespace MoreVanillaBuildPrefabs
         public const string PluginName = "MoreVanillaBuildPrefabs";
         internal const string Author = "Searica";
         public const string PluginGUID = $"{Author}.Valheim.{PluginName}";
-        public const string PluginVersion = "0.4.5";
+        public const string PluginVersion = "0.4.6";
 
         internal static readonly Dictionary<string, GameObject> PrefabRefs = new();
         internal static readonly Dictionary<string, Piece> DefaultPieceClones = new();
@@ -105,7 +105,7 @@ namespace MoreVanillaBuildPrefabs
             .Where(
                 go => go.transform.parent == null
                 && !PieceNameCache.Contains(go.name)
-                && !IgnoredPrefabs.ShouldIgnorePrefab(go)
+                && !PrefabFilter.ShouldIgnorePrefab(go)
             ).ToList();
 
             foreach (var prefab in EligiblePrefabs)
@@ -125,10 +125,8 @@ namespace MoreVanillaBuildPrefabs
                     }
                 }
 
-                // Always apply prefab patches regardless of
-                // whether the pieces are enabled. Only has to
-                // run once that way and prevents trailership
-                // instances becoming unusable if you disable it as a build piece
+                // Always patch prefabs. Only runs once this way
+                // and prevents trailership being unusable if disabled.
                 try
                 {
                     PrefabPatcher.PatchPrefabIfNeeded(prefab);
@@ -436,6 +434,7 @@ namespace MoreVanillaBuildPrefabs
                 {
                     // do nothing at the moment
                 }
+                PluginConfig.Save();
             }
         }
 
