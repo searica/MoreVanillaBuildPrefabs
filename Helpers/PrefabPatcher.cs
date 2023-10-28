@@ -23,10 +23,11 @@ namespace MoreVanillaBuildPrefabs.Helpers
             "weapon",
             "character_trigger",
             "character_net",
-            "character_noenv"
+            "character_noenv",
+            "effect"
         );
 
-        private static readonly int PieceLayer = LayerMask.NameToLayer("piece");
+        private static readonly int PieceNonSolid = LayerMask.NameToLayer("piece_nonsolid");
 
         /// <summary>
         ///     Fix collider and snap points on the prefab if necessary
@@ -875,7 +876,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
                 {
                     continue;
                 }
-                collider.gameObject.layer = PieceLayer;
+                collider.gameObject.layer = PieceNonSolid;
             }
         }
 
