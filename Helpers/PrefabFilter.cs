@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace MoreVanillaBuildPrefabs.Configs
+namespace MoreVanillaBuildPrefabs.Helpers
 {
-    internal class IgnoredPrefabs
+    internal class PrefabFilter
     {
         /// <summary>
-        ///     Checks prefab to see if it is eligble for making a custom piece.
+        ///     Checks prefab to see if it is eligible for making a custom piece.
         /// </summary>
         /// <param name="prefab"></param>
         /// <returns></returns>
@@ -48,7 +48,6 @@ namespace MoreVanillaBuildPrefabs.Configs
                 prefab.GetComponent("TriggerSpawner") != null ||
                 prefab.GetComponent("TeleportAbility") != null ||
                 prefab.GetComponent("TeleportWorld") != null ||
-                SpawnsMineRock5(prefab) ||
 
                 prefab.name.StartsWith("_") ||
                 prefab.name.StartsWith("OLD_") ||
@@ -68,16 +67,6 @@ namespace MoreVanillaBuildPrefabs.Configs
                 prefab.name.StartsWith("rrr_")) // RRR prefabs
             {
                 return true;
-            }
-            return false;
-        }
-
-        private static bool SpawnsMineRock5(GameObject prefab)
-        {
-            var destructible = prefab.GetComponent<Destructible>();
-            if (destructible != null && destructible.m_spawnWhenDestroyed)
-            {
-                return destructible.m_spawnWhenDestroyed.GetComponent<MineRock5>() != null;
             }
             return false;
         }
