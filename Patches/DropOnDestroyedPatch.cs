@@ -5,7 +5,7 @@ using MoreVanillaBuildPrefabs.Logging;
 namespace MoreVanillaBuildPrefabs
 {
     /// <summary>
-    ///     Disables desctruction drops for player built pieces.
+    ///     Disables destruction drops for player built pieces.
     ///     Prevents things like player built dvergerprops_crate dropping
     ///     dvergr extractors when extractors were not used to build it.
     /// </summary>
