@@ -200,10 +200,10 @@ namespace MoreVanillaBuildPrefabs
             }
 
             // Prevents player from breaking pieces they didn't
-            // create themselves unless admin check and config is true.
+            // create themselves unless Admin check and config is true.
             if (PieceCategoryHelper.IsCreativeModePiece(piece) && !piece.IsCreator())
             {
-                // Allow admins to deconstruct CreatorShop pieces built by other players if setting is enabled in config
+                // Allow Admins to deconstruct CreatorShop pieces built by other players if setting is enabled in config
                 if (PluginConfig.IsAdminDeconstructOtherPlayers && SynchronizationManager.Instance.PlayerIsAdmin)
                 {
                     __result = true;
@@ -295,7 +295,7 @@ namespace MoreVanillaBuildPrefabs
                 var destructible = piece?.gameObject?.GetComponent<Destructible>();
                 if (destructible != null)
                 {
-                    // create deconstruction Sfx if needed
+                    // create deconstruction SFX if needed
                     if (
                         !CreateHitEffects(destructible)
                         && !SfxHelper.HasSfx(destructible.m_destroyedEffect)
@@ -309,13 +309,15 @@ namespace MoreVanillaBuildPrefabs
             }
 
             // run the normal code I replace otherwise
+            piece.DropResources();
             piece.m_placeEffect.Create(
                 piece.transform.position,
                 piece.transform.rotation,
                 piece.gameObject.transform
             );
             Player.s_players[0].m_removeEffects.Create(
-                piece.transform.position, Quaternion.identity
+                piece.transform.position,
+                Quaternion.identity
             );
             ZNetScene.instance.Destroy(piece.gameObject);
         }
