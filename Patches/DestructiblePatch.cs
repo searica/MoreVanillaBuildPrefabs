@@ -1,4 +1,5 @@
 ﻿using HarmonyLib;
+using MoreVanillaBuildPrefabs.Logging;
 
 namespace MoreVanillaBuildPrefabs.Patches
 {
@@ -12,7 +13,7 @@ namespace MoreVanillaBuildPrefabs.Patches
         /// <param name="__instance"></param>
         [HarmonyPrefix]
         [HarmonyPatch(nameof(Destructible.Destroy))]
-        private static void DestroyPrefix(Destructible __instance)
+        private static bool DestroyPrefix(Destructible __instance)
         {
             var prefabName = __instance?.gameObject?.name?.RemoveSuffix("(Clone)");
             if (MoreVanillaBuildPrefabs.IsPatchedByMod(prefabName))
@@ -21,8 +22,15 @@ namespace MoreVanillaBuildPrefabs.Patches
                 if (piece != null && piece.IsPlacedByPlayer())
                 {
                     piece.DropResources();
+                    // If it got picked during DropResources then it may no longer be valid.
+                    var nview = __instance.m_nview;
+                    if (!nview.IsValid() || !nview.IsOwner())
+                    {
+                        return false;
+                    }
                 }
             }
+            return true;
         }
     }
 }
