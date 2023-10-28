@@ -89,7 +89,7 @@ namespace MoreVanillaBuildPrefabs
             {
                 Log.LogInfo("DropResources_m_resources_Delegate()");
             }
-            string prefabName = NameHelper.GetRootPrefabName(piece);
+            string prefabName = piece.name.RemoveSuffix("(Clone)");
 
             if (!IsPatchedByMod(prefabName))
             {
@@ -98,7 +98,7 @@ namespace MoreVanillaBuildPrefabs
             }
 
             // Set resources to defaults is piece is not placed by player
-            // or disable desctruction drops if it is placed by player
+            // or disable destruction drops if it is placed by player
             var resources = Array.Empty<Piece.Requirement>();
             if (DefaultPieceClones.ContainsKey(prefabName))
             {
