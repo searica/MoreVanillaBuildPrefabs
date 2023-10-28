@@ -110,6 +110,11 @@ namespace MoreVanillaBuildPrefabs
 
             foreach (var prefab in EligiblePrefabs)
             {
+                if (!PieceHelper.EnsureNoDuplicateZNetView(prefab))
+                {
+                    continue;
+                }
+
                 if (PluginConfig.IsVerbosityHigh)
                 {
                     Log.LogInfo("Initialize '" + prefab.name + "'");
@@ -122,7 +127,7 @@ namespace MoreVanillaBuildPrefabs
 
                 // Always apply prefab patches regardless of
                 // whether the pieces are enabled. Only has to
-                // run once that way and prevents prevents trailership
+                // run once that way and prevents trailership
                 // instances becoming unusable if you disable it as a build piece
                 try
                 {
@@ -136,7 +141,7 @@ namespace MoreVanillaBuildPrefabs
                 PrefabRefs.Add(prefab.name, prefab);
             }
 
-            Log.LogInfo($"Found {EligiblePrefabs.Count()} prefabs");
+            Log.LogInfo($"Found {PrefabRefs.Count()} prefabs");
 
             InitDefaultPieceClones();
         }
