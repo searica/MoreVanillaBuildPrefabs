@@ -20,7 +20,7 @@ namespace MoreVanillaBuildPrefabs.Configs
 
         internal GameObject Prefab
         {
-            get { return MoreVanillaBuildPrefabs.PrefabRefs[name]; }
+            get { return InitManager.PrefabRefs[name]; }
         }
 
         // for inheiritance

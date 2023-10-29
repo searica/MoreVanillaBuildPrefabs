@@ -111,7 +111,7 @@ namespace MoreVanillaBuildPrefabs
 
         private static GameObject SetupPlacementGhostInstantiateDelegate(GameObject selectedPrefab)
         {
-            if (!MoreVanillaBuildPrefabs.IsPatchedByMod(selectedPrefab.name))
+            if (!InitManager.IsPatchedByMod(selectedPrefab.name))
             {
                 // ignore pieces not touched by this mod
                 return UnityEngine.Object.Instantiate(selectedPrefab);
@@ -187,7 +187,7 @@ namespace MoreVanillaBuildPrefabs
         {
             // Only modify results for pieces affected by this mod
             var prefabName = NameHelper.GetRootPrefabName(piece);
-            if (!MoreVanillaBuildPrefabs.IsPatchedByMod(prefabName))
+            if (!InitManager.IsPatchedByMod(prefabName))
             {
                 return true; // run CheckCanRemove method as normal
             }
@@ -290,7 +290,7 @@ namespace MoreVanillaBuildPrefabs
             }
 
             var prefabName = piece.gameObject.name.RemoveSuffix("(Clone)");
-            if (MoreVanillaBuildPrefabs.IsPatchedByMod(prefabName))
+            if (InitManager.IsPatchedByMod(prefabName))
             {
                 var destructible = piece?.gameObject?.GetComponent<Destructible>();
                 if (destructible != null)

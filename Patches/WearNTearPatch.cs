@@ -11,7 +11,7 @@ namespace MoreVanillaBuildPrefabs.Patches
         private static void DestroyPrefix(WearNTear __instance, out EffectList __state)
         {
             var prefabName = __instance.name.RemoveSuffix("(Clone)");
-            if (MoreVanillaBuildPrefabs.IsPatchedByMod(prefabName))
+            if (InitManager.IsPatchedByMod(prefabName))
             {
                 if (!SfxHelper.HasSfx(__instance.m_destroyedEffect))
                 {

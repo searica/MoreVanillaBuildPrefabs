@@ -53,10 +53,10 @@ namespace MoreVanillaBuildPrefabs.Patches
 
             PieceCategoryHelper.AddCreatorShopPieceCategory();
             SfxHelper.Init();
-            MoreVanillaBuildPrefabs.InitPrefabRefs();
-            MoreVanillaBuildPrefabs.InitPieceRefs();
-            MoreVanillaBuildPrefabs.InitPieces();
-            MoreVanillaBuildPrefabs.InitHammer();
+            InitManager.InitPrefabRefs();
+            InitManager.InitPieceRefs();
+            InitManager.InitPieces();
+            InitManager.InitHammer();
 
             if (PluginConfig.IsVerbosityMedium)
             {

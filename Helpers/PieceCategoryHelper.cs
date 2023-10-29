@@ -41,7 +41,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
         internal static bool IsCreatorShopPiece(Piece piece)
         {
             var pieceName = NameHelper.GetRootPrefabName(piece);
-            if (MoreVanillaBuildPrefabs.IsPatchedByMod(pieceName))
+            if (InitManager.IsPatchedByMod(pieceName))
             {
                 if (piece.m_category == CreatorShop)
                 {
@@ -54,7 +54,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
         internal static bool IsNaturePiece(Piece piece)
         {
             var pieceName = NameHelper.GetRootPrefabName(piece);
-            if (MoreVanillaBuildPrefabs.IsPatchedByMod(pieceName))
+            if (InitManager.IsPatchedByMod(pieceName))
             {
                 if (piece.m_category == Nature)
                 {

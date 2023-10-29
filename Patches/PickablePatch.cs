@@ -13,7 +13,7 @@ namespace MoreVanillaBuildPrefabs.Patches
         {
             var piece = __instance.GetComponent<Piece>();
             var prefabName = __instance.gameObject.name.RemoveSuffix("(Clone)");
-            if (MoreVanillaBuildPrefabs.IsPatchedByMod(prefabName)
+            if (InitManager.IsPatchedByMod(prefabName)
                 && piece != null && piece.IsPlacedByPlayer())
             {
                 __state = __instance.m_extraDrops;

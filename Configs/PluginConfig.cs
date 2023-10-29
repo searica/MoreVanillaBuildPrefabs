@@ -3,6 +3,7 @@ using BepInEx.Bootstrap;
 using BepInEx.Configuration;
 using Jotunn.Configs;
 using Jotunn.Managers;
+using MoreVanillaBuildPrefabs.Helpers;
 using MoreVanillaBuildPrefabs.Logging;
 using System;
 using System.Collections.Generic;
@@ -15,8 +16,6 @@ namespace MoreVanillaBuildPrefabs.Configs
 {
     internal class PluginConfig
     {
-        private static BaseUnityPlugin configurationManager;
-
         private static readonly string ConfigFileName = PluginGUID + ".cfg";
 
         private static readonly string ConfigFileFullPath = string.Concat(
@@ -26,9 +25,12 @@ namespace MoreVanillaBuildPrefabs.Configs
         );
 
         private static ConfigFile configFile;
+        private static BaseUnityPlugin configurationManager;
 
         private static readonly ConfigurationManagerAttributes AdminConfig = new() { IsAdminOnly = true };
         private static readonly ConfigurationManagerAttributes ClientConfig = new() { IsAdminOnly = false };
+
+        private static readonly AcceptableValueList<bool> AcceptableBoolValuesList = new(new bool[] { false, true });
 
         internal enum LoggerLevel
         {
@@ -38,7 +40,6 @@ namespace MoreVanillaBuildPrefabs.Configs
         }
 
         private const string MainSectionName = "\u200BGlobal";
-
         internal static ConfigEntry<bool> CreativeMode { get; private set; }
         internal static ConfigEntry<bool> CreatorShopAdminOnly { get; private set; }
         internal static ConfigEntry<bool> AdminDeconstructOtherPlayers { get; private set; }
@@ -60,7 +61,9 @@ namespace MoreVanillaBuildPrefabs.Configs
 
         internal static readonly Dictionary<string, PieceConfigEntries> PieceConfigEntriesMap = new();
 
-        private static readonly AcceptableValueList<bool> AcceptableBoolValuesList = new(new bool[] { false, true });
+        internal static bool UpdatePieceSettings { get; set; } = false;
+        internal static bool UpdatePlacementSettings { get; set; } = false;
+        internal static bool UpdateClippingSettings { get; set; } = false;
 
         internal static readonly HashSet<string> _NeedsCollisionPatch = new();
 
@@ -316,7 +319,6 @@ namespace MoreVanillaBuildPrefabs.Configs
                     AcceptableBoolValuesList
                 );
                 pieceConfigEntries.clipEverything.SettingChanged += PieceSettingChanged;
-                pieceConfigEntries.clipEverything.SettingChanged += ClippingSettingChanged;
                 defaultPieceDB.clipEverything = pieceConfigEntries.clipEverything.Value;
             }
             if (defaultPieceDB.clipEverything) { _ClipEverything.Add(prefab.name); }
@@ -332,7 +334,6 @@ namespace MoreVanillaBuildPrefabs.Configs
                     AcceptableBoolValuesList
                 );
                 pieceConfigEntries.clipGround.SettingChanged += PieceSettingChanged;
-                pieceConfigEntries.clipGround.SettingChanged += ClippingSettingChanged;
                 defaultPieceDB.clipGround = pieceConfigEntries.clipGround.Value;
             }
             if (defaultPieceDB.clipGround) { _ClipGround.Add(prefab.name); }
@@ -382,10 +383,7 @@ namespace MoreVanillaBuildPrefabs.Configs
             }
 
             if (
-                Chainloader.PluginInfos.TryGetValue(
-                    "com.bepis.bepinex.configurationmanager",
-                    out PluginInfo configManagerInfo
-                )
+                Chainloader.PluginInfos.TryGetValue("com.bepis.bepinex.configurationmanager", out PluginInfo configManagerInfo)
                 && configManagerInfo.Instance
             )
             {
@@ -408,15 +406,142 @@ namespace MoreVanillaBuildPrefabs.Configs
             }
         }
 
-        private static void OnConfigManagerDisplayingWindowChanged(object sender, object e)
+        internal static void OnConfigManagerDisplayingWindowChanged(object sender, object e)
         {
             PropertyInfo pi = configurationManager.GetType().GetProperty("DisplayingWindow");
             bool cmActive = (bool)pi.GetValue(configurationManager, null);
+            if (!cmActive) { Save(); }
+        }
 
-            if (!cmActive)
+        /// <summary>
+        ///     Event hook to set whether a config entry
+        ///     for a piece setting has been changed.
+        /// </summary>
+        /// <param name="o"></param>
+        /// <param name="e"></param>
+        internal static void PieceSettingChanged(object o, EventArgs e)
+        {
+            if (!UpdatePieceSettings) UpdatePieceSettings = true;
+        }
+
+        /// <summary>
+        ///     Event hook to set whether a config entry
+        ///     for placement patches has been changed.
+        /// </summary>
+        /// <param name="o"></param>
+        /// <param name="e"></param>
+        internal static void PlacementSettingChanged(object o, EventArgs e)
+        {
+            if (!UpdatePlacementSettings) UpdatePlacementSettings = true;
+        }
+
+        /// <summary>
+        ///     Method to re-initialize the plugin when the configuration
+        ///     has been updated based on whether the piece or placement
+        ///     settings have been changed for any of the config entries.
+        /// </summary>
+        /// <param name="msg"></param>
+        internal static void ReInitPlugin(string msg)
+        {
+            if (!InitManager.HasInitializedPrefabs) { return; }
+
+            if (!UpdatePieceSettings && !UpdatePlacementSettings)
             {
-                PluginConfig.Save();
-                //ReInitPlugin("Config settings changed via in-game manager, re-initializing");
+                // Don't update unless settings have actually changed
+                return;
+            }
+
+            var watch = new System.Diagnostics.Stopwatch();
+            if (IsVerbosityMedium)
+            {
+                watch.Start();
+            }
+
+            Log.LogInfo(msg);
+            if (UpdatePieceSettings)
+            {
+                InitManager.InitPieceRefs();
+                InitManager.InitPieces();
+                InitManager.InitHammer();
+            }
+            if (UpdatePlacementSettings)
+            {
+                UpdateNeedsCollisionPatch();
+            }
+
+            if (IsVerbosityMedium)
+            {
+                watch.Stop();
+                Log.LogInfo($"Time to re-initialize: {watch.ElapsedMilliseconds} ms");
+            }
+            else
+            {
+                Log.LogInfo("Re-initializing complete");
+            }
+
+            if (UpdatePieceSettings && ModCompat.IsExtraSnapPointsMadeEasyInstalled)
+            {
+                var plugin = Chainloader.PluginInfos[ModCompat.ExtraSnapPointsMadeEasyGUID].Instance;
+                if (plugin != null)
+                {
+                    MethodInfo method = ReflectionUtils.GetMethod(
+                        plugin.GetType(),
+                        "ReInitExtraSnapPoints",
+                        new Type[] { typeof(string) }
+                    );
+
+                    if (method != null)
+                    {
+                        var parameters = new string[] {
+                                "MoreVanillaBuildPrefabs updated, re-initializing extra snap points"
+                            };
+                        method.Invoke(plugin, parameters);
+                    }
+                }
+            }
+            if (UpdatePieceSettings && ModCompat.IsPlanBuildInstalled)
+            {
+                // do nothing at the moment
+            }
+
+            UpdatePieceSettings = false;
+            UpdatePlacementSettings = false;
+        }
+
+        /// <summary>
+        ///     Updates HashSet of prefabs needing a collision patch.
+        /// </summary>
+        private static void UpdateNeedsCollisionPatch()
+        {
+            if (!InitManager.HasInitializedPrefabs) return;
+
+            if (IsVerbosityMedium)
+            {
+                Log.LogInfo("Initializing collision patches");
+            }
+
+            foreach (var prefabName in InitManager.PrefabRefs.Keys)
+            {
+                if (PieceConfigEntriesMap[prefabName].placementPatch == null)
+                {
+                    // No placement patch config entry means that prefab is already
+                    // placed in the NeedsCollisionPatchForGhost HashSet by default
+                    continue;
+                }
+
+                if (PieceConfigEntriesMap[prefabName].placementPatch.Value)
+                {
+                    // config is true so add it if not already in HashSet
+                    if (!NeedsCollisionPatchForGhost(prefabName))
+                    {
+                        _NeedsCollisionPatch.Add(prefabName);
+                    }
+                }
+                else if (NeedsCollisionPatchForGhost(prefabName))
+                {
+                    // config is false so remove it from list if it's in HashSet
+                    _NeedsCollisionPatch.Remove(prefabName);
+                }
             }
         }
     }

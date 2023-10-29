@@ -17,7 +17,7 @@ namespace MoreVanillaBuildPrefabs
         private static bool OnDestroyedPrefix(DropOnDestroyed __instance)
         {
             var prefabName = __instance.name.RemoveSuffix("(Clone)");
-            if (MoreVanillaBuildPrefabs.IsPatchedByMod(prefabName))
+            if (InitManager.IsPatchedByMod(prefabName))
             {
                 var piece = __instance.gameObject.GetComponent<Piece>();
                 if (piece != null && piece.IsPlacedByPlayer())

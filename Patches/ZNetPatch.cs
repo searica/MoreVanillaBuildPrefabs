@@ -43,9 +43,9 @@ namespace MoreVanillaBuildPrefabs.Patches
                     watch.Start();
                 }
 
-                MoreVanillaBuildPrefabs.InitPieceRefs();
-                MoreVanillaBuildPrefabs.InitPieces();
-                MoreVanillaBuildPrefabs.InitHammer();
+                InitManager.InitPieceRefs();
+                InitManager.InitPieces();
+                InitManager.InitHammer();
 
                 if (PluginConfig.IsVerbosityMedium)
                 {
@@ -55,15 +55,15 @@ namespace MoreVanillaBuildPrefabs.Patches
             }
         }
 
-        /// <summary>
-        ///     Patch to save config file on log out to
-        ///     ensure persistent settings on server.
-        /// </summary>
-        [HarmonyPrefix]
-        [HarmonyPatch(nameof(ZNet.Disconnect))]
-        public static void ZNetDisconnectPrefix()
-        {
-            PluginConfig.Save();
-        }
+        ///// <summary>
+        /////     Patch to save config file on log out to
+        /////     ensure persistent settings on server.
+        ///// </summary>
+        //[HarmonyPrefix]
+        //[HarmonyPatch(nameof(ZNet.Disconnect))]
+        //public static void ZNetDisconnectPrefix()
+        //{
+        //    PluginConfig.Save();
+        //}
     }
 }

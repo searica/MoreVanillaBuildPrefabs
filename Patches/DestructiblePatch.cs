@@ -15,7 +15,7 @@ namespace MoreVanillaBuildPrefabs.Patches
         private static bool DestroyPrefix(Destructible __instance)
         {
             var prefabName = __instance?.gameObject?.name?.RemoveSuffix("(Clone)");
-            if (MoreVanillaBuildPrefabs.IsPatchedByMod(prefabName))
+            if (InitManager.IsPatchedByMod(prefabName))
             {
                 var piece = __instance?.gameObject?.GetComponent<Piece>();
                 if (piece != null && piece.IsPlacedByPlayer())

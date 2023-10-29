@@ -5,7 +5,7 @@ using MoreVanillaBuildPrefabs.Logging;
 using System;
 using System.Collections.Generic;
 using System.Reflection.Emit;
-using static MoreVanillaBuildPrefabs.MoreVanillaBuildPrefabs;
+using static MoreVanillaBuildPrefabs.InitManager;
 
 namespace MoreVanillaBuildPrefabs
 {
