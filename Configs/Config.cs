@@ -1,20 +1,21 @@
-﻿using BepInEx;
+﻿// Ignore Spelling: MVBP
+
+using BepInEx;
 using BepInEx.Bootstrap;
 using BepInEx.Configuration;
 using Jotunn.Configs;
 using Jotunn.Managers;
-using MoreVanillaBuildPrefabs.Helpers;
-using MoreVanillaBuildPrefabs.Logging;
+using MVBP.Helpers;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using UnityEngine;
-using static MoreVanillaBuildPrefabs.MoreVanillaBuildPrefabs;
+using static MVBP.MoreVanillaBuildPrefabs;
 
-namespace MoreVanillaBuildPrefabs.Configs
+namespace MVBP.Configs
 {
-    internal class PluginConfig
+    internal class Config
     {
         private static readonly string ConfigFileName = PluginGUID + ".cfg";
 
@@ -47,7 +48,7 @@ namespace MoreVanillaBuildPrefabs.Configs
         internal static ConfigEntry<bool> EnableHammerCrops { get; private set; }
         internal static ConfigEntry<LoggerLevel> Verbosity { get; private set; }
 
-        internal class PieceConfigEntries
+        internal class PrefabDBConfig
         {
             internal ConfigEntry<bool> enabled;
             internal ConfigEntry<bool> allowedInDungeons;
@@ -59,44 +60,13 @@ namespace MoreVanillaBuildPrefabs.Configs
             internal ConfigEntry<bool> clipGround;
         }
 
-        internal static readonly Dictionary<string, PieceConfigEntries> PieceConfigEntriesMap = new();
+        internal static readonly Dictionary<string, PrefabDBConfig> PrefabDBConfigsMap = new();
 
         internal static bool UpdatePieceSettings { get; set; } = false;
         internal static bool UpdatePlacementSettings { get; set; } = false;
-        internal static bool UpdateClippingSettings { get; set; } = false;
+        internal static bool UpdateModSettings { get; set; } = false;
 
         internal static readonly HashSet<string> _NeedsCollisionPatch = new();
-
-        internal static readonly HashSet<string> _ClipEverything = new();
-
-        internal static readonly HashSet<string> _ClipGround = new()
-        {
-            "stoneblock_fracture",
-            "blackmarble_post01",
-            "dungeon_sunkencrypt_irongate_rusty",
-        };
-
-        /// <summary>
-        ///     Get a bool indicating if the prefab should be
-        ///     allowed to clip into the ground..
-        /// </summary>
-        /// <param name="PrefabName"></param>
-        /// <returns></returns>
-        internal static bool CanClipEverything(string prefabName)
-        {
-            return _ClipEverything.Contains(prefabName);
-        }
-
-        /// <summary>
-        ///     Get a bool indicating if the prefab should be
-        ///     allowed to clip into the ground.
-        /// </summary>
-        /// <param name="PrefabName"></param>
-        /// <returns></returns>
-        internal static bool CanClipGround(string prefabName)
-        {
-            return _ClipGround.Contains(prefabName);
-        }
 
         /// <summary>
         ///     Get a bool indicating if the prefab is in the
@@ -148,9 +118,35 @@ namespace MoreVanillaBuildPrefabs.Configs
             configFile.Save();
         }
 
+        /// <summary>
+        ///     Saves the config file if settings that need to be tracked have been changed.
+        /// </summary>
+        internal static bool SaveIfChanged()
+        {
+            if (UpdatePieceSettings || UpdatePlacementSettings || UpdateModSettings)
+            {
+                configFile.Save();
+                if (UpdateModSettings) UpdateModSettings = false;
+                return true;
+            }
+            return false;
+        }
+
         internal static void SaveOnConfigSet(bool value)
         {
             configFile.SaveOnConfigSet = value;
+        }
+
+        /// <summary>
+        ///     Sets SaveOnConfigSet to false and returns
+        ///     the value prior to calling this method.
+        /// </summary>
+        /// <returns></returns>
+        private static bool DisableSaveOnConfigSet()
+        {
+            var val = configFile.SaveOnConfigSet;
+            configFile.SaveOnConfigSet = false;
+            return val;
         }
 
         internal static LoggerLevel VerbosityLevel => Verbosity.Value;
@@ -166,6 +162,7 @@ namespace MoreVanillaBuildPrefabs.Configs
 
         internal static void SetUpConfig()
         {
+            var saveSetting = DisableSaveOnConfigSet();
             CreativeMode = BindConfig(
                 MainSectionName,
                 "CreativeMode",
@@ -226,7 +223,11 @@ namespace MoreVanillaBuildPrefabs.Configs
             CreatorShopAdminOnly.SettingChanged += PieceSettingChanged;
             CreativeMode.SettingChanged += PieceSettingChanged;
             ForceAllPrefabs.SettingChanged += PieceSettingChanged;
+
+            AdminDeconstructOtherPlayers.SettingChanged += ModSettingChanged;
+            Verbosity.SettingChanged += ModSettingChanged;
             Save();
+            SaveOnConfigSet(saveSetting);
         }
 
         internal static PrefabDB LoadPrefabDB(GameObject prefab)
@@ -234,66 +235,89 @@ namespace MoreVanillaBuildPrefabs.Configs
             string sectionName = prefab.name;
 
             // get predefined configs or generic settings if no predefined config
-            PrefabDB defaultPieceDB = DefaultConfigs.GetDefaultPieceDB(prefab.name);
-            PieceConfigEntries pieceConfigEntries = new();
+            PrefabDB defaultPrefabDB = PrefabConfigs.GetDefaultPieceDB(prefab.name);
+            PrefabDBConfig prefabDBConfig;
 
-            pieceConfigEntries.enabled = BindConfig(
+            if (PrefabDBConfigsMap.ContainsKey(sectionName))
+            {
+                // configure PrefabDB based on existing ConfigEntries
+                prefabDBConfig = PrefabDBConfigsMap[sectionName];
+                defaultPrefabDB.enabled = prefabDBConfig.enabled.Value;
+                defaultPrefabDB.allowedInDungeons = prefabDBConfig.allowedInDungeons.Value;
+                defaultPrefabDB.category = prefabDBConfig.category.Value;
+                defaultPrefabDB.craftingStation = prefabDBConfig.craftingStation.Value;
+                defaultPrefabDB.requirements = prefabDBConfig.requirements.Value;
+                if (prefabDBConfig.clipEverything != null)
+                {
+                    defaultPrefabDB.clipEverything = prefabDBConfig.clipEverything.Value;
+                }
+                if (prefabDBConfig.clipGround != null)
+                {
+                    defaultPrefabDB.clipGround = prefabDBConfig.clipGround.Value;
+                }
+                return defaultPrefabDB;
+            }
+
+            var saveSetting = DisableSaveOnConfigSet();
+            prefabDBConfig = new();
+
+            prefabDBConfig.enabled = BindConfig(
                 sectionName,
                 "\u200BEnabled",
-                defaultPieceDB.enabled,
+                defaultPrefabDB.enabled,
                 "If true then allow this prefab to be built and deconstructed. " +
                 "Note: this setting is ignored if ForceAllPrefabs is true. " +
                 "It is also ignored if the piece category is CreatorShop or Nature " +
                 "and CreativeMode is false.",
                 AcceptableBoolValuesList
             );
-            pieceConfigEntries.enabled.SettingChanged += PieceSettingChanged;
-            defaultPieceDB.enabled = pieceConfigEntries.enabled.Value;
+            prefabDBConfig.enabled.SettingChanged += PieceSettingChanged;
+            defaultPrefabDB.enabled = prefabDBConfig.enabled.Value;
 
-            pieceConfigEntries.allowedInDungeons = BindConfig(
+            prefabDBConfig.allowedInDungeons = BindConfig(
                 sectionName,
                 "AllowedInDungeons",
-                defaultPieceDB.allowedInDungeons,
+                defaultPrefabDB.allowedInDungeons,
                 "If true then this prefab can be built inside dungeon zones.",
                 AcceptableBoolValuesList
             );
-            pieceConfigEntries.allowedInDungeons.SettingChanged += PieceSettingChanged;
-            defaultPieceDB.allowedInDungeons = pieceConfigEntries.allowedInDungeons.Value;
+            prefabDBConfig.allowedInDungeons.SettingChanged += PieceSettingChanged;
+            defaultPrefabDB.allowedInDungeons = prefabDBConfig.allowedInDungeons.Value;
 
-            pieceConfigEntries.category = BindConfig(
+            prefabDBConfig.category = BindConfig(
                 sectionName,
                 "Category",
-                defaultPieceDB.category,
+                defaultPrefabDB.category,
                 "A string defining the tab the prefab shows up on in the hammer build table.",
                 HammerCategories.GetAcceptableValueList()
             );
-            pieceConfigEntries.category.SettingChanged += PieceSettingChanged;
-            defaultPieceDB.category = pieceConfigEntries.category.Value;
+            prefabDBConfig.category.SettingChanged += PieceSettingChanged;
+            defaultPrefabDB.category = prefabDBConfig.category.Value;
 
-            pieceConfigEntries.craftingStation = BindConfig(
+            prefabDBConfig.craftingStation = BindConfig(
                 sectionName,
                 "CraftingStation",
-                defaultPieceDB.craftingStation,
+                defaultPrefabDB.craftingStation,
                 "A string defining the crafting station required to built the prefab.",
                 CraftingStations.GetAcceptableValueList()
             );
-            pieceConfigEntries.craftingStation.SettingChanged += PieceSettingChanged;
-            defaultPieceDB.craftingStation = pieceConfigEntries.craftingStation.Value;
+            prefabDBConfig.craftingStation.SettingChanged += PieceSettingChanged;
+            defaultPrefabDB.craftingStation = prefabDBConfig.craftingStation.Value;
 
-            pieceConfigEntries.requirements = BindConfig(
+            prefabDBConfig.requirements = BindConfig(
                 sectionName,
                 "Requirements",
-                defaultPieceDB.requirements,
+                defaultPrefabDB.requirements,
                 "Resources required to build the prefab. Formatted as: itemID,amount;itemID,amount where itemID is the in-game identifier for the resource and amount is an integer. "
             );
-            pieceConfigEntries.requirements.SettingChanged += PieceSettingChanged;
-            defaultPieceDB.requirements = pieceConfigEntries.requirements.Value;
+            prefabDBConfig.requirements.SettingChanged += PieceSettingChanged;
+            defaultPrefabDB.requirements = prefabDBConfig.requirements.Value;
 
             // if the prefab is not already set to use the placement patch by default
             // then add a config option to enable the placement collision patch.
-            if (!defaultPieceDB.placementPatch)
+            if (!defaultPrefabDB.placementPatch)
             {
-                pieceConfigEntries.placementPatch = BindConfig(
+                prefabDBConfig.placementPatch = BindConfig(
                     sectionName,
                     "PlacementPatch",
                     false,
@@ -303,14 +327,14 @@ namespace MoreVanillaBuildPrefabs.Configs
                     " letting me know so I can make sure the collision patch is always applied to this piece.",
                     AcceptableBoolValuesList
                 );
-                pieceConfigEntries.placementPatch.SettingChanged += PlacementSettingChanged;
-                defaultPieceDB.placementPatch = pieceConfigEntries.placementPatch.Value;
+                prefabDBConfig.placementPatch.SettingChanged += PlacementSettingChanged;
+                defaultPrefabDB.placementPatch = prefabDBConfig.placementPatch.Value;
             }
-            if (defaultPieceDB.placementPatch) { _NeedsCollisionPatch.Add(prefab.name); }
+            if (defaultPrefabDB.placementPatch) { _NeedsCollisionPatch.Add(prefab.name); }
 
-            if (!defaultPieceDB.clipEverything)
+            if (!defaultPrefabDB.clipEverything)
             {
-                pieceConfigEntries.clipEverything = BindConfig(
+                prefabDBConfig.clipEverything = BindConfig(
                     sectionName,
                     "ClipEverything",
                     false,
@@ -318,14 +342,13 @@ namespace MoreVanillaBuildPrefabs.Configs
                     "If this setting fixes the issue please open an issue on Github letting me know so I can make sure the collision patch is always applied to this piece.",
                     AcceptableBoolValuesList
                 );
-                pieceConfigEntries.clipEverything.SettingChanged += PieceSettingChanged;
-                defaultPieceDB.clipEverything = pieceConfigEntries.clipEverything.Value;
+                prefabDBConfig.clipEverything.SettingChanged += PieceSettingChanged;
+                defaultPrefabDB.clipEverything = prefabDBConfig.clipEverything.Value;
             }
-            if (defaultPieceDB.clipEverything) { _ClipEverything.Add(prefab.name); }
 
-            if (!defaultPieceDB.clipGround)
+            if (!defaultPrefabDB.clipGround)
             {
-                pieceConfigEntries.clipGround = BindConfig(
+                prefabDBConfig.clipGround = BindConfig(
                 sectionName,
                 "ClipGround",
                 false,
@@ -333,15 +356,15 @@ namespace MoreVanillaBuildPrefabs.Configs
                 "(If this setting fixes the issue please open an issue on Github letting me know so I can make sure the piece can always applied clip the ground.)",
                     AcceptableBoolValuesList
                 );
-                pieceConfigEntries.clipGround.SettingChanged += PieceSettingChanged;
-                defaultPieceDB.clipGround = pieceConfigEntries.clipGround.Value;
+                prefabDBConfig.clipGround.SettingChanged += PieceSettingChanged;
+                defaultPrefabDB.clipGround = prefabDBConfig.clipGround.Value;
             }
-            if (defaultPieceDB.clipGround) { _ClipGround.Add(prefab.name); }
 
-            // keep a reference to the config entries
-            // to make sure the events fire as intended
-            PieceConfigEntriesMap[prefab.name] = pieceConfigEntries;
-            return defaultPieceDB;
+            SaveOnConfigSet(saveSetting);
+            // keep a reference to the config entries for later use
+            // and making sure events are fired correctly
+            PrefabDBConfigsMap[prefab.name] = prefabDBConfig;
+            return defaultPrefabDB;
         }
 
         internal static void SetupWatcher()
@@ -361,10 +384,9 @@ namespace MoreVanillaBuildPrefabs.Configs
             try
             {
                 Log.LogInfo("Reloading config file");
-                var saveOnConfig = configFile.SaveOnConfigSet;
-                configFile.SaveOnConfigSet = false;
+                var saveSetting = DisableSaveOnConfigSet();
                 configFile.Reload();
-                configFile.SaveOnConfigSet = saveOnConfig;
+                SaveOnConfigSet(saveSetting);
             }
             catch
             {
@@ -372,7 +394,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 Log.LogError("Please check your config entries for spelling and format!");
             }
             // run a single re-initialization to deal with all changed data
-            ReInitPlugin("Config settings changed, re-initializing");
+            ReInitPlugin("Configuration file changed, re-initializing", saveConfig: false);
         }
 
         internal static void CheckForConfigManager()
@@ -410,15 +432,26 @@ namespace MoreVanillaBuildPrefabs.Configs
         {
             PropertyInfo pi = configurationManager.GetType().GetProperty("DisplayingWindow");
             bool cmActive = (bool)pi.GetValue(configurationManager, null);
-            if (!cmActive) { Save(); }
+            if (!cmActive)
+            {
+                ReInitPlugin("Configuration changed in-game, re-initializing");
+            }
+        }
+
+        internal static void SetUpSyncManager()
+        {
+            SynchronizationManager.OnConfigurationSynchronized += (obj, attr) =>
+            {
+                // Save changes, this will also trigger the file watcher
+                Log.LogInfo("OnConfigurationSynchronized event");
+                ReInitPlugin("Configuration synced, re-initializing");
+            };
         }
 
         /// <summary>
         ///     Event hook to set whether a config entry
         ///     for a piece setting has been changed.
         /// </summary>
-        /// <param name="o"></param>
-        /// <param name="e"></param>
         internal static void PieceSettingChanged(object o, EventArgs e)
         {
             if (!UpdatePieceSettings) UpdatePieceSettings = true;
@@ -428,11 +461,18 @@ namespace MoreVanillaBuildPrefabs.Configs
         ///     Event hook to set whether a config entry
         ///     for placement patches has been changed.
         /// </summary>
-        /// <param name="o"></param>
-        /// <param name="e"></param>
         internal static void PlacementSettingChanged(object o, EventArgs e)
         {
             if (!UpdatePlacementSettings) UpdatePlacementSettings = true;
+        }
+
+        /// <summary>
+        ///     Event hook to set whether a config entry
+        ///     for general mod settings has been changed.
+        /// </summary>
+        internal static void ModSettingChanged(object o, EventArgs e)
+        {
+            if (!UpdateModSettings) UpdateModSettings = true;
         }
 
         /// <summary>
@@ -441,7 +481,7 @@ namespace MoreVanillaBuildPrefabs.Configs
         ///     settings have been changed for any of the config entries.
         /// </summary>
         /// <param name="msg"></param>
-        internal static void ReInitPlugin(string msg)
+        internal static void ReInitPlugin(string msg, bool saveConfig = true)
         {
             if (!InitManager.HasInitializedPrefabs) { return; }
 
@@ -493,7 +533,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     if (method != null)
                     {
                         var parameters = new string[] {
-                                "MoreVanillaBuildPrefabs updated, re-initializing extra snap points"
+                                "MVBP updated, re-initializing extra snap points"
                             };
                         method.Invoke(plugin, parameters);
                     }
@@ -506,6 +546,7 @@ namespace MoreVanillaBuildPrefabs.Configs
 
             UpdatePieceSettings = false;
             UpdatePlacementSettings = false;
+            if (saveConfig) { Save(); }
         }
 
         /// <summary>
@@ -522,14 +563,14 @@ namespace MoreVanillaBuildPrefabs.Configs
 
             foreach (var prefabName in InitManager.PrefabRefs.Keys)
             {
-                if (PieceConfigEntriesMap[prefabName].placementPatch == null)
+                if (PrefabDBConfigsMap[prefabName].placementPatch == null)
                 {
                     // No placement patch config entry means that prefab is already
                     // placed in the NeedsCollisionPatchForGhost HashSet by default
                     continue;
                 }
 
-                if (PieceConfigEntriesMap[prefabName].placementPatch.Value)
+                if (PrefabDBConfigsMap[prefabName].placementPatch.Value)
                 {
                     // config is true so add it if not already in HashSet
                     if (!NeedsCollisionPatchForGhost(prefabName))

@@ -1,11 +1,12 @@
-﻿using MoreVanillaBuildPrefabs.Logging;
+﻿// Ignore Spelling: MVBP
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using UnityEngine;
 
-namespace MoreVanillaBuildPrefabs
+namespace MVBP
 {
     internal static class PickableExtensions
     {

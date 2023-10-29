@@ -1,10 +1,11 @@
-﻿using Jotunn.Managers;
-using MoreVanillaBuildPrefabs.Logging;
+﻿// Ignore Spelling: MVBP
+
+using Jotunn.Managers;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace MoreVanillaBuildPrefabs.Helpers
+namespace MVBP.Helpers
 {
     internal class IconHelper : MonoBehaviour
     {

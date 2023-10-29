@@ -1,7 +1,9 @@
-﻿using HarmonyLib;
-using MoreVanillaBuildPrefabs.Helpers;
+﻿// Ignore Spelling: MVBP
 
-namespace MoreVanillaBuildPrefabs.Patches
+using HarmonyLib;
+using MVBP.Helpers;
+
+namespace MVBP.Patches
 {
     [HarmonyPatch(typeof(WearNTear))]
     internal class WearNTearPatch

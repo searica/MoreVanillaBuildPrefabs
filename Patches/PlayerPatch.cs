@@ -1,14 +1,15 @@
-﻿using HarmonyLib;
+﻿// Ignore Spelling: MVBP
+
+using HarmonyLib;
 using Jotunn.Managers;
-using MoreVanillaBuildPrefabs.Configs;
-using MoreVanillaBuildPrefabs.Helpers;
-using MoreVanillaBuildPrefabs.Logging;
+using MVBP.Configs;
+using MVBP.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Reflection.Emit;
 using UnityEngine;
 
-namespace MoreVanillaBuildPrefabs
+namespace MVBP
 {
     [HarmonyPatch(typeof(Player))]
     internal static class PlayerPatch
@@ -53,7 +54,7 @@ namespace MoreVanillaBuildPrefabs
             Quaternion rotation
         )
         {
-            if (PluginConfig.IsVerbosityMedium)
+            if (Config.IsVerbosityMedium)
             {
                 Log.LogInfo("PlacePieceInstantiateDelegate()");
             }
@@ -66,7 +67,7 @@ namespace MoreVanillaBuildPrefabs
                 if (container != null)
                 {
                     container.m_inventory.RemoveAll();
-                    if (PluginConfig.IsVerbosityMedium)
+                    if (Config.IsVerbosityMedium)
                     {
                         Log.LogInfo($"Emptied inventory for: {gameObject.name}");
                     }
@@ -133,7 +134,7 @@ namespace MoreVanillaBuildPrefabs
 
             if (
                 PieceHelper.AddedPrefabs.Contains(selectedPrefab.name)
-                && PluginConfig.NeedsCollisionPatchForGhost(selectedPrefab.name)
+                && Config.NeedsCollisionPatchForGhost(selectedPrefab.name)
                 )
             {
                 // Needed to make some things work, like Stalagmite, blackmarble_corner_stair, silvervein, etc.
@@ -204,7 +205,7 @@ namespace MoreVanillaBuildPrefabs
             if (PieceCategoryHelper.IsCreativeModePiece(piece) && !piece.IsCreator())
             {
                 // Allow Admins to deconstruct CreatorShop pieces built by other players if setting is enabled in config
-                if (PluginConfig.IsAdminDeconstructOtherPlayers && SynchronizationManager.Instance.PlayerIsAdmin)
+                if (Config.IsAdminDeconstructOtherPlayers && SynchronizationManager.Instance.PlayerIsAdmin)
                 {
                     __result = true;
                     return true;
@@ -284,7 +285,7 @@ namespace MoreVanillaBuildPrefabs
 
         private static void RemoveNonWearNTearPiece(Piece piece)
         {
-            if (PluginConfig.IsVerbosityMedium)
+            if (Config.IsVerbosityMedium)
             {
                 Log.LogInfo("RemoveNonWearNTearPiece");
             }

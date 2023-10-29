@@ -7,7 +7,7 @@ using UnityEngine;
  * Z = forward/back
  */
 
-namespace MoreVanillaBuildPrefabs.Helpers
+namespace MVBP.Helpers
 {
     internal class SnapPointHelper
     {

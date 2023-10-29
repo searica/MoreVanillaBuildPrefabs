@@ -1,8 +1,10 @@
-﻿using System;
+﻿// Ignore Spelling: MVBP
+
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace MoreVanillaBuildPrefabs.Helpers
+namespace MVBP.Helpers
 {
     internal class PrefabPatcher
     {

@@ -1,7 +1,9 @@
-﻿using Jotunn.Configs;
+﻿// Ignore Spelling: MVBP
+
+using Jotunn.Configs;
 using System.Collections.Generic;
 
-namespace MoreVanillaBuildPrefabs.Configs
+namespace MVBP.Configs
 {
     /* Want to try finding these prefabs:
      * MountainKit_int_wall_4x2
@@ -16,7 +18,7 @@ namespace MoreVanillaBuildPrefabs.Configs
      * SunkenKit_stair_corner_left
      */
 
-    internal class DefaultConfigs
+    internal class PrefabConfigs
     {
         internal static PrefabDB GetDefaultPieceDB(string prefab_name)
         {
@@ -460,6 +462,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     HammerCategories.Building,
                     nameof(CraftingStations.Stonecutter),
                     "BlackMarble,8",
+                    clipGround: true,
                     pieceGroup: PieceGroup.BlackMarble
                 )
             },
@@ -1046,6 +1049,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     HammerCategories.Building,
                     nameof(CraftingStations.Forge),
                     "Iron,4",
+                    clipGround: true,
                     pieceGroup: PieceGroup.Iron
                 )
             },
@@ -2470,7 +2474,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     false,
                     HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
-                    "IronScap,1",
+                    "IronScrap,1",
                     pieceGroup: PieceGroup.Ore
                 )
             },
@@ -3731,6 +3735,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     nameof(CraftingStations.Stonecutter),
                     "Stone,16",
                     pieceName: "Stone floor 4x4 (2)",
+                    clipGround: true,
                     pieceGroup: PieceGroup.Stone
                 )
             },

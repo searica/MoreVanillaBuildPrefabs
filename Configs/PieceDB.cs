@@ -1,6 +1,6 @@
-﻿using Jotunn.Configs;
+﻿// Ignore Spelling: MVBP
 
-namespace MoreVanillaBuildPrefabs.Configs
+namespace MVBP.Configs
 {
     internal class PieceDB : PrefabDB
     {
@@ -21,37 +21,6 @@ namespace MoreVanillaBuildPrefabs.Configs
             this.pieceName = prefabDB.pieceName;
             this.pieceDesc = prefabDB.pieceDesc;
             this.pieceGroup = prefabDB.pieceGroup;
-        }
-
-        public PieceDB(
-            string name,
-            Piece piece,
-            bool enabled = false,
-            bool allowedInDungeons = false,
-            string category = HammerCategories.CreatorShop,
-            string craftingStation = nameof(CraftingStations.None),
-            string requirements = null,
-            bool placementPatch = false,
-            bool clipEverything = false,
-            bool clipGround = false,
-            string pieceName = null,
-            string pieceDesc = null,
-            PieceGroup pieceGroup = default
-        )
-        {
-            this.name = name;
-            this.piece = piece;
-            this.enabled = enabled;
-            this.allowedInDungeons = allowedInDungeons;
-            this.category = category;
-            this.craftingStation = craftingStation;
-            this.requirements = requirements;
-            this.placementPatch = placementPatch;
-            this.clipEverything = clipEverything;
-            this.clipGround = clipGround;
-            this.pieceName = pieceName;
-            this.pieceDesc = pieceDesc;
-            this.pieceGroup = pieceGroup;
         }
     }
 }

@@ -1,8 +1,9 @@
-﻿using HarmonyLib;
-using MoreVanillaBuildPrefabs.Configs;
-using MoreVanillaBuildPrefabs.Logging;
+﻿// Ignore Spelling: MVBP
 
-namespace MoreVanillaBuildPrefabs
+using HarmonyLib;
+using MVBP.Configs;
+
+namespace MVBP
 {
     /// <summary>
     ///     Disables destruction drops for player built pieces.
@@ -22,7 +23,7 @@ namespace MoreVanillaBuildPrefabs
                 var piece = __instance.gameObject.GetComponent<Piece>();
                 if (piece != null && piece.IsPlacedByPlayer())
                 {
-                    if (PluginConfig.IsVerbosityMedium)
+                    if (Config.IsVerbosityMedium)
                     {
                         Log.LogInfo("Disabling on destroyed drops for player-built object");
                     }

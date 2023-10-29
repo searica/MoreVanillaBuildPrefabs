@@ -23,6 +23,18 @@
 		<Message Text="Copy succeeded" Importance="high" />
 	</Target>
 
+	<Target Name="CoppyDLLToServer" AfterTargets="CopyDLLToPlugins" Condition="'$(Configuration)' == 'Debug' And '$(CopyToServer)' == 'true'">
+		<Message Text="Copying DLL file to server" Importance="high" />
+		<MakeDir Directories="$(SERVER_DEPLOYPATH)\$(AssemblyName)" />
+		<Message Text="Copying $(TargetFileName) to $(SERVER_DEPLOYPATH)\$(AssemblyName)" Importance="high" />
+		<Copy SourceFiles="$(TargetPath)" DestinationFolder="$(SERVER_DEPLOYPATH)\$(AssemblyName)" />
+		<Message Text="Copying $(TargetFileName).mdb to $(SERVER_DEPLOYPATH)\$(AssemblyName)" Importance="high" Condition="Exists('$(TargetPath).mdb')" />
+		<Copy SourceFiles="$(TargetPath).mdb" DestinationFolder="$(SERVER_DEPLOYPATH)\$(AssemblyName)" Condition="Exists('$(TargetPath).mdb')" />
+		<Message Text="Copying $(AssemblyName).pdb to $(SERVER_DEPLOYPATH)\$(AssemblyName)" Importance="high" Condition="Exists('$(TargetDir)$(AssemblyName).pdb')" />
+		<Copy SourceFiles="$(TargetDir)$(AssemblyName).pdb" DestinationFolder="$(SERVER_DEPLOYPATH)\$(AssemblyName)" Condition="Exists('$(TargetDir)$(AssemblyName).pdb')" />
+		<Message Text="Copy succeeded" Importance="high" />
+	</Target>
+
 	<Target Name="CreateNexusPackage" AfterTargets="$(AfterTargets)" Condition="'$(Configuration)' == 'Release'">
 		<Message Text="Creating Nexus package" Importance="high" />
 		<MakeDir Directories="$(PublishDir)\Nexus" />

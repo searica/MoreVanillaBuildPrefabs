@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Reflection;
 
-namespace MoreVanillaBuildPrefabs.Helpers
+namespace MVBP.Helpers
 {
     internal static class ReflectionUtils
     {

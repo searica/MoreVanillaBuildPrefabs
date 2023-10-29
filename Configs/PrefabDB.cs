@@ -1,7 +1,9 @@
-﻿using Jotunn.Configs;
+﻿// Ignore Spelling: MVBP
+
+using Jotunn.Configs;
 using UnityEngine;
 
-namespace MoreVanillaBuildPrefabs.Configs
+namespace MVBP.Configs
 {
     internal class PrefabDB
     {

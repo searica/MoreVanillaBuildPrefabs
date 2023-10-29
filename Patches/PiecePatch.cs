@@ -1,13 +1,13 @@
-﻿using HarmonyLib;
-using MoreVanillaBuildPrefabs.Configs;
-using MoreVanillaBuildPrefabs.Helpers;
-using MoreVanillaBuildPrefabs.Logging;
+﻿// Ignore Spelling: MVBP
+
+using HarmonyLib;
+using MVBP.Configs;
+using MVBP.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Reflection.Emit;
-using static MoreVanillaBuildPrefabs.InitManager;
 
-namespace MoreVanillaBuildPrefabs
+namespace MVBP
 {
     [HarmonyPatch(typeof(Piece))]
     internal class PiecePatch
@@ -85,13 +85,13 @@ namespace MoreVanillaBuildPrefabs
         {
             // Only interact if it is a piece added by this mod or
             // the prefab has previously had it's resources altered by the mod
-            if (PluginConfig.IsVerbosityMedium)
+            if (Config.IsVerbosityMedium)
             {
                 Log.LogInfo("DropResources_m_resources_Delegate()");
             }
             string prefabName = piece.name.RemoveSuffix("(Clone)");
 
-            if (!IsPatchedByMod(prefabName))
+            if (!InitManager.IsPatchedByMod(prefabName))
             {
                 // do nothing it not a piece the mod changes
                 return piece.m_resources;
@@ -100,14 +100,14 @@ namespace MoreVanillaBuildPrefabs
             // Set resources to defaults is piece is not placed by player
             // or disable destruction drops if it is placed by player
             var resources = Array.Empty<Piece.Requirement>();
-            if (DefaultPieceClones.ContainsKey(prefabName))
+            if (InitManager.DefaultPieceClones.ContainsKey(prefabName))
             {
                 if (!piece.IsPlacedByPlayer())
                 {
-                    if (DefaultPieceClones[prefabName].m_resources != null)
+                    if (InitManager.DefaultPieceClones[prefabName].m_resources != null)
                     {
                         // set to default resources for world-generated pieces
-                        resources = DefaultPieceClones[prefabName].m_resources;
+                        resources = InitManager.DefaultPieceClones[prefabName].m_resources;
                     }
                 }
                 else

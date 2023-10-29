@@ -1,14 +1,15 @@
-﻿using Jotunn.Configs;
+﻿// Ignore Spelling: MVBP
+
+using Jotunn.Configs;
 using Jotunn.Managers;
-using MoreVanillaBuildPrefabs.Configs;
-using MoreVanillaBuildPrefabs.Helpers;
-using MoreVanillaBuildPrefabs.Logging;
+using MVBP.Configs;
+using MVBP.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace MoreVanillaBuildPrefabs
+namespace MVBP
 {
     internal class InitManager
     {
@@ -69,14 +70,10 @@ namespace MoreVanillaBuildPrefabs
                     continue;
                 }
 
-                if (PluginConfig.IsVerbosityHigh)
+                if (Config.IsVerbosityHigh)
                 {
                     Log.LogInfo("Initialize '" + prefab.name + "'");
-                    Log.LogInfo($"  - Has piece component: {prefab.GetComponent<Piece>() != null}");
-                    foreach (Component compo in prefab.GetComponents<Component>())
-                    {
-                        Log.LogInfo("  - " + compo.GetType().Name);
-                    }
+                    Log.LogPrefab(prefab);
                 }
 
                 // Always patch prefabs. Only runs once this way
@@ -134,7 +131,7 @@ namespace MoreVanillaBuildPrefabs
                 }
             }
 
-            if (PluginConfig.IsVerbosityMedium)
+            if (Config.IsVerbosityMedium)
             {
                 Log.LogInfo("Initializing default icons");
             }
@@ -197,7 +194,7 @@ namespace MoreVanillaBuildPrefabs
                 newPieceRefs.Add(
                     prefab.name,
                     new PieceDB(
-                        PluginConfig.LoadPrefabDB(prefab),
+                        Config.LoadPrefabDB(prefab),
                         prefab.GetComponent<Piece>()
                     )
                 );
@@ -233,20 +230,20 @@ namespace MoreVanillaBuildPrefabs
             foreach (var pieceDB in PieceRefs.Values)
             {
                 // Check if piece is enabled by the mod
-                if (!pieceDB.enabled && !PluginConfig.IsForceAllPrefabs)
+                if (!pieceDB.enabled && !Config.IsForceAllPrefabs)
                 {
                     continue;
                 }
 
                 // Prevent adding creative mode pieces if not in CreativeMode
-                if (!PluginConfig.IsCreativeMode
+                if (!Config.IsCreativeMode
                     && PieceCategoryHelper.IsCreativeModePiece(pieceDB.piece))
                 {
                     continue;
                 }
 
                 // Only add vanilla crops if enabled
-                if (!PluginConfig.IsEnableHammerCrops
+                if (!Config.IsEnableHammerCrops
                     && pieceDB.pieceGroup == PieceGroup.VanillaCrop)
                 {
                     continue;
@@ -260,7 +257,7 @@ namespace MoreVanillaBuildPrefabs
                 }
 
                 // Restrict placement of CreatorShop pieces to Admins only
-                if (PluginConfig.IsCreatorShopAdminOnly
+                if (Config.IsCreatorShopAdminOnly
                     && PieceCategoryHelper.IsCreatorShopPiece(pieceDB.piece)
                     && !SynchronizationManager.Instance.PlayerIsAdmin)
                 {

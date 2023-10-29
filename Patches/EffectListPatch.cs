@@ -1,6 +1,8 @@
-﻿using HarmonyLib;
+﻿// Ignore Spelling: MVBP
 
-namespace MoreVanillaBuildPrefabs.Patches
+using HarmonyLib;
+
+namespace MVBP.Patches
 {
     [HarmonyPatch(typeof(EffectList))]
     internal static class EffectListPatch

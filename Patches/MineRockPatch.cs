@@ -1,8 +1,9 @@
-﻿using HarmonyLib;
-using MoreVanillaBuildPrefabs.Configs;
-using MoreVanillaBuildPrefabs.Logging;
+﻿// Ignore Spelling: MVBP
 
-namespace MoreVanillaBuildPrefabs.Patches
+using HarmonyLib;
+using MVBP.Configs;
+
+namespace MVBP.Patches
 {
     [HarmonyPatch(typeof(MineRock))]
     internal class MineRockPatch
@@ -18,7 +19,7 @@ namespace MoreVanillaBuildPrefabs.Patches
         [HarmonyPatch(nameof(MineRock.UpdateVisability))]
         private static bool UpdateVisabilityPrefix(MineRock __instance)
         {
-            if (PluginConfig.IsVerbosityMedium)
+            if (Config.IsVerbosityMedium)
             {
                 Log.LogInfo("MineRock.UpdateVisability patch");
             }

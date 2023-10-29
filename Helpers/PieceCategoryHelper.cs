@@ -1,9 +1,8 @@
 ﻿using Jotunn.Configs;
 using Jotunn.Managers;
-using MoreVanillaBuildPrefabs.Configs;
-using MoreVanillaBuildPrefabs.Logging;
+using MVBP.Configs;
 
-namespace MoreVanillaBuildPrefabs.Helpers
+namespace MVBP.Helpers
 {
     internal class PieceCategoryHelper
     {
@@ -15,7 +14,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
             if (PieceManager.Instance.GetPieceCategory(HammerCategories.Nature) == null
                 || PieceManager.Instance.GetPieceCategory(HammerCategories.CreatorShop) == null)
             {
-                if (PluginConfig.IsVerbosityMedium)
+                if (Config.IsVerbosityMedium)
                 {
                     Log.LogInfo("Adding custom piece categories");
                 }
@@ -26,7 +25,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
 
         internal static void RemoveCreatorShopPieceCategory()
         {
-            if (PluginConfig.IsVerbosityMedium)
+            if (Config.IsVerbosityMedium)
             {
                 Log.LogInfo("Removing custom piece categories");
             }

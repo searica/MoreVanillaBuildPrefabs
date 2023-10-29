@@ -1,9 +1,11 @@
-﻿using MoreVanillaBuildPrefabs.Configs;
+﻿// Ignore Spelling: MVBP
+
+using MVBP.Configs;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using UnityEngine;
 
-namespace MoreVanillaBuildPrefabs.Helpers
+namespace MVBP.Helpers
 {
     internal class NameHelper
     {

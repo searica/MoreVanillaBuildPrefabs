@@ -1,9 +1,10 @@
-﻿using HarmonyLib;
-using MoreVanillaBuildPrefabs.Configs;
-using MoreVanillaBuildPrefabs.Logging;
+﻿// Ignore Spelling: MVBP
+
+using HarmonyLib;
+using MVBP.Configs;
 using UnityEngine.SceneManagement;
 
-namespace MoreVanillaBuildPrefabs.Patches
+namespace MVBP.Patches
 {
     [HarmonyPatch(typeof(ZNet))]
     internal class ZNetPatch
@@ -17,7 +18,7 @@ namespace MoreVanillaBuildPrefabs.Patches
         [HarmonyPatch(nameof(ZNet.Start))]
         public static void ZNetStartPostfix()
         {
-            if (PluginConfig.IsVerbosityMedium)
+            if (Config.IsVerbosityMedium)
             {
                 Log.LogInfo("Checking world modifiers");
             }
@@ -38,7 +39,7 @@ namespace MoreVanillaBuildPrefabs.Patches
                 Log.LogInfo("World modifiers for resource rate are active, re-initializing");
 
                 var watch = new System.Diagnostics.Stopwatch();
-                if (PluginConfig.IsVerbosityMedium)
+                if (Config.IsVerbosityMedium)
                 {
                     watch.Start();
                 }
@@ -47,7 +48,7 @@ namespace MoreVanillaBuildPrefabs.Patches
                 InitManager.InitPieces();
                 InitManager.InitHammer();
 
-                if (PluginConfig.IsVerbosityMedium)
+                if (Config.IsVerbosityMedium)
                 {
                     watch.Stop();
                     Log.LogInfo($"Time to re-initialize: {watch.ElapsedMilliseconds} ms");

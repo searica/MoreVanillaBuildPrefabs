@@ -1,6 +1,8 @@
-﻿using BepInEx.Configuration;
+﻿// Ignore Spelling: MVBP
 
-namespace MoreVanillaBuildPrefabs.Configs
+using BepInEx.Configuration;
+
+namespace MVBP.Configs
 {
     /// <summary>
     ///     Helper class to get the names of hammer piece categories for this mod.

@@ -176,6 +176,8 @@ The AdminDeconstructOtherPlayers setting can allow players with admin status to 
 
 **Detecting Prefabs from other Mods**: MVBP is able to detect prefabs added by other mods. It is possible to enable and configure those prefabs much like the Vanilla prefabs added by MVBP. In some cases, prefabs from other mods can cause issues, though it is uncommon. As a general rule, I also will not patch or support issues regarding prefabs from other mods as I do not have access to the assets from other mods.
 
+**Config Changes on Dedicated Server**: Configuration changes made to a dedicated server using an in-game configuration manager do persist after logging out and re-connecting  but they are not saved to disk on the server until the server is shut down. Currently working on a fix.
+
 ## Planned Improvements
 - Resolve known issues.
 - Patch and enable more prefabs by default.

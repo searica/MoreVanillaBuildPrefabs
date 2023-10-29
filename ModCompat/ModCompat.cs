@@ -1,6 +1,6 @@
 ﻿using BepInEx.Bootstrap;
 
-namespace MoreVanillaBuildPrefabs
+namespace MVBP
 {
     internal class ModCompat
     {

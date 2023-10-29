@@ -6,10 +6,14 @@
 
 		<!-- Needs to be your path to the base Valheim folder -->
 		<VALHEIM_INSTALL Condition="!Exists('$(VALHEIM_INSTALL)')">c:\Program Files (x86)\Steam\steamapps\common\Valheim</VALHEIM_INSTALL>
+		<VALHEIM_SERVER Condition="!Exists('$(VALHEIM_SERVERR)')">C:\Program Files (x86)\Steam\steamapps\common\Valheim dedicated server</VALHEIM_SERVER>
 
 		<!-- This is the folder where your build gets copied to when using the post-build automations -->
 		<r2ModManPath>$(AppData)\r2modmanPlus-local\Valheim\profiles</r2ModManPath>
 		<BepInExPath>$(r2ModManPath)\Mod-Debug\BepInEx</BepInExPath>
 		<MOD_DEPLOYPATH>$(r2ModManPath)\Mod-Debug\BepInEx\plugins</MOD_DEPLOYPATH>
+		<SERVER_DEPLOYPATH>$(VALHEIM_SERVER)\BepInEx\plugins</SERVER_DEPLOYPATH>
+
+		<CopyToServer>true</CopyToServer>
 	</PropertyGroup>
 </Project>

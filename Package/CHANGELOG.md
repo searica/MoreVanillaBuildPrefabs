@@ -8,10 +8,20 @@
 			<th align="center">Notes</th>
 		</tr>
 		<tr>
+			<td align="center">0.4.8</td>
+			<td align="left">
+				<ul>
+					<li>Configuration changes made in-game will now persist properly after logging out.</li>
+					<li>Sped up re-initialization slightly.</li>
+					<li>Update README with known issues</li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
 			<td align="center">0.4.7</td>
 			<td align="left">
 				<ul>
-					<li>Hotfix to prevent infinite re-initialization loop in multiplayer. Turns out that even if I test with a dedicated server, some bugs only show up with multiple clients.</li>
+					<li>Hotfix to prevent infinite re-initialization loop in multi-player. Turns out that even if I test with a dedicated server, some bugs only show up with multiple clients.</li>
 				</ul>
 			</td>
 		</tr>

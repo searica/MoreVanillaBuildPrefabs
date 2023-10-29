@@ -1,13 +1,14 @@
-﻿using Jotunn.Configs;
+﻿// Ignore Spelling: MVBP
+
+using Jotunn.Configs;
 using Jotunn.Managers;
-using MoreVanillaBuildPrefabs.Configs;
-using MoreVanillaBuildPrefabs.Logging;
+using MVBP.Configs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace MoreVanillaBuildPrefabs.Helpers
+namespace MVBP.Helpers
 {
     internal class PieceHelper
     {
@@ -106,7 +107,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
                     piece.m_onlyInTeleportArea = false;
                     piece.m_allowedInDungeons = false;
                     piece.m_clipEverything = false;
-                    piece.m_clipGround = PluginConfig.CanClipGround(prefab.name);
+                    piece.m_clipGround = false;
                     piece.m_allowRotatedOverlap = true;
                     piece.m_repairPiece = false; // setting to true prevents placement
                     piece.m_onlyInBiome = Heightmap.Biome.None;
@@ -114,7 +115,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
                     // to prevent deconstruction of pieces that are not enabled by the mod
                     piece.m_canBeRemoved = false;
 
-                    if (PluginConfig.IsVerbosityHigh)
+                    if (Config.IsVerbosityHigh)
                     {
                         Log.LogInfo($"Created Piece component for: {prefab.name}");
                     }
@@ -141,7 +142,9 @@ namespace MoreVanillaBuildPrefabs.Helpers
                 pieceDB.allowedInDungeons,
                 pieceCategory,
                 GetCraftingStation(pieceDB.craftingStation),
-                ConfigurePieceRequirements(pieceDB)
+                ConfigurePieceRequirements(pieceDB),
+                pieceDB.clipEverything,
+                pieceDB.clipGround
             );
         }
 
@@ -170,7 +173,9 @@ namespace MoreVanillaBuildPrefabs.Helpers
             bool allowedInDungeons,
             Piece.PieceCategory category,
             CraftingStation craftingStation,
-            Piece.Requirement[] requirements
+            Piece.Requirement[] requirements,
+            bool clipEverything,
+            bool clipGround
         )
         {
             piece.m_name = name;
@@ -179,7 +184,8 @@ namespace MoreVanillaBuildPrefabs.Helpers
             piece.m_category = category;
             piece.m_craftingStation = craftingStation;
             piece.m_resources = requirements;
-            piece.m_clipEverything = PluginConfig.CanClipEverything(piece.name);
+            piece.m_clipEverything = clipEverything;
+            piece.m_clipGround = clipGround;
             return piece;
         }
 
@@ -237,7 +243,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
 
             AddedPrefabs.Add(prefab.name);
 
-            if (PluginConfig.IsVerbosityHigh)
+            if (Config.IsVerbosityHigh)
             {
                 Log.LogInfo($"Added Piece {piece.m_name} to PieceTable {pieceTable.name}");
             }
@@ -285,7 +291,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
         /// <param name="pieceTableName"></param>
         internal static void RemoveAllCustomPiecesFromPieceTable(string pieceTableName)
         {
-            if (PluginConfig.IsVerbosityMedium)
+            if (Config.IsVerbosityMedium)
             {
                 Log.LogInfo("RemoveAllCustomPiecesFromPieceTable()");
             }
@@ -303,7 +309,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
             {
                 RemovePieceFromPieceTable(name, pieceTable);
             }
-            if (PluginConfig.IsVerbosityMedium)
+            if (Config.IsVerbosityMedium)
             {
                 Log.LogInfo($"Removed {numCustomPieces - AddedPrefabs.Count} custom pieces");
             }
@@ -355,7 +361,7 @@ namespace MoreVanillaBuildPrefabs.Helpers
             }
             catch (Exception e)
             {
-                if (PluginConfig.IsVerbosityMedium)
+                if (Config.IsVerbosityMedium)
                 {
                     Log.LogInfo($"{prefab.name}: {e}");
                 }

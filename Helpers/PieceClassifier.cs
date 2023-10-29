@@ -1,10 +1,10 @@
-﻿using MoreVanillaBuildPrefabs.Configs;
+﻿using MVBP.Configs;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace MoreVanillaBuildPrefabs.Helpers
+namespace MVBP.Helpers
 {
     /// <summary>
     ///     IEnumerable that has a list of prefabs for each PieceGroup

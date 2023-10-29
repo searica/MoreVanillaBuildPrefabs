@@ -1,4 +1,6 @@
-﻿namespace MoreVanillaBuildPrefabs.Configs
+﻿// Ignore Spelling: MVBP
+
+namespace MVBP.Configs
 {
     internal enum PieceGroup
     {
