@@ -36,6 +36,7 @@ namespace MoreVanillaBuildPrefabs
         private static bool HasInitializedPrefabs => PrefabRefs.Count > 0;
         internal static bool UpdatePieceSettings { get; set; } = false;
         internal static bool UpdatePlacementSettings { get; set; } = false;
+        internal static bool UpdateClippingSettings { get; set; } = false;
 
         public void Awake()
         {
@@ -348,6 +349,17 @@ namespace MoreVanillaBuildPrefabs
         }
 
         /// <summary>
+        ///     Event hook to set whether a config entry
+        ///     for placement patches has been changed.
+        /// </summary>
+        /// <param name="o"></param>
+        /// <param name="e"></param>
+        internal static void ClippingSettingChanged(object o, EventArgs e)
+        {
+            if (!UpdateClippingSettings) UpdateClippingSettings = true;
+        }
+
+        /// <summary>
         ///     Method to re-initialize the plugin when the configuration
         ///     has been updated based on whether the piece or placement
         ///     settings have been changed for any of the config entries.
@@ -370,17 +382,19 @@ namespace MoreVanillaBuildPrefabs
                 }
 
                 Log.LogInfo(msg);
-
-                if (UpdatePlacementSettings)
+                if (UpdateClippingSettings)
                 {
-                    UpdateNeedsCollisionPatch();
+                    UpdateClipping();
                 }
-
                 if (UpdatePieceSettings)
                 {
                     InitPieceRefs();
                     InitPieces();
                     InitHammer();
+                }
+                if (UpdatePlacementSettings)
+                {
+                    UpdateNeedsCollisionPatch();
                 }
 
                 if (PluginConfig.IsVerbosityMedium)
@@ -393,7 +407,6 @@ namespace MoreVanillaBuildPrefabs
                     Log.LogInfo("Re-initializing complete");
                 }
 
-                // Only re-init snap points if pieces changed
                 if (ModCompat.IsExtraSnapPointsMadeEasyInstalled && UpdatePieceSettings)
                 {
                     var plugin = Chainloader.PluginInfos[ModCompat.ExtraSnapPointsMadeEasyGUID].Instance;
@@ -414,12 +427,12 @@ namespace MoreVanillaBuildPrefabs
                         }
                     }
                 }
-
                 if (ModCompat.IsPlanBuildInstalled)
                 {
                     // do nothing at the moment
                 }
 
+                UpdateClippingSettings = false;
                 UpdatePieceSettings = false;
                 UpdatePlacementSettings = false;
             }

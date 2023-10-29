@@ -316,6 +316,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     AcceptableBoolValuesList
                 );
                 pieceConfigEntries.clipEverything.SettingChanged += PieceSettingChanged;
+                pieceConfigEntries.clipEverything.SettingChanged += ClippingSettingChanged;
                 defaultPieceDB.clipEverything = pieceConfigEntries.clipEverything.Value;
             }
             if (defaultPieceDB.clipEverything) { _ClipEverything.Add(prefab.name); }
@@ -331,6 +332,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                     AcceptableBoolValuesList
                 );
                 pieceConfigEntries.clipGround.SettingChanged += PieceSettingChanged;
+                pieceConfigEntries.clipGround.SettingChanged += ClippingSettingChanged;
                 defaultPieceDB.clipGround = pieceConfigEntries.clipGround.Value;
             }
             if (defaultPieceDB.clipGround) { _ClipGround.Add(prefab.name); }
