@@ -434,7 +434,6 @@ namespace MoreVanillaBuildPrefabs
                 {
                     // do nothing at the moment
                 }
-                PluginConfig.Save();
             }
         }
 

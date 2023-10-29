@@ -369,7 +369,7 @@ namespace MoreVanillaBuildPrefabs.Configs
                 Log.LogError("Please check your config entries for spelling and format!");
             }
             // run a single re-initialization to deal with all changed data
-            ReInitPlugin("Config settings reloaded from file, re-initializing");
+            ReInitPlugin("Config settings changed, re-initializing");
         }
 
         internal static void CheckForConfigManager()
@@ -408,13 +408,13 @@ namespace MoreVanillaBuildPrefabs.Configs
 
         private static void OnConfigManagerDisplayingWindowChanged(object sender, object e)
         {
-            //Jotunn.Logger.LogDebug("OnConfigManagerDisplayingWindowChanged recieved.");
             PropertyInfo pi = configurationManager.GetType().GetProperty("DisplayingWindow");
             bool cmActive = (bool)pi.GetValue(configurationManager, null);
 
             if (!cmActive)
             {
-                ReInitPlugin("Config settings changed via in-game manager, re-initializing");
+                PluginConfig.Save();
+                //ReInitPlugin("Config settings changed via in-game manager, re-initializing");
             }
         }
     }
