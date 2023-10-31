@@ -1,10 +1,9 @@
 ﻿// Ignore Spelling: MVBP
 
 using HarmonyLib;
-
 using MVBP.Configs;
-using MVBP.Helpers;
 using MVBP.Extensions;
+using MVBP.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Reflection.Emit;

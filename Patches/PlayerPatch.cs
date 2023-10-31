@@ -4,7 +4,6 @@ using HarmonyLib;
 using Jotunn.Managers;
 using MVBP.Configs;
 using MVBP.Helpers;
-using MVBP.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Reflection.Emit;

@@ -1,11 +1,11 @@
 ﻿// Ignore Spelling: MVBP
 
+using MVBP.Configs;
+using MVBP.Extensions;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using MVBP.Configs;
-using MVBP.Extensions;
 
 namespace MVBP.Helpers
 {
