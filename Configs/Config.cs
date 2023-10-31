@@ -527,16 +527,11 @@ namespace MVBP.Configs
                     MethodInfo method = ReflectionUtils.GetMethod(
                         plugin.GetType(),
                         "ReInitExtraSnapPoints",
-                        new Type[] { typeof(string) }
+                        Type.EmptyTypes
                     );
 
-                    if (method != null)
-                    {
-                        var parameters = new string[] {
-                                "MVBP updated, re-initializing extra snap points"
-                            };
-                        method.Invoke(plugin, parameters);
-                    }
+                    // Invoke if not null
+                    method?.Invoke(plugin, Array.Empty<object>());
                 }
             }
             if (UpdatePieceSettings && ModCompat.IsPlanBuildInstalled)
