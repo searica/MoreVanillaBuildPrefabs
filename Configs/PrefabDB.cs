@@ -1,8 +1,8 @@
 ﻿// Ignore Spelling: MVBP
 
 using Jotunn.Configs;
-using MoreVanillaBuildPrefabs.Helpers;
 using UnityEngine;
+using MVBP.Helpers;
 
 namespace MVBP.Configs
 {

@@ -1,8 +1,10 @@
 ﻿// Ignore Spelling: MVBP
 
 using HarmonyLib;
-using MoreVanillaBuildPrefabs.Helpers;
+
 using MVBP.Configs;
+using MVBP.Extensions;
+using MVBP.Helpers;
 
 namespace MVBP
 {

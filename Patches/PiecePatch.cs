@@ -1,9 +1,10 @@
 ﻿// Ignore Spelling: MVBP
 
 using HarmonyLib;
-using MoreVanillaBuildPrefabs.Helpers;
+
 using MVBP.Configs;
 using MVBP.Helpers;
+using MVBP.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Reflection.Emit;

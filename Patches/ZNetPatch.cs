@@ -1,8 +1,8 @@
 ﻿// Ignore Spelling: MVBP
 
 using HarmonyLib;
-using MoreVanillaBuildPrefabs.Helpers;
 using MVBP.Configs;
+using MVBP.Helpers;
 using UnityEngine.SceneManagement;
 
 namespace MVBP.Patches
