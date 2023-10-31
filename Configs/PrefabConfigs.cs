@@ -39,7 +39,8 @@ namespace MVBP.Configs
                     false,
                     HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
-                    "TrophySkeleton,32"
+                    "BlackMarble,100"
+
                 )
             },
             {
@@ -389,6 +390,7 @@ namespace MVBP.Configs
                     nameof(CraftingStations.Stonecutter),
                     "BlackMarble,32",
                     pieceName: "Black marble floor 8x8",
+                    clipGround: true,
                     pieceGroup: PieceGroup.BlackMarble
                 )
             },
@@ -1526,7 +1528,7 @@ namespace MVBP.Configs
                     false,
                     HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
-                    ""
+                    "WolfHairBundle,2"
                 )
             },
             {
@@ -1537,7 +1539,7 @@ namespace MVBP.Configs
                     false,
                     HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
-                    ""
+                    "WolfHairBundle,2"
                 )
             },
             {
@@ -1661,7 +1663,7 @@ namespace MVBP.Configs
                     false,
                     HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
-                    ""
+                    "Crystal,24"
                 )
             },
             {
@@ -1683,7 +1685,8 @@ namespace MVBP.Configs
                     false,
                     HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
-                    "BlackMarble,32"
+                    "BlackMarble,32",
+                    clipEverything: true
                 )
             },
             {
@@ -1694,7 +1697,8 @@ namespace MVBP.Configs
                     false,
                     HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
-                    ""
+                    "SoftTissue,64",
+                    clipEverything: true
                 )
             },
             {
@@ -1705,7 +1709,8 @@ namespace MVBP.Configs
                     false,
                     HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
-                    "Iron,32"
+                    "Iron,32",
+                    clipEverything: true
                 )
             },
             {
@@ -1716,7 +1721,8 @@ namespace MVBP.Configs
                     false,
                     HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
-                    "Iron,8"
+                    "Iron,8",
+                    clipEverything: true
                 )
             },
             {
@@ -1727,7 +1733,8 @@ namespace MVBP.Configs
                     false,
                     HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
-                    "BlackMarble,64"
+                    "BlackMarble,64",
+                    clipEverything: true
                 )
             },
             {
@@ -1738,7 +1745,8 @@ namespace MVBP.Configs
                     false,
                     HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
-                    "BlackMarble,32"
+                    "BlackMarble,32",
+                    clipEverything: true
                 )
             },
             {
@@ -1749,7 +1757,8 @@ namespace MVBP.Configs
                     false,
                     HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
-                    "Iron,16"
+                    "Iron,16",
+                    clipEverything: true
                 )
             },
             {
@@ -1760,7 +1769,8 @@ namespace MVBP.Configs
                     false,
                     HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
-                    "Iron,16"
+                    "Iron,16",
+                    clipEverything: true
                 )
             },
             {
@@ -1862,7 +1872,7 @@ namespace MVBP.Configs
                 )
             },
             {
-                "goblin_roof_cap",
+                "goblin_roof_cap", // TODO: needs custom placement patching
                 new PrefabDB(
                     "goblin_roof_cap",
                     true,
@@ -1870,6 +1880,7 @@ namespace MVBP.Configs
                     HammerCategories.Building,
                     nameof(CraftingStations.Workbench),
                     "Wood,4;DeerHide,4;Tar,1",
+                    clipEverything: true,
                     pieceGroup: PieceGroup.Goblin
                 )
             },
@@ -2002,7 +2013,9 @@ namespace MVBP.Configs
                     false,
                     HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
-                    ""
+                    "Guck,12",
+                    clipEverything: true
+
                 )
             },
             {
@@ -2013,7 +2026,8 @@ namespace MVBP.Configs
                     false,
                     HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
-                    ""
+                    "Guck,6",
+                    clipEverything:true
                 )
             },
             {
@@ -2073,7 +2087,8 @@ namespace MVBP.Configs
                     false,
                     HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
-                    ""
+                    "",
+                    clipEverything: true
                 )
             },
             {
@@ -2282,7 +2297,8 @@ namespace MVBP.Configs
                     false,
                     HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
-                    "Stone,10"
+                    "Stone,10",
+                    clipEverything: true
                 )
             },
             {
@@ -2389,7 +2405,8 @@ namespace MVBP.Configs
                     false,
                     HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
-                    "IronScrap,10"
+                    "IronScrap,10",
+                    clipEverything: true
                 )
             },
             {
@@ -2475,6 +2492,7 @@ namespace MVBP.Configs
                     HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
                     "IronScrap,1",
+                    clipEverything: true,
                     pieceGroup: PieceGroup.Ore
                 )
             },
@@ -2536,7 +2554,8 @@ namespace MVBP.Configs
                     false,
                     HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
-                    "DragonEgg,1"
+                    "DragonEgg,1",
+                    clipEverything: true
                 )
             },
             {
@@ -2547,7 +2566,8 @@ namespace MVBP.Configs
                     false,
                     HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
-                    ""
+                    "",
+                    clipEverything: true
                 )
             },
             {
@@ -2559,6 +2579,7 @@ namespace MVBP.Configs
                     HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
                     "",
+                    clipEverything: true,
                     pieceGroup: PieceGroup.Treasure
                 )
             },
@@ -2571,6 +2592,7 @@ namespace MVBP.Configs
                     HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
                     "",
+                    clipEverything: true,
                     pieceGroup: PieceGroup.Treasure
                 )
             },
@@ -2583,6 +2605,7 @@ namespace MVBP.Configs
                     HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
                     "",
+                    clipEverything: true,
                     pieceGroup: PieceGroup.Treasure
                 )
             },
@@ -2620,6 +2643,7 @@ namespace MVBP.Configs
                     HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
                     "",
+                    clipEverything: true,
                     pieceGroup: PieceGroup.Treasure
                 )
             },
@@ -2632,6 +2656,7 @@ namespace MVBP.Configs
                     HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
                     "",
+                    clipEverything: true,
                     pieceGroup: PieceGroup.Treasure
                 )
             },
@@ -2644,6 +2669,7 @@ namespace MVBP.Configs
                     HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
                     "",
+                    clipEverything: true,
                     pieceGroup: PieceGroup.Treasure
                 )
             },
@@ -2656,6 +2682,7 @@ namespace MVBP.Configs
                     HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
                     "",
+                    clipEverything: true,
                     pieceGroup: PieceGroup.Treasure
                 )
             },
@@ -2705,6 +2732,7 @@ namespace MVBP.Configs
                     HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
                     "",
+                    clipEverything: true,
                     pieceGroup: PieceGroup.Treasure
                 )
             },
@@ -2717,6 +2745,7 @@ namespace MVBP.Configs
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     "",
+                    clipEverything: true,
                     pieceGroup: PieceGroup.Ore
                 )
             },
@@ -2753,6 +2782,7 @@ namespace MVBP.Configs
                     HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
                     "",
+                    clipEverything: true,
                     pieceGroup: PieceGroup.Treasure
                 )
             },
@@ -2956,6 +2986,7 @@ namespace MVBP.Configs
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     "Thistle,5",
+                    clipEverything: true,
                     pieceGroup: PieceGroup.Plant
                 )
             },
@@ -2968,6 +2999,7 @@ namespace MVBP.Configs
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     "TinOre,1",
+                    clipEverything: true,
                     pieceGroup: PieceGroup.Ore
                 )
             },
@@ -3196,7 +3228,7 @@ namespace MVBP.Configs
                     nameof(CraftingStations.None),
                     "",
                     clipEverything: true,
-                    pieceName: "Rock (black, large)",
+                    pieceName: "Rock (large boulder)",
                     pieceGroup: PieceGroup.Rock
                 )
             },
@@ -3377,7 +3409,8 @@ namespace MVBP.Configs
                     false,
                     HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
-                    "Stone,350"
+                    "Stone,350",
+                    clipEverything: true
                 )
             },
             {
@@ -3388,7 +3421,8 @@ namespace MVBP.Configs
                     false,
                     HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
-                    "Stone,175"
+                    "Stone,175",
+                    clipEverything: true
                 )
             },
             {
@@ -3412,7 +3446,8 @@ namespace MVBP.Configs
                     false,
                     HammerCategories.CreatorShop,
                     nameof(CraftingStations.None),
-                    "Stone,200"
+                    "Stone,200",
+                    clipEverything: true
                 )
             },
             {
@@ -3620,7 +3655,8 @@ namespace MVBP.Configs
                     false,
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
-                    "",
+                    "Stone,50",
+                    clipEverything: true,
                     pieceGroup: PieceGroup.Ore
                 )
             },
@@ -3722,6 +3758,7 @@ namespace MVBP.Configs
                     nameof(CraftingStations.Stonecutter),
                     "Stone,16",
                     pieceName: "Stone floor 4x4",
+                    clipGround: true,
                     pieceGroup: PieceGroup.Stone
                 )
             },
@@ -3850,6 +3887,7 @@ namespace MVBP.Configs
                     HammerCategories.Nature,
                     nameof(CraftingStations.None),
                     "ElderBark,32",
+                    clipEverything: true,
                     pieceGroup: PieceGroup.Flora
                 )
             },
