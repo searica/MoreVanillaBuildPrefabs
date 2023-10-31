@@ -84,18 +84,19 @@ namespace MVBP
         /// <param name="piece"></param>
         private static Piece.Requirement[] DropResources_m_resources_Delegate(Piece piece)
         {
-            // Only interact if it is a piece added by this mod or
-            // the prefab has previously had it's resources altered by the mod
-            if (Config.IsVerbosityMedium)
-            {
-                Log.LogInfo("DropResources_m_resources_Delegate()");
-            }
             string prefabName = piece.name.RemoveSuffix("(Clone)");
 
             if (!InitManager.IsPatchedByMod(prefabName))
             {
                 // do nothing it not a piece the mod changes
                 return piece.m_resources;
+            }
+
+            // Only interact if it is a piece added by this mod or
+            // the prefab has previously had it's resources altered by the mod
+            if (Config.IsVerbosityMedium)
+            {
+                Log.LogInfo("Dropping resources for MVBP piece");
             }
 
             // Set resources to defaults is piece is not placed by player

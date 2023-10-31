@@ -320,6 +320,8 @@ namespace MVBP
                 {
                     SfxHelper.CreateRemovalSfx(piece); // create deconstruction SFX if needed
                 }
+                if (Config.IsVerbosityMedium) Log.LogInfo("Destroying destructible piece");
+
                 destructible.DestroyNow();
                 return true;
             }
@@ -329,6 +331,8 @@ namespace MVBP
 
         private static bool CreateHitEffects(Destructible destructible)
         {
+            if (Config.IsVerbosityMedium) Log.LogInfo("Creating hit effects");
+
             var hitEffects = destructible?.m_hitEffect?.m_effectPrefabs;
             if (hitEffects != null && hitEffects.Length != 0)
             {
