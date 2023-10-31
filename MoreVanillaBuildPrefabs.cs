@@ -20,7 +20,7 @@ namespace MVBP
         public const string PluginName = "MoreVanillaBuildPrefabs";
         internal const string Author = "Searica";
         public const string PluginGUID = $"{Author}.Valheim.{PluginName}";
-        public const string PluginVersion = "0.4.8";
+        public const string PluginVersion = "0.4.9";
 
         public void Awake()
         {

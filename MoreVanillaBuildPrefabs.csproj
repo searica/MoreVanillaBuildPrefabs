@@ -54,6 +54,7 @@
 		<EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
 		<AllowUnsafeBlocks>True</AllowUnsafeBlocks>
 		<GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+		<RootNamespace>MVBP</RootNamespace>
 	</PropertyGroup>
 
 	<ItemGroup>

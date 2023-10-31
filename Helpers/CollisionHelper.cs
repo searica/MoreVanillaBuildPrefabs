@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿// Ignore Spelling: MVBP
+
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace MVBP.Helpers

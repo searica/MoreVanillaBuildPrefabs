@@ -2,6 +2,7 @@
 
 using HarmonyLib;
 using Jotunn.Managers;
+using MoreVanillaBuildPrefabs.Helpers;
 using MVBP.Configs;
 using MVBP.Helpers;
 using System;

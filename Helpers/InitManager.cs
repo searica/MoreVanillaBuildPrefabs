@@ -3,13 +3,13 @@
 using Jotunn.Configs;
 using Jotunn.Managers;
 using MVBP.Configs;
-using MVBP.Helpers;
+using MVBP.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace MVBP
+namespace MVBP.Helpers
 {
     internal class InitManager
     {
