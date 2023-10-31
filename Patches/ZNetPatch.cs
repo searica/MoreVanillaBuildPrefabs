@@ -56,16 +56,5 @@ namespace MVBP.Patches
                 }
             }
         }
-
-        ///// <summary>
-        /////     Patch to save config file on log out to
-        /////     ensure persistent settings on server.
-        ///// </summary>
-        //[HarmonyPrefix]
-        //[HarmonyPatch(nameof(ZNet.Disconnect))]
-        //public static void ZNetDisconnectPrefix()
-        //{
-        //    PluginConfig.Save();
-        //}
     }
 }
