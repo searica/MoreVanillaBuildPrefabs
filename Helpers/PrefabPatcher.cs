@@ -859,9 +859,9 @@ namespace MVBP.Helpers
                 default:
                     break;
             }
-            PatchPieceLayers(prefab);
         }
 
+        // old apprach was to change piece layers, now I check for collision myself
         internal static void PatchPieceLayers(GameObject gameObject)
         {
             if (!HasNoRemovalLayers(gameObject)) return;

@@ -2,9 +2,9 @@
 
 using HarmonyLib;
 using Jotunn.Managers;
-using MoreVanillaBuildPrefabs.Helpers;
 using MVBP.Configs;
 using MVBP.Helpers;
+using MVBP.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Reflection.Emit;
@@ -15,6 +15,19 @@ namespace MVBP
     [HarmonyPatch(typeof(Player))]
     internal static class PlayerPatch
     {
+        private static readonly int PieceRemovalLayerMask = LayerMask.GetMask(
+            "Default",
+            "static_solid",
+            "Default_small",
+            "piece",
+            "piece_nonsolid",
+            "terrain",
+            "vehicle",
+            "item",
+            "piece_nonsolid",
+            "Default_small"
+        );
+
         [HarmonyTranspiler]
         [HarmonyPatch(nameof(Player.PlacePiece))]
         private static IEnumerable<CodeInstruction> PlacePieceTranspiler(IEnumerable<CodeInstruction> instructions)
@@ -218,110 +231,101 @@ namespace MVBP
             return true;
         }
 
-        /// <summary>
-        ///     Patch to replace code for removing non-WearNTear objects
-        ///     with my own code that handles dropping piece build
-        ///     resources and destroying them.
-        /// </summary>
-        /// <param name="instructions"></param>
-        /// <returns></returns>
-        [HarmonyTranspiler]
+        [HarmonyPrefix]
         [HarmonyPatch(nameof(Player.RemovePiece))]
-        private static IEnumerable<CodeInstruction> RemovePieceTranspiler(IEnumerable<CodeInstruction> instructions)
+        public static bool RemovePiecePrefix(Player __instance, ref bool __result)
         {
-            // piece.DropResources();
-            // IL_015c: ldloc.1
-            // IL_015d: callvirt instance void Piece::DropResources()
-
-            // piece.m_placeEffect.Create(piece.transform.position, piece.transform.rotation, piece.gameObject.transform);
-            // IL_0162: ldloc.1
-            // IL_0163: ldfld private class EffectList private Piece::m_placeEffect
-            // IL_0168: ldloc.1
-            // IL_0169: private callvirt instance private class [UnityEngine.CoreModule] UnityEngine.Transform[UnityEngine.CoreModule] UnityEngine.Component::get_transform()
-            // IL_016e: private callvirt instance valuetype[UnityEngine.CoreModule] UnityEngine.Vector3 [UnityEngine.CoreModule] UnityEngine.Transform::get_position()
-            // IL_0173: ldloc.1
-            // IL_0174: callvirt instance private class [UnityEngine.CoreModule] UnityEngine.Transform[UnityEngine.CoreModule] UnityEngine.Component::get_transform()
-            // IL_0179: private callvirt instance valuetype[UnityEngine.CoreModule] UnityEngine.Quaternion [UnityEngine.CoreModule] UnityEngine.Transform::get_rotation()
-            // IL_017e: ldloc.1
-            // IL_017f: callvirt instance private class [UnityEngine.CoreModule] UnityEngine.GameObject[UnityEngine.CoreModule] UnityEngine.Component::get_gameObject()
-            // IL_0184: private callvirt instance private class [UnityEngine.CoreModule] UnityEngine.Transform[UnityEngine.CoreModule] UnityEngine.GameObject::get_transform()
-            // IL_0189: ldc.r4 1
-            // IL_018e: private ldc.i4.m1
-            // IL_018f: private callvirt instance private class [UnityEngine.CoreModule] private UnityEngine.GameObject[] EffectList::Create(valuetype[UnityEngine.CoreModule] UnityEngine.Vector3, valuetype[UnityEngine.CoreModule] UnityEngine.Quaternion, private class [UnityEngine.CoreModule] UnityEngine.Transform, float32, int32)
-            // IL_0194: pop
-
-            // m_removeEffects.Create(piece.transform.position, Quaternion.identity);
-            // IL_0195: ldarg.0
-            // IL_0196: ldfld class EffectList Player::m_removeEffects
-            // IL_019b: ldloc.1
-            // IL_019c: callvirt instance class [UnityEngine.CoreModule] UnityEngine.Transform[UnityEngine.CoreModule] UnityEngine.Component::get_transform()
-            // IL_01a1: callvirt instance valuetype[UnityEngine.CoreModule] UnityEngine.Vector3 [UnityEngine.CoreModule] UnityEngine.Transform::get_position()
-            // IL_01a6: call valuetype [UnityEngine.CoreModule] UnityEngine.Quaternion[UnityEngine.CoreModule] UnityEngine.Quaternion::get_identity()
-            // IL_01ab: ldnull
-            // IL_01ac: ldc.r4 1
-            // IL_01b1: ldc.i4.m1
-            // IL_01b2: callvirt instance class [UnityEngine.CoreModule] UnityEngine.GameObject[] EffectList::Create(valuetype[UnityEngine.CoreModule] UnityEngine.Vector3, valuetype[UnityEngine.CoreModule] UnityEngine.Quaternion, class [UnityEngine.CoreModule] UnityEngine.Transform, float32, int32)
-            //IL_01b7: pop
-
-            // ZNetScene.instance.Destroy(piece.gameObject);
-            // IL_01b8: call class ZNetScene ZNetScene::get_instance()
-            // IL_01bd: ldloc.1
-            // IL_01be: callvirt instance class [UnityEngine.CoreModule] UnityEngine.GameObject[UnityEngine.CoreModule] UnityEngine.Component::get_gameObject()
-            // IL_01c3: callvirt instance void ZNetScene::Destroy(private class [UnityEngine.CoreModule] UnityEngine.GameObject)
-
-            var codes = new CodeMatch[]
+            if (__instance.GetRightItem().m_shared.m_name == "$item_hammer")
             {
-                new CodeMatch(
-                    OpCodes.Callvirt,
-                    AccessTools.Method(typeof(Piece), nameof(Piece.DropResources))
-                ),
-            };
-
-            return new CodeMatcher(instructions)
-                .MatchForward(useEnd: false, codes)
-                .RemoveInstructions(1 + 15 + 11 + 4)
-                .InsertAndAdvance(Transpilers.EmitDelegate(RemoveNonWearNTearPiece))
-                .InstructionEnumeration();
-        }
-
-        private static void RemoveNonWearNTearPiece(Piece piece)
-        {
-            if (Config.IsVerbosityMedium)
-            {
-                Log.LogInfo("RemoveNonWearNTearPiece");
-            }
-
-            var prefabName = piece.gameObject.name.RemoveSuffix("(Clone)");
-            if (InitManager.IsPatchedByMod(prefabName))
-            {
-                var destructible = piece?.gameObject?.GetComponent<Destructible>();
-                if (destructible != null)
+                if (Physics.Raycast(GameCamera.instance.transform.position, GameCamera.instance.transform.forward, out var hitInfo, 50f, PieceRemovalLayerMask) && Vector3.Distance(hitInfo.point, __instance.m_eye.position) < __instance.m_maxPlaceDistance)
                 {
-                    // create deconstruction SFX if needed
-                    if (
-                        !CreateHitEffects(destructible)
-                        && !SfxHelper.HasSfx(destructible.m_destroyedEffect)
-                    )
+                    Piece piece = hitInfo.collider.GetComponentInParent<Piece>();
+                    if (piece && InitManager.IsPatchedByMod(NameHelper.GetRootPrefabName(piece)))
                     {
-                        SfxHelper.CreateRemovalSfx(piece);
+                        __result = RemoveCustomPiece(__instance, piece);
+                        return false; // skip vanilla method
                     }
-                    destructible.DestroyNow();
-                    return;
                 }
             }
+            return true; // run vanilla method
+        }
 
-            // run the normal code I replace otherwise
-            piece.DropResources();
-            piece.m_placeEffect.Create(
-                piece.transform.position,
-                piece.transform.rotation,
-                piece.gameObject.transform
-            );
-            Player.s_players[0].m_removeEffects.Create(
-                piece.transform.position,
-                Quaternion.identity
-            );
-            ZNetScene.instance.Destroy(piece.gameObject);
+        private static bool RemoveCustomPiece(Player player, Piece piece)
+        {
+            if ((bool)piece)
+            {
+                if (!piece.m_canBeRemoved)
+                {
+                    return false;
+                }
+                if (Location.IsInsideNoBuildLocation(piece.transform.position))
+                {
+                    player.Message(MessageHud.MessageType.Center, "$msg_nobuildzone");
+                    return false;
+                }
+                if (!PrivateArea.CheckAccess(piece.transform.position))
+                {
+                    player.Message(MessageHud.MessageType.Center, "$msg_privatezone");
+                    return false;
+                }
+                if (!player.CheckCanRemovePiece(piece))
+                {
+                    return false;
+                }
+                ZNetView component = piece.GetComponent<ZNetView>();
+                if (component == null)
+                {
+                    return false;
+                }
+                if (!piece.CanBeRemoved())
+                {
+                    player.Message(MessageHud.MessageType.Center, "$msg_cantremovenow");
+                    return false;
+                }
+                WearNTear component2 = piece.GetComponent<WearNTear>();
+                if ((bool)component2)
+                {
+                    component2.Remove();
+                }
+                else
+                {
+                    ZLog.Log("Removing non WNT object with hammer " + piece.name);
+                    component.ClaimOwnership();
+                    if (!RemoveDestructiblePiece(piece))
+                    {
+                        piece.DropResources();
+                        piece.m_placeEffect.Create(piece.transform.position, piece.transform.rotation, piece.gameObject.transform);
+                        player.m_removeEffects.Create(piece.transform.position, Quaternion.identity);
+                        ZNetScene.instance.Destroy(piece.gameObject);
+                    }
+                }
+                ItemDrop.ItemData rightItem = player.GetRightItem();
+                if (rightItem != null)
+                {
+                    player.FaceLookDirection();
+                    player.m_zanim.SetTrigger(rightItem.m_shared.m_attack.m_attackAnimation);
+                }
+                return true;
+            }
+            return false;
+        }
+
+        private static bool RemoveDestructiblePiece(Piece piece)
+        {
+            var destructible = piece?.gameObject?.GetComponent<Destructible>();
+            if (destructible != null)
+            {
+                if (Config.IsVerbosityMedium) Log.LogInfo("Removing destructible piece");
+
+                if (!CreateHitEffects(destructible) && !SfxHelper.HasSfx(destructible.m_destroyedEffect))
+                {
+                    SfxHelper.CreateRemovalSfx(piece); // create deconstruction SFX if needed
+                }
+                destructible.DestroyNow();
+                return true;
+            }
+
+            return false;
         }
 
         private static bool CreateHitEffects(Destructible destructible)
