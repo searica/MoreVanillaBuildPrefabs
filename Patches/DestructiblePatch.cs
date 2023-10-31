@@ -3,6 +3,7 @@
 using HarmonyLib;
 using MVBP.Extensions;
 using MVBP.Helpers;
+using MVBP.Configs;
 
 namespace MVBP.Patches
 {
@@ -29,6 +30,7 @@ namespace MVBP.Patches
                     var nview = __instance.m_nview;
                     if (!nview.IsValid() || !nview.IsOwner())
                     {
+                        if (Config.IsVerbosityMedium) { Log.LogInfo("Piece nview was destroyed during DropResources()"); }
                         return false;
                     }
                 }
