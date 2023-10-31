@@ -52,6 +52,7 @@ namespace MVBP.Helpers
                 prefab.name.StartsWith("_") ||
                 prefab.name.StartsWith("OLD_") ||
                 prefab.name.EndsWith("OLD") ||
+                prefab.name.EndsWith("_old") ||
                 prefab.name.StartsWith("vfx_") ||
                 prefab.name.StartsWith("sfx_") ||
                 prefab.name.StartsWith("fx_") ||
@@ -88,7 +89,7 @@ namespace MVBP.Helpers
             "Hildir",
             "Flies",
             "Pickable_DvergerThing",
-            "rock_mistlands2", // Explodes into a boulder "___MineRock5"
+
             "demister_ball", // Placement is glitchy
             "CargoCrate", // Deletes itself on placement because it's empty
             "SunkenKit_int_towerwall_LOD", // is not an actual prefab for building
@@ -103,6 +104,15 @@ namespace MVBP.Helpers
             "Pickable_Item", // buggy and weird
             "Pickable_Barley_Wild",
             "Pickable_Flax_Wild",
+            "Pickable_DolmenTreasure", // random items
+
+            // Spawns giant boulder when damaged (much larger than original
+            "ancient_skull",
+            "rock_mistlands2",
+            "flying_core",
+
+            // Causes errors when destroying (even if spawned in Vanilla game)
+            "fenrirhide_hanging_door",
 
             // Duplicates of wood chest
             "TreasureChest_blackforest",
