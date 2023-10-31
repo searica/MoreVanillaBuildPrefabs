@@ -1,6 +1,7 @@
 ﻿// Ignore Spelling: MVBP
 
 using BepInEx.Configuration;
+using MVBP.Extensions;
 
 namespace MVBP.Configs
 {
