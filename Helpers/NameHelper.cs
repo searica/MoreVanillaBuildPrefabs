@@ -60,6 +60,7 @@ namespace MVBP.Helpers
         /// <returns></returns>
         internal static string FormatPrefabName(PieceDB pieceDB)
         {
+            // TODO: custom renaming format for BossStone prefabs
             if (NameCache.ContainsKey(pieceDB.name))
             {
                 return NameCache[pieceDB.name];
