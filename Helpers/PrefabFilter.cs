@@ -39,7 +39,7 @@ namespace MVBP.Helpers
                 prefab.GetComponent("LootSpawner") != null ||
                 prefab.GetComponent("Mister") != null ||
                 prefab.GetComponent("Ragdoll") != null ||
-                prefab.GetComponent("MineRock5") != null ||
+                //prefab.GetComponent("MineRock5") != null || // testing removing this for onnan
                 prefab.GetComponent("TombStone") != null ||
                 prefab.GetComponent("LiquidVolume") != null ||
                 prefab.GetComponent("Gibber") != null ||
