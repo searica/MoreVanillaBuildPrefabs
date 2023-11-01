@@ -394,7 +394,7 @@ namespace MVBP.Configs
                 Log.LogError("Please check your config entries for spelling and format!");
             }
             // run a single re-initialization to deal with all changed data
-            ReInitPlugin("Configuration file changed, re-initializing", saveConfig: false);
+            InitManager.ReInitPlugin("Configuration file changed, re-initializing", saveConfig: false);
         }
 
         internal static void CheckForConfigManager()
@@ -434,7 +434,7 @@ namespace MVBP.Configs
             bool cmActive = (bool)pi.GetValue(configurationManager, null);
             if (!cmActive)
             {
-                ReInitPlugin("Configuration changed in-game, re-initializing");
+                InitManager.ReInitPlugin("Configuration changed in-game, re-initializing");
             }
         }
 
@@ -443,8 +443,7 @@ namespace MVBP.Configs
             SynchronizationManager.OnConfigurationSynchronized += (obj, attr) =>
             {
                 // Save changes, this will also trigger the file watcher
-                Log.LogInfo("OnConfigurationSynchronized event");
-                ReInitPlugin("Configuration synced, re-initializing");
+                InitManager.ReInitPlugin("Configuration synced, re-initializing");
             };
         }
 
@@ -473,112 +472,6 @@ namespace MVBP.Configs
         internal static void ModSettingChanged(object o, EventArgs e)
         {
             if (!UpdateModSettings) UpdateModSettings = true;
-        }
-
-        /// <summary>
-        ///     Method to re-initialize the plugin when the configuration
-        ///     has been updated based on whether the piece or placement
-        ///     settings have been changed for any of the config entries.
-        /// </summary>
-        /// <param name="msg"></param>
-        internal static void ReInitPlugin(string msg, bool saveConfig = true)
-        {
-            if (!InitManager.HasInitializedPrefabs) { return; }
-
-            if (!UpdatePieceSettings && !UpdatePlacementSettings)
-            {
-                // Don't update unless settings have actually changed
-                return;
-            }
-
-            var watch = new System.Diagnostics.Stopwatch();
-            if (IsVerbosityMedium)
-            {
-                watch.Start();
-            }
-
-            Log.LogInfo(msg);
-            if (UpdatePieceSettings)
-            {
-                InitManager.InitPieceRefs();
-                InitManager.InitPieces();
-                InitManager.InitHammer();
-            }
-            if (UpdatePlacementSettings)
-            {
-                UpdateNeedsCollisionPatch();
-            }
-
-            if (IsVerbosityMedium)
-            {
-                watch.Stop();
-                Log.LogInfo($"Time to re-initialize: {watch.ElapsedMilliseconds} ms");
-            }
-            else
-            {
-                Log.LogInfo("Re-initializing complete");
-            }
-
-            if (UpdatePieceSettings && ModCompat.IsExtraSnapPointsMadeEasyInstalled)
-            {
-                var plugin = Chainloader.PluginInfos[ModCompat.ExtraSnapPointsMadeEasyGUID].Instance;
-                if (plugin != null)
-                {
-                    MethodInfo method = ReflectionUtils.GetMethod(
-                        plugin.GetType(),
-                        "ReInitExtraSnapPoints",
-                        Type.EmptyTypes
-                    );
-
-                    // Invoke if not null
-                    method?.Invoke(plugin, Array.Empty<object>());
-                }
-            }
-            if (UpdatePieceSettings && ModCompat.IsPlanBuildInstalled)
-            {
-                // do nothing at the moment
-            }
-
-            UpdatePieceSettings = false;
-            UpdatePlacementSettings = false;
-            if (saveConfig) { Save(); }
-        }
-
-        /// <summary>
-        ///     Updates HashSet of prefabs needing a collision patch.
-        /// </summary>
-        private static void UpdateNeedsCollisionPatch()
-        {
-            if (!InitManager.HasInitializedPrefabs) return;
-
-            if (IsVerbosityMedium)
-            {
-                Log.LogInfo("Initializing collision patches");
-            }
-
-            foreach (var prefabName in InitManager.PrefabRefs.Keys)
-            {
-                if (PrefabDBConfigsMap[prefabName].placementPatch == null)
-                {
-                    // No placement patch config entry means that prefab is already
-                    // placed in the NeedsCollisionPatchForGhost HashSet by default
-                    continue;
-                }
-
-                if (PrefabDBConfigsMap[prefabName].placementPatch.Value)
-                {
-                    // config is true so add it if not already in HashSet
-                    if (!NeedsCollisionPatchForGhost(prefabName))
-                    {
-                        _NeedsCollisionPatch.Add(prefabName);
-                    }
-                }
-                else if (NeedsCollisionPatchForGhost(prefabName))
-                {
-                    // config is false so remove it from list if it's in HashSet
-                    _NeedsCollisionPatch.Remove(prefabName);
-                }
-            }
         }
     }
 }

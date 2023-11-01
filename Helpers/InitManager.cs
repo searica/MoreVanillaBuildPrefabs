@@ -249,8 +249,13 @@ namespace MVBP.Helpers
                     continue;
                 }
 
-                // Prevents CreativeMode pieces from being removable
-                if (!PieceCategoryHelper.IsCreativeModePiece(pieceDB.piece))
+                // Prevent CreativeMode pieces and any clones of them
+                // from being removable.
+                // (Player.RemovePiece patch allows removing player-built instances).
+                // Mimic Vanilla, make ships/carts non-removable.
+                if (!PieceCategoryHelper.IsCreativeModePiece(pieceDB.piece)
+                    && !pieceDB.Prefab.HasComponent<Ship>()
+                    && !pieceDB.Prefab.HasComponent<Vagon>())
                 {
                     pieceDB.piece.m_canBeRemoved = true;
                 }
@@ -272,6 +277,98 @@ namespace MVBP.Helpers
                 foreach (var prefab in pieceGroup)
                 {
                     PieceHelper.AddPieceToPieceTable(prefab, hammerTable);
+                }
+            }
+        }
+
+        /// <summary>
+        ///     Method to re-initialize the plugin when the configuration
+        ///     has been updated based on whether the piece or placement
+        ///     settings have been changed for any of the config entries.
+        /// </summary>
+        /// <param name="msg"></param>
+        internal static void ReInitPlugin(string msg, bool saveConfig = true)
+        {
+            if (!HasInitializedPrefabs) { return; }
+
+            if (!Config.UpdatePieceSettings && !Config.UpdatePlacementSettings)
+            {
+                // Don't update unless settings have actually changed
+                return;
+            }
+
+            var watch = new System.Diagnostics.Stopwatch();
+            if (Config.IsVerbosityMedium)
+            {
+                watch.Start();
+            }
+
+            Log.LogInfo(msg);
+            if (Config.UpdatePieceSettings)
+            {
+                InitPieceRefs();
+                InitPieces();
+                InitHammer();
+            }
+            if (Config.UpdatePlacementSettings)
+            {
+                UpdateNeedsCollisionPatch();
+            }
+
+            if (Config.IsVerbosityMedium)
+            {
+                watch.Stop();
+                Log.LogInfo($"Time to re-initialize: {watch.ElapsedMilliseconds} ms");
+            }
+            else
+            {
+                Log.LogInfo("Re-initializing complete");
+            }
+
+            if (Config.UpdatePieceSettings)
+            {
+                ModCompat.UpdateExtraSnaps();
+                ModCompat.UpdatePlanBuild();
+            }
+
+            Config.UpdatePieceSettings = false;
+            Config.UpdatePlacementSettings = false;
+            if (saveConfig) { Config.Save(); }
+        }
+
+        /// <summary>
+        ///     Updates HashSet of prefabs needing a collision patch.
+        /// </summary>
+        private static void UpdateNeedsCollisionPatch()
+        {
+            if (!HasInitializedPrefabs) return;
+
+            if (Config.IsVerbosityMedium)
+            {
+                Log.LogInfo("Initializing collision patches");
+            }
+
+            foreach (var prefabName in InitManager.PrefabRefs.Keys)
+            {
+                if (Config.PrefabDBConfigsMap[prefabName].placementPatch == null)
+                {
+                    // No placement patch config entry means that prefab is already
+                    // placed in the NeedsCollisionPatchForGhost HashSet by default
+                    continue;
+                }
+
+                if (Config.PrefabDBConfigsMap[prefabName].placementPatch.Value)
+                {
+                    // config is true so add it if not already in HashSet
+                    if (!Config.NeedsCollisionPatchForGhost(prefabName))
+                    {
+                        Config._NeedsCollisionPatch.Add(prefabName);
+                    }
+                }
+                else if (Config.NeedsCollisionPatchForGhost(prefabName))
+                {
+                    // config is false so remove it from list if it's in HashSet
+                    Config._NeedsCollisionPatch.Remove(prefabName);
                 }
             }
         }
