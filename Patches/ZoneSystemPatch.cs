@@ -16,13 +16,14 @@ namespace MVBP.Patches
         ///     and PotteryBarn add pieces but before PlanBuild scans for them.
         /// </summary>
         /// <param name="__instance"></param>
-        [HarmonyPostfix]
+        [HarmonyPrefix]
+        [HarmonyPriority(Priority.High)]
         [HarmonyPatch(nameof(ZoneSystem.Start))]
-        public static void ZoneSystemStartPostfix()
+        public static void ZoneSystemStartPrefix()
         {
             if (Config.IsVerbosityMedium)
             {
-                Log.LogInfo("ZoneSystemStartPostfix()");
+                Log.LogInfo("ZoneSystemStartPrefix()");
             }
 
             // If loading into game world and prefabs have not been added

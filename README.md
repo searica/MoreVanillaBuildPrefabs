@@ -178,6 +178,8 @@ The AdminDeconstructOtherPlayers setting can allow players with admin status to 
 
 **Config Changes on Dedicated Server**: Configuration changes made to a dedicated server using an in-game configuration manager do persist after logging out and re-connecting  but they are not saved to disk on the server until the server is shut down. Currently working on a fix.
 
+**Placement Glitch**: There is one pickable that will appear to not be created when placed.This is because it falls through the ground is pushed back up after a short period of time. If you wait it will appear.
+
 ## Planned Improvements
 - Resolve known issues.
 - Patch and enable more prefabs by default.

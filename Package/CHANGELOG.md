@@ -8,6 +8,18 @@
 			<th align="center">Notes</th>
 		</tr>
 		<tr>
+			<td align="center">0.4.9</td>
+			<td align="left">
+				<ul>
+					<li>Built against new BepInEx and Jotunn.</li>
+					<li>Improved default placement settings so all vanilla prefabs in game version 0.217.25 are placeable.</li>
+					<li>Improved approach to handling removal of custom prefabs with the hammer, vanilla layers are no longer altered under any circumstances.</li>
+					<li>Updated to match new API for ExtraSnapPointsMadeEasy.</li>
+					<li>Changed hook location for compatibility with ExpandWorld.</li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
 			<td align="center">0.4.8</td>
 			<td align="left">
 				<ul>
