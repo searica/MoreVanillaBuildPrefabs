@@ -22,11 +22,30 @@ namespace MVBP.Helpers
         /// </summary>
         private static readonly Regex SplitCapitalsRegex = new(@"([a-z])([A-Z])");
 
+        /// <summary>
+        ///     Matches (text)(creep)(text)
+        /// </summary>
         private static readonly Regex CreepToEndRegex = new(@"(.+?)(creep)(.*)");
 
+        /// <summary>
+        ///     Matches sequences of whitespace
+        /// </summary>
         private static readonly Regex WhiteSpaceRegex = new(@" +");
+
+        /// <summary>
+        ///  Matches (#)(m) to find text describing units of length
+        /// </summary>
         private static readonly Regex UnitSpaceRegex = new(@"(\d+)(m)");
+
+        /// <summary>
+        ///     Matches the sequence of number at the end of the string.
+        /// </summary>
         private static readonly Regex IsLastCharDigit = new(@"((?<!x)\d+$)");
+
+        /// <summary>
+        ///     Matches "_frac" if it is at the end of the string
+        /// </summary>
+        private static readonly Regex FracAtEnd = new(@"(_frac$)");
 
         private static readonly Dictionary<string, string> NameCache = new();
         private static readonly Dictionary<string, string> DescCache = new();
@@ -41,14 +60,6 @@ namespace MVBP.Helpers
         internal static void ClearDescCache()
         {
             DescCache.Clear();
-        }
-
-        private static void SetDescWarning(PieceDB pieceDB)
-        {
-            if (SpawnsMineRock5(pieceDB.Prefab))
-            {
-                pieceDB.pieceDesc = pieceDB.pieceDesc.EmptyIfNull() + MineRock5Warn;
-            }
         }
 
         /// <summary>
@@ -72,7 +83,8 @@ namespace MVBP.Helpers
                 return pieceDB.pieceName;
             }
 
-            var name = CreepToEndRegex.Replace(pieceDB.name, "$1$3 ($2)");
+            var name = FracAtEnd.Replace(pieceDB.name, "$1"); // strips "_frac" from the end
+            name = CreepToEndRegex.Replace(name, "$1$3 ($2)");
             name = DigitsToEndRegex.Replace(name, "$1$3 $2");
             name = UnitSpaceRegex.Replace(name, "$1 $2");
             name = SplitCapitalsRegex.Replace(name, "$1 $2");
@@ -151,13 +163,11 @@ namespace MVBP.Helpers
 
             if (pieceDB.pieceDesc != null)
             {
-                SetDescWarning(pieceDB);
                 DescCache[pieceDB.name] = pieceDB.pieceDesc;
                 return pieceDB.pieceDesc;
             }
 
             pieceDB.pieceDesc = FindPrefabDescription(pieceDB.Prefab);
-            SetDescWarning(pieceDB);
             DescCache[pieceDB.name] = pieceDB.pieceDesc;
             return pieceDB.pieceDesc;
         }
@@ -230,14 +240,14 @@ namespace MVBP.Helpers
             return piece.gameObject.name.RemoveSuffix("(Clone)");
         }
 
-        private static bool SpawnsMineRock5(GameObject prefab)
-        {
-            var destructible = prefab.GetComponent<Destructible>();
-            if (destructible != null && destructible.m_spawnWhenDestroyed)
-            {
-                return destructible.m_spawnWhenDestroyed.GetComponent<MineRock5>() != null;
-            }
-            return false;
-        }
+        //private static bool SpawnsMineRock5(GameObject prefab)
+        //{
+        //    var destructible = prefab.GetComponent<Destructible>();
+        //    if (destructible != null && destructible.m_spawnWhenDestroyed)
+        //    {
+        //        return destructible.m_spawnWhenDestroyed.GetComponent<MineRock5>() != null;
+        //    }
+        //    return false;
+        //}
     }
 }

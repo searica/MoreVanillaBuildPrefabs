@@ -15,11 +15,23 @@ namespace MVBP
         private static bool? _ExtraSnapsInstalled;
         private static bool? _WackysDBInstalled;
 
-        internal static bool IsWackysDBInstalled => _WackysDBInstalled != null ? (bool)_WackysDBInstalled : Chainloader.PluginInfos.ContainsKey(WackysDBGUID);
+        internal static bool IsWackysDBInstalled()
+        {
+            _WackysDBInstalled ??= Chainloader.PluginInfos.ContainsKey(WackysDBGUID);
+            return _WackysDBInstalled.Value;
+        }
 
-        internal static bool IsPlanBuildInstalled => _PlanBuildInstalled != null ? (bool)_PlanBuildInstalled : Chainloader.PluginInfos.ContainsKey(PlanBuildGUID);
+        internal static bool IsPlanBuildInstalled()
+        {
+            _PlanBuildInstalled ??= Chainloader.PluginInfos.ContainsKey(PlanBuildGUID);
+            return _PlanBuildInstalled.Value;
+        }
 
-        internal static bool IsExtraSnapsInstalled => _ExtraSnapsInstalled != null ? (bool)_ExtraSnapsInstalled : Chainloader.PluginInfos.ContainsKey(ExtraSnapsGUID);
+        internal static bool IsExtraSnapsInstalled()
+        {
+            _ExtraSnapsInstalled ??= Chainloader.PluginInfos.ContainsKey(ExtraSnapsGUID);
+            return _ExtraSnapsInstalled.Value;
+        }
 
         /// <summary>
         ///     Triggers a re-initialization of ExtraSnapPointsMadeEasy if it is installed.
@@ -27,7 +39,7 @@ namespace MVBP
         /// <returns></returns>
         internal static bool UpdateExtraSnaps()
         {
-            if (!IsExtraSnapsInstalled) return false;
+            if (!IsExtraSnapsInstalled()) return false;
 
             var plugin = Chainloader.PluginInfos[ExtraSnapsGUID].Instance;
             if (plugin == null) return false;
@@ -57,7 +69,7 @@ namespace MVBP
         /// <returns></returns>
         internal static bool UpdatePlanBuild()
         {
-            if (!IsPlanBuildInstalled) return false;
+            if (!IsPlanBuildInstalled()) return false;
             var plugin = Chainloader.PluginInfos[PlanBuildGUID].Instance;
             if (plugin == null) return false;
 
@@ -67,7 +79,7 @@ namespace MVBP
 
         internal static bool IsWackyDBClone(string name)
         {
-            if (!IsWackysDBInstalled) return false;
+            if (!IsWackysDBInstalled()) return false;
 
             var plugin = Chainloader.PluginInfos[WackysDBGUID].Instance;
             if (plugin == null) return false;

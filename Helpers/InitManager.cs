@@ -54,30 +54,34 @@ namespace MVBP.Helpers
 
             Log.LogInfo("Initializing prefabs");
 
+            // Find eligible prefabs for adding
             var PieceNameCache = PieceHelper.GetExistingPieceNames();
+            var EligiblePrefabs = new Dictionary<string, GameObject>();
+            foreach (var prefab in ZNetScene.instance.m_prefabs)
+            {
+                if (prefab.transform.parent == null && !PieceNameCache.Contains(prefab.name))
+                {
+                    if (PrefabFilter.GetEligiblePrefab(prefab, out GameObject result))
+                    {
+                        if (!EligiblePrefabs.ContainsKey(result.name))
+                        {
+                            EligiblePrefabs.Add(result.name, result);
+                        }
+                    }
+                }
+            }
 
-            var EligiblePrefabs = ZNetScene.instance.m_prefabs
-            .Where(
-                go => go.transform.parent == null
-                && !PieceNameCache.Contains(go.name)
-                && !PrefabFilter.ShouldIgnorePrefab(go)
-            ).ToList();
-
-            foreach (var prefab in EligiblePrefabs)
+            foreach (var prefab in EligiblePrefabs.Values)
             {
                 if (!PieceHelper.EnsureNoDuplicateZNetView(prefab))
                 {
                     continue;
                 }
 
-                if (Config.IsVerbosityHigh)
-                {
-                    Log.LogInfo("Initialize '" + prefab.name + "'");
-                    Log.LogPrefab(prefab);
-                }
+                if (Config.IsVerbosityHigh) { Log.LogPrefab(prefab); }
 
-                // Always patch prefabs. Only runs once this way
-                // and prevents trailership being unusable if disabled.
+                // Always patching means it only runs once and
+                // prevents trailership being unusable if disabled.
                 try
                 {
                     PrefabPatcher.PatchPrefabIfNeeded(prefab);

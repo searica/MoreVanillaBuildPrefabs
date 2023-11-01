@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MVBP.Extensions;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,12 +8,41 @@ namespace MVBP.Helpers
     internal class PrefabFilter
     {
         /// <summary>
+        ///     Checks if a prefab is eligible for adding. If the prefab
+        ///     spawns a MineRock5 component when destroyed then result
+        ///     will point to that instead.
+        /// </summary>
+        /// <param name="prefab"></param>
+        /// <param name="result"></param>
+        /// <returns></returns>
+        internal static bool GetEligiblePrefab(GameObject prefab, out GameObject result)
+        {
+            if (ShouldIgnorePrefab(prefab))
+            {
+                result = null;
+                return false;
+            }
+
+            // If it spawns a prefab with a MineRock5 component return that one instead
+            var destructible = prefab?.GetComponent<Destructible>();
+            if (destructible != null && destructible.m_spawnWhenDestroyed.HasComponent<MineRock5>())
+            {
+                result = destructible.m_spawnWhenDestroyed;
+                return true;
+            }
+
+            // Return the original prefab
+            result = prefab;
+            return true;
+        }
+
+        /// <summary>
         ///     Checks prefab to see if it is eligible for making a custom piece.
         /// </summary>
         /// <param name="prefab"></param>
         /// <returns></returns>
         /// <exception cref="Exception"></exception>
-        internal static bool ShouldIgnorePrefab(GameObject prefab)
+        private static bool ShouldIgnorePrefab(GameObject prefab)
         {
             // Ignore specific prefab names
             if (_IgnoredPrefabs.Contains(prefab.name))
@@ -39,7 +69,7 @@ namespace MVBP.Helpers
                 prefab.GetComponent("LootSpawner") != null ||
                 prefab.GetComponent("Mister") != null ||
                 prefab.GetComponent("Ragdoll") != null ||
-                //prefab.GetComponent("MineRock5") != null || // testing removing this for onnan
+                prefab.GetComponent("MineRock5") != null ||
                 prefab.GetComponent("TombStone") != null ||
                 prefab.GetComponent("LiquidVolume") != null ||
                 prefab.GetComponent("Gibber") != null ||
