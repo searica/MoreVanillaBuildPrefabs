@@ -218,7 +218,7 @@ namespace MVBP
         {
             if ((bool)piece)
             {
-                if (!CheckCanBeRemoved(piece))
+                if (!Check_m_canBeRemoved(piece))
                 {
                     return false;
                 }
@@ -274,7 +274,7 @@ namespace MVBP
             return false;
         }
 
-        private static bool CheckCanBeRemoved(Piece piece)
+        private static bool Check_m_canBeRemoved(Piece piece)
         {
             if (PieceCategoryHelper.IsCreativeModePiece(piece) && piece.IsPlacedByPlayer())
             {
