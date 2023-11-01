@@ -249,9 +249,8 @@ namespace MVBP.Helpers
                     continue;
                 }
 
-                // Allows pieces added to the hammer to be deconstructed
-                // unless they are a ship (to respect vanilla behaviour).
-                if (pieceDB.piece.gameObject.GetComponent<Ship>() == null)
+                // Prevents CreativeMode pieces from being removable
+                if (!PieceCategoryHelper.IsCreativeModePiece(pieceDB.piece))
                 {
                     pieceDB.piece.m_canBeRemoved = true;
                 }

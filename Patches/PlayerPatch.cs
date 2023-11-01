@@ -196,41 +196,6 @@ namespace MVBP
         }
 
         [HarmonyPrefix]
-        [HarmonyPatch(nameof(Player.CheckCanRemovePiece))]
-        private static bool CheckCanRemovePrefix(Player __instance, Piece piece, ref bool __result)
-        {
-            // Only modify results for pieces affected by this mod
-            var prefabName = NameHelper.GetRootPrefabName(piece);
-            if (!InitManager.IsPatchedByMod(prefabName))
-            {
-                return true; // run CheckCanRemove method as normal
-            }
-
-            // Prevents world generated piece from player removal with build hammer.
-            if (!piece.IsPlacedByPlayer() && PieceCategoryHelper.IsCreativeModePiece(piece))
-            {
-                __result = false;
-                return false;
-            }
-
-            // Prevents player from breaking pieces they didn't
-            // create themselves unless Admin check and config is true.
-            if (PieceCategoryHelper.IsCreativeModePiece(piece) && !piece.IsCreator())
-            {
-                // Allow Admins to deconstruct CreatorShop pieces built by other players if setting is enabled in config
-                if (Config.IsAdminDeconstructOtherPlayers && SynchronizationManager.Instance.PlayerIsAdmin)
-                {
-                    __result = true;
-                    return true;
-                }
-                __result = false;
-                return false;
-            }
-
-            return true;
-        }
-
-        [HarmonyPrefix]
         [HarmonyPatch(nameof(Player.RemovePiece))]
         public static bool RemovePiecePrefix(Player __instance, ref bool __result)
         {
@@ -253,7 +218,7 @@ namespace MVBP
         {
             if ((bool)piece)
             {
-                if (!piece.m_canBeRemoved)
+                if (!CheckCanBeRemoved(piece))
                 {
                     return false;
                 }
@@ -307,6 +272,27 @@ namespace MVBP
                 return true;
             }
             return false;
+        }
+
+        private static bool CheckCanBeRemoved(Piece piece)
+        {
+            if (PieceCategoryHelper.IsCreativeModePiece(piece) && piece.IsPlacedByPlayer())
+            {
+                // Allow creative mode pieces to be removed by creator
+                if (piece.IsCreator())
+                {
+                    return true;
+                }
+
+                // Allow creative mode pieces to be removed by admin (based on config settings)
+                if (Config.IsAdminDeconstructOtherPlayers && SynchronizationManager.Instance.PlayerIsAdmin)
+                {
+                    return true;
+                }
+            }
+
+            // Follow vanilla rules for non-creative mode pieces
+            return piece.m_canBeRemoved;
         }
 
         private static bool RemoveDestructiblePiece(Piece piece)
