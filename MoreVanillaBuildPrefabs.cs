@@ -12,7 +12,7 @@ namespace MVBP
 {
     [BepInPlugin(PluginGUID, PluginName, PluginVersion)]
     [BepInDependency(Jotunn.Main.ModGuid, Jotunn.Main.Version)]
-    [BepInDependency(ModCompat.ExtraSnapPointsMadeEasyGUID, BepInDependency.DependencyFlags.SoftDependency)]
+    [BepInDependency(ModCompat.ExtraSnapsGUID, BepInDependency.DependencyFlags.SoftDependency)]
     [BepInDependency(ModCompat.PlanBuildGUID, BepInDependency.DependencyFlags.SoftDependency)]
     [NetworkCompatibility(CompatibilityLevel.VersionCheckOnly, VersionStrictness.Patch)]
     public class MoreVanillaBuildPrefabs : BaseUnityPlugin
