@@ -23,12 +23,17 @@ namespace MVBP.Helpers
                 return false;
             }
 
-            // If it spawns a prefab with a MineRock5 component return that one instead
+            // Is it destructible and does it spawn something?
             var destructible = prefab?.GetComponent<Destructible>();
-            if (destructible != null && destructible.m_spawnWhenDestroyed.HasComponent<MineRock5>())
+            if (destructible != null && destructible?.m_spawnWhenDestroyed != null)
             {
-                result = destructible.m_spawnWhenDestroyed;
-                return true;
+                // Does it spawn a MineRock5 and is that the root prefab.
+                if (destructible.m_spawnWhenDestroyed.transform.parent == null
+                    && destructible.m_spawnWhenDestroyed.HasComponent<MineRock5>())
+                {
+                    result = destructible.m_spawnWhenDestroyed;
+                    return true;
+                }
             }
 
             // Return the original prefab
