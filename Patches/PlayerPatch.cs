@@ -255,7 +255,7 @@ namespace MVBP
                 {
                     ZLog.Log("Removing non WNT object with hammer " + piece.name);
                     component.ClaimOwnership();
-                    if (!RemoveDestructiblePiece(piece) && !RemoveMineRock5Piece(piece))
+                    if (!RemoveDestructiblePiece(piece) && !RemoveMineRock5Piece(player, piece))
                     {
                         piece.DropResources();
                         piece.m_placeEffect.Create(piece.transform.position, piece.transform.rotation, piece.gameObject.transform);
@@ -312,7 +312,7 @@ namespace MVBP
             return false;
         }
 
-        private static bool RemoveMineRock5Piece(Piece piece)
+        private static bool RemoveMineRock5Piece(Player player, Piece piece)
         {
             var mineRock5 = piece?.gameObject?.GetComponent<MineRock5>();
             if (mineRock5 != null)
@@ -322,7 +322,8 @@ namespace MVBP
                 var hit = new HitData()
                 {
                     m_toolTier = 100,
-                    m_damage = new HitData.DamageTypes() { m_damage = 100000 }
+                    m_damage = new HitData.DamageTypes() { m_damage = 100000 },
+                    m_attacker = player.GetZDOID()
                 };
 
                 if (mineRock5.m_nview.IsValid() && mineRock5.m_nview.IsOwner())
