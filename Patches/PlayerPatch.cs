@@ -255,7 +255,7 @@ namespace MVBP
                 {
                     ZLog.Log("Removing non WNT object with hammer " + piece.name);
                     component.ClaimOwnership();
-                    if (!RemoveDestructiblePiece(piece))
+                    if (!RemoveDestructiblePiece(piece) && !RemoveMineRock5Piece(piece))
                     {
                         piece.DropResources();
                         piece.m_placeEffect.Create(piece.transform.position, piece.transform.rotation, piece.gameObject.transform);
@@ -279,10 +279,7 @@ namespace MVBP
             if (PieceCategoryHelper.IsCreativeModePiece(piece) && piece.IsPlacedByPlayer())
             {
                 // Allow creative mode pieces to be removed by creator
-                if (piece.IsCreator())
-                {
-                    return true;
-                }
+                if (piece.IsCreator()) { return true; }
 
                 // Allow creative mode pieces to be removed by admin (based on config settings)
                 if (Config.IsAdminDeconstructOtherPlayers && SynchronizationManager.Instance.PlayerIsAdmin)
@@ -312,6 +309,31 @@ namespace MVBP
                 return true;
             }
 
+            return false;
+        }
+
+        private static bool RemoveMineRock5Piece(Piece piece)
+        {
+            var mineRock5 = piece?.gameObject?.GetComponent<MineRock5>();
+            if (mineRock5 != null)
+            {
+                if (Config.IsVerbosityMedium) Log.LogInfo("Removing MineRock5 piece");
+
+                var hit = new HitData()
+                {
+                    m_toolTier = 100,
+                    m_damage = new HitData.DamageTypes() { m_damage = 100000 }
+                };
+
+                if (mineRock5.m_nview.IsValid() && mineRock5.m_nview.IsOwner())
+                {
+                    for (int i = 0; i < mineRock5.m_hitAreas.Count; i++)
+                    {
+                        mineRock5.m_nview.InvokeRPC("Damage", hit, i);
+                    }
+                }
+                return true;
+            }
             return false;
         }
 
