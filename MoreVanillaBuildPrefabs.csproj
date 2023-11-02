@@ -65,7 +65,6 @@
 		<Folder Include="Libraries" />
 		<Folder Include="Libraries\Debug\" />
 		<Folder Include="Libraries\PlanBuild\" />
-		<Folder Include="Package\" />
 		<Folder Include="Publish\Nexus\" />
 		<Folder Include="Publish\ThunderStore\" />
 	</ItemGroup>
