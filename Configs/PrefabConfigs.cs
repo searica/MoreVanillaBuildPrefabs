@@ -34,24 +34,24 @@ namespace MVBP.Configs
             {
                 "ancient_skull",
                 new PrefabDB(
-                    "ancient_skull",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    "BlackMarble,100"
+                    name: "ancient_skull",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.CreatorShop,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "BlackMarble,100"
 
                 )
             },
             {
                 "ArmorStand_Female",
                 new PrefabDB(
-                    "ArmorStand_Female",
-                    true,
-                    false,
-                    HammerCategories.Furniture,
-                    nameof(CraftingStations.Workbench),
-                    "FineWood,8;BronzeNails,2;Tar,4",
+                    name: "ArmorStand_Female",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Furniture,
+                    craftingStation: nameof(CraftingStations.Workbench),
+                    requirements: "FineWood,8;BronzeNails,2;Tar,4",
                     pieceDesc: "",
                     pieceGroup: PieceGroup.ArmorStand
 
@@ -60,12 +60,12 @@ namespace MVBP.Configs
             {
                 "ArmorStand_Male",
                 new PrefabDB(
-                    "ArmorStand_Male",
-                    true,
-                    false,
-                    HammerCategories.Furniture,
-                    nameof(CraftingStations.Workbench),
-                    "FineWood,8;BronzeNails,2;Tar,4",
+                    name: "ArmorStand_Male",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Furniture,
+                    craftingStation: nameof(CraftingStations.Workbench),
+                    requirements: "FineWood,8;BronzeNails,2;Tar,4",
                     pieceDesc: "",
                     pieceGroup: PieceGroup.ArmorStand
                 )
@@ -73,12 +73,12 @@ namespace MVBP.Configs
             {
                 "barrell",
                 new PrefabDB(
-                    "barrell",
-                    true,
-                    false,
-                    HammerCategories.Misc,
-                    nameof(CraftingStations.Workbench),
-                    "FineWood,2",
+                    name: "barrell",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Misc,
+                    craftingStation: nameof(CraftingStations.Workbench),
+                    requirements: "FineWood,2",
                     pieceName: "Barrel",
                     pieceDesc: "",
                     pieceGroup: PieceGroup.Misc
@@ -87,60 +87,60 @@ namespace MVBP.Configs
             {
                 "beech_log",
                 new PrefabDB(
-                    "beech_log",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "BeechSeeds,1,Wood,20",
+                    name: "beech_log",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "BeechSeeds,1,Wood,20",
                     pieceGroup: PieceGroup.Flora
                 )
             },
             {
                 "beech_log_half",
                 new PrefabDB(
-                    "beech_log_half",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "BeechSeeds,1,Wood,10",
+                    name: "beech_log_half",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "BeechSeeds,1,Wood,10",
                     pieceGroup: PieceGroup.Flora
                 )
             },
             {
                 "Beech_small1",
                 new PrefabDB(
-                    "Beech_small1",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "",
+                    name: "Beech_small1",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "",
                     pieceGroup: PieceGroup.Flora
                 )
             },
             {
                 "Beech_small2",
                 new PrefabDB(
-                    "Beech_small2",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "Wood,1",
+                    name: "Beech_small2",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "Wood,1",
                     pieceGroup: PieceGroup.Flora
                 )
             },
             {
                 "Beech_Stub",
                 new PrefabDB(
-                    "Beech_Stub",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "",
+                    name: "Beech_Stub",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "",
                     clipEverything: true,
                     pieceGroup: PieceGroup.Flora
                 )
@@ -148,12 +148,12 @@ namespace MVBP.Configs
             {
                 "Beech1",
                 new PrefabDB(
-                    "Beech1",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "Wood,16",
+                    name: "Beech1",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "Wood,16",
                     clipEverything: true,
                     pieceGroup: PieceGroup.Flora
                 )
@@ -161,36 +161,36 @@ namespace MVBP.Configs
             {
                 "Birch_log",
                 new PrefabDB(
-                    "Birch_log",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "",
+                    name: "Birch_log",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "",
                     pieceGroup: PieceGroup.Flora
                 )
             },
             {
                 "Birch_log_half",
                 new PrefabDB(
-                    "Birch_log_half",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "",
+                    name: "Birch_log_half",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "",
                     pieceGroup: PieceGroup.Flora
                 )
             },
             {
                 "Birch1",
                 new PrefabDB(
-                    "Birch1",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "BirchSeeds,1;FineWood,2",
+                    name: "Birch1",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "BirchSeeds,1;FineWood,2",
                     clipEverything: true,
                     pieceGroup: PieceGroup.Flora
                 )
@@ -198,12 +198,12 @@ namespace MVBP.Configs
             {
                 "Birch1_aut",
                 new PrefabDB(
-                    "Birch1_aut",
-                    true,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "BirchSeeds,1;FineWood,2",
+                    name: "Birch1_aut",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "BirchSeeds,1;FineWood,2",
                     pieceName: "Birch1 (autumn)",
                     clipEverything: true,
                     pieceGroup: PieceGroup.Flora
@@ -212,12 +212,12 @@ namespace MVBP.Configs
             {
                 "Birch2",
                 new PrefabDB(
-                    "Birch2",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "BirchSeeds,1;FineWood,2",
+                    name: "Birch2",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "BirchSeeds,1;FineWood,2",
                     clipEverything: true,
                     pieceGroup: PieceGroup.Flora
                 )
@@ -225,12 +225,12 @@ namespace MVBP.Configs
             {
                 "Birch2_aut",
                 new PrefabDB(
-                    "Birch2_aut",
-                    true,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "BirchSeeds,1;FineWood,2",
+                    name: "Birch2_aut",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "BirchSeeds,1;FineWood,2",
                     pieceName: "Birch (autumn)",
                     clipEverything: true,
                     pieceGroup: PieceGroup.Flora
@@ -239,12 +239,12 @@ namespace MVBP.Configs
             {
                 "BirchStub",
                 new PrefabDB(
-                    "BirchStub",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "",
+                    name: "BirchStub",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "",
                     clipEverything: true,
                     pieceGroup: PieceGroup.Flora
                 )
@@ -252,58 +252,58 @@ namespace MVBP.Configs
             {
                 "blackmarble_2x2_enforced",
                 new PrefabDB(
-                    "blackmarble_2x2_enforced",
-                    true,
-                    false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.BlackForge),
-                    "BlackMarble,8;Copper,2",
+                    name: "blackmarble_2x2_enforced",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Building,
+                    craftingStation: nameof(CraftingStations.BlackForge),
+                    requirements: "BlackMarble,8;Copper,2",
                     pieceGroup: PieceGroup.BlackMarble
                 )
             },
             {
                 "blackmarble_2x2x1",
                 new PrefabDB(
-                    "blackmarble_2x2x1",
-                    false,
-                    false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.Stonecutter),
-                    "BlackMarble,4",
+                    name: "blackmarble_2x2x1",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Building,
+                    craftingStation: nameof(CraftingStations.Stonecutter),
+                    requirements: "BlackMarble,4",
                     pieceGroup: PieceGroup.BlackMarble
                 )
             },
             {
                 "blackmarble_altar_crystal",
                 new PrefabDB(
-                    "blackmarble_altar_crystal",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    ""
+                    name: "blackmarble_altar_crystal",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.CreatorShop,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: ""
                 )
             },
             {
                 "blackmarble_altar_crystal_broken",
                 new PrefabDB(
-                    "blackmarble_altar_crystal_broken",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    ""
+                    name: "blackmarble_altar_crystal_broken",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.CreatorShop,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: ""
                 )
             },
             {
                 "blackmarble_base_2",
                 new PrefabDB(
-                    "blackmarble_base_2",
-                    true,
-                    false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.Stonecutter),
-                    "BlackMarble,6",
+                    name: "blackmarble_base_2",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Building,
+                    craftingStation: nameof(CraftingStations.Stonecutter),
+                    requirements: "BlackMarble,6",
                     pieceName: "Black marble plinth (wide)",
                     pieceGroup: PieceGroup.BlackMarble
                 )
@@ -311,84 +311,84 @@ namespace MVBP.Configs
             {
                 "blackmarble_column_3",
                 new PrefabDB(
-                    "blackmarble_column_3",
-                    true,
-                    false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.Stonecutter),
-                    "BlackMarble,16",
+                    name: "blackmarble_column_3",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Building,
+                    craftingStation: nameof(CraftingStations.Stonecutter),
+                    requirements: "BlackMarble,16",
                     pieceGroup: PieceGroup.BlackMarble
                 )
             },
             {
                 "blackmarble_creep_4x1x1",
                 new PrefabDB(
-                    "blackmarble_creep_4x1x1",
-                    false,
-                    false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.Stonecutter),
-                    "BlackMarble,4",
+                    name: "blackmarble_creep_4x1x1",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Building,
+                    craftingStation: nameof(CraftingStations.Stonecutter),
+                    requirements: "BlackMarble,4",
                     pieceGroup: PieceGroup.BlackMarble
                 )
             },
             {
                 "blackmarble_creep_4x2x1",
                 new PrefabDB(
-                    "blackmarble_creep_4x2x1",
-                    false,
-                    false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.Stonecutter),
-                    "BlackMarble,8",
+                    name: "blackmarble_creep_4x2x1",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Building,
+                    craftingStation: nameof(CraftingStations.Stonecutter),
+                    requirements: "BlackMarble,8",
                     pieceGroup: PieceGroup.BlackMarble
                 )
             },
             {
                 "blackmarble_creep_slope_inverted_1x1x2",
                 new PrefabDB(
-                    "blackmarble_creep_slope_inverted_1x1x2",
-                    false,
-                    false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.Stonecutter),
-                    "BlackMarble,2",
+                    name: "blackmarble_creep_slope_inverted_1x1x2",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Building,
+                    craftingStation: nameof(CraftingStations.Stonecutter),
+                    requirements: "BlackMarble,2",
                     pieceGroup: PieceGroup.BlackMarble
                 )
             },
             {
                 "blackmarble_creep_slope_inverted_2x2x1",
                 new PrefabDB(
-                    "blackmarble_creep_slope_inverted_2x2x1",
-                    false,
-                    false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.Stonecutter),
-                    "BlackMarble,4",
+                    name: "blackmarble_creep_slope_inverted_2x2x1",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Building,
+                    craftingStation: nameof(CraftingStations.Stonecutter),
+                    requirements: "BlackMarble,4",
                     pieceGroup: PieceGroup.BlackMarble
                 )
             },
             {
                 "blackmarble_creep_stair",
                 new PrefabDB(
-                    "blackmarble_creep_stair",
-                    false,
-                    false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.Stonecutter),
-                    "BlackMarble,8",
+                    name: "blackmarble_creep_stair",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Building,
+                    craftingStation: nameof(CraftingStations.Stonecutter),
+                    requirements: "BlackMarble,8",
                     pieceGroup: PieceGroup.BlackMarble
                 )
             },
             {
                 "blackmarble_floor_large",
                 new PrefabDB(
-                    "blackmarble_floor_large",
-                    true,
-                    false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.Stonecutter),
-                    "BlackMarble,32",
+                    name: "blackmarble_floor_large",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Building,
+                    craftingStation: nameof(CraftingStations.Stonecutter),
+                    requirements: "BlackMarble,32",
                     pieceName: "Black marble floor 8x8",
                     clipGround: true,
                     pieceGroup: PieceGroup.BlackMarble
@@ -397,60 +397,60 @@ namespace MVBP.Configs
             {
                 "blackmarble_head_big01",
                 new PrefabDB(
-                    "blackmarble_head_big01",
-                    true,
-                    false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.Stonecutter),
-                    "BlackMarble,6",
+                    name: "blackmarble_head_big01",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Building,
+                    craftingStation: nameof(CraftingStations.Stonecutter),
+                    requirements: "BlackMarble,6",
                     pieceGroup: PieceGroup.BlackMarble
                 )
             },
             {
                 "blackmarble_head_big02",
                 new PrefabDB(
-                    "blackmarble_head_big02",
-                    true,
-                    false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.Stonecutter),
-                    "BlackMarble,6",
+                    name: "blackmarble_head_big02",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Building,
+                    craftingStation: nameof(CraftingStations.Stonecutter),
+                    requirements: "BlackMarble,6",
                     pieceGroup: PieceGroup.BlackMarble
                 )
             },
             {
                 "blackmarble_head01",
                 new PrefabDB(
-                    "blackmarble_head01",
-                    true,
-                    false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.Stonecutter),
-                    "BlackMarble,2",
+                    name: "blackmarble_head01",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Building,
+                    craftingStation: nameof(CraftingStations.Stonecutter),
+                    requirements: "BlackMarble,2",
                     pieceGroup: PieceGroup.BlackMarble
                 )
             },
             {
                 "blackmarble_head02",
                 new PrefabDB(
-                    "blackmarble_head02",
-                    true,
-                    false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.Stonecutter),
-                    "BlackMarble,2",
+                    name: "blackmarble_head02",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Building,
+                    craftingStation: nameof(CraftingStations.Stonecutter),
+                    requirements: "BlackMarble,2",
                     pieceGroup: PieceGroup.BlackMarble
                 )
             },
             {
                 "blackmarble_out_2",
                 new PrefabDB(
-                    "blackmarble_out_2",
-                    true,
-                    false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.Stonecutter),
-                    "BlackMarble,6",
+                    name: "blackmarble_out_2",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Building,
+                    craftingStation: nameof(CraftingStations.Stonecutter),
+                    requirements: "BlackMarble,6",
                     pieceName: "Black marble cornice (wide)",
                     pieceGroup: PieceGroup.BlackMarble
                 )
@@ -458,12 +458,12 @@ namespace MVBP.Configs
             {
                 "blackmarble_post01",
                 new PrefabDB(
-                    "blackmarble_post01",
-                    true,
-                    false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.Stonecutter),
-                    "BlackMarble,8",
+                    name: "blackmarble_post01",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Building,
+                    craftingStation: nameof(CraftingStations.Stonecutter),
+                    requirements: "BlackMarble,8",
                     clipGround: true,
                     pieceGroup: PieceGroup.BlackMarble
                 )
@@ -471,36 +471,36 @@ namespace MVBP.Configs
             {
                 "blackmarble_slope_1x2",
                 new PrefabDB(
-                    "blackmarble_slope_1x2",
-                    true,
-                    false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.Stonecutter),
-                    "BlackMarble,2",
+                    name: "blackmarble_slope_1x2",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Building,
+                    craftingStation: nameof(CraftingStations.Stonecutter),
+                    requirements: "BlackMarble,2",
                     pieceGroup: PieceGroup.BlackMarble
                 )
             },
             {
                 "blackmarble_slope_inverted_1x2",
                 new PrefabDB(
-                    "blackmarble_slope_inverted_1x2",
-                    true,
-                    false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.Stonecutter),
-                    "BlackMarble,2",
+                    name: "blackmarble_slope_inverted_1x2",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Building,
+                    craftingStation: nameof(CraftingStations.Stonecutter),
+                    requirements: "BlackMarble,2",
                     pieceGroup: PieceGroup.BlackMarble
                 )
             },
             {
                 "blackmarble_stair_corner",
                 new PrefabDB(
-                    "blackmarble_stair_corner",
-                    true,
-                    false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.Stonecutter),
-                    "BlackMarble,8",
+                    name: "blackmarble_stair_corner",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Building,
+                    craftingStation: nameof(CraftingStations.Stonecutter),
+                    requirements: "BlackMarble,8",
                     placementPatch: true,
                     pieceGroup: PieceGroup.BlackMarble
                 )
@@ -508,12 +508,12 @@ namespace MVBP.Configs
             {
                 "blackmarble_stair_corner_left",
                 new PrefabDB(
-                    "blackmarble_stair_corner_left",
-                    true,
-                    false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.Stonecutter),
-                    "BlackMarble,8",
+                    name: "blackmarble_stair_corner_left",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Building,
+                    craftingStation: nameof(CraftingStations.Stonecutter),
+                    requirements: "BlackMarble,8",
                     placementPatch: true,
                     pieceGroup: PieceGroup.BlackMarble
                 )
@@ -521,204 +521,204 @@ namespace MVBP.Configs
             {
                 "blackmarble_tile_floor_1x1",
                 new PrefabDB(
-                    "blackmarble_tile_floor_1x1",
-                    true,
-                    false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.Stonecutter),
-                    "BlackMarble,2",
+                    name: "blackmarble_tile_floor_1x1",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Building,
+                    craftingStation: nameof(CraftingStations.Stonecutter),
+                    requirements: "BlackMarble,2",
                     pieceGroup: PieceGroup.BlackMarble
                 )
             },
             {
                 "blackmarble_tile_floor_2x2",
                 new PrefabDB(
-                    "blackmarble_tile_floor_2x2",
-                    true,
-                    false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.Stonecutter),
-                    "BlackMarble,2",
+                    name: "blackmarble_tile_floor_2x2",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Building,
+                    craftingStation: nameof(CraftingStations.Stonecutter),
+                    requirements: "BlackMarble,2",
                     pieceGroup: PieceGroup.BlackMarble
                 )
             },
             {
                 "blackmarble_tile_wall_1x1",
                 new PrefabDB(
-                    "blackmarble_tile_wall_1x1",
-                    true,
-                    false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.Stonecutter),
-                    "BlackMarble,1",
+                    name: "blackmarble_tile_wall_1x1",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Building,
+                    craftingStation: nameof(CraftingStations.Stonecutter),
+                    requirements: "BlackMarble,1",
                     pieceGroup: PieceGroup.BlackMarble
                 )
             },
             {
                 "blackmarble_tile_wall_2x2",
                 new PrefabDB(
-                    "blackmarble_tile_wall_2x2",
-                    true,
-                    false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.Stonecutter),
-                    "BlackMarble,2",
+                    name: "blackmarble_tile_wall_2x2",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Building,
+                    craftingStation: nameof(CraftingStations.Stonecutter),
+                    requirements: "BlackMarble,2",
                     pieceGroup: PieceGroup.BlackMarble
                 )
             },
             {
                 "blackmarble_tile_wall_2x4",
                 new PrefabDB(
-                    "blackmarble_tile_wall_2x4",
-                    true,
-                    false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.Stonecutter),
-                    "BlackMarble,4",
+                    name: "blackmarble_tile_wall_2x4",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Building,
+                    craftingStation: nameof(CraftingStations.Stonecutter),
+                    requirements: "BlackMarble,4",
                     pieceGroup: PieceGroup.BlackMarble
                 )
             },
             {
                 "BlueberryBush",
                 new PrefabDB(
-                    "BlueberryBush",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "Blueberries,5",
+                    name: "BlueberryBush",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "Blueberries,5",
                     pieceGroup: PieceGroup.Plant
                 )
             },
             {
                 "BossStone_Bonemass",
                 new PrefabDB(
-                    "BossStone_Bonemass",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    "",
+                    name: "BossStone_Bonemass",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.CreatorShop,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "",
                     pieceGroup: PieceGroup.Misc
                 )
             },
             {
                 "BossStone_DragonQueen",
                 new PrefabDB(
-                    "BossStone_DragonQueen",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    "",
+                    name: "BossStone_DragonQueen",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.CreatorShop,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "",
                     pieceGroup: PieceGroup.Misc
                 )
             },
             {
                 "BossStone_Eikthyr",
                 new PrefabDB(
-                    "BossStone_Eikthyr",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    "",
+                    name: "BossStone_Eikthyr",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.CreatorShop,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "",
                     pieceGroup: PieceGroup.Misc
                 )
             },
             {
                 "BossStone_TheElder",
                 new PrefabDB(
-                    "BossStone_TheElder",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    "",
+                    name: "BossStone_TheElder",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.CreatorShop,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "",
                     pieceGroup: PieceGroup.Misc
                 )
             },
             {
                 "BossStone_TheQueen",
                 new PrefabDB(
-                    "BossStone_TheQueen",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    "",
+                    name: "BossStone_TheQueen",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.CreatorShop,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "",
                     pieceGroup: PieceGroup.Misc
                 )
             },
             {
                 "BossStone_Yagluth",
                 new PrefabDB(
-                    "BossStone_Yagluth",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    "",
+                    name: "BossStone_Yagluth",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.CreatorShop,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "",
                     pieceGroup: PieceGroup.Misc
                 )
             },
             {
                 "bucket",
                 new PrefabDB(
-                    "bucket",
-                    true,
-                    false,
-                    HammerCategories.Misc,
-                    nameof(CraftingStations.Workbench),
-                    "Wood,2",
+                    name: "bucket",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Misc,
+                    craftingStation: nameof(CraftingStations.Workbench),
+                    requirements: "Wood,2",
                     pieceGroup: PieceGroup.Misc
                 )
             },
             {
                 "Bush01",
                 new PrefabDB(
-                    "Bush01",
-                    true,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "Wood,2",
+                    name: "Bush01",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "Wood,2",
                     pieceGroup: PieceGroup.Flora
                 )
             },
             {
                 "Bush01_heath",
                 new PrefabDB(
-                    "Bush01_heath",
-                    true,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "Wood,2",
+                    name: "Bush01_heath",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "Wood,2",
                     pieceGroup: PieceGroup.Flora
                 )
             },
             {
                 "Bush02_en",
                 new PrefabDB(
-                    "Bush02_en",
-                    true,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "Wood,2",
+                    name: "Bush02_en",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "Wood,2",
                     pieceGroup: PieceGroup.Flora
                 )
             },
             {
                 "CastleKit_braided_box01",
                 new PrefabDB(
-                    "CastleKit_braided_box01",
-                    true,
-                    false,
-                    HammerCategories.Misc,
-                    nameof(CraftingStations.Workbench),
-                    "Wood,2",
+                    name: "CastleKit_braided_box01",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Misc,
+                    craftingStation: nameof(CraftingStations.Workbench),
+                    requirements: "Wood,2",
                     pieceName: "Wood box",
                     pieceGroup: PieceGroup.Misc
                 )
@@ -726,12 +726,12 @@ namespace MVBP.Configs
             {
                 "CastleKit_groundtorch",
                 new PrefabDB(
-                    "CastleKit_groundtorch",
-                    true,
-                    false,
-                    HammerCategories.Furniture,
-                    nameof(CraftingStations.Forge),
-                    "Iron,2;Resin,2;BlackCore,1",
+                    name: "CastleKit_groundtorch",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Furniture,
+                    craftingStation: nameof(CraftingStations.Forge),
+                    requirements: "Iron,2;Resin,2;BlackCore,1",
                     pieceName: "Standing iron torch (everburning)",
                     pieceDesc: "Burns eternally without fuel, but does not prevent spawning of monsters.",
                     pieceGroup: PieceGroup.Torch
@@ -740,12 +740,12 @@ namespace MVBP.Configs
             {
                 "CastleKit_groundtorch_blue",
                 new PrefabDB(
-                    "CastleKit_groundtorch_blue",
-                    true,
-                    false,
-                    HammerCategories.Furniture,
-                    nameof(CraftingStations.Forge),
-                    "Iron,2;GreydwarfEye,2;BlackCore,1",
+                    name: "CastleKit_groundtorch_blue",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Furniture,
+                    craftingStation: nameof(CraftingStations.Forge),
+                    requirements: "Iron,2;GreydwarfEye,2;BlackCore,1",
                     pieceName: "Standing blue-burning iron torch (everburning)",
                     pieceDesc: "Burns eternally without fuel, but does not prevent spawning of monsters.",
                     pieceGroup: PieceGroup.Torch
@@ -754,12 +754,12 @@ namespace MVBP.Configs
             {
                 "CastleKit_groundtorch_green",
                 new PrefabDB(
-                    "CastleKit_groundtorch_green",
-                    true,
-                    false,
-                    HammerCategories.Furniture,
-                    nameof(CraftingStations.Forge),
-                    "Iron,2;Guck,2;BlackCore,1",
+                    name: "CastleKit_groundtorch_green",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Furniture,
+                    craftingStation: nameof(CraftingStations.Forge),
+                    requirements: "Iron,2;Guck,2;BlackCore,1",
                     pieceName: "Standing green-burning iron torch (everburning)",
                     pieceDesc: "Burns eternally without fuel, but does not prevent spawning of monsters.",
                     pieceGroup: PieceGroup.Torch
@@ -768,12 +768,12 @@ namespace MVBP.Configs
             {
                 "caverock_ice_pillar_wall",
                 new PrefabDB(
-                    "caverock_ice_pillar_wall",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "Crystal,10",
+                    name: "caverock_ice_pillar_wall",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "Crystal,10",
                     placementPatch: true,
                     pieceGroup: PieceGroup.Ice
                 )
@@ -781,12 +781,12 @@ namespace MVBP.Configs
             {
                 "caverock_ice_stalagmite",
                 new PrefabDB(
-                    "caverock_ice_stalagmite",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "Crystal,2",
+                    name: "caverock_ice_stalagmite",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "Crystal,2",
                     placementPatch: true,
                     pieceGroup: PieceGroup.Ice
                 )
@@ -794,12 +794,12 @@ namespace MVBP.Configs
             {
                 "caverock_ice_stalagmite_broken",
                 new PrefabDB(
-                    "caverock_ice_stalagmite_broken",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "Crystal,4",
+                    name: "caverock_ice_stalagmite_broken",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "Crystal,4",
                     placementPatch: true,
                     pieceGroup: PieceGroup.Ice
                 )
@@ -807,12 +807,12 @@ namespace MVBP.Configs
             {
                 "caverock_ice_stalagtite",
                 new PrefabDB(
-                    "caverock_ice_stalagtite",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "Crystal,2",
+                    name: "caverock_ice_stalagtite",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "Crystal,2",
                     placementPatch: true,
                     pieceGroup: PieceGroup.Ice
                 )
@@ -820,12 +820,12 @@ namespace MVBP.Configs
             {
                 "caverock_ice_stalagtite_falling",
                 new PrefabDB(
-                    "caverock_ice_stalagtite_falling",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "Crystal,2",
+                    name: "caverock_ice_stalagtite_falling",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "Crystal,2",
                     placementPatch: true,
                     pieceGroup: PieceGroup.Ice
                 )
@@ -833,24 +833,24 @@ namespace MVBP.Configs
             {
                 "Chest",
                 new PrefabDB(
-                    "Chest",
-                    false,
-                    false,
-                    HammerCategories.Furniture,
-                    nameof(CraftingStations.None),
-                    "Wood,10;Iron,1",
+                    name: "Chest",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Furniture,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "Wood,10;Iron,1",
                     pieceGroup: PieceGroup.Chest
                 )
             },
             {
                 "cliff_mistlands1",
                 new PrefabDB(
-                    "cliff_mistlands1",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "Stone,350",
+                    name: "cliff_mistlands1",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "Stone,350",
                     clipEverything: true,
                     pieceGroup: PieceGroup.Rock
                 )
@@ -858,12 +858,12 @@ namespace MVBP.Configs
             {
                 "cliff_mistlands1_creep",
                 new PrefabDB(
-                    "cliff_mistlands1_creep",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "Stone,350",
+                    name: "cliff_mistlands1_creep",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "Stone,350",
                     clipEverything: true,
                     pieceGroup: PieceGroup.Rock
                 )
@@ -871,12 +871,12 @@ namespace MVBP.Configs
             {
                 "cliff_mistlands2",
                 new PrefabDB(
-                    "cliff_mistlands2",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "Stone,175",
+                    name: "cliff_mistlands2",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "Stone,175",
                     clipEverything: true,
                     pieceGroup: PieceGroup.Rock
                 )
@@ -884,173 +884,173 @@ namespace MVBP.Configs
             {
                 "cloth_hanging_door",
                 new PrefabDB(
-                    "cloth_hanging_door",
-                    false,
-                    false,
-                    HammerCategories.Furniture,
-                    nameof(CraftingStations.None),
-                    "",
+                    name: "cloth_hanging_door",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Furniture,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "",
                     pieceGroup: PieceGroup.Banner
                 )
             },
             {
                 "cloth_hanging_door_double",
                 new PrefabDB(
-                    "cloth_hanging_door_double",
-                    true,
-                    false,
-                    HammerCategories.Furniture,
-                    nameof(CraftingStations.Workbench),
-                    "JuteRed,4",
+                    name: "cloth_hanging_door_double",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Furniture,
+                    craftingStation: nameof(CraftingStations.Workbench),
+                    requirements: "JuteRed,4",
                     pieceGroup: PieceGroup.Banner
                 )
             },
             {
                 "cloth_hanging_long",
                 new PrefabDB(
-                    "cloth_hanging_long",
-                    false,
-                    false,
-                    HammerCategories.Furniture,
-                    nameof(CraftingStations.None),
-                    "",
+                    name: "cloth_hanging_long",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Furniture,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "",
                     pieceGroup: PieceGroup.Banner
                 )
             },
             {
                 "CloudberryBush",
                 new PrefabDB(
-                    "CloudberryBush",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "Cloudberry,5",
+                    name: "CloudberryBush",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "Cloudberry,5",
                     pieceGroup: PieceGroup.Plant
                 )
             },
             {
                 "CreepProp_egg_hanging01",
                 new PrefabDB(
-                    "CreepProp_egg_hanging01",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "YggdrasilWood,2"
+                    name: "CreepProp_egg_hanging01",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "YggdrasilWood,2"
                 )
             },
             {
                 "CreepProp_egg_hanging02",
                 new PrefabDB(
-                    "CreepProp_egg_hanging02",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "YggdrasilWood,2"
+                    name: "CreepProp_egg_hanging02",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "YggdrasilWood,2"
                 )
             },
             {
                 "CreepProp_entrance1",
                 new PrefabDB(
-                    "CreepProp_entrance1",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "YggdrasilWood,2",
+                    name: "CreepProp_entrance1",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "YggdrasilWood,2",
                     placementPatch: true
                 )
             },
             {
                 "CreepProp_entrance2",
                 new PrefabDB(
-                    "CreepProp_entrance2",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "YggdrasilWood,2",
+                    name: "CreepProp_entrance2",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "YggdrasilWood,2",
                     placementPatch: true
                 )
             },
             {
                 "CreepProp_hanging01",
                 new PrefabDB(
-                    "CreepProp_hanging01",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "YggdrasilWood,2"
+                    name: "CreepProp_hanging01",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "YggdrasilWood,2"
                 )
             },
             {
                 "CreepProp_wall01",
                 new PrefabDB(
-                    "CreepProp_wall01",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "YggdrasilWood,2"
+                    name: "CreepProp_wall01",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "YggdrasilWood,2"
                 )
             },
             {
                 "crypt_skeleton_chest",
                 new PrefabDB(
-                    "crypt_skeleton_chest",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    ""
+                    name: "crypt_skeleton_chest",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.CreatorShop,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: ""
                 )
             },
             {
                 "dungeon_forestcrypt_door",
                 new PrefabDB(
-                    "dungeon_forestcrypt_door",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    ""
+                    name: "dungeon_forestcrypt_door",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.CreatorShop,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: ""
                 )
             },
             {
                 "dungeon_queen_door",
                 new PrefabDB(
-                    "dungeon_queen_door",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    "BlackMarble,40;DvergrKeyFragment,4;Iron,12"
+                    name: "dungeon_queen_door",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.CreatorShop,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "BlackMarble,40;DvergrKeyFragment,4;Iron,12"
                 )
             },
             {
                 "dungeon_sunkencrypt_irongate",
                 new PrefabDB(
-                    "dungeon_sunkencrypt_irongate",
-                    false,
-                    false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.None),
-                    "Iron,4",
+                    name: "dungeon_sunkencrypt_irongate",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Building,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "Iron,4",
                     pieceGroup: PieceGroup.Iron
                 )
             },
             {
                 "dungeon_sunkencrypt_irongate_rusty",
                 new PrefabDB(
-                    "dungeon_sunkencrypt_irongate_rusty",
-                    false,
-                    false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.Forge),
-                    "Iron,4",
+                    name: "dungeon_sunkencrypt_irongate_rusty",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Building,
+                    craftingStation: nameof(CraftingStations.Forge),
+                    requirements: "Iron,4",
                     clipGround: true,
                     pieceGroup: PieceGroup.Iron
                 )
@@ -1058,131 +1058,131 @@ namespace MVBP.Configs
             {
                 "dverger_demister",
                 new PrefabDB(
-                    "dverger_demister",
-                    true,
-                    false,
-                    HammerCategories.Furniture,
-                    nameof(CraftingStations.BlackForge),
-                    "Iron,1;Wisp,1",
+                    name: "dverger_demister",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Furniture,
+                    craftingStation: nameof(CraftingStations.BlackForge),
+                    requirements: "Iron,1;Wisp,1",
                     pieceGroup: PieceGroup.Torch
                 )
             },
             {
                 "dverger_demister_broken",
                 new PrefabDB(
-                    "dverger_demister_broken",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    "",
+                    name: "dverger_demister_broken",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.CreatorShop,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "",
                     pieceGroup: PieceGroup.Misc
                 )
             },
             {
                 "dverger_demister_large",
                 new PrefabDB(
-                    "dverger_demister_large",
-                    true,
-                    false,
-                    HammerCategories.Furniture,
-                    nameof(CraftingStations.BlackForge),
-                    "Iron,1;Wisp,2",
+                    name: "dverger_demister_large",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Furniture,
+                    craftingStation: nameof(CraftingStations.BlackForge),
+                    requirements: "Iron,1;Wisp,2",
                     pieceGroup: PieceGroup.Torch
                 )
             },
             {
                 "dverger_demister_ruins",
                 new PrefabDB(
-                    "dverger_demister_ruins",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    "",
+                    name: "dverger_demister_ruins",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.CreatorShop,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "",
                     pieceGroup: PieceGroup.Misc
                 )
             },
             {
                 "dverger_guardstone",
                 new PrefabDB(
-                    "dverger_guardstone",
-                    true,
-                    false,
-                    HammerCategories.Misc,
-                    nameof(CraftingStations.BlackForge),
-                    "YggdrasilWood,5;BlackMarble,5;BlackCore,1"
+                    name: "dverger_guardstone",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Misc,
+                    craftingStation: nameof(CraftingStations.BlackForge),
+                    requirements: "YggdrasilWood,5;BlackMarble,5;BlackCore,1"
                 )
             },
             {
                 "dvergrprops_banner",
                 new PrefabDB(
-                    "dvergrprops_banner",
-                    true,
-                    false,
-                    HammerCategories.Furniture,
-                    nameof(CraftingStations.Workbench),
-                    "JuteBlue,6;FineWood,2",
+                    name: "dvergrprops_banner",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Furniture,
+                    craftingStation: nameof(CraftingStations.Workbench),
+                    requirements: "JuteBlue,6;FineWood,2",
                     pieceGroup: PieceGroup.Banner
                 )
             },
             {
                 "dvergrprops_barrel",
                 new PrefabDB(
-                    "dvergrprops_barrel",
-                    true,
-                    false,
-                    HammerCategories.Furniture,
-                    nameof(CraftingStations.Workbench),
-                    "YggdrasilWood,20;Bronze,5;Resin,10",
+                    name: "dvergrprops_barrel",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Furniture,
+                    craftingStation: nameof(CraftingStations.Workbench),
+                    requirements: "YggdrasilWood,20;Bronze,5;Resin,10",
                     pieceGroup: PieceGroup.Dvergr
                 )
             },
             {
                 "dvergrprops_bed",
                 new PrefabDB(
-                    "dvergrprops_bed",
-                    true,
-                    false,
-                    HammerCategories.Furniture,
-                    nameof(CraftingStations.BlackForge),
-                    "YggdrasilWood,8;ScaleHide,2;IronNails,5",
+                    name: "dvergrprops_bed",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Furniture,
+                    craftingStation: nameof(CraftingStations.BlackForge),
+                    requirements: "YggdrasilWood,8;ScaleHide,2;IronNails,5",
                     pieceGroup: PieceGroup.Bed
                 )
             },
             {
                 "dvergrprops_chair",
                 new PrefabDB(
-                    "dvergrprops_chair",
-                    true,
-                    false,
-                    HammerCategories.Furniture,
-                    nameof(CraftingStations.BlackForge),
-                    "YggdrasilWood,4",
+                    name: "dvergrprops_chair",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Furniture,
+                    craftingStation: nameof(CraftingStations.BlackForge),
+                    requirements: "YggdrasilWood,4",
                     pieceGroup: PieceGroup.Chair
                 )
             },
             {
                 "dvergrprops_crate",
                 new PrefabDB(
-                    "dvergrprops_crate",
-                    true,
-                    false,
-                    HammerCategories.Misc,
-                    nameof(CraftingStations.BlackForge),
-                    "YggdrasilWood,4",
+                    name: "dvergrprops_crate",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Misc,
+                    craftingStation: nameof(CraftingStations.BlackForge),
+                    requirements: "YggdrasilWood,4",
                     pieceGroup: PieceGroup.Misc
                 )
             },
             {
                 "dvergrprops_crate_long",
                 new PrefabDB(
-                    "dvergrprops_crate_long",
-                    true,
-                    false,
-                    HammerCategories.Misc,
-                    nameof(CraftingStations.BlackForge),
-                    "YggdrasilWood,4",
+                    name: "dvergrprops_crate_long",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Misc,
+                    craftingStation: nameof(CraftingStations.BlackForge),
+                    requirements: "YggdrasilWood,4",
                     pieceName: "Dvergr component crate",
                     pieceDesc: "",
                     pieceGroup: PieceGroup.Misc
@@ -1191,24 +1191,24 @@ namespace MVBP.Configs
             {
                 "dvergrprops_curtain",
                 new PrefabDB(
-                    "dvergrprops_curtain",
-                    true,
-                    false,
-                    HammerCategories.Furniture,
-                    nameof(CraftingStations.Workbench),
-                    "JuteBlue,6;FineWood,2",
+                    name: "dvergrprops_curtain",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Furniture,
+                    craftingStation: nameof(CraftingStations.Workbench),
+                    requirements: "JuteBlue,6;FineWood,2",
                     pieceGroup: PieceGroup.Banner
                 )
             },
             {
                 "dvergrprops_hooknchain",
                 new PrefabDB(
-                    "dvergrprops_hooknchain",
-                    true,
-                    false,
-                    HammerCategories.Misc,
-                    nameof(CraftingStations.BlackForge),
-                    "Chain,2;Iron,2",
+                    name: "dvergrprops_hooknchain",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Misc,
+                    craftingStation: nameof(CraftingStations.BlackForge),
+                    requirements: "Chain,2;Iron,2",
                     pieceName: "Dvergr hook & chain",
                     pieceGroup: PieceGroup.Misc
                 )
@@ -1216,132 +1216,132 @@ namespace MVBP.Configs
             {
                 "dvergrprops_lantern_standing",
                 new PrefabDB(
-                    "dvergrprops_lantern_standing",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    "",
+                    name: "dvergrprops_lantern_standing",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.CreatorShop,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "",
                     pieceGroup: PieceGroup.Dvergr
                 )
             },
             {
                 "dvergrprops_pickaxe",
                 new PrefabDB(
-                    "dvergrprops_pickaxe",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    "",
+                    name: "dvergrprops_pickaxe",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.CreatorShop,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "",
                     pieceGroup: PieceGroup.Dvergr
                 )
             },
             {
                 "dvergrprops_shelf",
                 new PrefabDB(
-                    "dvergrprops_shelf",
-                    true,
-                    false,
-                    HammerCategories.Furniture,
-                    nameof(CraftingStations.BlackForge),
-                    "YggdrasilWood,4;IronNails,5",
+                    name: "dvergrprops_shelf",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Furniture,
+                    craftingStation: nameof(CraftingStations.BlackForge),
+                    requirements: "YggdrasilWood,4;IronNails,5",
                     pieceGroup: PieceGroup.Dvergr
                 )
             },
             {
                 "dvergrprops_stool",
                 new PrefabDB(
-                    "dvergrprops_stool",
-                    true,
-                    false,
-                    HammerCategories.Furniture,
-                    nameof(CraftingStations.BlackForge),
-                    "YggdrasilWood,2",
+                    name: "dvergrprops_stool",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Furniture,
+                    craftingStation: nameof(CraftingStations.BlackForge),
+                    requirements: "YggdrasilWood,2",
                     pieceGroup: PieceGroup.Chair
                 )
             },
             {
                 "dvergrprops_table",
                 new PrefabDB(
-                    "dvergrprops_table",
-                    true,
-                    false,
-                    HammerCategories.Furniture,
-                    nameof(CraftingStations.BlackForge),
-                    "YggdrasilWood,6;IronNails,10",
+                    name: "dvergrprops_table",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Furniture,
+                    craftingStation: nameof(CraftingStations.BlackForge),
+                    requirements: "YggdrasilWood,6;IronNails,10",
                     pieceGroup: PieceGroup.Table
                 )
             },
             {
                 "dvergrprops_wood_beam",
                 new PrefabDB(
-                    "dvergrprops_wood_beam",
-                    true,
-                    false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.BlackForge),
-                    "YggdrasilWood,4",
+                    name: "dvergrprops_wood_beam",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Building,
+                    craftingStation: nameof(CraftingStations.BlackForge),
+                    requirements: "YggdrasilWood,4",
                     pieceGroup: PieceGroup.Dvergr
                 )
             },
             {
                 "dvergrprops_wood_floor",
                 new PrefabDB(
-                    "dvergrprops_wood_floor",
-                    true,
-                    false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.BlackForge),
-                    "YggdrasilWood,2",
+                    name: "dvergrprops_wood_floor",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Building,
+                    craftingStation: nameof(CraftingStations.BlackForge),
+                    requirements: "YggdrasilWood,2",
                     pieceGroup: PieceGroup.Dvergr
                 )
             },
             {
                 "dvergrprops_wood_pole",
                 new PrefabDB(
-                    "dvergrprops_wood_pole",
-                    true,
-                    false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.BlackForge),
-                    "YggdrasilWood,2",
+                    name: "dvergrprops_wood_pole",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Building,
+                    craftingStation: nameof(CraftingStations.BlackForge),
+                    requirements: "YggdrasilWood,2",
                     pieceGroup: PieceGroup.Dvergr
                 )
             },
             {
                 "dvergrprops_wood_stair",
                 new PrefabDB(
-                    "dvergrprops_wood_stair",
-                    true,
-                    false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.BlackForge),
-                    "YggdrasilWood,2",
+                    name: "dvergrprops_wood_stair",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Building,
+                    craftingStation: nameof(CraftingStations.BlackForge),
+                    requirements: "YggdrasilWood,2",
                     pieceGroup: PieceGroup.Dvergr
                 )
             },
             {
                 "dvergrprops_wood_stakewall",
                 new PrefabDB(
-                    "dvergrprops_wood_stakewall",
-                    false,
-                    false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.None),
-                    "YggdrasilWood,4",
+                    name: "dvergrprops_wood_stakewall",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Building,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "YggdrasilWood,4",
                     pieceGroup: PieceGroup.Dvergr
                 )
             },
             {
                 "dvergrprops_wood_wall",
                 new PrefabDB(
-                    "dvergrprops_wood_wall",
-                    true,
-                    false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.BlackForge),
-                    "YggdrasilWood,10",
+                    name: "dvergrprops_wood_wall",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Building,
+                    craftingStation: nameof(CraftingStations.BlackForge),
+                    requirements: "YggdrasilWood,10",
                     pieceName: "Dvergr wood wall 4x4",
                     pieceGroup: PieceGroup.Dvergr
                 )
@@ -1349,24 +1349,24 @@ namespace MVBP.Configs
             {
                 "dvergrtown_arch",
                 new PrefabDB(
-                    "dvergrtown_arch",
-                    true,
-                    false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.Stonecutter),
-                    "BlackMarble,8",
+                    name: "dvergrtown_arch",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Building,
+                    craftingStation: nameof(CraftingStations.Stonecutter),
+                    requirements: "BlackMarble,8",
                     pieceGroup: PieceGroup.Dvergr
                 )
             },
             {
                 "dvergrtown_creep_door",
                 new PrefabDB(
-                    "dvergrtown_creep_door",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "YggdrasilWood,4",
+                    name: "dvergrtown_creep_door",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "YggdrasilWood,4",
                     pieceName: "Door hanging (creep)",
                     pieceDesc: "",
                     pieceGroup: PieceGroup.Misc
@@ -1375,12 +1375,12 @@ namespace MVBP.Configs
             {
                 "dvergrtown_secretdoor",
                 new PrefabDB(
-                    "dvergrtown_secretdoor",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    "BlackMarble,12",
+                    name: "dvergrtown_secretdoor",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.CreatorShop,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "BlackMarble,12",
                     pieceName: "Dvergr secret door",
                     pieceGroup: PieceGroup.Dvergr
                 )
@@ -1388,12 +1388,12 @@ namespace MVBP.Configs
             {
                 "dvergrtown_slidingdoor",
                 new PrefabDB(
-                    "dvergrtown_slidingdoor",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    "BlackMarble,6",
+                    name: "dvergrtown_slidingdoor",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.CreatorShop,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "BlackMarble,6",
                     pieceName: "Dvergr sliding door",
                     pieceGroup: PieceGroup.Dvergr
                 )
@@ -1401,24 +1401,24 @@ namespace MVBP.Configs
             {
                 "dvergrtown_stair_corner_wood_left",
                 new PrefabDB(
-                    "dvergrtown_stair_corner_wood_left",
-                    true,
-                    false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.BlackForge),
-                    "YggdrasilWood,5;CopperScrap,2",
+                    name: "dvergrtown_stair_corner_wood_left",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Building,
+                    craftingStation: nameof(CraftingStations.BlackForge),
+                    requirements: "YggdrasilWood,5;CopperScrap,2",
                     pieceGroup: PieceGroup.Dvergr
                 )
             },
             {
                 "dvergrtown_wood_beam",
                 new PrefabDB(
-                    "dvergrtown_wood_beam",
-                    false,
-                    false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.BlackForge),
-                    "YggdrasilWood,4",
+                    name: "dvergrtown_wood_beam",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Building,
+                    craftingStation: nameof(CraftingStations.BlackForge),
+                    requirements: "YggdrasilWood,4",
                     pieceName: "Dvergr wood beam (creep)",
                     pieceGroup: PieceGroup.Dvergr
                 )
@@ -1426,24 +1426,24 @@ namespace MVBP.Configs
             {
                 "dvergrtown_wood_crane",
                 new PrefabDB(
-                    "dvergrtown_wood_crane",
-                    false,
-                    false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.BlackForge),
-                    "YggdrasilWood,8;Chain,2;Iron,2",
+                    name: "dvergrtown_wood_crane",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Building,
+                    craftingStation: nameof(CraftingStations.BlackForge),
+                    requirements: "YggdrasilWood,8;Chain,2;Iron,2",
                     pieceGroup: PieceGroup.Dvergr
                 )
             },
             {
                 "dvergrtown_wood_pole",
                 new PrefabDB(
-                    "dvergrtown_wood_pole",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    "",
+                    name: "dvergrtown_wood_pole",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.CreatorShop,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "",
                     pieceName: "Dvergr wood pole (creep)",
                     pieceGroup: PieceGroup.Dvergr
                 )
@@ -1451,106 +1451,106 @@ namespace MVBP.Configs
             {
                 "dvergrtown_wood_stake",
                 new PrefabDB(
-                    "dvergrtown_wood_stake",
-                    false,
-                    false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.BlackForge),
-                    "YggdrasilWood,1",
+                    name: "dvergrtown_wood_stake",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Building,
+                    craftingStation: nameof(CraftingStations.BlackForge),
+                    requirements: "YggdrasilWood,1",
                     pieceGroup: PieceGroup.Dvergr
                 )
             },
             {
                 "dvergrtown_wood_stakewall",
                 new PrefabDB(
-                    "dvergrtown_wood_stakewall",
-                    false,
-                    false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.BlackForge),
-                    "YggdrasilWood,4",
+                    name: "dvergrtown_wood_stakewall",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Building,
+                    craftingStation: nameof(CraftingStations.BlackForge),
+                    requirements: "YggdrasilWood,4",
                     pieceGroup: PieceGroup.Dvergr
                 )
             },
             {
                 "dvergrtown_wood_support",
                 new PrefabDB(
-                    "dvergrtown_wood_support",
-                    false,
-                    false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.BlackForge),
-                    "YggdrasilWood,10",
+                    name: "dvergrtown_wood_support",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Building,
+                    craftingStation: nameof(CraftingStations.BlackForge),
+                    requirements: "YggdrasilWood,10",
                     pieceGroup: PieceGroup.Dvergr
                 )
             },
             {
                 "dvergrtown_wood_wall01",
                 new PrefabDB(
-                    "dvergrtown_wood_wall01",
-                    false,
-                    false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.BlackForge),
-                    "YggdrasilWood,20",
+                    name: "dvergrtown_wood_wall01",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Building,
+                    craftingStation: nameof(CraftingStations.BlackForge),
+                    requirements: "YggdrasilWood,20",
                     pieceGroup: PieceGroup.Dvergr
                 )
             },
             {
                 "dvergrtown_wood_wall02",
                 new PrefabDB(
-                    "dvergrtown_wood_wall02",
-                    false,
-                    false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.BlackForge),
-                    "YggdrasilWood,12",
+                    name: "dvergrtown_wood_wall02",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Building,
+                    craftingStation: nameof(CraftingStations.BlackForge),
+                    requirements: "YggdrasilWood,12",
                     pieceGroup: PieceGroup.Dvergr
                 )
             },
             {
                 "dvergrtown_wood_wall03",
                 new PrefabDB(
-                    "dvergrtown_wood_wall03",
-                    false,
-                    false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.BlackForge),
-                    "YggdrasilWood,10;IronNails,6",
+                    name: "dvergrtown_wood_wall03",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Building,
+                    craftingStation: nameof(CraftingStations.BlackForge),
+                    requirements: "YggdrasilWood,10;IronNails,6",
                     pieceGroup: PieceGroup.Dvergr
                 )
             },
             {
                 "fenrirhide_hanging",
                 new PrefabDB(
-                    "fenrirhide_hanging",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    "WolfHairBundle,2"
+                    name: "fenrirhide_hanging",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.CreatorShop,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "WolfHairBundle,2"
                 )
             },
             {
                 "fenrirhide_hanging_door",
                 new PrefabDB(
-                    "fenrirhide_hanging_door",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    "WolfHairBundle,2"
+                    name: "fenrirhide_hanging_door",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.CreatorShop,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "WolfHairBundle,2"
                 )
             },
             {
                 "fire_pit_haldor",
                 new PrefabDB(
-                    "fire_pit_haldor",
-                    true,
-                    false,
-                    HammerCategories.Misc,
-                    nameof(CraftingStations.None),
-                    "Stone,5;Wood,2;BlackCore,1",
+                    name: "fire_pit_haldor",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Misc,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "Stone,5;Wood,2;BlackCore,1",
                     pieceName: "Campfire (everburning)",
                     pieceDesc: "Burns eternally without fuel.",
                     pieceGroup: PieceGroup.Fire
@@ -1559,12 +1559,12 @@ namespace MVBP.Configs
             {
                 "fire_pit_hildir",
                 new PrefabDB(
-                    "fire_pit_hildir",
-                    true,
-                    false,
-                    HammerCategories.Misc,
-                    nameof(CraftingStations.Forge),
-                    "Ironpit,1;Wood,1;BlackCore,1",
+                    name: "fire_pit_hildir",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Misc,
+                    craftingStation: nameof(CraftingStations.Forge),
+                    requirements: "Ironpit,1;Wood,1;BlackCore,1",
                     pieceName: "Firepit iron (everburning)",
                     pieceDesc: "Burns eternally without fuel.",
                     pieceGroup: PieceGroup.Fire
@@ -1573,84 +1573,84 @@ namespace MVBP.Configs
             {
                 "FirTree",
                 new PrefabDB(
-                    "FirTree",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "Wood,16",
+                    name: "FirTree",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "Wood,16",
                     pieceGroup: PieceGroup.Flora
                 )
             },
             {
                 "FirTree_log",
                 new PrefabDB(
-                    "FirTree_log",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "",
+                    name: "FirTree_log",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "",
                     pieceGroup: PieceGroup.Flora
                 )
             },
             {
                 "FirTree_log_half",
                 new PrefabDB(
-                    "FirTree_log_half",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "",
+                    name: "FirTree_log_half",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "",
                     pieceGroup: PieceGroup.Flora
                 )
             },
             {
                 "FirTree_oldLog",
                 new PrefabDB(
-                    "FirTree_oldLog",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "",
+                    name: "FirTree_oldLog",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "",
                     pieceGroup: PieceGroup.Flora
                 )
             },
             {
                 "FirTree_small",
                 new PrefabDB(
-                    "FirTree_small",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "",
+                    name: "FirTree_small",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "",
                     pieceGroup: PieceGroup.Flora
                 )
             },
             {
                 "FirTree_small_dead",
                 new PrefabDB(
-                    "FirTree_small_dead",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "",
+                    name: "FirTree_small_dead",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "",
                     pieceGroup: PieceGroup.Flora
                 )
             },
             {
                 "FirTree_Stub",
                 new PrefabDB(
-                    "FirTree_Stub",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "",
+                    name: "FirTree_Stub",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "",
                     clipEverything: true,
                     pieceGroup: PieceGroup.Flora
                 )
@@ -1658,130 +1658,130 @@ namespace MVBP.Configs
             {
                 "flying_core",
                 new PrefabDB(
-                    "flying_core",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    "Crystal,24"
+                    name: "flying_core",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.CreatorShop,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "Crystal,24"
                 )
             },
             {
                 "fuling_trap",
                 new PrefabDB(
-                    "fuling_trap",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    ""
+                    name: "fuling_trap",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.CreatorShop,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: ""
                 )
             },
             {
                 "giant_arm",
                 new PrefabDB(
-                    "giant_arm",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    "BlackMarble,32",
+                    name: "giant_arm",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.CreatorShop,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "BlackMarble,32",
                     clipEverything: true
                 )
             },
             {
                 "giant_brain",
                 new PrefabDB(
-                    "giant_brain",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    "SoftTissue,64",
+                    name: "giant_brain",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.CreatorShop,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "SoftTissue,64",
                     clipEverything: true
                 )
             },
             {
                 "giant_helmet1",
                 new PrefabDB(
-                    "giant_helmet1",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    "Iron,32",
+                    name: "giant_helmet1",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.CreatorShop,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "Iron,32",
                     clipEverything: true
                 )
             },
             {
                 "giant_helmet2",
                 new PrefabDB(
-                    "giant_helmet2",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    "Iron,8",
+                    name: "giant_helmet2",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.CreatorShop,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "Iron,8",
                     clipEverything: true
                 )
             },
             {
                 "giant_ribs",
                 new PrefabDB(
-                    "giant_ribs",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    "BlackMarble,64",
+                    name: "giant_ribs",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.CreatorShop,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "BlackMarble,64",
                     clipEverything: true
                 )
             },
             {
                 "giant_skull",
                 new PrefabDB(
-                    "giant_skull",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    "BlackMarble,32",
+                    name: "giant_skull",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.CreatorShop,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "BlackMarble,32",
                     clipEverything: true
                 )
             },
             {
                 "giant_sword1",
                 new PrefabDB(
-                    "giant_sword1",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    "Iron,16",
+                    name: "giant_sword1",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.CreatorShop,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "Iron,16",
                     clipEverything: true
                 )
             },
             {
                 "giant_sword2",
                 new PrefabDB(
-                    "giant_sword2",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    "Iron,16",
+                    name: "giant_sword2",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.CreatorShop,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "Iron,16",
                     clipEverything: true
                 )
             },
             {
                 "GlowingMushroom",
                 new PrefabDB(
-                    "GlowingMushroom",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "Ooze,1",
+                    name: "GlowingMushroom",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "Ooze,1",
                     placementPatch: true,
                     pieceGroup: PieceGroup.Flora
                 )
@@ -1789,72 +1789,72 @@ namespace MVBP.Configs
             {
                 "goblin_banner",
                 new PrefabDB(
-                    "goblin_banner",
-                    true,
-                    false,
-                    HammerCategories.Furniture,
-                    nameof(CraftingStations.Workbench),
-                    "Wood,1;DeerHide,1;Tar,1",
+                    name: "goblin_banner",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Furniture,
+                    craftingStation: nameof(CraftingStations.Workbench),
+                    requirements: "Wood,1;DeerHide,1;Tar,1",
                     pieceGroup: PieceGroup.Banner
                 )
             },
             {
                 "goblin_bed",
                 new PrefabDB(
-                    "goblin_bed",
-                    true,
-                    false,
-                    HammerCategories.Furniture,
-                    nameof(CraftingStations.Workbench),
-                    "Wood,8;Tar,1",
+                    name: "goblin_bed",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Furniture,
+                    craftingStation: nameof(CraftingStations.Workbench),
+                    requirements: "Wood,8;Tar,1",
                     pieceGroup: PieceGroup.Bed
                 )
             },
             {
                 "goblin_fence",
                 new PrefabDB(
-                    "goblin_fence",
-                    true,
-                    false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.Workbench),
-                    "Wood,2;Tar,1",
+                    name: "goblin_fence",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Building,
+                    craftingStation: nameof(CraftingStations.Workbench),
+                    requirements: "Wood,2;Tar,1",
                     pieceGroup: PieceGroup.Goblin
                 )
             },
             {
                 "goblin_pole",
                 new PrefabDB(
-                    "goblin_pole",
-                    true,
-                    false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.Workbench),
-                    "Wood,1;Tar,1",
+                    name: "goblin_pole",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Building,
+                    craftingStation: nameof(CraftingStations.Workbench),
+                    requirements: "Wood,1;Tar,1",
                     pieceGroup: PieceGroup.Goblin
                 )
             },
             {
                 "goblin_pole_small",
                 new PrefabDB(
-                    "goblin_pole_small",
-                    true,
-                    false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.Workbench),
-                    "Wood,1;Tar,1",
+                    name: "goblin_pole_small",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Building,
+                    craftingStation: nameof(CraftingStations.Workbench),
+                    requirements: "Wood,1;Tar,1",
                     pieceGroup: PieceGroup.Goblin
                 )
             },
             {
                 "goblin_roof_45d",
                 new PrefabDB(
-                    "goblin_roof_45d",
-                    true,
-                    false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.Workbench),
-                    "Wood,1;DeerHide,1;Tar,1",
+                    name: "goblin_roof_45d",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Building,
+                    craftingStation: nameof(CraftingStations.Workbench),
+                    requirements: "Wood,1;DeerHide,1;Tar,1",
                     placementPatch: true,
                     pieceGroup: PieceGroup.Goblin
                 )
@@ -1862,24 +1862,24 @@ namespace MVBP.Configs
             {
                 "goblin_roof_45d_corner",
                 new PrefabDB(
-                    "goblin_roof_45d_corner",
-                    true,
-                    false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.Workbench),
-                    "Wood,1;DeerHide,1;Tar,1",
+                    name: "goblin_roof_45d_corner",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Building,
+                    craftingStation: nameof(CraftingStations.Workbench),
+                    requirements: "Wood,1;DeerHide,1;Tar,1",
                     pieceGroup: PieceGroup.Goblin
                 )
             },
             {
                 "goblin_roof_cap", // TODO: needs custom placement patching
                 new PrefabDB(
-                    "goblin_roof_cap",
-                    true,
-                    false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.Workbench),
-                    "Wood,4;DeerHide,4;Tar,1",
+                    name: "goblin_roof_cap",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Building,
+                    craftingStation: nameof(CraftingStations.Workbench),
+                    requirements: "Wood,4;DeerHide,4;Tar,1",
                     clipEverything: true,
                     pieceGroup: PieceGroup.Goblin
                 )
@@ -1887,36 +1887,36 @@ namespace MVBP.Configs
             {
                 "goblin_stairs",
                 new PrefabDB(
-                    "goblin_stairs",
-                    true,
-                    false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.Workbench),
-                    "Wood,2;Tar,1",
+                    name: "goblin_stairs",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Building,
+                    craftingStation: nameof(CraftingStations.Workbench),
+                    requirements: "Wood,2;Tar,1",
                     pieceGroup: PieceGroup.Goblin
                 )
             },
             {
                 "goblin_stepladder",
                 new PrefabDB(
-                    "goblin_stepladder",
-                    true,
-                    false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.Workbench),
-                    "Wood,2;Tar,1",
+                    name: "goblin_stepladder",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Building,
+                    craftingStation: nameof(CraftingStations.Workbench),
+                    requirements: "Wood,2;Tar,1",
                     pieceGroup: PieceGroup.Goblin
                 )
             },
             {
                 "goblin_strawpile",
                 new PrefabDB(
-                    "goblin_strawpile",
-                    true,
-                    false,
-                    HammerCategories.Furniture,
-                    nameof(CraftingStations.None),
-                    "Wood,4",
+                    name: "goblin_strawpile",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Furniture,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "Wood,4",
                     pieceName: "Rug straw (large)",
                     pieceDesc: "",
                     pieceGroup: PieceGroup.Rug
@@ -1925,95 +1925,95 @@ namespace MVBP.Configs
             {
                 "goblin_totempole",
                 new PrefabDB(
-                    "goblin_totempole",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.Workbench),
-                    "Wood,2;GoblinTotem,1",
+                    name: "goblin_totempole",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.CreatorShop,
+                    craftingStation: nameof(CraftingStations.Workbench),
+                    requirements: "Wood,2;GoblinTotem,1",
                     pieceGroup: PieceGroup.Goblin
                 )
             },
             {
                 "goblin_trashpile",
                 new PrefabDB(
-                    "goblin_trashpile",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    "",
+                    name: "goblin_trashpile",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.CreatorShop,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "",
                     pieceGroup: PieceGroup.Goblin
                 )
             },
             {
                 "goblin_woodwall_1m",
                 new PrefabDB(
-                    "goblin_woodwall_1m",
-                    true,
-                    false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.Workbench),
-                    "Wood,1;Tar,1",
+                    name: "goblin_woodwall_1m",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Building,
+                    craftingStation: nameof(CraftingStations.Workbench),
+                    requirements: "Wood,1;Tar,1",
                     pieceGroup: PieceGroup.Goblin
                 )
             },
             {
                 "goblin_woodwall_2m",
                 new PrefabDB(
-                    "goblin_woodwall_2m",
-                    true,
-                    false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.Workbench),
-                    "Wood,2;Tar,1",
+                    name: "goblin_woodwall_2m",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Building,
+                    craftingStation: nameof(CraftingStations.Workbench),
+                    requirements: "Wood,2;Tar,1",
                     pieceGroup: PieceGroup.Goblin
                 )
             },
             {
                 "goblin_woodwall_2m_ribs",
                 new PrefabDB(
-                    "goblin_woodwall_2m_ribs",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    "BoneFragments,6;Tar,1",
+                    name: "goblin_woodwall_2m_ribs",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.CreatorShop,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "BoneFragments,6;Tar,1",
                     pieceGroup: PieceGroup.Goblin
                 )
             },
             {
                 "goblinking_totemholder",
                 new PrefabDB(
-                    "goblinking_totemholder",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.Stonecutter),
-                    "Stone,1;Tar,1",
+                    name: "goblinking_totemholder",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.CreatorShop,
+                    craftingStation: nameof(CraftingStations.Stonecutter),
+                    requirements: "Stone,1;Tar,1",
                     pieceGroup: PieceGroup.Goblin
                 )
             },
             {
                 "Greydwarf_Root",
                 new PrefabDB(
-                    "Greydwarf_Root",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "Wood,2"
+                    name: "Greydwarf_Root",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "Wood,2"
                 )
             },
             {
                 "GuckSack",
                 new PrefabDB(
-                    "GuckSack",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    "Guck,12",
+                    name: "GuckSack",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.CreatorShop,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "Guck,12",
                     clipEverything: true
 
                 )
@@ -2021,35 +2021,35 @@ namespace MVBP.Configs
             {
                 "GuckSack_small",
                 new PrefabDB(
-                    "GuckSack_small",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    "Guck,6",
+                    name: "GuckSack_small",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.CreatorShop,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "Guck,6",
                     clipEverything:true
                 )
             },
             {
                 "hanging_hairstrands",
                 new PrefabDB(
-                    "hanging_hairstrands",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    ""
+                    name: "hanging_hairstrands",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.CreatorShop,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: ""
                 )
             },
             {
                 "highstone",
                 new PrefabDB(
-                    "highstone",
-                    true,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "Stone,32",
+                    name: "highstone",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "Stone,32",
                     clipEverything: true,
                     pieceGroup: PieceGroup.Rock
                 )
@@ -2057,12 +2057,12 @@ namespace MVBP.Configs
             {
                 "HugeRoot1",
                 new PrefabDB(
-                    "HugeRoot1",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "ElderBark,32",
+                    name: "HugeRoot1",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "ElderBark,32",
                     clipEverything: true,
                     pieceGroup: PieceGroup.Flora
                 )
@@ -2070,71 +2070,71 @@ namespace MVBP.Configs
             {
                 "Ice_floor",
                 new PrefabDB(
-                    "Ice_floor",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    "",
+                    name: "Ice_floor",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.CreatorShop,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "",
                     placementPatch: true
                 )
             },
             {
                 "ice_rock1",
                 new PrefabDB(
-                    "ice_rock1",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    "",
+                    name: "ice_rock1",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.CreatorShop,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "",
                     clipEverything: true
                 )
             },
             {
                 "ice1",
                 new PrefabDB(
-                    "ice1",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    ""
+                    name: "ice1",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.CreatorShop,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: ""
                 )
             },
             {
                 "iron_wall_1x1_rusty",
                 new PrefabDB(
-                    "iron_wall_1x1_rusty",
-                    false,
-                    false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.Forge),
-                    "Iron,1",
+                    name: "iron_wall_1x1_rusty",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Building,
+                    craftingStation: nameof(CraftingStations.Forge),
+                    requirements: "Iron,1",
                     pieceGroup: PieceGroup.Iron
                 )
             },
             {
                 "Leviathan",
                 new PrefabDB(
-                    "Leviathan",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    "Chitin,50",
+                    name: "Leviathan",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.CreatorShop,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "Chitin,50",
                     clipEverything: true
                 )
             },
             {
                 "loot_chest_stone",
                 new PrefabDB(
-                    "loot_chest_stone",
-                    false,
-                    false,
-                    HammerCategories.Furniture,
-                    nameof(CraftingStations.Stonecutter),
-                    "Stone,10",
+                    name: "loot_chest_stone",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Furniture,
+                    craftingStation: nameof(CraftingStations.Stonecutter),
+                    requirements: "Stone,10",
                     pieceName: "Stone chest (light moss)",
                     pieceGroup: PieceGroup.Chest
                 )
@@ -2142,56 +2142,56 @@ namespace MVBP.Configs
             {
                 "lox_ribs",
                 new PrefabDB(
-                    "lox_ribs",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    "BoneFragments,30"
+                    name: "lox_ribs",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.CreatorShop,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "BoneFragments,30"
                 )
             },
             {
                 "LuredWisp",
                 new PrefabDB(
-                    "LuredWisp",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    "Wisp,1"
+                    name: "LuredWisp",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.CreatorShop,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "Wisp,1"
                 )
             },
             {
                 "marker01",
                 new PrefabDB(
-                    "marker01",
-                    true,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    "Stone,4"
+                    name: "marker01",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.CreatorShop,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "Stone,4"
                 )
             },
             {
                 "marker02",
                 new PrefabDB(
-                    "marker02",
-                    true,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    "Stone,4"
+                    name: "marker02",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.CreatorShop,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "Stone,4"
                 )
             },
             {
                 "metalbar_1x2",
                 new PrefabDB(
-                    "metalbar_1x2",
-                    true,
-                    false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.BlackForge),
-                    "BlackMarble,2;Copper,1",
+                    name: "metalbar_1x2",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Building,
+                    craftingStation: nameof(CraftingStations.BlackForge),
+                    requirements: "BlackMarble,2;Copper,1",
                     pieceName: "Black marble 1x2 enforced",
                     pieceDesc: "",
                     pieceGroup: PieceGroup.BlackMarble
@@ -2200,12 +2200,12 @@ namespace MVBP.Configs
             {
                 "MineRock_Copper",
                 new PrefabDB(
-                    "MineRock_Copper",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "Stone,10;CopperOre,10",
+                    name: "MineRock_Copper",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "Stone,10;CopperOre,10",
                     clipEverything: true,
                     pieceGroup: PieceGroup.Ore
                 )
@@ -2213,12 +2213,12 @@ namespace MVBP.Configs
             {
                 "MineRock_Iron",
                 new PrefabDB(
-                    "MineRock_Iron",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "Stone,10;IronScrap,10",
+                    name: "MineRock_Iron",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "Stone,10;IronScrap,10",
                     clipEverything: true,
                     pieceGroup: PieceGroup.Ore
                 )
@@ -2226,12 +2226,12 @@ namespace MVBP.Configs
             {
                 "MineRock_Meteorite",
                 new PrefabDB(
-                    "MineRock_Meteorite",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "",
+                    name: "MineRock_Meteorite",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "",
                     clipEverything: true,
                     pieceGroup: PieceGroup.Ore
                 )
@@ -2239,12 +2239,12 @@ namespace MVBP.Configs
             {
                 "MineRock_Obsidian",
                 new PrefabDB(
-                    "MineRock_Obsidian",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "Stone,10;Obsidian,10",
+                    name: "MineRock_Obsidian",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "Stone,10;Obsidian,10",
                     clipEverything: true,
                     pieceGroup: PieceGroup.Ore
                 )
@@ -2252,12 +2252,12 @@ namespace MVBP.Configs
             {
                 "MineRock_Stone",
                 new PrefabDB(
-                    "MineRock_Stone",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "Stone,10",
+                    name: "MineRock_Stone",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "Stone,10",
                     clipEverything: true,
                     pieceGroup: PieceGroup.Ore
                 )
@@ -2265,12 +2265,12 @@ namespace MVBP.Configs
             {
                 "MineRock_Tin",
                 new PrefabDB(
-                    "MineRock_Tin",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "Stone,10;TinOre,10",
+                    name: "MineRock_Tin",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "Stone,10;TinOre,10",
                     clipEverything: true,
                     pieceGroup: PieceGroup.Ore
                 )
@@ -2278,12 +2278,12 @@ namespace MVBP.Configs
             {
                 "mistvolume",
                 new PrefabDB(
-                    "mistvolume",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    "Eitr,10;Wisp,4",
+                    name: "mistvolume",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.CreatorShop,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "Eitr,10;Wisp,4",
                     clipEverything: true,
                     pieceName: "Mist volume",
                     pieceDesc: "Warning: requires devcommands to remove."
@@ -2292,24 +2292,24 @@ namespace MVBP.Configs
             {
                 "MountainGraveStone01",
                 new PrefabDB(
-                    "MountainGraveStone01",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    "Stone,10",
+                    name: "MountainGraveStone01",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.CreatorShop,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "Stone,10",
                     clipEverything: true
                 )
             },
             {
                 "MountainKit_brazier",
                 new PrefabDB(
-                    "MountainKit_brazier",
-                    true,
-                    false,
-                    HammerCategories.Furniture,
-                    nameof(CraftingStations.Forge),
-                    "Bronze,5;Coal,2;BlackCore,1;WolfClaw,3",
+                    name: "MountainKit_brazier",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Furniture,
+                    craftingStation: nameof(CraftingStations.Forge),
+                    requirements: "Bronze,5;Coal,2;BlackCore,1;WolfClaw,3",
                     pieceName: "Standing brazier (everburning)",
                     pieceDesc: "Burns eternally without fuel, but does not prevent spawning of monsters.",
                     pieceGroup: PieceGroup.Brazier
@@ -2318,12 +2318,12 @@ namespace MVBP.Configs
             {
                 "MountainKit_brazier_blue",
                 new PrefabDB(
-                    "MountainKit_brazier_blue",
-                    true,
-                    false,
-                    HammerCategories.Furniture,
-                    nameof(CraftingStations.Forge),
-                    "Bronze,5;GreydwarfEye,2;BlackCore,1;WolfClaw,3",
+                    name: "MountainKit_brazier_blue",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Furniture,
+                    craftingStation: nameof(CraftingStations.Forge),
+                    requirements: "Bronze,5;GreydwarfEye,2;BlackCore,1;WolfClaw,3",
                     pieceName: "Blue standing brazier (everburning)",
                     pieceDesc: "Burns eternally without fuel, but does not prevent spawning of monsters.",
                     pieceGroup: PieceGroup.Brazier
@@ -2332,116 +2332,116 @@ namespace MVBP.Configs
             {
                 "mountainkit_chair",
                 new PrefabDB(
-                    "mountainkit_chair",
-                    false,
-                    false,
-                    HammerCategories.Furniture,
-                    nameof(CraftingStations.Workbench),
-                    "FineWood,4",
+                    name: "mountainkit_chair",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Furniture,
+                    craftingStation: nameof(CraftingStations.Workbench),
+                    requirements: "FineWood,4",
                     pieceGroup: PieceGroup.Chair
                 )
             },
             {
                 "mountainkit_table",
                 new PrefabDB(
-                    "mountainkit_table",
-                    false,
-                    false,
-                    HammerCategories.Furniture,
-                    nameof(CraftingStations.Workbench),
-                    "FineWood,10;IronNails,20",
+                    name: "mountainkit_table",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Furniture,
+                    craftingStation: nameof(CraftingStations.Workbench),
+                    requirements: "FineWood,10;IronNails,20",
                     pieceGroup: PieceGroup.Table
                 )
             },
             {
                 "MountainKit_wood_gate",
                 new PrefabDB(
-                    "MountainKit_wood_gate",
-                    false,
-                    false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.Forge),
-                    "Wood,20;Iron,4"
+                    name: "MountainKit_wood_gate",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Building,
+                    craftingStation: nameof(CraftingStations.Forge),
+                    requirements: "Wood,20;Iron,4"
                 )
             },
             {
                 "mudpile",
                 new PrefabDB(
-                    "mudpile",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    "IronScrap,10"
+                    name: "mudpile",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.CreatorShop,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "IronScrap,10"
                 )
             },
             {
                 "mudpile_beacon",
                 new PrefabDB(
-                    "mudpile_beacon",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    ""
+                    name: "mudpile_beacon",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.CreatorShop,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: ""
                 )
             },
             {
                 "mudpile_old",
                 new PrefabDB(
-                    "mudpile_old",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    "IronScrap,10"
+                    name: "mudpile_old",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.CreatorShop,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "IronScrap,10"
                 )
             },
             {
                 "mudpile2",
                 new PrefabDB(
-                    "mudpile2",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    "IronScrap,10",
+                    name: "mudpile2",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.CreatorShop,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "IronScrap,10",
                     clipEverything: true
                 )
             },
             {
                 "Oak_log",
                 new PrefabDB(
-                    "Oak_log",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "Wood,10;FineWood,10",
+                    name: "Oak_log",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "Wood,10;FineWood,10",
                     pieceGroup: PieceGroup.Flora
                 )
             },
             {
                 "Oak_log_half",
                 new PrefabDB(
-                    "Oak_log_half",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "Wood,5;FineWood,5",
+                    name: "Oak_log_half",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "Wood,5;FineWood,5",
                     pieceGroup: PieceGroup.Flora
                 )
             },
             {
                 "Oak1",
                 new PrefabDB(
-                    "Oak1",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "Wood,20;FineWood,20",
+                    name: "Oak1",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "Wood,20;FineWood,20",
                     clipEverything: true,
                     pieceGroup: PieceGroup.Flora
                 )
@@ -2449,12 +2449,12 @@ namespace MVBP.Configs
             {
                 "OakStub",
                 new PrefabDB(
-                    "OakStub",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "Wood,5;FineWood,5",
+                    name: "OakStub",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "Wood,5;FineWood,5",
                     clipEverything: true,
                     pieceGroup: PieceGroup.Flora
                 )
@@ -2462,36 +2462,36 @@ namespace MVBP.Configs
             {
                 "Pickable_Barley",
                 new PrefabDB(
-                    "Pickable_Barley",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "Barley,1",
+                    name: "Pickable_Barley",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "Barley,1",
                     pieceGroup: PieceGroup.VanillaCrop
                 )
             },
             {
                 "Pickable_BlackCoreStand",
                 new PrefabDB(
-                    "Pickable_BlackCoreStand",
-                    true,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.BlackForge),
-                    "Iron,2;BlackCore,1",
+                    name: "Pickable_BlackCoreStand",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.CreatorShop,
+                    craftingStation: nameof(CraftingStations.BlackForge),
+                    requirements: "Iron,2;BlackCore,1",
                     pieceGroup: PieceGroup.Treasure
                 )
             },
             {
                 "Pickable_BogIronOre",
                 new PrefabDB(
-                    "Pickable_BogIronOre",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    "IronScrap,1",
+                    name: "Pickable_BogIronOre",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.CreatorShop,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "IronScrap,1",
                     clipEverything: true,
                     pieceGroup: PieceGroup.Ore
                 )
@@ -2499,12 +2499,12 @@ namespace MVBP.Configs
             {
                 "Pickable_Branch",
                 new PrefabDB(
-                    "Pickable_Branch",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "Wood,5",
+                    name: "Pickable_Branch",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "Wood,5",
                     clipEverything: true,
                     pieceGroup: PieceGroup.Flora
                 )
@@ -2512,24 +2512,24 @@ namespace MVBP.Configs
             {
                 "Pickable_Carrot",
                 new PrefabDB(
-                    "Pickable_Carrot",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "Carrot,1",
+                    name: "Pickable_Carrot",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "Carrot,1",
                     pieceGroup: PieceGroup.VanillaCrop
                 )
             },
             {
                 "Pickable_Dandelion",
                 new PrefabDB(
-                    "Pickable_Dandelion",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "Dandelion,5",
+                    name: "Pickable_Dandelion",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "Dandelion,5",
                     clipEverything: true,
                     pieceGroup: PieceGroup.Plant
                 )
@@ -2537,48 +2537,48 @@ namespace MVBP.Configs
             {
                 "Pickable_DolmenTreasure",
                 new PrefabDB(
-                    "Pickable_DolmenTreasure",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    "Coins,5",
+                    name: "Pickable_DolmenTreasure",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.CreatorShop,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "Coins,5",
                     pieceGroup: PieceGroup.Treasure
                 )
             },
             {
                 "Pickable_DragonEgg",
                 new PrefabDB(
-                    "Pickable_DragonEgg",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    "DragonEgg,1",
+                    name: "Pickable_DragonEgg",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.CreatorShop,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "DragonEgg,1",
                     clipEverything: true
                 )
             },
             {
                 "Pickable_DvergrLantern",
                 new PrefabDB(
-                    "Pickable_DvergrLantern",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    "",
+                    name: "Pickable_DvergrLantern",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.CreatorShop,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "",
                     clipEverything: true
                 )
             },
             {
                 "Pickable_DvergrMineTreasure",
                 new PrefabDB(
-                    "Pickable_DvergrMineTreasure",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    "",
+                    name: "Pickable_DvergrMineTreasure",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.CreatorShop,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "",
                     clipEverything: true,
                     pieceGroup: PieceGroup.Treasure
                 )
@@ -2586,12 +2586,12 @@ namespace MVBP.Configs
             {
                 "Pickable_DvergrStein",
                 new PrefabDB(
-                    "Pickable_DvergrStein",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    "",
+                    name: "Pickable_DvergrStein",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.CreatorShop,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "",
                     clipEverything: true,
                     pieceGroup: PieceGroup.Treasure
                 )
@@ -2599,12 +2599,12 @@ namespace MVBP.Configs
             {
                 "Pickable_Fishingrod",
                 new PrefabDB(
-                    "Pickable_Fishingrod",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    "",
+                    name: "Pickable_Fishingrod",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.CreatorShop,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "",
                     clipEverything: true,
                     pieceGroup: PieceGroup.Treasure
                 )
@@ -2612,24 +2612,24 @@ namespace MVBP.Configs
             {
                 "Pickable_Flax",
                 new PrefabDB(
-                    "Pickable_Flax",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "Flax,1",
+                    name: "Pickable_Flax",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "Flax,1",
                     pieceGroup: PieceGroup.VanillaCrop
                 )
             },
             {
                 "Pickable_Flint",
                 new PrefabDB(
-                    "Pickable_Flint",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "Flint,5",
+                    name: "Pickable_Flint",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "Flint,5",
                     clipEverything: true,
                     pieceGroup: PieceGroup.Flora
                 )
@@ -2637,12 +2637,12 @@ namespace MVBP.Configs
             {
                 "Pickable_ForestCryptRemains01",
                 new PrefabDB(
-                    "Pickable_ForestCryptRemains01",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    "",
+                    name: "Pickable_ForestCryptRemains01",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.CreatorShop,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "",
                     clipEverything: true,
                     pieceGroup: PieceGroup.Treasure
                 )
@@ -2650,12 +2650,12 @@ namespace MVBP.Configs
             {
                 "Pickable_ForestCryptRemains02",
                 new PrefabDB(
-                    "Pickable_ForestCryptRemains02",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    "",
+                    name: "Pickable_ForestCryptRemains02",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.CreatorShop,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "",
                     clipEverything: true,
                     pieceGroup: PieceGroup.Treasure
                 )
@@ -2663,12 +2663,12 @@ namespace MVBP.Configs
             {
                 "Pickable_ForestCryptRemains03",
                 new PrefabDB(
-                    "Pickable_ForestCryptRemains03",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    "",
+                    name: "Pickable_ForestCryptRemains03",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.CreatorShop,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "",
                     clipEverything: true,
                     pieceGroup: PieceGroup.Treasure
                 )
@@ -2676,12 +2676,12 @@ namespace MVBP.Configs
             {
                 "Pickable_ForestCryptRemains04",
                 new PrefabDB(
-                    "Pickable_ForestCryptRemains04",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    "",
+                    name: "Pickable_ForestCryptRemains04",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.CreatorShop,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "",
                     clipEverything: true,
                     pieceGroup: PieceGroup.Treasure
                 )
@@ -2689,36 +2689,36 @@ namespace MVBP.Configs
             {
                 "Pickable_Hairstrands01",
                 new PrefabDB(
-                    "Pickable_Hairstrands01",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    "",
+                    name: "Pickable_Hairstrands01",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.CreatorShop,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "",
                     pieceGroup: PieceGroup.Treasure
                 )
             },
             {
                 "Pickable_Hairstrands02",
                 new PrefabDB(
-                    "Pickable_Hairstrands02",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    "",
+                    name: "Pickable_Hairstrands02",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.CreatorShop,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "",
                     pieceGroup: PieceGroup.Treasure
                 )
             },
             {
                 "Pickable_Item",
                 new PrefabDB(
-                    "Pickable_Item",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    "",
+                    name: "Pickable_Item",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.CreatorShop,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "",
                     pieceName: "Coins (pickable)",
                     pieceGroup: PieceGroup.Treasure
                 )
@@ -2726,12 +2726,12 @@ namespace MVBP.Configs
             {
                 "Pickable_MeatPile",
                 new PrefabDB(
-                    "Pickable_MeatPile",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    "",
+                    name: "Pickable_MeatPile",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.CreatorShop,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "",
                     clipEverything: true,
                     pieceGroup: PieceGroup.Treasure
                 )
@@ -2739,12 +2739,12 @@ namespace MVBP.Configs
             {
                 "Pickable_Meteorite",
                 new PrefabDB(
-                    "Pickable_Meteorite",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "",
+                    name: "Pickable_Meteorite",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "",
                     clipEverything: true,
                     pieceGroup: PieceGroup.Ore
                 )
@@ -2752,36 +2752,36 @@ namespace MVBP.Configs
             {
                 "Pickable_MountainCaveCrystal",
                 new PrefabDB(
-                    "Pickable_MountainCaveCrystal",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "",
+                    name: "Pickable_MountainCaveCrystal",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "",
                     pieceGroup: PieceGroup.Ore
                 )
             },
             {
                 "Pickable_MountainCaveObsidian",
                 new PrefabDB(
-                    "Pickable_MountainCaveObsidian",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "",
+                    name: "Pickable_MountainCaveObsidian",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "",
                     pieceGroup: PieceGroup.Ore
                 )
             },
             {
                 "Pickable_MountainRemains01_buried",
                 new PrefabDB(
-                    "Pickable_MountainRemains01_buried",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    "",
+                    name: "Pickable_MountainRemains01_buried",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.CreatorShop,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "",
                     clipEverything: true,
                     pieceGroup: PieceGroup.Treasure
                 )
@@ -2789,12 +2789,12 @@ namespace MVBP.Configs
             {
                 "Pickable_Mushroom",
                 new PrefabDB(
-                    "Pickable_Mushroom",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "Mushroom,5",
+                    name: "Pickable_Mushroom",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "Mushroom,5",
                     clipEverything: true,
                     pieceGroup: PieceGroup.Plant
                 )
@@ -2802,12 +2802,12 @@ namespace MVBP.Configs
             {
                 "Pickable_Mushroom_blue",
                 new PrefabDB(
-                    "Pickable_Mushroom_blue",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "MushroomBlue,5",
+                    name: "Pickable_Mushroom_blue",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "MushroomBlue,5",
                     clipEverything: true,
                     pieceGroup: PieceGroup.Plant
                 )
@@ -2815,12 +2815,12 @@ namespace MVBP.Configs
             {
                 "Pickable_Mushroom_JotunPuffs",
                 new PrefabDB(
-                    "Pickable_Mushroom_JotunPuffs",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "MushroomJotunPuffs,1",
+                    name: "Pickable_Mushroom_JotunPuffs",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "MushroomJotunPuffs,1",
                     clipEverything: true,
                     pieceGroup: PieceGroup.VanillaCrop
                 )
@@ -2828,12 +2828,12 @@ namespace MVBP.Configs
             {
                 "Pickable_Mushroom_Magecap",
                 new PrefabDB(
-                    "Pickable_Mushroom_Magecap",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "MushroomMagecap,1",
+                    name: "Pickable_Mushroom_Magecap",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "MushroomMagecap,1",
                     clipEverything: true,
                     pieceGroup: PieceGroup.VanillaCrop
                 )
@@ -2841,12 +2841,12 @@ namespace MVBP.Configs
             {
                 "Pickable_Mushroom_yellow",
                 new PrefabDB(
-                    "Pickable_Mushroom_yellow",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "MushroomYellow,5",
+                    name: "Pickable_Mushroom_yellow",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "MushroomYellow,5",
                     clipEverything: true,
                     pieceGroup: PieceGroup.Plant
                 )
@@ -2854,12 +2854,12 @@ namespace MVBP.Configs
             {
                 "Pickable_Obsidian",
                 new PrefabDB(
-                    "Pickable_Obsidian",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "Obsidian,1",
+                    name: "Pickable_Obsidian",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "Obsidian,1",
                     clipEverything: true,
                     pieceGroup: PieceGroup.Ore
                 )
@@ -2867,35 +2867,35 @@ namespace MVBP.Configs
             {
                 "Pickable_Onion",
                 new PrefabDB(
-                    "Pickable_Onion",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "Obsidian,1",
+                    name: "Pickable_Onion",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "Obsidian,1",
                     pieceGroup: PieceGroup.VanillaCrop
                 )
             },
             {
                 "Pickable_RoyalJelly",
                 new PrefabDB(
-                    "Pickable_RoyalJelly",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    ""
+                    name: "Pickable_RoyalJelly",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.CreatorShop,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: ""
                 )
             },
             {
                 "Pickable_SeedCarrot",
                 new PrefabDB(
-                    "Pickable_SeedCarrot",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "",
+                    name: "Pickable_SeedCarrot",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "",
                     clipEverything: true,
                     pieceGroup: PieceGroup.VanillaCrop
                 )
@@ -2903,12 +2903,12 @@ namespace MVBP.Configs
             {
                 "Pickable_SeedOnion",
                 new PrefabDB(
-                    "Pickable_SeedOnion",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "",
+                    name: "Pickable_SeedOnion",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "",
                     clipEverything: true,
                     pieceGroup: PieceGroup.VanillaCrop
                 )
@@ -2916,12 +2916,12 @@ namespace MVBP.Configs
             {
                 "Pickable_SeedTurnip",
                 new PrefabDB(
-                    "Pickable_SeedTurnip",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "",
+                    name: "Pickable_SeedTurnip",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "",
                     clipEverything: true,
                     pieceGroup: PieceGroup.VanillaCrop
                 )
@@ -2929,12 +2929,12 @@ namespace MVBP.Configs
             {
                 "Pickable_Stone",
                 new PrefabDB(
-                    "Pickable_Stone",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "Stone,5",
+                    name: "Pickable_Stone",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "Stone,5",
                     clipEverything: true,
                     pieceGroup: PieceGroup.Flora
                 )
@@ -2942,24 +2942,24 @@ namespace MVBP.Configs
             {
                 "Pickable_SurtlingCoreStand",
                 new PrefabDB(
-                    "Pickable_SurtlingCoreStand",
-                    true,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.Forge),
-                    "Iron,2;SurtlingCore,1",
+                    name: "Pickable_SurtlingCoreStand",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.CreatorShop,
+                    craftingStation: nameof(CraftingStations.Forge),
+                    requirements: "Iron,2;SurtlingCore,1",
                     pieceGroup: PieceGroup.Treasure
                 )
             },
             {
                 "Pickable_Tar",
                 new PrefabDB(
-                    "Pickable_Tar",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "Tar,1",
+                    name: "Pickable_Tar",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "Tar,1",
                     clipEverything: true,
                     pieceGroup: PieceGroup.Flora
                 )
@@ -2967,12 +2967,12 @@ namespace MVBP.Configs
             {
                 "Pickable_TarBig",
                 new PrefabDB(
-                    "Pickable_TarBig",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "",
+                    name: "Pickable_TarBig",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "",
                     clipEverything: true,
                     pieceGroup: PieceGroup.Flora
                 )
@@ -2980,12 +2980,12 @@ namespace MVBP.Configs
             {
                 "Pickable_Thistle",
                 new PrefabDB(
-                    "Pickable_Thistle",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "Thistle,5",
+                    name: "Pickable_Thistle",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "Thistle,5",
                     clipEverything: true,
                     pieceGroup: PieceGroup.Plant
                 )
@@ -2993,12 +2993,12 @@ namespace MVBP.Configs
             {
                 "Pickable_Tin",
                 new PrefabDB(
-                    "Pickable_Tin",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "TinOre,1",
+                    name: "Pickable_Tin",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "TinOre,1",
                     clipEverything: true,
                     pieceGroup: PieceGroup.Ore
                 )
@@ -3006,60 +3006,60 @@ namespace MVBP.Configs
             {
                 "Pickable_Turnip",
                 new PrefabDB(
-                    "Pickable_Turnip",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "Turnip,1",
+                    name: "Pickable_Turnip",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "Turnip,1",
                     pieceGroup: PieceGroup.VanillaCrop
                 )
             },
             {
                 "piece_dvergr_pole",
                 new PrefabDB(
-                    "piece_dvergr_pole",
-                    true,
-                    false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.BlackForge),
-                    "YggdrasilWood,1",
+                    name: "piece_dvergr_pole",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Building,
+                    craftingStation: nameof(CraftingStations.BlackForge),
+                    requirements: "YggdrasilWood,1",
                     pieceGroup: PieceGroup.Dvergr
                 )
             },
             {
                 "piece_dvergr_wood_door",
                 new PrefabDB(
-                    "piece_dvergr_wood_door",
-                    false,
-                    false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.BlackForge),
-                    "YggdrasilWood,16;IronNails,24",
+                    name: "piece_dvergr_wood_door",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Building,
+                    craftingStation: nameof(CraftingStations.BlackForge),
+                    requirements: "YggdrasilWood,16;IronNails,24",
                     pieceGroup: PieceGroup.Dvergr
                 )
             },
             {
                 "piece_dvergr_wood_wall",
                 new PrefabDB(
-                    "piece_dvergr_wood_wall",
-                    true,
-                    false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.BlackForge),
-                    "YggdrasilWood,5",
+                    name: "piece_dvergr_wood_wall",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Building,
+                    craftingStation: nameof(CraftingStations.BlackForge),
+                    requirements: "YggdrasilWood,5",
                     pieceGroup: PieceGroup.Dvergr
                 )
             },
             {
                 "PineTree",
                 new PrefabDB(
-                    "PineTree",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "",
+                    name: "PineTree",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "",
                     clipEverything: true,
                     pieceGroup: PieceGroup.Flora
                 )
@@ -3067,12 +3067,12 @@ namespace MVBP.Configs
             {
                 "Pinetree_01",
                 new PrefabDB(
-                    "Pinetree_01",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "Wood,10;RoundLog,10",
+                    name: "Pinetree_01",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "Wood,10;RoundLog,10",
                     clipEverything: true,
                     pieceGroup: PieceGroup.Flora
                 )
@@ -3080,12 +3080,12 @@ namespace MVBP.Configs
             {
                 "Pinetree_01_Stub",
                 new PrefabDB(
-                    "Pinetree_01_Stub",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "Wood,5;RoundLog,5",
+                    name: "Pinetree_01_Stub",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "Wood,5;RoundLog,5",
                     clipEverything: true,
                     pieceGroup: PieceGroup.Flora
                 )
@@ -3093,48 +3093,48 @@ namespace MVBP.Configs
             {
                 "PineTree_log",
                 new PrefabDB(
-                    "PineTree_log",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "Wood,10;RoundLog,10",
+                    name: "PineTree_log",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "Wood,10;RoundLog,10",
                     pieceGroup: PieceGroup.Flora
                 )
             },
             {
                 "PineTree_log_half",
                 new PrefabDB(
-                    "PineTree_log_half",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "Wood,5;RoundLog,5",
+                    name: "PineTree_log_half",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "Wood,5;RoundLog,5",
                     pieceGroup: PieceGroup.Flora
                 )
             },
             {
                 "RaspberryBush",
                 new PrefabDB(
-                    "RaspberryBush",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "Raspberry,5",
+                    name: "RaspberryBush",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "Raspberry,5",
                     pieceGroup: PieceGroup.Plant
                 )
             },
             {
                 "Rock_3",
                 new PrefabDB(
-                    "Rock_3",
-                    true,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "Stone,24",
+                    name: "Rock_3",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "Stone,24",
                     clipEverything: true,
                     pieceGroup: PieceGroup.Rock
                 )
@@ -3142,12 +3142,12 @@ namespace MVBP.Configs
             {
                 "Rock_4",
                 new PrefabDB(
-                    "Rock_4",
-                    true,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "Stone,16",
+                    name: "Rock_4",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "Stone,16",
                     clipEverything: true,
                     pieceGroup: PieceGroup.Rock
                 )
@@ -3155,12 +3155,12 @@ namespace MVBP.Configs
             {
                 "Rock_4_plains",
                 new PrefabDB(
-                    "Rock_4_plains",
-                    true,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "Stone,24",
+                    name: "Rock_4_plains",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "Stone,24",
                     clipEverything: true,
                     pieceGroup: PieceGroup.Rock
                 )
@@ -3168,12 +3168,12 @@ namespace MVBP.Configs
             {
                 "Rock_7",
                 new PrefabDB(
-                    "Rock_7",
-                    true,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "Stone,32",
+                    name: "Rock_7",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "Stone,32",
                     clipEverything: true,
                     pieceGroup: PieceGroup.Rock
                 )
@@ -3181,12 +3181,12 @@ namespace MVBP.Configs
             {
                 "Rock_destructible",
                 new PrefabDB(
-                    "Rock_destructible",
-                    true,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "Stone,24",
+                    name: "Rock_destructible",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "Stone,24",
                     clipEverything: true,
                     pieceGroup: PieceGroup.Rock
                 )
@@ -3194,12 +3194,12 @@ namespace MVBP.Configs
             {
                 "Rock_destructible_test",
                 new PrefabDB(
-                    "Rock_destructible_test",
-                    true,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "Stone,32",
+                    name: "Rock_destructible_test",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "Stone,32",
                     clipEverything: true,
                     pieceGroup: PieceGroup.Rock
                 )
@@ -3207,12 +3207,12 @@ namespace MVBP.Configs
             {
                 "rock_mistlands1",
                 new PrefabDB(
-                    "rock_mistlands1",
-                    true,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "Stone,48",
+                    name: "rock_mistlands1",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "Stone,48",
                     clipEverything: true,
                     pieceName: "Rock (black)",
                     pieceGroup: PieceGroup.Rock
@@ -3221,12 +3221,12 @@ namespace MVBP.Configs
             {
                 "rock1_mistlands",
                 new PrefabDB(
-                    "rock1_mistlands",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "",
+                    name: "rock1_mistlands",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "",
                     clipEverything: true,
                     pieceName: "Rock (large boulder)",
                     pieceGroup: PieceGroup.Rock
@@ -3235,12 +3235,12 @@ namespace MVBP.Configs
             {
                 "rock1_mountain",
                 new PrefabDB(
-                    "rock1_mountain",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "",
+                    name: "rock1_mountain",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "",
                     clipEverything: true,
                     pieceGroup: PieceGroup.Rock
                 )
@@ -3248,12 +3248,12 @@ namespace MVBP.Configs
             {
                 "rock2_heath",
                 new PrefabDB(
-                    "rock2_heath",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "",
+                    name: "rock2_heath",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "",
                     clipEverything: true,
                     pieceGroup: PieceGroup.Rock
                 )
@@ -3261,12 +3261,12 @@ namespace MVBP.Configs
             {
                 "rock2_mountain",
                 new PrefabDB(
-                    "rock2_mountain",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "",
+                    name: "rock2_mountain",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "",
                     clipEverything: true,
                     pieceGroup: PieceGroup.Rock
                 )
@@ -3274,12 +3274,12 @@ namespace MVBP.Configs
             {
                 "rock3_ice",
                 new PrefabDB(
-                    "rock3_ice",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "",
+                    name: "rock3_ice",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "",
                     clipEverything: true,
                     pieceGroup: PieceGroup.Rock
                 )
@@ -3287,12 +3287,12 @@ namespace MVBP.Configs
             {
                 "rock3_mountain",
                 new PrefabDB(
-                    "rock3_mountain",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "",
+                    name: "rock3_mountain",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "",
                     clipEverything: true,
                     pieceGroup: PieceGroup.Rock
                 )
@@ -3300,12 +3300,12 @@ namespace MVBP.Configs
             {
                 "rock3_silver",
                 new PrefabDB(
-                    "rock3_silver",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "",
+                    name: "rock3_silver",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "",
                     clipEverything: true,
                     pieceGroup: PieceGroup.Ore
                 )
@@ -3313,12 +3313,12 @@ namespace MVBP.Configs
             {
                 "rock4_coast",
                 new PrefabDB(
-                    "rock4_coast",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "",
+                    name: "rock4_coast",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "",
                     clipEverything: true,
                     pieceGroup: PieceGroup.Rock
                 )
@@ -3326,12 +3326,12 @@ namespace MVBP.Configs
             {
                 "rock4_copper",
                 new PrefabDB(
-                    "rock4_copper",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "",
+                    name: "rock4_copper",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "",
                     clipEverything: true,
                     pieceGroup: PieceGroup.Ore
                 )
@@ -3339,12 +3339,12 @@ namespace MVBP.Configs
             {
                 "rock4_copper_frac",
                 new PrefabDB(
-                    "rock4_copper_frac",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "",
+                    name: "rock4_copper_frac",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "",
                     clipEverything: true,
                     pieceGroup: PieceGroup.Ore
                 )
@@ -3352,12 +3352,12 @@ namespace MVBP.Configs
             {
                 "rock4_forest",
                 new PrefabDB(
-                    "rock4_forest",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "",
+                    name: "rock4_forest",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "",
                     clipEverything: true,
                     pieceGroup: PieceGroup.Rock
                 )
@@ -3365,12 +3365,12 @@ namespace MVBP.Configs
             {
                 "rock4_heath",
                 new PrefabDB(
-                    "rock4_heath",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "",
+                    name: "rock4_heath",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "",
                     clipEverything: true,
                     pieceGroup: PieceGroup.Rock
                 )
@@ -3378,12 +3378,12 @@ namespace MVBP.Configs
             {
                 "RockDolmen_1",
                 new PrefabDB(
-                    "RockDolmen_1",
-                    true,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "Stone,75",
+                    name: "RockDolmen_1",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "Stone,75",
                     clipEverything: true,
                     pieceGroup: PieceGroup.Rock
                 )
@@ -3391,12 +3391,12 @@ namespace MVBP.Configs
             {
                 "RockDolmen_2",
                 new PrefabDB(
-                    "RockDolmen_2",
-                    true,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "Stone,50",
+                    name: "RockDolmen_2",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "Stone,50",
                     clipEverything: true,
                     pieceGroup: PieceGroup.Rock
                 )
@@ -3404,12 +3404,12 @@ namespace MVBP.Configs
             {
                 "RockDolmen_3",
                 new PrefabDB(
-                    "RockDolmen_3",
-                    true,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "Stone,75",
+                    name: "RockDolmen_3",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "Stone,75",
                     clipEverything: true,
                     pieceGroup: PieceGroup.Rock
                 )
@@ -3417,36 +3417,36 @@ namespace MVBP.Configs
             {
                 "RockFinger",
                 new PrefabDB(
-                    "RockFinger",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    "Stone,350",
+                    name: "RockFinger",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.CreatorShop,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "Stone,350",
                     clipEverything: true
                 )
             },
             {
                 "RockFingerBroken",
                 new PrefabDB(
-                    "RockFingerBroken",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    "Stone,175",
+                    name: "RockFingerBroken",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.CreatorShop,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "Stone,175",
                     clipEverything: true
                 )
             },
             {
                 "rockformation1",
                 new PrefabDB(
-                    "rockformation1",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "Stone,350",
+                    name: "rockformation1",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "Stone,350",
                     clipEverything: true,
                     pieceGroup: PieceGroup.Rock
                 )
@@ -3454,24 +3454,24 @@ namespace MVBP.Configs
             {
                 "RockThumb",
                 new PrefabDB(
-                    "RockThumb",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    "Stone,200",
+                    name: "RockThumb",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.CreatorShop,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "Stone,200",
                     clipEverything: true
                 )
             },
             {
                 "root07",
                 new PrefabDB(
-                    "root07",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "ElderBark,2",
+                    name: "root07",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "ElderBark,2",
                     clipEverything: true,
                     pieceGroup: PieceGroup.Flora
                 )
@@ -3479,12 +3479,12 @@ namespace MVBP.Configs
             {
                 "root08",
                 new PrefabDB(
-                    "root08",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "ElderBark,4",
+                    name: "root08",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "ElderBark,4",
                     clipEverything: true,
                     pieceGroup: PieceGroup.Flora
                 )
@@ -3492,12 +3492,12 @@ namespace MVBP.Configs
             {
                 "root11",
                 new PrefabDB(
-                    "root11",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "ElderBark,4",
+                    name: "root11",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "ElderBark,4",
                     clipEverything: true,
                     pieceGroup: PieceGroup.Flora
                 )
@@ -3505,12 +3505,12 @@ namespace MVBP.Configs
             {
                 "root12",
                 new PrefabDB(
-                    "root12",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "ElderBark,4",
+                    name: "root12",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "ElderBark,4",
                     clipEverything: true,
                     pieceGroup: PieceGroup.Flora
                 )
@@ -3518,106 +3518,106 @@ namespace MVBP.Configs
             {
                 "rug_straw",
                 new PrefabDB(
-                    "rug_straw",
-                    true,
-                    false,
-                    HammerCategories.Furniture,
-                    nameof(CraftingStations.None),
-                    "Wood,2",
+                    name: "rug_straw",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Furniture,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "Wood,2",
                     pieceGroup: PieceGroup.Rug
                 )
             },
             {
                 "SeekerEgg",
                 new PrefabDB(
-                    "SeekerEgg",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    ""
+                    name: "SeekerEgg",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.CreatorShop,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: ""
                 )
             },
             {
                 "SeekerEgg_alwayshatch",
                 new PrefabDB(
-                    "SeekerEgg_alwayshatch",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    ""
+                    name: "SeekerEgg_alwayshatch",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.CreatorShop,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: ""
                 )
             },
             {
                 "shipwreck_karve_bottomboards",
                 new PrefabDB(
-                    "shipwreck_karve_bottomboards",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    "FineWood,8",
+                    name: "shipwreck_karve_bottomboards",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.CreatorShop,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "FineWood,8",
                     clipEverything: true
                 )
             },
             {
                 "shipwreck_karve_bow",
                 new PrefabDB(
-                    "shipwreck_karve_bow",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    "FineWood,16",
+                    name: "shipwreck_karve_bow",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.CreatorShop,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "FineWood,16",
                     clipEverything: true
                 )
             },
             {
                 "shipwreck_karve_dragonhead",
                 new PrefabDB(
-                    "shipwreck_karve_dragonhead",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    "FineWood,8",
+                    name: "shipwreck_karve_dragonhead",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.CreatorShop,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "FineWood,8",
                     clipEverything: true
                 )
             },
             {
                 "shipwreck_karve_stern",
                 new PrefabDB(
-                    "shipwreck_karve_stern",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    "FineWood,16",
+                    name: "shipwreck_karve_stern",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.CreatorShop,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "FineWood,16",
                     clipEverything: true
                 )
             },
             {
                 "shipwreck_karve_sternpost",
                 new PrefabDB(
-                    "shipwreck_karve_sternpost",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    "FineWood,10",
+                    name: "shipwreck_karve_sternpost",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.CreatorShop,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "FineWood,10",
                     clipEverything: true
                 )
             },
             {
                 "ShootStump",
                 new PrefabDB(
-                    "ShootStump",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "YggdrasilWood,10",
+                    name: "ShootStump",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "YggdrasilWood,10",
                     clipEverything: true,
                     pieceGroup: PieceGroup.Flora
                 )
@@ -3625,36 +3625,36 @@ namespace MVBP.Configs
             {
                 "shrub_2",
                 new PrefabDB(
-                    "shrub_2",
-                    true,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "",
+                    name: "shrub_2",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "",
                     pieceGroup: PieceGroup.Flora
                 )
             },
             {
                 "shrub_2_heath",
                 new PrefabDB(
-                    "shrub_2_heath",
-                    true,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "",
+                    name: "shrub_2_heath",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "",
                     pieceGroup: PieceGroup.Flora
                 )
             },
             {
                 "sign_notext",
                 new PrefabDB(
-                    "sign_notext",
-                    true,
-                    false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.Workbench),
-                    "Wood,1",
+                    name: "sign_notext",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Building,
+                    craftingStation: nameof(CraftingStations.Workbench),
+                    requirements: "Wood,1",
                     pieceName: "Wood plank",
                     pieceDesc: "",
                     pieceGroup: PieceGroup.Wood
@@ -3663,12 +3663,12 @@ namespace MVBP.Configs
             {
                 "silvervein",
                 new PrefabDB(
-                    "silvervein",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "Stone,50",
+                    name: "silvervein",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "Stone,50",
                     clipEverything: true,
                     pieceGroup: PieceGroup.Ore
                 )
@@ -3677,34 +3677,34 @@ namespace MVBP.Configs
             {
                 "Skull1",
                 new PrefabDB(
-                    "Skull1",
-                    true,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    "TrophySkeleton,1"
+                    name: "Skull1",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.CreatorShop,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "TrophySkeleton,1"
                 )
             },
             {
                 "Skull2",
                 new PrefabDB(
-                    "Skull2",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    ""
+                    name: "Skull2",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.CreatorShop,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: ""
                 )
             },
             {
                 "StatueCorgi",
                 new PrefabDB(
-                    "StatueCorgi",
-                    true,
-                    false,
-                    HammerCategories.Furniture,
-                    nameof(CraftingStations.Stonecutter),
-                    "Stone,24",
+                    name: "StatueCorgi",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Furniture,
+                    craftingStation: nameof(CraftingStations.Stonecutter),
+                    requirements: "Stone,24",
                     clipEverything: true,
                     pieceGroup: PieceGroup.Statue
                 )
@@ -3712,12 +3712,12 @@ namespace MVBP.Configs
             {
                 "StatueDeer",
                 new PrefabDB(
-                    "StatueDeer",
-                    true,
-                    false,
-                    HammerCategories.Furniture,
-                    nameof(CraftingStations.Stonecutter),
-                    "Stone,24",
+                    name: "StatueDeer",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Furniture,
+                    craftingStation: nameof(CraftingStations.Stonecutter),
+                    requirements: "Stone,24",
                     clipEverything: true,
                     pieceGroup: PieceGroup.Statue
                 )
@@ -3725,12 +3725,12 @@ namespace MVBP.Configs
             {
                 "StatueEvil",
                 new PrefabDB(
-                    "StatueEvil",
-                    true,
-                    false,
-                    HammerCategories.Furniture,
-                    nameof(CraftingStations.Stonecutter),
-                    "Stone,32",
+                    name: "StatueEvil",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Furniture,
+                    craftingStation: nameof(CraftingStations.Stonecutter),
+                    requirements: "Stone,32",
                     clipEverything: true,
                     pieceGroup: PieceGroup.Statue
                 )
@@ -3738,12 +3738,12 @@ namespace MVBP.Configs
             {
                 "StatueHare",
                 new PrefabDB(
-                    "StatueHare",
-                    true,
-                    false,
-                    HammerCategories.Furniture,
-                    nameof(CraftingStations.Stonecutter),
-                    "Stone,24",
+                    name: "StatueHare",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Furniture,
+                    craftingStation: nameof(CraftingStations.Stonecutter),
+                    requirements: "Stone,24",
                     clipEverything: true,
                     pieceGroup: PieceGroup.Statue
                 )
@@ -3751,12 +3751,12 @@ namespace MVBP.Configs
             {
                 "StatueSeed",
                 new PrefabDB(
-                    "StatueSeed",
-                    true,
-                    false,
-                    HammerCategories.Furniture,
-                    nameof(CraftingStations.Stonecutter),
-                    "Stone,16",
+                    name: "StatueSeed",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Furniture,
+                    craftingStation: nameof(CraftingStations.Stonecutter),
+                    requirements: "Stone,16",
                     clipEverything: true,
                     pieceGroup: PieceGroup.Statue
                 )
@@ -3764,12 +3764,12 @@ namespace MVBP.Configs
             {
                 "stone_floor",
                 new PrefabDB(
-                    "stone_floor",
-                    true,
-                    false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.Stonecutter),
-                    "Stone,16",
+                    name: "stone_floor",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Building,
+                    craftingStation: nameof(CraftingStations.Stonecutter),
+                    requirements: "Stone,16",
                     pieceName: "Stone floor 4x4",
                     clipGround: true,
                     pieceGroup: PieceGroup.Stone
@@ -3778,12 +3778,12 @@ namespace MVBP.Configs
             {
                 "stoneblock_fracture",
                 new PrefabDB(
-                    "stoneblock_fracture",
-                    true,
-                    false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.Stonecutter),
-                    "Stone,16",
+                    name: "stoneblock_fracture",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Building,
+                    craftingStation: nameof(CraftingStations.Stonecutter),
+                    requirements: "Stone,16",
                     pieceName: "Stone floor 4x4 (2)",
                     clipGround: true,
                     pieceGroup: PieceGroup.Stone
@@ -3792,12 +3792,12 @@ namespace MVBP.Configs
             {
                 "stubbe",
                 new PrefabDB(
-                    "stubbe",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "",
+                    name: "stubbe",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "",
                     clipEverything: true,
                     pieceGroup: PieceGroup.Flora
                 )
@@ -3805,36 +3805,36 @@ namespace MVBP.Configs
             {
                 "stubbe_spawner",
                 new PrefabDB(
-                    "stubbe_spawner",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    "",
+                    name: "stubbe_spawner",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.CreatorShop,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "",
                     clipEverything: true
                 )
             },
             {
                 "sunken_crypt_gate",
                 new PrefabDB(
-                    "sunken_crypt_gate",
-                    false,
-                    false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.Forge),
-                    "Iron,4",
+                    name: "sunken_crypt_gate",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Building,
+                    craftingStation: nameof(CraftingStations.Forge),
+                    requirements: "Iron,4",
                     pieceGroup: PieceGroup.Iron
                 )
             },
             {
                 "SwampTree1",
                 new PrefabDB(
-                    "SwampTree1",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "ElderBark,10",
+                    name: "SwampTree1",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "ElderBark,10",
                     clipEverything: true,
                     pieceGroup: PieceGroup.Flora
                 )
@@ -3842,12 +3842,12 @@ namespace MVBP.Configs
             {
                 "SwampTree1_log",
                 new PrefabDB(
-                    "SwampTree1_log",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "",
+                    name: "SwampTree1_log",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "",
                     clipEverything: true,
                     pieceGroup: PieceGroup.Flora
                 )
@@ -3855,12 +3855,12 @@ namespace MVBP.Configs
             {
                 "SwampTree1_Stub",
                 new PrefabDB(
-                    "SwampTree1_Stub",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "",
+                    name: "SwampTree1_Stub",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "",
                     clipEverything: true,
                     pieceGroup: PieceGroup.Flora
                 )
@@ -3868,12 +3868,12 @@ namespace MVBP.Configs
             {
                 "SwampTree2",
                 new PrefabDB(
-                    "SwampTree2",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "ElderBark,32",
+                    name: "SwampTree2",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "ElderBark,32",
                     clipEverything: true,
                     pieceGroup: PieceGroup.Flora
                 )
@@ -3881,12 +3881,12 @@ namespace MVBP.Configs
             {
                 "SwampTree2_darkland",
                 new PrefabDB(
-                    "SwampTree2_darkland",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "ElderBark,32",
+                    name: "SwampTree2_darkland",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "ElderBark,32",
                     clipEverything: true,
                     pieceGroup: PieceGroup.Flora
                 )
@@ -3894,12 +3894,12 @@ namespace MVBP.Configs
             {
                 "SwampTree2_log",
                 new PrefabDB(
-                    "SwampTree2_log",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "ElderBark,32",
+                    name: "SwampTree2_log",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "ElderBark,32",
                     clipEverything: true,
                     pieceGroup: PieceGroup.Flora
                 )
@@ -3907,12 +3907,12 @@ namespace MVBP.Configs
             {
                 "tarlump1",
                 new PrefabDB(
-                    "tarlump1",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    "Tar,50",
+                    name: "tarlump1",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.CreatorShop,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "Tar,50",
                     pieceName: "Tar volume",
                     pieceDesc: "Warning: requires devcommands to remove"
                 )
@@ -3920,24 +3920,24 @@ namespace MVBP.Configs
             {
                 "trader_wagon_destructable",
                 new PrefabDB(
-                    "trader_wagon_destructable",
-                    true,
-                    false,
-                    HammerCategories.Furniture,
-                    nameof(CraftingStations.BlackForge),
-                    "FineWood,32",
+                    name: "trader_wagon_destructable",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Furniture,
+                    craftingStation: nameof(CraftingStations.BlackForge),
+                    requirements: "FineWood,32",
                     placementPatch: true
                 )
             },
             {
                 "Trailership",
                 new PrefabDB(
-                    "Trailership",
-                    true,
-                    false,
-                    HammerCategories.Misc,
-                    nameof(CraftingStations.Workbench),
-                    "IronNails,100;DeerHide,10;FineWood,40;ElderBark,40",
+                    name: "Trailership",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Misc,
+                    craftingStation: nameof(CraftingStations.Workbench),
+                    requirements: "IronNails,100;DeerHide,10;FineWood,40;ElderBark,40",
                     pieceName: "Trader ship",
                     pieceGroup: PieceGroup.Ship
                 )
@@ -3945,12 +3945,12 @@ namespace MVBP.Configs
             {
                 "TreasureChest_dvergr_loose_stone",
                 new PrefabDB(
-                    "TreasureChest_dvergr_loose_stone",
-                    true,
-                    false,
-                    HammerCategories.Furniture,
-                    nameof(CraftingStations.Stonecutter),
-                    "BlackMarble,10",
+                    name: "TreasureChest_dvergr_loose_stone",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Furniture,
+                    craftingStation: nameof(CraftingStations.Stonecutter),
+                    requirements: "BlackMarble,10",
                     pieceName: "Black marble chest",
                     pieceGroup: PieceGroup.Chest
                 )
@@ -3958,12 +3958,12 @@ namespace MVBP.Configs
             {
                 "TreasureChest_dvergrtower",
                 new PrefabDB(
-                    "TreasureChest_dvergrtower",
-                    true,
-                    false,
-                    HammerCategories.Furniture,
-                    nameof(CraftingStations.BlackForge),
-                    "YggdrasilWood,10;Copper,1",
+                    name: "TreasureChest_dvergrtower",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Furniture,
+                    craftingStation: nameof(CraftingStations.BlackForge),
+                    requirements: "YggdrasilWood,10;Copper,1",
                     pieceName: "Dvergr chest",
                     pieceGroup: PieceGroup.Chest
                 )
@@ -3971,12 +3971,12 @@ namespace MVBP.Configs
             {
                 "TreasureChest_dvergrtown",
                 new PrefabDB(
-                    "TreasureChest_dvergrtown",
-                    true,
-                    false,
-                    HammerCategories.Furniture,
-                    nameof(CraftingStations.BlackForge),
-                    "YggdrasilWood,10;Copper,1",
+                    name: "TreasureChest_dvergrtown",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Furniture,
+                    craftingStation: nameof(CraftingStations.BlackForge),
+                    requirements: "YggdrasilWood,10;Copper,1",
                     pieceName: "Dvergr chest (large)",
                     pieceGroup: PieceGroup.Chest
                 )
@@ -3984,12 +3984,12 @@ namespace MVBP.Configs
             {
                 "TreasureChest_fCrypt",
                 new PrefabDB(
-                    "TreasureChest_fCrypt",
-                    true,
-                    false,
-                    HammerCategories.Furniture,
-                    nameof(CraftingStations.Stonecutter),
-                    "Stone,10;RoundLog,1",
+                    name: "TreasureChest_fCrypt",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Furniture,
+                    craftingStation: nameof(CraftingStations.Stonecutter),
+                    requirements: "Stone,10;RoundLog,1",
                     pieceName: "Stone chest (mossy)",
                     pieceGroup: PieceGroup.Chest
                 )
@@ -3997,12 +3997,12 @@ namespace MVBP.Configs
             {
                 "TreasureChest_mountaincave",
                 new PrefabDB(
-                    "TreasureChest_mountaincave",
-                    false,
-                    false,
-                    HammerCategories.Furniture,
-                    nameof(CraftingStations.Stonecutter),
-                    "Stone,10;Crystal,1",
+                    name: "TreasureChest_mountaincave",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Furniture,
+                    craftingStation: nameof(CraftingStations.Stonecutter),
+                    requirements: "Stone,10;Crystal,1",
                     pieceName: "Stone chest (snow)",
                     pieceGroup: PieceGroup.Chest
                 )
@@ -4010,12 +4010,12 @@ namespace MVBP.Configs
             {
                 "TreasureChest_sunkencrypt",
                 new PrefabDB(
-                    "TreasureChest_sunkencrypt",
-                    true,
-                    false,
-                    HammerCategories.Furniture,
-                    nameof(CraftingStations.Stonecutter),
-                    "Stone,10;ElderBark,1",
+                    name: "TreasureChest_sunkencrypt",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Furniture,
+                    craftingStation: nameof(CraftingStations.Stonecutter),
+                    requirements: "Stone,10;ElderBark,1",
                     pieceName: "Stone chest (dark moss)",
                     pieceGroup: PieceGroup.Chest
                 )
@@ -4023,12 +4023,12 @@ namespace MVBP.Configs
             {
                 "TreasureChest_trollcave",
                 new PrefabDB(
-                    "TreasureChest_trollcave",
-                    true,
-                    false,
-                    HammerCategories.Furniture,
-                    nameof(CraftingStations.Stonecutter),
-                    "Stone,10;RoundLog,1",
+                    name: "TreasureChest_trollcave",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Furniture,
+                    craftingStation: nameof(CraftingStations.Stonecutter),
+                    requirements: "Stone,10;RoundLog,1",
                     pieceName: "Stone chest (mossy, big)",
                     pieceGroup: PieceGroup.Chest
                 )
@@ -4036,70 +4036,70 @@ namespace MVBP.Configs
             {
                 "tunnel_web",
                 new PrefabDB(
-                    "tunnel_web",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    ""
+                    name: "tunnel_web",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.CreatorShop,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: ""
                 )
             },
             {
                 "turf_roof",
                 new PrefabDB(
-                    "turf_roof",
-                    true,
-                    false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.Workbench),
-                    "Wood,2",
+                    name: "turf_roof",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Building,
+                    craftingStation: nameof(CraftingStations.Workbench),
+                    requirements: "Wood,2",
                     pieceGroup: PieceGroup.Wood
                 )
             },
             {
                 "turf_roof_top",
                 new PrefabDB(
-                    "turf_roof_top",
-                    true,
-                    false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.Workbench),
-                    "Wood,2",
+                    name: "turf_roof_top",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Building,
+                    craftingStation: nameof(CraftingStations.Workbench),
+                    requirements: "Wood,2",
                     pieceGroup: PieceGroup.Wood
                 )
             },
             {
                 "vertical_web",
                 new PrefabDB(
-                    "vertical_web",
-                    false,
-                    false,
-                    HammerCategories.CreatorShop,
-                    nameof(CraftingStations.None),
-                    ""
+                    name: "vertical_web",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.CreatorShop,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: ""
                 )
             },
             {
                 "vines",
                 new PrefabDB(
-                    "vines",
-                    true,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "Wood,2",
+                    name: "vines",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "Wood,2",
                     pieceGroup: PieceGroup.Flora
                 )
             },
             {
                 "widestone",
                 new PrefabDB(
-                    "widestone",
-                    true,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "Stone,32",
+                    name: "widestone",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "Stone,32",
                     clipEverything: true,
                     pieceGroup: PieceGroup.Rock
                 )
@@ -4107,60 +4107,60 @@ namespace MVBP.Configs
             {
                 "wood_ledge",
                 new PrefabDB(
-                    "wood_ledge",
-                    true,
-                    false,
-                    HammerCategories.Building,
-                    nameof(CraftingStations.Workbench),
-                    "Wood,1",
+                    name: "wood_ledge",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Building,
+                    craftingStation: nameof(CraftingStations.Workbench),
+                    requirements: "Wood,1",
                     pieceGroup: PieceGroup.Wood
                 )
             },
             {
                 "yggashoot_log",
                 new PrefabDB(
-                    "yggashoot_log",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "YggdrasilWood,10",
+                    name: "yggashoot_log",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "YggdrasilWood,10",
                     pieceGroup: PieceGroup.Flora
                 )
             },
             {
                 "yggashoot_log_half",
                 new PrefabDB(
-                    "yggashoot_log_half",
-                    false,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "YggdrasilWood,10",
+                    name: "yggashoot_log_half",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "YggdrasilWood,10",
                     pieceGroup: PieceGroup.Flora
                 )
             },
             {
                 "YggaShoot_small1",
                 new PrefabDB(
-                    "YggaShoot_small1",
-                    true,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "YggdrasilWood,10",
+                    name: "YggaShoot_small1",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "YggdrasilWood,10",
                     pieceGroup: PieceGroup.Flora
                 )
             },
             {
                 "YggaShoot1",
                 new PrefabDB(
-                    "YggaShoot1",
-                    true,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "YggdrasilWood,16",
+                    name: "YggaShoot1",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "YggdrasilWood,16",
                     clipEverything: true,
                     pieceGroup: PieceGroup.Flora
                 )
@@ -4168,12 +4168,12 @@ namespace MVBP.Configs
             {
                 "YggaShoot2",
                 new PrefabDB(
-                    "YggaShoot2",
-                    true,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "YggdrasilWood,16",
+                    name: "YggaShoot2",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "YggdrasilWood,16",
                     clipEverything: true,
                     pieceGroup: PieceGroup.Flora
                 )
@@ -4181,12 +4181,12 @@ namespace MVBP.Configs
             {
                 "YggaShoot3",
                 new PrefabDB(
-                    "YggaShoot3",
-                    true,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "YggdrasilWood,16",
+                    name: "YggaShoot3",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "YggdrasilWood,16",
                     clipEverything: true,
                     pieceGroup: PieceGroup.Flora
                 )
@@ -4194,12 +4194,12 @@ namespace MVBP.Configs
             {
                 "YggdrasilRoot",
                 new PrefabDB(
-                    "YggdrasilRoot",
-                    true,
-                    false,
-                    HammerCategories.Nature,
-                    nameof(CraftingStations.None),
-                    "YggdrasilWood,64;Sap,10",
+                    name: "YggdrasilRoot",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Nature,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "YggdrasilWood,64;Sap,10",
                     clipEverything: true,
                     pieceGroup: PieceGroup.Flora
                 )
