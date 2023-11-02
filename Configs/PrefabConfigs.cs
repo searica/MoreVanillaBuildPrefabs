@@ -3337,6 +3337,19 @@ namespace MVBP.Configs
                 )
             },
             {
+                "rock4_copper_frac",
+                new PrefabDB(
+                    "rock4_copper_frac",
+                    false,
+                    false,
+                    HammerCategories.Nature,
+                    nameof(CraftingStations.None),
+                    "",
+                    clipEverything: true,
+                    pieceGroup: PieceGroup.Ore
+                )
+            },
+            {
                 "rock4_forest",
                 new PrefabDB(
                     "rock4_forest",

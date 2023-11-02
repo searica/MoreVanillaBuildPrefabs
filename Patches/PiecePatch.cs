@@ -84,9 +84,7 @@ namespace MVBP
         /// <param name="piece"></param>
         private static Piece.Requirement[] DropResources_m_resources_Delegate(Piece piece)
         {
-            string prefabName = piece.name.RemoveSuffix("(Clone)");
-
-            if (!InitManager.IsPatchedByMod(prefabName))
+            if (!InitManager.IsPatchedByMod(piece))
             {
                 // do nothing it not a piece the mod changes
                 return piece.m_resources;
@@ -102,14 +100,14 @@ namespace MVBP
             // Set resources to defaults is piece is not placed by player
             // or disable destruction drops if it is placed by player
             var resources = Array.Empty<Piece.Requirement>();
-            if (InitManager.DefaultPieceClones.ContainsKey(prefabName))
+            if (InitManager.TryGetDefaultPieceClone(piece.gameObject, out Piece pieceClone))
             {
                 if (!piece.IsPlacedByPlayer())
                 {
-                    if (InitManager.DefaultPieceClones[prefabName].m_resources != null)
+                    if (pieceClone.m_resources != null)
                     {
                         // set to default resources for world-generated pieces
-                        resources = InitManager.DefaultPieceClones[prefabName].m_resources;
+                        resources = pieceClone.m_resources;
                     }
                 }
                 else

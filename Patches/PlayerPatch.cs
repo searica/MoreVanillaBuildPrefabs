@@ -3,6 +3,7 @@
 using HarmonyLib;
 using Jotunn.Managers;
 using MVBP.Configs;
+using MVBP.Extensions;
 using MVBP.Helpers;
 using System;
 using System.Collections.Generic;
@@ -125,7 +126,7 @@ namespace MVBP
 
         private static GameObject SetupPlacementGhostInstantiateDelegate(GameObject selectedPrefab)
         {
-            if (!InitManager.IsPatchedByMod(selectedPrefab.name))
+            if (!InitManager.IsPatchedByMod(selectedPrefab))
             {
                 // ignore pieces not touched by this mod
                 return UnityEngine.Object.Instantiate(selectedPrefab);
@@ -204,7 +205,7 @@ namespace MVBP
                 if (Physics.Raycast(GameCamera.instance.transform.position, GameCamera.instance.transform.forward, out var hitInfo, 50f, PieceRemovalLayerMask) && Vector3.Distance(hitInfo.point, __instance.m_eye.position) < __instance.m_maxPlaceDistance)
                 {
                     Piece piece = hitInfo.collider.GetComponentInParent<Piece>();
-                    if (piece && InitManager.IsPatchedByMod(NameHelper.GetRootPrefabName(piece)))
+                    if (piece && InitManager.IsPatchedByMod(piece))
                     {
                         __result = RemoveCustomPiece(__instance, piece);
                         return false; // skip vanilla method
@@ -253,8 +254,15 @@ namespace MVBP
                 }
                 else
                 {
-                    ZLog.Log("Removing non WNT object with hammer " + piece.name);
+                    Log.LogInfo("Removing non WNT object with hammer " + piece.name);
                     component.ClaimOwnership();
+                    //if (!RemoveDestructiblePiece(piece))
+                    //{
+                    //    piece.DropResources();
+                    //    piece.m_placeEffect.Create(piece.transform.position, piece.transform.rotation, piece.gameObject.transform);
+                    //    player.m_removeEffects.Create(piece.transform.position, Quaternion.identity);
+                    //    ZNetScene.instance.Destroy(piece.gameObject);
+                    //}
                     if (!RemoveDestructiblePiece(piece) && !RemoveMineRock5Piece(player, piece))
                     {
                         piece.DropResources();
@@ -314,7 +322,9 @@ namespace MVBP
 
         private static bool RemoveMineRock5Piece(Player player, Piece piece)
         {
+            Log.LogInfo("remove mine rock");
             var mineRock5 = piece?.gameObject?.GetComponent<MineRock5>();
+            Log.LogInfo($"Mine rock is null: {mineRock5 == null}");
             if (mineRock5 != null)
             {
                 if (Config.IsVerbosityMedium) Log.LogInfo("Removing MineRock5 piece");
@@ -326,9 +336,9 @@ namespace MVBP
                     m_attacker = player.GetZDOID()
                 };
 
-                if (mineRock5.m_nview.IsValid() && mineRock5.m_nview.IsOwner())
+                for (int i = 0; i < mineRock5.m_hitAreas.Count; i++)
                 {
-                    for (int i = 0; i < mineRock5.m_hitAreas.Count; i++)
+                    if (mineRock5 != null && mineRock5.m_nview != null && mineRock5.m_nview.IsValid() && mineRock5.m_nview.IsOwner())
                     {
                         mineRock5.m_nview.InvokeRPC("Damage", hit, i);
                     }

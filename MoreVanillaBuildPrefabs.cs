@@ -98,5 +98,22 @@ namespace MVBP
                 }
             }
         }
+
+        internal static void LogPiece(Piece piece)
+        {
+            LogInfo("***** " + piece.name + " *****");
+
+            PropertyInfo[] properties = piece.GetType().GetProperties();
+            foreach (PropertyInfo property in properties)
+            {
+                LogInfo("  -" + property.Name + " = " + property.GetValue(piece));
+            }
+
+            FieldInfo[] fields = piece.GetType().GetFields();
+            foreach (var field in fields)
+            {
+                LogInfo("  -" + field.Name + " = " + field.GetValue(piece));
+            }
+        }
     }
 }

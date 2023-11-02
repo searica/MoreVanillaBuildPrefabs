@@ -13,8 +13,7 @@ namespace MVBP.Patches
         [HarmonyPatch(nameof(WearNTear.Destroy))]
         private static void DestroyPrefix(WearNTear __instance, out EffectList __state)
         {
-            var prefabName = __instance.name.RemoveSuffix("(Clone)");
-            if (InitManager.IsPatchedByMod(prefabName))
+            if (InitManager.IsPatchedByMod(__instance))
             {
                 if (!SfxHelper.HasSfx(__instance.m_destroyedEffect))
                 {

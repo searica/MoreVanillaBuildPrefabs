@@ -16,8 +16,7 @@ namespace MVBP.Patches
         private static void RPCPickPrefix(Pickable __instance, out DropTable __state)
         {
             var piece = __instance.GetComponent<Piece>();
-            var prefabName = __instance.gameObject.name.RemoveSuffix("(Clone)");
-            if (InitManager.IsPatchedByMod(prefabName)
+            if (InitManager.IsPatchedByMod(__instance)
                 && piece != null && piece.IsPlacedByPlayer())
             {
                 __state = __instance.m_extraDrops;

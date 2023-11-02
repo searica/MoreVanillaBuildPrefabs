@@ -16,23 +16,72 @@ namespace MVBP.Helpers
         internal static readonly Dictionary<string, GameObject> PrefabRefs = new();
         internal static readonly Dictionary<string, Piece> DefaultPieceClones = new();
         internal static Dictionary<string, PieceDB> PieceRefs = new();
+        internal static Dictionary<string, string> PieceToPrefabMap = new();
 
         internal static bool HasInitializedPrefabs => PrefabRefs.Count > 0;
+
+        internal static bool TryGetDefaultPieceClone(GameObject gameObject, out Piece pieceClone)
+        {
+            // Try with gameObject name
+            var prefabName = gameObject?.name?.RemoveSuffix("(Clone)");
+            if (DefaultPieceClones.ContainsKey(prefabName))
+            {
+                pieceClone = DefaultPieceClones[prefabName];
+                return true;
+            }
+
+            // Try with piece name if it exists
+            if (gameObject.TryGetComponent(out Piece pieceCompo) && PieceToPrefabMap.ContainsKey(pieceCompo.m_name))
+            {
+                prefabName = PieceToPrefabMap[pieceCompo.m_name].RemoveSuffix("(Clone)");
+                if (DefaultPieceClones.ContainsKey(prefabName))
+                {
+                    pieceClone = DefaultPieceClones[prefabName];
+                    return true;
+                }
+            }
+            pieceClone = null;
+            return false;
+        }
 
         /// <summary>
         ///     Returns a bool indicating if the prefab has been changed by mod.
         /// </summary>
         /// <param name="prefabName"></param>
         /// <returns></returns>
-        internal static bool IsPatchedByMod(string prefabName)
+        internal static bool IsPatchedByMod(GameObject gameObject)
         {
-            return PrefabRefs.ContainsKey(prefabName);
+            var flag = PrefabRefs.ContainsKey(gameObject?.name?.RemoveSuffix("(Clone)"));
+            if (flag) { return flag; }
+
+            if (gameObject.TryGetComponent(out Piece piece))
+            {
+                return PieceToPrefabMap.ContainsKey(piece.m_name);
+            }
+            return false;
         }
 
         /// <summary>
-        ///     Returns true if the piece is one the mod touches and it
+        ///     Returns a bool indicating if the prefab has been changed by mod.
+        /// </summary>
+        /// <param name="prefabName"></param>
+        /// <returns></returns>
+        internal static bool IsPatchedByMod(Component compo)
+        {
+            var flag = PrefabRefs.ContainsKey(compo?.name?.RemoveSuffix("(Clone)"));
+            if (flag) { return flag; }
+
+            if (compo.gameObject.TryGetComponent(out Piece piece))
+            {
+                return PieceToPrefabMap.ContainsKey(piece.m_name);
+            }
+            return false;
+        }
+
+        /// <summary>
+        ///     Returns true if the pieceClone is one the mod touches and it
         ///     is currently enabled for building. Returns false if the
-        ///     piece is not a custom piece or it is not enabled.
+        ///     pieceClone is not a custom pieceClone or it is not enabled.
         /// </summary>
         /// <param name="prefabName"></param>
         /// <returns></returns>
@@ -91,6 +140,11 @@ namespace MVBP.Helpers
                     Log.LogWarning($"Failed to patch prefab {prefab.name}: {ex}");
                 }
 
+                //if (prefab.TryGetComponent<MineRock5>(out MineRock5 mineRock5))
+                //{
+                //    Log.LogInfo($"{prefab.name}, {mineRock5.m_name}");
+                //}
+
                 PrefabRefs.Add(prefab.name, prefab);
             }
 
@@ -101,7 +155,7 @@ namespace MVBP.Helpers
 
         /// <summary>
         ///     Initializes all prefabs to have pieces and
-        ///     stores a deep copy of the piece component
+        ///     stores a deep copy of the pieceClone component
         ///     to provide a template to reset to upon
         ///     re-initialization.
         /// </summary>
@@ -119,8 +173,8 @@ namespace MVBP.Helpers
 
             Log.LogInfo("Initializing default pieces");
 
-            // Get a default icon to use if piece doesn't have an icon.
-            // Need this to prevent NRE's if other code references the piece
+            // Get a default icon to use if pieceClone doesn't have an icon.
+            // Need this to prevent NRE's if other code references the pieceClone
             // before the coroutine that is rendering the icons finishes. (Such as PlanBuild)
             var defaultIcon = Resources.FindObjectsOfTypeAll<Sprite>()
                 ?.Where(spr => spr.name == "mapicon_hildir1")
@@ -157,7 +211,7 @@ namespace MVBP.Helpers
         /// </summary>
         internal static void InitPieceRefs()
         {
-            Log.LogInfo("Initializing piece refs");
+            Log.LogInfo("Initializing pieceClone refs");
 
             if (PieceRefs.Count > 0)
             {
@@ -181,8 +235,8 @@ namespace MVBP.Helpers
         }
 
         /// <summary>
-        ///     Create a set of piece refs with each prefab's
-        ///     piece reset to the default state and the PieceDB
+        ///     Create a set of pieceClone refs with each prefab's
+        ///     pieceClone reset to the default state and the PieceDB
         ///     containing the configuration settings to apply.
         /// </summary>
         /// <returns></returns>
@@ -191,10 +245,10 @@ namespace MVBP.Helpers
             Dictionary<string, PieceDB> newPieceRefs = new();
             foreach (var prefab in PrefabRefs.Values)
             {
-                // reset piece component to match the default piece clone
+                // reset pieceClone component to match the default pieceClone clone
                 prefab.GetComponent<Piece>().CopyFields(DefaultPieceClones[prefab.name]);
 
-                // create piece ref
+                // create pieceClone ref
                 newPieceRefs.Add(
                     prefab.name,
                     new PieceDB(
@@ -208,7 +262,7 @@ namespace MVBP.Helpers
 
         /// <summary>
         ///     Apply the configuration settings from the
-        ///     PieceDB for each piece in PieceRefs.
+        ///     PieceDB for each pieceClone in PieceRefs.
         /// </summary>
         internal static void InitPieces()
         {
@@ -217,6 +271,8 @@ namespace MVBP.Helpers
             {
                 var piece = PieceHelper.ConfigurePiece(pieceDB);
                 SfxHelper.FixPlacementSfx(piece);
+                // Need to map names of pieces to source prefab for MineRock5 prefabs
+                PieceToPrefabMap[piece.m_name] = pieceDB.name;
             }
         }
 
@@ -233,7 +289,7 @@ namespace MVBP.Helpers
 
             foreach (var pieceDB in PieceRefs.Values)
             {
-                // Check if piece is enabled by the mod
+                // Check if pieceClone is enabled by the mod
                 if (!pieceDB.enabled && !Config.IsForceAllPrefabs)
                 {
                     continue;
@@ -287,7 +343,7 @@ namespace MVBP.Helpers
 
         /// <summary>
         ///     Method to re-initialize the plugin when the configuration
-        ///     has been updated based on whether the piece or placement
+        ///     has been updated based on whether the pieceClone or placement
         ///     settings have been changed for any of the config entries.
         /// </summary>
         /// <param name="msg"></param>

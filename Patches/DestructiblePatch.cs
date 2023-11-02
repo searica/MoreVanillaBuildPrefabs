@@ -19,8 +19,7 @@ namespace MVBP.Patches
         [HarmonyPatch(nameof(Destructible.Destroy))]
         private static bool DestroyPrefix(Destructible __instance)
         {
-            var prefabName = __instance?.gameObject?.name?.RemoveSuffix("(Clone)");
-            if (InitManager.IsPatchedByMod(prefabName))
+            if (InitManager.IsPatchedByMod(__instance.gameObject))
             {
                 var piece = __instance?.gameObject?.GetComponent<Piece>();
                 if (piece != null && piece.IsPlacedByPlayer())

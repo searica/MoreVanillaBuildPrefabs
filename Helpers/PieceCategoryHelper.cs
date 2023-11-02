@@ -39,8 +39,7 @@ namespace MVBP.Helpers
 
         internal static bool IsCreatorShopPiece(Piece piece)
         {
-            var pieceName = NameHelper.GetRootPrefabName(piece);
-            if (InitManager.IsPatchedByMod(pieceName))
+            if (InitManager.IsPatchedByMod(piece))
             {
                 if (piece.m_category == CreatorShop)
                 {
@@ -52,8 +51,7 @@ namespace MVBP.Helpers
 
         internal static bool IsNaturePiece(Piece piece)
         {
-            var pieceName = NameHelper.GetRootPrefabName(piece);
-            if (InitManager.IsPatchedByMod(pieceName))
+            if (InitManager.IsPatchedByMod(piece))
             {
                 if (piece.m_category == Nature)
                 {

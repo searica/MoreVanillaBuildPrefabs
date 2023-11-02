@@ -20,8 +20,7 @@ namespace MVBP
         [HarmonyPatch(nameof(DropOnDestroyed.OnDestroyed))]
         private static bool OnDestroyedPrefix(DropOnDestroyed __instance)
         {
-            var prefabName = __instance.name.RemoveSuffix("(Clone)");
-            if (InitManager.IsPatchedByMod(prefabName))
+            if (InitManager.IsPatchedByMod(__instance))
             {
                 var piece = __instance.gameObject.GetComponent<Piece>();
                 if (piece != null && piece.IsPlacedByPlayer())

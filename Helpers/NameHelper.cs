@@ -43,14 +43,24 @@ namespace MVBP.Helpers
         private static readonly Regex IsLastCharDigit = new(@"((?<!x)\d+$)");
 
         /// <summary>
-        ///     Matches "_frac" if it is at the end of the string
+        ///     Matches (text)(_frac) if it is at the end of the string
         /// </summary>
-        private static readonly Regex FracAtEnd = new(@"(_frac$)");
+        private static readonly Regex FracAtEnd = new(@"(.+?)(_frac$)");
 
         private static readonly Dictionary<string, string> NameCache = new();
         private static readonly Dictionary<string, string> DescCache = new();
 
         private const string MineRock5Warn = "Warning: This prefab spawns a destructible rock when damaged and the new rock cannot be removed with the hammer.";
+
+        /// <summary>
+        ///     Checks if NameCache contains a value.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        internal static bool IsNameCached(string name)
+        {
+            return NameCache.ContainsValue(name);
+        }
 
         internal static void ClearNameCache()
         {
@@ -239,15 +249,5 @@ namespace MVBP.Helpers
         {
             return piece.gameObject.name.RemoveSuffix("(Clone)");
         }
-
-        //private static bool SpawnsMineRock5(GameObject prefab)
-        //{
-        //    var destructible = prefab.GetComponent<Destructible>();
-        //    if (destructible != null && destructible.m_spawnWhenDestroyed)
-        //    {
-        //        return destructible.m_spawnWhenDestroyed.GetComponent<MineRock5>() != null;
-        //    }
-        //    return false;
-        //}
     }
 }
