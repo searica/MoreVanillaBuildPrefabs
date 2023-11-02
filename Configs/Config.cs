@@ -40,7 +40,9 @@ namespace MVBP.Configs
             High = 2,
         }
 
-        private const string MainSectionName = "\u200BGlobal";
+        private const string MainSection = "\u200B\u200BGlobal";
+        private const string AdminSection = "\u200BAdmin";
+        private const string CustomizationSection = "\u200BCustomization";
         internal static ConfigEntry<bool> CreativeMode { get; private set; }
         internal static ConfigEntry<bool> CreatorShopAdminOnly { get; private set; }
         internal static ConfigEntry<bool> AdminDeconstructOtherPlayers { get; private set; }
@@ -164,7 +166,7 @@ namespace MVBP.Configs
         {
             var saveSetting = DisableSaveOnConfigSet();
             CreativeMode = BindConfig(
-                MainSectionName,
+                MainSection,
                 "CreativeMode",
                 false,
                 "Setting to enable pieces set to the CreatorShop or Nature piece categories. " +
@@ -172,8 +174,26 @@ namespace MVBP.Configs
                 AcceptableBoolValuesList
             );
 
+            ForceAllPrefabs = BindConfig(
+                MainSection,
+                "ForceAllPrefabs",
+                false,
+                "If enabled, adds all prefabs to the hammer for building. Unless CreativeMode is " +
+                "also enabled it will not add pieces set to the CreatorShop or Nature category though.",
+                AcceptableBoolValuesList
+            );
+
+            Verbosity = BindConfig(
+                MainSection,
+                "Verbosity",
+                LoggerLevel.Low,
+                "Low will log basic information about the mod. Medium will log information that " +
+                "is useful for troubleshooting. High will log a lot of information, do not set " +
+                "it to this without good reason as it will slow down your game."
+            );
+
             CreatorShopAdminOnly = BindConfig(
-                MainSectionName,
+                AdminSection,
                 "CreatorShopAdminOnly",
                 false,
                 "Set to true to restrict placement and deconstruction of CreatorShop pieces " +
@@ -182,7 +202,7 @@ namespace MVBP.Configs
             );
 
             AdminDeconstructOtherPlayers = BindConfig(
-                MainSectionName,
+                AdminSection,
                 "AdminDeconstructOtherPlayers",
                 true,
                 "Set to true to allow admin players to deconstruct any pieces built by other players, " +
@@ -192,31 +212,13 @@ namespace MVBP.Configs
             );
 
             EnableHammerCrops = BindConfig(
-                MainSectionName,
+                CustomizationSection,
                 "EnableHammerCrops",
                 false,
                 "Setting to enable prefabs for crops that can already be planted  " +
                 "in the Vanilla game. Unless this setting is true Vanilla crops " +
                 "will not be available for placing with the hammer.",
                 AcceptableBoolValuesList
-            );
-
-            ForceAllPrefabs = BindConfig(
-                MainSectionName,
-                "ForceAllPrefabs",
-                false,
-                "If enabled, adds all prefabs to the hammer for building. Unless CreativeMode is " +
-                "also enabled it will not add pieces set to the CreatorShop or Nature category though.",
-                AcceptableBoolValuesList
-            );
-
-            Verbosity = BindConfig(
-                MainSectionName,
-                "Verbosity",
-                LoggerLevel.Low,
-                "Low will log basic information about the mod. Medium will log information that " +
-                "is useful for troubleshooting. High will log a lot of information, do not set " +
-                "it to this without good reason as it will slow down your game."
             );
 
             EnableHammerCrops.SettingChanged += PieceSettingChanged;
@@ -235,7 +237,7 @@ namespace MVBP.Configs
             string sectionName = prefab.name;
 
             // get predefined configs or generic settings if no predefined config
-            PrefabDB defaultPrefabDB = PrefabConfigs.GetDefaultPieceDB(prefab.name);
+            PrefabDB defaultPrefabDB = PrefabConfigs.GetDefaultPrefabDB(prefab.name);
             PrefabDBConfig prefabDBConfig;
 
             if (PrefabDBConfigsMap.ContainsKey(sectionName))
