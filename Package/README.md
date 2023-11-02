@@ -1,8 +1,3 @@
-
-
-<!-- Load the element definition -->
-<script type="module" src="https://cdn.jsdelivr.net/gh/zerodevx/zero-md@1/src/zero-md.min.js"></script>
-
 <head>
 
   <!-- Lightweight client-side loader that feature-detects and load polyfills only when necessary -->
