@@ -119,7 +119,7 @@ namespace MVBP.Helpers
                     // This would mean prefabs that I add pieces to act as if
                     // they don't have pieces unless they are enabled in the config
                     // That could be a good thing but would screw over Onnan right now.
-                    //piece.m_enabled = false;
+                    piece.m_enabled = false;
 
                     if (Config.IsVerbosityHigh)
                     {
