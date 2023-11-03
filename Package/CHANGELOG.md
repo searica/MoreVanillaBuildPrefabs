@@ -1,5 +1,5 @@
 <div class="header">
-	<h2>Versions 0.4.X</h2>
+	<h2>Versions 0.5.X</h2>
 </div>
 <table>
 	<tbody>
@@ -12,156 +12,174 @@
 			<td align="left">
 				<ul>
 					<li>Built against new BepInEx and Jotunn.</li>
-					<li>Improved default placement settings so all vanilla prefabs in game version 0.217.25 are placeable.</li>
-					<li>Improved approach to handling removal of custom prefabs with the hammer, vanilla layers are no longer altered under any circumstances.</li>
-					<li>Updated to match new API for ExtraSnapPointsMadeEasy.</li>
-					<li>Changed hook location for compatibility with ExpandWorld.</li>
-					<li>Overhauled how mineable prefabs work.</li>
-				</ul>
-			</td>
-		</tr>
-		<tr>
-			<td align="center">0.4.8</td>
-			<td align="left">
-				<ul>
-					<li>Configuration changes made in-game will now persist properly after logging out.</li>
-					<li>Sped up re-initialization slightly.</li>
-					<li>Update README with known issues</li>
-				</ul>
-			</td>
-		</tr>
-		<tr>
-			<td align="center">0.4.7</td>
-			<td align="left">
-				<ul>
-					<li>Hotfix to prevent infinite re-initialization loop in multi-player. Turns out that even if I test with a dedicated server, some bugs only show up with multiple clients.</li>
-				</ul>
-			</td>
-		</tr>
-		<tr>
-			<td align="center">0.4.6</td>
-			<td align="left">
-				<ul>
-					<li>Fixed issue with server config changes not persisting after log-out unless the server was restarted. Config changes for the server are now saved to the server config file when you log-out.</li>
-					<li>Re-enabled prefabs that spawn a MineRock5 component as they can be useful for building islands. A warning about how they work is now automatically added to the piece description.</li>
-				</ul>
-			</td>
-		</tr>
-		<tr>
-			<td align="center">0.4.5</td>
-			<td align="left">
-				<ul>
-					<li>
-						Improved deconstruction of non-WearNTear pieces.
-						<ul>
-							<li>Destroying player-built pieces via damaging them will always drop the resources for building the piece now.</li>
-							<li>Deconstructing non-WearNTear pieces will now destroy them using the Destructible component if it is present (this means removing ice pieces makes them shatter and play the ice SFX).</li>
-						</ul>
-					</li>
-					<li>Added config settings to control piece clipping during placement.</li>
-					<li>Patched MineRock script to prevent NRE on newly placed pieces.</li>
-					<li>Improved filtering to prevent detecting prefabs that create giant boulders when you remove them.</li>
-					<li>Automatically adds missing removal SFX for WearNTear pieces.</li>
-					<li>Hotfix for issues with invalid placement due to changing collider layers.</li>
-				</ul>
-			</td>
-		</tr>
-		<tr>
-			<td align="center">0.4.4</td>
-			<td align="left">
-				<ul>
-					<li>Removed server requirement so that console players can enjoy the mod vicariously through crossplay.</li>
-					<li>Improved sorting of prefabs added by this mod (that took a while).</li>
-					<li>Added automatic piece classification to hopefully allow correct sorting of pieces from other mods and future updates.</li>
-					<li>Improved automatic naming of prefabs.</li>
-					<li>Fixed layer issue on some pieces that prevented targeting them for removal.</li>
-					<li>Removing pieces now triggers the destruction effects if they exist.</li>
-					<li>Fixed possible exploit involving pickables with extra random item drops.</li>
-					<li>Patched chair prefabs so you can now sit in them.</li>
-					<li>Minor performance optimizations.</li>
-					<li>Removed piece descriptions that were duplicates of piece names.</li>
-					<li>Disabled a prefab that would disappear 10 seconds after placing it.</li>
-					<li>Improved descriptions for several prefabs.</li>
-					<li>Removed the snap points added to the center of all prefabs (use ExtraSnapPointsMadeEasy instead).</li>
-					<li>Fixed minor compatibility issue with RRR, warning should no longer trigger and MVBP will no longer detect prefabs added by RRR.</li>
-					<li>Added config option to enable placing vanilla crops so you can make pretty gardens if you want.</li>
-					<li>Added colliders to allow removing large straw rug.</li>
-					<li>Tweaked some default resource costs.</li>
-				</ul>
-			</td>
-		</tr>
-		<tr>
-			<td align="center">0.4.3</td>
-			<td align="left">
-				<ul>
-					<li>
-						Added a new piece category "Nature".
-						<ul>
-							<li>Changed Admin only settings to account for new category.</li>
-							<li>Tweaked default configuration to account for new category.</li>
-						</ul>
-					</li>
-					<li>
-						Changed how CreativeMode works.
-						<ul>
-							<li>CreativeMode now sets whether pieces from the CreatorShop and Nature categories are enabled for building.</li>
-							<li>Changing the CreativeMode setting now updates while in-game.</li>
-						</ul>
-					</li>
-					<li>Fixed the cloth behaviour on the new ship.</li>
-					<li>Tweaked snap points to mimic vanilla pieces more. Can use ExtraSnapPointsMadeEasy if you want more precise snap points.</li>
-					<li>Improved compatibility with ExtraSnapPointsMadeEasy to allow dynamically changing extra snap points as MoreVanillaBuildPrefabs dynamically adds/removes build pieces.</li>
-					<li>Pickable pieces now drop the pickable item when deconstructed if it has not already been picked.</li>
-					<li>ItemStand pieces now drop the attached item when deconstructed if an attached item exists.</li>
-				</ul>
-			</td>
-		</tr>
-		<tr>
-			<td align="center">0.4.2</td>
-			<td align="left">
-				<ul>
-					<li>Changed mod so that if a client has the mod, then the server they are connecting to must also have the mod (see README for details).</li>
-					<li>Implemented a CreativeMode configuration option (see README for details).</li>
-					<li>All pieces that are missing placement sound effects now have default sfx assigned based on the required crafting station. (Missing deconstruction sounds effects are not fixed though as that requires adding WearNTear or Destructable components to pieces).</li>
-					<li>Fixed bug where deconstructing player-built pieces with world modifiers set to turn off build costs would cause world-generated destruction drops to occur.</li>
-					<li>Player-buil5 barrels no longer drop random loot when destroyed. They still do not return the resources used to build them when destroyed (they do return build resources if deconstructed though).</li>
-					<li>Patched Dvergr furniture items so they provide support and you can now place item stands on them.</li>
-					<li>Patched some more prefabs and improved placement for others, as usual each update.</li>
-				</ul>
-			</td>
-		</tr>
-		<tr>
-			<td align="center">0.4.1</td>
-			<td align="left">
-				<ul>
-					<li>Minor update to fix the stuttering issue when editing the configuration via the in-game configuration manager. The mod now only updates after closing the configuration manager.</li>
-					<li>Tweaked update logic to avoid re-initializing if receiving config data from server or reloading the config file doesn't actually change any config setting values.</li>
-					<li>Added some everburning torches and braziers that do not require fuel to the default configuration. Currently they are configured to unlock sometime during the last biome in the current game version.</li>
-				</ul>
-			</td>
-		</tr>
-		<tr>
-			<td align="center">0.4.0</td>
-			<td align="left">
-				<ul>
-					<li>
-						<b>Massive update</b>, I basically re-wrote the mod to allow it to dynamically respond to configuration setting changes while in-game.
-					</li>
-					<li>Switched to using Jotunn's server syncing features instead of ServerSync.</li>
-					<li>Removed Locking Configuration setting. If you install the mod on the server it will now always sync data to clients.</li>
-					<li>Change `VerboseMode` to `Verbosity`. There are now three logging levels you can select from to output more or less information. This should make debugging easier when issues are reported.</li>
-					<li>Changed some Global configuration setting names to more descriptive.</li>
-					<li>Fixed issue where sometimes configuration data from the server wouldn't sync correctly. The mod now always re-initializes the configuration whenever configuration data is received from the server.</li>
-					<li>Changed how building and deconstructing pickable objects is handled to prevent exploits.</li>
-					<li>Optimized load times for dynamic syncing. The very first time the mod loads on a clean install it takes about ~300 ms as it generates new icons. After that, when the mod initializes or responds to configuration settings changes it averages ~110-160 ms.</li>
-					<li>Patched some more prefabs, including making a hidden sailing ship fully functional.</li>
-					<li>Various internal tweaks to reduce the odds of compatibility issues with other mods.</li>
-					<li>Possibly more stuff I forgot about, it was a pretty big re-write. The new README should still cover everything important though.</li>
+					<li>Improved default settings so all vanilla prefabs in game version 0.217.25 are placeable.</li>
+					<li>Improved removal of custom prefabs with the hammer, vanilla layers are no longer altered under any circumstances.</li>
+					<li>Updated for ExtraSnapPointsMadeEasy's new API.</li>
+					<li>Improved compatibility with ExpandWorld.</li>
+					<li>Fixed issue with one prefab being impossible to unlock.</li>
+					<li>Overhauled how mineable prefabs work (see README). You may need to tweak your configuration file to use the prefabs ending in "_frac" or "_destruction" now.</li>
+					<li>Fixed bug where CreativeMode pieces that were built by players could be removed by the creator even if they aren't enabled in the config. Now pieces can only by removed via the hammer if they are enabled in the config.</li>
+					<li>Global configuration section split into Global, Admin, and Customization in preparation for adding new customization features.</li>
 				</ul>
 			</td>
 		</tr>
 	</tbody>
 </table>
+
+<div class="header">
+	<h2>Versions 0.4.X</h2>
+</div>
+<details>
+	<summary>Click to expand</summary>
+	<table>
+		<tbody>
+			<tr>
+				<th align="center">Version</th>
+				<th align="center">Notes</th>
+			</tr>
+			<tr>
+				<td align="center">0.4.8</td>
+				<td align="left">
+					<ul>
+						<li>Configuration changes made in-game will now persist properly after logging out.</li>
+						<li>Sped up re-initialization slightly.</li>
+						<li>Update README with known issues</li>
+					</ul>
+				</td>
+			</tr>
+			<tr>
+				<td align="center">0.4.7</td>
+				<td align="left">
+					<ul>
+						<li>Hotfix to prevent infinite re-initialization loop in multi-player. Turns out that even if I test with a dedicated server, some bugs only show up with multiple clients.</li>
+					</ul>
+				</td>
+			</tr>
+			<tr>
+				<td align="center">0.4.6</td>
+				<td align="left">
+					<ul>
+						<li>Fixed issue with server config changes not persisting after log-out unless the server was restarted. Config changes for the server are now saved to the server config file when you log-out.</li>
+						<li>Re-enabled prefabs that spawn a MineRock5 component as they can be useful for building islands. A warning about how they work is now automatically added to the piece description.</li>
+					</ul>
+				</td>
+			</tr>
+			<tr>
+				<td align="center">0.4.5</td>
+				<td align="left">
+					<ul>
+						<li>
+							Improved deconstruction of non-WearNTear pieces.
+							<ul>
+								<li>Destroying player-built pieces via damaging them will always drop the resources for building the piece now.</li>
+								<li>Deconstructing non-WearNTear pieces will now destroy them using the Destructible component if it is present (this means removing ice pieces makes them shatter and play the ice SFX).</li>
+							</ul>
+						</li>
+						<li>Added config settings to control piece clipping during placement.</li>
+						<li>Patched MineRock script to prevent NRE on newly placed pieces.</li>
+						<li>Improved filtering to prevent detecting prefabs that create giant boulders when you remove them.</li>
+						<li>Automatically adds missing removal SFX for WearNTear pieces.</li>
+						<li>Hotfix for issues with invalid placement due to changing collider layers.</li>
+					</ul>
+				</td>
+			</tr>
+			<tr>
+				<td align="center">0.4.4</td>
+				<td align="left">
+					<ul>
+						<li>Removed server requirement so that console players can enjoy the mod vicariously through crossplay.</li>
+						<li>Improved sorting of prefabs added by this mod (that took a while).</li>
+						<li>Added automatic piece classification to hopefully allow correct sorting of pieces from other mods and future updates.</li>
+						<li>Improved automatic naming of prefabs.</li>
+						<li>Fixed layer issue on some pieces that prevented targeting them for removal.</li>
+						<li>Removing pieces now triggers the destruction effects if they exist.</li>
+						<li>Fixed possible exploit involving pickables with extra random item drops.</li>
+						<li>Patched chair prefabs so you can now sit in them.</li>
+						<li>Minor performance optimizations.</li>
+						<li>Removed piece descriptions that were duplicates of piece names.</li>
+						<li>Disabled a prefab that would disappear 10 seconds after placing it.</li>
+						<li>Improved descriptions for several prefabs.</li>
+						<li>Removed the snap points added to the center of all prefabs (use ExtraSnapPointsMadeEasy instead).</li>
+						<li>Fixed minor compatibility issue with RRR, warning should no longer trigger and MVBP will no longer detect prefabs added by RRR.</li>
+						<li>Added config option to enable placing vanilla crops so you can make pretty gardens if you want.</li>
+						<li>Added colliders to allow removing large straw rug.</li>
+						<li>Tweaked some default resource costs.</li>
+					</ul>
+				</td>
+			</tr>
+			<tr>
+				<td align="center">0.4.3</td>
+				<td align="left">
+					<ul>
+						<li>
+							Added a new piece category "Nature".
+							<ul>
+								<li>Changed Admin only settings to account for new category.</li>
+								<li>Tweaked default configuration to account for new category.</li>
+							</ul>
+						</li>
+						<li>
+							Changed how CreativeMode works.
+							<ul>
+								<li>CreativeMode now sets whether pieces from the CreatorShop and Nature categories are enabled for building.</li>
+								<li>Changing the CreativeMode setting now updates while in-game.</li>
+							</ul>
+						</li>
+						<li>Fixed the cloth behaviour on the new ship.</li>
+						<li>Tweaked snap points to mimic vanilla pieces more. Can use ExtraSnapPointsMadeEasy if you want more precise snap points.</li>
+						<li>Improved compatibility with ExtraSnapPointsMadeEasy to allow dynamically changing extra snap points as MoreVanillaBuildPrefabs dynamically adds/removes build pieces.</li>
+						<li>Pickable pieces now drop the pickable item when deconstructed if it has not already been picked.</li>
+						<li>ItemStand pieces now drop the attached item when deconstructed if an attached item exists.</li>
+					</ul>
+				</td>
+			</tr>
+			<tr>
+				<td align="center">0.4.2</td>
+				<td align="left">
+					<ul>
+						<li>Changed mod so that if a client has the mod, then the server they are connecting to must also have the mod (see README for details).</li>
+						<li>Implemented a CreativeMode configuration option (see README for details).</li>
+						<li>All pieces that are missing placement sound effects now have default sfx assigned based on the required crafting station. (Missing deconstruction sounds effects are not fixed though as that requires adding WearNTear or Destructable components to pieces).</li>
+						<li>Fixed bug where deconstructing player-built pieces with world modifiers set to turn off build costs would cause world-generated destruction drops to occur.</li>
+						<li>Player-buil5 barrels no longer drop random loot when destroyed. They still do not return the resources used to build them when destroyed (they do return build resources if deconstructed though).</li>
+						<li>Patched Dvergr furniture items so they provide support and you can now place item stands on them.</li>
+						<li>Patched some more prefabs and improved placement for others, as usual each update.</li>
+					</ul>
+				</td>
+			</tr>
+			<tr>
+				<td align="center">0.4.1</td>
+				<td align="left">
+					<ul>
+						<li>Minor update to fix the stuttering issue when editing the configuration via the in-game configuration manager. The mod now only updates after closing the configuration manager.</li>
+						<li>Tweaked update logic to avoid re-initializing if receiving config data from server or reloading the config file doesn't actually change any config setting values.</li>
+						<li>Added some everburning torches and braziers that do not require fuel to the default configuration. Currently they are configured to unlock sometime during the last biome in the current game version.</li>
+					</ul>
+				</td>
+			</tr>
+			<tr>
+				<td align="center">0.4.0</td>
+				<td align="left">
+					<ul>
+						<li>
+							<b>Massive update</b>, I basically re-wrote the mod to allow it to dynamically respond to configuration setting changes while in-game.
+						</li>
+						<li>Switched to using Jotunn's server syncing features instead of ServerSync.</li>
+						<li>Removed Locking Configuration setting. If you install the mod on the server it will now always sync data to clients.</li>
+						<li>Change `VerboseMode` to `Verbosity`. There are now three logging levels you can select from to output more or less information. This should make debugging easier when issues are reported.</li>
+						<li>Changed some Global configuration setting names to more descriptive.</li>
+						<li>Fixed issue where sometimes configuration data from the server wouldn't sync correctly. The mod now always re-initializes the configuration whenever configuration data is received from the server.</li>
+						<li>Changed how building and deconstructing pickable objects is handled to prevent exploits.</li>
+						<li>Optimized load times for dynamic syncing. The very first time the mod loads on a clean install it takes about ~300 ms as it generates new icons. After that, when the mod initializes or responds to configuration settings changes it averages ~110-160 ms.</li>
+						<li>Patched some more prefabs, including making a hidden sailing ship fully functional.</li>
+						<li>Various internal tweaks to reduce the odds of compatibility issues with other mods.</li>
+						<li>Possibly more stuff I forgot about, it was a pretty big re-write. The new README should still cover everything important though.</li>
+					</ul>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</details>
 
 <div class="header">
 	<h2>Versions 0.3.X</h2>

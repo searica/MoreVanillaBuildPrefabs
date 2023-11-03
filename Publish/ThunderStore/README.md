@@ -1,9 +1,7 @@
 # MoreVanillaBuildPrefabs
-MoreVanillaBuildPrefabs is a Valheim mod to make all vanilla prefabs buildable with the hammer (survival way) while allowing you to configure the requirements to build them. You can configure which prefabs are available for building and what the building requirements are, though the mod comes with a default configuration that enables ~100 new pieces so you can start playing right away. 
+MoreVanillaBuildPrefabs is a Valheim mod to make all vanilla prefabs buildable with the hammer (survival way) while allowing you to configure the requirements to build them. You can configure which prefabs are available for building and what the building requirements are, though the mod comes with a default configuration that enables ~100 new pieces so you can start playing right away.
 
-**Update note**: As of version 0.4.4, the mod is no longer required to be on the server for clients with the mod. Someone pointed out that pieces from MVBP worked for console players during crossplay and they really missed having access to that, which was a good enough reason for me to change the requirement.
-
-**Server-Side Info**: This mod does work as a client-side only mod. It is strongly recommended that you install it on the server you play on if possible though as multiple players with conflicting configurations can result in losing build resources when pieces are deconstructed. Not installing the mod on the server also means that some pieces (like the new ship) may not function well for players without the mod. 
+**Server-Side Info**: This mod does work as a client-side only mod. It is strongly recommended that you install it on the server you play on if possible though as multiple players with conflicting configurations can result in losing build resources when pieces are deconstructed. Not installing the mod on the server also means that some pieces (like the new ship) may not function well for players without the mod.
 
 ## Key Feature
 Because all the added build pieces are pre-existing vanilla prefabs, any pieces you build with this mod will persist in your world even if you uninstall the mod. This means that pieces you build on a server will also be visible for players without the mod and any builds using the pieces from this mod will load for players without the mod.
@@ -31,6 +29,18 @@ Changes made to the configuration settings will be reflected in-game immediately
 
 *Note:* If you're doing a survival playthrough and just want more build pieces then leave CreativeMode off. If you have access to devcommands and want to build new environmental locations or new dungeons then you probably want to enable CreativeMode.
 
+**ForceAllPrefabs** [Synced with Server]
+- If enabled, adds all prefabs to the hammer for building. Unless CreativeMode is also enabled it will not add pieces set to the CreatorShop or Nature category though.
+  - Acceptable values: False, True
+  - Default value: false
+
+**Verbosity**
+- Low will log basic information about the mod. Medium will log information that is useful for troubleshooting. High will log a lot of information, do not set it to this without good reason as it will slow down your game.
+  - Acceptable values: Low, Medium, High
+  - Default value: Low.
+
+### Admin Section
+
 **CreatorShopAdminOnly** [Synced with Server]
 - Set to true to restrict placement and deconstruction of CreatorShop pieces to players with Admin status.
   - Acceptable values: False, True
@@ -41,21 +51,12 @@ Changes made to the configuration settings will be reflected in-game immediately
   - Acceptable values: False, True
   - Default value: true
 
+### Customization Section
+
 **EnableHammerCrops** [Synced with Server]
 - Setting to enable prefabs for crops that can already be planted in the Vanilla game. Unless this setting is true Vanilla crops will not be available for placing with the hammer. Can be useful if you want to make pretty gardens without having to wait for crops to grow (plus you control the crop rotation this way).
     - Acceptable values: False, True
     - Default value: false
-
-
-**ForceAllPrefabs** [Synced with Server]
-- If enabled, adds all prefabs to the hammer for building. Unless CreativeMode is also enabled it will not add pieces set to the CreatorShop or Nature category though.
-  - Acceptable values: False, True
-  - Default value: false
-
-**Verbosity** [Synced with Server]
-- Low will log basic information about the mod. Medium will log information that is useful for troubleshooting. High will log a lot of information, do not set it to this without good reason as it will slow down your game.
-  - Acceptable values: Low, Medium, High
-  - Default value: Low.
 
 ### Prefab Configuration Sections:
 The rest of the configuration files contains ["Prefab-Name"] sections to configure each prefab. Each section contains:
@@ -75,7 +76,6 @@ The rest of the configuration files contains ["Prefab-Name"] sections to configu
     - Acceptable values: CreatorShop, Nature, Misc, Crafting, Building, Furniture
     - Default value: CreatorShop
 
-
 **ClipEverything** [Synced with Server]
 - et to true to allow piece to clip through everything during placement. Recommended to try this if the piece is not appearing when you go to place it. (If this setting fixes the issue please open an issue on Github letting me know so I can make sure the piece can always applied clip the ground.)
     - Acceptable values: False, True
@@ -88,7 +88,6 @@ The rest of the configuration files contains ["Prefab-Name"] sections to configu
     - Default value: false
     - *Note:* this setting is not available on some prefabs because it needs to always be true.
 
-
 **CraftingStation** [Synced with Server]
 - A string defining the crafting station required to built the prefab.
   - Acceptable values: None, Workbench, Forge, Stonecutter, Cauldron, ArtisanTable, BlackForge, GaldrTable
@@ -96,7 +95,7 @@ The rest of the configuration files contains ["Prefab-Name"] sections to configu
 
 **Requirements** [Synced with Server]
 - Resources required to build the prefab. Formatted as: itemID,amount;itemID,amount where itemID is the in-game identifier for the resource and amount is an integer. You can find itemID on Valheim Wiki or on this [link](https://valheim-modding.github.io/Jotunn/data/objects/item-list.html). Example: Requirements = Wood,5;Stone,2 would mean the prefab requires 5 wood and 2 stone to build.
-  - Default value: 
+  - Default value:
 
 **PlacementPatch** [Synced with Server]
 - Set to true to enable collision patching during placement of the piece. Recommended to try this if the piece is not appearing when attempting to place it. (If enabling the placement patch via this setting fixes the issue please open an issue on Github letting me know so I can make sure the collision patch is always applied to this piece.)
@@ -138,52 +137,65 @@ Some prefabs found in vanilla dungeons can also behave unexpectedly, such as bei
 
 **TLDR:** Some prefabs other than the ones enabled by default may be buggy, please adjust your expectations accordingly.
 
-### Deconstructing Pieces
+## Custom Piece Categories
+This mod adds two custom piece categories: **CreatorShop** and **Nature**. Pieces set to either of the custom categories will only be enabled for building if CreativeMode is set to True. Additionally, these pieces can only be deconstructed by the player who placed them and world-generated instances of these pieces cannot be deconstructed. This prevents player's from deconstructing things like world-generated trees, while still allowing them to build and deconstruct their own trees.
+
+If multiple player's have this mod, the same restrictions still apply and they will not be able to deconstruct instances of  pieces set to either of the custom piece categories that were built by other players.
+
+The AdminDeconstructOtherPlayers setting can allow players with admin status to deconstruct CreatorShop or Nature pieces built by other players, so that admins have a way to remove indestructible pieces. Even if you enable the AdminDeconstructOtherPlayers setting, admins are still not able to deconstruct world-generated instances of pieces set to the CreatorShop or Nature categories.
+
+## Resource Costs and Drops
 Since this mod adds more prefabs to the hammer, that means you can deconstruct more pieces. As of version 0.0.3 and all later versions, world-generated pieces will only drop their default drops, while player-built pieces will only drop the resources used to build them.
 
 ### Pickable Pieces
 Building and deconstructing prefabs that have pickable components could potentially allow for exploits that create infinite resources. To prevent that, the following adjustments are made.
 
-#### Building Pickables
+#### Pickable Resource Costs
 If a prefab has a pickable component, such as a berry bush, then whatever resource it drops will always be added to the required resources for building it. The amount of the resource required to build the prefab will also always be equal to or greater than the amount of the resource that is dropped when you pick it (after accounting for world modifiers). These conditions will override the required resources set in the configuration file.
 
 **Example:** If building a berry bush drops 1 berry when you pick it then no matter what the settings are in the configuration file it will always cost at least 1 berry to build the berry bush. If world modifiers are set to 2 so the bush would drop 2 berries then it will always cost at least 2 berries to build.
 
-#### Deconstructing Pickables
+#### Pickable Resource Drops
 When you deconstruct a prefab with a pickable component if the pickable item has not been picked then it will drop the pickable item. The resources dropped by deconstructing it will also be adjusted to reduce the amount of the pickable item drops by the amount that was gained by picking the item (after accounting for world modifiers).
 
 **Example:** If you built a berry bush that cost 5 berries to build, then picked the berries and got 2 berries, and then deconstructed the bush only 3 berries would drop.
 
 If a pickable piece has additional random drops, like some pickables found in dungeons, the random drops will be disabled for player-built instances of the piece. World-generated instances are unaffected and will picking them will drop the random drops as normal.
 
+### Mineable Pieces
+Any piece that you can hit with a pickaxe and destroy parts of is a mineable piece.
+
+#### Resource Costs
+All mineable pieces have the cost for building them adjusted so that building them always require resources equal to or greater than the average resources dropped when the mineable piece is completely mined.
+
+#### Resource Drops
+Deconstructing mineable pieces effectively "mines" the entire piece and per vanilla behavior the dropped resources are slightly randomized (as if you had mined it). When deconstructing mineable pieces the resources required to build it are returned after subtracting the average resources dropped by fully mining the piece.
+
+**Example:** If you built a rock that on average drops 41 stone, it would cost 41 stone to build. If you configured that rock to cost 56 stone, built it, and deconstructed it then it would drop 15 stone plus whatever is randomly dropped due to mining the entire piece which will on average result in dropping 56 stone, but could be slightly more or less. If you configured the rock to cost 41 stone and 2 iron, then it would always drop 2 iron when removed and whatever is dropped due to mining the entire piece.
+
+## ItemStand Pieces
+Any piece that you can attach an item to has an ItemStand component and has a unique behavior when deconstructed.
+
 #### Decontructing ItemStands
 When you deconstruct a piece that has an ItemStand component it will always drop the attached item, even if you could not normally remove it.
 
-## Custom Piece Categories
-This mod adds two custom piece categories: **CreatorShop** and **Nature**. Pieces set to either of the custom categories will only be enabled for building if CreativeMode is set to True. Additionally, these pieces can only be deconstructed by the player who placed them and world-generated instances of these pieces cannot be deconstructed. This prevents player's from deconstructing things like world-generated trees, while still allowing them to build and deconstruct their own trees.
-
-If multiple player's have this mod, the same restrictions still apply and they will not be able to deconstruct instances of  pieces set to either of the custom piece categories that were built by other players. 
-
-The AdminDeconstructOtherPlayers setting can allow players with admin status to deconstruct CreatorShop or Nature pieces built by other players, so that admins have a way to remove indestructible pieces. Even if you enable the AdminDeconstructOtherPlayers setting, admins are still not able to deconstruct world-generated instances of pieces set to the CreatorShop or Nature categories.
+## Known Issue/Feature
+MVBP is able to detect prefabs added by other mods. It is possible to enable and configure those prefabs much like the Vanilla prefabs added by MVBP. In some cases, prefabs from other mods can cause issues, though it is uncommon. As a general rule, I also will not patch or support issues regarding prefabs from other mods as I do not have access to the assets from other mods.
 
 ## Known Issues
 **Custom Armor Stand Clipping**: Armor placed on the Armor Stand Female and Armor Stand Male prefabs has clipping issues causing parts of the armor to not be displayed. I have not been able to fix this as of yet. Feel free to reach out if you know things about meshing and you have ideas for a solution.
 
-**Piece Icons**: Variable lighting between icons for custom pieces where some appear much darker than others. A fix has been implemented, but icons are cached by Jotunn so if you previously had this issue and want to fix it, you need to do the following:
-- Go to this directory: %userprofile%\appdata\LocalLow\IronGate\Valheim\Jotunn\CachedIcons
-- Delete all the pngs in that directory.
-- Restart the game and the mod should regenerate the icons correctly.
-
-**Detecting Prefabs from other Mods**: MVBP is able to detect prefabs added by other mods. It is possible to enable and configure those prefabs much like the Vanilla prefabs added by MVBP. In some cases, prefabs from other mods can cause issues, though it is uncommon. As a general rule, I also will not patch or support issues regarding prefabs from other mods as I do not have access to the assets from other mods.
-
-**Config Changes on Dedicated Server**: Configuration changes made to a dedicated server using an in-game configuration manager do persist after logging out and re-connecting  but they are not saved to disk on the server until the server is shut down. Currently working on a fix.
+**Config Changes on Dedicated Server**: Configuration changes made to a dedicated server using an in-game configuration manager do persist after logging out and re-connecting  but they are not saved to disk on the server until the server is shut down. A pull request to fix this has been made.
 
 **Placement Glitch**: There is one pickable that will appear to not be created when placed.This is because it falls through the ground is pushed back up after a short period of time. If you wait it will appear.
+
+**Impossible Recipes**: Forcing pickable pieces to always require resources equal to or greater than what they drop when picked means that if a pickable piece is unattainable in the Vanilla game, then the recipe for it can never be unlocked. I am currently considering how I want to address this and whether this should be considered a bug or not as it is a consequence of the intended behavior to prevent infinite resource exploits. It is still possible to unlock these recipes via console commands or using other mods like ExpandWorld to populate them in the world.
 
 ## Planned Improvements
 - Resolve known issues.
 - Patch and enable more prefabs by default.
 - Adding comfort values to pieces added by the mod with a config setting to enable/disable them.
+- Integrate the material replacement method that GoldenRevolver demonstrated as a configurable option.
 - Learn how localization works and add localization options to the mod.
 
 ## Potential Improvements
@@ -191,8 +203,9 @@ The AdminDeconstructOtherPlayers setting can allow players with admin status to 
     - Changing inventory sizes for some prefabs or other patches that could make you lose items if you loaded the world without the mod.
     - Adding fermenter functionality to some prefabs. Could result in losing the mead base if loaded without the mod.
     - Adding bed functionality to some prefabs. Could result in losing your spawn point if loaded without the mod.
-- Learn how to save/read data to/from the world file so I can alter just the pieces that are player built and have it persist after a restart. May just use the awake method on pieces instead.
-- Add Wear-N-Tear or Destructible components all to player built pieces upon placement.
+    - Add Wear-N-Tear or Destructible components all to player built pieces upon placement.
+    - Learn how to save/read data to/from the world file so I can alter just the pieces that are player built and have it persist after a restart.
+    - Use the awake method on pieces to apply custom alterations as needed for pieces placed by players.
 
 
 ## Compatibility
@@ -204,11 +217,14 @@ These are non-exhaustive lists.
 **MoreVanillaBuilds (by Galathil)** The original mod that this one is a remake of. I haven't actually checked what happens if you use both at once but they do modify the same pieces so I wouldn't recommend it.
 
 ### Partial Incompatibly
-**PlanBuild (by MathiasDecrock)** The two mods do work together but not all of the icons for custom pieces added by MoreVanillaBuildPieces show on correctly in the build table for PlanBuild's Plan Hammer. PlanBuild also does not respond to in-game changes made to pieces added by MoreVanillaBuildPrefabs. A fix is currently being worked on in collaboration with the authors of PlanBuild though. 
+**PlanBuild (by MathiasDecrock)** The two mods do work together but not all of the icons for custom pieces added by MoreVanillaBuildPieces show on correctly in the build table for PlanBuild's Plan Hammer. PlanBuild also does not respond to in-game changes made to pieces added by MoreVanillaBuildPrefabs. A fix is currently being worked on in collaboration with the authors of PlanBuild though.
+
 
 ### Compatible Mods
 
 **PlantEverything (by Advize)**: These two mods are fully compatible. If PlantEverything is installed then MoreVanillaBuildPrefabs will not touch any of the prefabs that PlantEverything adds to the cultivator so all of the plants added by PlantEverything will function as normal. I also highly recommend using PlantEverything as it targeted at providing a balanced and configurable experience for enabling more plant pieces and compliments MoreVanillaBuildPrefabs.
+
+**Gizmo (by ComfyMods)**: Fully compatible and highly recommended if you like building.
 
 **WackysDatabase (by Wackymole)**: These two mods are fully compatible. You can use WackyDB to alter pieces added by this mod. Depending on what you alter the dynamic configuration changes of this mod may override the change changes made by WackyDB when the mod updates in response to the config changes. To resolve this you can A.) avoid changing the config for this mod while in-game, B.) log out and rejoin to allow WackyDB to reapply it's changes, C.) use the wackydb_reload console command to reapply changes without exiting the game (probably the easiest and best option).
 
@@ -294,11 +310,12 @@ These are non-exhaustive lists.
 
 </details>
 
-### Source Code
-Github: https://github.com/searica/MoreVanillaBuildPrefabs
-
 ## Donations/Tips
 My mods will always be free to use but if you feel like saying thanks you can tip/donate here: https://ko-fi.com/searica
+
+
+## Source Code
+Github: https://github.com/searica/MoreVanillaBuildPrefabs
 
 ### Contributions
 If you would like to provide suggestions, make feature requests, or reports bugs and compatibility issues you can either open an issue on the Github repository or tag me (@searica) with a message on the [Jotunn discord](https://discord.gg/DdUt6g7gyA) or the [Odin Plus discord](https://discord.gg/mbkPcvu9ax).
@@ -320,10 +337,10 @@ This mod was inspired by MoreVanillaBuilds by Galathil and PotteryBarn by ComfyM
 - Thanks to GoldenRevolver for the advice and letting me bounce idea's off of you about sorting the pieces added by MVBP.
 
 #### Community Credits
-- Thanks to onnan for all their suggestions, feedback, and testing
+- Thanks to onnan and DreamWraith for all their suggestions, feedback, and testing
 - Thanks to Cass, Blubbson, Katosan, Havengrad, LunaEversor for quickly finding and reporting issues or bugs.
 
-### Shameless Self Plug (Other Mods By Me)
+## Shameless Self Plug (Other Mods By Me)
 If you like this mod you might like some of my other ones.
 
 #### Building Mods

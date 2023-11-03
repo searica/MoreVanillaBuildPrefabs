@@ -189,7 +189,8 @@ namespace MVBP.Configs
                 LoggerLevel.Low,
                 "Low will log basic information about the mod. Medium will log information that " +
                 "is useful for troubleshooting. High will log a lot of information, do not set " +
-                "it to this without good reason as it will slow down your game."
+                "it to this without good reason as it will slow down your game.",
+                synced: false
             );
 
             CreatorShopAdminOnly = BindConfig(
