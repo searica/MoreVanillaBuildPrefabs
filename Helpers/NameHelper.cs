@@ -42,20 +42,8 @@ namespace MVBP.Helpers
         /// </summary>
         private static readonly Regex IsLastCharDigit = new(@"((?<!x)\d+$)");
 
-        /// <summary>
-        ///     Matches (text)(_frac) if it is at the end of the string
-        /// </summary>
-        private static readonly Regex FracAtEnd = new(@"(.+?)(_frac$)");
-
-        /// <summary>
-        ///     Matches (text)(_destruction) if it is at the end of the string
-        /// </summary>
-        private static readonly Regex DestructAtEnd = new(@"(.+?)(_destruction$)");
-
         private static readonly Dictionary<string, string> NameCache = new();
         private static readonly Dictionary<string, string> DescCache = new();
-
-        private const string MineRock5Warn = "Warning: This prefab spawns a destructible rock when damaged and the new rock cannot be removed with the hammer.";
 
         /// <summary>
         ///     Checks if NameCache contains a value.
@@ -98,8 +86,8 @@ namespace MVBP.Helpers
                 return pieceDB.pieceName;
             }
 
-            var name = FracAtEnd.Replace(pieceDB.name, "$1"); // strips "_frac" from the end
-            name = DestructAtEnd.Replace(name, "$1"); // strips "_destruction" from the end
+            var name = pieceDB.name.RemoveSuffix("_frac");
+            name = name.RemoveSuffix("_destruction");
             name = CreepToEndRegex.Replace(name, "$1$3 ($2)");
             name = DigitsToEndRegex.Replace(name, "$1$3 $2");
             name = UnitSpaceRegex.Replace(name, "$1 $2");
