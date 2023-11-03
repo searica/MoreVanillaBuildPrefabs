@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using MVBP.Extensions;
+using UnityEngine.UIElements;
 
 namespace MVBP.Helpers
 {
@@ -47,7 +48,7 @@ namespace MVBP.Helpers
         /// <summary>
         ///     If the pickable is not null and drops an item, then modify the
         ///     requirements array to require the item dropped by the pickable to
-        ///     build and cost a minimum amount equal to the amount dropped by the
+        ///     build and cost a minimum dropAmount equal to the dropAmount dropped by the
         ///     pickable  (accounts for world modifiers to resource drops).
         /// </summary>
         /// <param name="requirements"></param>
@@ -65,7 +66,7 @@ namespace MVBP.Helpers
                 return requirements;
             }
 
-            // Get amount returned on picking based on world modifiers
+            // Get dropAmount returned on picking based on world modifiers
             var pickedAmount = pickable.GetScaledDropAmount();
 
             // Check if pickable is included in piece build requirements
@@ -99,7 +100,7 @@ namespace MVBP.Helpers
         /// <summary>
         ///     Used when deconstructing pickable pieces to prevent infinite item exploits.
         ///     Checks if the resources defined by the requirements array include
-        ///     the item dropped by the pickable and reduces the amount of the resources
+        ///     the item dropped by the pickable and reduces the dropAmount of the resources
         ///     based on if the pickable has been picked (accounts for world modifiers for resources).
         /// </summary>
         /// <param name="requirments"></param>
@@ -128,10 +129,10 @@ namespace MVBP.Helpers
                     var pickedRequirements = new Piece.Requirement[requirements.Length];
                     requirements.CopyTo(pickedRequirements, 0);
 
-                    // Get amount returned on picking based on world modifiers
+                    // Get dropAmount returned on picking based on world modifiers
                     var pickedAmount = pickable.GetScaledDropAmount();
 
-                    // Reduce resource drops for the picked item by the amount that picking the item gave.
+                    // Reduce resource drops for the picked item by the dropAmount that picking the item gave.
                     // This is to prevent infinite resource exploits.
                     pickedRequirements[i].m_amount = Mathf.Clamp(req.m_amount - pickedAmount, 0, req.m_amount);
                     return pickedRequirements;
@@ -140,6 +141,98 @@ namespace MVBP.Helpers
 
             // If pickable item is not present then return the requirements array unchanged.
             return requirements;
+        }
+
+        /// <summary>
+        ///     Adjust the requirements to build so that it requires resources
+        ///     equal to or greater than the average dropAmount dropped by mining
+        ///     out the entire MineRock5 component.
+        ///     (does not accounts for world modifiers to resource drops yet).
+        /// </summary>
+        /// <param name="requirements"></param>
+        /// <param name="mineRock5"></param>
+        /// <returns></returns>
+        internal static Piece.Requirement[] AddMineRock5DropsToRequirements(
+            Piece.Requirement[] requirements,
+            MineRock5 mineRock5
+        )
+        {
+            if (requirements == null || mineRock5 == null)
+            {
+                return requirements;
+            }
+
+            var avgDrops = mineRock5.GetAvgDrops();
+            var reqList = requirements.ToList();
+            foreach (var drop in avgDrops)
+            {
+                var dropName = drop.item.m_itemData.m_shared.m_name;
+                var dropAmount = (int)Mathf.Round(drop.amount);
+                bool inReqs = false;
+                foreach (var req in reqList)
+                {
+                    // If drop is in piece requirements then adjust dropAmount as needed
+                    if (req.m_resItem.m_itemData.m_shared.m_name == dropName)
+                    {
+                        inReqs = true;
+                        if (req.m_amount < drop.amount)
+                        {
+                            req.m_amount = dropAmount;
+                        }
+                    }
+                }
+                // If drop not in requirements then add it
+                if (!inReqs)
+                {
+                    var mineRockReq = new Piece.Requirement()
+                    {
+                        m_resItem = drop.item,
+                        m_amount = dropAmount,
+                        m_recover = true
+                    };
+                    reqList.Add(mineRockReq);
+                }
+            }
+            return reqList.ToArray();
+        }
+
+        /// <summary>
+        ///     Adjust the requirements to build so that dropped resources
+        ///     are reduced by the average dropAmount dropped by mining
+        ///     out the entire MineRock5 component.
+        ///     (does not accounts for world modifiers to resource drops yet).
+        /// </summary>
+        /// <param name="requirements"></param>
+        /// <param name="mineRock5"></param>
+        /// <returns></returns>
+        internal static Piece.Requirement[] RemoveMineRock5DropsFromRequirements(
+            Piece.Requirement[] requirements,
+            MineRock5 mineRock5
+        )
+        {
+            if (requirements == null || mineRock5 == null)
+            {
+                return requirements;
+            }
+
+            var avgDrops = mineRock5.GetAvgDrops();
+            // Make a copy before altering drops
+            var newRequirements = new Piece.Requirement[requirements.Length];
+            requirements.CopyTo(newRequirements, 0);
+            foreach (var drop in avgDrops)
+            {
+                var dropName = drop.item.m_itemData.m_shared.m_name;
+                var dropAmount = (int)Mathf.Round(drop.amount);
+                foreach (var req in newRequirements)
+                {
+                    // If drop is in piece requirements then adjust dropAmount as needed
+                    if (req.m_resItem.m_itemData.m_shared.m_name == dropName)
+                    {
+                        req.m_amount = Mathf.Clamp(req.m_amount - dropAmount, 0, req.m_amount);
+                    }
+                }
+            }
+            return newRequirements;
         }
     }
 }

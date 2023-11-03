@@ -483,7 +483,7 @@ namespace MVBP.Configs
                     category: HammerCategories.Nature,
                     craftingStation: nameof(CraftingStations.None),
                     requirements: "YggdrasilWood,2",
-                    clipEverything: false,
+                    clipEverything: true,
                     clipGround: false
                 )
             },
@@ -496,7 +496,7 @@ namespace MVBP.Configs
                     category: HammerCategories.Nature,
                     craftingStation: nameof(CraftingStations.None),
                     requirements: "YggdrasilWood,2",
-                    clipEverything: false,
+                    clipEverything: true,
                     clipGround: false
                 )
             },
@@ -633,7 +633,7 @@ namespace MVBP.Configs
                     category: HammerCategories.Nature,
                     craftingStation: nameof(CraftingStations.None),
                     requirements: "Ooze,1",
-                    clipEverything: false,
+                    clipEverything: true,
                     clipGround: false,
                     pieceGroup: PieceGroup.Flora
                 )
@@ -2594,6 +2594,7 @@ namespace MVBP.Configs
                     requirements: "BlackMarble,8",
                     clipEverything: false,
                     clipGround: false,
+                    placementPatch: true,
                     pieceGroup: PieceGroup.BlackMarble
                 )
             },
@@ -2608,6 +2609,7 @@ namespace MVBP.Configs
                     requirements: "BlackMarble,8",
                     clipEverything: false,
                     clipGround: false,
+                    placementPatch: true,
                     pieceGroup: PieceGroup.BlackMarble
                 )
             },
@@ -2704,7 +2706,7 @@ namespace MVBP.Configs
                     category: HammerCategories.Nature,
                     craftingStation: nameof(CraftingStations.None),
                     requirements: "Crystal,10",
-                    clipEverything: false,
+                    clipEverything: true,
                     clipGround: false,
                     pieceGroup: PieceGroup.Ice
                 )
@@ -2718,7 +2720,7 @@ namespace MVBP.Configs
                     category: HammerCategories.Nature,
                     craftingStation: nameof(CraftingStations.None),
                     requirements: "Crystal,2",
-                    clipEverything: false,
+                    clipEverything: true,
                     clipGround: false,
                     pieceGroup: PieceGroup.Ice
                 )
@@ -3162,7 +3164,7 @@ namespace MVBP.Configs
                     category: HammerCategories.CreatorShop,
                     craftingStation: nameof(CraftingStations.None),
                     requirements: "",
-                    clipEverything: false,
+                    clipEverything: true,
                     clipGround: false,
                     pieceGroup: PieceGroup.Dvergr
                 )
@@ -3248,6 +3250,7 @@ namespace MVBP.Configs
                     requirements: "YggdrasilWood,2",
                     clipEverything: false,
                     clipGround: false,
+                    pieceName: "Dvergr wood pole (large)",
                     pieceGroup: PieceGroup.Dvergr
                 )
             },
@@ -3596,7 +3599,7 @@ namespace MVBP.Configs
                     allowedInDungeons: false,
                     category: HammerCategories.CreatorShop,
                     craftingStation: nameof(CraftingStations.None),
-                    requirements: "SoftTissue,64",
+                    requirements: "Softtissue,64",
                     clipEverything: true
                 )
             },
@@ -3608,7 +3611,7 @@ namespace MVBP.Configs
                     allowedInDungeons: false,
                     category: HammerCategories.CreatorShop,
                     craftingStation: nameof(CraftingStations.None),
-                    requirements: "SoftTissue,64",
+                    requirements: "Softtissue,64",
                     clipEverything: true,
                     clipGround: false
                 )
@@ -4290,6 +4293,7 @@ namespace MVBP.Configs
                     requirements: "YggdrasilWood,1",
                     clipEverything: false,
                     clipGround: false,
+                    pieceName: "Dvergr wood pole",
                     pieceGroup: PieceGroup.Dvergr
                 )
             },
@@ -4545,7 +4549,7 @@ namespace MVBP.Configs
                     allowedInDungeons: false,
                     category: HammerCategories.Nature,
                     craftingStation: nameof(CraftingStations.None),
-                    requirements: "Stone,64;CopperOre,32",
+                    requirements: "",
                     clipEverything: true,
                     clipGround: true,
                     pieceGroup: PieceGroup.Ore
@@ -4961,8 +4965,9 @@ namespace MVBP.Configs
                     category: HammerCategories.Furniture,
                     craftingStation: nameof(CraftingStations.BlackForge),
                     requirements: "FineWood,32",
-                    clipEverything: false,
-                    clipGround: false
+                    clipEverything: true,
+                    clipGround: false,
+                    placementPatch: true
                 )
             },
             {

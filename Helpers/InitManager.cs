@@ -22,23 +22,11 @@ namespace MVBP.Helpers
 
         internal static bool TryGetDefaultPieceClone(GameObject gameObject, out Piece pieceClone)
         {
-            // Try with gameObject name
-            var prefabName = gameObject?.name?.RemoveSuffix("(Clone)");
+            var prefabName = GetPrefabName(gameObject);
             if (DefaultPieceClones.ContainsKey(prefabName))
             {
                 pieceClone = DefaultPieceClones[prefabName];
                 return true;
-            }
-
-            // Try with piece name if it exists
-            if (gameObject.TryGetComponent(out Piece pieceCompo) && PieceToPrefabMap.ContainsKey(pieceCompo.m_name))
-            {
-                prefabName = PieceToPrefabMap[pieceCompo.m_name].RemoveSuffix("(Clone)");
-                if (DefaultPieceClones.ContainsKey(prefabName))
-                {
-                    pieceClone = DefaultPieceClones[prefabName];
-                    return true;
-                }
             }
             pieceClone = null;
             return false;
@@ -51,14 +39,8 @@ namespace MVBP.Helpers
         /// <returns></returns>
         internal static bool IsPatchedByMod(GameObject gameObject)
         {
-            var flag = PrefabRefs.ContainsKey(gameObject?.name?.RemoveSuffix("(Clone)"));
-            if (flag) { return flag; }
-
-            if (gameObject.TryGetComponent(out Piece piece))
-            {
-                return PieceToPrefabMap.ContainsKey(piece.m_name);
-            }
-            return false;
+            var prefabName = GetPrefabName(gameObject);
+            return PrefabRefs.ContainsKey(prefabName);
         }
 
         /// <summary>
@@ -68,30 +50,66 @@ namespace MVBP.Helpers
         /// <returns></returns>
         internal static bool IsPatchedByMod(Component compo)
         {
-            var flag = PrefabRefs.ContainsKey(compo?.name?.RemoveSuffix("(Clone)"));
-            if (flag) { return flag; }
+            var prefabName = GetPrefabName(compo);
+            return PrefabRefs.ContainsKey(prefabName);
+        }
 
-            if (compo.gameObject.TryGetComponent(out Piece piece))
+        /// <summary>
+        ///     Returns a bool indicating if the prefab has been changed by mod.
+        /// </summary>
+        /// <param name="prefabName"></param>
+        /// <returns></returns>
+        internal static bool IsPatchedByMod(string name)
+        {
+            return PrefabRefs.ContainsKey(name);
+        }
+
+        /// <summary>
+        ///     Returns a bool indicating if the prefab is patched
+        ///     by this mod and is set to be enabled.
+        /// </summary>
+        /// <param name="gameObject"></param>
+        /// <returns></returns>
+        internal static bool IsPrefabEnabled(GameObject gameObject)
+        {
+            var prefabName = GetPrefabName(gameObject);
+            if (IsPatchedByMod(prefabName))
             {
-                return PieceToPrefabMap.ContainsKey(piece.m_name);
+                return Config.PrefabDBConfigsMap[prefabName].enabled.Value || Config.IsForceAllPrefabs;
             }
             return false;
         }
 
         /// <summary>
-        ///     Returns true if the pieceClone is one the mod touches and it
-        ///     is currently enabled for building. Returns false if the
-        ///     pieceClone is not a custom pieceClone or it is not enabled.
+        ///     Get the root prefab name.
         /// </summary>
-        /// <param name="prefabName"></param>
+        /// <param name="compo"></param>
         /// <returns></returns>
-        internal static bool IsCustomPieceEnabled(string prefabName)
+        internal static string GetPrefabName(Component compo)
         {
-            if (PieceRefs.ContainsKey(prefabName))
+            return GetPrefabName(compo?.gameObject);
+        }
+
+        /// <summary>
+        ///     Get the root prefab name.
+        /// </summary>
+        /// <param name="gameObject"></param>
+        /// <returns></returns>
+        internal static string GetPrefabName(GameObject gameObject)
+        {
+            if (gameObject == null) { return string.Empty; }
+
+            var prefabName = gameObject.name.RemoveSuffix("(Clone)");
+            if (PrefabRefs.ContainsKey(prefabName)) { return prefabName; }
+
+            if (gameObject.TryGetComponent(out Piece piece))
             {
-                return PieceRefs[prefabName].enabled;
+                if (PieceToPrefabMap.ContainsKey(piece.m_name))
+                {
+                    return PieceToPrefabMap[piece.m_name];
+                }
             }
-            return false;
+            return prefabName;
         }
 
         internal static void InitPrefabRefs()
@@ -309,6 +327,14 @@ namespace MVBP.Helpers
                     continue;
                 }
 
+                // Restrict placement of CreatorShop pieces to Admins only
+                if (Config.IsCreatorShopAdminOnly
+                    && PieceCategoryHelper.IsCreatorShopPiece(pieceDB.piece)
+                    && !SynchronizationManager.Instance.PlayerIsAdmin)
+                {
+                    continue;
+                }
+
                 // Prevent CreativeMode pieces and any clones of them
                 // from being removable.
                 // (Player.RemovePiece patch allows removing player-built instances).
@@ -320,14 +346,8 @@ namespace MVBP.Helpers
                     pieceDB.piece.m_canBeRemoved = true;
                 }
 
-                // Restrict placement of CreatorShop pieces to Admins only
-                if (Config.IsCreatorShopAdminOnly
-                    && PieceCategoryHelper.IsCreatorShopPiece(pieceDB.piece)
-                    && !SynchronizationManager.Instance.PlayerIsAdmin)
-                {
-                    continue;
-                }
-
+                // always enable piece component if prefab enabled in config
+                pieceDB.piece.m_enabled = true;
                 pieceGroups.Add(pieceDB);
             }
 

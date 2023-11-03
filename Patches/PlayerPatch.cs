@@ -198,7 +198,7 @@ namespace MVBP
 
         [HarmonyPrefix]
         [HarmonyPatch(nameof(Player.RemovePiece))]
-        public static bool RemovePiecePrefix(Player __instance, ref bool __result)
+        internal static bool RemovePiecePrefix(Player __instance, ref bool __result)
         {
             if (__instance.GetRightItem().m_shared.m_name == "$item_hammer")
             {
@@ -256,13 +256,6 @@ namespace MVBP
                 {
                     Log.LogInfo("Removing non WNT object with hammer " + piece.name);
                     component.ClaimOwnership();
-                    //if (!RemoveDestructiblePiece(piece))
-                    //{
-                    //    piece.DropResources();
-                    //    piece.m_placeEffect.Create(piece.transform.position, piece.transform.rotation, piece.gameObject.transform);
-                    //    player.m_removeEffects.Create(piece.transform.position, Quaternion.identity);
-                    //    ZNetScene.instance.Destroy(piece.gameObject);
-                    //}
                     if (!RemoveDestructiblePiece(piece) && !RemoveMineRock5Piece(player, piece))
                     {
                         piece.DropResources();
@@ -284,7 +277,9 @@ namespace MVBP
 
         private static bool Check_m_canBeRemoved(Piece piece)
         {
-            if (PieceCategoryHelper.IsCreativeModePiece(piece) && piece.IsPlacedByPlayer())
+            if (InitManager.IsPrefabEnabled(piece?.gameObject)
+                && PieceCategoryHelper.IsCreativeModePiece(piece)
+                && piece.IsPlacedByPlayer())
             {
                 // Allow creative mode pieces to be removed by creator
                 if (piece.IsCreator()) { return true; }
@@ -302,8 +297,7 @@ namespace MVBP
 
         private static bool RemoveDestructiblePiece(Piece piece)
         {
-            var destructible = piece?.gameObject?.GetComponent<Destructible>();
-            if (destructible != null)
+            if (piece.gameObject.TryGetComponent(out Destructible destructible))
             {
                 if (Config.IsVerbosityMedium) Log.LogInfo("Removing destructible piece");
 
@@ -311,40 +305,11 @@ namespace MVBP
                 {
                     SfxHelper.CreateRemovalSfx(piece); // create deconstruction SFX if needed
                 }
-                if (Config.IsVerbosityMedium) Log.LogInfo("Destroying destructible piece");
 
                 destructible.DestroyNow();
                 return true;
             }
 
-            return false;
-        }
-
-        private static bool RemoveMineRock5Piece(Player player, Piece piece)
-        {
-            Log.LogInfo("remove mine rock");
-            var mineRock5 = piece?.gameObject?.GetComponent<MineRock5>();
-            Log.LogInfo($"Mine rock is null: {mineRock5 == null}");
-            if (mineRock5 != null)
-            {
-                if (Config.IsVerbosityMedium) Log.LogInfo("Removing MineRock5 piece");
-
-                var hit = new HitData()
-                {
-                    m_toolTier = 100,
-                    m_damage = new HitData.DamageTypes() { m_damage = 100000 },
-                    m_attacker = player.GetZDOID()
-                };
-
-                for (int i = 0; i < mineRock5.m_hitAreas.Count; i++)
-                {
-                    if (mineRock5 != null && mineRock5.m_nview != null && mineRock5.m_nview.IsValid() && mineRock5.m_nview.IsOwner())
-                    {
-                        mineRock5.m_nview.InvokeRPC("Damage", hit, i);
-                    }
-                }
-                return true;
-            }
             return false;
         }
 
@@ -367,6 +332,18 @@ namespace MVBP
                         return true;
                     }
                 }
+            }
+            return false;
+        }
+
+        private static bool RemoveMineRock5Piece(Player player, Piece piece)
+        {
+            if (piece.gameObject.TryGetComponent(out MineRock5 mineRock5))
+            {
+                if (Config.IsVerbosityMedium) Log.LogInfo("Removing MineRock5 piece");
+
+                mineRock5.DestroyMineRock5Piece();
+                return true;
             }
             return false;
         }

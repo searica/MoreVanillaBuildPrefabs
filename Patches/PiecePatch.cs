@@ -86,7 +86,7 @@ namespace MVBP
         {
             if (!InitManager.IsPatchedByMod(piece))
             {
-                // do nothing it not a piece the mod changes
+                // do nothing if not a piece the mod changes
                 return piece.m_resources;
             }
 
@@ -100,27 +100,24 @@ namespace MVBP
             // Set resources to defaults is piece is not placed by player
             // or disable destruction drops if it is placed by player
             var resources = Array.Empty<Piece.Requirement>();
-            if (InitManager.TryGetDefaultPieceClone(piece.gameObject, out Piece pieceClone))
+            if (!piece.IsPlacedByPlayer() && InitManager.TryGetDefaultPieceClone(piece.gameObject, out Piece pieceClone))
             {
-                if (!piece.IsPlacedByPlayer())
+                if (pieceClone.m_resources != null)
                 {
-                    if (pieceClone.m_resources != null)
-                    {
-                        // set to default resources for world-generated pieces
-                        resources = pieceClone.m_resources;
-                    }
+                    // set to default resources for world-generated pieces
+                    resources = pieceClone.m_resources;
                 }
-                else
-                {
-                    resources = piece.m_resources;
-                }
+            }
+            else
+            {
+                resources = piece.m_resources;
             }
 
             var zNetView = piece?.gameObject?.GetComponent<ZNetView>();
+            if (zNetView == null || piece.gameObject == null) { return resources; }
 
             // If piece has an ItemStand and it has an item, then drop it.
-            var itemStand = piece?.gameObject?.GetComponentInChildren<ItemStand>();
-            if (itemStand != null && zNetView != null)
+            if (piece.gameObject.TryGetComponent(out ItemStand itemStand))
             {
                 var canBeRemoved = itemStand.m_canBeRemoved;
                 itemStand.m_canBeRemoved = true;
@@ -129,13 +126,17 @@ namespace MVBP
             }
 
             // If piece is pickable and it has not been picked, then pick it.
-            var pickable = piece?.gameObject?.GetComponent<Pickable>();
-            if (pickable != null && zNetView != null)
+            if (piece.gameObject.TryGetComponent(out Pickable pickable))
             {
                 zNetView.InvokeRPC("Pick");
-
                 // Adjust drops to avoid duplicating pickable item (avoid infinite resource exploits).
                 resources = RequirementsHelper.RemovePickableFromRequirements(resources, pickable);
+            }
+
+            // If piece has MineRock5 then adjust dropped resources
+            if (piece.gameObject.TryGetComponent(out MineRock5 mineRock5))
+            {
+                resources = RequirementsHelper.RemoveMineRock5DropsFromRequirements(resources, mineRock5);
             }
 
             return resources;

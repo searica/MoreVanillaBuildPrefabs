@@ -95,6 +95,7 @@ namespace MVBP.Helpers
                 {
                     piece.m_name = prefab.name;
                     piece.m_description = prefab.name;
+
                     piece.m_groundOnly = false;
                     piece.m_groundPiece = false;
                     piece.m_cultivatedGroundOnly = false;
@@ -114,6 +115,11 @@ namespace MVBP.Helpers
 
                     // to prevent deconstruction of pieces that are not enabled by the mod
                     piece.m_canBeRemoved = false;
+
+                    // This would mean prefabs that I add pieces to act as if
+                    // they don't have pieces unless they are enabled in the config
+                    // That could be a good thing but would screw over Onnan right now.
+                    //piece.m_enabled = false;
 
                     if (Config.IsVerbosityHigh)
                     {
@@ -157,7 +163,14 @@ namespace MVBP.Helpers
         private static Piece.Requirement[] ConfigurePieceRequirements(PieceDB pieceDB)
         {
             var reqs = RequirementsHelper.CreateRequirementsArray(pieceDB.requirements);
-            reqs = RequirementsHelper.AddPickableToRequirements(reqs, pieceDB.piece.GetComponent<Pickable>());
+            if (pieceDB.piece.TryGetComponent(out MineRock5 mineRock5))
+            {
+                reqs = RequirementsHelper.AddMineRock5DropsToRequirements(reqs, mineRock5);
+            }
+            if (pieceDB.piece.TryGetComponent(out Pickable pickable))
+            {
+                reqs = RequirementsHelper.AddPickableToRequirements(reqs, pickable);
+            }
             return reqs;
         }
 
