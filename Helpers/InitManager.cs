@@ -261,29 +261,25 @@ namespace MVBP.Helpers
         private static Dictionary<string, PieceDB> GeneratePieceRefs()
         {
             Dictionary<string, PieceDB> newPieceRefs = new();
-            foreach (var prefab in PrefabRefs.Values)
+            foreach (var name in PrefabRefs.Keys)
             {
-                if (prefab == null)
+                if (PrefabRefs.TryGetValue(name, out GameObject prefab))
                 {
-                    Log.LogInfo("Prefab ref is null somehow");
-                    continue;
-                }
-                // reset piece component to match the default pieceClone clone
-                if (prefab.TryGetComponent(out Piece piece))
-                {
-                    piece.CopyFields(DefaultPieceClones[prefab.name]);
-                    // create new piece ref
-                    newPieceRefs.Add(
-                        prefab.name,
-                        new PieceDB(
-                            Config.LoadPrefabDB(prefab),
-                            prefab.GetComponent<Piece>()
-                        )
-                    );
+                    // reset piece component to match the default pieceClone clone
+                    if (prefab.TryGetComponent(out Piece piece))
+                    {
+                        // create new piece ref
+                        piece.CopyFields(DefaultPieceClones[prefab.name]);
+                        newPieceRefs.Add(prefab.name, new PieceDB(Config.LoadPrefabDB(prefab), piece));
+                    }
+                    else
+                    {
+                        Log.LogWarning($"Prefab: {name} is missing piece component");
+                    }
                 }
                 else
                 {
-                    Log.LogInfo($"{prefab.name} missing piece component");
+                    Log.LogWarning($"Prefab: {name} has been destroyed.");
                 }
             }
             return newPieceRefs;
