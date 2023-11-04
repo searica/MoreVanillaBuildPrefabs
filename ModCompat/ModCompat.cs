@@ -2,6 +2,8 @@
 using MVBP.Helpers;
 using System.Reflection;
 using System;
+using HarmonyLib;
+using MVBP.Configs;
 
 namespace MVBP
 {
@@ -14,6 +16,8 @@ namespace MVBP
         private static bool? _PlanBuildInstalled;
         private static bool? _ExtraSnapsInstalled;
         private static bool? _WackysDBInstalled;
+
+        private static Type PlanDBType;
 
         internal static bool IsWackysDBInstalled()
         {
@@ -69,11 +73,60 @@ namespace MVBP
         /// <returns></returns>
         internal static bool UpdatePlanBuild()
         {
-            if (!IsPlanBuildInstalled()) return false;
+            // trigger rescanning of piece tables via reflection
+            if (TryGetPlanDBType(out Type planDBType))
+            {
+                if (Config.IsVerbosityMedium) { Log.LogInfo("PlanBuild is installed"); }
+
+                try
+                {
+                    MethodInfo planDBGetter = AccessTools.PropertyGetter(planDBType, "Instance");
+                    var planDBInstance = planDBGetter.Invoke(null, Array.Empty<object>());
+
+                    MethodInfo method = AccessTools.Method("PlanBuild.Plans.PlanDB:ScanPieceTables", Type.EmptyTypes);
+
+                    //Log.LogInfo($"Target Instance: {planDBInstance}");
+                    //Log.LogInfo($"Target method: {method}");
+                    Log.LogInfo("Try rescanning pieces");
+                    // Invoke if not null
+                    method?.Invoke(planDBInstance, Array.Empty<object>());
+                    Log.LogInfo("Rescanned pieces!");
+                }
+                catch
+                {
+                    Log.LogWarning("Could not re-init PlanBuild");
+                    return false;
+                }
+            }
+
+            return false;
+        }
+
+        private static bool TryGetPlanDBType(out Type planDBType)
+        {
+            planDBType = null;
+            if (!IsPlanBuildInstalled()) { return false; }
+
+            if (PlanDBType != null) // return cached value
+            {
+                planDBType = PlanDBType;
+                return true;
+            }
+
             var plugin = Chainloader.PluginInfos[PlanBuildGUID].Instance;
             if (plugin == null) return false;
 
-            // trigger rescanning of piece tables via reflection
+            var assembly = Assembly.GetAssembly(plugin.GetType());
+            foreach (var type in AccessTools.GetTypesFromAssembly(assembly))
+            {
+                if (type.FullName == "PlanBuild.Plans.PlanDB")
+                {
+                    PlanDBType = type;
+                    planDBType = type;
+                    return true;
+                }
+            }
+
             return false;
         }
 
