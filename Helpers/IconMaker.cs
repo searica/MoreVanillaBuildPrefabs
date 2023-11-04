@@ -7,17 +7,17 @@ using UnityEngine;
 
 namespace MVBP.Helpers
 {
-    internal class IconHelper : MonoBehaviour
+    internal class IconMaker : MonoBehaviour
     {
         private static GameObject _gameObject;
-        private static IconHelper _instance;
+        private static IconMaker _instance;
 
         /// <summary>
         ///     The singleton instance of this manager.
         /// </summary>
-        internal static IconHelper Instance => CreateInstance();
+        internal static IconMaker Instance => CreateInstance();
 
-        private static IconHelper CreateInstance()
+        private static IconMaker CreateInstance()
         {
             if (_gameObject == null)
             {
@@ -26,7 +26,7 @@ namespace MVBP.Helpers
             }
             if (_instance == null)
             {
-                _instance = _gameObject.AddComponent<IconHelper>();
+                _instance = _gameObject.AddComponent<IconMaker>();
             }
             return _instance;
         }
@@ -34,7 +34,7 @@ namespace MVBP.Helpers
         /// <summary>
         ///     Hide .ctor to prevent other instances from being created
         /// </summary>
-        private IconHelper()
+        private IconMaker()
         { }
 
         public void GeneratePrefabIcons(IEnumerable<GameObject> prefabs)

@@ -137,8 +137,8 @@ namespace MVBP.Helpers
         /// <returns></returns>
         internal static Piece ConfigurePiece(PieceDB pieceDB)
         {
-            var name = NameHelper.FormatPrefabName(pieceDB);
-            var description = NameHelper.GetPrefabDescription(pieceDB);
+            var name = NameMaker.FormatPrefabName(pieceDB);
+            var description = NameMaker.GetPrefabDescription(pieceDB);
             var pieceCategory = (Piece.PieceCategory)PieceManager.Instance.GetPieceCategory(pieceDB.category);
 
             return ConfigurePiece(

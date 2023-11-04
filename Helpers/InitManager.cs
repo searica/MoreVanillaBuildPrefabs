@@ -212,7 +212,7 @@ namespace MVBP.Helpers
                 Log.LogInfo("Initializing default icons");
             }
 
-            IconHelper.Instance.GeneratePrefabIcons(PrefabRefs.Values);
+            IconMaker.Instance.GeneratePrefabIcons(PrefabRefs.Values);
 
             foreach (var prefab in PrefabRefs.Values)
             {

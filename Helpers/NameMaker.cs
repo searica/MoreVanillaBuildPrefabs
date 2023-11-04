@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace MVBP.Helpers
 {
-    internal class NameHelper
+    internal class NameMaker
     {
         /// <summary>
         ///     Matches (text)(#)(text) but only if the # is not preceded by an "x"
