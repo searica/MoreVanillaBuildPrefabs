@@ -32,9 +32,7 @@ namespace MVBP
 
             Game.isModded = true;
 
-            Configs.Config.SetupWatcher();
-            Configs.Config.CheckForConfigManager();
-            Configs.Config.SetUpSyncManager();
+            Configs.Config.SetUpSyncManagement();
         }
 
         public void OnDestroy()

@@ -11,13 +11,13 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using UnityEngine;
-using static MVBP.MoreVanillaBuildPrefabs;
+using MVBP.Extensions;
 
 namespace MVBP.Configs
 {
     internal class Config
     {
-        private static readonly string ConfigFileName = PluginGUID + ".cfg";
+        private static readonly string ConfigFileName = MoreVanillaBuildPrefabs.PluginGUID + ".cfg";
 
         private static readonly string ConfigFileFullPath = string.Concat(
             Paths.ConfigPath,
@@ -27,6 +27,32 @@ namespace MVBP.Configs
 
         private static ConfigFile configFile;
         private static BaseUnityPlugin configurationManager;
+
+        /// <summary>
+        ///     Event triggered after a the in-game configuration manager is closed.
+        /// </summary>
+        internal static event Action OnConfigWindowClosed;
+
+        /// <summary>
+        ///     Safely invoke the <see cref="OnConfigWindowClosed"/> event
+        /// </summary>
+        private static void InvokeOnConfigWindowClosed()
+        {
+            OnConfigWindowClosed?.SafeInvoke();
+        }
+
+        /// <summary>
+        ///     Event triggered after the file watcher reloads the configuration file.
+        /// </summary>
+        internal static event Action OnConfigFileReloaded;
+
+        /// <summary>
+        ///     Safely invoke the <see cref="OnConfigFileReloaded"/> event
+        /// </summary>
+        private static void InvokeOnConfigFileReloaded()
+        {
+            OnConfigFileReloaded?.SafeInvoke();
+        }
 
         private static readonly ConfigurationManagerAttributes AdminConfig = new() { IsAdminOnly = true };
         private static readonly ConfigurationManagerAttributes ClientConfig = new() { IsAdminOnly = false };
@@ -370,7 +396,28 @@ namespace MVBP.Configs
             return defaultPrefabDB;
         }
 
-        internal static void SetupWatcher()
+        /// <summary>
+        ///     Set up File-Watcher for configuration file and check for in-game configuration manager.
+        /// </summary>
+        internal static void SetUpSyncManagement()
+        {
+            SetupWatcher();
+            CheckForConfigManager();
+
+            // Re-initialization after reloading config and don't save since file was just reloaded
+            OnConfigFileReloaded += () => InitManager.ReInitPlugin("Configuration file changed, re-initializing", saveConfig: false);
+
+            // Re-initialize after changing config data in-game and trigger a save to disk.
+            OnConfigWindowClosed += () => InitManager.ReInitPlugin("Configuration changed in-game, re-initializing");
+
+            // Re-initialize after getting updated config data and trigger a save to disk.
+            SynchronizationManager.OnConfigurationSynchronized += (obj, attr) =>
+            {
+                InitManager.ReInitPlugin("Configuration synced, re-initializing");
+            };
+        }
+
+        private static void SetupWatcher()
         {
             FileSystemWatcher watcher = new(Paths.ConfigPath, ConfigFileName);
             watcher.Changed += ReloadConfigFile;
@@ -396,11 +443,9 @@ namespace MVBP.Configs
                 Log.LogError($"There was an issue loading your {ConfigFileName}");
                 Log.LogError("Please check your config entries for spelling and format!");
             }
-            // run a single re-initialization to deal with all changed data
-            InitManager.ReInitPlugin("Configuration file changed, re-initializing", saveConfig: false);
         }
 
-        internal static void CheckForConfigManager()
+        private static void CheckForConfigManager()
         {
             if (GUIManager.IsHeadless())
             {
@@ -431,23 +476,14 @@ namespace MVBP.Configs
             }
         }
 
-        internal static void OnConfigManagerDisplayingWindowChanged(object sender, object e)
+        private static void OnConfigManagerDisplayingWindowChanged(object sender, object e)
         {
             PropertyInfo pi = configurationManager.GetType().GetProperty("DisplayingWindow");
             bool cmActive = (bool)pi.GetValue(configurationManager, null);
             if (!cmActive)
             {
-                InitManager.ReInitPlugin("Configuration changed in-game, re-initializing");
+                InvokeOnConfigWindowClosed();
             }
-        }
-
-        internal static void SetUpSyncManager()
-        {
-            SynchronizationManager.OnConfigurationSynchronized += (obj, attr) =>
-            {
-                // Save changes, this will also trigger the file watcher
-                InitManager.ReInitPlugin("Configuration synced, re-initializing");
-            };
         }
 
         /// <summary>
