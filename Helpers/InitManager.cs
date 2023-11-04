@@ -265,6 +265,12 @@ namespace MVBP.Helpers
             {
                 if (PrefabRefs.TryGetValue(name, out GameObject prefab))
                 {
+                    if (prefab == null)
+                    {
+                        Log.LogWarning($"Prefab: {name} has been destroyed");
+                        continue;
+                    }
+
                     // reset piece component to match the default pieceClone clone
                     if (prefab.TryGetComponent(out Piece piece))
                     {
@@ -279,7 +285,7 @@ namespace MVBP.Helpers
                 }
                 else
                 {
-                    Log.LogWarning($"Prefab: {name} has been destroyed.");
+                    Log.LogWarning($"Could not find Prefab: {name}");
                 }
             }
             return newPieceRefs;
