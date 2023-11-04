@@ -217,7 +217,7 @@ These are non-exhaustive lists.
 **MoreVanillaBuilds (by Galathil)** The original mod that this one is a remake of. I haven't actually checked what happens if you use both at once but they do modify the same pieces so I wouldn't recommend it.
 
 ### Partial Incompatibly
-**PlanBuild (by MathiasDecrock)** The two mods do work together but not all of the icons for custom pieces added by MoreVanillaBuildPieces show on correctly in the build table for PlanBuild's Plan Hammer. PlanBuild also does not respond to in-game changes made to pieces added by MoreVanillaBuildPrefabs. A fix is currently being worked on in collaboration with the authors of PlanBuild though.
+**PlanBuild (by MathiasDecrock)** The two mods do work together but not all of the icons for custom pieces added by MoreVanillaBuildPieces show on correctly in the build table for PlanBuild's Plan Hammer. MoreVanillaBuildPrefabs can now cause PlanBuild to detect pieces as they are enabled but PlanBuild does not update for when MVBP removes prefabs. A fix is currently being worked on in collaboration with the authors of PlanBuild though.
 
 
 ### Compatible Mods

@@ -100,7 +100,8 @@ namespace MVBP.Helpers
 
             // Ignore pieces added by other mods
             if (prefab.name.StartsWith("BBH_") || // Azumat's BowsBeforeHoes mod
-                prefab.name.StartsWith("rrr_")) // RRR prefabs
+                prefab.name.StartsWith("rrr_") || // RRR prefabs
+                prefab.name.StartsWith("CLLC_")) // Creature level and loot control
             {
                 return true;
             }

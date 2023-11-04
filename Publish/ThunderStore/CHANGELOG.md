@@ -8,6 +8,16 @@
 			<th align="center">Notes</th>
 		</tr>
 		<tr>
+			<td align="center">0.5.1</td>
+			<td align="left">
+				<ul>
+					<li>Added more null checks to handle other mods destroying prefabs on log-out.</li>
+					<li>Set MVBP to ignore prefabs added by Creature Level and Loot Control.</li>
+					<li>Improved compatibility with PlanBuild.</li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
 			<td align="center">0.5.0</td>
 			<td align="left">
 				<ul>

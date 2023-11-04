@@ -87,14 +87,13 @@ namespace MVBP
 
                     //Log.LogInfo($"Target Instance: {planDBInstance}");
                     //Log.LogInfo($"Target method: {method}");
-                    Log.LogInfo("Try rescanning pieces");
+                    if (Config.IsVerbosityMedium) { Log.LogInfo("Triggering PlanBuild ScanPieceTables"); }
                     // Invoke if not null
                     method?.Invoke(planDBInstance, Array.Empty<object>());
-                    Log.LogInfo("Rescanned pieces!");
                 }
                 catch
                 {
-                    Log.LogWarning("Could not re-init PlanBuild");
+                    Log.LogWarning("Failed to trigger PlanBuild ScanPieceTables");
                     return false;
                 }
             }
