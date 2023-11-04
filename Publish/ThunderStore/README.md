@@ -311,8 +311,9 @@ These are non-exhaustive lists.
 </details>
 
 ## Donations/Tips
-My mods will always be free to use but if you feel like saying thanks you can tip/donate here: https://ko-fi.com/searica
+ My mods will always be free to use but if you feel like saying thanks you can tip/donate.
 
+  [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/searica)
 
 ## Source Code
 Github: https://github.com/searica/MoreVanillaBuildPrefabs

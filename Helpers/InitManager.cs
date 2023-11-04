@@ -263,17 +263,28 @@ namespace MVBP.Helpers
             Dictionary<string, PieceDB> newPieceRefs = new();
             foreach (var prefab in PrefabRefs.Values)
             {
-                // reset pieceClone component to match the default pieceClone clone
-                prefab.GetComponent<Piece>().CopyFields(DefaultPieceClones[prefab.name]);
-
-                // create pieceClone ref
-                newPieceRefs.Add(
-                    prefab.name,
-                    new PieceDB(
-                        Config.LoadPrefabDB(prefab),
-                        prefab.GetComponent<Piece>()
-                    )
-                );
+                if (prefab == null)
+                {
+                    Log.LogInfo("Prefab ref is null somehow");
+                    continue;
+                }
+                // reset piece component to match the default pieceClone clone
+                if (prefab.TryGetComponent(out Piece piece))
+                {
+                    piece.CopyFields(DefaultPieceClones[prefab.name]);
+                    // create new piece ref
+                    newPieceRefs.Add(
+                        prefab.name,
+                        new PieceDB(
+                            Config.LoadPrefabDB(prefab),
+                            prefab.GetComponent<Piece>()
+                        )
+                    );
+                }
+                else
+                {
+                    Log.LogInfo("Piece component got destroyed somehow");
+                }
             }
             return newPieceRefs;
         }
