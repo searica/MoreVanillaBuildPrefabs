@@ -283,7 +283,7 @@ namespace MVBP.Helpers
                 }
                 else
                 {
-                    Log.LogInfo("Piece component got destroyed somehow");
+                    Log.LogInfo($"{prefab.name} missing piece component");
                 }
             }
             return newPieceRefs;
