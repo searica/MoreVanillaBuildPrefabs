@@ -26,7 +26,7 @@ namespace MVBP.Configs
             get { return InitManager.PrefabRefs[name]; }
         }
 
-        // for inheiritance
+        // for inheritance
         public PrefabDB()
         { }
 
