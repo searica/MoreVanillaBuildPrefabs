@@ -338,8 +338,8 @@ This mod was inspired by MoreVanillaBuilds by Galathil and PotteryBarn by ComfyM
 - Thanks to GoldenRevolver for the advice and letting me bounce idea's off of you about sorting the pieces added by MVBP.
 
 #### Community Credits
-- Thanks to onnan and DreamWraith for all their suggestions, feedback, and testing
-- Thanks to Cass, Blubbson, Katosan, Havengrad, LunaEversor for quickly finding and reporting issues or bugs.
+- Thanks to DreamWraith, onnan, and Havengrad for all their suggestions, feedback, and testing
+- Thanks to Cass, Blubbson, Katosan, and LunaEversor for quickly finding and reporting issues or bugs.
 
 ## Shameless Self Plug (Other Mods By Me)
 If you like this mod you might like some of my other ones.
