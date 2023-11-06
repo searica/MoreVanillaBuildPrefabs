@@ -9,29 +9,6 @@ namespace MVBP.Helpers
 {
     internal class PrefabPatcher
     {
-        private static readonly int RemoveMask = LayerMask.GetMask(
-            "Default",
-            "static_solid",
-            "Default_small",
-            "piece",
-            "piece_nonsolid",
-            "terrain",
-            "vehicle"
-        );
-
-        private static readonly int DoNotTouchLayers = LayerMask.GetMask(
-            "Ignore Raycast",
-            "UI",
-            "character",
-            "weapon",
-            "character_trigger",
-            "character_net",
-            "character_noenv",
-            "effect"
-        );
-
-        private static readonly int PieceNonSolid = LayerMask.NameToLayer("piece_nonsolid");
-
         /// <summary>
         ///     Fix collider and snap points on the prefab if necessary
         /// </summary>
@@ -868,7 +845,8 @@ namespace MVBP.Helpers
 
             foreach (Collider collider in gameObject.GetComponentsInChildren<Collider>())
             {
-                if (collider.isTrigger == true) { continue; }
+                return;
+            }
 
                 var layer = collider.gameObject.layer;
                 if (RemoveMask == (RemoveMask | (1 << layer)))
@@ -877,25 +855,11 @@ namespace MVBP.Helpers
                 }
                 if (DoNotTouchLayers == (DoNotTouchLayers | (1 << layer)))
                 {
-                    continue;
-                }
-                collider.gameObject.layer = PieceNonSolid;
-            }
+                        door.m_canNotBeClosed = false;
         }
 
-        /// <summary>
-        ///     Checks for existing piece layers.
-        /// </summary>
-        /// <param name="gameObject"></param>
-        internal static bool HasNoRemovalLayers(GameObject gameObject)
-        {
-            foreach (Collider collider in gameObject.GetComponentsInChildren<Collider>())
-            {
-                // check if RemoveMask contains the layer
-                if (RemoveMask == (RemoveMask | (1 << collider.gameObject.layer)))
-                {
-                    return false;
-                }
+                default:
+                    break;
             }
             return true;
         }
