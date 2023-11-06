@@ -352,3 +352,5 @@ If you like this mod you might like some of my other ones.
 #### Gameplay Mods
 - [FortifySkillsRedux](https://valheim.thunderstore.io/package/Searica/FortifySkillsRedux/)
 - [DodgeShortcut](https://valheim.thunderstore.io/package/Searica/DodgeShortcut/)
+- [ProjectileTweaks](https://github.com/searica/ProjectileTweaks)
+
