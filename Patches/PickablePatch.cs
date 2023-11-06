@@ -13,7 +13,7 @@ namespace MVBP.Patches
 
         [HarmonyPrefix]
         [HarmonyPatch(nameof(Pickable.RPC_Pick))]
-        private static void RPCPickPrefix(Pickable __instance, out DropTable __state)
+        private static void RPC_PickPrefix(Pickable __instance, out DropTable __state)
         {
             var piece = __instance.GetComponent<Piece>();
             if (InitManager.IsPatchedByMod(__instance)
@@ -30,7 +30,7 @@ namespace MVBP.Patches
 
         [HarmonyPostfix]
         [HarmonyPatch(nameof(Pickable.RPC_Pick))]
-        private static void RPCPickPostfix(Pickable __instance, DropTable __state)
+        private static void RPC_PickPostfix(Pickable __instance, DropTable __state)
         {
             if (__state != null)
             {
