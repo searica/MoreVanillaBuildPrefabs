@@ -28,6 +28,14 @@ namespace MVBP.Configs
         private static ConfigFile configFile;
         private static BaseUnityPlugin configurationManager;
 
+        private static readonly AcceptableValueList<bool> AcceptableBoolValuesList = new(new bool[] { false, true });
+
+        private const string MainSection = "\u200B\u200BGlobal";
+        private const string AdminSection = "\u200BAdmin";
+        private const string CustomizationSection = "\u200BCustomization";
+
+        #region Events
+
         /// <summary>
         ///     Event triggered after a the in-game configuration manager is closed.
         /// </summary>
@@ -54,10 +62,9 @@ namespace MVBP.Configs
             OnConfigFileReloaded?.SafeInvoke();
         }
 
-        private static readonly ConfigurationManagerAttributes AdminConfig = new() { IsAdminOnly = true };
-        private static readonly ConfigurationManagerAttributes ClientConfig = new() { IsAdminOnly = false };
+        #endregion Events
 
-        private static readonly AcceptableValueList<bool> AcceptableBoolValuesList = new(new bool[] { false, true });
+        #region Global Settings
 
         internal enum LoggerLevel
         {
@@ -66,15 +73,38 @@ namespace MVBP.Configs
             High = 2,
         }
 
-        private const string MainSection = "\u200B\u200BGlobal";
-        private const string AdminSection = "\u200BAdmin";
-        private const string CustomizationSection = "\u200BCustomization";
         internal static ConfigEntry<bool> CreativeMode { get; private set; }
+        internal static ConfigEntry<bool> ForceAllPrefabs { get; private set; }
+        internal static ConfigEntry<LoggerLevel> Verbosity { get; private set; }
+        internal static bool IsCreativeMode => CreativeMode.Value;
+        internal static bool IsForceAllPrefabs => ForceAllPrefabs.Value;
+        internal static bool IsVerbosityLow => Verbosity.Value >= LoggerLevel.Low;
+        internal static bool IsVerbosityMedium => Verbosity.Value >= LoggerLevel.Medium;
+        internal static bool IsVerbosityHigh => Verbosity.Value >= LoggerLevel.High;
+
+        #endregion Global Settings
+
+        #region Admin Settings
+
         internal static ConfigEntry<bool> CreatorShopAdminOnly { get; private set; }
         internal static ConfigEntry<bool> AdminDeconstructOtherPlayers { get; private set; }
-        internal static ConfigEntry<bool> ForceAllPrefabs { get; private set; }
+        internal static bool IsCreatorShopAdminOnly => CreatorShopAdminOnly.Value;
+        internal static bool IsAdminDeconstructOtherPlayers => AdminDeconstructOtherPlayers.Value;
+
+        #endregion Admin Settings
+
+        #region Customization Settings
+
         internal static ConfigEntry<bool> EnableHammerCrops { get; private set; }
-        internal static ConfigEntry<LoggerLevel> Verbosity { get; private set; }
+
+        internal static ConfigEntry<bool> ApplyDoorPatches { get; private set; }
+
+        internal static bool IsEnableHammerCrops => EnableHammerCrops.Value;
+        internal static bool IsApplyDoorPatches => ApplyDoorPatches.Value;
+
+        #endregion Customization Settings
+
+        #region Prefab Settings
 
         internal class PrefabDBConfig
         {
@@ -89,6 +119,10 @@ namespace MVBP.Configs
         }
 
         internal static readonly Dictionary<string, PrefabDBConfig> PrefabDBConfigsMap = new();
+
+        #endregion Prefab Settings
+
+        #region Update Flags & Checks
 
         internal static bool UpdatePieceSettings { get; set; } = false;
         internal static bool UpdatePlacementSettings { get; set; } = false;
@@ -106,6 +140,13 @@ namespace MVBP.Configs
         {
             return _NeedsCollisionPatch.Contains(prefabName);
         }
+
+        #endregion Update Flags & Checks
+
+        #region Config Binding
+
+        private static readonly ConfigurationManagerAttributes AdminConfig = new() { IsAdminOnly = true };
+        private static readonly ConfigurationManagerAttributes ClientConfig = new() { IsAdminOnly = false };
 
         internal static ConfigEntry<T> BindConfig<T>(
             string section,
@@ -135,12 +176,19 @@ namespace MVBP.Configs
             return description + (synchronizedSetting ? " [Synced with Server]" : " [Not Synced with Server]");
         }
 
+        #endregion Config Binding
+
         internal static void Init(ConfigFile config)
         {
             configFile = config;
             configFile.SaveOnConfigSet = false;
         }
 
+        #region Saving Config File
+
+        /// <summary>
+        ///     Save config file to disk.
+        /// </summary>
         internal static void Save()
         {
             configFile.Save();
@@ -160,6 +208,10 @@ namespace MVBP.Configs
             return false;
         }
 
+        /// <summary>
+        ///     Set the value for the SaveOnConfigSet field.
+        /// </summary>
+        /// <param name="value"></param>
         internal static void SaveOnConfigSet(bool value)
         {
             configFile.SaveOnConfigSet = value;
@@ -177,16 +229,7 @@ namespace MVBP.Configs
             return val;
         }
 
-        internal static LoggerLevel VerbosityLevel => Verbosity.Value;
-
-        internal static bool IsEnableHammerCrops => EnableHammerCrops.Value;
-        internal static bool IsCreativeMode => CreativeMode.Value;
-        internal static bool IsVerbosityLow => Verbosity.Value >= LoggerLevel.Low;
-        internal static bool IsVerbosityMedium => Verbosity.Value >= LoggerLevel.Medium;
-        internal static bool IsVerbosityHigh => Verbosity.Value >= LoggerLevel.High;
-        internal static bool IsForceAllPrefabs => ForceAllPrefabs.Value;
-        internal static bool IsCreatorShopAdminOnly => CreatorShopAdminOnly.Value;
-        internal static bool IsAdminDeconstructOtherPlayers => AdminDeconstructOtherPlayers.Value;
+        #endregion Saving Config File
 
         internal static void SetUpConfig()
         {
@@ -248,13 +291,16 @@ namespace MVBP.Configs
                 AcceptableBoolValuesList
             );
 
-            EnableHammerCrops.SettingChanged += PieceSettingChanged;
-            CreatorShopAdminOnly.SettingChanged += PieceSettingChanged;
+            // Set up event hooks
             CreativeMode.SettingChanged += PieceSettingChanged;
             ForceAllPrefabs.SettingChanged += PieceSettingChanged;
+            CreatorShopAdminOnly.SettingChanged += PieceSettingChanged;
+            EnableHammerCrops.SettingChanged += PieceSettingChanged;
 
             AdminDeconstructOtherPlayers.SettingChanged += ModSettingChanged;
             Verbosity.SettingChanged += ModSettingChanged;
+
+            // trigger manual save and reset save settings
             Save();
             SaveOnConfigSet(saveSetting);
         }
@@ -396,6 +442,8 @@ namespace MVBP.Configs
             return defaultPrefabDB;
         }
 
+        #region Config Syncing and File Watcher
+
         /// <summary>
         ///     Set up File-Watcher for configuration file and check for in-game configuration manager.
         /// </summary>
@@ -512,5 +560,7 @@ namespace MVBP.Configs
         {
             if (!UpdateModSettings) UpdateModSettings = true;
         }
+
+        #endregion Config Syncing and File Watcher
     }
 }
