@@ -838,30 +838,35 @@ namespace MVBP.Helpers
             }
         }
 
-        // old apprach was to change piece layers, now I check for collision myself
-        internal static void PatchPieceLayers(GameObject gameObject)
+        /// <summary>
+        ///     Apply patches to player built pieces when they are loaded.
+        /// </summary>
+        /// <param name="piece"></param>
+        internal static void PatchPlayerBuiltPieceIfNeed(Piece piece)
         {
-            if (!HasNoRemovalLayers(gameObject)) return;
-
-            foreach (Collider collider in gameObject.GetComponentsInChildren<Collider>())
+            if (
+                piece == null
+                || piece.gameObject == null
+                || !piece.IsPlacedByPlayer()
+                || !InitManager.IsPatchedByMod(piece)
+            )
             {
                 return;
             }
 
-                var layer = collider.gameObject.layer;
-                if (RemoveMask == (RemoveMask | (1 << layer)))
-                {
-                    continue;
-                }
-                if (DoNotTouchLayers == (DoNotTouchLayers | (1 << layer)))
-                {
+            var prefabName = InitManager.GetPrefabName(piece);
+            switch (prefabName)
+            {
+                case "dvergrtown_slidingdoor":
+                    if (piece.gameObject.TryGetComponent(out Door door))
+                    {
                         door.m_canNotBeClosed = false;
-        }
+                    }
+                    break;
 
                 default:
                     break;
             }
-            return true;
         }
     }
 }

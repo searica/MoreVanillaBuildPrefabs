@@ -14,6 +14,18 @@ namespace MVBP
     internal class PiecePatch
     {
         /// <summary>
+        ///     Applies patches from PacthPlayerBuildPieceIfNeeded
+        ///     when pieces are loaded in.
+        /// </summary>
+        /// <param name="__instance"></param>
+        [HarmonyPostfix]
+        [HarmonyPatch(nameof(Piece.Awake))]
+        private static void PieceAwake(Piece __instance)
+        {
+            PrefabPatcher.PatchPlayerBuiltPieceIfNeed(__instance);
+        }
+
+        /// <summary>
         ///     Called when just before piece is placed to synchronize the
         ///     positions and rotations of otherwise non-persistent objects
         /// </summary>
