@@ -453,7 +453,10 @@ namespace MVBP.Configs
             CheckForConfigManager();
 
             // Re-initialization after reloading config and don't save since file was just reloaded
-            OnConfigFileReloaded += () => InitManager.ReInitPlugin("Configuration file changed, re-initializing", saveConfig: false);
+            OnConfigFileReloaded += () =>
+            {
+                InitManager.ReInitPlugin("Configuration file changed, re-initializing", saveConfig: false);
+            };
 
             // Re-initialize after changing config data in-game and trigger a save to disk.
             OnConfigWindowClosed += () => InitManager.ReInitPlugin("Configuration changed in-game, re-initializing");
@@ -485,6 +488,7 @@ namespace MVBP.Configs
                 var saveSetting = DisableSaveOnConfigSet();
                 configFile.Reload();
                 SaveOnConfigSet(saveSetting);
+                InvokeOnConfigFileReloaded();
             }
             catch
             {
