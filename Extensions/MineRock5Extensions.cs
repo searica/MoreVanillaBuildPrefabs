@@ -6,15 +6,14 @@ namespace MVBP.Extensions
 {
     internal static class MineRock5Extensions
     {
+        /// <summary>
+        ///     Extension method to destroy a MineRock5 immediately.
+        ///     If the MineRock5 has a piece component, then dropping
+        ///     build resources is handled by MineRock5Patch and PiecePatch.
+        /// </summary>
+        /// <param name="mineRock5"></param>
         internal static void DestroyMineRock5Piece(this MineRock5 mineRock5)
         {
-            if (mineRock5 == null || mineRock5.m_nview == null) { return; }
-
-            if (mineRock5.gameObject.TryGetComponent(out Piece piece))
-            {
-                piece.DropResources();
-            }
-
             if (mineRock5 == null || mineRock5.m_nview == null || !mineRock5.m_nview.IsValid() || !mineRock5.m_nview.IsOwner())
             {
                 return;
