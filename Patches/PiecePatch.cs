@@ -97,21 +97,14 @@ namespace MVBP
                 Log.LogInfo("Dropping resources for MVBP piece");
             }
 
-            // Set resources to defaults is piece is not placed by player
-            // or disable destruction drops if it is placed by player
-            var resources = Array.Empty<Piece.Requirement>();
+            // Set resources to defaults is piece is not placed by player (world-generated pieces)
             if (!piece.IsPlacedByPlayer() && InitManager.TryGetDefaultPieceClone(piece.gameObject, out Piece pieceClone))
             {
-                if (pieceClone.m_resources != null)
-                {
-                    // set to default resources for world-generated pieces
-                    resources = pieceClone.m_resources;
-                }
+                if (pieceClone.m_resources != null) { return pieceClone.m_resources; }
             }
-            else
-            {
-                resources = piece.m_resources;
-            }
+
+            // Set resources to current piece resources if placed by a player
+            var resources = piece.m_resources;
 
             var zNetView = piece?.gameObject?.GetComponent<ZNetView>();
             if (zNetView == null || piece.gameObject == null) { return resources; }
