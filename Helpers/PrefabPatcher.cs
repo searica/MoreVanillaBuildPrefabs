@@ -1,5 +1,6 @@
 ﻿// Ignore Spelling: MVBP
 
+using MVBP.Configs;
 using MVBP.Extensions;
 using System;
 using System.Collections.Generic;
@@ -836,6 +837,54 @@ namespace MVBP.Helpers
                 default:
                     break;
             }
+            if (Config.IsApplyComfortPatches)
+            {
+                ApplyComfortPatches(prefab);
+            }
+        }
+
+        /// <summary>
+        ///     Applies patches to selected pieces so they grant
+        ///     comfort as expected if they were vanilla pieces.
+        /// </summary>
+        /// <param name="prefab"></param>
+        private static void ApplyComfortPatches(GameObject prefab)
+        {
+            if (prefab.TryGetComponent(out Piece piece))
+            {
+                switch (prefab.name)
+                {
+                    case "dvergrprops_chair":
+                    case "dvergrprops_stool":
+                        piece.m_comfortGroup = Piece.ComfortGroup.Chair;
+                        piece.m_comfort = 2;
+                        break;
+
+                    case "mountainkit_chair":
+                        piece.m_comfortGroup = Piece.ComfortGroup.Chair;
+                        piece.m_comfort = 1;
+                        break;
+
+                    case "dvergrprops_bed":
+                        piece.m_comfortGroup = Piece.ComfortGroup.Bed;
+                        piece.m_comfort = 2;
+                        break;
+
+                    case "goblin_bed":
+                        piece.m_comfortGroup = Piece.ComfortGroup.Bed;
+                        piece.m_comfort = 1;
+                        break;
+
+                    case "ArmorStand_Female":
+                    case "ArmorStand_Male":
+                        piece.m_comfortGroup = Piece.ComfortGroup.None;
+                        piece.m_comfort = 2;
+                        break;
+
+                    default:
+                        break;
+                }
+            }
         }
 
         /// <summary>
@@ -853,12 +902,20 @@ namespace MVBP.Helpers
             {
                 return;
             }
-
             var prefabName = InitManager.GetPrefabName(piece);
-            switch (prefabName)
+
+            if (Config.IsApplyDoorPatches)
+            {
+                ApplyDoorPatches(prefabName, piece.gameObject);
+            }
+        }
+
+        private static void ApplyDoorPatches(string name, GameObject prefab)
+        {
+            switch (name)
             {
                 case "dvergrtown_slidingdoor":
-                    if (piece.gameObject.TryGetComponent(out Door door))
+                    if (prefab.TryGetComponent(out Door door))
                     {
                         door.m_canNotBeClosed = false;
                     }

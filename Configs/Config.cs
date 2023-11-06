@@ -96,11 +96,11 @@ namespace MVBP.Configs
         #region Customization Settings
 
         internal static ConfigEntry<bool> EnableHammerCrops { get; private set; }
-
         internal static ConfigEntry<bool> ApplyDoorPatches { get; private set; }
-
+        internal static ConfigEntry<bool> ApplyComfortPatches { get; private set; }
         internal static bool IsEnableHammerCrops => EnableHammerCrops.Value;
         internal static bool IsApplyDoorPatches => ApplyDoorPatches.Value;
+        internal static bool IsApplyComfortPatches => ApplyComfortPatches.Value;
 
         #endregion Customization Settings
 
@@ -288,6 +288,22 @@ namespace MVBP.Configs
                 "Setting to enable prefabs for crops that can already be planted  " +
                 "in the Vanilla game. Unless this setting is true Vanilla crops " +
                 "will not be available for placing with the hammer.",
+                AcceptableBoolValuesList
+            );
+
+            ApplyComfortPatches = BindConfig(
+                CustomizationSection,
+                "ApplyComfortPatches [Requires Restart]",
+                true,
+                "Set to True to patch prefabs added by MVBP to have comfort values like corresponding Vanilla pieces.",
+                AcceptableBoolValuesList
+            );
+
+            ApplyDoorPatches = BindConfig(
+                CustomizationSection,
+                "ApplyDoorPatches [Requires Restart]",
+                true,
+                "Set to True to patch player-built instances of doors so that they can be opened and closed.",
                 AcceptableBoolValuesList
             );
 
