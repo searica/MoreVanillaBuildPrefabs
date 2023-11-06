@@ -21,7 +21,7 @@ namespace MVBP.Patches
         {
             if (Config.IsVerbosityMedium)
             {
-                Log.LogInfo("MineRock.UpdateVisability patch");
+                Log.LogInfo("MineRock.UpdateVisability patch applied");
             }
             return __instance.m_nview != null;
         }
