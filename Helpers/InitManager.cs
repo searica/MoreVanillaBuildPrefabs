@@ -18,6 +18,19 @@ namespace MVBP.Helpers
         internal static Dictionary<string, PieceDB> PieceRefs = new();
         internal static Dictionary<string, string> PieceToPrefabMap = new();
 
+        internal static Dictionary<string, GameObject> SeasonalPieceRefs = new()
+        {
+            {"piece_maypole", null },
+            {"piece_jackoturnip", null },
+            {"piece_gift1", null },
+            {"piece_gift2", null },
+            {"piece_gift3", null },
+            {"piece_mistletoe",null },
+            {"piece_xmascrown",null },
+            {"piece_xmasgarland",null },
+            {"piece_xmastree",null },
+        };
+
         internal static bool HasInitializedPrefabs => PrefabRefs.Count > 0;
 
         internal static bool TryGetDefaultPieceClone(GameObject gameObject, out Piece pieceClone)
@@ -121,6 +134,8 @@ namespace MVBP.Helpers
 
             Log.LogInfo("Initializing prefabs");
 
+            InitSeasonalPieceRefs();
+
             // Find eligible prefabs for adding
             var PieceNameCache = PieceHelper.GetExistingPieceNames();
             var EligiblePrefabs = new Dictionary<string, GameObject>();
@@ -158,17 +173,32 @@ namespace MVBP.Helpers
                     Log.LogWarning($"Failed to patch prefab {prefab.name}: {ex}");
                 }
 
-                //if (prefab.TryGetComponent<MineRock5>(out MineRock5 mineRock5))
-                //{
-                //    Log.LogInfo($"{prefab.name}, {mineRock5.m_name}");
-                //}
-
                 PrefabRefs.Add(prefab.name, prefab);
             }
 
             Log.LogInfo($"Found {PrefabRefs.Count()} prefabs");
 
             InitDefaultPieceClones();
+        }
+
+        /// <summary>
+        ///     Get refs to seasonal pieces that are disabled.
+        /// </summary>
+        private static void InitSeasonalPieceRefs()
+        {
+            var pieceNames = SeasonalPieceRefs.Keys.ToList();
+            var nullKeys = new List<string>();
+            foreach (var name in pieceNames)
+            {
+                var prefab = PrefabManager.Instance.GetPrefab(name);
+                if (prefab != null && prefab.TryGetComponent(out Piece piece))
+                {
+                    // Only add pieces that are currently disabled
+                    if (!piece.m_enabled) { SeasonalPieceRefs[name] = prefab; }
+                    else { nullKeys.Add(name); }
+                }
+            }
+            foreach (var key in nullKeys) { SeasonalPieceRefs.Remove(key); }
         }
 
         /// <summary>
@@ -375,6 +405,45 @@ namespace MVBP.Helpers
         }
 
         /// <summary>
+        ///     Enables/disables seasonal pieces based on config settings.
+        ///     Has no effect on seasonal pieces that are already enabled in Vanilla.
+        /// </summary>
+        internal static void InitSeasonalPieces()
+        {
+            if (!HasInitializedPrefabs) return;
+
+            foreach (var name in SeasonalPieceRefs.Keys)
+            {
+                if (SeasonalPieceRefs.TryGetValue(name, out GameObject prefab) && prefab != null)
+                {
+                    if (prefab.TryGetComponent(out Piece piece))
+                    {
+                        piece.m_enabled = Config.IsEnableSeasonalPieces;
+                    }
+                }
+                else
+                {
+                    Log.LogWarning($"Seasonal piece: {name} could not be found");
+                }
+            }
+        }
+
+        /// <summary>
+        ///     Perform first initialization of plugin.
+        /// </summary>
+        internal static void InitPlugin()
+        {
+            if (HasInitializedPrefabs) return;
+            PieceCategoryHelper.AddCreatorShopPieceCategory();
+            SfxHelper.Init();
+            InitPrefabRefs();
+            InitSeasonalPieces();
+            InitPieceRefs();
+            InitPieces();
+            InitHammer();
+        }
+
+        /// <summary>
         ///     Method to re-initialize the plugin when the configuration
         ///     has been updated based on whether the pieceClone or placement
         ///     settings have been changed for any of the config entries.
@@ -402,6 +471,10 @@ namespace MVBP.Helpers
                 InitPieceRefs();
                 InitPieces();
                 InitHammer();
+            }
+            if (Config.UpdateSeasonalSettings)
+            {
+                InitSeasonalPieces();
             }
             if (Config.UpdatePlacementSettings)
             {

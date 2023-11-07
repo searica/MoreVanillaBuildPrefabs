@@ -98,9 +98,11 @@ namespace MVBP.Configs
         internal static ConfigEntry<bool> EnableHammerCrops { get; private set; }
         internal static ConfigEntry<bool> ApplyDoorPatches { get; private set; }
         internal static ConfigEntry<bool> ApplyComfortPatches { get; private set; }
+        internal static ConfigEntry<bool> EnableSeasonalPieces { get; private set; }
         internal static bool IsEnableHammerCrops => EnableHammerCrops.Value;
         internal static bool IsApplyDoorPatches => ApplyDoorPatches.Value;
         internal static bool IsApplyComfortPatches => ApplyComfortPatches.Value;
+        internal static bool IsEnableSeasonalPieces => EnableSeasonalPieces.Value;
 
         #endregion Customization Settings
 
@@ -127,6 +129,7 @@ namespace MVBP.Configs
         internal static bool UpdatePieceSettings { get; set; } = false;
         internal static bool UpdatePlacementSettings { get; set; } = false;
         internal static bool UpdateModSettings { get; set; } = false;
+        internal static bool UpdateSeasonalSettings { get; set; } = false;
 
         internal static readonly HashSet<string> _NeedsCollisionPatch = new();
 
@@ -281,6 +284,7 @@ namespace MVBP.Configs
                 AcceptableBoolValuesList
             );
 
+            // Customization settings
             EnableHammerCrops = BindConfig(
                 CustomizationSection,
                 "EnableHammerCrops",
@@ -303,7 +307,17 @@ namespace MVBP.Configs
                 CustomizationSection,
                 "ApplyDoorPatches (Requires Restart)",
                 true,
-                "Set to True to patch player-built instances of doors so that they can be opened and closed.",
+                "Set to True to patch player-built instances of doors so that they can be opened and closed." +
+                " Currently only works for the sliding door piece.",
+                AcceptableBoolValuesList
+            );
+
+            EnableSeasonalPieces = BindConfig(
+                CustomizationSection,
+                "EnableSeasonalPieces",
+                true,
+                "Set to True to enable seasonal pieces regardless of time of year." +
+                " Has no effect on seasonal pieces that are already enabled in the Vanilla game.",
                 AcceptableBoolValuesList
             );
 
@@ -315,6 +329,8 @@ namespace MVBP.Configs
 
             AdminDeconstructOtherPlayers.SettingChanged += ModSettingChanged;
             Verbosity.SettingChanged += ModSettingChanged;
+
+            EnableSeasonalPieces.SettingChanged += SeasonalSettingChanged;
 
             // trigger manual save and reset save settings
             Save();
@@ -558,7 +574,7 @@ namespace MVBP.Configs
         ///     Event hook to set whether a config entry
         ///     for a piece setting has been changed.
         /// </summary>
-        internal static void PieceSettingChanged(object o, EventArgs e)
+        internal static void PieceSettingChanged(object obj, EventArgs args)
         {
             if (!UpdatePieceSettings) UpdatePieceSettings = true;
         }
@@ -567,7 +583,7 @@ namespace MVBP.Configs
         ///     Event hook to set whether a config entry
         ///     for placement patches has been changed.
         /// </summary>
-        internal static void PlacementSettingChanged(object o, EventArgs e)
+        internal static void PlacementSettingChanged(object obj, EventArgs args)
         {
             if (!UpdatePlacementSettings) UpdatePlacementSettings = true;
         }
@@ -576,9 +592,14 @@ namespace MVBP.Configs
         ///     Event hook to set whether a config entry
         ///     for general mod settings has been changed.
         /// </summary>
-        internal static void ModSettingChanged(object o, EventArgs e)
+        internal static void ModSettingChanged(object obj, EventArgs args)
         {
             if (!UpdateModSettings) UpdateModSettings = true;
+        }
+
+        internal static void SeasonalSettingChanged(object obj, EventArgs args)
+        {
+            if (!UpdateSeasonalSettings) UpdateSeasonalSettings = true;
         }
 
         #endregion Config Syncing and File Watcher
