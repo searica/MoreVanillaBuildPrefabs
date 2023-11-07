@@ -319,7 +319,8 @@ These are non-exhaustive lists.
 Github: https://github.com/searica/MoreVanillaBuildPrefabs
 
 ### Contributions
-If you would like to provide suggestions, make feature requests, or reports bugs and compatibility issues you can either open an issue on the Github repository or tag me (@searica) with a message on the [Jotunn discord](https://discord.gg/DdUt6g7gyA) or the [Odin Plus discord](https://discord.gg/mbkPcvu9ax).
+If you would like to provide suggestions, make feature requests, or reports bugs and compatibility issues you can either open an issue on the Github repository or tag me (@searica) with a message on my discord [Searica's Mods](https://discord.gg/sFmGTBYN6n).
+<!--the [Jotunn discord](https://discord.gg/DdUt6g7gyA), or the [Odin Plus discord](https://discord.gg/mbkPcvu9ax)-->
 
 Over time I will slowly patch more prefabs and hopefully come up with a more generalizable method of patching them, but if you'd really like a specific prefab to work better then let me know via one of the methods above. I'm a grad student and have a lot of personal responsibilities on top of that so I can't promise I will always respond quickly, but I do intend to maintain and improve the mod in my free time.
 
