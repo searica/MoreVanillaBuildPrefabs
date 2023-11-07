@@ -10,6 +10,7 @@ namespace MVBP.Helpers
 {
     internal class PrefabPatcher
     {
+        private static readonly int PieceLayer = LayerMask.NameToLayer("piece");
         private static readonly int CharacterTriggerLayer = LayerMask.NameToLayer("character_trigger");
 
         /// <summary>
@@ -97,9 +98,9 @@ namespace MVBP.Helpers
 
                 // Causes the chest to break if loaded without mod
                 //case "TreasureChest_dvergr_loose_stone":
-                //    var boxCollider = prefab.AddComponent<BoxCollider>();
+                //    var boxCollider = gameObject.AddComponent<BoxCollider>();
                 //    boxCollider.size = new Vector3(2, 1, 2);
-                //    SnapPointHelper.AddSnapPointsToBoxColliderCorners(prefab, boxCollider);
+                //    SnapPointHelper.AddSnapPointsToBoxColliderCorners(gameObject, boxCollider);
                 //    break;
 
                 case "TreasureChest_mountaincave":
@@ -309,36 +310,36 @@ namespace MVBP.Helpers
                     break;
 
                 case "blackmarble_tile_wall_1x1":
-                    prefab.transform.Find("_snappoint").gameObject.transform.localPosition = new Vector3(0.5f, 0, 0.1f);
-                    prefab.transform.Find("_snappoint (1)").gameObject.transform.localPosition = new Vector3(0.5f, 1, 0.1f);
-                    prefab.transform.Find("_snappoint (2)").gameObject.transform.localPosition = new Vector3(-0.5f, 0, 0.1f);
-                    prefab.transform.Find("_snappoint (3)").gameObject.transform.localPosition = new Vector3(-0.5f, 1, 0.1f);
-                    prefab.transform.Find("_snappoint (4)").gameObject.transform.localPosition = new Vector3(0, 0, 0.1f);
-                    prefab.transform.Find("_snappoint (5)").gameObject.transform.localPosition = new Vector3(0.5f, 0.5f, 0.1f);
-                    prefab.transform.Find("_snappoint (6)").gameObject.transform.localPosition = new Vector3(0, 1, 0.1f);
-                    prefab.transform.Find("_snappoint (7)").gameObject.transform.localPosition = new Vector3(-0.5f, 0.5f, 0.1f);
+                    prefab.transform.Find("_snappoint").gameObject.transform.localPosition = new Vector3(0.5f, -0.05f, 0.1f);
+                    prefab.transform.Find("_snappoint (1)").gameObject.transform.localPosition = new Vector3(0.5f, 0.95f, 0.1f);
+                    prefab.transform.Find("_snappoint (2)").gameObject.transform.localPosition = new Vector3(-0.5f, -0.05f, 0.1f);
+                    prefab.transform.Find("_snappoint (3)").gameObject.transform.localPosition = new Vector3(-0.5f, 0.95f, 0.1f);
+                    prefab.transform.Find("_snappoint (4)").gameObject.transform.localPosition = new Vector3(0, -0.05f, 0.1f);
+                    prefab.transform.Find("_snappoint (5)").gameObject.transform.localPosition = new Vector3(0.5f, 0.45f, 0.1f);
+                    prefab.transform.Find("_snappoint (6)").gameObject.transform.localPosition = new Vector3(0, 0.95f, 0.1f);
+                    prefab.transform.Find("_snappoint (7)").gameObject.transform.localPosition = new Vector3(-0.5f, 0.45f, 0.1f);
                     break;
 
                 case "blackmarble_tile_wall_2x2":
-                    prefab.transform.Find("_snappoint").gameObject.transform.localPosition = new Vector3(1, 0, 0.1f);
-                    prefab.transform.Find("_snappoint (1)").gameObject.transform.localPosition = new Vector3(1, 2, 0.1f);
-                    prefab.transform.Find("_snappoint (2)").gameObject.transform.localPosition = new Vector3(-1, 0, 0.1f);
-                    prefab.transform.Find("_snappoint (3)").gameObject.transform.localPosition = new Vector3(-1, 2, 0.1f);
-                    prefab.transform.Find("_snappoint (4)").gameObject.transform.localPosition = new Vector3(0.5f, 0, 0.1f);
-                    prefab.transform.Find("_snappoint (5)").gameObject.transform.localPosition = new Vector3(0.5f, 1, 0.1f);
-                    prefab.transform.Find("_snappoint (6)").gameObject.transform.localPosition = new Vector3(-0.5f, 0, 0.1f);
-                    prefab.transform.Find("_snappoint (7)").gameObject.transform.localPosition = new Vector3(-0.5f, 1, 0.1f);
+                    prefab.transform.Find("_snappoint").gameObject.transform.localPosition = new Vector3(1, -0.05f, 0.1f);
+                    prefab.transform.Find("_snappoint (1)").gameObject.transform.localPosition = new Vector3(1, 1.95f, 0.1f);
+                    prefab.transform.Find("_snappoint (2)").gameObject.transform.localPosition = new Vector3(-1, -0.05f, 0.1f);
+                    prefab.transform.Find("_snappoint (3)").gameObject.transform.localPosition = new Vector3(-1, -0.05f, 0.1f);
+                    prefab.transform.Find("_snappoint (4)").gameObject.transform.localPosition = new Vector3(0.5f, -0.05f, 0.1f);
+                    prefab.transform.Find("_snappoint (5)").gameObject.transform.localPosition = new Vector3(0.5f, 0.95f, 0.1f);
+                    prefab.transform.Find("_snappoint (6)").gameObject.transform.localPosition = new Vector3(-0.5f, -0.05f, 0.1f);
+                    prefab.transform.Find("_snappoint (7)").gameObject.transform.localPosition = new Vector3(-0.5f, 0.95f, 0.1f);
                     break;
 
                 case "blackmarble_tile_wall_2x4":
-                    prefab.transform.Find("_snappoint").gameObject.transform.localPosition = new Vector3(1, 0, 0.1f);
-                    prefab.transform.Find("_snappoint (1)").gameObject.transform.localPosition = new Vector3(1, 4, 0.1f);
-                    prefab.transform.Find("_snappoint (2)").gameObject.transform.localPosition = new Vector3(-1, 0, 0.1f);
-                    prefab.transform.Find("_snappoint (3)").gameObject.transform.localPosition = new Vector3(-1, 4, 0.1f);
-                    prefab.transform.Find("_snappoint (4)").gameObject.transform.localPosition = new Vector3(0.5f, 0, 0.1f);
-                    prefab.transform.Find("_snappoint (5)").gameObject.transform.localPosition = new Vector3(0.5f, 2, 0.1f);
-                    prefab.transform.Find("_snappoint (6)").gameObject.transform.localPosition = new Vector3(-0.5f, 0, 0.1f);
-                    prefab.transform.Find("_snappoint (7)").gameObject.transform.localPosition = new Vector3(-0.5f, 2, 0.1f);
+                    prefab.transform.Find("_snappoint").gameObject.transform.localPosition = new Vector3(1, -0.05f, 0.1f);
+                    prefab.transform.Find("_snappoint (1)").gameObject.transform.localPosition = new Vector3(1, 3.95f, 0.1f);
+                    prefab.transform.Find("_snappoint (2)").gameObject.transform.localPosition = new Vector3(-1, -0.05f, 0.1f);
+                    prefab.transform.Find("_snappoint (3)").gameObject.transform.localPosition = new Vector3(-1, 3.95f, 0.1f);
+                    prefab.transform.Find("_snappoint (4)").gameObject.transform.localPosition = new Vector3(0.5f, -0.05f, 0.1f);
+                    prefab.transform.Find("_snappoint (5)").gameObject.transform.localPosition = new Vector3(0.5f, 1.95f, 0.1f);
+                    prefab.transform.Find("_snappoint (6)").gameObject.transform.localPosition = new Vector3(-0.5f, -0.05f, 0.1f);
+                    prefab.transform.Find("_snappoint (7)").gameObject.transform.localPosition = new Vector3(-0.5f, 1.95f, 0.1f);
                     break;
 
                 case "dungeon_queen_door":
@@ -393,7 +394,7 @@ namespace MVBP.Helpers
 
                 case "dvergrprops_wood_wall":
                     // Patch only the floor
-                    /*generateSnapPoints(prefab, new Vector3[] {
+                    /*generateSnapPoints(gameObject, new Vector3[] {
                         new Vector3(2.2f, -2, -0.45f),
                         new Vector3(2.2f, -2, 0.45f),
                         new Vector3(-2.2f, -2, -0.45f),
@@ -493,7 +494,7 @@ namespace MVBP.Helpers
                     // Patch only the floor
                     /*
                     SnapPointHelper.AddSnapPoints(
-                        prefab,
+                        gameObject,
                         new Vector3[] {
                             new Vector3(0.15f, 0, 0.15f),
                             new Vector3(-0.15f, 0, 0.15f),
@@ -843,11 +844,6 @@ namespace MVBP.Helpers
             {
                 ApplyComfortPatches(prefab);
             }
-
-            if (Config.IsEnableBedPatches)
-            {
-                ApplyBedPatches(prefab);
-            }
         }
 
         /// <summary>
@@ -894,38 +890,6 @@ namespace MVBP.Helpers
             }
         }
 
-        private static void ApplyBedPatches(GameObject prefab)
-        {
-            if (prefab.TryGetComponent(out Piece piece))
-            {
-                switch (prefab.name)
-                {
-                    case "goblin_bed":
-                        {
-                            var attachPoint = new GameObject("spawnpoint");
-                            attachPoint.transform.parent = prefab.transform;
-                            attachPoint.transform.localPosition = new Vector3(0, 0.45f, 0);
-                            var bed = prefab.AddComponent<Bed>();
-                            bed.m_spawnPoint = attachPoint.transform;
-                        }
-                        break;
-
-                    case "dvergrprops_bed":
-                        {
-                            var attachPoint = new GameObject("spawnpoint");
-                            attachPoint.transform.parent = prefab.transform;
-                            attachPoint.transform.localPosition = new Vector3(0, 0.45f, 0);
-                            var bed = prefab.AddComponent<Bed>();
-                            bed.m_spawnPoint = attachPoint.transform;
-                        }
-                        break;
-
-                    default:
-                        break;
-                }
-            }
-        }
-
         /// <summary>
         ///     Apply patches to player built pieces.
         ///     Called after Piece.Awake and Piece.SetCreator.
@@ -952,21 +916,25 @@ namespace MVBP.Helpers
             {
                 ApplyPlayerBasePatches(prefabName, piece.gameObject);
             }
+            if (Config.IsEnableBedPatches)
+            {
+                ApplyBedPatches(prefabName, piece.gameObject);
+            }
         }
 
         /// <summary>
         ///     Adds PlayerBase effect to pieces based on PieceDB settings
         /// </summary>
         /// <param name="name"></param>
-        /// <param name="prefab"></param>
-        private static void ApplyPlayerBasePatches(string name, GameObject prefab)
+        /// <param name="gameObject"></param>
+        private static void ApplyPlayerBasePatches(string name, GameObject gameObject)
         {
             if (InitManager.TryGetPieceDB(name, out PieceDB pieceDB))
             {
                 if (pieceDB.playerBasePatch)
                 {
                     var playerBase = new GameObject("PlayerBase");
-                    playerBase.transform.parent = prefab.transform;
+                    playerBase.transform.parent = gameObject.transform;
                     playerBase.layer = CharacterTriggerLayer;
 
                     var collider = playerBase.AddComponent<SphereCollider>();
@@ -981,14 +949,14 @@ namespace MVBP.Helpers
             }
         }
 
-        private static void ApplyDoorPatches(string name, GameObject prefab)
+        private static void ApplyDoorPatches(string name, GameObject gameObject)
         {
             switch (name)
             {
                 case "dvergrtown_slidingdoor":
                     //case "dungeon_queen_door":
                     {
-                        if (prefab.TryGetComponent(out Door door))
+                        if (gameObject.TryGetComponent(out Door door))
                         {
                             door.m_canNotBeClosed = false;
                             door.m_checkGuardStone = true;
@@ -1004,6 +972,34 @@ namespace MVBP.Helpers
                 default:
                     break;
             }
+        }
+
+        private static void ApplyBedPatches(string name, GameObject gameObject)
+        {
+            switch (name)
+            {
+                case "goblin_bed":
+                    AddBed(gameObject, new Vector3(0, 0.45f, 0));
+                    break;
+
+                case "dvergrprops_bed":
+                    AddBed(gameObject, new Vector3(0, 0.45f, 0));
+                    break;
+
+                default:
+                    break;
+            }
+        }
+
+        private static void AddBed(GameObject gameObject, Vector3 spawnPosition)
+        {
+            var attachPoint = new GameObject("spawnpoint");
+            attachPoint.transform.parent = gameObject.transform;
+            attachPoint.transform.localPosition = spawnPosition;
+            attachPoint.layer = PieceLayer;
+
+            var bed = gameObject.AddComponent<Bed>();
+            bed.m_spawnPoint = attachPoint.transform;
         }
     }
 }
