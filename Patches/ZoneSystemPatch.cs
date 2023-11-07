@@ -41,12 +41,7 @@ namespace MVBP.Patches
                 watch.Start();
             }
 
-            PieceCategoryHelper.AddCreatorShopPieceCategory();
-            SfxHelper.Init();
-            InitManager.InitPrefabRefs();
-            InitManager.InitPieceRefs();
-            InitManager.InitPieces();
-            InitManager.InitHammer();
+            InitManager.InitPlugin();
 
             if (Config.IsVerbosityMedium)
             {
