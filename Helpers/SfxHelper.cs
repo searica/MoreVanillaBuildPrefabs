@@ -1,4 +1,5 @@
 ﻿using Jotunn.Configs;
+using Jotunn.Managers;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -38,7 +39,12 @@ namespace MVBP.Helpers
 
     internal class SfxHelper
     {
-        private static readonly Dictionary<string, EffectList.EffectData> PlacementSfx = new();
+        private static readonly Dictionary<string, EffectList.EffectData> PlacementSfx = new()
+        {
+            {"sfx_build_hammer_metal", null },
+            {"sfx_build_hammer_stone", null},
+            {"sfx_build_hammer_default", null},
+        };
 
         private static readonly Dictionary<string, EffectList.EffectData> RemovalSfx = new()
         {
@@ -48,21 +54,39 @@ namespace MVBP.Helpers
             { "sfx_ship_destroyed", null }
         };
 
+        /// <summary>
+        ///     Initializes SfxHelper and caches SFX prefabs.
+        /// </summary>
         internal static void Init()
         {
-            if (PlacementSfx.Count > 0) { PlacementSfx.Clear(); }
+            InitSfx(PlacementSfx);
+            InitSfx(RemovalSfx);
+        }
 
-            foreach (var prefab in ZNetScene.instance.m_prefabs)
+        /// <summary>
+        ///     Finds prefabs and initializes dictionary of SFX
+        /// </summary>
+        /// <param name="sfxDict"></param>
+        private static void InitSfx(Dictionary<string, EffectList.EffectData> sfxDict)
+        {
+            var sfxNames = sfxDict.Keys.ToList();
+            var nullKeys = new List<string>();
+            foreach (var name in sfxNames)
             {
-                if (prefab.transform.parent != null) { continue; }
-                if (prefab.name.Contains("sfx_build"))
+                var prefab = PrefabManager.Instance.GetPrefab(name);
+                if (prefab != null)
                 {
-                    PlacementSfx.Add(prefab.name, CreateEffectData(prefab));
+                    sfxDict[name] = CreateEffectData(prefab);
                 }
-                else if (RemovalSfx.ContainsKey(prefab.name))
+                else
                 {
-                    RemovalSfx[prefab.name] = CreateEffectData(prefab);
+                    nullKeys.Add(name);
                 }
+            }
+            foreach (var key in nullKeys)
+            {
+                Log.LogWarning($"Sfx: {key} could not be found.");
+                sfxDict.Remove(key);
             }
         }
 
@@ -104,41 +128,31 @@ namespace MVBP.Helpers
             // assign sfx based on crafting station
             var craftingStation = piece?.m_craftingStation;
             var effectsList = effects.ToList();
-            if (craftingStation == null || string.IsNullOrEmpty(craftingStation?.m_name))
+            if (craftingStation == null
+                || string.IsNullOrEmpty(craftingStation?.m_name)
+                || craftingStation?.name == CraftingStations.Workbench
+                || craftingStation?.name == CraftingStations.BlackForge)
             {
-                if (PlacementSfx.ContainsKey("sfx_build_hammer_default"))
+                if (PlacementSfx.TryGetValue("sfx_build_hammer_default", out EffectList.EffectData val))
                 {
-                    effectsList.Add(PlacementSfx["sfx_build_hammer_default"]);
+                    effectsList.Add(val);
                 }
             }
             else if (craftingStation?.name == CraftingStations.Stonecutter)
             {
-                if (PlacementSfx.ContainsKey("sfx_build_hammer_stone"))
+                if (PlacementSfx.TryGetValue("sfx_build_hammer_stone", out EffectList.EffectData val))
                 {
-                    effectsList.Add(PlacementSfx["sfx_build_hammer_stone"]);
-                }
-            }
-            else if (craftingStation?.name == CraftingStations.Workbench)
-            {
-                if (PlacementSfx.ContainsKey("sfx_build_hammer_default"))
-                {
-                    effectsList.Add(PlacementSfx["sfx_build_hammer_default"]);
+                    effectsList.Add(val);
                 }
             }
             else if (craftingStation?.name == CraftingStations.Forge)
             {
-                if (PlacementSfx.ContainsKey("sfx_build_hammer_metal"))
+                if (PlacementSfx.TryGetValue("sfx_build_hammer_metal", out EffectList.EffectData val))
                 {
-                    effectsList.Add(PlacementSfx["sfx_build_hammer_metal"]);
+                    effectsList.Add(val);
                 }
             }
-            else if (craftingStation?.name == CraftingStations.BlackForge)
-            {
-                if (PlacementSfx.ContainsKey("sfx_build_hammer_default"))
-                {
-                    effectsList.Add(PlacementSfx["sfx_build_hammer_default"]);
-                }
-            }
+
             piece.m_placeEffect.m_effectPrefabs = effectsList.ToArray();
         }
 
@@ -186,20 +200,19 @@ namespace MVBP.Helpers
         {
             var effects = (effectList?.m_effectPrefabs) ?? (new EffectList.EffectData[0]);
             var effectsList = effects.ToList();
-            if (craftingStation != null
-                && craftingStation.name == CraftingStations.Stonecutter)
+            if (craftingStation != null && craftingStation.name == CraftingStations.Stonecutter)
             {
-                effectsList.Add(RemovalSfx["sfx_rock_destroyed"]);
+                if (RemovalSfx.TryGetValue("sfx_rock_destroyed", out EffectList.EffectData val))
+                {
+                    effectsList.Add(val);
+                }
             }
-            else
+            else if (RemovalSfx.TryGetValue("sfx_wood_destroyed", out EffectList.EffectData val))
             {
-                effectsList.Add(RemovalSfx["sfx_wood_destroyed"]);
+                effectsList.Add(val);
             }
 
-            return new EffectList()
-            {
-                m_effectPrefabs = effectsList.ToArray()
-            };
+            return new EffectList() { m_effectPrefabs = effectsList.ToArray() };
         }
 
         internal static bool HasSfx(EffectList effectList)
