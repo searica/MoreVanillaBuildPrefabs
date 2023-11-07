@@ -163,7 +163,7 @@ When you deconstruct a prefab with a pickable component if the pickable item has
 If a pickable piece has additional random drops, like some pickables found in dungeons, the random drops will be disabled for player-built instances of the piece. World-generated instances are unaffected and will picking them will drop the random drops as normal.
 
 ### Mineable Pieces
-Any piece that you can hit with a pickaxe and destroy parts of is a mineable piece.
+Any piece that you can hit with a pickaxe and destroy parts of is a mineable piece (for anyone who has gone through the game code this is prefabs with a MineRock5 or MineRock component).
 
 #### Resource Costs
 All mineable pieces have the cost for building them adjusted so that building them always require resources equal to or greater than the average resources dropped when the mineable piece is completely mined.
@@ -185,16 +185,17 @@ MVBP is able to detect prefabs added by other mods. It is possible to enable and
 ## Known Issues
 **Custom Armor Stand Clipping**: Armor placed on the Armor Stand Female and Armor Stand Male prefabs has clipping issues causing parts of the armor to not be displayed. I have not been able to fix this as of yet. Feel free to reach out if you know things about meshing and you have ideas for a solution.
 
-**Config Changes on Dedicated Server**: Configuration changes made to a dedicated server using an in-game configuration manager do persist after logging out and re-connecting  but they are not saved to disk on the server until the server is shut down. A pull request to fix this has been made.
+**Unclosable Doors**: Some doors added by this mod cannot be closed. I've fixed this for one door but the others lack animations that allow them to close. I tried fixing this but animations are not something I know much about so changing animations at runtime has proven challenging.
+
+**Config Changes on Dedicated Server**: Configuration changes made to a dedicated server using an in-game configuration manager do persist after logging out and re-connecting  but they are not saved to disk on the server until the server is shut down. Once Jotunn updates this issue should be resolved.
 
 **Placement Glitch**: There is one pickable that will appear to not be created when placed.This is because it falls through the ground is pushed back up after a short period of time. If you wait it will appear.
 
-**Impossible Recipes**: Forcing pickable pieces to always require resources equal to or greater than what they drop when picked means that if a pickable piece is unattainable in the Vanilla game, then the recipe for it can never be unlocked. I am currently considering how I want to address this and whether this should be considered a bug or not as it is a consequence of the intended behavior to prevent infinite resource exploits. It is still possible to unlock these recipes via console commands or using other mods like ExpandWorld to populate them in the world.
+**Impossible Recipes**: Forcing pickable pieces to always require resources equal to or greater than what they drop when picked means that if a pickable piece is unattainable in the Vanilla game, then the recipe for it can never be unlocked. I am currently considering how I want to address this and whether this should be considered a bug or not as it is a consequence of the intended behavior to prevent infinite resource exploits. It is still possible to unlock these recipes via console commands or using other mods like [ExpandWorld](https://valheim.thunderstore.io/package/JereKuusela/Expand_World_Data/) or [Immersively Obtainable Blue Mushrooms](https://valheim.thunderstore.io/package/Goldenrevolver/Immersively_Obtainable_Blue_Mushrooms/) to populate them in the world.
 
 ## Planned Improvements
 - Resolve known issues.
 - Patch and enable more prefabs by default.
-- Adding comfort values to pieces added by the mod with a config setting to enable/disable them.
 - Integrate the material replacement method that GoldenRevolver demonstrated as a configurable option.
 - Learn how localization works and add localization options to the mod.
 
@@ -346,7 +347,6 @@ This mod was inspired by MoreVanillaBuilds by Galathil and PotteryBarn by ComfyM
 If you like this mod you might like some of my other ones.
 
 #### Building Mods
-<!--- [MoreVanillaBuildPrefabs](https://valheim.thunderstore.io/package/Searica/More_Vanilla_Build_Prefabs/)-->
 - [Extra Snap Points Made Easy](https://valheim.thunderstore.io/package/Searica/Extra_Snap_Points_Made_Easy/)
 - [BuildRestrictionTweaksSync](https://valheim.thunderstore.io/package/Searica/BuildRestrictionTweaksSync/)
 

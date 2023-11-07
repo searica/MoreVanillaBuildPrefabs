@@ -8,6 +8,23 @@
 			<th align="center">Notes</th>
 		</tr>
 		<tr>
+			<td align="center">0.5.2</td>
+			<td align="left">
+				<ul>
+					<li>Updated for newest patch</li>
+					<li>
+						Added configuration options: 
+						<ul>
+							<li>Enable all seasonal pieces.</li>
+							<li>Patch siding door pieces placed by players and enable sliding doors by default.</li>
+							<li>Enable comfort values for pieces added by this mod.</li>
+						</ul>
+					</li>
+					<li>Improved resource costs and removal of pieces with a MineRock component (the smaller mineable rocks).</li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
 			<td align="center">0.5.1</td>
 			<td align="left">
 				<ul>
