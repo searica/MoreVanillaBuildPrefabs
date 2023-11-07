@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using static Mono.Security.X509.X520;
 
 namespace MVBP.Helpers
 {
@@ -29,6 +30,23 @@ namespace MVBP.Helpers
             {"piece_xmascrown",null },
             {"piece_xmasgarland",null },
             {"piece_xmastree",null },
+        };
+
+        private static readonly List<string> SpecificPrefabNames = new()
+        {
+            "MountainKit_int_wall_4x2",
+            "SunkenKit_int_arch",
+            "SunkenKit_int_floor_2x2",
+            "SunkenKit_int_wall_1x4",
+            "SunkenKit_int_wall_2x4",
+            "SunkenKit_int_wall_4x4",
+            "SunkenKit_slope1x2",
+            "SunkenKit_int_stair",
+            "SunkenKit_stair_corner_left",
+            "TraderChest_static",
+            "TraderRune",
+            "TraderTent",
+            "ForceField_0",
         };
 
         internal static bool HasInitializedPrefabs => PrefabRefs.Count > 0;
@@ -169,6 +187,20 @@ namespace MVBP.Helpers
                             EligiblePrefabs.Add(result.name, result);
                         }
                     }
+                }
+            }
+
+            // Get specifically targeted prefabs
+            foreach (var name in SpecificPrefabNames)
+            {
+                var prefab = PrefabManager.Instance.GetPrefab(name);
+                if (prefab != null && !EligiblePrefabs.ContainsKey(name))
+                {
+                    EligiblePrefabs.Add(name, prefab);
+                }
+                else
+                {
+                    Log.LogWarning($"Could not find {name}");
                 }
             }
 
