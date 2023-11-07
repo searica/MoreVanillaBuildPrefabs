@@ -293,7 +293,7 @@ namespace MVBP.Configs
 
             ApplyComfortPatches = BindConfig(
                 CustomizationSection,
-                "ApplyComfortPatches [Requires Restart]",
+                "ApplyComfortPatches (Requires Restart)",
                 true,
                 "Set to True to patch prefabs added by MVBP to have comfort values like corresponding Vanilla pieces.",
                 AcceptableBoolValuesList
@@ -301,7 +301,7 @@ namespace MVBP.Configs
 
             ApplyDoorPatches = BindConfig(
                 CustomizationSection,
-                "ApplyDoorPatches [Requires Restart]",
+                "ApplyDoorPatches (Requires Restart)",
                 true,
                 "Set to True to patch player-built instances of doors so that they can be opened and closed.",
                 AcceptableBoolValuesList

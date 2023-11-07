@@ -915,11 +915,36 @@ namespace MVBP.Helpers
             switch (name)
             {
                 case "dvergrtown_slidingdoor":
-                    if (prefab.TryGetComponent(out Door door))
+                    //case "dungeon_queen_door":
                     {
-                        door.m_canNotBeClosed = false;
+                        if (prefab.TryGetComponent(out Door door))
+                        {
+                            door.m_canNotBeClosed = false;
+                            door.m_checkGuardStone = true;
+                        }
                     }
+
                     break;
+
+                //case "dvergrtown_secretdoor":
+                //    {
+                //        if (prefab.TryGetComponent(out Door door))
+                //        {
+                //            door.m_canNotBeClosed = false;
+                //            door.m_checkGuardStone = true;
+
+                //            if (door.m_animator != null)
+                //            {
+                //                var animator = door.m_animator;
+                //                foreach (var clip in animator.runtimeAnimatorController.animationClips)
+                //                {
+                //                    Log.LogInfo(clip.name);
+                //                }
+                //            }
+                //        }
+                //    }
+
+                //    break;
 
                 default:
                     break;

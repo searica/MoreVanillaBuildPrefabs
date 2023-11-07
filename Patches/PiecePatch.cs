@@ -14,13 +14,25 @@ namespace MVBP
     internal class PiecePatch
     {
         /// <summary>
-        ///     Applies patches from PacthPlayerBuildPieceIfNeeded
+        ///     Applies patches from PatchPlayerBuildPieceIfNeeded
         ///     when pieces are loaded in.
         /// </summary>
         /// <param name="__instance"></param>
         [HarmonyPostfix]
         [HarmonyPatch(nameof(Piece.Awake))]
-        private static void PieceAwake(Piece __instance)
+        private static void PieceAwakePostfix(Piece __instance)
+        {
+            PrefabPatcher.PatchPlayerBuiltPieceIfNeed(__instance);
+        }
+
+        /// <summary>
+        ///     Applies patches from PatchPlayerBuildPieceIfNeeded
+        ///     when pieces are loaded are placed.
+        /// </summary>
+        /// <param name="__instance"></param>
+        [HarmonyPostfix]
+        [HarmonyPatch(nameof(Piece.SetCreator))]
+        private static void PieceSetCreatorPostfix(Piece __instance)
         {
             PrefabPatcher.PatchPlayerBuiltPieceIfNeed(__instance);
         }
@@ -33,7 +45,7 @@ namespace MVBP
         /// <param name="__instance"></param>
         [HarmonyPrefix]
         [HarmonyPatch(nameof(Piece.SetCreator))]
-        private static void PieceSetCreatorPrefix(long uid, Piece __instance)
+        private static void PieceSetCreatorPrefix(Piece __instance)
         {
             var view = __instance.GetComponent<ZNetView>();
             if (view && !view.m_persistent)
@@ -62,7 +74,7 @@ namespace MVBP
             IEnumerable<CodeInstruction> instructions
         )
         {
-            /* Target this IL code
+            /* Target this IL code to be able to edit the resources that get dropped
              * // Requirement[] resources = m_resources;
              * IL_0011: ldarg.0
              * IL_0012: ldfld class Piece/Requirement[] Piece::m_resources
@@ -72,7 +84,6 @@ namespace MVBP
              * IL_0019: stloc.2
              * // 	foreach (Requirement requirement in resources)
              */
-            // want to be able to edit the resources that get dropped
             return new CodeMatcher(instructions)
                 .MatchForward(
                     useEnd: false,
