@@ -53,10 +53,39 @@ Changes made to the configuration settings will be reflected in-game immediately
 
 ### Customization Section
 
-**EnableHammerCrops** [Synced with Server]
-- Setting to enable prefabs for crops that can already be planted in the Vanilla game. Unless this setting is true Vanilla crops will not be available for placing with the hammer. Can be useful if you want to make pretty gardens without having to wait for crops to grow (plus you control the crop rotation this way).
+**HammerCrops** [Synced with Server]
+- Set to true/enabled to enable placing vanilla crops with the hammer. Unless this setting is true Vanilla crops will not be available for placing with the hammer. Can be useful if you want to make pretty gardens without having to wait for crops to grow (plus you control the crop rotation this way).
     - Acceptable values: False, True
     - Default value: false
+
+**ComfortPatches (Requires Restart)** [Synced with Server]
+- Set to true/enabled to patch new pieces to have comfort values like their vanilla counterparts.
+    - Acceptable values: False, True
+    - Default value: true
+
+**DoorPatches (Requires Restart)** [Synced with Server]
+- Set to true/enabled to patch player-built instances of new doors to allow closing them even if that is normally prevented. Currently only works for the sliding door piece.
+    - Acceptable values: False, True
+    - Default value: true
+
+
+**PlayerBasePatches (Requires Restart)** [Synced with Server]
+- Set to true/enabled to patch player-built instances of new torches, fires, and beds so they suppress monster spawning just like their vanilla counterparts.
+    - Acceptable values: False, True
+    - Default value: true
+
+**SeasonalPieces** [Synced with Server]
+- Set to true/enabled to add all currently disabled seasonal pieces to the hammer build table.
+    - Acceptable values: False, True
+    - Default value: true
+
+### Unsafe Patches Section
+
+**BedPatches (Requires Restart, Unsafe)** [Synced with Server]
+- Set to true/enabled to patch player-built instances of new beds so you can sleep in them. **WARNING**: enabling this setting can result in you losing your spawn point if had set your spawn using a patched bed and log in without this mod.
+    - Acceptable values: False, True
+    - Default value: false
+
 
 ### Prefab Configuration Sections:
 The rest of the configuration files contains ["Prefab-Name"] sections to configure each prefab. Each section contains:
@@ -77,7 +106,7 @@ The rest of the configuration files contains ["Prefab-Name"] sections to configu
     - Default value: CreatorShop
 
 **ClipEverything** [Synced with Server]
-- et to true to allow piece to clip through everything during placement. Recommended to try this if the piece is not appearing when you go to place it. (If this setting fixes the issue please open an issue on Github letting me know so I can make sure the piece can always applied clip the ground.)
+- Set to true to allow piece to clip through everything during placement. Recommended to try this if the piece is not appearing when you go to place it. (If this setting fixes the issue please open an issue on Github letting me know so I can make sure the piece can always applied clip the ground.)
     - Acceptable values: False, True
     - Default value: false
     - *Note:* this setting is not available on some prefabs because it needs to always be true.
@@ -145,7 +174,7 @@ If multiple player's have this mod, the same restrictions still apply and they w
 The AdminDeconstructOtherPlayers setting can allow players with admin status to deconstruct CreatorShop or Nature pieces built by other players, so that admins have a way to remove indestructible pieces. Even if you enable the AdminDeconstructOtherPlayers setting, admins are still not able to deconstruct world-generated instances of pieces set to the CreatorShop or Nature categories.
 
 ## Resource Costs and Drops
-Since this mod adds more prefabs to the hammer, that means you can deconstruct more pieces. As of version 0.0.3 and all later versions, world-generated pieces will only drop their default drops, while player-built pieces will only drop the resources used to build them.
+Since this mod adds more prefabs to the hammer, that means you can deconstruct more pieces. World-generated pieces will only drop their default drops, while player-built pieces will only drop the resources used to build them.
 
 ### Pickable Pieces
 Building and deconstructing prefabs that have pickable components could potentially allow for exploits that create infinite resources. To prevent that, the following adjustments are made.
@@ -176,7 +205,7 @@ Deconstructing mineable pieces effectively "mines" the entire piece and per vani
 ## ItemStand Pieces
 Any piece that you can attach an item to has an ItemStand component and has a unique behavior when deconstructed.
 
-#### Decontructing ItemStands
+#### ItemStand Drops
 When you deconstruct a piece that has an ItemStand component it will always drop the attached item, even if you could not normally remove it.
 
 ## Known Issue/Feature
@@ -203,10 +232,7 @@ MVBP is able to detect prefabs added by other mods. It is possible to enable and
 - Adding patches that are **unsafe** and a corresponding setting to enable/disable those patches. Examples of **unsafe** patches are:
     - Changing inventory sizes for some prefabs or other patches that could make you lose items if you loaded the world without the mod.
     - Adding fermenter functionality to some prefabs. Could result in losing the mead base if loaded without the mod.
-    - Adding bed functionality to some prefabs. Could result in losing your spawn point if loaded without the mod.
     - Add Wear-N-Tear or Destructible components all to player built pieces upon placement.
-    - Learn how to save/read data to/from the world file so I can alter just the pieces that are player built and have it persist after a restart.
-    - Use the awake method on pieces to apply custom alterations as needed for pieces placed by players.
 
 
 ## Compatibility

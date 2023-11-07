@@ -1,5 +1,5 @@
 <div class="header">
-	<h2>Versions 0.5.X</h2>
+	<h2>Versions 0.6.X</h2>
 </div>
 <table>
 	<tbody>
@@ -8,50 +8,69 @@
 			<th align="center">Notes</th>
 		</tr>
 		<tr>
-			<td align="center">0.5.2</td>
+			<td align="center">0.6.0</td>
 			<td align="left">
 				<ul>
 					<li>Updated for newest patch</li>
+					<li>Changed configuration file format for non-prefab sections to use toggles in-game.</li>
 					<li>
-						Added configuration options: 
+						Added configuration options enable:
 						<ul>
-							<li>Enable all seasonal pieces.</li>
-							<li>Patch siding door pieces placed by players and enable sliding doors by default.</li>
-							<li>Enable comfort values for pieces added by this mod.</li>
+							<li>All seasonal pieces.</li>
+							<li>Patching siding door pieces placed by players and enable sliding doors by default.</li>
+							<li>Patching comfort values for pieces added by this mod.</li>
+							<li>Patching new torches, fires, and beds to have a PlayerBase effect.</li>
 						</ul>
 					</li>
+					<li>Added unsafe patch section and the option of enabling new beds for sleeping.</li>
 					<li>Improved resource costs and removal of pieces with a MineRock component (the smaller mineable rocks).</li>
-				</ul>
-			</td>
-		</tr>
-		<tr>
-			<td align="center">0.5.1</td>
-			<td align="left">
-				<ul>
-					<li>Added more null checks to handle other mods destroying prefabs on log-out.</li>
-					<li>Set MVBP to ignore prefabs added by Creature Level and Loot Control.</li>
-					<li>Improved compatibility with PlanBuild.</li>
-				</ul>
-			</td>
-		</tr>
-		<tr>
-			<td align="center">0.5.0</td>
-			<td align="left">
-				<ul>
-					<li>Built against new BepInEx and Jotunn.</li>
-					<li>Improved default settings so all vanilla prefabs in game version 0.217.25 are placeable.</li>
-					<li>Improved removal of custom prefabs with the hammer, vanilla layers are no longer altered under any circumstances.</li>
-					<li>Updated for ExtraSnapPointsMadeEasy's new API.</li>
-					<li>Improved compatibility with ExpandWorld.</li>
-					<li>Fixed issue with one prefab being impossible to unlock.</li>
-					<li>Overhauled how mineable prefabs work (see README). You may need to tweak your configuration file to use the prefabs ending in "_frac" or "_destruction" now.</li>
-					<li>Fixed bug where CreativeMode pieces that were built by players could be removed by the creator even if they aren't enabled in the config. Now pieces can only by removed via the hammer if they are enabled in the config.</li>
-					<li>Global configuration section split into Global, Admin, and Customization in preparation for adding new customization features.</li>
+					<li>Minor performance optimizations.</li>
 				</ul>
 			</td>
 		</tr>
 	</tbody>
 </table>
+
+<div class="header">
+	<h2>Versions 0.5.X</h2>
+</div>
+<details>
+	<summary>Click to expand</summary>
+	<table>
+		<tbody>
+			<tr>
+				<th align="center">Version</th>
+				<th align="center">Notes</th>
+			</tr>
+			<tr>
+				<td align="center">0.5.1</td>
+				<td align="left">
+					<ul>
+						<li>Added more null checks to handle other mods destroying prefabs on log-out.</li>
+						<li>Set MVBP to ignore prefabs added by Creature Level and Loot Control.</li>
+						<li>Improved compatibility with PlanBuild.</li>
+					</ul>
+				</td>
+			</tr>
+			<tr>
+				<td align="center">0.5.0</td>
+				<td align="left">
+					<ul>
+						<li>Built against new BepInEx and Jotunn.</li>
+						<li>Improved default settings so all vanilla prefabs in game version 0.217.25 are placeable.</li>
+						<li>Improved removal of custom prefabs with the hammer, vanilla layers are no longer altered under any circumstances.</li>
+						<li>Updated for ExtraSnapPointsMadeEasy's new API.</li>
+						<li>Improved compatibility with ExpandWorld.</li>
+						<li>Fixed issue with one prefab being impossible to unlock.</li>
+						<li>Overhauled how mineable prefabs work (see README). You may need to tweak your configuration file to use the prefabs ending in "_frac" or "_destruction" now.</li>
+						<li>Fixed bug where CreativeMode pieces that were built by players could be removed by the creator even if they aren't enabled in the config. Now pieces can only by removed via the hammer if they are enabled in the config.</li>
+						<li>Global configuration section split into Global, Admin, and Customization in preparation for adding new customization features.</li>
+					</ul>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</details>
 
 <div class="header">
 	<h2>Versions 0.4.X</h2>
