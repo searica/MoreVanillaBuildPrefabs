@@ -1,7 +1,7 @@
 {
   "name": "More_Vanilla_Build_Prefabs",
   "author": "Searica",
-  "version_number": "0.6.0",
+  "version_number": "0.6.1",
   "website_url": "https://github.com/searica/MoreVanillaBuildPrefabs",
   "description": "Adds almost everything in the vanilla game to the hammer for building in survival mode. Every piece can be customized and enabled/disabled. Comes with a default configuration for ease of use. Uses Jotunn to sync configs if installed on server.",
   "dependencies": [
