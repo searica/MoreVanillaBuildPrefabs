@@ -82,11 +82,7 @@ namespace MVBP
                 {
                     MethodInfo planDBGetter = AccessTools.PropertyGetter(planDBType, "Instance");
                     var planDBInstance = planDBGetter.Invoke(null, Array.Empty<object>());
-
                     MethodInfo method = AccessTools.Method("PlanBuild.Plans.PlanDB:ScanPieceTables", Type.EmptyTypes);
-
-                    //Log.LogInfo($"Target Instance: {planDBInstance}");
-                    //Log.LogInfo($"Target method: {method}");
                     if (Config.IsVerbosityMedium) { Log.LogInfo("Triggering PlanBuild ScanPieceTables"); }
                     // Invoke if not null
                     method?.Invoke(planDBInstance, Array.Empty<object>());
