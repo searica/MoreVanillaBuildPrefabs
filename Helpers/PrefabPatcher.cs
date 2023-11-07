@@ -10,6 +10,8 @@ namespace MVBP.Helpers
 {
     internal class PrefabPatcher
     {
+        private static readonly int CharacterTriggerLayer = LayerMask.NameToLayer("character_trigger");
+
         /// <summary>
         ///     Fix collider and snap points on the prefab if necessary
         /// </summary>
@@ -837,9 +839,14 @@ namespace MVBP.Helpers
                 default:
                     break;
             }
-            if (Config.IsApplyComfortPatches)
+            if (Config.IsEnableComfortPatches)
             {
                 ApplyComfortPatches(prefab);
+            }
+
+            if (Config.IsEnableBedPatches)
+            {
+                ApplyBedPatches(prefab);
             }
         }
 
@@ -887,8 +894,41 @@ namespace MVBP.Helpers
             }
         }
 
+        private static void ApplyBedPatches(GameObject prefab)
+        {
+            if (prefab.TryGetComponent(out Piece piece))
+            {
+                switch (prefab.name)
+                {
+                    case "goblin_bed":
+                        {
+                            var attachPoint = new GameObject("spawnpoint");
+                            attachPoint.transform.parent = prefab.transform;
+                            attachPoint.transform.localPosition = new Vector3(0, 0.45f, 0);
+                            var bed = prefab.AddComponent<Bed>();
+                            bed.m_spawnPoint = attachPoint.transform;
+                        }
+                        break;
+
+                    case "dvergrprops_bed":
+                        {
+                            var attachPoint = new GameObject("spawnpoint");
+                            attachPoint.transform.parent = prefab.transform;
+                            attachPoint.transform.localPosition = new Vector3(0, 0.45f, 0);
+                            var bed = prefab.AddComponent<Bed>();
+                            bed.m_spawnPoint = attachPoint.transform;
+                        }
+                        break;
+
+                    default:
+                        break;
+                }
+            }
+        }
+
         /// <summary>
-        ///     Apply patches to player built pieces when they are loaded.
+        ///     Apply patches to player built pieces.
+        ///     Called after Piece.Awake and Piece.SetCreator.
         /// </summary>
         /// <param name="piece"></param>
         internal static void PatchPlayerBuiltPieceIfNeed(Piece piece)
@@ -904,9 +944,40 @@ namespace MVBP.Helpers
             }
             var prefabName = InitManager.GetPrefabName(piece);
 
-            if (Config.IsApplyDoorPatches)
+            if (Config.IsEnableDoorPatches)
             {
                 ApplyDoorPatches(prefabName, piece.gameObject);
+            }
+            if (Config.IsEnablePlayerBasePatches)
+            {
+                ApplyPlayerBasePatches(prefabName, piece.gameObject);
+            }
+        }
+
+        /// <summary>
+        ///     Adds PlayerBase effect to pieces based on PieceDB settings
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="prefab"></param>
+        private static void ApplyPlayerBasePatches(string name, GameObject prefab)
+        {
+            if (InitManager.TryGetPieceDB(name, out PieceDB pieceDB))
+            {
+                if (pieceDB.playerBasePatch)
+                {
+                    var playerBase = new GameObject("PlayerBase");
+                    playerBase.transform.parent = prefab.transform;
+                    playerBase.layer = CharacterTriggerLayer;
+
+                    var collider = playerBase.AddComponent<SphereCollider>();
+                    collider.enabled = true;
+                    collider.isTrigger = true;
+                    collider.radius = 20;
+
+                    var playerBaseEffect = playerBase.AddComponent<EffectArea>();
+                    playerBaseEffect.enabled = true;
+                    playerBaseEffect.m_type = EffectArea.Type.PlayerBase;
+                }
             }
         }
 

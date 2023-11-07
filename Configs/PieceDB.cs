@@ -21,6 +21,7 @@ namespace MVBP.Configs
             this.pieceName = prefabDB.pieceName;
             this.pieceDesc = prefabDB.pieceDesc;
             this.pieceGroup = prefabDB.pieceGroup;
+            this.playerBasePatch = prefabDB.playerBasePatch;
         }
     }
 }

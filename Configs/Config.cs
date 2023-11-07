@@ -30,10 +30,6 @@ namespace MVBP.Configs
 
         private static readonly AcceptableValueList<bool> AcceptableBoolValuesList = new(new bool[] { false, true });
 
-        private const string MainSection = "\u200B\u200BGlobal";
-        private const string AdminSection = "\u200BAdmin";
-        private const string CustomizationSection = "\u200BCustomization";
-
         #region Events
 
         /// <summary>
@@ -66,6 +62,8 @@ namespace MVBP.Configs
 
         #region Global Settings
 
+        private const string MainSection = "\u200B\u200BGlobal";
+
         internal enum LoggerLevel
         {
             Low = 0,
@@ -86,6 +84,7 @@ namespace MVBP.Configs
 
         #region Admin Settings
 
+        private const string AdminSection = "\u200BAdmin";
         internal static ConfigEntry<bool> CreatorShopAdminOnly { get; private set; }
         internal static ConfigEntry<bool> AdminDeconstructOtherPlayers { get; private set; }
         internal static bool IsCreatorShopAdminOnly => CreatorShopAdminOnly.Value;
@@ -95,16 +94,27 @@ namespace MVBP.Configs
 
         #region Customization Settings
 
+        private const string CustomizationSection = "\u200BCustomization";
         internal static ConfigEntry<bool> EnableHammerCrops { get; private set; }
-        internal static ConfigEntry<bool> ApplyDoorPatches { get; private set; }
-        internal static ConfigEntry<bool> ApplyComfortPatches { get; private set; }
+        internal static ConfigEntry<bool> EnableDoorPatches { get; private set; }
+        internal static ConfigEntry<bool> EnableComfortPatches { get; private set; }
         internal static ConfigEntry<bool> EnableSeasonalPieces { get; private set; }
+        internal static ConfigEntry<bool> EnablePlayerBasePatches { get; private set; }
         internal static bool IsEnableHammerCrops => EnableHammerCrops.Value;
-        internal static bool IsApplyDoorPatches => ApplyDoorPatches.Value;
-        internal static bool IsApplyComfortPatches => ApplyComfortPatches.Value;
+        internal static bool IsEnableDoorPatches => EnableDoorPatches.Value;
+        internal static bool IsEnableComfortPatches => EnableComfortPatches.Value;
         internal static bool IsEnableSeasonalPieces => EnableSeasonalPieces.Value;
+        internal static bool IsEnablePlayerBasePatches => EnablePlayerBasePatches.Value;
 
         #endregion Customization Settings
+
+        #region Unsafe Patches
+
+        private const string UnsafeSection = "\u200BUnsafe Patches";
+        internal static ConfigEntry<bool> EnableBedPatches { get; private set; }
+        internal static bool IsEnableBedPatches => EnableBedPatches.Value;
+
+        #endregion Unsafe Patches
 
         #region Prefab Settings
 
@@ -295,20 +305,29 @@ namespace MVBP.Configs
                 AcceptableBoolValuesList
             );
 
-            ApplyComfortPatches = BindConfig(
+            EnableComfortPatches = BindConfig(
                 CustomizationSection,
-                "ApplyComfortPatches (Requires Restart)",
+                "EnableComfortPatches (Requires Restart)",
                 true,
                 "Set to True to patch prefabs added by MVBP to have comfort values like corresponding Vanilla pieces.",
                 AcceptableBoolValuesList
             );
 
-            ApplyDoorPatches = BindConfig(
+            EnableDoorPatches = BindConfig(
                 CustomizationSection,
-                "ApplyDoorPatches (Requires Restart)",
+                "EnableDoorPatches (Requires Restart)",
                 true,
                 "Set to True to patch player-built instances of doors so that they can be opened and closed." +
                 " Currently only works for the sliding door piece.",
+                AcceptableBoolValuesList
+            );
+
+            EnablePlayerBasePatches = BindConfig(
+                CustomizationSection,
+                "EnablePlayerBasePatches (Requires Restart)",
+                true,
+                "Set to True to patch custom pieces to have a PlayerBase component added to them," +
+                " this allows torches added by this mod to prevent monster spawns." +
                 AcceptableBoolValuesList
             );
 
@@ -318,6 +337,17 @@ namespace MVBP.Configs
                 true,
                 "Set to True to enable seasonal pieces regardless of time of year." +
                 " Has no effect on seasonal pieces that are already enabled in the Vanilla game.",
+                AcceptableBoolValuesList
+            );
+
+            // Unsafe Section
+            EnableBedPatches = BindConfig(
+                UnsafeSection,
+                "EnableBedPatches (Requires Restart, Unsafe)",
+                false,
+                "WARNING: enabling this setting can result in you losing your spawn point" +
+                " if had set your spawn using a patched bed and log in without this mod." +
+                " Set to true to patch beds added by this mod so you can sleep in them.",
                 AcceptableBoolValuesList
             );
 

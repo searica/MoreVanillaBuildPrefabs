@@ -20,6 +20,7 @@ namespace MVBP.Configs
         public string pieceName;
         public string pieceDesc;
         public PieceGroup pieceGroup;
+        public bool playerBasePatch;
 
         internal GameObject Prefab
         {
@@ -42,7 +43,9 @@ namespace MVBP.Configs
             bool clipGround = false,
             string pieceName = null,
             string pieceDesc = null,
-            PieceGroup pieceGroup = default
+            PieceGroup pieceGroup = default,
+            bool playerBasePatch = false
+
         )
         {
             this.name = name;
@@ -57,6 +60,7 @@ namespace MVBP.Configs
             this.pieceName = pieceName;
             this.pieceDesc = pieceDesc;
             this.pieceGroup = pieceGroup;
+            this.playerBasePatch = playerBasePatch;
         }
     }
 }

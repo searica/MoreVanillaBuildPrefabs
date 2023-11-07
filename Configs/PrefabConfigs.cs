@@ -384,8 +384,9 @@ namespace MVBP.Configs
                     clipEverything: false,
                     clipGround: false,
                     pieceName: "Standing iron torch (everburning)",
-                    pieceDesc: "Burns eternally without fuel, but does not prevent spawning of monsters.",
-                    pieceGroup: PieceGroup.Torch
+                    pieceDesc: "Burns eternally without fuel.",
+                    pieceGroup: PieceGroup.Torch,
+                    playerBasePatch: true
                 )
             },
             {
@@ -400,8 +401,9 @@ namespace MVBP.Configs
                     clipEverything: false,
                     clipGround: false,
                     pieceName: "Standing blue-burning iron torch (everburning)",
-                    pieceDesc: "Burns eternally without fuel, but does not prevent spawning of monsters.",
-                    pieceGroup: PieceGroup.Torch
+                    pieceDesc: "Burns eternally without fuel.",
+                    pieceGroup: PieceGroup.Torch,
+                    playerBasePatch: true
                 )
             },
             {
@@ -416,8 +418,9 @@ namespace MVBP.Configs
                     clipEverything: false,
                     clipGround: false,
                     pieceName: "Standing green-burning iron torch (everburning)",
-                    pieceDesc: "Burns eternally without fuel, but does not prevent spawning of monsters.",
-                    pieceGroup: PieceGroup.Torch
+                    pieceDesc: "Burns eternally without fuel.",
+                    pieceGroup: PieceGroup.Torch,
+                    playerBasePatch: true
                 )
             },
             {
@@ -840,8 +843,9 @@ namespace MVBP.Configs
                     clipEverything: false,
                     clipGround: false,
                     pieceName: "Standing brazier (everburning)",
-                    pieceDesc: "Burns eternally without fuel, but does not prevent spawning of monsters.",
-                    pieceGroup: PieceGroup.Brazier
+                    pieceDesc: "Burns eternally without fuel.",
+                    pieceGroup: PieceGroup.Brazier,
+                    playerBasePatch: true
                 )
             },
             {
@@ -856,8 +860,9 @@ namespace MVBP.Configs
                     clipEverything: false,
                     clipGround: false,
                     pieceName: "Blue standing brazier (everburning)",
-                    pieceDesc: "Burns eternally without fuel, but does not prevent spawning of monsters.",
-                    pieceGroup: PieceGroup.Brazier
+                    pieceDesc: "Burns eternally without fuel.",
+                    pieceGroup: PieceGroup.Brazier,
+                    playerBasePatch: true
                 )
             },
             {
@@ -3065,7 +3070,8 @@ namespace MVBP.Configs
                     requirements: "YggdrasilWood,8;ScaleHide,2;IronNails,5",
                     clipEverything: false,
                     clipGround: false,
-                    pieceGroup: PieceGroup.Bed
+                    pieceGroup: PieceGroup.Bed,
+                    playerBasePatch: true
                 )
             },
             {
@@ -3791,7 +3797,8 @@ namespace MVBP.Configs
                     requirements: "Wood,8;Tar,1",
                     clipEverything: false,
                     clipGround: false,
-                    pieceGroup: PieceGroup.Bed
+                    pieceGroup: PieceGroup.Bed,
+                    playerBasePatch: true
                 )
             },
             {
@@ -4938,7 +4945,9 @@ namespace MVBP.Configs
                     category: HammerCategories.CreatorShop,
                     craftingStation: nameof(CraftingStations.None),
                     requirements: "Tar,50",
-                    pieceName: "Tar volume",
+                    clipEverything: true,
+                    clipGround: false,
+                    pieceName: "Crystallized tar",
                     pieceDesc: "Warning: requires devcommands to remove"
                 )
             },
