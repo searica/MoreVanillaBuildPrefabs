@@ -256,7 +256,9 @@ namespace MVBP
                 {
                     Log.LogInfo("Removing non WNT object with hammer " + piece.name);
                     component.ClaimOwnership();
-                    if (!RemoveDestructiblePiece(piece) && !RemoveMineRock5Piece(player, piece))
+                    if (!RemoveDestructiblePiece(piece)
+                        && !RemoveMineRock5Piece(piece)
+                        && !RemoveMineRockPiece(piece))
                     {
                         piece.DropResources();
                         piece.m_placeEffect.Create(piece.transform.position, piece.transform.rotation, piece.gameObject.transform);
@@ -336,13 +338,25 @@ namespace MVBP
             return false;
         }
 
-        private static bool RemoveMineRock5Piece(Player player, Piece piece)
+        private static bool RemoveMineRock5Piece(Piece piece)
         {
             if (piece.gameObject.TryGetComponent(out MineRock5 mineRock5))
             {
                 if (Config.IsVerbosityMedium) Log.LogInfo("Removing MineRock5 piece");
 
                 mineRock5.DestroyMineRock5Piece();
+                return true;
+            }
+            return false;
+        }
+
+        private static bool RemoveMineRockPiece(Piece piece)
+        {
+            if (piece.gameObject.TryGetComponent(out MineRock mineRock))
+            {
+                if (Config.IsVerbosityMedium) Log.LogInfo("Removing MineRock5 piece");
+
+                mineRock.DestroyMineRockPiece();
                 return true;
             }
             return false;
