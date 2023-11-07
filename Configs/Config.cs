@@ -487,16 +487,16 @@ namespace MVBP.Configs
             // Re-initialization after reloading config and don't save since file was just reloaded
             OnConfigFileReloaded += () =>
             {
-                InitManager.ReInitPlugin("Configuration file changed, re-initializing", saveConfig: false);
+                InitManager.UpdatePlugin("Configuration file changed, re-initializing", saveConfig: false);
             };
 
             // Re-initialize after changing config data in-game and trigger a save to disk.
-            OnConfigWindowClosed += () => InitManager.ReInitPlugin("Configuration changed in-game, re-initializing");
+            OnConfigWindowClosed += () => InitManager.UpdatePlugin("Configuration changed in-game, re-initializing");
 
             // Re-initialize after getting updated config data and trigger a save to disk.
             SynchronizationManager.OnConfigurationSynchronized += (obj, attr) =>
             {
-                InitManager.ReInitPlugin("Configuration synced, re-initializing");
+                InitManager.UpdatePlugin("Configuration synced, re-initializing");
             };
         }
 

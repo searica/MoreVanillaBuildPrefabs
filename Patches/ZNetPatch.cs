@@ -45,9 +45,7 @@ namespace MVBP.Patches
                     watch.Start();
                 }
 
-                InitManager.InitPieceRefs();
-                InitManager.InitPieces();
-                InitManager.InitHammer();
+                InitManager.UpdatePieces();
 
                 if (Config.IsVerbosityMedium)
                 {

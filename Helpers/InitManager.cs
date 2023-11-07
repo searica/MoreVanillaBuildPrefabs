@@ -408,7 +408,7 @@ namespace MVBP.Helpers
         ///     Enables/disables seasonal pieces based on config settings.
         ///     Has no effect on seasonal pieces that are already enabled in Vanilla.
         /// </summary>
-        internal static void InitSeasonalPieces()
+        private static void InitSeasonalPieces()
         {
             if (!HasInitializedPrefabs) return;
 
@@ -429,15 +429,26 @@ namespace MVBP.Helpers
         }
 
         /// <summary>
-        ///     Perform first initialization of plugin.
+        ///     Initialize plugin for the first time.
         /// </summary>
         internal static void InitPlugin()
         {
             if (HasInitializedPrefabs) return;
+
             PieceCategoryHelper.AddCreatorShopPieceCategory();
             SfxHelper.Init();
             InitPrefabRefs();
             InitSeasonalPieces();
+            InitPieceRefs();
+            InitPieces();
+            InitHammer();
+        }
+
+        /// <summary>
+        ///     Reinitialize pieces and the hammer build table.
+        /// </summary>
+        internal static void UpdatePieces()
+        {
             InitPieceRefs();
             InitPieces();
             InitHammer();
@@ -449,7 +460,7 @@ namespace MVBP.Helpers
         ///     settings have been changed for any of the config entries.
         /// </summary>
         /// <param name="msg"></param>
-        internal static void ReInitPlugin(string msg, bool saveConfig = true)
+        internal static void UpdatePlugin(string msg, bool saveConfig = true)
         {
             if (!HasInitializedPrefabs) { return; }
 
@@ -468,9 +479,7 @@ namespace MVBP.Helpers
             Log.LogInfo(msg);
             if (Config.UpdatePieceSettings)
             {
-                InitPieceRefs();
-                InitPieces();
-                InitHammer();
+                UpdatePieces();
             }
             if (Config.UpdateSeasonalSettings)
             {
@@ -499,6 +508,7 @@ namespace MVBP.Helpers
 
             Config.UpdatePieceSettings = false;
             Config.UpdatePlacementSettings = false;
+            Config.UpdateSeasonalSettings = false;
             if (saveConfig) { Config.Save(); }
         }
 
