@@ -45,10 +45,30 @@ namespace MVBP.Helpers
             return false;
         }
 
+        internal static bool TryGetPieceDB(string name, out PieceDB pieceDB)
+        {
+            if (string.IsNullOrEmpty(name) && PieceRefs.TryGetValue(name, out pieceDB))
+            {
+                return true;
+            }
+            pieceDB = null;
+            return false;
+        }
+
+        internal static bool TryGetPieceDB(Piece piece, out PieceDB pieceDB)
+        {
+            var prefabName = GetPrefabName(piece);
+            if (string.IsNullOrEmpty(prefabName) && PieceRefs.TryGetValue(prefabName, out pieceDB))
+            {
+                return true;
+            }
+            pieceDB = null;
+            return false;
+        }
+
         /// <summary>
         ///     Returns a bool indicating if the prefab has been changed by mod.
         /// </summary>
-        /// <param name="prefabName"></param>
         /// <returns></returns>
         internal static bool IsPatchedByMod(GameObject gameObject)
         {
@@ -59,7 +79,6 @@ namespace MVBP.Helpers
         /// <summary>
         ///     Returns a bool indicating if the prefab has been changed by mod.
         /// </summary>
-        /// <param name="prefabName"></param>
         /// <returns></returns>
         internal static bool IsPatchedByMod(Component compo)
         {
@@ -70,7 +89,7 @@ namespace MVBP.Helpers
         /// <summary>
         ///     Returns a bool indicating if the prefab has been changed by mod.
         /// </summary>
-        /// <param name="prefabName"></param>
+        /// <param name="name"></param>
         /// <returns></returns>
         internal static bool IsPatchedByMod(string name)
         {
