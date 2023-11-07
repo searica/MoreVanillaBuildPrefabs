@@ -155,6 +155,12 @@ namespace MVBP
                 resources = RequirementsHelper.RemoveMineRock5DropsFromRequirements(resources, mineRock5);
             }
 
+            // If piece has MineRock then adjust dropped resources
+            if (piece.gameObject.TryGetComponent(out MineRock mineRock))
+            {
+                resources = RequirementsHelper.RemoveMineRockDropsFromRequirements(resources, mineRock);
+            }
+
             return resources;
         }
     }

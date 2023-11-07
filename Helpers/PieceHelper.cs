@@ -162,6 +162,10 @@ namespace MVBP.Helpers
         private static Piece.Requirement[] ConfigurePieceRequirements(PieceDB pieceDB)
         {
             var reqs = RequirementsHelper.CreateRequirementsArray(pieceDB.requirements);
+            if (pieceDB.piece.TryGetComponent(out MineRock mineRock))
+            {
+                reqs = RequirementsHelper.AddMineRockDropsToRequirements(reqs, mineRock);
+            }
             if (pieceDB.piece.TryGetComponent(out MineRock5 mineRock5))
             {
                 reqs = RequirementsHelper.AddMineRock5DropsToRequirements(reqs, mineRock5);

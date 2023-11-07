@@ -926,25 +926,9 @@ namespace MVBP.Helpers
 
                     break;
 
-                //case "dvergrtown_secretdoor":
-                //    {
-                //        if (prefab.TryGetComponent(out Door door))
-                //        {
-                //            door.m_canNotBeClosed = false;
-                //            door.m_checkGuardStone = true;
-
-                //            if (door.m_animator != null)
-                //            {
-                //                var animator = door.m_animator;
-                //                foreach (var clip in animator.runtimeAnimatorController.animationClips)
-                //                {
-                //                    Log.LogInfo(clip.name);
-                //                }
-                //            }
-                //        }
-                //    }
-
-                //    break;
+                // Missing animations
+                // "dvergrtown_secretdoor"
+                // "dungeon_queen_door"
 
                 default:
                     break;
