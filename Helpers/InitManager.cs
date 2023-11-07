@@ -125,7 +125,7 @@ namespace MVBP.Helpers
             return prefabName;
         }
 
-        internal static void InitPrefabRefs()
+        private static void InitPrefabRefs()
         {
             if (PrefabRefs.Count > 0)
             {
@@ -257,7 +257,7 @@ namespace MVBP.Helpers
         ///     Initializes references to pieces
         ///     and their configuration settings
         /// </summary>
-        internal static void InitPieceRefs()
+        private static void InitPieceRefs()
         {
             Log.LogInfo("Initializing pieceClone refs");
 
@@ -325,7 +325,7 @@ namespace MVBP.Helpers
         ///     Apply the configuration settings from the
         ///     PieceDB for each pieceClone in PieceRefs.
         /// </summary>
-        internal static void InitPieces()
+        private static void InitPieces()
         {
             Log.LogInfo("Initializing pieces");
             foreach (var pieceDB in PieceRefs.Values)
@@ -342,7 +342,7 @@ namespace MVBP.Helpers
         ///     table according to CreatorShop related cfg settings. Allow sets
         ///     all pieces added to the hammer permit deconstruction by players.
         /// </summary>
-        internal static void InitHammer()
+        private static void InitHammer()
         {
             Log.LogInfo("Initializing hammer");
 
@@ -449,6 +449,7 @@ namespace MVBP.Helpers
         /// </summary>
         internal static void UpdatePieces()
         {
+            if (!HasInitializedPrefabs) { return; }
             InitPieceRefs();
             InitPieces();
             InitHammer();
