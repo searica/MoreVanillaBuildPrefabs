@@ -92,7 +92,8 @@ namespace MVBP.Helpers
                 prefab.name.StartsWith("sfx_") ||
                 prefab.name.StartsWith("fx_") ||
                 prefab.name.Contains("Random") ||
-                prefab.name.Contains("random")
+                prefab.name.Contains("random") ||
+                prefab.name.EndsWith("_test")
             )
             {
                 return true;
