@@ -251,18 +251,16 @@ namespace MVBP.Configs
                 MainSection,
                 "CreativeMode",
                 false,
-                "Setting to enable pieces set to the CreatorShop or Nature piece categories. " +
-                "By default, the pieces set to those categories are not standard build pieces.",
-                AcceptableBoolValuesList
+                "Set to true/enabled to enable pieces from the CreatorShop or Nature piece categories. " +
+                "By default, pieces set to those categories are not standard build pieces."
             );
 
             ForceAllPrefabs = BindConfig(
                 MainSection,
                 "ForceAllPrefabs",
                 false,
-                "If enabled, adds all prefabs to the hammer for building. Unless CreativeMode is " +
-                "also enabled it will not add pieces set to the CreatorShop or Nature category though.",
-                AcceptableBoolValuesList
+                "If true/enabled, adds all prefabs to the hammer for building. Unless CreativeMode is " +
+                "also enabled it will not add pieces set to the CreatorShop or Nature category though."
             );
 
             Verbosity = BindConfig(
@@ -279,76 +277,68 @@ namespace MVBP.Configs
                 AdminSection,
                 "CreatorShopAdminOnly",
                 false,
-                "Set to true to restrict placement and deconstruction of CreatorShop pieces " +
-                "to players with Admin status.",
-                AcceptableBoolValuesList
+                "Set to true/enabled to restrict placement and deconstruction of CreatorShop pieces " +
+                "to players with Admin status."
             );
 
             AdminDeconstructOtherPlayers = BindConfig(
                 AdminSection,
                 "AdminDeconstructOtherPlayers",
                 true,
-                "Set to true to allow admin players to deconstruct any pieces built by other players, " +
-                "even if doing so would normally be prevented (such as for CreatorShop or Nature pieces). " +
-                "Intended to prevent griefing via placement of indestructible objects.",
-                AcceptableBoolValuesList
+                "Set to true/enabled to allow admin players to deconstruct any pieces built by other players," +
+                " even if doing so would normally be prevented (such as for CreatorShop or Nature pieces)." +
+                " Intended to prevent griefing via placement of indestructible objects."
             );
 
             // Customization settings
             EnableHammerCrops = BindConfig(
                 CustomizationSection,
-                "EnableHammerCrops",
+                "HammerCrops",
                 false,
-                "Setting to enable prefabs for crops that can already be planted  " +
-                "in the Vanilla game. Unless this setting is true Vanilla crops " +
-                "will not be available for placing with the hammer.",
-                AcceptableBoolValuesList
+                "Set to true/enabled to enable placing vanilla crops with the hammer." +
+                " Unless this setting is true Vanilla crops will not be available" +
+                " for placing with the hammer."
             );
 
             EnableComfortPatches = BindConfig(
                 CustomizationSection,
-                "EnableComfortPatches (Requires Restart)",
+                "ComfortPatches (Requires Restart)",
                 true,
-                "Set to True to patch prefabs added by MVBP to have comfort values like corresponding Vanilla pieces.",
-                AcceptableBoolValuesList
+                "Set to true/enabled to patch new pieces to have comfort values like their vanilla counterparts."
             );
 
             EnableDoorPatches = BindConfig(
                 CustomizationSection,
-                "EnableDoorPatches (Requires Restart)",
+                "DoorPatches (Requires Restart)",
                 true,
-                "Set to True to patch player-built instances of doors so that they can be opened and closed." +
-                " Currently only works for the sliding door piece.",
-                AcceptableBoolValuesList
+                "Set to true/enabled to patch player-built instances of new " +
+                "doors to allow closing them even if that is normally prevented." +
+                " Currently only works for the sliding door piece."
             );
 
             EnablePlayerBasePatches = BindConfig(
                 CustomizationSection,
-                "EnablePlayerBasePatches (Requires Restart)",
+                "PlayerBasePatches (Requires Restart)",
                 true,
-                "Set to True to patch custom pieces to have a PlayerBase component added to them," +
-                " this allows torches added by this mod to prevent monster spawns." +
-                AcceptableBoolValuesList
+                "Set to true/enabled to patch player-built instances of new torches, fires, " +
+                "and beds so they suppress monster spawning just like their vanilla counterparts."
             );
 
             EnableSeasonalPieces = BindConfig(
                 CustomizationSection,
-                "EnableSeasonalPieces",
+                "SeasonalPieces",
                 true,
-                "Set to True to enable seasonal pieces regardless of time of year." +
-                " Has no effect on seasonal pieces that are already enabled in the Vanilla game.",
-                AcceptableBoolValuesList
+                "Set to true/enabled to add all currently disabled seasonal pieces to the hammer build table."
             );
 
             // Unsafe Section
             EnableBedPatches = BindConfig(
                 UnsafeSection,
-                "EnableBedPatches (Requires Restart, Unsafe)",
+                "BedPatches (Requires Restart, Unsafe)",
                 false,
-                "WARNING: enabling this setting can result in you losing your spawn point" +
-                " if had set your spawn using a patched bed and log in without this mod." +
-                " Set to true to patch beds added by this mod so you can sleep in them.",
-                AcceptableBoolValuesList
+                "Set to true/enabled to patch player-built instances of new beds so you can sleep in them." +
+                "\nWARNING: enabling this setting can result in you losing your spawn point" +
+                " if had set your spawn using a patched bed and log in without this mod."
             );
 
             // Set up event hooks
