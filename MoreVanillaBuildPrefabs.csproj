@@ -5,7 +5,7 @@
 	</PropertyGroup>
 
 	<!--<Import Project="environment.props" Condition="Exists('environment.props')" />-->
-	<!--<Import Project="$(JotunnProps)" Condition="Exists('$(JotunnProps)')" />-->
+	<Import Project="$(JotunnProps)" Condition="Exists('$(JotunnProps)')" />
 	<Import Project="ModPackageTool.targets" Condition="Exists('ModPackageTool.targets')" />
 
 	<PropertyGroup>
@@ -83,13 +83,6 @@
 		<PackageReference Include="MonoMod.Utils" Version="22.1.29.1" />
 		<PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
 	</ItemGroup>
-
-	<!--<ItemGroup>
-		<Reference Include="PlanBuild.dll">
-			<Private>false</Private>
-			<HintPath>Libraries\PlanBuild\PlanBuild.dll</HintPath>
-		</Reference>
-	</ItemGroup>-->
 
 	<Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
 		<PropertyGroup>
