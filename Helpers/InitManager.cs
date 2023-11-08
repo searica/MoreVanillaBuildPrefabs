@@ -324,19 +324,25 @@ namespace MVBP.Helpers
 
                 foreach (PieceDB pdb in PieceRefs.Values)
                 {
-                    // remove pieces from hammer build table
-                    // and sheath hammer if table is open
+                    // remove pieces from hammer build table and sheath hammer if piece table is open
                     PieceHelper.RemovePieceFromPieceTable(pdb.Prefab, hammerTable);
-
-                    if (Player.m_localPlayer?.GetRightItem()?.m_shared.m_name == "$item_hammer")
-                    {
-                        Log.LogWarning("Hammer updated through config change, unequipping hammer");
-                        Player.m_localPlayer.HideHandItems();
-                    }
+                    ForceUnequipHammer();
                 }
                 PieceRefs.Clear();
             }
             PieceRefs = GeneratePieceRefs();
+        }
+
+        /// <summary>
+        ///     Forces hammer to be unequipped if it is currently equipped.
+        /// </summary>
+        private static void ForceUnequipHammer()
+        {
+            if (Player.m_localPlayer?.GetRightItem()?.m_shared.m_name == "$item_hammer")
+            {
+                Log.LogWarning("Hammer updated through config change, unequipping hammer");
+                Player.m_localPlayer.HideHandItems();
+            }
         }
 
         /// <summary>
@@ -490,7 +496,7 @@ namespace MVBP.Helpers
         /// </summary>
         internal static void InitPlugin()
         {
-            if (HasInitializedPrefabs) return;
+            if (HasInitializedPrefabs) { return; }
 
             PieceCategoryHelper.AddCreatorShopPieceCategory();
             SfxHelper.Init();
@@ -507,6 +513,7 @@ namespace MVBP.Helpers
         internal static void UpdatePieces()
         {
             if (!HasInitializedPrefabs) { return; }
+
             InitPieceRefs();
             InitPieces();
             InitHammer();
@@ -522,31 +529,16 @@ namespace MVBP.Helpers
         {
             if (!HasInitializedPrefabs) { return; }
 
-            if (!Config.UpdatePieceSettings && !Config.UpdatePlacementSettings)
-            {
-                // Don't update unless settings have actually changed
-                return;
-            }
+            // Don't update unless settings have actually changed
+            if (!Config.UpdatePieceSettings && !Config.UpdatePlacementSettings) { return; }
 
             var watch = new System.Diagnostics.Stopwatch();
-            if (Config.IsVerbosityMedium)
-            {
-                watch.Start();
-            }
-
+            if (Config.IsVerbosityMedium) { watch.Start(); }
             Log.LogInfo(msg);
-            if (Config.UpdatePieceSettings)
-            {
-                UpdatePieces();
-            }
-            if (Config.UpdateSeasonalSettings)
-            {
-                InitSeasonalPieces();
-            }
-            if (Config.UpdatePlacementSettings)
-            {
-                UpdateNeedsCollisionPatch();
-            }
+
+            if (Config.UpdatePieceSettings) { UpdatePieces(); }
+            if (Config.UpdateSeasonalSettings) { InitSeasonalPieces(); }
+            if (Config.UpdatePlacementSettings) { ForceUnequipHammer(); } // reset placement ghost set up to apply patch
 
             if (Config.IsVerbosityMedium)
             {
@@ -568,43 +560,6 @@ namespace MVBP.Helpers
             Config.UpdatePlacementSettings = false;
             Config.UpdateSeasonalSettings = false;
             if (saveConfig) { Config.Save(); }
-        }
-
-        /// <summary>
-        ///     Updates HashSet of prefabs needing a collision patch.
-        /// </summary>
-        private static void UpdateNeedsCollisionPatch()
-        {
-            if (!HasInitializedPrefabs) return;
-
-            if (Config.IsVerbosityMedium)
-            {
-                Log.LogInfo("Initializing collision patches");
-            }
-
-            foreach (var prefabName in InitManager.PrefabRefs.Keys)
-            {
-                if (Config.PrefabDBConfigsMap[prefabName].placementPatch == null)
-                {
-                    // No placement patch config entry means that prefab is already
-                    // placed in the NeedsCollisionPatchForGhost HashSet by default
-                    continue;
-                }
-
-                if (Config.PrefabDBConfigsMap[prefabName].placementPatch.Value)
-                {
-                    // config is true so add it if not already in HashSet
-                    if (!Config.NeedsCollisionPatchForGhost(prefabName))
-                    {
-                        Config._NeedsCollisionPatch.Add(prefabName);
-                    }
-                }
-                else if (Config.NeedsCollisionPatchForGhost(prefabName))
-                {
-                    // config is false so remove it from list if it's in HashSet
-                    Config._NeedsCollisionPatch.Remove(prefabName);
-                }
-            }
         }
     }
 }

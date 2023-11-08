@@ -145,14 +145,22 @@ namespace MVBP.Configs
         internal static readonly HashSet<string> _NeedsCollisionPatch = new();
 
         /// <summary>
-        ///     Get a bool indicating if the prefab is in the
-        ///     HashSet of prefabs that need a collision patch.
+        ///     Get a bool indicating if the prefab is configured to require a placement patch.
         /// </summary>
         /// <param name="PrefabName"></param>
         /// <returns></returns>
         internal static bool NeedsCollisionPatchForGhost(string prefabName)
         {
-            return _NeedsCollisionPatch.Contains(prefabName);
+            if (PrefabDBConfigsMap.TryGetValue(prefabName, out PrefabDBConfig prefabDBConfig))
+            {
+                // If there is no configuration option then always apply the placement patch
+                if (prefabDBConfig.placementPatch == null)
+                {
+                    return true;
+                }
+                return prefabDBConfig.placementPatch.Value;
+            }
+            return false;
         }
 
         #endregion Update Flags & Checks
@@ -458,7 +466,6 @@ namespace MVBP.Configs
                 prefabDBConfig.placementPatch.SettingChanged += PlacementSettingChanged;
                 defaultPrefabDB.placementPatch = prefabDBConfig.placementPatch.Value;
             }
-            if (defaultPrefabDB.placementPatch) { _NeedsCollisionPatch.Add(prefab.name); }
 
             if (!defaultPrefabDB.clipEverything)
             {
@@ -489,8 +496,8 @@ namespace MVBP.Configs
             }
 
             SaveOnConfigSet(saveSetting);
-            // keep a reference to the config entries for later use
-            // and making sure events are fired correctly
+
+            // keep a reference to the config entries for later use and making sure events are fired correctly
             PrefabDBConfigsMap[prefab.name] = prefabDBConfig;
             return defaultPrefabDB;
         }
