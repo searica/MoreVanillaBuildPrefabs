@@ -26,7 +26,8 @@ namespace MVBP.Configs
         );
 
         private static ConfigFile configFile;
-        private static BaseUnityPlugin configurationManager;
+        private static BaseUnityPlugin ConfigurationManager;
+        private const string ConfigManagerGUID = "com.bepis.bepinex.configurationmanager";
 
         private static readonly AcceptableValueList<bool> AcceptableBoolValuesList = new(new bool[] { false, true });
 
@@ -551,21 +552,14 @@ namespace MVBP.Configs
 
         private static void CheckForConfigManager()
         {
-            if (GUIManager.IsHeadless())
-            {
-                return;
-            }
+            if (GUIManager.IsHeadless()) { return; }
 
-            if (
-                Chainloader.PluginInfos.TryGetValue("com.bepis.bepinex.configurationmanager", out PluginInfo configManagerInfo)
-                && configManagerInfo.Instance
-            )
+            if (Chainloader.PluginInfos.TryGetValue(ConfigManagerGUID, out PluginInfo configManagerInfo) && configManagerInfo.Instance)
             {
-                configurationManager = configManagerInfo.Instance;
+                ConfigurationManager = configManagerInfo.Instance;
                 Log.LogDebug("Configuration manager found, hooking DisplayingWindowChanged");
 
-                EventInfo eventinfo = configurationManager.GetType()
-                    .GetEvent("DisplayingWindowChanged");
+                EventInfo eventinfo = ConfigurationManager.GetType().GetEvent("DisplayingWindowChanged");
 
                 if (eventinfo != null)
                 {
@@ -575,16 +569,18 @@ namespace MVBP.Configs
                         local.Target,
                         local.Method
                     );
-                    eventinfo.AddEventHandler(configurationManager, converted);
+                    eventinfo.AddEventHandler(ConfigurationManager, converted);
                 }
             }
         }
 
         private static void OnConfigManagerDisplayingWindowChanged(object sender, object e)
         {
-            PropertyInfo pi = configurationManager.GetType().GetProperty("DisplayingWindow");
-            bool cmActive = (bool)pi.GetValue(configurationManager, null);
-            if (!cmActive)
+            // Read configuration manager's DisplayingWindow property
+            var pi = ConfigurationManager.GetType().GetProperty("DisplayingWindow");
+            bool ConfigurationManagerWindowShown = (bool)pi.GetValue(ConfigurationManager, null);
+
+            if (!ConfigurationManagerWindowShown)
             {
                 InvokeOnConfigWindowClosed();
             }
