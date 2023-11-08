@@ -33,22 +33,22 @@ namespace MVBP.Helpers
         };
 
         // These lack a ZNetView component making them non-persistant and unsuitable for this mod.
-        //private static readonly List<string> SpecificPrefabNames = new()
-        //{
-        //    "MountainKit_int_wall_4x2",
-        //    "SunkenKit_int_arch",
-        //    "SunkenKit_int_floor_2x2",
-        //    "SunkenKit_int_wall_1x4",
-        //    "SunkenKit_int_wall_2x4",
-        //    "SunkenKit_int_wall_4x4",
-        //    "SunkenKit_slope1x2",
-        //    "SunkenKit_int_stair",
-        //    "SunkenKit_stair_corner_left",
-        //    "TraderChest_static",
-        //    "TraderRune",
-        //    "TraderTent",
-        //    "ForceField_0",
-        //};
+        private static readonly List<string> SpecificPrefabNames = new()
+        {
+            "MountainKit_int_wall_4x2",
+            "SunkenKit_int_arch",
+            "SunkenKit_int_floor_2x2",
+            "SunkenKit_int_wall_1x4",
+            "SunkenKit_int_wall_2x4",
+            "SunkenKit_int_wall_4x4",
+            "SunkenKit_slope1x2",
+            "SunkenKit_int_stair",
+            "SunkenKit_stair_corner_left",
+            "TraderChest_static",
+            "TraderRune",
+            "TraderTent",
+            "ForceField_0",
+        };
 
         internal static bool HasInitializedPrefabs => PrefabRefs.Count > 0;
 
@@ -192,18 +192,23 @@ namespace MVBP.Helpers
             }
 
             // Get specifically targeted prefabs
-            //foreach (var name in SpecificPrefabNames)
-            //{
-            //    var prefab = PrefabManager.Instance.GetPrefab(name);
-            //    if (prefab != null && !EligiblePrefabs.ContainsKey(name))
-            //    {
-            //        EligiblePrefabs.Add(name, prefab);
-            //    }
-            //    else
-            //    {
-            //        Log.LogWarning($"Could not find prefab: {name}");
-            //    }
-            //}
+            foreach (var name in SpecificPrefabNames)
+            {
+                var prefab = PrefabManager.Instance.GetPrefab(name);
+                if (prefab != null && !EligiblePrefabs.ContainsKey(name))
+                {
+                    if (!prefab.HasComponent<ZNetView>())
+                    {
+                        var nview = prefab.AddComponent<ZNetView>();
+                        nview.m_persistent = true;
+                    }
+                    EligiblePrefabs.Add(name, prefab);
+                }
+                else
+                {
+                    Log.LogWarning($"Could not find prefab: {name}");
+                }
+            }
 
             foreach (var prefab in EligiblePrefabs.Values)
             {
