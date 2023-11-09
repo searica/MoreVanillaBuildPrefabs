@@ -1,5 +1,6 @@
 ﻿// Ignore Spelling: MVBP
 
+using Jotunn.Managers;
 using MVBP.Configs;
 using MVBP.Extensions;
 using System;
@@ -920,6 +921,10 @@ namespace MVBP.Helpers
             {
                 ApplyBedPatches(prefabName, piece.gameObject);
             }
+            if (ConfigManager.IsEnableFermenterPatches)
+            {
+                ApplyFermenterPatches(prefabName, piece.gameObject);
+            }
         }
 
         /// <summary>
@@ -931,22 +936,24 @@ namespace MVBP.Helpers
         {
             if (InitManager.TryGetPieceDB(name, out PieceDB pieceDB))
             {
-                if (pieceDB.playerBasePatch)
-                {
-                    var playerBase = new GameObject("PlayerBase");
-                    playerBase.transform.parent = gameObject.transform;
-                    playerBase.layer = CharacterTriggerLayer;
-
-                    var collider = playerBase.AddComponent<SphereCollider>();
-                    collider.enabled = true;
-                    collider.isTrigger = true;
-                    collider.radius = 20;
-
-                    var playerBaseEffect = playerBase.AddComponent<EffectArea>();
-                    playerBaseEffect.enabled = true;
-                    playerBaseEffect.m_type = EffectArea.Type.PlayerBase;
-                }
+                if (pieceDB.playerBasePatch) { AddPlayerBase(gameObject); }
             }
+        }
+
+        private static void AddPlayerBase(GameObject gameObject)
+        {
+            var playerBase = new GameObject("PlayerBase");
+            playerBase.transform.parent = gameObject.transform;
+            playerBase.layer = CharacterTriggerLayer;
+
+            var collider = playerBase.AddComponent<SphereCollider>();
+            collider.enabled = true;
+            collider.isTrigger = true;
+            collider.radius = 20;
+
+            var playerBaseEffect = playerBase.AddComponent<EffectArea>();
+            playerBaseEffect.enabled = true;
+            playerBaseEffect.m_type = EffectArea.Type.PlayerBase;
         }
 
         private static void ApplyDoorPatches(string name, GameObject gameObject)
@@ -1000,6 +1007,85 @@ namespace MVBP.Helpers
 
             var bed = gameObject.AddComponent<Bed>();
             bed.m_spawnPoint = attachPoint.transform;
+        }
+
+        /// <summary>
+        ///     Applies patches to selected pieces so they
+        ///     function as a fermenter
+        /// </summary>
+        /// <param name="prefab"></param>
+        private static void ApplyFermenterPatches(string name, GameObject gameObject)
+        {
+            switch (name)
+            {
+                case "dvergrprops_barrel":
+
+                    // Get child object clones
+                    var FermenterPrefab = PrefabManager.Instance.GetPrefab("fermenter");
+                    var add_button = FermenterPrefab.transform.Find("add_button").gameObject.DeepCopy();
+                    var tap_button = FermenterPrefab.transform.Find("tap_button").gameObject.DeepCopy();
+                    var roofcheckpoint = FermenterPrefab.transform.Find("roofcheckpoint").gameObject.DeepCopy();
+                    var output = FermenterPrefab.transform.Find("output").gameObject.DeepCopy();
+                    var _ready = FermenterPrefab.transform.Find("_ready").gameObject.DeepCopy();
+                    var _fermenting = FermenterPrefab.transform.Find("_fermenting").gameObject.DeepCopy();
+
+                    var VanillaFermenter = FermenterPrefab.GetComponent<Fermenter>();
+
+                    // Assign to dvergrprops barrel
+                    add_button.transform.parent = gameObject.transform;
+                    tap_button.transform.parent = gameObject.transform;
+                    roofcheckpoint.transform.parent = gameObject.transform;
+                    output.transform.parent = gameObject.transform;
+                    _ready.transform.parent = gameObject.transform;
+                    _fermenting.transform.parent = gameObject.transform;
+
+                    // Adjust locations
+                    add_button.transform.localScale = Vector3.one;
+                    add_button.transform.localPosition = new Vector3(0f, 0.75f, 0f);
+
+                    tap_button.transform.localPosition = new Vector3(0f, 0.5f, 0.9f);
+                    output.transform.localPosition = new Vector3(0f, 0.5f, 1.2f);
+                    roofcheckpoint.transform.localPosition = new Vector3(0f, 1.5f, 0f);
+                    _ready.transform.localPosition = new Vector3(0f, 0.75f, 0f);
+                    _fermenting.transform.localPosition = new Vector3(0f, 0.75f, 0f);
+
+                    // make fake top
+                    var _top = new GameObject("_top");
+                    _top.transform.parent = gameObject.transform;
+
+                    // Set up fermenter component
+                    var activeState = gameObject.activeSelf;
+                    gameObject.SetActive(false);
+                    var fermenter = gameObject.AddComponent<Fermenter>();
+
+                    fermenter.m_addSwitch = add_button.GetComponent<Switch>();
+                    fermenter.m_tapSwitch = tap_button.GetComponent<Switch>();
+                    fermenter.m_roofCheckPoint = roofcheckpoint.transform;
+                    fermenter.m_topObject = _top;
+                    fermenter.m_readyObject = _ready;
+                    fermenter.m_fermentingObject = _fermenting;
+                    fermenter.m_outputPoint = output.transform;
+
+                    // Copy values from vanilla fermenter
+                    fermenter.m_tapDelay = VanillaFermenter.m_tapDelay;
+                    fermenter.m_updateCoverTimer = VanillaFermenter.m_updateCoverTimer;
+                    fermenter.m_fermentationDuration = VanillaFermenter.m_fermentationDuration * 0.7f;
+                    fermenter.m_name = VanillaFermenter.m_name;
+
+                    // fix effects
+                    fermenter.m_addedEffects = VanillaFermenter.m_addedEffects;
+                    fermenter.m_tapEffects = VanillaFermenter.m_tapEffects;
+                    fermenter.m_spawnEffects = VanillaFermenter.m_spawnEffects;
+                    fermenter.m_conversion = VanillaFermenter.m_conversion;
+
+                    gameObject.SetActive(activeState);
+
+                    AddPlayerBase(gameObject);
+                    break;
+
+                default:
+                    break;
+            }
         }
     }
 }
