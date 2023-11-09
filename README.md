@@ -20,6 +20,27 @@ If you are using a mod manager for Thunderstore simply install the mod from ther
 ## Configuration
 Most changes made to the configuration settings will be reflected in-game immediately (options requiring a restart will explicity say so) and they will also sync to clients if the mod is on the server. The mod also has a built in file watcher so you can edit settings via an in-game configuration manager (changes applied upon closing the in-game configuration manager) or by changing values in the file via a text editor or mod manager.
 
+### Default Configuration
+The mod has a default configuration that enables ~100 new pieces by default. The configuration settings for these pieces are intended to provide a reasonable balance and ensure that someone playing with the mod will only unlock various build pieces after encountering them in the world. As you progress through the game you will also unlock torches that don't require fuel, fires that don't require fuel, and a new portal that can be configured to ignore portal restrictions. As the default settings are based on my preferences and not yours, you are of course able to change these default configurations however you please. 
+
+### Default Enabled Pieces
+<details>
+  <summary>Click to see a general list of enabled pieces (contains spoilers.)</summary>
+
+  - All black marble pieces used in Dvergr structures.
+  - All Dvergr furniture.
+  - Most Dvergr wooden structures.
+  - Dvergr demisters.
+  - Fuling village pieces.
+  - Various rocks.
+  - Extra furniture and decorations.
+  - Turf roofs.
+  - Statues.
+  - Wood ledge.
+
+  See the PrefabConfig.cs file in the source code for the full default configuration or install the mode and check the generated configuration file.
+</details>
+
 ### Global Section Configuration:
 
 **CreativeMode** [Synced with Server]
@@ -131,27 +152,6 @@ The rest of the configuration files contains ["Prefab-Name"] sections to configu
     - Acceptable values: False, True
     - Default value: false
     - *Note:* this setting is not available on some prefabs because it needs to always be true.
-
-### Default Prefab Configuration
-The mod has a default configuration that enables ~100 new pieces by default. The configuration settings for these pieces are intended to provide a reasonable balance and ensure that someone playing with the mod will only unlock various build pieces after encountering them in the world. As the default settings are based on my preferences and not yours, you are of course able to change these default configurations however you please.
-
-### Default Enabled Pieces
-<details>
-  <summary>Click to see a general list of enabled pieces (contains spoilers.)</summary>
-
-  - All black marble pieces used in Dvergr structures.
-  - All Dvergr furniture.
-  - Most Dvergr wooden structures.
-  - Dvergr demisters.
-  - Fuling village pieces.
-  - Various rocks.
-  - Extra furniture and decorations.
-  - Turf roofs.
-  - Statues.
-  - Wood ledge.
-
-  See the PrefabConfig.cs file in the source code for the full default configuration or install the mode and check the generated configuration file.
-</details>
 
 ## Detailed Mechanics
 This mod enables prefabs that were not intended to used for building by players, so they may lack things like proper collision or snap points. All of the prefabs enabled by the default configuration have been patched to fix those sorts of issues and make them behave similarly to vanilla build pieces. These patches are applied whether the prefab is enabled for building or not to make sure that prefabs that have been placed previously still behave as intended (ie they don't lose their collision and fall though the world).

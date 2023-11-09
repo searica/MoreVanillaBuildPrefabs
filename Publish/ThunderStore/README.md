@@ -18,7 +18,7 @@ If you are using a mod manager for Thunderstore simply install the mod from ther
 **Recommended:** Install [SearsCatalog](https://valheim.thunderstore.io/package/ComfyMods/SearsCatalog/) to extend the hammer build table and allow you to access all the pieces this mod adds even if there are too many added pieces for the vanilla build table. If you install the mod from Thunderstore via r2modman or Thunderstore mod manager then SearsCatalog will automatically be installed as well.
 
 ## Configuration
-Changes made to the configuration settings will be reflected in-game immediately (no restart required) and they will also sync to clients if the mod is one the server. The mod also has a built in file watcher so you can edit settings via an in-game configuration manager (changes applied upon closing the in-game configuration manager) or by changing values in the file via a text editor or mod manager.
+Most changes made to the configuration settings will be reflected in-game immediately (options requiring a restart will explicity say so) and they will also sync to clients if the mod is on the server. The mod also has a built in file watcher so you can edit settings via an in-game configuration manager (changes applied upon closing the in-game configuration manager) or by changing values in the file via a text editor or mod manager.
 
 ### Global Section Configuration:
 

@@ -14,7 +14,7 @@ namespace MVBP.Helpers
             if (PieceManager.Instance.GetPieceCategory(HammerCategories.Nature) == null
                 || PieceManager.Instance.GetPieceCategory(HammerCategories.CreatorShop) == null)
             {
-                if (Config.IsVerbosityMedium)
+                if (ConfigManager.IsVerbosityMedium)
                 {
                     Log.LogInfo("Adding custom piece categories");
                 }
@@ -25,7 +25,7 @@ namespace MVBP.Helpers
 
         internal static void RemoveCreatorShopPieceCategory()
         {
-            if (Config.IsVerbosityMedium)
+            if (ConfigManager.IsVerbosityMedium)
             {
                 Log.LogInfo("Removing custom piece categories");
             }

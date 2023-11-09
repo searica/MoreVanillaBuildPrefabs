@@ -120,7 +120,7 @@ namespace MVBP.Helpers
                     // they don't have pieces unless they are enabled in the config
                     piece.m_enabled = false;
 
-                    if (Config.IsVerbosityHigh)
+                    if (ConfigManager.IsVerbosityHigh)
                     {
                         Log.LogInfo($"Created Piece component for: {prefab.name}");
                     }
@@ -259,7 +259,7 @@ namespace MVBP.Helpers
 
             AddedPrefabs.Add(prefab.name);
 
-            if (Config.IsVerbosityHigh)
+            if (ConfigManager.IsVerbosityHigh)
             {
                 Log.LogInfo($"Added Piece {piece.m_name} to PieceTable {pieceTable.name}");
             }
@@ -307,7 +307,7 @@ namespace MVBP.Helpers
         /// <param name="pieceTableName"></param>
         internal static void RemoveAllCustomPiecesFromPieceTable(string pieceTableName)
         {
-            if (Config.IsVerbosityMedium)
+            if (ConfigManager.IsVerbosityMedium)
             {
                 Log.LogInfo("RemoveAllCustomPiecesFromPieceTable()");
             }
@@ -325,7 +325,7 @@ namespace MVBP.Helpers
             {
                 RemovePieceFromPieceTable(name, pieceTable);
             }
-            if (Config.IsVerbosityMedium)
+            if (ConfigManager.IsVerbosityMedium)
             {
                 Log.LogInfo($"Removed {numCustomPieces - AddedPrefabs.Count} custom pieces");
             }
@@ -377,7 +377,7 @@ namespace MVBP.Helpers
             }
             catch (Exception e)
             {
-                if (Config.IsVerbosityMedium)
+                if (ConfigManager.IsVerbosityMedium)
                 {
                     Log.LogInfo($"{prefab.name}: {e}");
                 }

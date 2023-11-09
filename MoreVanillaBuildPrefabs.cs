@@ -4,9 +4,11 @@ using BepInEx;
 using BepInEx.Logging;
 using HarmonyLib;
 using Jotunn.Utils;
-
+using Jotunn.Managers;
 using System.Reflection;
 using UnityEngine;
+using MVBP.Configs;
+using MVBP.Helpers;
 
 namespace MVBP
 {
@@ -25,19 +27,35 @@ namespace MVBP
         public void Awake()
         {
             Log.Init(Logger);
-            Configs.Config.Init(Config);
-            Configs.Config.SetUpConfig();
+            ConfigManager.Init(Config);
+            ConfigManager.SetUpConfig();
 
             Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), harmonyInstanceId: PluginGUID);
 
             Game.isModded = true;
 
-            Configs.Config.SetUpSyncManagement();
+            ConfigManager.SetupWatcher();
+            ConfigManager.CheckForConfigManager();
+
+            // Re-initialization after reloading config and don't save since file was just reloaded
+            ConfigManager.OnConfigFileReloaded += () =>
+            {
+                InitManager.UpdatePlugin("Configuration file changed, re-initializing", saveConfig: false);
+            };
+
+            // Re-initialize after changing config data in-game and trigger a save to disk.
+            ConfigManager.OnConfigWindowClosed += () => InitManager.UpdatePlugin("Configuration changed in-game, re-initializing");
+
+            // Re-initialize after getting updated config data and trigger a save to disk.
+            SynchronizationManager.OnConfigurationSynchronized += (obj, attr) =>
+            {
+                InitManager.UpdatePlugin("Configuration synced, re-initializing");
+            };
         }
 
         public void OnDestroy()
         {
-            Configs.Config.Save();
+            ConfigManager.Save();
         }
     }
 

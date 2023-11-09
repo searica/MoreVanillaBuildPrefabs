@@ -76,14 +76,14 @@ namespace MVBP
             // trigger rescanning of piece tables via reflection
             if (TryGetPlanDBType(out Type planDBType))
             {
-                if (Config.IsVerbosityMedium) { Log.LogInfo("PlanBuild is installed"); }
+                if (ConfigManager.IsVerbosityMedium) { Log.LogInfo("PlanBuild is installed"); }
 
                 try
                 {
                     MethodInfo planDBGetter = AccessTools.PropertyGetter(planDBType, "Instance");
                     var planDBInstance = planDBGetter.Invoke(null, Array.Empty<object>());
                     MethodInfo method = AccessTools.Method("PlanBuild.Plans.PlanDB:ScanPieceTables", Type.EmptyTypes);
-                    if (Config.IsVerbosityMedium) { Log.LogInfo("Triggering PlanBuild ScanPieceTables"); }
+                    if (ConfigManager.IsVerbosityMedium) { Log.LogInfo("Triggering PlanBuild ScanPieceTables"); }
                     // Invoke if not null
                     method?.Invoke(planDBInstance, Array.Empty<object>());
                 }

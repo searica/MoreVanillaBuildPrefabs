@@ -704,8 +704,7 @@ namespace MVBP.Configs
                     craftingStation: nameof(CraftingStations.None),
                     requirements: "Crystal,16",
                     clipEverything: false,
-                    clipGround: true,
-                    placementPatch: true
+                    clipGround: true
                 )
             },
             {
@@ -2599,7 +2598,6 @@ namespace MVBP.Configs
                     requirements: "BlackMarble,8",
                     clipEverything: false,
                     clipGround: false,
-                    placementPatch: true,
                     pieceGroup: PieceGroup.BlackMarble
                 )
             },
@@ -2614,7 +2612,6 @@ namespace MVBP.Configs
                     requirements: "BlackMarble,8",
                     clipEverything: false,
                     clipGround: false,
-                    placementPatch: true,
                     pieceGroup: PieceGroup.BlackMarble
                 )
             },
@@ -4333,6 +4330,22 @@ namespace MVBP.Configs
                 )
             },
             {
+                "portal",
+                new PrefabDB(
+                    name: "portal",
+                    enabled: true,
+                    allowedInDungeons: false,
+                    category: HammerCategories.Misc,
+                    craftingStation: nameof(CraftingStations.GaldrTable),
+                    requirements: "GreyDwarfEye,10;Stone,20;BlackCore,2",
+                    clipEverything: false,
+                    clipGround: false,
+                    pieceName: "Stone portal",
+                    pieceDesc: "Connects another portal with equal or no tag.",
+                    pieceGroup: PieceGroup.Portal
+                )
+            },
+            {
                 "rock1_mistlands",
                 new PrefabDB(
                     name: "rock1_mistlands",
@@ -4975,8 +4988,7 @@ namespace MVBP.Configs
                     craftingStation: nameof(CraftingStations.BlackForge),
                     requirements: "FineWood,32",
                     clipEverything: true,
-                    clipGround: false,
-                    placementPatch: true
+                    clipGround: false
                 )
             },
             {

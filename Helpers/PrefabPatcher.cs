@@ -840,7 +840,7 @@ namespace MVBP.Helpers
                 default:
                     break;
             }
-            if (Config.IsEnableComfortPatches)
+            if (ConfigManager.IsEnableComfortPatches)
             {
                 ApplyComfortPatches(prefab);
             }
@@ -908,15 +908,15 @@ namespace MVBP.Helpers
             }
             var prefabName = InitManager.GetPrefabName(piece);
 
-            if (Config.IsEnableDoorPatches)
+            if (ConfigManager.IsEnableDoorPatches)
             {
                 ApplyDoorPatches(prefabName, piece.gameObject);
             }
-            if (Config.IsEnablePlayerBasePatches)
+            if (ConfigManager.IsEnablePlayerBasePatches)
             {
                 ApplyPlayerBasePatches(prefabName, piece.gameObject);
             }
-            if (Config.IsEnableBedPatches)
+            if (ConfigManager.IsEnableBedPatches)
             {
                 ApplyBedPatches(prefabName, piece.gameObject);
             }
