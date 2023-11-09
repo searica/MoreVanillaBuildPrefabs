@@ -61,9 +61,7 @@ namespace MVBP.Configs
 
         #endregion Events
 
-        #region Global Settings
-
-        private const string MainSection = "\u200B\u200BGlobal";
+        #region LoggerLevel
 
         internal enum LoggerLevel
         {
@@ -72,20 +70,76 @@ namespace MVBP.Configs
             High = 2,
         }
 
-        internal static ConfigEntry<bool> CreativeMode { get; private set; }
-        internal static ConfigEntry<bool> ForceAllPrefabs { get; private set; }
         internal static ConfigEntry<LoggerLevel> Verbosity { get; private set; }
-        internal static bool IsCreativeMode => CreativeMode.Value;
-        internal static bool IsForceAllPrefabs => ForceAllPrefabs.Value;
+        internal static LoggerLevel VerbosityLevel => Verbosity.Value;
         internal static bool IsVerbosityLow => Verbosity.Value >= LoggerLevel.Low;
         internal static bool IsVerbosityMedium => Verbosity.Value >= LoggerLevel.Medium;
         internal static bool IsVerbosityHigh => Verbosity.Value >= LoggerLevel.High;
+
+        #endregion LoggerLevel
+
+        #region BindConfig
+
+        internal static ConfigEntry<T> BindConfig<T>(
+            string section,
+            string name,
+            T value,
+            string description,
+            AcceptableValueBase acceptVals = null,
+            bool synced = true
+        )
+        {
+            string extendedDescription = GetExtendedDescription(description, synced);
+            ConfigEntry<T> configEntry = configFile.Bind(
+                section,
+                name,
+                value,
+                new ConfigDescription(
+                    extendedDescription,
+                    acceptVals,
+                    synced ? AdminConfig : ClientConfig
+                )
+            );
+            return configEntry;
+        }
+
+        private static readonly ConfigurationManagerAttributes AdminConfig = new() { IsAdminOnly = true };
+        private static readonly ConfigurationManagerAttributes ClientConfig = new() { IsAdminOnly = false };
+        private const char ZWS = '\u200B';
+
+        /// <summary>
+        ///     Prepends Zero-Width-Space to set ordering of configuration sections
+        /// </summary>
+        /// <param name="sectionName">Section name</param>
+        /// <param name="priority">Number of ZWS chars to prepend</param>
+        /// <returns></returns>
+        private static string SetStringPriority(string sectionName, int priority)
+        {
+            if (priority == 0) { return sectionName; }
+            return new string(ZWS, priority) + sectionName;
+        }
+
+        internal static string GetExtendedDescription(string description, bool synchronizedSetting)
+        {
+            return description + (synchronizedSetting ? " [Synced with Server]" : " [Not Synced with Server]");
+        }
+
+        #endregion BindConfig
+
+        #region Global Settings
+
+        private static readonly string MainSection = SetStringPriority("Global", 4);
+
+        internal static ConfigEntry<bool> CreativeMode { get; private set; }
+        internal static ConfigEntry<bool> ForceAllPrefabs { get; private set; }
+        internal static bool IsCreativeMode => CreativeMode.Value;
+        internal static bool IsForceAllPrefabs => ForceAllPrefabs.Value;
 
         #endregion Global Settings
 
         #region Admin Settings
 
-        private const string AdminSection = "\u200BAdmin";
+        private static readonly string AdminSection = SetStringPriority("Admin", 3);
         internal static ConfigEntry<bool> CreatorShopAdminOnly { get; private set; }
         internal static ConfigEntry<bool> AdminDeconstructOtherPlayers { get; private set; }
         internal static bool IsCreatorShopAdminOnly => CreatorShopAdminOnly.Value;
@@ -95,7 +149,7 @@ namespace MVBP.Configs
 
         #region Customization Settings
 
-        private const string CustomizationSection = "\u200BCustomization";
+        private static readonly string CustomizationSection = SetStringPriority("Customization", 2);
         internal static ConfigEntry<bool> EnableHammerCrops { get; private set; }
         internal static ConfigEntry<bool> EnableDoorPatches { get; private set; }
         internal static ConfigEntry<bool> EnableComfortPatches { get; private set; }
@@ -113,9 +167,11 @@ namespace MVBP.Configs
 
         #region Unsafe Patches
 
-        private const string UnsafeSection = "\u200BUnsafe Patches";
+        private static readonly string UnsafeSection = SetStringPriority("Unsafe Patches", 1);
         internal static ConfigEntry<bool> EnableBedPatches { get; private set; }
+        internal static ConfigEntry<bool> EnableFermenterPatches { get; private set; }
         internal static bool IsEnableBedPatches => EnableBedPatches.Value;
+        internal static bool IsEnableFermenterPatches => EnableFermenterPatches.Value;
 
         #endregion Unsafe Patches
 
@@ -166,41 +222,6 @@ namespace MVBP.Configs
         }
 
         #endregion Update Flags & Checks
-
-        #region Config Binding
-
-        private static readonly ConfigurationManagerAttributes AdminConfig = new() { IsAdminOnly = true };
-        private static readonly ConfigurationManagerAttributes ClientConfig = new() { IsAdminOnly = false };
-
-        internal static ConfigEntry<T> BindConfig<T>(
-            string section,
-            string name,
-            T value,
-            string description,
-            AcceptableValueBase acceptVals = null,
-            bool synced = true
-        )
-        {
-            string extendedDescription = GetExtendedDescription(description, synced);
-            ConfigEntry<T> configEntry = configFile.Bind(
-                section,
-                name,
-                value,
-                new ConfigDescription(
-                    extendedDescription,
-                    acceptVals,
-                    synced ? AdminConfig : ClientConfig
-                )
-            );
-            return configEntry;
-        }
-
-        internal static string GetExtendedDescription(string description, bool synchronizedSetting)
-        {
-            return description + (synchronizedSetting ? " [Synced with Server]" : " [Not Synced with Server]");
-        }
-
-        #endregion Config Binding
 
         internal static void Init(ConfigFile config)
         {
@@ -360,6 +381,16 @@ namespace MVBP.Configs
                 " if had set your spawn using a patched bed and log in without this mod."
             );
 
+            EnableFermenterPatches = BindConfig(
+                UnsafeSection,
+                "FermenterPatches (Requires Restart, Unsafe)",
+                false,
+                "Set to true/enabled to patch player-built instances of fermenting barrels " +
+                "to function as fermenters that are 30% faster than vanilla fermenters." +
+                "\nWARNING: enabling this setting can result in you losing the mead base that " +
+                "is fermenting if you load the area without this mod."
+            );
+
             // Set up event hooks
             CreativeMode.SettingChanged += PieceSettingChanged;
             ForceAllPrefabs.SettingChanged += PieceSettingChanged;
@@ -409,7 +440,7 @@ namespace MVBP.Configs
 
             prefabDBConfig.enabled = BindConfig(
                 sectionName,
-                "\u200BEnabled",
+                SetStringPriority("Enabled", 1),
                 defaultPrefabDB.enabled,
                 "If true then allow this prefab to be built and deconstructed. " +
                 "Note: this setting is ignored if ForceAllPrefabs is true. " +
