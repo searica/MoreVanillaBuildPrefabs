@@ -68,7 +68,7 @@ namespace MVBP
             Quaternion rotation
         )
         {
-            if (Config.IsVerbosityMedium)
+            if (ConfigManager.IsVerbosityMedium)
             {
                 Log.LogInfo("PlacePieceInstantiateDelegate()");
             }
@@ -81,7 +81,7 @@ namespace MVBP
                 if (container != null)
                 {
                     container.m_inventory.RemoveAll();
-                    if (Config.IsVerbosityMedium)
+                    if (ConfigManager.IsVerbosityMedium)
                     {
                         Log.LogInfo($"Emptied inventory for: {gameObject.name}");
                     }
@@ -148,7 +148,7 @@ namespace MVBP
 
             if (
                 PieceHelper.AddedPrefabs.Contains(selectedPrefab.name)
-                && Config.NeedsCollisionPatchForGhost(selectedPrefab.name)
+                && ConfigManager.NeedsCollisionPatchForGhost(selectedPrefab.name)
                 )
             {
                 // Needed to make some things work, like Stalagmite, blackmarble_corner_stair, silvervein, etc.
@@ -287,7 +287,7 @@ namespace MVBP
                 if (piece.IsCreator()) { return true; }
 
                 // Allow creative mode pieces to be removed by admin (based on config settings)
-                if (Config.IsAdminDeconstructOtherPlayers && SynchronizationManager.Instance.PlayerIsAdmin)
+                if (ConfigManager.IsAdminDeconstructOtherPlayers && SynchronizationManager.Instance.PlayerIsAdmin)
                 {
                     return true;
                 }
@@ -301,7 +301,7 @@ namespace MVBP
         {
             if (piece.gameObject.TryGetComponent(out Destructible destructible))
             {
-                if (Config.IsVerbosityMedium) Log.LogInfo("Removing destructible piece");
+                if (ConfigManager.IsVerbosityMedium) Log.LogInfo("Removing destructible piece");
 
                 if (!CreateHitEffects(destructible) && !SfxHelper.HasSfx(destructible.m_destroyedEffect))
                 {
@@ -317,7 +317,7 @@ namespace MVBP
 
         private static bool CreateHitEffects(Destructible destructible)
         {
-            if (Config.IsVerbosityMedium) Log.LogInfo("Creating hit effects");
+            if (ConfigManager.IsVerbosityMedium) Log.LogInfo("Creating hit effects");
 
             var hitEffects = destructible?.m_hitEffect?.m_effectPrefabs;
             if (hitEffects != null && hitEffects.Length != 0)
@@ -342,7 +342,7 @@ namespace MVBP
         {
             if (piece.gameObject.TryGetComponent(out MineRock5 mineRock5))
             {
-                if (Config.IsVerbosityMedium) Log.LogInfo("Removing MineRock5 piece");
+                if (ConfigManager.IsVerbosityMedium) Log.LogInfo("Removing MineRock5 piece");
 
                 mineRock5.DestroyMineRock5Piece();
                 return true;
@@ -354,7 +354,7 @@ namespace MVBP
         {
             if (piece.gameObject.TryGetComponent(out MineRock mineRock))
             {
-                if (Config.IsVerbosityMedium) Log.LogInfo("Removing MineRock5 piece");
+                if (ConfigManager.IsVerbosityMedium) Log.LogInfo("Removing MineRock5 piece");
 
                 mineRock.DestroyMineRockPiece();
                 return true;

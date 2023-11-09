@@ -19,7 +19,7 @@ namespace MVBP.Patches
         [HarmonyPatch(nameof(ZNet.Start))]
         public static void ZNetStartPostfix()
         {
-            if (Config.IsVerbosityMedium)
+            if (ConfigManager.IsVerbosityMedium)
             {
                 Log.LogInfo("Checking world modifiers");
             }
@@ -40,14 +40,14 @@ namespace MVBP.Patches
                 Log.LogInfo("World modifiers for resource rate are active, re-initializing");
 
                 var watch = new System.Diagnostics.Stopwatch();
-                if (Config.IsVerbosityMedium)
+                if (ConfigManager.IsVerbosityMedium)
                 {
                     watch.Start();
                 }
 
                 InitManager.UpdatePieces();
 
-                if (Config.IsVerbosityMedium)
+                if (ConfigManager.IsVerbosityMedium)
                 {
                     watch.Stop();
                     Log.LogInfo($"Time to re-initialize: {watch.ElapsedMilliseconds} ms");

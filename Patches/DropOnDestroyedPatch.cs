@@ -25,7 +25,7 @@ namespace MVBP
                 var piece = __instance.gameObject.GetComponent<Piece>();
                 if (piece != null && piece.IsPlacedByPlayer())
                 {
-                    if (Config.IsVerbosityMedium)
+                    if (ConfigManager.IsVerbosityMedium)
                     {
                         Log.LogInfo("Disabling on destroyed drops for player-built object");
                     }

@@ -112,7 +112,7 @@ namespace MVBP
 
             // Only interact if it is a piece added by this mod or
             // the prefab has previously had it's resources altered by the mod
-            if (Config.IsVerbosityMedium)
+            if (ConfigManager.IsVerbosityMedium)
             {
                 Log.LogInfo("Dropping resources for MVBP piece");
             }

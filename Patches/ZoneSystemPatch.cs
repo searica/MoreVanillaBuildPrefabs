@@ -20,7 +20,7 @@ namespace MVBP.Patches
         [HarmonyPatch(nameof(ZoneSystem.Start))]
         public static void ZoneSystemStartPrefix()
         {
-            if (Config.IsVerbosityMedium)
+            if (ConfigManager.IsVerbosityMedium)
             {
                 Log.LogInfo("ZoneSystemStartPrefix()");
             }
@@ -35,14 +35,14 @@ namespace MVBP.Patches
             Log.LogInfo("Performing mod initialization");
 
             var watch = new System.Diagnostics.Stopwatch();
-            if (Config.IsVerbosityMedium)
+            if (ConfigManager.IsVerbosityMedium)
             {
                 watch.Start();
             }
 
             InitManager.InitPlugin();
 
-            if (Config.IsVerbosityMedium)
+            if (ConfigManager.IsVerbosityMedium)
             {
                 watch.Stop();
                 Log.LogInfo($"Time to initialize: {watch.ElapsedMilliseconds} ms");
