@@ -4337,7 +4337,7 @@ namespace MVBP.Configs
                     allowedInDungeons: false,
                     category: HammerCategories.Misc,
                     craftingStation: nameof(CraftingStations.GaldrTable),
-                    requirements: "GreyDwarfEye,10;Stone,20;BlackCore,2",
+                    requirements: "GreydwarfEye,10;Stone,20;BlackCore,2",
                     clipEverything: false,
                     clipGround: false,
                     pieceName: "Stone portal",
