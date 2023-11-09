@@ -58,7 +58,7 @@ namespace MVBP
                     new CodeMatch(OpCodes.Stloc_3)
                 )
                 .SetInstructionAndAdvance(
-                    Transpilers.EmitDelegate<Func<GameObject, Vector3, Quaternion, GameObject>>(PlacePieceInstantiateDelegate))
+                    Transpilers.EmitDelegate(PlacePieceInstantiateDelegate))
                 .InstructionEnumeration();
         }
 
@@ -120,7 +120,7 @@ namespace MVBP
                     )
                 )
                 .SetInstructionAndAdvance(
-                    Transpilers.EmitDelegate<Func<GameObject, GameObject>>(SetupPlacementGhostInstantiateDelegate))
+                    Transpilers.EmitDelegate(SetupPlacementGhostInstantiateDelegate))
                 .InstructionEnumeration();
         }
 

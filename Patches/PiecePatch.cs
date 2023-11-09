@@ -2,9 +2,7 @@
 
 using HarmonyLib;
 using MVBP.Configs;
-using MVBP.Extensions;
 using MVBP.Helpers;
-using System;
 using System.Collections.Generic;
 using System.Reflection.Emit;
 
@@ -92,8 +90,7 @@ namespace MVBP
                         AccessTools.Field(typeof(Piece), nameof(Piece.m_resources))),
                     new CodeMatch(OpCodes.Stloc_1)
                 )
-                .SetInstructionAndAdvance(
-                    Transpilers.EmitDelegate<Func<Piece, Piece.Requirement[]>>(DropResources_m_resources_Delegate))
+                .SetInstructionAndAdvance(Transpilers.EmitDelegate(DropResources_m_resources_Delegate))
                 .InstructionEnumeration();
         }
 
