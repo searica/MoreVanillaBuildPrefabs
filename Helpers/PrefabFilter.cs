@@ -82,7 +82,7 @@ namespace MVBP.Helpers
                 prefab.GetComponent("ShipConstructor") != null ||
                 prefab.GetComponent("TriggerSpawner") != null ||
                 prefab.GetComponent("TeleportAbility") != null ||
-                prefab.GetComponent("TeleportWorld") != null ||
+                // prefab.GetComponent("TeleportWorld") != null || // allow stone portal
 
                 prefab.name.StartsWith("_") ||
                 prefab.name.StartsWith("OLD_") ||
