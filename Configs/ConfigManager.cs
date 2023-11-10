@@ -29,8 +29,6 @@ namespace MVBP.Configs
         private static BaseUnityPlugin ConfigurationManager;
         private const string ConfigManagerGUID = "com.bepis.bepinex.configurationmanager";
 
-        private static readonly AcceptableValueList<bool> AcceptableBoolValuesList = new(new bool[] { false, true });
-
         #region Events
 
         /// <summary>
@@ -386,7 +384,7 @@ namespace MVBP.Configs
                 "FermenterPatches (Requires Restart, Unsafe)",
                 false,
                 "Set to true/enabled to patch player-built instances of fermenting barrels " +
-                "to function as fermenters that are 30% faster than vanilla fermenters." +
+                "to function as a fermenter that are 30% faster than the vanilla fermenter." +
                 "\nWARNING: enabling this setting can result in you losing the mead base that " +
                 "is fermenting if you load the area without this mod."
             );
@@ -445,8 +443,7 @@ namespace MVBP.Configs
                 "If true then allow this prefab to be built and deconstructed. " +
                 "Note: this setting is ignored if ForceAllPrefabs is true. " +
                 "It is also ignored if the piece category is CreatorShop or Nature " +
-                "and CreativeMode is false.",
-                AcceptableBoolValuesList
+                "and CreativeMode is false."
             );
             prefabDBConfig.enabled.SettingChanged += PieceSettingChanged;
             defaultPrefabDB.enabled = prefabDBConfig.enabled.Value;
@@ -455,8 +452,7 @@ namespace MVBP.Configs
                 sectionName,
                 "AllowedInDungeons",
                 defaultPrefabDB.allowedInDungeons,
-                "If true then this prefab can be built inside dungeon zones.",
-                AcceptableBoolValuesList
+                "If true then this prefab can be built inside dungeon zones."
             );
             prefabDBConfig.allowedInDungeons.SettingChanged += PieceSettingChanged;
             defaultPrefabDB.allowedInDungeons = prefabDBConfig.allowedInDungeons.Value;
@@ -501,8 +497,7 @@ namespace MVBP.Configs
                     "Set to true to enable collision patching during placement of the piece.\n" +
                     "Recommended to try this if the piece is not appearing when you go to place it.\n\n" +
                     " If enabling the placement patch via this setting fixes the issue please open an issue on Github" +
-                    " letting me know so I can make sure the collision patch is always applied to this piece.",
-                    AcceptableBoolValuesList
+                    " letting me know so I can make sure the collision patch is always applied to this piece."
                 );
                 prefabDBConfig.placementPatch.SettingChanged += PlacementSettingChanged;
                 defaultPrefabDB.placementPatch = prefabDBConfig.placementPatch.Value;
@@ -515,8 +510,7 @@ namespace MVBP.Configs
                     "ClipEverything",
                     false,
                     "Set to true to allow piece to clip through everything during placement. Recommended to try this if the piece is not appearing when you go to place it.\n" +
-                    "If this setting fixes the issue please open an issue on Github letting me know so I can make sure the collision patch is always applied to this piece.",
-                    AcceptableBoolValuesList
+                    "If this setting fixes the issue please open an issue on Github letting me know so I can make sure the collision patch is always applied to this piece."
                 );
                 prefabDBConfig.clipEverything.SettingChanged += PieceSettingChanged;
                 defaultPrefabDB.clipEverything = prefabDBConfig.clipEverything.Value;
@@ -525,12 +519,11 @@ namespace MVBP.Configs
             if (!defaultPrefabDB.clipGround)
             {
                 prefabDBConfig.clipGround = BindConfig(
-                sectionName,
-                "ClipGround",
-                false,
-                "Set to true to allow piece to clip through ground during placement.Recommended to try this if the piece is not floating when you try to place it.\n" +
-                "(If this setting fixes the issue please open an issue on Github letting me know so I can make sure the piece can always applied clip the ground.)",
-                    AcceptableBoolValuesList
+                    sectionName,
+                    "ClipGround",
+                    false,
+                    "Set to true to allow piece to clip through ground during placement.Recommended to try this if the piece is not floating when you try to place it.\n" +
+                    "(If this setting fixes the issue please open an issue on Github letting me know so I can make sure the piece can always applied clip the ground.)"
                 );
                 prefabDBConfig.clipGround.SettingChanged += PieceSettingChanged;
                 defaultPrefabDB.clipGround = prefabDBConfig.clipGround.Value;
