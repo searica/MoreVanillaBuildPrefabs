@@ -131,5 +131,22 @@ namespace MVBP
                 LogInfo("  -" + field.Name + " = " + field.GetValue(piece));
             }
         }
+
+        internal static void LogComponent(Component comp)
+        {
+            LogInfo("***** " + comp.name + " *****");
+
+            PropertyInfo[] properties = comp.GetType().GetProperties(ReflectionUtils.AllBindings);
+            foreach (PropertyInfo property in properties)
+            {
+                LogInfo("  -" + property.Name + " = " + property.GetValue(comp));
+            }
+
+            FieldInfo[] fields = comp.GetType().GetFields(ReflectionUtils.AllBindings);
+            foreach (var field in fields)
+            {
+                LogInfo("  -" + field.Name + " = " + field.GetValue(comp));
+            }
+        }
     }
 }
