@@ -58,13 +58,18 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <Compile Remove="Libraries\PlanBuild\**" />
+	  <EmbeddedResource Remove="Libraries\PlanBuild\**" />
+	  <None Remove="Libraries\PlanBuild\**" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<Content Include="LICENSE" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<Folder Include="Libraries" />
 		<Folder Include="Libraries\Debug\" />
-		<Folder Include="Libraries\PlanBuild\" />
 		<Folder Include="Publish\Nexus\" />
 		<Folder Include="Publish\ThunderStore\" />
 	</ItemGroup>

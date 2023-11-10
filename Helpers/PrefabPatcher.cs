@@ -942,18 +942,27 @@ namespace MVBP.Helpers
 
         private static void AddPlayerBase(GameObject gameObject)
         {
+            // create inactive object (so Awake on components is not called immediately)
             var playerBase = new GameObject("PlayerBase");
-            playerBase.transform.parent = gameObject.transform;
-            playerBase.layer = CharacterTriggerLayer;
+            playerBase.SetActive(false);
 
+            // Add as child of gameObject
+            playerBase.transform.parent = gameObject.transform;
+
+            // Set up character trigger sphere collider
+            playerBase.layer = CharacterTriggerLayer;
             var collider = playerBase.AddComponent<SphereCollider>();
             collider.enabled = true;
             collider.isTrigger = true;
             collider.radius = 20;
 
+            // Add player base type EffectArea
             var playerBaseEffect = playerBase.AddComponent<EffectArea>();
             playerBaseEffect.enabled = true;
             playerBaseEffect.m_type = EffectArea.Type.PlayerBase;
+
+            // Activate the child PlayerBase object to trigger the awake functions
+            playerBase.SetActive(true);
         }
 
         private static void ApplyDoorPatches(string name, GameObject gameObject)
