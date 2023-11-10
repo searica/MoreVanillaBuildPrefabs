@@ -217,7 +217,7 @@ namespace MVBP.Helpers
                     continue;
                 }
 
-                if (ConfigManager.IsVerbosityHigh) { Log.LogPrefab(prefab); }
+                if (ConfigManager.IsVerbosityHigh) { Log.LogGameObject(prefab); }
 
                 // Always patching means it only runs once and
                 // prevents trailership being unusable if disabled.

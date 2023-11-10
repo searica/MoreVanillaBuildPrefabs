@@ -83,69 +83,41 @@ namespace MVBP
 
         internal static void LogWarning(object data) => _logSource.LogWarning(data);
 
-        internal static void LogPrefab(GameObject prefab, bool includeChildren = false)
+        internal static void LogGameObject(GameObject prefab, bool includeChildren = false)
         {
             LogInfo("***** " + prefab.name + " *****");
             foreach (Component compo in prefab.GetComponents<Component>())
             {
-                LogInfo("-" + compo.GetType().Name);
-                PropertyInfo[] properties = prefab.GetType().GetProperties();
-                foreach (PropertyInfo property in properties)
-                {
-                    LogInfo("  -" + property.Name + " = " + property.GetValue(prefab));
-                }
+                LogComponent(compo);
             }
 
             if (!includeChildren) { return; }
 
-            LogInfo("***** " + prefab.name + " (childs) *****");
+            LogInfo("***** " + prefab.name + " (children) *****");
             foreach (Transform child in prefab.transform)
             {
-                LogInfo("-" + child.gameObject.name);
-
-                foreach (Component component in child.gameObject.GetComponents<Component>())
+                LogInfo($" - {child.gameObject.name}");
+                foreach (Component compo in child.gameObject.GetComponents<Component>())
                 {
-                    LogInfo("  -" + component.GetType().Name);
-                    PropertyInfo[] properties = component.GetType().GetProperties();
-                    foreach (PropertyInfo property in properties)
-                    {
-                        LogInfo("    -" + property.Name + " = " + property.GetValue(component));
-                    }
+                    LogComponent(compo);
                 }
             }
         }
 
-        internal static void LogPiece(Piece piece)
+        internal static void LogComponent(Component compo)
         {
-            LogInfo("***** " + piece.name + " *****");
+            LogInfo($"--- {compo.GetType().Name}: {compo.name} ---");
 
-            PropertyInfo[] properties = piece.GetType().GetProperties();
-            foreach (PropertyInfo property in properties)
+            PropertyInfo[] properties = compo.GetType().GetProperties(ReflectionUtils.AllBindings);
+            foreach (var property in properties)
             {
-                LogInfo("  -" + property.Name + " = " + property.GetValue(piece));
+                LogInfo($" - {property.Name} = {property.GetValue(compo)}");
             }
 
-            FieldInfo[] fields = piece.GetType().GetFields();
+            FieldInfo[] fields = compo.GetType().GetFields(ReflectionUtils.AllBindings);
             foreach (var field in fields)
             {
-                LogInfo("  -" + field.Name + " = " + field.GetValue(piece));
-            }
-        }
-
-        internal static void LogComponent(Component comp)
-        {
-            LogInfo("***** " + comp.name + " *****");
-
-            PropertyInfo[] properties = comp.GetType().GetProperties(ReflectionUtils.AllBindings);
-            foreach (PropertyInfo property in properties)
-            {
-                LogInfo("  -" + property.Name + " = " + property.GetValue(comp));
-            }
-
-            FieldInfo[] fields = comp.GetType().GetFields(ReflectionUtils.AllBindings);
-            foreach (var field in fields)
-            {
-                LogInfo("  -" + field.Name + " = " + field.GetValue(comp));
+                LogInfo($" - {field.Name} = {field.GetValue(compo)}");
             }
         }
     }
