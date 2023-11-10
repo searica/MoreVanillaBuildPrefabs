@@ -945,14 +945,16 @@ namespace MVBP.Helpers
             // create PlayerBase object as child
             var playerBase = new GameObject("PlayerBase");
             playerBase.transform.parent = gameObject.transform;
+            playerBase.transform.localScale = Vector3.one;
             playerBase.transform.localPosition = Vector3.zero;
             playerBase.layer = CharacterTriggerLayer;
 
             // Set up character trigger sphere collider
             var collider = playerBase.AddComponent<SphereCollider>();
+            collider.center = Vector3.zero;
+            collider.radius = 20;
             collider.enabled = true;
             collider.isTrigger = true;
-            collider.radius = 20;
 
             // Add player base type EffectArea
             var playerBaseEffect = playerBase.AddComponent<EffectArea>();
