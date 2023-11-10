@@ -17,6 +17,7 @@ namespace MVBP
         /// </summary>
         /// <param name="__instance"></param>
         [HarmonyPostfix]
+        [HarmonyPriority(Priority.VeryHigh)]
         [HarmonyPatch(nameof(Piece.Awake))]
         private static void PieceAwakePostfix(Piece __instance)
         {
@@ -29,6 +30,7 @@ namespace MVBP
         /// </summary>
         /// <param name="__instance"></param>
         [HarmonyPostfix]
+        [HarmonyPriority(Priority.VeryHigh)]
         [HarmonyPatch(nameof(Piece.SetCreator))]
         private static void PieceSetCreatorPostfix(Piece __instance)
         {
