@@ -66,7 +66,7 @@ namespace MVBP.Helpers
 
         internal static bool TryGetPieceDB(string name, out PieceDB pieceDB)
         {
-            if (string.IsNullOrEmpty(name) && PieceRefs.TryGetValue(name, out pieceDB))
+            if (!string.IsNullOrEmpty(name) && PieceRefs.TryGetValue(name, out pieceDB))
             {
                 return true;
             }
