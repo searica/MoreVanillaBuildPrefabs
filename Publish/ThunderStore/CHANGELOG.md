@@ -8,13 +8,24 @@
 			<th align="center">Notes</th>
 		</tr>
 		<tr>
+			<td align="center">0.6.1</td>
+			<td align="left">
+				<ul>
+					<li>Added new portal and customization to allow unrestricted teleportation with it.</li>
+					<li>Added new unsafe patch allow using a new fermenter.</li>
+					<li>Fixed bug where PlayerBase was not being applied correctly when the patch for it was enabled.</li>
+					<li>Fixed a secret door being unable to be closed.</li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
 			<td align="center">0.6.0</td>
 			<td align="left">
 				<ul>
 					<li>Updated for newest patch</li>
 					<li>Changed configuration file format for non-prefab sections to use toggles in-game.</li>
 					<li>
-						Added configuration options enable:
+						Added configuration options to enable:
 						<ul>
 							<li>All seasonal pieces.</li>
 							<li>Patching siding door pieces placed by players and enable sliding doors by default.</li>

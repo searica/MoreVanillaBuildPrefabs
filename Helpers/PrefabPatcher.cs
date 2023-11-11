@@ -968,7 +968,7 @@ namespace MVBP.Helpers
             switch (name)
             {
                 case "dvergrtown_slidingdoor":
-                    //case "dungeon_queen_door":
+                case "dvergrtown_secretdoor":
                     {
                         if (gameObject.TryGetComponent(out Door door))
                         {

@@ -326,8 +326,7 @@ namespace MVBP.Configs
                 "HammerCrops",
                 false,
                 "Set to true/enabled to enable placing vanilla crops with the hammer." +
-                " Unless this setting is true Vanilla crops will not be available" +
-                " for placing with the hammer."
+                " Unless this setting is true Vanilla crops will not be available for placing with the hammer."
             );
 
             EnableComfortPatches = BindConfig(
@@ -341,9 +340,8 @@ namespace MVBP.Configs
                 CustomizationSection,
                 "DoorPatches (Requires Restart)",
                 true,
-                "Set to true/enabled to patch player-built instances of new " +
-                "doors to allow closing them even if that is normally prevented." +
-                " Currently only works for the sliding door piece."
+                "Set to true/enabled to patch player-built instances of new doors " +
+                "(that do not require keys) to allow closing them even if that is normally prevented."
             );
 
             EnablePlayerBasePatches = BindConfig(
