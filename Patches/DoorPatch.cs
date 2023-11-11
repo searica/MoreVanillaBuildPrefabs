@@ -41,7 +41,7 @@ namespace MVBP.Patches
             var prefabName = InitManager.GetPrefabName(__instance);
             if (prefabName == "dvergrtown_secretdoor")
             {
-                if (__state == -1 && currentState == 0) // door has been closed
+                if ((__state == -1 || __state == 1) && currentState == 0) // door has been closed
                 {
                     if (__instance.gameObject.TryGetComponent(out ZNetView nview) && nview != null && nview.IsValid())
                     {

@@ -14,7 +14,7 @@
 					<li>Added new portal and customization to allow unrestricted teleportation with it.</li>
 					<li>Added new unsafe patch allow using a new fermenter.</li>
 					<li>Fixed bug where PlayerBase was not being applied correctly when the patch for it was enabled.</li>
-					<li>Fixed a secret door being unable to be closed.</li>
+					<li>Patched a secret door to allow closing it.</li>
 				</ul>
 			</td>
 		</tr>
