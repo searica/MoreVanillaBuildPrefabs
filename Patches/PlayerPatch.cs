@@ -57,8 +57,7 @@ namespace MVBP
                     ),
                     new CodeMatch(OpCodes.Stloc_3)
                 )
-                .SetInstructionAndAdvance(
-                    Transpilers.EmitDelegate(PlacePieceInstantiateDelegate))
+                .SetInstructionAndAdvance(Transpilers.EmitDelegate(PlacePieceInstantiateDelegate))
                 .InstructionEnumeration();
         }
 
@@ -119,8 +118,7 @@ namespace MVBP
                         )
                     )
                 )
-                .SetInstructionAndAdvance(
-                    Transpilers.EmitDelegate(SetupPlacementGhostInstantiateDelegate))
+                .SetInstructionAndAdvance(Transpilers.EmitDelegate(SetupPlacementGhostInstantiateDelegate))
                 .InstructionEnumeration();
         }
 
