@@ -4340,7 +4340,7 @@ namespace MVBP.Configs
                     requirements: "GreydwarfEye,10;Stone,20;BlackCore,2",
                     clipEverything: false,
                     clipGround: false,
-                    pieceName: "Stone portal",
+                    pieceName: "Dvergr portal",
                     pieceDesc: "Connects another portal with equal or no tag.",
                     pieceGroup: PieceGroup.Portal
                 )

@@ -841,6 +841,19 @@ namespace MVBP.Helpers
                 default:
                     break;
             }
+
+            if (true && prefab.name == "portal")
+            {
+                var meshRender = prefab?.transform?.Find("New")?.Find("model")?.GetComponent<MeshRenderer>();
+                if (meshRender != null)
+                {
+                    var texture = MoreVanillaBuildPrefabs.LoadTextureFromResources("texture_portal_MainTex.png");
+                    var bumpMap = MoreVanillaBuildPrefabs.LoadTextureFromResources("texture_portal_n_BumpMap.png");
+                    meshRender.material.mainTexture = texture;
+                    meshRender.material.SetTexture("_BumpMap", bumpMap);
+                }
+            }
+
             if (ConfigManager.IsEnableComfortPatches)
             {
                 ApplyComfortPatches(prefab);

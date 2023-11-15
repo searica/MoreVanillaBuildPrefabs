@@ -9,6 +9,9 @@ using System.Reflection;
 using UnityEngine;
 using MVBP.Configs;
 using MVBP.Helpers;
+using System.Drawing.Imaging;
+using System.Drawing;
+using System.IO;
 
 namespace MVBP
 {
@@ -23,6 +26,29 @@ namespace MVBP
         internal const string Author = "Searica";
         public const string PluginGUID = $"{Author}.Valheim.{PluginName}";
         public const string PluginVersion = "0.6.1";
+
+        internal static Texture2D LoadTextureFromResources(string fileName)
+        {
+            var extension = Path.GetExtension(fileName).ToLower();
+            if (extension != ".png" && extension != ".jpg")
+            {
+                Log.LogWarning("LoadTextureFromResources can only load png or jpg textures");
+                return null;
+            }
+            fileName = Path.GetFileNameWithoutExtension(fileName);
+
+            Bitmap resource = Properties.Resources.ResourceManager.GetObject(fileName) as Bitmap;
+            using (var mStream = new MemoryStream())
+            {
+                resource.Save(mStream, ImageFormat.Png);
+                var buffer = new byte[mStream.Length];
+                mStream.Position = 0;
+                mStream.Read(buffer, 0, buffer.Length);
+                var texture = new Texture2D(0, 0);
+                texture.LoadImage(buffer);
+                return texture;
+            }
+        }
 
         public void Awake()
         {

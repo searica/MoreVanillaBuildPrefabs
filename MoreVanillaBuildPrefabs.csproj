@@ -64,7 +64,17 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\texture_portal_MainTex.png" />
+	  <None Remove="Resources\texture_portal_n_BumpMap.png" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<Content Include="LICENSE" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <EmbeddedResource Include="Resources\texture_portal_MainTex.png" />
+	  <EmbeddedResource Include="Resources\texture_portal_n_BumpMap.png" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -87,6 +97,21 @@
 		<PackageReference Include="MonoMod.RuntimeDetour" Version="22.1.29.1" />
 		<PackageReference Include="MonoMod.Utils" Version="22.1.29.1" />
 		<PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="Properties\Resources.Designer.cs">
+	    <DesignTime>True</DesignTime>
+	    <AutoGen>True</AutoGen>
+	    <DependentUpon>Resources.resx</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <EmbeddedResource Update="Properties\Resources.resx">
+	    <Generator>ResXFileCodeGenerator</Generator>
+	    <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+	  </EmbeddedResource>
 	</ItemGroup>
 
 	<Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

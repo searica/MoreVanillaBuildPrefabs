@@ -2,7 +2,7 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 	<PropertyGroup>
 		<AfterTargets>Build</AfterTargets>
-		<Pdb2MdbPath Condition="!Exists('$(Pdb2MdbPath)')">$(ProjectDir)\libraries\Debug\pdb2mdb.exe</Pdb2MdbPath>
+		<Pdb2MdbPath Condition="!Exists('$(Pdb2MdbPath)')">$(ProjectDir)\Libraries\Debug\pdb2mdb.exe</Pdb2MdbPath>
 
 		<!-- Needs to be your path to the base Valheim folder -->
 		<VALHEIM_INSTALL Condition="!Exists('$(VALHEIM_INSTALL)')">c:\Program Files (x86)\Steam\steamapps\common\Valheim</VALHEIM_INSTALL>
@@ -14,6 +14,7 @@
 		<MOD_DEPLOYPATH>$(r2ModManPath)\Mod-Debug\BepInEx\plugins</MOD_DEPLOYPATH>
 		<SERVER_DEPLOYPATH>$(VALHEIM_SERVER)\BepInEx\plugins</SERVER_DEPLOYPATH>
 
-		<CopyToServer>true</CopyToServer>
+		<CopyToServer>false</CopyToServer>
+		<CopyResources>false</CopyResources>
 	</PropertyGroup>
 </Project>
