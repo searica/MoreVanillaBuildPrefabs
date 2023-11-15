@@ -121,13 +121,10 @@ namespace MVBP.Helpers
             "PlaceMarker",
             "Circle_section",
             "guard_stone_test",
-            "Haldor",
             "odin",
             "dvergrprops_wood_stake",
-            "Hildir",
             "Flies",
-            "Pickable_DvergerThing",
-
+            "Pickable_DvergerThing",            
             "demister_ball", // Placement is glitchy
             "CargoCrate", // Deletes itself on placement because it's empty
             "SunkenKit_int_towerwall_LOD", // is not an actual prefab for building
