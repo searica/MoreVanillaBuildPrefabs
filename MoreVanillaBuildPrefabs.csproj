@@ -5,11 +5,11 @@
 	</PropertyGroup>
 
 	<!--<Import Project="environment.props" Condition="Exists('environment.props')" />-->
-	<Import Project="$(JotunnProps)" Condition="Exists('$(JotunnProps)')" />
+	<!--<Import Project="$(JotunnProps)" Condition="Exists('$(JotunnProps)')" />-->
 	<Import Project="ModPackageTool.targets" Condition="Exists('ModPackageTool.targets')" />
 
 	<PropertyGroup>
-		<TargetFramework>net462</TargetFramework>
+		<TargetFramework>net48</TargetFramework>
 		<OutputType>Library</OutputType>
 		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 		<!--<LangVersion>latest</LangVersion>-->
@@ -58,14 +58,14 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <Compile Remove="Libraries\PlanBuild\**" />
-	  <EmbeddedResource Remove="Libraries\PlanBuild\**" />
-	  <None Remove="Libraries\PlanBuild\**" />
+		<Compile Remove="Libraries\PlanBuild\**" />
+		<EmbeddedResource Remove="Libraries\PlanBuild\**" />
+		<None Remove="Libraries\PlanBuild\**" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Remove="Resources\texture_portal_MainTex.png" />
-	  <None Remove="Resources\texture_portal_n_BumpMap.png" />
+		<None Remove="Resources\texture_portal_MainTex.png" />
+		<None Remove="Resources\texture_portal_n_BumpMap.png" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -73,8 +73,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <EmbeddedResource Include="Resources\texture_portal_MainTex.png" />
-	  <EmbeddedResource Include="Resources\texture_portal_n_BumpMap.png" />
+		<EmbeddedResource Include="Resources\texture_portal_MainTex.png" />
+		<EmbeddedResource Include="Resources\texture_portal_n_BumpMap.png" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -100,18 +100,18 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="Properties\Resources.Designer.cs">
-	    <DesignTime>True</DesignTime>
-	    <AutoGen>True</AutoGen>
-	    <DependentUpon>Resources.resx</DependentUpon>
-	  </Compile>
+		<Compile Update="Properties\Resources.Designer.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>Resources.resx</DependentUpon>
+		</Compile>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <EmbeddedResource Update="Properties\Resources.resx">
-	    <Generator>ResXFileCodeGenerator</Generator>
-	    <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-	  </EmbeddedResource>
+		<EmbeddedResource Update="Properties\Resources.resx">
+			<Generator>ResXFileCodeGenerator</Generator>
+			<LastGenOutput>Resources.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
 	</ItemGroup>
 
 	<Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

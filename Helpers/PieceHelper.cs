@@ -119,11 +119,7 @@ namespace MVBP.Helpers
                     // This would mean prefabs that I add pieces to act as if
                     // they don't have pieces unless they are enabled in the config
                     piece.m_enabled = false;
-
-                    if (ConfigManager.IsVerbosityHigh)
-                    {
-                        Log.LogInfo($"Created Piece component for: {prefab.name}");
-                    }
+                    Log.LogInfo($"Created Piece component for: {prefab.name}", LogLevel.High);
                 }
             }
             return piece;
@@ -256,14 +252,8 @@ namespace MVBP.Helpers
             }
 
             pieceTable.m_pieces.Add(prefab);
-
             AddedPrefabs.Add(prefab.name);
-
-            if (ConfigManager.IsVerbosityHigh)
-            {
-                Log.LogInfo($"Added Piece {piece.m_name} to PieceTable {pieceTable.name}");
-            }
-
+            Log.LogInfo($"Added Piece {piece.m_name} to PieceTable {pieceTable.name}", LogLevel.High);
             return true;
         }
 
@@ -307,10 +297,7 @@ namespace MVBP.Helpers
         /// <param name="pieceTableName"></param>
         internal static void RemoveAllCustomPiecesFromPieceTable(string pieceTableName)
         {
-            if (ConfigManager.IsVerbosityMedium)
-            {
-                Log.LogInfo("RemoveAllCustomPiecesFromPieceTable()");
-            }
+            Log.LogInfo("RemoveAllCustomPiecesFromPieceTable()", LogLevel.Medium);
 
             int numCustomPieces = AddedPrefabs.Count();
             var prefabsToRemove = AddedPrefabs.ToList();
@@ -325,10 +312,8 @@ namespace MVBP.Helpers
             {
                 RemovePieceFromPieceTable(name, pieceTable);
             }
-            if (ConfigManager.IsVerbosityMedium)
-            {
-                Log.LogInfo($"Removed {numCustomPieces - AddedPrefabs.Count} custom pieces");
-            }
+
+            Log.LogInfo($"Removed {numCustomPieces - AddedPrefabs.Count} custom pieces", LogLevel.Medium);
         }
 
         /// <summary>
@@ -377,10 +362,7 @@ namespace MVBP.Helpers
             }
             catch (Exception e)
             {
-                if (ConfigManager.IsVerbosityMedium)
-                {
-                    Log.LogInfo($"{prefab.name}: {e}");
-                }
+                Log.LogInfo($"{prefab.name}: {e}", LogLevel.Medium);
                 return false;
             }
         }

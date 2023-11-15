@@ -20,10 +20,7 @@ namespace MVBP.Patches
         [HarmonyPatch(nameof(ZoneSystem.Start))]
         public static void ZoneSystemStartPrefix()
         {
-            if (ConfigManager.IsVerbosityMedium)
-            {
-                Log.LogInfo("ZoneSystemStartPrefix()");
-            }
+            Log.LogInfo("ZoneSystemStartPrefix()", LogLevel.Medium);
 
             // If loading into game world and prefabs have not been added
             if (SceneManager.GetActiveScene() == null
@@ -35,14 +32,11 @@ namespace MVBP.Patches
             Log.LogInfo("Performing mod initialization");
 
             var watch = new System.Diagnostics.Stopwatch();
-            if (ConfigManager.IsVerbosityMedium)
-            {
-                watch.Start();
-            }
+            if (Log.IsVerbosityMedium) { watch.Start(); }
 
             InitManager.InitPlugin();
 
-            if (ConfigManager.IsVerbosityMedium)
+            if (Log.IsVerbosityMedium)
             {
                 watch.Stop();
                 Log.LogInfo($"Time to initialize: {watch.ElapsedMilliseconds} ms");

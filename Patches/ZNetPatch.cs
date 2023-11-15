@@ -19,35 +19,22 @@ namespace MVBP.Patches
         [HarmonyPatch(nameof(ZNet.Start))]
         public static void ZNetStartPostfix()
         {
-            if (ConfigManager.IsVerbosityMedium)
-            {
-                Log.LogInfo("Checking world modifiers");
-            }
-
-            if (SceneManager.GetActiveScene() == null)
-            {
-                return;
-            }
+            Log.LogInfo("Checking world modifiers", LogLevel.Medium);
+            if (SceneManager.GetActiveScene() == null) { return; }
 
             // If loading into game world and prefabs have not been added
             if (SceneManager.GetActiveScene().name == "main")
             {
-                if (Game.m_resourceRate == 1.0f)
-                {
-                    return;
-                }
+                if (Game.m_resourceRate == 1.0f) { return; }
 
                 Log.LogInfo("World modifiers for resource rate are active, re-initializing");
 
                 var watch = new System.Diagnostics.Stopwatch();
-                if (ConfigManager.IsVerbosityMedium)
-                {
-                    watch.Start();
-                }
+                if (Log.IsVerbosityMedium) { watch.Start(); }
 
                 InitManager.UpdatePieces();
 
-                if (ConfigManager.IsVerbosityMedium)
+                if (Log.IsVerbosityMedium)
                 {
                     watch.Stop();
                     Log.LogInfo($"Time to re-initialize: {watch.ElapsedMilliseconds} ms");

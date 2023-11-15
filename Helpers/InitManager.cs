@@ -126,7 +126,7 @@ namespace MVBP.Helpers
             var prefabName = GetPrefabName(gameObject);
             if (IsPatchedByMod(prefabName))
             {
-                return ConfigManager.PrefabDBConfigsMap[prefabName].enabled.Value || ConfigManager.IsForceAllPrefabs;
+                return MorePrefabs.IsPrefabConfigEnabled(prefabName) || MorePrefabs.IsForceAllPrefabs;
             }
             return false;
         }
@@ -217,7 +217,7 @@ namespace MVBP.Helpers
                     continue;
                 }
 
-                if (ConfigManager.IsVerbosityHigh) { Log.LogGameObject(prefab); }
+                if (Log.IsVerbosityHigh) { Log.LogGameObject(prefab); }
 
                 // Always patching means it only runs once and
                 // prevents trailership being unusable if disabled.
@@ -294,17 +294,15 @@ namespace MVBP.Helpers
                 }
             }
 
-            if (ConfigManager.IsVerbosityMedium)
-            {
-                Log.LogInfo("Initializing default icons");
-            }
+            Log.LogInfo("Initializing default icons", LogLevel.Medium);
 
-            IconMaker.Instance.GeneratePrefabIcons(PrefabRefs.Values);
+            ImgHelper.Instance.GeneratePrefabIcons(PrefabRefs.Values);
 
             foreach (var prefab in PrefabRefs.Values)
             {
                 var go = new GameObject();
                 var pieceClone = go.AddComponent<Piece>();
+                //var pieceClone = new Piece();
                 pieceClone.CopyFields(prefab.GetComponent<Piece>());
                 DefaultPieceClones.Add(prefab.name, pieceClone);
             }
@@ -369,7 +367,7 @@ namespace MVBP.Helpers
                     {
                         // create new piece ref
                         piece.CopyFields(DefaultPieceClones[prefab.name]);
-                        newPieceRefs.Add(prefab.name, new PieceDB(ConfigManager.LoadPrefabDB(prefab), piece));
+                        newPieceRefs.Add(prefab.name, new PieceDB(MorePrefabs.GetPrefabDB(prefab), piece));
                     }
                     else
                     {
@@ -414,27 +412,27 @@ namespace MVBP.Helpers
             foreach (var pieceDB in PieceRefs.Values)
             {
                 // Check if pieceClone is enabled by the mod
-                if (!pieceDB.enabled && !ConfigManager.IsForceAllPrefabs)
+                if (!pieceDB.enabled && !MorePrefabs.IsForceAllPrefabs)
                 {
                     continue;
                 }
 
                 // Prevent adding creative mode pieces if not in CreativeMode
-                if (!ConfigManager.IsCreativeMode
+                if (!MorePrefabs.IsCreativeMode
                     && PieceCategoryHelper.IsCreativeModePiece(pieceDB.piece))
                 {
                     continue;
                 }
 
                 // Only add vanilla crops if enabled
-                if (!ConfigManager.IsEnableHammerCrops
+                if (!MorePrefabs.IsEnableHammerCrops
                     && pieceDB.pieceGroup == PieceGroup.VanillaCrop)
                 {
                     continue;
                 }
 
                 // Restrict placement of CreatorShop pieces to Admins only
-                if (ConfigManager.IsCreatorShopAdminOnly
+                if (MorePrefabs.IsCreatorShopAdminOnly
                     && PieceCategoryHelper.IsCreatorShopPiece(pieceDB.piece)
                     && !SynchronizationManager.Instance.PlayerIsAdmin)
                 {
@@ -481,7 +479,7 @@ namespace MVBP.Helpers
                 {
                     if (prefab.TryGetComponent(out Piece piece))
                     {
-                        piece.m_enabled = ConfigManager.IsEnableSeasonalPieces;
+                        piece.m_enabled = MorePrefabs.IsEnableSeasonalPieces;
                     }
                 }
                 else
@@ -530,17 +528,17 @@ namespace MVBP.Helpers
             if (!HasInitializedPrefabs) { return; }
 
             // Don't update unless settings have actually changed
-            if (!ConfigManager.UpdatePieceSettings && !ConfigManager.UpdatePlacementSettings) { return; }
+            if (!MorePrefabs.UpdatePieceSettings && !MorePrefabs.UpdatePlacementSettings) { return; }
 
             var watch = new System.Diagnostics.Stopwatch();
-            if (ConfigManager.IsVerbosityMedium) { watch.Start(); }
+            if (Log.IsVerbosityMedium) { watch.Start(); }
             Log.LogInfo(msg);
 
-            if (ConfigManager.UpdatePieceSettings) { UpdatePieces(); }
-            if (ConfigManager.UpdateSeasonalSettings) { InitSeasonalPieces(); }
-            if (ConfigManager.UpdatePlacementSettings) { ForceUnequipHammer(); } // reset placement ghost set up to apply patch
+            if (MorePrefabs.UpdatePieceSettings) { UpdatePieces(); }
+            if (MorePrefabs.UpdateSeasonalSettings) { InitSeasonalPieces(); }
+            if (MorePrefabs.UpdatePlacementSettings) { ForceUnequipHammer(); } // reset placement ghost set up to apply patch
 
-            if (ConfigManager.IsVerbosityMedium)
+            if (Log.IsVerbosityMedium)
             {
                 watch.Stop();
                 Log.LogInfo($"Time to re-initialize: {watch.ElapsedMilliseconds} ms");
@@ -550,15 +548,15 @@ namespace MVBP.Helpers
                 Log.LogInfo("Re-initializing complete");
             }
 
-            if (ConfigManager.UpdatePieceSettings)
+            if (MorePrefabs.UpdatePieceSettings)
             {
                 ModCompat.UpdateExtraSnaps();
                 ModCompat.UpdatePlanBuild();
             }
 
-            ConfigManager.UpdatePieceSettings = false;
-            ConfigManager.UpdatePlacementSettings = false;
-            ConfigManager.UpdateSeasonalSettings = false;
+            MorePrefabs.UpdatePieceSettings = false;
+            MorePrefabs.UpdatePlacementSettings = false;
+            MorePrefabs.UpdateSeasonalSettings = false;
             if (saveConfig) { ConfigManager.Save(); }
         }
     }

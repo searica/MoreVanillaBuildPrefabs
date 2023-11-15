@@ -114,10 +114,7 @@ namespace MVBP
 
             // Only interact if it is a piece added by this mod or
             // the prefab has previously had it's resources altered by the mod
-            if (ConfigManager.IsVerbosityMedium)
-            {
-                Log.LogInfo("Dropping resources for MVBP piece");
-            }
+            Log.LogInfo("Dropping resources for MVBP piece", LogLevel.Medium);
 
             // Set resources to defaults is piece is not placed by player (world-generated pieces)
             if (!piece.IsPlacedByPlayer() && InitManager.TryGetDefaultPieceClone(piece.gameObject, out Piece pieceClone))

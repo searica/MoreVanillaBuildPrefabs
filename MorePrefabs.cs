@@ -9,9 +9,6 @@ using System.Reflection;
 using UnityEngine;
 using MVBP.Configs;
 using MVBP.Helpers;
-using System.Drawing.Imaging;
-using System.Drawing;
-using System.IO;
 using Jotunn.Configs;
 using BepInEx.Configuration;
 using System.Collections.Generic;
@@ -24,19 +21,19 @@ namespace MVBP
     [BepInDependency(ModCompat.ExtraSnapsGUID, BepInDependency.DependencyFlags.SoftDependency)]
     [BepInDependency(ModCompat.PlanBuildGUID, BepInDependency.DependencyFlags.SoftDependency)]
     [NetworkCompatibility(CompatibilityLevel.VersionCheckOnly, VersionStrictness.Patch)]
-    public class MoreVanillaBuildPrefabs : BaseUnityPlugin
+    public class MorePrefabs : BaseUnityPlugin
     {
         public const string PluginName = "MoreVanillaBuildPrefabs";
         internal const string Author = "Searica";
         public const string PluginGUID = $"{Author}.Valheim.{PluginName}";
-        public const string PluginVersion = "0.6.1";
+        public const string PluginVersion = "1.0.0";
 
         #region Global Settings
 
         private static readonly string MainSection = ConfigManager.SetStringPriority("Global", 5);
 
-        internal static ConfigEntry<bool> CreativeMode { get; private set; }
-        internal static ConfigEntry<bool> ForceAllPrefabs { get; private set; }
+        private static ConfigEntry<bool> CreativeMode { get; set; }
+        private static ConfigEntry<bool> ForceAllPrefabs { get; set; }
         internal static bool IsCreativeMode => CreativeMode.Value;
         internal static bool IsForceAllPrefabs => ForceAllPrefabs.Value;
 
@@ -45,8 +42,8 @@ namespace MVBP
         #region Admin Settings
 
         private static readonly string AdminSection = ConfigManager.SetStringPriority("Admin", 4);
-        internal static ConfigEntry<bool> CreatorShopAdminOnly { get; private set; }
-        internal static ConfigEntry<bool> AdminDeconstructOtherPlayers { get; private set; }
+        private static ConfigEntry<bool> CreatorShopAdminOnly { get; set; }
+        private static ConfigEntry<bool> AdminDeconstructOtherPlayers { get; set; }
         internal static bool IsCreatorShopAdminOnly => CreatorShopAdminOnly.Value;
         internal static bool IsAdminDeconstructOtherPlayers => AdminDeconstructOtherPlayers.Value;
 
@@ -55,12 +52,12 @@ namespace MVBP
         #region Customization Settings
 
         private static readonly string CustomizationSection = ConfigManager.SetStringPriority("Customization", 3);
-        internal static ConfigEntry<bool> EnableHammerCrops { get; private set; }
-        internal static ConfigEntry<bool> EnableDoorPatches { get; private set; }
-        internal static ConfigEntry<bool> EnableComfortPatches { get; private set; }
-        internal static ConfigEntry<bool> EnableSeasonalPieces { get; private set; }
-        internal static ConfigEntry<bool> EnablePlayerBasePatches { get; private set; }
-        internal static ConfigEntry<bool> EnablePortalPatch { get; private set; }
+        private static ConfigEntry<bool> EnableHammerCrops { get; set; }
+        private static ConfigEntry<bool> EnableDoorPatches { get; set; }
+        private static ConfigEntry<bool> EnableComfortPatches { get; set; }
+        private static ConfigEntry<bool> EnableSeasonalPieces { get; set; }
+        private static ConfigEntry<bool> EnablePlayerBasePatches { get; set; }
+        private static ConfigEntry<bool> EnablePortalPatch { get; set; }
         internal static bool IsEnableHammerCrops => EnableHammerCrops.Value;
         internal static bool IsEnableDoorPatches => EnableDoorPatches.Value;
         internal static bool IsEnableComfortPatches => EnableComfortPatches.Value;
@@ -74,13 +71,18 @@ namespace MVBP
 
         private static readonly string TextureSection = ConfigManager.SetStringPriority("Textures", 2);
 
+        private static ConfigEntry<bool> PortalTexture;
+        private static ConfigEntry<bool> DvergrWoodTexture;
+        internal static bool PatchPortalTexture => PortalTexture.Value;
+        internal static bool PatchDvergrWoodTexture => DvergrWoodTexture.Value;
+
         #endregion Texture Patches
 
         #region Unsafe Patches
 
         private static readonly string UnsafeSection = ConfigManager.SetStringPriority("Unsafe Patches", 1);
-        internal static ConfigEntry<bool> EnableBedPatches { get; private set; }
-        internal static ConfigEntry<bool> EnableFermenterPatches { get; private set; }
+        private static ConfigEntry<bool> EnableBedPatches { get; set; }
+        private static ConfigEntry<bool> EnableFermenterPatches { get; set; }
         internal static bool IsEnableBedPatches => EnableBedPatches.Value;
         internal static bool IsEnableFermenterPatches => EnableFermenterPatches.Value;
 
@@ -100,7 +102,9 @@ namespace MVBP
             internal ConfigEntry<bool> clipGround;
         }
 
-        internal static readonly Dictionary<string, PrefabDBConfig> PrefabDBConfigsMap = new();
+        private static readonly Dictionary<string, PrefabDBConfig> PrefabDBConfigsMap = new();
+
+        internal static bool IsPrefabConfigEnabled(string prefabName) => PrefabDBConfigsMap[prefabName].enabled.Value;
 
         #endregion Prefab Settings
 
@@ -112,6 +116,38 @@ namespace MVBP
         internal static bool UpdateSeasonalSettings { get; set; } = false;
 
         internal static readonly HashSet<string> _NeedsCollisionPatch = new();
+
+        /// <summary>
+        ///     Event hook to set whether a config entry
+        ///     for a piece setting has been changed.
+        /// </summary>
+        internal static void PieceSettingChanged(object obj, EventArgs args)
+        {
+            if (!UpdatePieceSettings) UpdatePieceSettings = true;
+        }
+
+        /// <summary>
+        ///     Event hook to set whether a config entry
+        ///     for placement patches has been changed.
+        /// </summary>
+        internal static void PlacementSettingChanged(object obj, EventArgs args)
+        {
+            if (!UpdatePlacementSettings) UpdatePlacementSettings = true;
+        }
+
+        /// <summary>
+        ///     Event hook to set whether a config entry
+        ///     for general mod settings has been changed.
+        /// </summary>
+        internal static void ModSettingChanged(object obj, EventArgs args)
+        {
+            if (!UpdateModSettings) UpdateModSettings = true;
+        }
+
+        internal static void SeasonalSettingChanged(object obj, EventArgs args)
+        {
+            if (!UpdateSeasonalSettings) UpdateSeasonalSettings = true;
+        }
 
         /// <summary>
         ///     Get a bool indicating if the prefab is configured to require a placement patch.
@@ -167,39 +203,6 @@ namespace MVBP
         public void OnDestroy()
         {
             ConfigManager.Save();
-        }
-
-        internal static Texture2D LoadTextureFromResources(string fileName)
-        {
-            var extension = Path.GetExtension(fileName).ToLower();
-            if (extension != ".png" && extension != ".jpg")
-            {
-                Log.LogWarning("LoadTextureFromResources can only load png or jpg textures");
-                return null;
-            }
-            fileName = Path.GetFileNameWithoutExtension(fileName);
-
-            var resource = Properties.Resources.ResourceManager.GetObject(fileName) as Bitmap;
-            using (var mStream = new MemoryStream())
-            {
-                switch (extension)
-                {
-                    case ".jpg":
-                        resource.Save(mStream, ImageFormat.Jpeg);
-                        break;
-
-                    case ".png":
-                        resource.Save(mStream, ImageFormat.Png);
-                        break;
-                }
-
-                var buffer = new byte[mStream.Length];
-                mStream.Position = 0;
-                mStream.Read(buffer, 0, buffer.Length);
-                var texture = new Texture2D(0, 0);
-                texture.LoadImage(buffer);
-                return texture;
-            }
         }
 
         internal static void Initialize()
@@ -294,6 +297,25 @@ namespace MVBP
                 "Set to false/disabled to have the new portal work the same as the vanilla portal."
             );
 
+            // Texture Section
+            PortalTexture = ConfigManager.BindConfig(
+                TextureSection,
+                "PortalTexturePatch (Requires Restart)",
+                false,
+                "Set to true/enabled to change the texture of the new portal to appear " +
+                "as if it was created by those who dwell in the Mistlands. " +
+                "Note: change in appearance will not work for users without this mod."
+            );
+
+            DvergrWoodTexture = ConfigManager.BindConfig(
+                TextureSection,
+                "DvergrWoodPatch (Requires Restart)",
+                false,
+                "Set to true/enabled to change the texture of the player built instances of " +
+                "of Dvergr wood floors and stairs to appear as if they were brand new. " +
+                "Note: change in appearance will not work for users without this mod."
+            );
+
             // Unsafe Section
             EnableBedPatches = ConfigManager.BindConfig(
                 UnsafeSection,
@@ -326,43 +348,13 @@ namespace MVBP
             EnableSeasonalPieces.SettingChanged += SeasonalSettingChanged;
         }
 
-        #region Setting Changes
-
         /// <summary>
-        ///     Event hook to set whether a config entry
-        ///     for a piece setting has been changed.
+        ///     Gets default PrefabDB from config file
+        ///     or PrefabConfigs or returns cached result.
         /// </summary>
-        internal static void PieceSettingChanged(object obj, EventArgs args)
-        {
-            if (!UpdatePieceSettings) UpdatePieceSettings = true;
-        }
-
-        /// <summary>
-        ///     Event hook to set whether a config entry
-        ///     for placement patches has been changed.
-        /// </summary>
-        internal static void PlacementSettingChanged(object obj, EventArgs args)
-        {
-            if (!UpdatePlacementSettings) UpdatePlacementSettings = true;
-        }
-
-        /// <summary>
-        ///     Event hook to set whether a config entry
-        ///     for general mod settings has been changed.
-        /// </summary>
-        internal static void ModSettingChanged(object obj, EventArgs args)
-        {
-            if (!UpdateModSettings) UpdateModSettings = true;
-        }
-
-        internal static void SeasonalSettingChanged(object obj, EventArgs args)
-        {
-            if (!UpdateSeasonalSettings) UpdateSeasonalSettings = true;
-        }
-
-        #endregion Setting Changes
-
-        internal static PrefabDB BindPrefabDB(GameObject prefab)
+        /// <param name="prefab"></param>
+        /// <returns></returns>
+        internal static PrefabDB GetPrefabDB(GameObject prefab)
         {
             string sectionName = prefab.name;
 
@@ -370,7 +362,7 @@ namespace MVBP
             PrefabDB defaultPrefabDB = PrefabConfigs.GetDefaultPrefabDB(prefab.name);
             PrefabDBConfig prefabDBConfig;
 
-            if (PrefabDBConfigsMap.ContainsKey(sectionName))
+            if (PrefabDBConfigsMap.ContainsKey(sectionName)) // already loaded
             {
                 // configure PrefabDB based on existing ConfigEntries
                 prefabDBConfig = PrefabDBConfigsMap[sectionName];
@@ -513,6 +505,9 @@ namespace MVBP
 
         internal static ConfigEntry<LogLevel> Verbosity { get; set; }
         internal static LogLevel VerbosityLevel => Verbosity.Value;
+        internal static bool IsVerbosityLow => Verbosity.Value >= LogLevel.Low;
+        internal static bool IsVerbosityMedium => Verbosity.Value >= LogLevel.Medium;
+        internal static bool IsVerbosityHigh => Verbosity.Value >= LogLevel.High;
 
         #endregion Verbosity
 

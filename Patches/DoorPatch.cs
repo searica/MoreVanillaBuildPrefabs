@@ -1,18 +1,18 @@
-﻿using HarmonyLib;
-using MVBP.Configs;
+﻿// Ignore Spelling: MVBP
+using HarmonyLib;
 using MVBP.Helpers;
 
 namespace MVBP.Patches
 {
     // Opened secret door
-    // [Info   :MoreVanillaBuildPrefabs] Door state was changed
-    // [Info: MoreVanillaBuildPrefabs] Previous State: 0
-    // [Info: MoreVanillaBuildPrefabs] Current State: -1
+    // [Info   :MorePrefabs] Door state was changed
+    // [Info: MorePrefabs] Previous State: 0
+    // [Info: MorePrefabs] Current State: -1
 
     // Closed secret door
-    // [Info: MoreVanillaBuildPrefabs] Door state was changed
-    // [Info   :MoreVanillaBuildPrefabs] Previous State: -1
-    // [Info: MoreVanillaBuildPrefabs] Current State: 0
+    // [Info: MorePrefabs] Door state was changed
+    // [Info   :MorePrefabs] Previous State: -1
+    // [Info: MorePrefabs] Current State: 0
 
     [HarmonyPatch(typeof(Door))]
     internal class DoorPatch
@@ -21,7 +21,7 @@ namespace MVBP.Patches
         [HarmonyPatch(nameof(Door.RPC_UseDoor))]
         private static void UseDoorPrefix(Door __instance, out int? __state)
         {
-            if (!ConfigManager.IsEnableDoorPatches)
+            if (!MorePrefabs.IsEnableDoorPatches)
             {
                 __state = null;
                 return;
@@ -33,7 +33,7 @@ namespace MVBP.Patches
         [HarmonyPatch(nameof(Door.RPC_UseDoor))]
         private static void UseDoorPostfix(Door __instance, int? __state)
         {
-            if (!ConfigManager.IsEnableDoorPatches) { return; }
+            if (!MorePrefabs.IsEnableDoorPatches) { return; }
 
             int? currentState = GetDoorState(ref __instance);
             if (currentState == null || __state == null) { return; }

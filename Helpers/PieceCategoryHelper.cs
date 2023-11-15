@@ -1,4 +1,6 @@
-﻿using Jotunn.Configs;
+﻿// Ignore Spelling: MVBP
+
+using Jotunn.Configs;
 using Jotunn.Managers;
 using MVBP.Configs;
 
@@ -14,10 +16,7 @@ namespace MVBP.Helpers
             if (PieceManager.Instance.GetPieceCategory(HammerCategories.Nature) == null
                 || PieceManager.Instance.GetPieceCategory(HammerCategories.CreatorShop) == null)
             {
-                if (ConfigManager.IsVerbosityMedium)
-                {
-                    Log.LogInfo("Adding custom piece categories");
-                }
+                Log.LogInfo("Adding custom piece categories", LogLevel.Medium);
                 Nature = PieceManager.Instance.AddPieceCategory(PieceTables.Hammer, HammerCategories.Nature);
                 CreatorShop = PieceManager.Instance.AddPieceCategory(PieceTables.Hammer, HammerCategories.CreatorShop);
             }
@@ -25,10 +24,7 @@ namespace MVBP.Helpers
 
         internal static void RemoveCreatorShopPieceCategory()
         {
-            if (ConfigManager.IsVerbosityMedium)
-            {
-                Log.LogInfo("Removing custom piece categories");
-            }
+            Log.LogInfo("Removing custom piece categories", LogLevel.Medium);
             PieceManager.Instance.RemovePieceCategory(PieceTables.Hammer, HammerCategories.CreatorShop);
         }
 

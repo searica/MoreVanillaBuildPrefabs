@@ -29,7 +29,7 @@ namespace MVBP.Patches
                     var nview = __instance.m_nview;
                     if (!nview.IsValid() || !nview.IsOwner())
                     {
-                        if (ConfigManager.IsVerbosityMedium) { Log.LogInfo("Piece nview was destroyed during DropResources()"); }
+                        Log.LogInfo("Piece nview was destroyed during DropResources()", LogLevel.Medium);
                         return false;
                     }
                 }

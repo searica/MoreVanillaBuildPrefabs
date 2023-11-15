@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
+﻿// Ignore Spelling: MVBP
+
+using System.Collections.Generic;
 using HarmonyLib;
 using System.Reflection.Emit;
-using UnityEngine;
 using MVBP.Helpers;
-using MVBP.Configs;
 
 namespace MVBP.Patches
 {
@@ -92,7 +92,7 @@ namespace MVBP.Patches
 
         private static bool IsTeleportable_Delegate(Player player)
         {
-            if (ConfigManager.IsEnablePortalPatch && !string.IsNullOrEmpty(PrefabName) && PrefabName == "portal")
+            if (MorePrefabs.IsEnablePortalPatch && !string.IsNullOrEmpty(PrefabName) && PrefabName == "portal")
             {
                 PrefabName = null;
                 return true;

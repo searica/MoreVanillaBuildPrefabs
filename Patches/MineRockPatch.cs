@@ -19,10 +19,7 @@ namespace MVBP.Patches
         [HarmonyPatch(nameof(MineRock.UpdateVisability))]
         private static bool UpdateVisabilityPrefix(MineRock __instance)
         {
-            if (ConfigManager.IsVerbosityMedium)
-            {
-                Log.LogInfo("MineRock.UpdateVisability patch applied");
-            }
+            Log.LogInfo("MineRock.UpdateVisability patch applied", LogLevel.Medium);
             return __instance.m_nview != null;
         }
 

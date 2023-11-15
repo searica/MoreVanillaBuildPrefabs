@@ -5,21 +5,23 @@ using System.Collections.Generic;
 
 namespace MVBP.Configs
 {
-    /* Want to try finding these prefabs:
-     * MountainKit_int_wall_4x2
-     * SunkenKit_int_arch
-     * SunkenKit_int_floor_2x2
-     * SunkenKit_int_floor_2x2
-     * SunkenKit_int_wall_1x4
-     * SunkenKit_int_wall_2x4
-     * SunkenKit_int_wall_4x4
-     * SunkenKit_slope1x2
-     * SunkenKit_int_stair
-     * SunkenKit_stair_corner_left
-     */
-
     internal class PrefabConfigs
     {
+        private static readonly HashSet<string> DoNotCacheIcon = new()
+        {
+            "portal",
+            "dvergrprops_wood_floor",
+            "dvergrprops_wood_stair",
+        };
+
+        internal static bool ShouldCacheIcon(string name) => !DoNotCacheIcon.Contains(name);
+
+        internal static readonly HashSet<string> DvergrWoodPieces = new()
+        {
+            "dvergrprops_wood_floor",
+            "dvergrprops_wood_stair",
+        };
+
         internal static PrefabDB GetDefaultPrefabDB(string prefab_name)
         {
             if (DefaultConfigValues.ContainsKey(prefab_name))

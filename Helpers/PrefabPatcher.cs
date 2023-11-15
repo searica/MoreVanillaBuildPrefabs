@@ -842,19 +842,19 @@ namespace MVBP.Helpers
                     break;
             }
 
-            if (true && prefab.name == "portal")
+            if (MorePrefabs.PatchPortalTexture && prefab.name == "portal")
             {
                 var meshRender = prefab?.transform?.Find("New")?.Find("model")?.GetComponent<MeshRenderer>();
                 if (meshRender != null)
                 {
-                    var texture = MoreVanillaBuildPrefabs.LoadTextureFromResources("texture_portal_MainTex.png");
-                    var bumpMap = MoreVanillaBuildPrefabs.LoadTextureFromResources("texture_portal_n_BumpMap.png");
+                    var texture = ImgHelper.LoadTextureFromResources("texture_portal_MainTex.png");
+                    var bumpMap = ImgHelper.LoadTextureFromResources("texture_portal_n_BumpMap.png");
                     meshRender.material.mainTexture = texture;
                     meshRender.material.SetTexture("_BumpMap", bumpMap);
                 }
             }
 
-            if (ConfigManager.IsEnableComfortPatches)
+            if (MorePrefabs.IsEnableComfortPatches)
             {
                 ApplyComfortPatches(prefab);
             }
@@ -911,32 +911,49 @@ namespace MVBP.Helpers
         /// <param name="piece"></param>
         internal static void PatchPlayerBuiltPieceIfNeed(Piece piece)
         {
-            if (
-                piece == null
-                || piece.gameObject == null
-                || !piece.IsPlacedByPlayer()
-                || !InitManager.IsPatchedByMod(piece)
-            )
+            if (piece?.gameObject == null || !piece.IsPlacedByPlayer() || !InitManager.IsPatchedByMod(piece))
             {
                 return;
             }
             var prefabName = InitManager.GetPrefabName(piece);
 
-            if (ConfigManager.IsEnableDoorPatches)
+            if (MorePrefabs.IsEnableDoorPatches)
             {
                 ApplyDoorPatches(prefabName, piece.gameObject);
             }
-            if (ConfigManager.IsEnablePlayerBasePatches)
+            if (MorePrefabs.IsEnablePlayerBasePatches)
             {
                 ApplyPlayerBasePatches(prefabName, piece.gameObject);
             }
-            if (ConfigManager.IsEnableBedPatches)
+            if (MorePrefabs.IsEnableBedPatches)
             {
                 ApplyBedPatches(prefabName, piece.gameObject);
             }
-            if (ConfigManager.IsEnableFermenterPatches)
+            if (MorePrefabs.IsEnableFermenterPatches)
             {
                 ApplyFermenterPatches(prefabName, piece.gameObject);
+            }
+            if (MorePrefabs.PatchDvergrWoodTexture)
+            {
+                ApplyNewDvergrTexture(prefabName, piece.gameObject);
+            }
+        }
+
+        /// <summary>
+        ///     Sets the texture of certain dvergr pieces to use
+        ///     a cleaner texture when they are above 50% health
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="gameObject"></param>
+        private static void ApplyNewDvergrTexture(string name, GameObject gameObject)
+        {
+            if (PrefabConfigs.DvergrWoodPieces.Contains(name))
+            {
+                Renderer[] componentsInChildren = gameObject.transform.Find("New").GetComponentsInChildren<Renderer>(true);
+                foreach (Renderer renderer in componentsInChildren)
+                {
+                    renderer.material.mainTexture = ImgHelper.GetNewDvergrTexture();
+                }
             }
         }
 
@@ -973,11 +990,13 @@ namespace MVBP.Helpers
             var playerBaseEffect = playerBase.AddComponent<EffectArea>();
             playerBaseEffect.enabled = true;
             playerBaseEffect.m_type = EffectArea.Type.PlayerBase;
-            //playerBaseEffect.m_collider = collider;
         }
 
         private static void ApplyDoorPatches(string name, GameObject gameObject)
         {
+            // Missing animations
+            // "dungeon_queen_door"
+
             switch (name)
             {
                 case "dvergrtown_slidingdoor":
@@ -989,12 +1008,7 @@ namespace MVBP.Helpers
                             door.m_checkGuardStone = true;
                         }
                     }
-
                     break;
-
-                // Missing animations
-                // "dvergrtown_secretdoor"
-                // "dungeon_queen_door"
 
                 default:
                     break;

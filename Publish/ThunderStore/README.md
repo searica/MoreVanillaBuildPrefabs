@@ -360,13 +360,14 @@ This mod was inspired by MoreVanillaBuilds by Galathil and PotteryBarn by ComfyM
 #### Development Credits
 - Huge shoutout and thanks to the developers of Jotunn for all their work making the library and to Margmas specifically for all their help and advice.
 - Thanks to Advize for the advice and examples for re-writing the mod to respond to configuration settings changes while in-game.
-- Thanks to Wackymole for the help figuring out when to hook the game and resolving server sync issues.
-- Thanks to redseiko for the advice and pointing me to resources to learn more about Unity and also for making PotteryBarn.
+- Thanks to Goldenrevolver for the advice and help with piece sorting + modifying textures.
 - Thanks to probablykory for the advice and examples on optimizing how mods respond to configuration settings changes.
 - Thanks to OrianaVenture for the example of using Jotunn's server sync features.
+- Thanks to redseiko for the advice and pointing me to resources to learn more about Unity and also for making PotteryBarn.
+- Thanks to Wackymole for the help figuring out when to hook the game and resolving server sync issues.
 - Thanks to Jules and MarcoPogo for their help with figuring out a solution for compatability with PlanBuild.
 - Thanks to Marlthon for the help figuring out how to fix the wind physics on the new ship's sail.
-- Thanks to GoldenRevolver for the advice and letting me bounce idea's off of you about sorting the pieces added by MVBP.
+
 
 #### Community Credits
 - Thanks to DreamWraith, onnan, and Havengrad for all their suggestions, feedback, and testing
@@ -377,6 +378,7 @@ If you like this mod you might like some of my other ones.
 
 #### Building Mods
 - [Extra Snap Points Made Easy](https://valheim.thunderstore.io/package/Searica/Extra_Snap_Points_Made_Easy/)
+- [AdvancedTerrainModifiers](https://valheim.thunderstore.io/package/Searica/AdvancedTerrainModifiers/)
 - [BuildRestrictionTweaksSync](https://valheim.thunderstore.io/package/Searica/BuildRestrictionTweaksSync/)
 
 #### Gameplay Mods

@@ -145,7 +145,6 @@
 		<Message Text="Copying $(TargetFileName) to $(PublishDir)\Nexus" Importance="high" />
 		<Copy SourceFiles="$(TargetPath)" DestinationFolder="$(PublishDir)\Nexus" />
 
-		<Message Text="Copying Resources directory to $(OutputResources)" Importance="high" />
 		<Message
 			Text="Copying $(ProjectResourcesDir) to $(OutputResources)"
 			Importance="high"
@@ -199,7 +198,6 @@
 			Condition="Exists('@(PackageFiles)') "
 			SkipUnchangedFiles="true" />
 
-		<Message Text="Copying Resources directory to $(OutputResources)" Importance="high" />
 		<Message
 			Text="Copying $(ProjectResourcesDir) to $(OutputResources)"
 			Importance="high"
