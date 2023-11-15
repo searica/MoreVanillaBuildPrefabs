@@ -1,9 +1,9 @@
 ﻿// Ignore Spelling: MVBP
 
-using System.Collections.Generic;
 using HarmonyLib;
-using System.Reflection.Emit;
 using MVBP.Helpers;
+using System.Collections.Generic;
+using System.Reflection.Emit;
 
 namespace MVBP.Patches
 {

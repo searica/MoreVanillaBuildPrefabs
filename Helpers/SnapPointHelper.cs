@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using MVBP.Extensions;
+using System.Collections.Generic;
 using UnityEngine;
-using MVBP.Extensions;
 
 /* In Unity
  * X = left/right

@@ -1,9 +1,6 @@
 ﻿// Ignore Spelling: MVBP
 
 using HarmonyLib;
-
-using MVBP.Configs;
-using MVBP.Extensions;
 using MVBP.Helpers;
 
 namespace MVBP

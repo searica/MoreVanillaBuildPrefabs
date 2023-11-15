@@ -8,7 +8,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using static Mono.Security.X509.X520;
 
 namespace MVBP.Helpers
 {

@@ -1,10 +1,10 @@
 ﻿// Ignore Spelling: MVBP Wackys
 
 using BepInEx.Bootstrap;
-using MVBP.Helpers;
-using System.Reflection;
-using System;
 using HarmonyLib;
+using MVBP.Helpers;
+using System;
+using System.Reflection;
 
 namespace MVBP
 {

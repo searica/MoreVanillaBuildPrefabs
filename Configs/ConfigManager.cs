@@ -3,11 +3,11 @@
 using BepInEx;
 using BepInEx.Bootstrap;
 using BepInEx.Configuration;
+using MVBP.Extensions;
 using System;
 using System.IO;
 using System.Reflection;
 using UnityEngine;
-using MVBP.Extensions;
 using UnityEngine.Rendering;
 
 namespace MVBP.Configs

@@ -124,7 +124,7 @@ namespace MVBP.Helpers
             "odin",
             "dvergrprops_wood_stake",
             "Flies",
-            "Pickable_DvergerThing",            
+            "Pickable_DvergerThing",
             "demister_ball", // Placement is glitchy
             "CargoCrate", // Deletes itself on placement because it's empty
             "SunkenKit_int_towerwall_LOD", // is not an actual prefab for building

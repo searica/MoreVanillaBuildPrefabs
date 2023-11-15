@@ -1,10 +1,10 @@
 ﻿// Ignore Spelling: MVBP
 
 using Jotunn.Managers;
+using MVBP.Configs;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using MVBP.Configs;
 
 namespace MVBP.Helpers
 {
