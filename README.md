@@ -212,10 +212,6 @@ When you deconstruct a piece that has an ItemStand component it will always drop
 MVBP is able to detect prefabs added by other mods. It is possible to enable and configure those prefabs much like the Vanilla prefabs added by MVBP. In some cases, prefabs from other mods can cause issues, though it is uncommon. As a general rule, I also will not patch or support issues regarding prefabs from other mods as I do not have access to the assets from other mods.
 
 ## Known Issues
-**Custom Armor Stand Clipping**: Armor placed on the Armor Stand Female and Armor Stand Male prefabs has clipping issues causing parts of the armor to not be displayed. I have not been able to fix this as of yet. Feel free to reach out if you know things about meshing and you have ideas for a solution.
-
-**Unclosable Doors**: Some doors added by this mod cannot be closed. I've fixed this for one door but the others lack animations that allow them to close. I tried fixing this but animations are not something I know much about so changing animations at runtime has proven challenging.
-
 **Config Changes on Dedicated Server**: Configuration changes made to a dedicated server using an in-game configuration manager do persist after logging out and re-connecting  but they are not saved to disk on the server until the server is shut down. Once Jotunn updates this issue should be resolved.
 
 **Placement Glitch**: There is one pickable that will appear to not be created when placed.This is because it falls through the ground is pushed back up after a short period of time. If you wait it will appear.
