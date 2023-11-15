@@ -379,15 +379,17 @@ The mod has a default configuration that enables ~100 new pieces by default. The
 </table>
 
 ## Detailed Mechanics
-This mod enables prefabs that were not intended to used for building by players, so they may lack things like proper collision or snap points. All of the prefabs enabled by the default configuration have been patched to fix those sorts of issues and make them behave similarly to vanilla build pieces. These patches are applied whether the prefab is enabled for building or not to make sure that prefabs that have been placed previously still behave as intended (ie they don't lose their collision and fall though the world).
+This mod enables prefabs that were not intended to used for building by players, so they may lack things like proper collision or snap points. All of the prefabs enabled by the default configuration have been patched so they behave more lke vanilla pieces.These patches are applied whether the prefab is enabled for building or not to make sure that prefabs that have been placed previously still behave as intended (ie they don't lose their collision and fall though the world).
 
-If a prefab is not enabled by default then there is no guarantee that it will behave nicely. While many of them have been patched, I currently have to make custom patches for each prefab so not all of them have been patched yet. It also takes a long time to test and patch 300+ prefabs.
+ As of version 1.0.0 and Valheim version 0.217.30, all prefabs detected by MoreVanillaBuildPrefabs are placeable without any changes to the configuration. If a prefab is not enabled by default then it may still behave unexpectedly after being placed though. MoreVanillaBuildPrefabs automatically detects all prefabs in Valheim, so future game updates may add more pieces that will require additional patches to work though.
 
-That said, the placement patch config setting provides a generic patch that may resolve placement issues for some prefabs, so please try toggling that if there is a prefab you would like to build with but it there are issues. If the placement patch does resolve the issue then please let me know so I can change the mod to always enable the placement patch for that prefab.
+If a piece is having issues during placement the PlacementPatch, ClipEverything, and ClipGround configuration options can be used to try resolving the issue. Please try toggling those settings if you encounter issues during piece placement.
 
-Alternatively if the placement patch setting does not resolve the issue, then a work around that may work is using either [Snap Points Made Easy](https://valheim.thunderstore.io/package/MathiasDecrock/Snap_Points_Made_Easy/) by MathiasDecrock or the mod [Extra Snap Points Made Easy](https://valheim.thunderstore.io/package/Searica/Extra_Snap_Points_Made_Easy/) by Searica (that's me). Both of these mods allow you to manually select the snap points on the piece you are placing and the piece you are snapping to. Manually selecting the snap points can allow you to place a prefab that otherwise does not show up due to missing colliders.
+Another solution for placement issues is using either [Snap Points Made Easy](https://valheim.thunderstore.io/package/MathiasDecrock/Snap_Points_Made_Easy/) by MathiasDecrock or [Extra Snap Points Made Easy](https://valheim.thunderstore.io/package/Searica/Extra_Snap_Points_Made_Easy/) by Searica (that's me). Both of these mods allow you to manually select the snap points on the piece you are placing and the piece you are snapping to. Manually selecting the snap points can allow you to place a prefab that otherwise does not show up due to missing colliders.
 
-Some prefabs found in vanilla dungeons can also behave unexpectedly, such as being able to open a door but not close it. If there is piece you would really like to build with that is buggy feel free to open an issue on Github requesting it to be patched (see contributions section).
+Some prefabs cannot be removed after being placed, such as when you place mist. If I'm aware of the issue then I add a warning to the piece description.
+
+If there is piece you would really like to build with that is buggy feel free to open an issue on Github making a feature request or reach out to me on my discord (see contributions section).
 
 **TLDR:** Some prefabs other than the ones enabled by default may be buggy, please adjust your expectations accordingly.
 
@@ -434,26 +436,23 @@ Any piece that you can attach an item to has an ItemStand component and has a un
 When you deconstruct a piece that has an ItemStand component it will always drop the attached item, even if you could not normally remove it.
 
 ## Known Issue/Feature
-MVBP is able to detect prefabs added by other mods. It is possible to enable and configure those prefabs much like the Vanilla prefabs added by MVBP. In some cases, prefabs from other mods can cause issues, though it is uncommon. As a general rule, I also will not patch or support issues regarding prefabs from other mods as I do not have access to the assets from other mods.
+MoreVanillaBuildPrefabs is able to detect prefabs added by other mods. It is possible to enable and configure those prefabs much like the Vanilla prefabs added by MVBP. In some cases, prefabs from other mods can cause issues, though it is uncommon. As a general rule, I will not patch prefabs from other mods as I do not have access to the assets from other mods. Please still let me know if a prefab from another mod causes issues so I can prevent MoreVanillaBuildPrefabs from enabling it though. Additionally, if the other mod author is willing to collaborate regarding the issue I am open to that.
 
 ## Known Issues
-**Config Changes on Dedicated Server**: Configuration changes made to a dedicated server using an in-game configuration manager do persist after logging out and re-connecting  but they are not saved to disk on the server until the server is shut down. Once Jotunn updates this issue should be resolved.
+**Config Changes on Dedicated Server**: Configuration changes made on a dedicated server using an in-game configuration manager do persist after logging out and re-connecting  but they are not saved to disk on the server until the server is shut down. A pull request to fix this has been merged into Jotunn already, so once Jotunn updates this issue will be resolved.
 
-**Placement Glitch**: There is one pickable that will appear to not be created when placed.This is because it falls through the ground is pushed back up after a short period of time. If you wait it will appear.
+**Placement Glitch**: There is one pickable that falls through the terrain when placed, making it appear to not have been placed. After a short period of time it will be pushed to the surface and appear so give it a moment.
 
-**Impossible Recipes**: Forcing pickable pieces to always require resources equal to or greater than what they drop when picked means that if a pickable piece is unattainable in the Vanilla game, then the recipe for it can never be unlocked. I am currently considering how I want to address this and whether this should be considered a bug or not as it is a consequence of the intended behavior to prevent infinite resource exploits. It is still possible to unlock these recipes via console commands or using other mods like [ExpandWorld](https://valheim.thunderstore.io/package/JereKuusela/Expand_World_Data/) or [Immersively Obtainable Blue Mushrooms](https://valheim.thunderstore.io/package/Goldenrevolver/Immersively_Obtainable_Blue_Mushrooms/) to populate them in the world.
+**Impossible Recipes**: Forcing pickable pieces to always require resources equal to or greater than what they drop when picked means that if a pickable is unattainable in the Vanilla game, then the recipe for it can never be unlocked. I am currently considering how I want to address this and whether this should be considered a bug or not as it is a consequence of the intended behavior to prevent infinite resource exploits. It is still possible to unlock these recipes via console commands or using other mods like [ExpandWorld](https://valheim.thunderstore.io/package/JereKuusela/Expand_World_Data/) or [Immersively Obtainable Blue Mushrooms](https://valheim.thunderstore.io/package/Goldenrevolver/Immersively_Obtainable_Blue_Mushrooms/) to populate those pickables in the world.
 
 ## Planned Improvements
-- Resolve known issues.
-- Patch and enable more prefabs by default.
-- Integrate the material replacement method that GoldenRevolver demonstrated as a configurable option.
+- Find a way to make placing and removing liquids work.
+- Make a pull request to PlanBuild that fixes the partial incompatibility.
 - Learn how localization works and add localization options to the mod.
 
 ## Potential Improvements
-- Adding patches that are **unsafe** and a corresponding setting to enable/disable those patches. Examples of **unsafe** patches are:
-    - Changing inventory sizes for some prefabs or other patches that could make you lose items if you loaded the world without the mod.
-    - Adding fermenter functionality to some prefabs. Could result in losing the mead base if loaded without the mod.
-    - Add Wear-N-Tear or Destructible components all to player built pieces upon placement.
+- Add an **Unsafe** patch option that changes the inventory size of containers made of end-game materials.
+- Add a Customization patch that improves the new ship added by this mod.
 
 
 ## Compatibility
@@ -462,13 +461,11 @@ These are non-exhaustive lists.
 ### Incompatible Mods
 **PotteryBarn (by ComfyMods)** Currently both mods apply a transpiler patch to `Player.SetUpPlacementGhost()` and using MoreVanillaBuildPrefabs while PotteryBarn is installed will cause MoreVanillaBuildPrefabs to fail to load correctly. I am looking into a possible fix for this but it is not high priory as I think it is unlikely someone would use both mods at the same time given their functions directly overlap (I could be wrong though).
 
-**MoreVanillaBuilds (by Galathil)** The original mod that this one is a remake of. I haven't actually checked what happens if you use both at once but they do modify the same pieces so I wouldn't recommend it.
-
 ### Partial Incompatibly
 **PlanBuild (by MathiasDecrock)** The two mods do work together but not all of the icons for custom pieces added by MoreVanillaBuildPieces show on correctly in the build table for PlanBuild's Plan Hammer. MoreVanillaBuildPrefabs can now cause PlanBuild to detect pieces as they are enabled but PlanBuild does not update for when MVBP removes prefabs. A fix is currently being worked on in collaboration with the authors of PlanBuild though.
 
-
 ### Compatible Mods
+All of my mods are fully compatible with eachother.
 
 **PlantEverything (by Advize)**: These two mods are fully compatible. If PlantEverything is installed then MoreVanillaBuildPrefabs will not touch any of the prefabs that PlantEverything adds to the cultivator so all of the plants added by PlantEverything will function as normal. I also highly recommend using PlantEverything as it targeted at providing a balanced and configurable experience for enabling more plant pieces and compliments MoreVanillaBuildPrefabs.
 
@@ -531,7 +528,7 @@ These are non-exhaustive lists.
 - ProfitablePieces (by Azumatt)
 - QoLPins (by Tekla)
 - Queue Me Maybe (by Azumatt)
-- Quick Stack Store Soft Trash Restock (by Goldenrevolver)
+- Quick Stack Store Sort Trash Restock (by Goldenrevolver)
 - QuickConnect (by bdew)
 - QuietyPortals (by Neobotics)
 - Ranching (by Smoothbrain)
@@ -567,28 +564,22 @@ My mods will always be free to use but if you feel like saying thanks you can ti
 ## Source Code
 Source code is available on Github.
 
-| Github Repository: | <button style="font-size:20px"><img height="18" src="https://github.githubassets.com/favicons/favicon-dark.svg"></img><a href="https://https://github.com/searica/MoreVanillaBuildPrefabs"> More Vanilla Build Prefabs</button> |
+| Github Repository: | <img height="18" src="https://github.githubassets.com/favicons/favicon-dark.svg"></img><a href="https://github.com/searica/MoreVanillaBuildPrefabs"> MoreVanillaBuildPrefabs</a> |
 |-----------|---------------|
 
 ### Contributions
 If you would like to provide suggestions, make feature requests, or reports bugs and compatibility issues you can either open an issue on the Github repository or tag me (@searica) with a message on my discord [Searica's Mods](https://discord.gg/sFmGTBYN6n).
 
-Over time I will slowly patch more prefabs and hopefully come up with a more generalizable method of patching them, but if you'd really like a specific prefab to work better then let me know via one of the methods above. I'm a grad student and have a lot of personal responsibilities on top of that so I can't promise I will always respond quickly, but I do intend to maintain and improve the mod in my free time.
+Over time I will keep patching more prefabs and improving this mod's features but you'd really like a specific prefab to work better then let me know via one of the methods above. I'm a grad student and have a lot of personal responsibilities on top of that so I can't promise I will always respond quickly, but I do intend to maintain and improve the mod in my free time.
 
 ### Credits
 This mod was inspired by MoreVanillaBuilds by Galathil and PotteryBarn by ComfyMods.
 
 #### Development Credits
-- Huge shoutout and thanks to the developers of Jotunn for all their work making the library and to Margmas specifically for all their help and advice.
+- Huge shout-out and thanks to the developers of Jotunn for all their work making the library and to Margmas specifically for all their help and advice.
 - Thanks to Advize for the advice and examples for re-writing the mod to respond to configuration settings changes while in-game.
-- Thanks to Goldenrevolver for the advice and help with piece sorting + modifying textures.
-- Thanks to probablykory for the advice and examples on optimizing how mods respond to configuration settings changes.
-- Thanks to OrianaVenture for the example of using Jotunn's server sync features.
-- Thanks to redseiko for the advice and pointing me to resources to learn more about Unity and also for making PotteryBarn.
-- Thanks to Wackymole for the help figuring out when to hook the game and resolving server sync issues.
-- Thanks to Jules and MarcoPogo for their help with figuring out a solution for compatability with PlanBuild.
-- Thanks to Marlthon for the help figuring out how to fix the wind physics on the new ship's sail.
-
+- Thanks to Goldenrevolver for all theh advice and help.
+- Thanks to probablykory, OrianaVenture, and redsieko for their help and advice.
 
 #### Community Credits
 - Thanks to DreamWraith, onnan, and Havengrad for all their suggestions, feedback, and testing
