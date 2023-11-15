@@ -126,11 +126,11 @@ namespace MVBP
 
             bool setActive = false;
 
-            if (selectedPrefab.GetComponent<MonsterAI>()
-                || selectedPrefab.GetComponent<AnimalAI>()
-                || selectedPrefab.GetComponent<Tameable>()
-                || selectedPrefab.GetComponent<Ragdoll>()
-                || selectedPrefab.GetComponent<Humanoid>())
+            if (selectedPrefab.GetComponent<MonsterAI>() ||
+                selectedPrefab.GetComponent<AnimalAI>() ||
+                selectedPrefab.GetComponent<Tameable>() ||
+                selectedPrefab.GetComponent<Ragdoll>() ||
+                selectedPrefab.GetComponent<Humanoid>())
             {
                 setActive = selectedPrefab.activeSelf;
                 selectedPrefab.SetActive(false);
