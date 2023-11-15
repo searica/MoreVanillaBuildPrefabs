@@ -293,7 +293,7 @@ namespace MVBP
                 CustomizationSection,
                 "PortalPatch",
                 true,
-                "Set to true/enabled to set the new portal to allow unrestricted teleporting. " +
+                "Set to true/enabled to have the new portal allow unrestricted teleporting. " +
                 "Set to false/disabled to have the new portal work the same as the vanilla portal."
             );
 
@@ -443,10 +443,9 @@ namespace MVBP
                     sectionName,
                     "PlacementPatch",
                     false,
-                    "Set to true to enable collision patching during placement of the piece.\n" +
-                    "Recommended to try this if the piece is not appearing when you go to place it.\n\n" +
-                    " If enabling the placement patch via this setting fixes the issue please open an issue on Github" +
-                    " letting me know so I can make sure the collision patch is always applied to this piece."
+                    "Set to true to enable collision patching during placement of the piece. " +
+                    "Recommended to try this if the piece is not appearing when you go to place it.\n" +
+                    "(If this setting fixes the issue please let me know via Github or Discord so I can change the default settings.)"
                 );
                 prefabDBConfig.placementPatch.SettingChanged += PlacementSettingChanged;
                 defaultPrefabDB.placementPatch = prefabDBConfig.placementPatch.Value;
@@ -459,7 +458,7 @@ namespace MVBP
                     "ClipEverything",
                     false,
                     "Set to true to allow piece to clip through everything during placement. Recommended to try this if the piece is not appearing when you go to place it.\n" +
-                    "If this setting fixes the issue please open an issue on Github letting me know so I can make sure the collision patch is always applied to this piece."
+                    "(If this setting fixes the issue please let me know via Github or Discord so I can change the default settings.)"
                 );
                 prefabDBConfig.clipEverything.SettingChanged += PieceSettingChanged;
                 defaultPrefabDB.clipEverything = prefabDBConfig.clipEverything.Value;
@@ -472,7 +471,7 @@ namespace MVBP
                     "ClipGround",
                     false,
                     "Set to true to allow piece to clip through ground during placement.Recommended to try this if the piece is not floating when you try to place it.\n" +
-                    "(If this setting fixes the issue please open an issue on Github letting me know so I can make sure the piece can always applied clip the ground.)"
+                    "(If this setting fixes the issue please let me know via Github or Discord so I can change the default settings.)"
                 );
                 prefabDBConfig.clipGround.SettingChanged += PieceSettingChanged;
                 defaultPrefabDB.clipGround = prefabDBConfig.clipGround.Value;
