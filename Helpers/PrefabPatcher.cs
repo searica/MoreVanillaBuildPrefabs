@@ -31,6 +31,16 @@ namespace MVBP.Helpers
                 case "ArmorStand_Male":
                 case "ArmorStand_Female":
                     SnapPointHelper.AddSnapPointToCenter(prefab);
+                    try
+                    {
+                        var body = prefab?.transform?.Find("Player Pose")?.Find("Visual")?.Find("body")?.gameObject;
+                        var meshRender = body.GetComponent<SkinnedMeshRenderer>();
+                        meshRender.sharedMaterial = TextureHelper.GetCustomArmorStandMaterial();
+                    }
+                    catch
+                    {
+                        Log.LogWarning($"Failed to patch material for {prefab.name}");
+                    }
                     break;
 
                 case "Trailership":
@@ -847,10 +857,11 @@ namespace MVBP.Helpers
                 var meshRender = prefab?.transform?.Find("New")?.Find("model")?.GetComponent<MeshRenderer>();
                 if (meshRender != null)
                 {
-                    var texture = ImgHelper.LoadTextureFromResources("texture_portal_MainTex.png");
-                    var bumpMap = ImgHelper.LoadTextureFromResources("texture_portal_n_BumpMap.png");
-                    meshRender.material.mainTexture = texture;
-                    meshRender.material.SetTexture("_BumpMap", bumpMap);
+                    meshRender.material.mainTexture = TextureHelper.GetBlackMarblePortalTexture();
+                    meshRender.material.SetTexture(
+                        TextureHelper.TextureNames.BumpMap,
+                        TextureHelper.GetBlackMarblePortalBumpMap()
+                    );
                 }
             }
 
@@ -952,7 +963,7 @@ namespace MVBP.Helpers
                 Renderer[] componentsInChildren = gameObject.transform.Find("New").GetComponentsInChildren<Renderer>(true);
                 foreach (Renderer renderer in componentsInChildren)
                 {
-                    renderer.material.mainTexture = ImgHelper.GetNewDvergrTexture();
+                    renderer.material.mainTexture = TextureHelper.GetNewDvergrTexture();
                 }
             }
         }
@@ -1055,7 +1066,7 @@ namespace MVBP.Helpers
                 case "dvergrprops_barrel":
 
                     // Get child object clones
-                    var FermenterPrefab = PrefabManager.Instance.GetPrefab("fermenter");
+                    var FermenterPrefab = ZNetScene.instance?.GetPrefab("fermenter");
                     var add_button = FermenterPrefab.transform.Find("add_button").gameObject.DeepCopy();
                     var tap_button = FermenterPrefab.transform.Find("tap_button").gameObject.DeepCopy();
                     var roofcheckpoint = FermenterPrefab.transform.Find("roofcheckpoint").gameObject.DeepCopy();
