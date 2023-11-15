@@ -1,6 +1,5 @@
 ﻿// Ignore Spelling: MVBP
 
-using Jotunn.Managers;
 using MVBP.Configs;
 using MVBP.Extensions;
 using System;
@@ -948,7 +947,26 @@ namespace MVBP.Helpers
             {
                 ApplyNewDvergrTexture(prefabName, piece.gameObject);
             }
+            //if (piece.gameObject.GetComponent<LiquidVolume>() != null)
+            //{
+            //    AddLiquidCollider(piece.gameObject);
+            //}
         }
+
+        //private static void AddLiquidCollider(GameObject gameObject)
+        //{
+        //    //UnityEngine.Object.DestroyImmediate(liquidVolume);
+        //    //foreach (var box in clonedPrefab.GetComponentsInChildren<BoxCollider>())
+        //    //{
+        //    //    UnityEngine.Object.DestroyImmediate(box);
+        //    //}
+        //    //var boxCollider = clonedPrefab.AddComponent<BoxCollider>();
+        //    var placementCollider = new GameObject("placementCollider");
+        //    placementCollider.transform.parent = gameObject.transform;
+        //    var collider = placementCollider.AddComponent<BoxCollider>();
+        //    collider.enabled = true;
+        //    collider.size = new Vector3(12f, 12f, 12f);
+        //}
 
         /// <summary>
         ///     Sets the texture of certain dvergr pieces to use
