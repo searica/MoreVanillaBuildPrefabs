@@ -21,7 +21,7 @@ If you are using a mod manager for Thunderstore simply install the mod from ther
 Most changes made to the configuration settings will be reflected in-game immediately (options requiring a restart will explicity say so) and they will also sync to clients if the mod is on the server. The mod also has a built in file watcher so you can edit settings via an in-game configuration manager (changes applied upon closing the in-game configuration manager) or by changing values in the file via a text editor or mod manager.
 
 ### Default Configuration
-The mod has a default configuration that enables ~100 new pieces by default. The configuration settings for these pieces are intended to provide a reasonable balance and ensure that someone playing with the mod will only unlock various build pieces after encountering them in the world. As you progress through the game you will also unlock torches that don't require fuel, fires that don't require fuel, and a new portal that can be configured to ignore portal restrictions. As the default settings are based on my preferences and not yours, you are of course able to change these default configurations however you please. 
+The mod has a default configuration that enables ~100 new pieces by default. The configuration settings for these pieces are intended to provide a reasonable balance and ensure that someone playing with the mod will only unlock various build pieces after encountering them in the world. As you progress through the game you will also unlock torches that don't require fuel, fires that don't require fuel, and a new portal that can be configured to ignore portal restrictions. As the default settings are based on my preferences and not yours, you are of course able to change these default configurations however you please.
 
 ### Default Enabled Pieces
 <details>
@@ -38,120 +38,345 @@ The mod has a default configuration that enables ~100 new pieces by default. The
   - Statues.
   - Wood ledge.
 
-  See the PrefabConfig.cs file in the source code for the full default configuration or install the mode and check the generated configuration file.
+  See the PrefabConfig.cs file in the source code for the full default configuration or install the mod and check the generated configuration file.
 </details>
 
-### Global Section Configuration:
+<div class="header">
+	<h3>Global Section</h3>
+  These settings control the main features of the mod and how verbose it's output to the log is.
+</div>
+<table>
+	<tbody>
+		<tr>
+			<th align="center">Setting</th>
+      <th align="center">Server&nbspSync</th>
+			<th align="center">Description</th>
+		</tr>
+    <tr>
+			<td align="center"><b>CreativeMode</b></td>
+      <td align="center">Yes</td>
+			<td align="left">
+        Setting to enable pieces set to the custom CreatorShop or Nature piece categories. By default, the pieces set to those categories are not standard build pieces. These prefabs are also more likely to have bugs like being unable to remove them after placing them and are a lower priority for me to patch.
+				<ul>
+					<li>Acceptable values: False, True</li>
+					<li>Default value: false</li>
+				</ul>
+        <b>Note:</b> If you're doing a survival playthrough and just want more build pieces then leave CreativeMode off. If you want to build new environmental locations or new dungeons then you probably want to enable CreativeMode.
+			</td>
+		</tr>
+		<tr>
+			<td align="center"><b>ForceAllPrefabs</b></td>
+      <td align="center">Yes</td>
+			<td align="left">
+        If enabled, adds all prefabs to the hammer for building. Unless CreativeMode is also enabled it will not add pieces set to the CreatorShop or Nature category though.
+				<ul>
+					<li>Acceptable values: False, True</li>
+					<li>Default value: false</li>
+				</ul>
+			</td>
+		</tr>
+    <tr>
+			<td align="center"><b>Verbosity</b></td>
+      <td align="center">No</td>
+			<td align="left">
+        Low will log basic information about the mod. Medium will log information that is useful for troubleshooting. High will log a lot of information, do not set it to this without good reason as it will slow down your game.
+				<ul>
+					<li>Acceptable values: Low, Medium, High</li>
+					<li>Default value: Low</li>
+				</ul>
+			</td>
+		</tr>
+  </tbody>
+</table>
 
-**CreativeMode** [Synced with Server]
-- Setting to enable pieces set to the custom CreatorShop or Nature piece categories. By default, the pieces set to those categories are not standard build pieces. These prefabs are also more likely to have bugs like being unable to remove them after placing them and are a lower priority for me to patch.
-  - Acceptable values: False, True
-  - Default value: false
+<div class="header">
+	<h3>Admin Section</h3>
+  These settings let server admins customize how the mod works to help prevent griefing and/or make the mod more of an admin-only tool.
+</div>
+<table>
+	<tbody>
+		<tr>
+			<th align="center">Setting</th>
+      <th align="center">Server&nbspSync</th>
+			<th align="center">Description</th>
+		</tr>
+		<tr>
+			<td align="center"><b>CreatorShopAdminOnly</b></td>
+      <td align="center">Yes</td>
+			<td align="left">
+        Set to true to restrict placement and deconstruction of CreatorShop pieces to players with Admin status.
+				<ul>
+					<li>Acceptable values: False, True</li>
+					<li>Default value: false</li>
+				</ul>
+			</td>
+		</tr>
+    <tr>
+			<td align="center"><b>AdminDeconstructOtherPlayers</b></td>
+      <td align="center">Yes</td>
+			<td align="left">
+        Set to true to allow admin players to deconstruct any pieces built by other players, even if doing so would normally be prevented (such as for CreatorShop or Nature pieces). Intended to prevent griefing via placement of indestructible objects.
+				<ul>
+					<li>Acceptable values: False, True</li>
+					<li>Default value: true</li>
+				</ul>
+			</td>
+		</tr>
+  </tbody>
+</table>
 
-*Note:* If you're doing a survival playthrough and just want more build pieces then leave CreativeMode off. If you have access to devcommands and want to build new environmental locations or new dungeons then you probably want to enable CreativeMode.
+<div class="header">
+	<h3>Customization Section</h3>
+  These settings let you customize and improve the behaviour of pieces adds by MoreVanillaBuildPrefabs. Most of them are enabled by default.
+</div>
+<table>
+	<tbody>
+		<tr>
+			<th align="center">Setting</th>
+      <th align="center">Server&nbspSync</th>
+			<th align="center">Description</th>
+		</tr>
+    <tr>
+			<td align="center"><b>ComfortPatches (Requires Restart)</b></td>
+      <td align="center">Yes</td>
+			<td align="left">
+        Set to true/enabled to patch new pieces to have comfort values like their vanilla counterparts.
+				<ul>
+					<li>Acceptable values: False, True</li>
+					<li>Default value: true</li>
+				</ul>
+			</td>
+		</tr>
+    <tr>
+			<td align="center"><b>DoorPatches (Requires Restart)</b></td>
+      <td align="center">Yes</td>
+			<td align="left">
+        Set to true/enabled to patch player-built instances of new doors (that do not require keys) to allow closing them even if that is normally prevented.
+				<ul>
+					<li>Acceptable values: False, True</li>
+					<li>Default value: true</li>
+				</ul>
+			</td>
+		</tr>
+    <tr>
+			<td align="center"><b>PlayerBasePatches (Requires Restart)</b></td>
+      <td align="center">Yes</td>
+			<td align="left">
+        Set to true/enabled to patch player-built instances of new torches, fires, and beds so they suppress monster spawning just like their vanilla counterparts.
+				<ul>
+					<li>Acceptable values: False, True</li>
+					<li>Default value: true</li>
+				</ul>
+			</td>
+		</tr>
+    <tr>
+			<td align="center"><b>HammerCrops</b></td>
+      <td align="center">Yes</td>
+			<td align="left">
+        Set to true/enabled to enable placing vanilla crops with the hammer. Unless this setting is true Vanilla crops will not be available for placing with the hammer. Can be useful if you want to make pretty gardens without having to wait for crops to grow (plus you control the crop rotation this way).
+				<ul>
+					<li>Acceptable values: False, True</li>
+					<li>Default value: false</li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<td align="center"><b>SeasonalPieces</b></td>
+      <td align="center">Yes</td>
+			<td align="left">
+        Set to true/enabled to add all currently disabled seasonal pieces to the hammer build table.
+				<ul>
+					<li>Acceptable values: False, True</li>
+					<li>Default value: true</li>
+				</ul>
+			</td>
+		</tr>
+    <tr>
+			<td align="center"><b>PortalPatch</b></td>
+      <td align="center">Yes</td>
+			<td align="left">
+        Set to true/enabled to have the new portal allow unrestricted teleporting. Set to false/disabled to have the new portal work the same as the vanilla portal.
+				<ul>
+					<li>Acceptable values: False, True</li>
+					<li>Default value: true</li>
+				</ul>
+			</td>
+		</tr>
+  </tbody>
+</table>
 
-**ForceAllPrefabs** [Synced with Server]
-- If enabled, adds all prefabs to the hammer for building. Unless CreativeMode is also enabled it will not add pieces set to the CreatorShop or Nature category though.
-  - Acceptable values: False, True
-  - Default value: false
+<div class="header">
+	<h3>Texture Section</h3>
+  These settings let you customize the appearance of some of the pieces added by MoreVanillaBuildPrefabs. Thanks to DreamWraith for creating the alternative portal texture and Goldenrevolver for the idea and general method of changing the wood texture.
+</div>
+<table>
+	<tbody>
+		<tr>
+			<th align="center">Setting</th>
+      <th align="center">Server&nbspSync</th>
+			<th align="center">Description</th>
+		</tr>
+		<tr>
+			<td align="center"><b>PortalTexturePatch (Requires Restart)</b></td>
+      <td align="center">Yes</td>
+			<td align="left">
+        Set to true/enabled to change the texture of the new portal to appear as if it was created by those who dwell in the Mistlands. <b>Note:</b> change in appearance will not work for users without this mod.
+				<ul>
+					<li>Acceptable values: False, True</li>
+					<li>Default value: false</li>
+				</ul>
+			</td>
+		</tr>
+    <tr>
+			<td align="center"><b>DvergrWoodPatch (Requires Restart)</b></td>
+      <td align="center">Yes</td>
+			<td align="left">
+        Set to true/enabled to change the texture of the player built instances of of Dvergr wood floors and stairs to appear as if they were brand new. <b>Note:</b> change in appearance will not work for users without this mod.
+				<ul>
+					<li>Acceptable values: False, True</li>
+					<li>Default value: false</li>
+				</ul>
+			</td>
+		</tr>
+  </tbody>
+</table>
 
-**Verbosity**
-- Low will log basic information about the mod. Medium will log information that is useful for troubleshooting. High will log a lot of information, do not set it to this without good reason as it will slow down your game.
-  - Acceptable values: Low, Medium, High
-  - Default value: Low.
+<div class="header">
+	<h3>Unsafe Patches Section</h3>
+  These settings enable optional patches that can have unintended side effects if you log into your world without MoreVanillaBuildPrefabs installed. They are all off by default.
+</div>
+<table>
+	<tbody>
+		<tr>
+			<th align="center">Setting</th>
+      <th align="center">Server&nbspSync</th>
+			<th align="center">Description</th>
+		</tr>
+		<tr>
+			<td align="center"><b>BedPatches (Requires Restart, Unsafe)</b></td>
+      <td align="center">Yes</td>
+			<td align="left">
+        Set to true/enabled to patch player-built instances of new beds so you can sleep in them. <b>WARNING:</b> enabling this setting can result in you losing your spawn point if had set your spawn using a patched bed and log in without this mod.
+				<ul>
+					<li>Acceptable values: False, True</li>
+					<li>Default value: false</li>
+				</ul>
+			</td>
+		</tr>
+    <tr>
+			<td align="center"><b>FermenterPatches (Requires Restart, Unsafe)</b></td>
+      <td align="center">Yes</td>
+			<td align="left">
+        Set to true/enabled to patch player-built instances of fermenting barrels to function as a fermenter that is 30% faster than the vanilla fermenter. <b>NOTE:</b> players without this mod cannot use the patched fermenter and you cannot retrieve your mead without the mod.
+				<ul>
+					<li>Acceptable values: False, True</li>
+					<li>Default value: false</li>
+				</ul>
+			</td>
+		</tr>
+  </tbody>
+</table>
 
-### Admin Section
-
-**CreatorShopAdminOnly** [Synced with Server]
-- Set to true to restrict placement and deconstruction of CreatorShop pieces to players with Admin status.
-  - Acceptable values: False, True
-  - Default value: false
-
-**AdminDeconstructOtherPlayers** [Synced with Server]
-- Set to true to allow admin players to deconstruct any pieces built by other players, even if doing so would normally be prevented (such as for CreatorShop or Nature pieces). Intended to prevent griefing via placement of indestructible objects.
-  - Acceptable values: False, True
-  - Default value: true
-
-### Customization Section
-
-**HammerCrops** [Synced with Server]
-- Set to true/enabled to enable placing vanilla crops with the hammer. Unless this setting is true Vanilla crops will not be available for placing with the hammer. Can be useful if you want to make pretty gardens without having to wait for crops to grow (plus you control the crop rotation this way).
-    - Acceptable values: False, True
-    - Default value: false
-
-**ComfortPatches (Requires Restart)** [Synced with Server]
-- Set to true/enabled to patch new pieces to have comfort values like their vanilla counterparts.
-    - Acceptable values: False, True
-    - Default value: true
-
-**DoorPatches (Requires Restart)** [Synced with Server]
-- Set to true/enabled to patch player-built instances of new doors to allow closing them even if that is normally prevented. Currently only works for the sliding door piece.
-    - Acceptable values: False, True
-    - Default value: true
-
-
-**PlayerBasePatches (Requires Restart)** [Synced with Server]
-- Set to true/enabled to patch player-built instances of new torches, fires, and beds so they suppress monster spawning just like their vanilla counterparts.
-    - Acceptable values: False, True
-    - Default value: true
-
-**SeasonalPieces** [Synced with Server]
-- Set to true/enabled to add all currently disabled seasonal pieces to the hammer build table.
-    - Acceptable values: False, True
-    - Default value: true
-
-### Unsafe Patches Section
-
-**BedPatches (Requires Restart, Unsafe)** [Synced with Server]
-- Set to true/enabled to patch player-built instances of new beds so you can sleep in them. **WARNING**: enabling this setting can result in you losing your spawn point if had set your spawn using a patched bed and log in without this mod.
-    - Acceptable values: False, True
-    - Default value: false
-
-
-### Prefab Configuration Sections:
-The rest of the configuration files contains ["Prefab-Name"] sections to configure each prefab. Each section contains:
-
-**Enabled** [Synced with Server]
-- If true then allow this prefab to be built and deconstructed. Note: this setting is ignored if ForceAllPrefabs is true.
-  - Acceptable values: False, True
-  - Default value: false
-
-**AllowedInDungeons** [Synced with Server]
-- If true then this prefab can be built inside dungeon zones.
-  - Acceptable values: False, True
-  - Default value: false
-
-**Category** [Synced with Server]
-- A string defining the tab the prefab shows up on in the hammer build table.
-    - Acceptable values: CreatorShop, Nature, Misc, Crafting, Building, Furniture
-    - Default value: CreatorShop
-
-**ClipEverything** [Synced with Server]
-- Set to true to allow piece to clip through everything during placement. Recommended to try this if the piece is not appearing when you go to place it. (If this setting fixes the issue please open an issue on Github letting me know so I can make sure the piece can always applied clip the ground.)
-    - Acceptable values: False, True
-    - Default value: false
-    - *Note:* this setting is not available on some prefabs because it needs to always be true.
-
-**ClipGround** [Synced with Server]
-- Set to true to allow piece to clip through ground during placement. Recommended to try this if the piece is not floating when you try to place it. (If this setting fixes the issue please open an issue on Github letting me know so I can make sure the piece can always applied clip the ground.)
-    - Acceptable values: False, True
-    - Default value: false
-    - *Note:* this setting is not available on some prefabs because it needs to always be true.
-
-**CraftingStation** [Synced with Server]
-- A string defining the crafting station required to built the prefab.
-  - Acceptable values: None, Workbench, Forge, Stonecutter, Cauldron, ArtisanTable, BlackForge, GaldrTable
-  - Default value: None
-
-**Requirements** [Synced with Server]
-- Resources required to build the prefab. Formatted as: itemID,amount;itemID,amount where itemID is the in-game identifier for the resource and amount is an integer. You can find itemID on Valheim Wiki or on this [link](https://valheim-modding.github.io/Jotunn/data/objects/item-list.html). Example: Requirements = Wood,5;Stone,2 would mean the prefab requires 5 wood and 2 stone to build.
-  - Default value:
-
-**PlacementPatch** [Synced with Server]
-- Set to true to enable collision patching during placement of the piece. Recommended to try this if the piece is not appearing when attempting to place it. (If enabling the placement patch via this setting fixes the issue please open an issue on Github letting me know so I can make sure the collision patch is always applied to this piece.)
-    - Acceptable values: False, True
-    - Default value: false
-    - *Note:* this setting is not available on some prefabs because it needs to always be true.
+<div class="header">
+	<h3>Prefab Configuration Sections</h3>
+  The rest of the configuration files contains ["Prefab-Name"] sections to configure each prefab.
+</div>
+<table>
+	<tbody>
+		<tr>
+			<th align="center">Setting</th>
+      <th align="center">Server&nbspSync</th>
+			<th align="center">Description</th>
+		</tr>
+		<tr>
+			<td align="center"><b>Enabled</b></td>
+      <td align="center">Yes</td>
+			<td align="left">
+        If true then allow this prefab to be built and deconstructed. Note: this setting is ignored if ForceAllPrefabs is true.
+				<ul>
+					<li>Acceptable values: False, True</li>
+					<li>Default value: <i>Depends on the prefab</i></li>
+				</ul>
+			</td>
+		</tr>
+    <tr>
+			<td align="center"><b>AllowedInDungeons</b></td>
+      <td align="center">Yes</td>
+			<td align="left">
+        If true/enabled then this prefab can be built inside dungeon zones.
+				<ul>
+					<li>Acceptable values: False, True</li>
+					<li>Default value: false</li>
+				</ul>
+			</td>
+		</tr>
+    <tr>
+			<td align="center"><b>Category</b></td>
+      <td align="center">Yes</td>
+			<td align="left">
+        A string defining the tab the prefab shows up on in the hammer build table.
+				<ul>
+					<li>Acceptable values: Acceptable values: CreatorShop, Nature, Misc, Crafting, Building, Furniture</li>
+					<li>Default value: CreatorShop</li>
+				</ul>
+			</td>
+		</tr>
+    <tr>
+			<td align="center"><b>CraftingStation</b></td>
+      <td align="center">Yes</td>
+			<td align="left">
+        A string defining the crafting station required to built the prefab.
+				<ul>
+					<li>Acceptable values: None, Workbench, Forge, Stonecutter, Cauldron, ArtisanTable, BlackForge, GaldrTable</li>
+					<li>Default value: None</li>
+				</ul>
+			</td>
+		</tr>
+    <tr>
+			<td align="center"><b>Requirements</b></td>
+      <td align="center">Yes</td>
+			<td align="left">
+        Resources required to build the prefab. Formatted as: itemID,amount;itemID,amount where itemID is the in-game identifier for the resource and amount is an integer. You can find itemID on Valheim Wiki or on this <a href="https://valheim-modding.github.io/Jotunn/data/objects/item-list.html">link</a>. Example: Requirements = Wood,5;Stone,2 would mean the prefab requires 5 wood and 2 stone to build.
+			</td>
+		</tr>
+    <tr>
+			<td align="center"><b>ClipEverything</b></td>
+      <td align="center">Yes</td>
+			<td align="left">
+        Set to true to allow piece to clip through everything during placement. Recommended to try this if the piece is not appearing when you go to place it. (If this setting fixes the issue please let me know via Github or Discord so I can change the default settings.)
+				<ul>
+					<li>Acceptable values: False, True</li>
+					<li>Default value: false</li>
+          <li><b>Note:</b> Some prefabs are missing this setting because changing it breaks them.</li>
+				</ul>
+			</td>
+		</tr>
+    <tr>
+			<td align="center"><b>ClipGround</b></td>
+      <td align="center">Yes</td>
+			<td align="left">
+        Set to true to allow piece to clip through everything during placement. Recommended to try this if the piece is not appearing when you go to place it.(If this setting fixes the issue please let me know via Github or Discord so I can change the default settings.)
+				<ul>
+					<li>Acceptable values: False, True</li>
+					<li>Default value: false</li>
+          <li><b>Note:</b> Some prefabs are missing this setting because changing it breaks them.</li>
+				</ul>
+			</td>
+		</tr>
+    <tr>
+			<td align="center"><b>PlacementPatch</b></td>
+      <td align="center">Yes</td>
+			<td align="left">
+        Set to true to enable collision patching during placement of the piece. Recommended to try this if the piece is not appearing when attempting to place it. (If this setting fixes the issue please let me know via Github or Discord so I can change the default settings.)
+				<ul>
+					<li>Acceptable values: False, True</li>
+					<li>Default value: false</li>
+          <li><b>Note:</b> Some prefabs are missing this setting because changing it breaks them.</li>
+				</ul>
+			</td>
+		</tr>
+	</tbody>
+</table>
 
 ## Detailed Mechanics
 This mod enables prefabs that were not intended to used for building by players, so they may lack things like proper collision or snap points. All of the prefabs enabled by the default configuration have been patched to fix those sorts of issues and make them behave similarly to vanilla build pieces. These patches are applied whether the prefab is enabled for building or not to make sure that prefabs that have been placed previously still behave as intended (ie they don't lose their collision and fall though the world).
