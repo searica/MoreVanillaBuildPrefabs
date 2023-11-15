@@ -32,7 +32,7 @@ namespace MVBP.Helpers
             {"piece_xmastree",null },
         };
 
-        // These lack a ZNetView component making them non-persistant and unsuitable for this mod.
+        // These lack a ZNetView component making them non-persistent and unsuitable for this mod.
         //private static readonly List<string> SpecificPrefabNames = new()
         //{
         //    "MountainKit_int_wall_4x2",
@@ -296,7 +296,7 @@ namespace MVBP.Helpers
 
             Log.LogInfo("Initializing default icons", LogLevel.Medium);
 
-            ImgHelper.Instance.GeneratePrefabIcons(PrefabRefs.Values);
+            IconHelper.Instance.GeneratePrefabIcons(PrefabRefs.Values);
 
             foreach (var prefab in PrefabRefs.Values)
             {
