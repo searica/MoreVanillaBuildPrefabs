@@ -14,7 +14,7 @@ namespace MVBP
     [HarmonyPatch(typeof(Player))]
     internal static class PlayerPatch
     {
-        private static readonly int PieceRemovalLayerMask = LayerMask.GetMask(
+        private static readonly int PieceRemovalMask = LayerMask.GetMask(
             "Default",
             "static_solid",
             "Default_small",
@@ -193,7 +193,9 @@ namespace MVBP
         {
             if (__instance.GetRightItem().m_shared.m_name == "$item_hammer")
             {
-                if (Physics.Raycast(GameCamera.instance.transform.position, GameCamera.instance.transform.forward, out var hitInfo, 50f, PieceRemovalLayerMask) && Vector3.Distance(hitInfo.point, __instance.m_eye.position) < __instance.m_maxPlaceDistance)
+                var cameraTrans = GameCamera.instance.transform;
+                if (Physics.Raycast(cameraTrans.position, cameraTrans.forward, out var hitInfo, 50f, PieceRemovalMask) &&
+                    Vector3.Distance(hitInfo.point, __instance.m_eye.position) < __instance.m_maxPlaceDistance)
                 {
                     Piece piece = hitInfo.collider.GetComponentInParent<Piece>();
                     if (piece && InitManager.IsPatchedByMod(piece))
