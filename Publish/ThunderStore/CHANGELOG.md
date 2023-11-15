@@ -15,6 +15,7 @@
 					<li>Added new unsafe patch allow using a new fermenter.</li>
 					<li>Fixed bug where PlayerBase was not being applied correctly when the patch for it was enabled.</li>
 					<li>Patched a secret door to allow closing it.</li>
+					<li>Added configuration options to let users customize some of the piece textures.</li>
 				</ul>
 			</td>
 		</tr>
