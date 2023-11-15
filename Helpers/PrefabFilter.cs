@@ -56,32 +56,33 @@ namespace MVBP.Helpers
             }
 
             // Customs filters
-            if (prefab.GetComponent("Projectile") != null ||
-                prefab.GetComponent("Humanoid") != null ||
-                prefab.GetComponent("AnimalAI") != null ||
-                prefab.GetComponent("Character") != null ||
-                prefab.GetComponent("CreatureSpawner") != null ||
-                prefab.GetComponent("SpawnArea") != null ||
-                prefab.GetComponent("Fish") != null ||
-                prefab.GetComponent("RandomFlyingBird") != null ||
-                prefab.GetComponent("MusicLocation") != null ||
-                prefab.GetComponent("Aoe") != null ||
-                prefab.GetComponent("ItemDrop") != null ||
-                prefab.GetComponent("DungeonGenerator") != null ||
-                prefab.GetComponent("TerrainModifier") != null ||
-                prefab.GetComponent("EventZone") != null ||
-                prefab.GetComponent("LocationProxy") != null ||
-                prefab.GetComponent("LootSpawner") != null ||
-                prefab.GetComponent("Mister") != null ||
-                prefab.GetComponent("Ragdoll") != null ||
-                prefab.GetComponent("MineRock5") != null ||
-                prefab.GetComponent("TombStone") != null ||
-                prefab.GetComponent("LiquidVolume") != null ||
-                prefab.GetComponent("Gibber") != null ||
-                prefab.GetComponent("TimedDestruction") != null ||
-                prefab.GetComponent("ShipConstructor") != null ||
-                prefab.GetComponent("TriggerSpawner") != null ||
-                prefab.GetComponent("TeleportAbility") != null ||
+            if (prefab.GetComponent<Projectile>() != null ||
+                prefab.GetComponent<Humanoid>() != null ||
+                prefab.GetComponent<AnimalAI>() != null ||
+                prefab.GetComponent<Character>() != null ||
+                prefab.GetComponent<CreatureSpawner>() != null ||
+                prefab.GetComponent<SpawnArea>() != null ||
+                prefab.GetComponent<Fish>() != null ||
+                prefab.GetComponent<RandomFlyingBird>() != null ||
+                prefab.GetComponent<MusicLocation>() != null ||
+                prefab.GetComponent<Aoe>() != null ||
+                prefab.GetComponent<ItemDrop>() != null ||
+                prefab.GetComponent<DungeonGenerator>() != null ||
+                prefab.GetComponent<TerrainModifier>() != null ||
+                prefab.GetComponent<EventZone>() != null ||
+                prefab.GetComponent<LocationProxy>() != null ||
+                prefab.GetComponent<LootSpawner>() != null ||
+                prefab.GetComponent<Mister>() != null ||
+                prefab.GetComponent<Ragdoll>() != null ||
+                prefab.GetComponent<MineRock5>() != null ||
+                prefab.GetComponent<TombStone>() != null ||
+                prefab.GetComponent<LiquidVolume>() != null ||
+                prefab.GetComponent<Gibber>() != null ||
+                prefab.GetComponent<TimedDestruction>() ||
+                prefab.GetComponent<ShipConstructor>() != null ||
+                prefab.GetComponent<TriggerSpawner>() != null ||
+                prefab.GetComponent<TeleportAbility>() != null ||
+                prefab.GetComponent<Trader>() != null ||
                 // prefab.GetComponent("TeleportWorld") != null || // allow stone portal
 
                 prefab.name.StartsWith("_") ||
