@@ -14,9 +14,11 @@ namespace MVBP
         public const string PlanBuildGUID = "marcopogo.PlanBuild";
         public const string WackysDBGUID = "WackyMole.WackysDatabase";
 
-        private static bool? _PlanBuildInstalled;
         private static bool? _ExtraSnapsInstalled;
+        private static bool? _PlanBuildInstalled;
         private static bool? _WackysDBInstalled;
+
+        private static MethodInfo ReInitExtraSnapPoints;
 
         private static Type PlanDBType;
 
@@ -49,16 +51,20 @@ namespace MVBP
             var plugin = Chainloader.PluginInfos[ExtraSnapsGUID].Instance;
             if (plugin == null) return false;
 
+            if (ReInitExtraSnapPoints == null)
+            {
+                try
+                {
+                    ReInitExtraSnapPoints = ReflectionUtils.GetMethod(plugin.GetType(), "ReInitExtraSnapPoints", Type.EmptyTypes);
+                }
+                catch (Exception e)
+                {
+                    Log.LogWarning(e);
+                }
+            }
             try
             {
-                MethodInfo method = ReflectionUtils.GetMethod(
-                                plugin.GetType(),
-                                "ReInitExtraSnapPoints",
-                                Type.EmptyTypes
-                            );
-
-                // Invoke if not null
-                method?.Invoke(plugin, Array.Empty<object>());
+                ReInitExtraSnapPoints?.Invoke(plugin, Array.Empty<object>());
             }
             catch
             {
