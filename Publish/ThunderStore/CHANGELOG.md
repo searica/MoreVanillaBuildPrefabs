@@ -15,7 +15,7 @@
 					<li>Added new portal and customization to allow unrestricted teleportation with it.</li>
 					<li>Added new unsafe patch allow using a new fermenter.</li>
 					<li>Fixed bug where PlayerBase was not being applied correctly when the patch for it was enabled.</li>
-					<li>Patched a secret door to allow closing it.</li>
+					<li>Patched a secret door to allow closing it if it was built by a player.</li>
 					<li>Added configuration options to let users customize some of the piece textures.</li>
 					<li>Fixed the clipping issues on the armor stands enabled by MoreVanillaBuildPrefabs.</li>
 				</ul>
