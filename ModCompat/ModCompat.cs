@@ -21,6 +21,8 @@ namespace MVBP
         private static MethodInfo ReInitExtraSnapPoints;
 
         private static Type PlanDBType;
+        private static object PlanDBInstance;
+        private static MethodInfo PlanBuildScanTables;
 
         internal static bool IsWackysDBInstalled()
         {
@@ -81,27 +83,46 @@ namespace MVBP
         internal static bool UpdatePlanBuild()
         {
             // trigger rescanning of piece tables via reflection
-            if (TryGetPlanDBType(out Type planDBType))
+            if (TryGetPlanDBInstance(out object planDBInstance))
             {
                 Log.LogInfo("PlanBuild is installed", LogLevel.Medium);
-
                 try
                 {
-                    MethodInfo planDBGetter = AccessTools.PropertyGetter(planDBType, "Instance");
-                    var planDBInstance = planDBGetter.Invoke(null, Array.Empty<object>());
-                    MethodInfo method = AccessTools.Method("PlanBuild.Plans.PlanDB:ScanPieceTables", Type.EmptyTypes);
+                    var method = GetPlanBuildScanTables();
                     Log.LogInfo("Triggering PlanBuild ScanPieceTables", LogLevel.Medium);
-                    // Invoke if not null
-                    method?.Invoke(planDBInstance, Array.Empty<object>());
+                    method?.Invoke(planDBInstance, Array.Empty<object>()); // Invoke if not null
+                    return true;
                 }
                 catch
                 {
                     Log.LogWarning("Failed to trigger PlanBuild ScanPieceTables");
-                    return false;
                 }
             }
-
             return false;
+        }
+
+        private static MethodInfo GetPlanBuildScanTables()
+        {
+            if (PlanBuildScanTables == null)
+            {
+                PlanBuildScanTables = AccessTools.Method("PlanBuild.Plans.PlanDB:ScanPieceTables", Type.EmptyTypes);
+            }
+            return PlanBuildScanTables;
+        }
+
+        private static bool TryGetPlanDBInstance(out object planDBInstance)
+        {
+            if (PlanDBInstance == null && TryGetPlanDBType(out Type planDBType))
+            {
+                MethodInfo planDBGetter = AccessTools.PropertyGetter(planDBType, "Instance");
+                PlanDBInstance = planDBGetter.Invoke(null, Array.Empty<object>());
+                planDBInstance = PlanDBInstance;
+            }
+            else
+            {
+                planDBInstance = PlanDBInstance;
+            }
+            return planDBInstance != null;
         }
 
         private static bool TryGetPlanDBType(out Type planDBType)
