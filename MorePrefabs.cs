@@ -304,7 +304,7 @@ namespace MVBP
                 false,
                 "Set to true/enabled to change the texture of the new portal to appear " +
                 "as if it was created by those who dwell in the Mistlands. " +
-                "Note: change in appearance will not work for users without this mod."
+                "\nNote: change in appearance will not work for users without this mod."
             );
 
             DvergrWoodTexture = ConfigManager.BindConfig(
@@ -313,7 +313,7 @@ namespace MVBP
                 false,
                 "Set to true/enabled to change the texture of the player built instances of " +
                 "of Dvergr wood floors and stairs to appear as if they were brand new. " +
-                "Note: change in appearance will not work for users without this mod."
+                "\nNote: change in appearance will not work for users without this mod."
             );
 
             // Unsafe Section
