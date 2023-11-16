@@ -6,6 +6,31 @@ MoreVanillaBuildPrefabs is a Valheim mod to make all vanilla prefabs buildable w
 ## Key Feature
 Because all the added build pieces are pre-existing vanilla prefabs, any pieces you build with this mod will persist in your world even if you uninstall the mod. This means that pieces you build on a server will also be visible for players without the mod and any builds using the pieces from this mod will load for players without the mod.
 
+### Example Builds
+If you want to see what kind of pieces get added by default and are unlocked as you progress through each biome you can take a look at these builds shared by MoreVanillaBuildPrefabs users. Builds are grouped by based on the biome that the pieces used in the build are unlocked (when using the default mod configuration) and the sections containing the images are collapsed by default so people can avoid spoilers if they wish to. Also, if you make a build using MoreVanillaBuildPrefabs and want it to be featured here let me know!
+
+<details>
+<summary><b>Meadows Builds</b></summary>
+	<img src="https://raw.githubusercontent.com/searica/MoreVanillaBuildPrefabs/main/Media/GoldenRevolver/valheim_8YME3RmWdw.jpg"></img>
+</details>
+
+<details>
+<summary><b>Black Forest Builds</b></summary>
+	<img src="https://raw.githubusercontent.com/searica/MoreVanillaBuildPrefabs/main/Media/GoldenRevolver/valheim_coX49zH6t8.jpg"></img>
+	<img src="https://raw.githubusercontent.com/searica/MoreVanillaBuildPrefabs/main/Media/GoldenRevolver/valheim_ZUKom15gKd.jpg"></img>
+</details>
+
+<details>
+<summary><b>Mistlands Builds</b></summary>
+	<img src="https://github.com/searica/MoreVanillaBuildPrefabs/blob/main/Media/DreamWraith/Valheim%2010_29_2023%202_18_41%20PM.png?raw=true"></img>
+	<img src="https://github.com/searica/MoreVanillaBuildPrefabs/blob/main/Media/DreamWraith/Valheim_11_8_2023_7_22_51_PM.png?raw=true"></img>
+	<img src="https://raw.githubusercontent.com/searica/MoreVanillaBuildPrefabs/main/Media/DreamWraith/Valheim%2010_29_2023%202_27_49%20PM.png"></img>
+	<img src="https://raw.githubusercontent.com/searica/MoreVanillaBuildPrefabs/main/Media/DreamWraith/Valheim%2010_29_2023%202_29_13%20PM.png"></img>
+	<img src="https://raw.githubusercontent.com/searica/MoreVanillaBuildPrefabs/main/Media/DreamWraith/Valheim%2010_29_2023%202_24_52%20PM.png"></img>
+	<img src="https://raw.githubusercontent.com/searica/MoreVanillaBuildPrefabs/main/Media/DreamWraith/Valheim%2010_29_2023%202_25_08%20PM.png"></img>
+	<img src="https://raw.githubusercontent.com/searica/MoreVanillaBuildPrefabs/main/Media/DreamWraith/Valheim%2010_29_2023%202_21_09%20PM.png"></img>
+</details>
+
 ## Instructions
 If you are using a mod manager for Thunderstore simply install the mod from there and skip to step 3 below. If you are not using a mod manager then, you need a modded instance of Valheim (BepInEx) and the Jotunn plugin installed.
 
