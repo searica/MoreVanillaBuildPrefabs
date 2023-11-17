@@ -34,7 +34,7 @@ If you want to see what kind of pieces get added by default and are unlocked as 
 ## Instructions
 If you are using a mod manager for Thunderstore simply install the mod from there and skip to step 3 below. If you are not using a mod manager then, you need a modded instance of Valheim (BepInEx) and the Jotunn plugin installed.
 
-1. Download the MoreVanillaBuildPrefabs.dll from the Publish/Thunderstore directory.
+1. Download the MoreVanillaBuildPrefabs.dll from the Publish\Thunderstore directory.
 2. Place the MoreVanillaBuildPrefabs.dll into your BepInEx\plugins folder
 3. Launch the game and enter a world to generate the configuration files. The plugin searches for prefabs in the game loading screen.
 4. (Optional) Edit the default configuration using an in-game configuration manager or find the file Searica.Valheim.MoreVanillaBuildPrefabs.cfg in your BepInEx\config folder and edit it to customize mod configuration (see Configuration section for details).
@@ -43,7 +43,7 @@ If you are using a mod manager for Thunderstore simply install the mod from ther
 **Recommended:** Install [SearsCatalog](https://valheim.thunderstore.io/package/ComfyMods/SearsCatalog/) to extend the hammer build table and allow you to access all the pieces this mod adds even if there are too many added pieces for the vanilla build table. If you install the mod from Thunderstore via r2modman or Thunderstore mod manager then SearsCatalog will automatically be installed as well.
 
 ## Configuration
-Most changes made to the configuration settings will be reflected in-game immediately (options requiring a restart will explicity say so) and they will also sync to clients if the mod is on the server. The mod also has a built in file watcher so you can edit settings via an in-game configuration manager (changes applied upon closing the in-game configuration manager) or by changing values in the file via a text editor or mod manager.
+Most changes made to the configuration settings will be reflected in-game immediately (options requiring a restart will explicitly say so) and they will also sync to clients if the mod is on the server. The mod also has a built in file watcher so you can edit settings via an in-game configuration manager (changes applied upon closing the in-game configuration manager) or by changing values in the file via a text editor or mod manager.
 
 ### Default Configuration
 The mod has a default configuration that enables ~100 new pieces by default. The configuration settings for these pieces are intended to provide a reasonable balance and ensure that someone playing with the mod will only unlock various build pieces after encountering them in the world. As you progress through the game you will also unlock torches that don't require fuel, fires that don't require fuel, and a new portal that can be configured to ignore portal restrictions. As the default settings are based on my preferences and not yours, you are of course able to change these default configurations however you please.
@@ -492,7 +492,7 @@ These are non-exhaustive lists.
 ### Compatible Mods
 All of my mods are fully compatible with eachother.
 
-**PlantEverything (by Advize)**: These two mods are fully compatible. If PlantEverything is installed then MoreVanillaBuildPrefabs will not touch any of the prefabs that PlantEverything adds to the cultivator so all of the plants added by PlantEverything will function as normal. I also highly recommend using PlantEverything as it targeted at providing a balanced and configurable experience for enabling more plant pieces and compliments MoreVanillaBuildPrefabs.
+**PlantEverything (by Advize)**: These two mods are fully compatible. If PlantEverything is installed then MoreVanillaBuildPrefabs will not touch any of the prefabs that PlantEverything adds to the cultivator so all of the plants added by PlantEverything will function as normal. I also highly recommend using PlantEverything as it is targeted at providing a balanced and configurable experience for enabling more plant pieces and compliments MoreVanillaBuildPrefabs.
 
 **Gizmo (by ComfyMods)**: Fully compatible and highly recommended if you like building.
 
