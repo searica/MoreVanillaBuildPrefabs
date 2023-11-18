@@ -68,14 +68,5 @@ namespace MVBP.Extensions
             else
                 return char.ToUpper(s[0]) + s.Substring(1);
         }
-
-        internal static string EmptyIfNull(this object value)
-        {
-            if (value == null)
-            {
-                return string.Empty;
-            }
-            return value.ToString();
-        }
     }
 }
