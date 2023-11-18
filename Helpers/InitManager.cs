@@ -196,7 +196,7 @@ namespace MVBP.Helpers
             //    var prefab = PrefabManager.Instance.GetPrefab(name);
             //    if (prefab != null && !EligiblePrefabs.ContainsKey(name))
             //    {
-            //        if (!prefab.HasComponent<ZNetView>())
+            //        if (!prefab.GetComponent<ZNetView>())
             //        {
             //            var nview = prefab.AddComponent<ZNetView>();
             //            nview.m_persistent = true;
@@ -443,8 +443,8 @@ namespace MVBP.Helpers
                 // (Player.RemovePiece patch allows removing player-built instances).
                 // Mimic Vanilla, make ships/carts non-removable.
                 if (!PieceCategoryHelper.IsCreativeModePiece(pieceDB.piece)
-                    && !pieceDB.Prefab.HasComponent<Ship>()
-                    && !pieceDB.Prefab.HasComponent<Vagon>())
+                    && !pieceDB.Prefab.GetComponent<Ship>()
+                    && !pieceDB.Prefab.GetComponent<Vagon>())
                 {
                     pieceDB.piece.m_canBeRemoved = true;
                 }

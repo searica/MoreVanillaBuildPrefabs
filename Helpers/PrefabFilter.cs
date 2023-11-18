@@ -25,11 +25,11 @@ namespace MVBP.Helpers
 
             // Is it destructible and does it spawn something?
             var destructible = prefab?.GetComponent<Destructible>();
-            if (destructible != null && destructible?.m_spawnWhenDestroyed != null)
+            if (destructible && destructible?.m_spawnWhenDestroyed != null)
             {
                 // Does it spawn a MineRock5 and is that the root prefab.
                 if (destructible.m_spawnWhenDestroyed.transform.parent == null
-                    && destructible.m_spawnWhenDestroyed.HasComponent<MineRock5>())
+                    && destructible.m_spawnWhenDestroyed.GetComponent<MineRock5>())
                 {
                     result = destructible.m_spawnWhenDestroyed;
                     return true;
@@ -56,34 +56,33 @@ namespace MVBP.Helpers
             }
 
             // Customs filters
-            if (prefab.GetComponent<Projectile>() != null ||
-                prefab.GetComponent<Humanoid>() != null ||
-                prefab.GetComponent<AnimalAI>() != null ||
-                prefab.GetComponent<Character>() != null ||
-                prefab.GetComponent<CreatureSpawner>() != null ||
-                prefab.GetComponent<SpawnArea>() != null ||
-                prefab.GetComponent<Fish>() != null ||
-                prefab.GetComponent<RandomFlyingBird>() != null ||
-                prefab.GetComponent<MusicLocation>() != null ||
-                prefab.GetComponent<Aoe>() != null ||
-                prefab.GetComponent<ItemDrop>() != null ||
-                prefab.GetComponent<DungeonGenerator>() != null ||
-                prefab.GetComponent<TerrainModifier>() != null ||
-                prefab.GetComponent<EventZone>() != null ||
-                prefab.GetComponent<LocationProxy>() != null ||
-                prefab.GetComponent<LootSpawner>() != null ||
-                prefab.GetComponent<Mister>() != null ||
-                prefab.GetComponent<Ragdoll>() != null ||
-                prefab.GetComponent<MineRock5>() != null ||
-                prefab.GetComponent<TombStone>() != null ||
-                prefab.GetComponent<LiquidVolume>() != null ||
-                prefab.GetComponent<Gibber>() != null ||
+            if (prefab.GetComponent<Projectile>() ||
+                prefab.GetComponent<Humanoid>() ||
+                prefab.GetComponent<AnimalAI>() ||
+                prefab.GetComponent<Character>() ||
+                prefab.GetComponent<CreatureSpawner>() ||
+                prefab.GetComponent<SpawnArea>() ||
+                prefab.GetComponent<Fish>() ||
+                prefab.GetComponent<RandomFlyingBird>() ||
+                prefab.GetComponent<MusicLocation>() ||
+                prefab.GetComponent<Aoe>() ||
+                prefab.GetComponent<ItemDrop>() ||
+                prefab.GetComponent<DungeonGenerator>() ||
+                prefab.GetComponent<TerrainModifier>() ||
+                prefab.GetComponent<EventZone>() ||
+                prefab.GetComponent<LocationProxy>() ||
+                prefab.GetComponent<LootSpawner>() ||
+                prefab.GetComponent<Mister>() ||
+                prefab.GetComponent<Ragdoll>() ||
+                prefab.GetComponent<MineRock5>() ||
+                prefab.GetComponent<TombStone>() ||
+                prefab.GetComponent<LiquidVolume>() ||
+                prefab.GetComponent<Gibber>() ||
                 prefab.GetComponent<TimedDestruction>() ||
-                prefab.GetComponent<ShipConstructor>() != null ||
-                prefab.GetComponent<TriggerSpawner>() != null ||
-                prefab.GetComponent<TeleportAbility>() != null ||
-                prefab.GetComponent<Trader>() != null ||
-                // prefab.GetComponent("TeleportWorld") != null || // allow stone portal
+                prefab.GetComponent<ShipConstructor>() ||
+                prefab.GetComponent<TriggerSpawner>() ||
+                prefab.GetComponent<TeleportAbility>() ||
+                prefab.GetComponent<Trader>() ||
 
                 prefab.name.StartsWith("_") ||
                 prefab.name.StartsWith("OLD_") ||

@@ -129,27 +129,27 @@ namespace MVBP.Helpers
             var piece = prefab.GetComponent<Piece>();
             var destructible = prefab.GetComponent<Destructible>();
 
-            if (prefab.HasComponent<PrivateArea>())
+            if (prefab.GetComponent<PrivateArea>())
             {
                 return PieceGroup.Ward;
             }
 
-            if (prefab.HasComponent<Ship>())
+            if (prefab.GetComponent<Ship>())
             {
                 return PieceGroup.Ship;
             }
 
-            if (prefab.HasComponent<Vagon>())
+            if (prefab.GetComponent<Vagon>())
             {
                 return PieceGroup.Cart;
             }
 
-            if (prefab.HasComponent<TeleportWorld>())
+            if (prefab.GetComponent<TeleportWorld>())
             {
                 return PieceGroup.Portal;
             }
 
-            if (prefab.HasComponent<Bed>() || prefabName.Contains("bed"))
+            if (prefab.GetComponent<Bed>() || prefabName.Contains("bed"))
             {
                 return PieceGroup.Bed;
             }
@@ -176,7 +176,7 @@ namespace MVBP.Helpers
                 return PieceGroup.Crafting;
             }
 
-            if (prefabName.Contains("chest") && prefab.HasComponent<Container>())
+            if (prefabName.Contains("chest") && prefab.GetComponent<Container>())
             {
                 return PieceGroup.Chest;
             }
@@ -184,16 +184,16 @@ namespace MVBP.Helpers
             if (
                 piece?.m_comfortGroup == Piece.ComfortGroup.Fire
                 || prefab.transform.FindDeepChild("FireWarmth") != null
-                || prefab.HasComponentInChildren<Demister>(true)
+                || prefab.GetComponentInChildren<Demister>(true)
             )
             {
                 if (prefabName.Contains("brazier")) return PieceGroup.Brazier;
                 if (prefabName.ContainsAny("torch", "demister")) return PieceGroup.Torch;
-                if (prefabName.Contains("fire") || prefab.HasComponent<Fireplace>()) return PieceGroup.Fire;
+                if (prefabName.Contains("fire") || prefab.GetComponent<Fireplace>()) return PieceGroup.Fire;
             }
 
             if (prefabName.Contains("armorstand")
-                || prefab.HasComponent<ArmorStand>())
+                || prefab.GetComponent<ArmorStand>())
             {
                 return PieceGroup.ArmorStand;
             }
@@ -204,7 +204,7 @@ namespace MVBP.Helpers
             }
 
             if (prefabName.ContainsAny("iron", "rusty")
-                && !prefab.HasComponent<CookingStation>())
+                && !prefab.GetComponent<CookingStation>())
             {
                 return PieceGroup.Iron;
             }
@@ -222,7 +222,7 @@ namespace MVBP.Helpers
             }
 
             if (
-                prefab.HasComponent<Chair>()
+                prefab.GetComponent<Chair>()
                 || prefabName.ContainsAny("chair", "throne", "bench", "stool")
                 || piece.m_comfortGroup == Piece.ComfortGroup.Chair
             )
@@ -243,7 +243,7 @@ namespace MVBP.Helpers
 
             if (
                 prefabName.ContainsAny("minerock")
-                || prefab.HasComponent<MineRock>()
+                || prefab.GetComponent<MineRock>()
             )
             {
                 return PieceGroup.Ore;
@@ -270,7 +270,7 @@ namespace MVBP.Helpers
                         "thistle",
                         "dandelion"
                     )
-                    && prefab.HasComponent<Pickable>()
+                    && prefab.GetComponent<Pickable>()
                 )
             {
                 return PieceGroup.Plant;

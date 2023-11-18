@@ -44,22 +44,19 @@ namespace MVBP.Helpers
 
                 case "Trailership":
                     // Fix hull
-                    var meshFilter = prefab.GetComponentInChildrenByName<MeshFilter>("hull");
+                    var meshFilter = prefab.FindDeepChild("hull").GetComponent<MeshFilter>();
                     var longShip = ZNetScene.instance?.GetPrefab("VikingShip");
-                    var lsMeshFilter = longShip?.GetComponentInChildrenByName<MeshFilter>("hull");
-                    if (meshFilter != null && lsMeshFilter != null)
+                    var lsMeshFilter = longShip.FindDeepChild("hull").GetComponent<MeshFilter>();
+                    if (meshFilter && lsMeshFilter)
                     {
                         meshFilter.mesh = lsMeshFilter.mesh;
                     }
 
                     // Fix shields
                     var shieldBanded = ZNetScene.instance?.GetPrefab("ShieldBanded");
-                    var mat = shieldBanded?.GetComponentInChildren<MeshRenderer>()?.material;
-                    var storage = prefab.transform.Find("ship")
-                        ?.Find("visual")
-                        ?.Find("Customize")
-                        ?.Find("storage");
-                    if (storage != null && mat != null)
+                    var mat = shieldBanded.GetComponentInChildren<MeshRenderer>().material;
+                    var storage = prefab.transform.Find("ship").Find("visual").Find("Customize").Find("storage");
+                    if (mat && storage != null)
                     {
                         int children = storage.childCount;
                         for (int i = 0; i < children; ++i)
@@ -73,16 +70,16 @@ namespace MVBP.Helpers
                     }
 
                     // Fix Sail cloth
-                    var cloth = prefab?.GetComponentInChildrenByName<Cloth>("sail_full");
-                    var lsCloth = longShip?.GetComponentInChildrenByName<Cloth>("sail_full");
-                    if (cloth != null && lsCloth != null)
+                    var cloth = prefab.FindDeepChild("sail_full").GetComponent<Cloth>();
+                    var lsCloth = longShip.FindDeepChild("sail_full").GetComponent<Cloth>();
+                    if (cloth && lsCloth)
                     {
                         cloth.coefficients = lsCloth.coefficients;
                     }
 
                     // Fix missing control GUI position
                     var ship = prefab.GetComponent<Ship>();
-                    if (ship != null)
+                    if (ship)
                     {
                         var controlGui = new GameObject("ControlGui");
                         controlGui.transform.parent = prefab.transform;
@@ -95,11 +92,9 @@ namespace MVBP.Helpers
                     }
 
                     // Fix missing rudder button attachpoint
-                    var shipControls = prefab?.GetComponentInChildrenByName<ShipControlls>("rudder_button");
-                    var rudderAttach = prefab?.transform?.Find("sit locations")
-                        ?.Find("sit_box (4)")
-                        ?.Find("attachpoint");
-                    if (rudderAttach != null && shipControls != null)
+                    var shipControls = prefab.FindDeepChild("rudder_button").GetComponent<ShipControlls>();
+                    var rudderAttach = prefab.transform?.Find("sit locations")?.Find("sit_box (4)")?.Find("attachpoint");
+                    if (shipControls && rudderAttach != null)
                     {
                         shipControls.m_attachPoint = rudderAttach.transform;
                     }
@@ -474,7 +469,7 @@ namespace MVBP.Helpers
                 case "dvergrprops_shelf":
                 case "dvergrprops_table":
                     var wearNTear = prefab.GetComponent<WearNTear>();
-                    if (wearNTear != null)
+                    if (wearNTear)
                     {
                         wearNTear.m_supports = true; // allow these pieces to support other pieces
                     }
@@ -854,7 +849,7 @@ namespace MVBP.Helpers
             if (MorePrefabs.PatchPortalTexture && prefab.name == "portal")
             {
                 var meshRender = prefab?.transform?.Find("New")?.Find("model")?.GetComponent<MeshRenderer>();
-                if (meshRender != null)
+                if (meshRender)
                 {
                     meshRender.material.mainTexture = TextureHelper.GetBlackMarblePortalTexture();
                     meshRender.material.SetTexture(
