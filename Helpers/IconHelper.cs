@@ -68,8 +68,7 @@ namespace MVBP.Helpers
 
                 if (result == null)
                 {
-                    PickableItem.RandomItem[] randomItemPrefabs = piece.gameObject.GetComponent<PickableItem>()
-                        ?.m_randomItemPrefabs;
+                    PickableItem.RandomItem[] randomItemPrefabs = piece.GetComponent<PickableItem>()?.m_randomItemPrefabs;
 
                     if (randomItemPrefabs != null && randomItemPrefabs.Length > 0)
                     {
