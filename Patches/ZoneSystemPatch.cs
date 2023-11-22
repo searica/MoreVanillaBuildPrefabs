@@ -22,8 +22,7 @@ namespace MVBP.Patches
             Log.LogInfo("ZoneSystemStartPrefix()", LogLevel.Medium);
 
             // If loading into game world and prefabs have not been added
-            if (SceneManager.GetActiveScene() == null
-                || SceneManager.GetActiveScene().name != "main")
+            if (SceneManager.GetActiveScene().name != "main")
             {
                 return;
             }
