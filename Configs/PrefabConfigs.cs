@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace MVBP.Configs
 {
-    internal class PrefabConfigs
+    internal static class PrefabConfigs
     {
         private static readonly HashSet<string> DoNotCacheIcon = new()
         {

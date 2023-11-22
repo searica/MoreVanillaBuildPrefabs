@@ -25,7 +25,6 @@ namespace MVBP.Helpers
                     return method;
                 }
             }
-
             return default;
         }
 

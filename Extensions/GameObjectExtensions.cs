@@ -38,6 +38,7 @@ namespace MVBP.Extensions
                     return true;
                 }
             }
+
             return false;
         }
 
@@ -74,6 +75,7 @@ namespace MVBP.Extensions
                     return false;
                 }
             }
+
             return true;
         }
 
@@ -92,6 +94,7 @@ namespace MVBP.Extensions
                     return false;
                 }
             }
+
             return true;
         }
 
@@ -116,6 +119,7 @@ namespace MVBP.Extensions
                     return true;
                 }
             }
+
             return false;
         }
 
@@ -169,6 +173,7 @@ namespace MVBP.Extensions
                     return mesh;
                 }
             }
+
             Log.LogWarning($"Could not find Mesh: {meshName} for GameObject: {gameObject.name}");
             return null;
         }
