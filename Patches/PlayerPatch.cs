@@ -39,23 +39,23 @@ namespace MVBP
             //  IL_012f: call !!0 [UnityEngine.CoreModule] UnityEngine.Object::Instantiate<class [UnityEngine.CoreModule] UnityEngine.GameObject>(!!0, valuetype[UnityEngine.CoreModule] UnityEngine.Vector3, valuetype[UnityEngine.CoreModule] UnityEngine.Quaternion)
             //      IL_0134: stloc.3
 
-            // want to be able to edit the instantiated result
+            // want to be able to edit the instantiated gameObject
             // such that I can remove things like the pickable property from the surtling core stands
+
+            var instantiateMethod = ReflectionUtils.GetGenericMethod(
+                typeof(UnityEngine.Object),
+                nameof(UnityEngine.Object.Instantiate),
+                genericParameterCount: 1,
+                new Type[] { typeof(Type), typeof(Vector3), typeof(Quaternion) }
+            ).MakeGenericMethod(typeof(GameObject));
+
+            var codeMatches = new CodeMatch[]
+            {
+                new CodeMatch(OpCodes.Call, instantiateMethod),
+                new CodeMatch(OpCodes.Stloc_3)
+            };
             return new CodeMatcher(instructions)
-                .MatchForward(
-                    useEnd: false,
-                    new CodeMatch(
-                        OpCodes.Call,
-                        ReflectionUtils.GetGenericMethod(
-                                typeof(UnityEngine.Object),
-                                nameof(UnityEngine.Object.Instantiate),
-                                genericParameterCount: 1,
-                                new Type[] { typeof(Type), typeof(Vector3), typeof(Quaternion) }
-                            )
-                            .MakeGenericMethod(typeof(GameObject))
-                    ),
-                    new CodeMatch(OpCodes.Stloc_3)
-                )
+                .MatchForward(useEnd: false, codeMatches)
                 .SetInstructionAndAdvance(Transpilers.EmitDelegate(PlacePieceInstantiateDelegate))
                 .InstructionEnumeration();
         }
@@ -92,25 +92,22 @@ namespace MVBP
             //  IL_008d: ldloc.0
             //  IL_008e: call !!0 [UnityEngine.CoreModule] UnityEngine.Object::Instantiate<class [UnityEngine.CoreModule] UnityEngine.GameObject>(!!0)
             //  IL_0093: stfld class [UnityEngine.CoreModule] UnityEngine.GameObject Player::m_placementGhost
+
+            var instantiateMethod = ReflectionUtils.GetGenericMethod
+                (typeof(UnityEngine.Object),
+                nameof(UnityEngine.Object.Instantiate),
+                genericParameterCount: 1,
+                new Type[] { typeof(Type) }
+            ).MakeGenericMethod(typeof(GameObject));
+
+            var codeMatches = new CodeMatch[]
+            {
+                 new CodeMatch(OpCodes.Call, instantiateMethod),
+                 new CodeMatch(OpCodes.Stfld, AccessTools.Field(typeof(Player), nameof(Player.m_placementGhost)))
+            };
+
             return new CodeMatcher(instructions)
-                .MatchForward(
-                    useEnd: false,
-                    new CodeMatch(
-                        OpCodes.Call,
-                        ReflectionUtils.GetGenericMethod(
-                                typeof(UnityEngine.Object),
-                                nameof(UnityEngine.Object.Instantiate),
-                                genericParameterCount: 1,
-                                new Type[] { typeof(Type) }
-                            )
-                            .MakeGenericMethod(typeof(GameObject))
-                    ),
-                    new CodeMatch(
-                        OpCodes.Stfld,
-                        AccessTools.Field(typeof(Player), nameof(Player.m_placementGhost)
-                        )
-                    )
-                )
+                .MatchForward(useEnd: false, codeMatches)
                 .SetInstructionAndAdvance(Transpilers.EmitDelegate(SetupPlacementGhostInstantiateDelegate))
                 .InstructionEnumeration();
         }
