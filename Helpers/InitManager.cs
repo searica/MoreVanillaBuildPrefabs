@@ -190,25 +190,6 @@ namespace MVBP.Helpers
                 }
             }
 
-            // Get specifically targeted prefabs
-            //foreach (var name in SpecificPrefabNames)
-            //{
-            //    var prefab = PrefabManager.Instance.GetPrefab(name);
-            //    if (prefab != null && !EligiblePrefabs.ContainsKey(name))
-            //    {
-            //        if (!prefab.GetComponent<ZNetView>())
-            //        {
-            //            var nview = prefab.AddComponent<ZNetView>();
-            //            nview.m_persistent = true;
-            //        }
-            //        EligiblePrefabs.Add(name, prefab);
-            //    }
-            //    else
-            //    {
-            //        Log.LogWarning($"Could not find prefab: {name}");
-            //    }
-            //}
-
             foreach (var prefab in EligiblePrefabs.Values)
             {
                 if (!PieceHelper.EnsureNoDuplicateZNetView(prefab))
@@ -232,7 +213,7 @@ namespace MVBP.Helpers
                 PrefabRefs.Add(prefab.name, prefab);
             }
 
-            Log.LogInfo($"Found {PrefabRefs.Count()} prefabs");
+            Log.LogInfo($"Found {PrefabRefs.Count} prefabs");
 
             InitDefaultPieceClones();
         }
