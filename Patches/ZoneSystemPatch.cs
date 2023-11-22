@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 namespace MVBP.Patches
 {
     [HarmonyPatch(typeof(ZoneSystem))]
-    internal class ZoneSystemPatch
+    internal static class ZoneSystemPatch
     {
         /// <summary>
         ///     Hook to initialize the mod. This is after both PlantEverything

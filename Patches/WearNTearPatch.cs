@@ -6,7 +6,7 @@ using MVBP.Helpers;
 namespace MVBP.Patches
 {
     [HarmonyPatch(typeof(WearNTear))]
-    internal class WearNTearPatch
+    internal static class WearNTearPatch
     {
         [HarmonyPrefix]
         [HarmonyPatch(nameof(WearNTear.Destroy))]

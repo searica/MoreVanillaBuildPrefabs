@@ -8,7 +8,7 @@ using System.Reflection.Emit;
 namespace MVBP.Patches
 {
     [HarmonyPatch(typeof(TeleportWorld))]
-    internal class TeleportWorldPatch
+    internal static class TeleportWorldPatch
     {
         private static string PrefabName;
 

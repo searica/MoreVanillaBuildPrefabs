@@ -11,14 +11,14 @@ using UnityEngine;
 
 namespace MVBP.Helpers
 {
-    internal class InitManager
+    internal static class InitManager
     {
         internal static readonly Dictionary<string, GameObject> PrefabRefs = new();
         internal static readonly Dictionary<string, Piece> DefaultPieceClones = new();
-        internal static Dictionary<string, PieceDB> PieceRefs = new();
-        internal static Dictionary<string, string> PieceToPrefabMap = new();
+        internal static readonly Dictionary<string, PieceDB> PieceRefs = new();
+        internal static readonly Dictionary<string, string> PieceToPrefabMap = new();
 
-        internal static Dictionary<string, GameObject> SeasonalPieceRefs = new()
+        internal static readonly Dictionary<string, GameObject> SeasonalPieceRefs = new()
         {
             {"piece_maypole", null },
             {"piece_jackoturnip", null },

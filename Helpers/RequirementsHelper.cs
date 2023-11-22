@@ -1,4 +1,6 @@
-﻿using MVBP.Extensions;
+﻿// Ignore Spelling: MVBP
+
+using MVBP.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +8,7 @@ using UnityEngine;
 
 namespace MVBP.Helpers
 {
-    internal class RequirementsHelper
+    internal static class RequirementsHelper
     {
         /// <summary>
         ///     Convert requirements string from cfg file to Piece.Requirement Array

@@ -1,4 +1,6 @@
-﻿using Jotunn.Managers;
+﻿// Ignore Spelling: MVBP
+
+using Jotunn.Managers;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
@@ -6,7 +8,7 @@ using UnityEngine;
 
 namespace MVBP.Helpers
 {
-    internal class TextureHelper
+    internal static class TextureHelper
     {
         private const string armorStandTextureName = "Planks5c_low";
         private static Texture armorStandTexture;

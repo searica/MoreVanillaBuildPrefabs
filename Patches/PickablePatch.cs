@@ -6,7 +6,7 @@ using MVBP.Helpers;
 namespace MVBP.Patches
 {
     [HarmonyPatch(typeof(Pickable))]
-    internal class PickablePatch
+    internal static class PickablePatch
     {
         private static readonly DropTable emptyDrops = new();
 

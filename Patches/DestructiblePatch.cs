@@ -6,7 +6,7 @@ using MVBP.Helpers;
 namespace MVBP.Patches
 {
     [HarmonyPatch(typeof(Destructible))]
-    internal class DestructiblePatch
+    internal static class DestructiblePatch
     {
         /// <summary>
         ///     Back to make player-built instances of pieces

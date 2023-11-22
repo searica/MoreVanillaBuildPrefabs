@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace MVBP.Helpers
 {
-    internal class CollisionHelper
+    internal static class CollisionHelper
     {
         internal static void AddBoxCollider(GameObject prefab, Vector3 center, Vector3 size)
         {

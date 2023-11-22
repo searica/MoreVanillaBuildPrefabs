@@ -1,4 +1,6 @@
-﻿using HarmonyLib;
+﻿// Ignore Spelling: MVBP
+
+using HarmonyLib;
 
 namespace MVBP.Patches
 {

@@ -8,7 +8,7 @@ using System.Reflection;
 
 namespace MVBP
 {
-    internal class ModCompat
+    internal static class ModCompat
     {
         public const string ExtraSnapsGUID = "Searica.Valheim.ExtraSnapPointsMadeEasy";
         public const string PlanBuildGUID = "marcopogo.PlanBuild";

@@ -10,9 +10,9 @@ using UnityEngine;
 
 namespace MVBP.Helpers
 {
-    internal class PieceHelper
+    internal static class PieceHelper
     {
-        internal static HashSet<string> AddedPrefabs = new();
+        internal static readonly HashSet<string> AddedPrefabs = new();
 
         internal static CraftingStation GetCraftingStation(string name)
         {

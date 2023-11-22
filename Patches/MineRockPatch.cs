@@ -5,7 +5,7 @@ using HarmonyLib;
 namespace MVBP.Patches
 {
     [HarmonyPatch(typeof(MineRock))]
-    internal class MineRockPatch
+    internal static class MineRockPatch
     {
         /// <summary>
         ///     Prevent MineRock from updating visibility until

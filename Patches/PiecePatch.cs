@@ -8,7 +8,7 @@ using System.Reflection.Emit;
 namespace MVBP
 {
     [HarmonyPatch(typeof(Piece))]
-    internal class PiecePatch
+    internal static class PiecePatch
     {
         /// <summary>
         ///     Applies patches from PatchPlayerBuildPieceIfNeeded

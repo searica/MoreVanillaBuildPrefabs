@@ -6,7 +6,7 @@ using MVBP.Configs;
 
 namespace MVBP.Helpers
 {
-    internal class PieceCategoryHelper
+    internal static class PieceCategoryHelper
     {
         internal static Piece.PieceCategory Nature;
         internal static Piece.PieceCategory CreatorShop;

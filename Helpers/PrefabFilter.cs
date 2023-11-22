@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace MVBP.Helpers
 {
-    internal class PrefabFilter
+    internal static class PrefabFilter
     {
         /// <summary>
         ///     Checks if a prefab is eligible for adding. If the prefab
@@ -24,16 +24,14 @@ namespace MVBP.Helpers
             }
 
             // Is it destructible and does it spawn something?
-            var destructible = prefab?.GetComponent<Destructible>();
-            if (destructible && destructible?.m_spawnWhenDestroyed != null)
+            // Does it spawn a MineRock5 and is that the root prefab.
+            if (prefab.TryGetComponent(out Destructible destructible) &&
+                destructible.m_spawnWhenDestroyed &&
+                destructible.m_spawnWhenDestroyed.transform.parent == null &&
+                destructible.m_spawnWhenDestroyed.GetComponent<MineRock5>())
             {
-                // Does it spawn a MineRock5 and is that the root prefab.
-                if (destructible.m_spawnWhenDestroyed.transform.parent == null
-                    && destructible.m_spawnWhenDestroyed.GetComponent<MineRock5>())
-                {
-                    result = destructible.m_spawnWhenDestroyed;
-                    return true;
-                }
+                result = destructible.m_spawnWhenDestroyed;
+                return true;
             }
 
             // Return the original prefab

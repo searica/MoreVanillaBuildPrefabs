@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace MVBP.Helpers
 {
-    internal class PrefabPatcher
+    internal static class PrefabPatcher
     {
         private static readonly int PieceLayer = LayerMask.NameToLayer("piece");
         private static readonly int CharacterTriggerLayer = LayerMask.NameToLayer("character_trigger");

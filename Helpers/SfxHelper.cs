@@ -37,7 +37,7 @@ namespace MVBP.Helpers
 
     // disable IceBlocker
 
-    internal class SfxHelper
+    internal static class SfxHelper
     {
         private static readonly Dictionary<string, EffectList.EffectData> PlacementSfx = new()
         {

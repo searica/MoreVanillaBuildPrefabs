@@ -1,4 +1,6 @@
-﻿using MVBP.Extensions;
+﻿// Ignore Spelling: MVBP
+
+using MVBP.Extensions;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,7 +12,7 @@ using UnityEngine;
 
 namespace MVBP.Helpers
 {
-    internal class SnapPointHelper
+    internal static class SnapPointHelper
     {
         // List of points in a 2x2 box that would be the corners
         private static readonly List<Vector3> corners = new()

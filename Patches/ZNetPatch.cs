@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 namespace MVBP.Patches
 {
     [HarmonyPatch(typeof(ZNet))]
-    internal class ZNetPatch
+    internal static class ZNetPatch
     {
         /// <summary>
         ///     Patch to check if world modifiers for resources are active
@@ -19,7 +19,7 @@ namespace MVBP.Patches
         public static void ZNetStartPostfix()
         {
             Log.LogInfo("Checking world modifiers", LogLevel.Medium);
-            if (SceneManager.GetActiveScene() == null) { return; }
+            //if (SceneManager.GetActiveScene() == null) { return; }
 
             // If loading into game world and prefabs have not been added
             if (SceneManager.GetActiveScene().name == "main")
