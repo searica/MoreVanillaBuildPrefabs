@@ -101,10 +101,10 @@ The mod has a default configuration that enables ~100 new pieces by default. The
 			</td>
 		</tr>
     <tr>
-			<td align="center"><b>Verbosity</b></td>
-      <td align="center">No</td>
-			<td align="left">
-        Low will log basic information about the mod. Medium will log information that is useful for troubleshooting. High will log a lot of information, do not set it to this without good reason as it will slow down your game.
+		<td align="center"><b>Verbosity</b></td>
+		<td align="center">No</td>
+		<td align="left">
+			Low will log basic information about the mod. Medium will log information that is useful for troubleshooting. High will log a lot of information, do not set it to this without good reason as it will slow down your game.
 				<ul>
 					<li>Acceptable values: Low, Medium, High</li>
 					<li>Default value: Low</li>
@@ -617,6 +617,7 @@ If you like this mod you might like some of my other ones.
 - [Extra Snap Points Made Easy](https://valheim.thunderstore.io/package/Searica/Extra_Snap_Points_Made_Easy/)
 - [AdvancedTerrainModifiers](https://valheim.thunderstore.io/package/Searica/AdvancedTerrainModifiers/)
 - [BuildRestrictionTweaksSync](https://valheim.thunderstore.io/package/Searica/BuildRestrictionTweaksSync/)
+- [ToolTweaks](https://valheim.thunderstore.io/package/Searica/ToolTweaks/)
 
 #### Gameplay Mods
 - [CameraTweaks](https://valheim.thunderstore.io/package/Searica/CameraTweaks/)
