@@ -281,8 +281,8 @@ namespace MVBP.Helpers
             // Need this to prevent NRE's if other code references the pieceClone
             // before the coroutine that is rendering the icons finishes. (Such as PlanBuild)
             var defaultIcon = Resources.FindObjectsOfTypeAll<Sprite>()
-                ?.Where(spr => spr.name == "mapicon_hildir1")
-                ?.First();
+                .Where(spr => spr.name == "mapicon_hildir1")
+                .First();
 
             foreach (var prefab in PrefabRefs.Values)
             {
@@ -335,7 +335,9 @@ namespace MVBP.Helpers
         /// </summary>
         private static void ForceUnequipHammer()
         {
-            if (Player.m_localPlayer?.GetRightItem()?.m_shared.m_name == "$item_hammer")
+            var player = Player.m_localPlayer;
+
+            if (player && Player.m_localPlayer.GetRightItem()?.m_shared.m_name == "$item_hammer")
             {
                 Log.LogWarning("Hammer updated through config change, unequipping hammer");
                 Player.m_localPlayer.HideHandItems();
