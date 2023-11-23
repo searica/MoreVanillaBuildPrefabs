@@ -16,7 +16,7 @@ namespace MVBP.Helpers
         internal static readonly Dictionary<string, GameObject> PrefabRefs = new();
         internal static readonly Dictionary<string, Piece> DefaultPieceClones = new();
         private static Dictionary<string, PieceDB> PieceRefs = new();
-        private static Dictionary<string, string> PieceToPrefabMap = new();
+        private static readonly Dictionary<string, string> PieceToPrefabMap = new();
 
         internal static readonly Dictionary<string, GameObject> SeasonalPieceRefs = new()
         {
@@ -176,16 +176,24 @@ namespace MVBP.Helpers
             var EligiblePrefabs = new Dictionary<string, GameObject>();
             foreach (var prefab in ZNetScene.instance.m_prefabs)
             {
-                if (prefab.transform.parent == null && !PieceNameCache.Contains(prefab.name))
+                if (!prefab.transform.parent &&
+                    !PieceNameCache.Contains(prefab.name) &&
+                    PrefabFilter.GetEligiblePrefab(prefab, out GameObject result) &&
+                    !EligiblePrefabs.ContainsKey(result.name))
                 {
-                    if (PrefabFilter.GetEligiblePrefab(prefab, out GameObject result))
-                    {
-                        if (!EligiblePrefabs.ContainsKey(result.name))
-                        {
-                            EligiblePrefabs.Add(result.name, result);
-                        }
-                    }
+                    EligiblePrefabs.Add(result.name, result);
                 }
+
+                //if (prefab.transform.parent == null && !PieceNameCache.Contains(prefab.name))
+                //{
+                //    if (PrefabFilter.GetEligiblePrefab(prefab, out GameObject result))
+                //    {
+                //        if (!EligiblePrefabs.ContainsKey(result.name))
+                //        {
+                //            EligiblePrefabs.Add(result.name, result);
+                //        }
+                //    }
+                //}
             }
 
             foreach (var prefab in EligiblePrefabs.Values)

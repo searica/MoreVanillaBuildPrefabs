@@ -1,4 +1,6 @@
-﻿using MVBP.Extensions;
+﻿// Ignore Spelling: MVBP
+
+using MVBP.Extensions;
 using System;
 using System.Collections.Generic;
 using UnityEngine;

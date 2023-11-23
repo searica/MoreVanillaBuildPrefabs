@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿// Ignore Spelling: MVBP
+
+using System.Collections.Generic;
 using System.Linq;
 
 namespace MVBP.Extensions
@@ -18,7 +20,7 @@ namespace MVBP.Extensions
                 this.chance = chance;
             }
 
-            public float GetAvgAmount()
+            public readonly float GetAvgAmount()
             {
                 return (min + max) * chance / 2;
             }

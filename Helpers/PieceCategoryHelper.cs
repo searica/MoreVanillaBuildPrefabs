@@ -8,8 +8,8 @@ namespace MVBP.Helpers
 {
     internal static class PieceCategoryHelper
     {
-        internal static Piece.PieceCategory Nature;
-        internal static Piece.PieceCategory CreatorShop;
+        private static Piece.PieceCategory Nature;
+        private static Piece.PieceCategory CreatorShop;
 
         internal static void AddCreatorShopPieceCategory()
         {

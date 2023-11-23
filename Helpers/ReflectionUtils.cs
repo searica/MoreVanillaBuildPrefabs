@@ -1,4 +1,6 @@
-﻿using System;
+﻿// Ignore Spelling: MVBP
+
+using System;
 using System.Reflection;
 
 namespace MVBP.Helpers
