@@ -31,12 +31,9 @@ namespace MVBP.Patches
         [HarmonyPatch(nameof(MineRock.AllDestroyed))]
         private static void AllDestroyed(MineRock __instance, ref bool __result)
         {
-            if (__result && __instance?.gameObject != null)
+            if (__result && __instance && __instance.gameObject && __instance.gameObject.TryGetComponent(out Piece piece))
             {
-                if (__instance.gameObject.TryGetComponent(out Piece piece))
-                {
-                    piece.DropResources();
-                }
+                piece.DropResources();
             }
         }
     }
