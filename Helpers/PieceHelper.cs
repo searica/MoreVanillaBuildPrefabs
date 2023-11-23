@@ -13,6 +13,7 @@ namespace MVBP.Helpers
     internal static class PieceHelper
     {
         internal static readonly HashSet<string> AddedPrefabs = new();
+        private static readonly HashSet<string> AddedPieceComponent = new();
 
         internal static CraftingStation GetCraftingStation(string name)
         {
@@ -91,35 +92,34 @@ namespace MVBP.Helpers
             if (!piece)
             {
                 piece = prefab.AddComponent<Piece>();
-                if (piece != null)
-                {
-                    //piece.enabled = false;
-                    piece.m_name = prefab.name;
-                    piece.m_groundOnly = false;
-                    piece.m_groundPiece = false;
-                    piece.m_cultivatedGroundOnly = false;
-                    piece.m_waterPiece = false;
-                    piece.m_noInWater = false;
-                    piece.m_notOnWood = false;
-                    piece.m_notOnTiltingSurface = false;
-                    piece.m_inCeilingOnly = false;
-                    piece.m_notOnFloor = false;
-                    piece.m_onlyInTeleportArea = false;
-                    piece.m_allowedInDungeons = false;
-                    piece.m_clipEverything = false;
-                    piece.m_clipGround = false;
-                    piece.m_allowRotatedOverlap = true;
-                    piece.m_repairPiece = false; // setting to true prevents placement
-                    piece.m_onlyInBiome = Heightmap.Biome.None;
 
-                    // to prevent deconstruction of pieces that are not enabled by the mod
-                    piece.m_canBeRemoved = false;
+                piece.enabled = false; // disable the component unless enabled in config
 
-                    // This would mean prefabs that I add pieces to act as if
-                    // they don't have pieces unless they are enabled in the config
-                    piece.m_enabled = false;
-                    Log.LogInfo($"Created Piece component for: {prefab.name}", LogLevel.High);
-                }
+                piece.m_enabled = true;
+                piece.m_name = prefab.name;
+                piece.m_groundOnly = false;
+                piece.m_groundPiece = false;
+                piece.m_cultivatedGroundOnly = false;
+                piece.m_waterPiece = false;
+                piece.m_noInWater = false;
+                piece.m_notOnWood = false;
+                piece.m_notOnTiltingSurface = false;
+                piece.m_inCeilingOnly = false;
+                piece.m_notOnFloor = false;
+                piece.m_onlyInTeleportArea = false;
+                piece.m_allowedInDungeons = false;
+                piece.m_clipEverything = false;
+                piece.m_clipGround = false;
+                piece.m_allowRotatedOverlap = true;
+                piece.m_repairPiece = false; // setting to true prevents placement
+                piece.m_onlyInBiome = Heightmap.Biome.None;
+
+                // to prevent deconstruction of pieces that are not enabled by the mod
+                piece.m_canBeRemoved = false;
+
+                AddedPieceComponent.Add(prefab.name);
+                Log.LogInfo($"Created Piece component for: {prefab.name}", LogLevel.High);
+
             }
             return piece;
         }
@@ -127,53 +127,41 @@ namespace MVBP.Helpers
         /// <summary>
         ///     Method to configure Piece fields based on a PieceDB instance.
         /// </summary>
-        /// <param name="piece"></param>
+        /// <param name="pieceDB"></param>
         /// <returns></returns>
         internal static Piece ConfigurePiece(PieceDB pieceDB)
         {
+            var piece = pieceDB.piece;
+
             var name = NameMaker.FormatPrefabName(pieceDB);
             var description = NameMaker.GetPrefabDescription(pieceDB);
             var pieceCategory = (Piece.PieceCategory)PieceManager.Instance.GetPieceCategory(pieceDB.category);
 
-            return ConfigurePiece(
-                pieceDB.piece,
-                name,
-                description,
-                pieceDB.allowedInDungeons,
-                pieceCategory,
-                GetCraftingStation(pieceDB.craftingStation),
-                ConfigurePieceRequirements(pieceDB),
-                pieceDB.clipEverything,
-                pieceDB.clipGround
-            );
-        }
+            if (AddedPieceComponent.Contains(pieceDB.name))
+            {
+                piece.enabled = pieceDB.enabled; // set component enabled/disabled for components added by MVBP
+            }
 
-
-        /// <summary>
-        ///     Method to configure Piece fields.
-        /// </summary>
-        /// <param name="piece"></param>
-        /// <returns></returns>
-        internal static Piece ConfigurePiece(
-            Piece piece,
-            string name,
-            string description,
-            bool allowedInDungeons,
-            Piece.PieceCategory category,
-            CraftingStation craftingStation,
-            Piece.Requirement[] requirements,
-            bool clipEverything,
-            bool clipGround
-        )
-        {
             piece.m_name = name;
             piece.m_description = description;
-            piece.m_allowedInDungeons = allowedInDungeons;
-            piece.m_category = category;
-            piece.m_craftingStation = craftingStation;
-            piece.m_resources = requirements;
-            piece.m_clipEverything = clipEverything;
-            piece.m_clipGround = clipGround;
+            piece.m_allowedInDungeons = pieceDB.allowedInDungeons;
+            piece.m_category = pieceCategory;
+            piece.m_craftingStation = GetCraftingStation(pieceDB.craftingStation);
+            piece.m_resources = ConfigurePieceRequirements(pieceDB);
+            piece.m_clipEverything = pieceDB.clipEverything;
+            piece.m_clipGround = pieceDB.clipGround;
+
+            // Prevent CreativeMode pieces and any clones of them
+            // from being removable.
+            // (Player.RemovePiece patch allows removing player-built instances).
+            // Mimic Vanilla, make ships/carts non-removable.
+            if (!PieceCategoryHelper.IsCreativeModePiece(pieceDB.piece) &&
+                !pieceDB.Prefab.GetComponent<Ship>() &&
+                !pieceDB.Prefab.GetComponent<Vagon>())
+            {
+                pieceDB.piece.m_canBeRemoved = true;
+            }
+
             return piece;
         }
 
@@ -247,7 +235,7 @@ namespace MVBP.Helpers
             var name = prefab.name;
             var hash = name.GetStableHashCode();
 
-            if (ZNetScene.instance != null && !ZNetScene.instance.m_namedPrefabs.ContainsKey(hash))
+            if (ZNetScene.instance && !ZNetScene.instance.m_namedPrefabs.ContainsKey(hash))
             {
                 RegisterToZNetScene(prefab);
             }
@@ -300,7 +288,7 @@ namespace MVBP.Helpers
         {
             Log.LogInfo("RemoveAllCustomPiecesFromPieceTable()", LogLevel.Medium);
 
-            int numCustomPieces = AddedPrefabs.Count();
+            int numCustomPieces = AddedPrefabs.Count;
             var prefabsToRemove = AddedPrefabs.ToList();
             var pieceTable = GetPieceTable(pieceTableName);
 

@@ -49,7 +49,7 @@ namespace MVBP.Helpers
         //    "ForceField_0",
         //};
 
-        internal static bool HasInitializedPrefabs => PrefabRefs.Count > 0;
+        internal static bool HasInitializedPlugin => PrefabRefs.Count > 0;
 
         internal static bool TryGetDefaultPieceClone(GameObject gameObject, out Piece pieceClone)
         {
@@ -213,7 +213,25 @@ namespace MVBP.Helpers
 
             Log.LogInfo($"Found {PrefabRefs.Count} prefabs");
 
-            InitDefaultPieceClones();
+            Log.LogInfo("Initializing default pieces");
+            // Get a default icon to use if pieceClone doesn't have an icon.
+            // Need this to prevent NRE's if other code references the pieceClone
+            // before the coroutine that is rendering the icons finishes. (Such as PlanBuild)
+            var defaultIcon = PrefabManager.Cache.GetPrefab<Sprite>("mapicon_hildir1");
+            //var defaultIcon = Resources.FindObjectsOfTypeAll<Sprite>().Where(spr => spr.name == "mapicon_hildir1").First();
+
+            foreach (var prefab in PrefabRefs.Values)
+            {
+                var defaultPiece = PieceHelper.InitPieceComponent(prefab);
+                if (defaultPiece.m_icon == null)
+                {
+                    defaultPiece.m_icon = defaultIcon;
+                }
+            }
+
+            Log.LogInfo("Initializing default icons", LogLevel.Medium);
+
+            IconHelper.Instance.GeneratePrefabIcons(PrefabRefs.Values);
         }
 
         /// <summary>
@@ -247,62 +265,12 @@ namespace MVBP.Helpers
         }
 
         /// <summary>
-        ///     Initializes all prefabs to have pieces and
-        ///     stores a deep copy of the pieceClone component
-        ///     to provide a template to reset to upon
-        ///     re-initialization.
+        ///     Initializes references to pieces and their configuration settings then applies 
+        ///     the configuration settings from the PieceDB for each piece in PieceRefs.
         /// </summary>
-        private static void InitDefaultPieceClones()
+        private static void InitPieces()
         {
-            if (!HasInitializedPrefabs)
-            {
-                return; // can't run without PrefabRefs
-            }
-
-            if (DefaultPieceClones.Count > 0)
-            {
-                return; // should only ever run once
-            }
-
-            Log.LogInfo("Initializing default pieces");
-
-            // Get a default icon to use if pieceClone doesn't have an icon.
-            // Need this to prevent NRE's if other code references the pieceClone
-            // before the coroutine that is rendering the icons finishes. (Such as PlanBuild)
-            var defaultIcon = Resources.FindObjectsOfTypeAll<Sprite>()
-                .Where(spr => spr.name == "mapicon_hildir1")
-                .First();
-
-            foreach (var prefab in PrefabRefs.Values)
-            {
-                var defaultPiece = PieceHelper.InitPieceComponent(prefab);
-                if (defaultPiece.m_icon == null)
-                {
-                    defaultPiece.m_icon = defaultIcon;
-                }
-            }
-
-            Log.LogInfo("Initializing default icons", LogLevel.Medium);
-
-            IconHelper.Instance.GeneratePrefabIcons(PrefabRefs.Values);
-
-            foreach (var prefab in PrefabRefs.Values)
-            {
-                var go = new GameObject();
-                var pieceClone = go.AddComponent<Piece>();
-                //var pieceClone = new Piece();
-                pieceClone.CopyFields(prefab.GetComponent<Piece>());
-                DefaultPieceClones.Add(prefab.name, pieceClone);
-            }
-        }
-
-        /// <summary>
-        ///     Initializes references to pieces
-        ///     and their configuration settings
-        /// </summary>
-        private static void InitPieceRefs()
-        {
-            Log.LogInfo("Initializing pieceClone refs");
+            Log.LogInfo("Initializing piece refs");
 
             if (PieceRefs.Count > 0)
             {
@@ -316,7 +284,18 @@ namespace MVBP.Helpers
                 }
                 PieceRefs.Clear();
             }
+
             PieceRefs = GeneratePieceRefs();
+
+            Log.LogInfo("Initializing pieces");
+            foreach (var pieceDB in PieceRefs.Values)
+            {
+                var piece = PieceHelper.ConfigurePiece(pieceDB);
+                SfxHelper.FixPlacementSfx(piece);
+
+                // Need to map names of pieces to source prefab for MineRock5 prefabs
+                PieceToPrefabMap[piece.m_name] = pieceDB.name;
+            }
         }
 
         /// <summary>
@@ -346,7 +325,7 @@ namespace MVBP.Helpers
             {
                 if (PrefabRefs.TryGetValue(name, out GameObject prefab))
                 {
-                    if (prefab == null)
+                    if (!prefab)
                     {
                         Log.LogWarning($"Prefab: {name} has been destroyed");
                         continue;
@@ -355,8 +334,6 @@ namespace MVBP.Helpers
                     // reset piece component to match the default pieceClone clone
                     if (prefab.TryGetComponent(out Piece piece))
                     {
-                        // create new piece ref
-                        piece.CopyFields(DefaultPieceClones[prefab.name]);
                         newPieceRefs.Add(prefab.name, new PieceDB(MorePrefabs.GetPrefabDB(prefab), piece));
                     }
                     else
@@ -369,23 +346,8 @@ namespace MVBP.Helpers
                     Log.LogWarning($"Could not find Prefab: {name}");
                 }
             }
-            return newPieceRefs;
-        }
 
-        /// <summary>
-        ///     Apply the configuration settings from the
-        ///     PieceDB for each pieceClone in PieceRefs.
-        /// </summary>
-        private static void InitPieces()
-        {
-            Log.LogInfo("Initializing pieces");
-            foreach (var pieceDB in PieceRefs.Values)
-            {
-                var piece = PieceHelper.ConfigurePiece(pieceDB);
-                SfxHelper.FixPlacementSfx(piece);
-                // Need to map names of pieces to source prefab for MineRock5 prefabs
-                PieceToPrefabMap[piece.m_name] = pieceDB.name;
-            }
+            return newPieceRefs;
         }
 
         /// <summary>
@@ -427,19 +389,6 @@ namespace MVBP.Helpers
                     continue;
                 }
 
-                // Prevent CreativeMode pieces and any clones of them
-                // from being removable.
-                // (Player.RemovePiece patch allows removing player-built instances).
-                // Mimic Vanilla, make ships/carts non-removable.
-                if (!PieceCategoryHelper.IsCreativeModePiece(pieceDB.piece) &&
-                    !pieceDB.Prefab.GetComponent<Ship>() &&
-                    !pieceDB.Prefab.GetComponent<Vagon>())
-                {
-                    pieceDB.piece.m_canBeRemoved = true;
-                }
-
-                // always enable piece component if prefab enabled in config
-                pieceDB.piece.m_enabled = true;
                 pieceGroups.Add(pieceDB);
             }
 
@@ -459,7 +408,7 @@ namespace MVBP.Helpers
         /// </summary>
         private static void InitSeasonalPieces()
         {
-            if (!HasInitializedPrefabs) return;
+            if (!HasInitializedPlugin) return;
 
             foreach (var name in SeasonalPieceRefs.Keys)
             {
@@ -482,13 +431,12 @@ namespace MVBP.Helpers
         /// </summary>
         internal static void InitPlugin()
         {
-            if (HasInitializedPrefabs) { return; }
+            if (HasInitializedPlugin) { return; }
 
             PieceCategoryHelper.AddCreatorShopPieceCategory();
             SfxHelper.Init();
             InitPrefabRefs();
             InitSeasonalPieces();
-            InitPieceRefs();
             InitPieces();
             InitHammer();
         }
@@ -498,9 +446,8 @@ namespace MVBP.Helpers
         /// </summary>
         internal static void UpdatePieces()
         {
-            if (!HasInitializedPrefabs) { return; }
+            if (!HasInitializedPlugin) { return; }
 
-            InitPieceRefs();
             InitPieces();
             InitHammer();
         }
@@ -513,18 +460,35 @@ namespace MVBP.Helpers
         /// <param name="msg"></param>
         internal static void UpdatePlugin(string msg, bool saveConfig = true)
         {
-            if (!HasInitializedPrefabs) { return; }
+            if (!HasInitializedPlugin)
+            {
+                return;
+            }
 
             // Don't update unless settings have actually changed
-            if (!MorePrefabs.UpdatePieceSettings && !MorePrefabs.UpdatePlacementSettings) { return; }
+            if (!MorePrefabs.UpdatePieceSettings && !MorePrefabs.UpdatePlacementSettings)
+            {
+                return;
+            }
 
             var watch = new System.Diagnostics.Stopwatch();
             if (Log.IsVerbosityMedium) { watch.Start(); }
             Log.LogInfo(msg);
 
-            if (MorePrefabs.UpdatePieceSettings) { UpdatePieces(); }
-            if (MorePrefabs.UpdateSeasonalSettings) { InitSeasonalPieces(); }
-            if (MorePrefabs.UpdatePlacementSettings) { ForceUnequipHammer(); } // reset placement ghost set up to apply patch
+            if (MorePrefabs.UpdatePieceSettings)
+            {
+                UpdatePieces();
+            }
+
+            if (MorePrefabs.UpdateSeasonalSettings)
+            {
+                InitSeasonalPieces();
+            }
+
+            if (MorePrefabs.UpdatePlacementSettings)
+            {
+                ForceUnequipHammer(); // reset placement ghost set up to apply patch
+            }
 
             if (Log.IsVerbosityMedium)
             {
