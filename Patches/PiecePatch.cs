@@ -2,6 +2,7 @@
 
 using HarmonyLib;
 using MVBP.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Reflection.Emit;
 
@@ -105,6 +106,11 @@ namespace MVBP
         /// <param name="piece"></param>
         private static Piece.Requirement[] DropResources_m_resources_Delegate(Piece piece)
         {
+            if (!piece)
+            {
+                return Array.Empty<Piece.Requirement>();
+            }
+
             if (!InitManager.IsPatchedByMod(piece))
             {
                 // do nothing if not a piece the mod changes
@@ -116,16 +122,19 @@ namespace MVBP
             Log.LogInfo("Dropping resources for MVBP piece", LogLevel.Medium);
 
             // Set resources to defaults is piece is not placed by player (world-generated pieces)
-            if (!piece.IsPlacedByPlayer() && InitManager.TryGetDefaultPieceClone(piece.gameObject, out Piece pieceClone))
+            if (!piece.IsPlacedByPlayer() && InitManager.TryGetDefaultPieceClone(piece.gameObject, out Piece pieceClone) && pieceClone.m_resources != null)
             {
-                if (pieceClone.m_resources != null) { return pieceClone.m_resources; }
+                return pieceClone.m_resources;
             }
 
             // Set resources to current piece resources if placed by a player
             var resources = piece.m_resources;
 
-            var zNetView = piece?.gameObject?.GetComponent<ZNetView>();
-            if (zNetView == null || piece.gameObject == null) { return resources; }
+            ZNetView zNetView;
+            if (!piece.gameObject || piece.gameObject.TryGetComponent(out zNetView))
+            {
+                return resources;
+            }
 
             // If piece has an ItemStand and it has an item, then drop it.
             if (piece.gameObject.TryGetComponent(out ItemStand itemStand))
