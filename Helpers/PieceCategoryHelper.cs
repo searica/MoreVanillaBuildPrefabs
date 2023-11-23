@@ -35,25 +35,21 @@ namespace MVBP.Helpers
 
         internal static bool IsCreatorShopPiece(Piece piece)
         {
-            if (InitManager.IsPatchedByMod(piece))
+            if (InitManager.IsPatchedByMod(piece) && piece.m_category == CreatorShop)
             {
-                if (piece.m_category == CreatorShop)
-                {
-                    return true;
-                }
+                return true;
             }
+
             return false;
         }
 
         internal static bool IsNaturePiece(Piece piece)
         {
-            if (InitManager.IsPatchedByMod(piece))
+            if (InitManager.IsPatchedByMod(piece) && piece.m_category == Nature)
             {
-                if (piece.m_category == Nature)
-                {
-                    return true;
-                }
+                return true;
             }
+
             return false;
         }
     }
