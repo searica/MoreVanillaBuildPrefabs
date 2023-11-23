@@ -130,8 +130,8 @@ namespace MVBP
             // Set resources to current piece resources if placed by a player
             var resources = piece.m_resources;
 
-            ZNetView zNetView;
-            if (!piece.gameObject || piece.gameObject.TryGetComponent(out zNetView))
+
+            if (!piece.gameObject || piece.gameObject.TryGetComponent(out ZNetView zNetView))
             {
                 return resources;
             }
