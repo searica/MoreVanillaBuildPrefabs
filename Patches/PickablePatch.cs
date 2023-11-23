@@ -14,9 +14,7 @@ namespace MVBP.Patches
         [HarmonyPatch(nameof(Pickable.RPC_Pick))]
         private static void RPC_PickPrefix(Pickable __instance, out DropTable __state)
         {
-            var piece = __instance.GetComponent<Piece>();
-            if (InitManager.IsPatchedByMod(__instance)
-                && piece != null && piece.IsPlacedByPlayer())
+            if (InitManager.IsPatchedByMod(__instance) && __instance.TryGetComponent(out Piece piece) && piece.IsPlacedByPlayer())
             {
                 __state = __instance.m_extraDrops;
                 __instance.m_extraDrops = emptyDrops;
