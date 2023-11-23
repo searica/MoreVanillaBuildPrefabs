@@ -12,15 +12,13 @@ namespace MVBP.Patches
         [HarmonyPatch(nameof(WearNTear.Destroy))]
         private static void DestroyPrefix(WearNTear __instance, out EffectList __state)
         {
-            if (InitManager.IsPatchedByMod(__instance))
+            if (InitManager.IsPatchedByMod(__instance) && !SfxHelper.HasSfx(__instance.m_destroyedEffect))
             {
-                if (!SfxHelper.HasSfx(__instance.m_destroyedEffect))
-                {
-                    __state = __instance.m_destroyedEffect;
-                    __instance.m_destroyedEffect = SfxHelper.FixRemovalSfx(__instance);
-                    return;
-                }
+                __state = __instance.m_destroyedEffect;
+                __instance.m_destroyedEffect = SfxHelper.FixRemovalSfx(__instance);
+                return;
             }
+
             __state = null;
         }
 
