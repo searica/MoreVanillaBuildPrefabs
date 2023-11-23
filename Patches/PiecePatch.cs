@@ -53,9 +53,9 @@ namespace MVBP
                 view.m_persistent = true;
 
                 var sync = __instance.gameObject.GetComponent<ZSyncTransform>();
-                if (sync == null)
+                if (!sync)
                 {
-                    __instance.gameObject.AddComponent<ZSyncTransform>();
+                    sync = __instance.gameObject.AddComponent<ZSyncTransform>();
                 }
                 sync.m_syncPosition = true;
                 sync.m_syncRotation = true;
