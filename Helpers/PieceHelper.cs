@@ -87,15 +87,14 @@ namespace MVBP.Helpers
         /// <param name="prefab"></param>
         internal static Piece InitPieceComponent(GameObject prefab)
         {
-            var piece = prefab?.GetComponent<Piece>();
-            if (piece == null)
+            var piece = prefab.GetComponent<Piece>();
+            if (!piece)
             {
                 piece = prefab.AddComponent<Piece>();
                 if (piece != null)
                 {
+                    //piece.enabled = false;
                     piece.m_name = prefab.name;
-                    piece.m_description = prefab.name;
-
                     piece.m_groundOnly = false;
                     piece.m_groundPiece = false;
                     piece.m_cultivatedGroundOnly = false;
@@ -149,29 +148,6 @@ namespace MVBP.Helpers
             );
         }
 
-        /// <summary>
-        ///     Create piece requirements array from pieceDB and modify it to prevent
-        ///     exploits if the piece has a pickable component.
-        /// </summary>
-        /// <param name="pieceDB"></param>
-        /// <returns></returns>
-        private static Piece.Requirement[] ConfigurePieceRequirements(PieceDB pieceDB)
-        {
-            var reqs = RequirementsHelper.CreateRequirementsArray(pieceDB.requirements);
-            if (pieceDB.piece.TryGetComponent(out MineRock mineRock))
-            {
-                reqs = RequirementsHelper.AddMineRockDropsToRequirements(reqs, mineRock);
-            }
-            if (pieceDB.piece.TryGetComponent(out MineRock5 mineRock5))
-            {
-                reqs = RequirementsHelper.AddMineRock5DropsToRequirements(reqs, mineRock5);
-            }
-            if (pieceDB.piece.TryGetComponent(out Pickable pickable))
-            {
-                reqs = RequirementsHelper.AddPickableToRequirements(reqs, pickable);
-            }
-            return reqs;
-        }
 
         /// <summary>
         ///     Method to configure Piece fields.
@@ -200,6 +176,31 @@ namespace MVBP.Helpers
             piece.m_clipGround = clipGround;
             return piece;
         }
+
+        /// <summary>
+        ///     Create piece requirements array from pieceDB and modify it to prevent
+        ///     exploits if the piece has a pickable component.
+        /// </summary>
+        /// <param name="pieceDB"></param>
+        /// <returns></returns>
+        private static Piece.Requirement[] ConfigurePieceRequirements(PieceDB pieceDB)
+        {
+            var reqs = RequirementsHelper.CreateRequirementsArray(pieceDB.requirements);
+            if (pieceDB.piece.TryGetComponent(out MineRock mineRock))
+            {
+                reqs = RequirementsHelper.AddMineRockDropsToRequirements(reqs, mineRock);
+            }
+            if (pieceDB.piece.TryGetComponent(out MineRock5 mineRock5))
+            {
+                reqs = RequirementsHelper.AddMineRock5DropsToRequirements(reqs, mineRock5);
+            }
+            if (pieceDB.piece.TryGetComponent(out Pickable pickable))
+            {
+                reqs = RequirementsHelper.AddPickableToRequirements(reqs, pickable);
+            }
+            return reqs;
+        }
+
 
         /// <summary>
         ///     Method to add a piece to a piece table.

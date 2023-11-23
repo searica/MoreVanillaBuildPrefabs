@@ -19,8 +19,7 @@ namespace MVBP.Helpers
         {
             foreach (MethodInfo method in type.GetMethods(AllBindings))
             {
-                if (method.Name == name
-                    && HasMatchingParameterTypes(0, types, method.GetParameters()))
+                if (method.Name == name && HasMatchingParameterTypes(0, types, method.GetParameters()))
                 {
                     return method;
                 }

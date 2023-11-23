@@ -15,8 +15,8 @@ namespace MVBP.Helpers
     {
         internal static readonly Dictionary<string, GameObject> PrefabRefs = new();
         internal static readonly Dictionary<string, Piece> DefaultPieceClones = new();
-        internal static readonly Dictionary<string, PieceDB> PieceRefs = new();
-        internal static readonly Dictionary<string, string> PieceToPrefabMap = new();
+        private static Dictionary<string, PieceDB> PieceRefs = new();
+        private static Dictionary<string, string> PieceToPrefabMap = new();
 
         internal static readonly Dictionary<string, GameObject> SeasonalPieceRefs = new()
         {
@@ -152,13 +152,11 @@ namespace MVBP.Helpers
             var prefabName = gameObject.name.RemoveSuffix("(Clone)");
             if (PrefabRefs.ContainsKey(prefabName)) { return prefabName; }
 
-            if (gameObject.TryGetComponent(out Piece piece))
+            if (gameObject.TryGetComponent(out Piece piece) && PieceToPrefabMap.ContainsKey(piece.m_name))
             {
-                if (PieceToPrefabMap.ContainsKey(piece.m_name))
-                {
-                    return PieceToPrefabMap[piece.m_name];
-                }
+                return PieceToPrefabMap[piece.m_name];
             }
+
             return prefabName;
         }
 
@@ -231,11 +229,21 @@ namespace MVBP.Helpers
                 if (prefab != null && prefab.TryGetComponent(out Piece piece))
                 {
                     // Only add pieces that are currently disabled
-                    if (!piece.m_enabled) { SeasonalPieceRefs[name] = prefab; }
-                    else { nullKeys.Add(name); }
+                    if (!piece.m_enabled)
+                    {
+                        SeasonalPieceRefs[name] = prefab;
+                    }
+                    else
+                    {
+                        nullKeys.Add(name);
+                    }
                 }
             }
-            foreach (var key in nullKeys) { SeasonalPieceRefs.Remove(key); }
+
+            foreach (var key in nullKeys)
+            {
+                SeasonalPieceRefs.Remove(key);
+            }
         }
 
         /// <summary>
@@ -400,23 +408,21 @@ namespace MVBP.Helpers
                 }
 
                 // Prevent adding creative mode pieces if not in CreativeMode
-                if (!MorePrefabs.IsCreativeMode
-                    && PieceCategoryHelper.IsCreativeModePiece(pieceDB.piece))
+                if (!MorePrefabs.IsCreativeMode && PieceCategoryHelper.IsCreativeModePiece(pieceDB.piece))
                 {
                     continue;
                 }
 
                 // Only add vanilla crops if enabled
-                if (!MorePrefabs.IsEnableHammerCrops
-                    && pieceDB.pieceGroup == PieceGroup.VanillaCrop)
+                if (!MorePrefabs.IsEnableHammerCrops && pieceDB.pieceGroup == PieceGroup.VanillaCrop)
                 {
                     continue;
                 }
 
                 // Restrict placement of CreatorShop pieces to Admins only
-                if (MorePrefabs.IsCreatorShopAdminOnly
-                    && PieceCategoryHelper.IsCreatorShopPiece(pieceDB.piece)
-                    && !SynchronizationManager.Instance.PlayerIsAdmin)
+                if (MorePrefabs.IsCreatorShopAdminOnly &&
+                    PieceCategoryHelper.IsCreatorShopPiece(pieceDB.piece) &&
+                    !SynchronizationManager.Instance.PlayerIsAdmin)
                 {
                     continue;
                 }
@@ -425,9 +431,9 @@ namespace MVBP.Helpers
                 // from being removable.
                 // (Player.RemovePiece patch allows removing player-built instances).
                 // Mimic Vanilla, make ships/carts non-removable.
-                if (!PieceCategoryHelper.IsCreativeModePiece(pieceDB.piece)
-                    && !pieceDB.Prefab.GetComponent<Ship>()
-                    && !pieceDB.Prefab.GetComponent<Vagon>())
+                if (!PieceCategoryHelper.IsCreativeModePiece(pieceDB.piece) &&
+                    !pieceDB.Prefab.GetComponent<Ship>() &&
+                    !pieceDB.Prefab.GetComponent<Vagon>())
                 {
                     pieceDB.piece.m_canBeRemoved = true;
                 }
