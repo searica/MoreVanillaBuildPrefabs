@@ -19,7 +19,6 @@ namespace MVBP.Patches
         public static void ZNetStartPostfix()
         {
             Log.LogInfo("Checking world modifiers", LogLevel.Medium);
-            //if (SceneManager.GetActiveScene() == null) { return; }
 
             // If loading into game world and prefabs have not been added
             if (SceneManager.GetActiveScene().name == "main")

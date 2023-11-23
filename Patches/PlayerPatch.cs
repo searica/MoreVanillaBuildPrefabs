@@ -269,9 +269,10 @@ namespace MVBP
 
         private static bool Check_m_canBeRemoved(Piece piece)
         {
-            if (InitManager.IsPrefabEnabled(piece?.gameObject)
-                && PieceCategoryHelper.IsCreativeModePiece(piece)
-                && piece.IsPlacedByPlayer())
+
+            if (InitManager.IsPrefabEnabled(piece.gameObject) &&
+                PieceCategoryHelper.IsCreativeModePiece(piece) &&
+                piece.IsPlacedByPlayer())
             {
                 // Allow creative mode pieces to be removed by creator
                 if (piece.IsCreator()) { return true; }

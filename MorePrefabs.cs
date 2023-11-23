@@ -509,28 +509,28 @@ namespace MVBP
 
         #endregion Verbosity
 
-        internal static ManualLogSource _logSource;
+        private static ManualLogSource logSource;
 
         internal static void Init(ManualLogSource logSource)
         {
-            _logSource = logSource;
+            Log.logSource = logSource;
         }
 
-        internal static void LogDebug(object data) => _logSource.LogDebug(data);
+        internal static void LogDebug(object data) => logSource.LogDebug(data);
 
-        internal static void LogError(object data) => _logSource.LogError(data);
+        internal static void LogError(object data) => logSource.LogError(data);
 
-        internal static void LogFatal(object data) => _logSource.LogFatal(data);
+        internal static void LogFatal(object data) => logSource.LogFatal(data);
 
-        internal static void LogMessage(object data) => _logSource.LogMessage(data);
+        internal static void LogMessage(object data) => logSource.LogMessage(data);
 
-        internal static void LogWarning(object data) => _logSource.LogWarning(data);
+        internal static void LogWarning(object data) => logSource.LogWarning(data);
 
         internal static void LogInfo(object data, LogLevel level = LogLevel.Low)
         {
             if (Verbosity is null || VerbosityLevel >= level)
             {
-                _logSource.LogInfo(data);
+                logSource.LogInfo(data);
             }
         }
 
