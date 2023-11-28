@@ -54,6 +54,7 @@ namespace MVBP.Helpers {
                     Log.LogWarning($"Failed to find {armorStandTextureName}");
                 }
             }
+
             return armorStandTexture;
         }
 
@@ -64,6 +65,7 @@ namespace MVBP.Helpers {
                     Log.LogWarning($"Failed to find {cleanWoodTextureName}");
                 }
             }
+
             return cleanWoodTexture;
         }
 
@@ -71,6 +73,7 @@ namespace MVBP.Helpers {
             if (bmPortalTexture == null) {
                 bmPortalTexture = LoadTextureFromResources(bmPortalTextureName);
             }
+
             return bmPortalTexture;
         }
 
@@ -78,6 +81,7 @@ namespace MVBP.Helpers {
             if (bmPortalBumpMap == null) {
                 bmPortalBumpMap = LoadTextureFromResources(bmPortalBumpMapName);
             }
+
             return bmPortalBumpMap;
         }
 
@@ -111,6 +115,7 @@ namespace MVBP.Helpers {
                 mStream.Read(buffer, 0, buffer.Length);
                 texture.LoadImage(buffer);
             }
+
             return texture;
         }
     }
