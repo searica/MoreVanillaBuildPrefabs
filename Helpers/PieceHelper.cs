@@ -8,15 +8,12 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace MVBP.Helpers
-{
-    internal static class PieceHelper
-    {
+namespace MVBP.Helpers {
+    internal static class PieceHelper {
         internal static readonly HashSet<string> AddedPrefabs = new();
         private static readonly HashSet<string> AddedPieceComponent = new();
 
-        internal static CraftingStation GetCraftingStation(string name)
-        {
+        internal static CraftingStation GetCraftingStation(string name) {
             var internalName = CraftingStations.GetInternalName(name);
             var station = ZNetScene.instance?.GetPrefab(internalName)?.GetComponent<CraftingStation>();
             return station;
@@ -26,35 +23,15 @@ namespace MVBP.Helpers
         ///     Get existing objects of type PieceTable.
         /// </summary>
         /// <returns></returns>
-        internal static IEnumerable<PieceTable> GetPieceTables()
-        {
+        internal static IEnumerable<PieceTable> GetPieceTables() {
             return Resources.FindObjectsOfTypeAll<PieceTable>();
-        }
-
-        /// <summary>
-        ///     Method to get existing piece table.
-        /// </summary>
-        /// <param name="name"></param>
-        /// <returns></returns>
-        internal static PieceTable GetPieceTable(string name)
-        {
-            var pieceTables = GetPieceTables();
-            if (pieceTables != null)
-            {
-                foreach (var pieceTable in pieceTables)
-                {
-                    if (pieceTable.name == name) return pieceTable;
-                }
-            }
-            return null;
         }
 
         /// <summary>
         ///     Get HashSet of all customPiece name attached to existing PieceTable objects.
         /// </summary>
         /// <returns></returns>
-        internal static HashSet<string> GetExistingPieceNames()
-        {
+        internal static HashSet<string> GetExistingPieceNames() {
             var result = GetPieceTables()
                 .SelectMany(pieceTable => pieceTable.m_pieces)
                 .Select(piece => piece.name);
@@ -66,14 +43,18 @@ namespace MVBP.Helpers
         /// </summary>
         /// <param name="prefab"></param>
         /// <returns></returns>
-        internal static bool EnsureNoDuplicateZNetView(GameObject prefab)
-        {
-            var views = prefab?.GetComponents<ZNetView>();
+        internal static bool EnsureNoDuplicateZNetView(GameObject prefab) {
+            if (!prefab) {
+                return false;
+            }
 
-            if (views == null) return true;
+            var views = prefab.GetComponents<ZNetView>();
 
-            for (int i = 1; i < views.Length; ++i)
-            {
+            if (views == null) {
+                return true;
+            }
+
+            for (int i = 1; i < views.Length; ++i) {
                 GameObject.DestroyImmediate(views[i]);
             }
 
@@ -86,11 +67,10 @@ namespace MVBP.Helpers
         ///     piece components prefabs that are missing them.
         /// </summary>
         /// <param name="prefab"></param>
-        internal static Piece InitPieceComponent(GameObject prefab)
-        {
+        internal static Piece InitPieceComponent(GameObject prefab) {
             var piece = prefab.GetComponent<Piece>();
-            if (!piece)
-            {
+
+            if (!piece) {
                 piece = prefab.AddComponent<Piece>();
 
                 piece.enabled = false; // disable the component unless enabled in config
@@ -121,6 +101,7 @@ namespace MVBP.Helpers
                 Log.LogInfo($"Created Piece component for: {prefab.name}", LogLevel.High);
 
             }
+
             return piece;
         }
 
@@ -129,16 +110,14 @@ namespace MVBP.Helpers
         /// </summary>
         /// <param name="pieceDB"></param>
         /// <returns></returns>
-        internal static Piece ConfigurePiece(PieceDB pieceDB)
-        {
+        internal static Piece ConfigurePiece(PieceDB pieceDB) {
             var piece = pieceDB.piece;
 
             var name = NameMaker.FormatPrefabName(pieceDB);
             var description = NameMaker.GetPrefabDescription(pieceDB);
             var pieceCategory = (Piece.PieceCategory)PieceManager.Instance.GetPieceCategory(pieceDB.category);
 
-            if (AddedPieceComponent.Contains(pieceDB.name))
-            {
+            if (AddedPieceComponent.Contains(pieceDB.name)) {
                 piece.enabled = pieceDB.enabled; // set component enabled/disabled for components added by MVBP
             }
 
@@ -157,9 +136,11 @@ namespace MVBP.Helpers
             // Mimic Vanilla, make ships/carts non-removable.
             if (!PieceCategoryHelper.IsCreativeModePiece(pieceDB.piece) &&
                 !pieceDB.Prefab.GetComponent<Ship>() &&
-                !pieceDB.Prefab.GetComponent<Vagon>())
-            {
+                !pieceDB.Prefab.GetComponent<Vagon>()) {
                 pieceDB.piece.m_canBeRemoved = true;
+            }
+            else {
+                pieceDB.piece.m_canBeRemoved = false;
             }
 
             return piece;
@@ -171,21 +152,21 @@ namespace MVBP.Helpers
         /// </summary>
         /// <param name="pieceDB"></param>
         /// <returns></returns>
-        private static Piece.Requirement[] ConfigurePieceRequirements(PieceDB pieceDB)
-        {
+        private static Piece.Requirement[] ConfigurePieceRequirements(PieceDB pieceDB) {
             var reqs = RequirementsHelper.CreateRequirementsArray(pieceDB.requirements);
-            if (pieceDB.piece.TryGetComponent(out MineRock mineRock))
-            {
+
+            if (pieceDB.piece.TryGetComponent(out MineRock mineRock)) {
                 reqs = RequirementsHelper.AddMineRockDropsToRequirements(reqs, mineRock);
             }
-            if (pieceDB.piece.TryGetComponent(out MineRock5 mineRock5))
-            {
+
+            if (pieceDB.piece.TryGetComponent(out MineRock5 mineRock5)) {
                 reqs = RequirementsHelper.AddMineRock5DropsToRequirements(reqs, mineRock5);
             }
-            if (pieceDB.piece.TryGetComponent(out Pickable pickable))
-            {
+
+            if (pieceDB.piece.TryGetComponent(out Pickable pickable)) {
                 reqs = RequirementsHelper.AddPickableToRequirements(reqs, pickable);
             }
+
             return reqs;
         }
 
@@ -196,13 +177,13 @@ namespace MVBP.Helpers
         /// <param name="pieces"></param>
         /// <param name="pieceTableName"></param>
         /// <returns> bool indicating if customPiece was added. </returns>
-        internal static void AddPiecesListToPieceTable(IEnumerable<Piece> pieces, string pieceTableName)
-        {
-            var pieceTable = GetPieceTable(pieceTableName);
-            foreach (var piece in pieces)
-            {
+        internal static void AddPiecesListToPieceTable(IEnumerable<Piece> pieces, string pieceTableName) {
+            var pieceTable = PieceManager.Instance.GetPieceTable(pieceTableName);
+
+            foreach (var piece in pieces) {
                 AddPieceToPieceTable(piece, pieceTable);
             }
+
             Log.LogInfo($"Added {AddedPrefabs.Count} custom pieces");
         }
 
@@ -212,9 +193,9 @@ namespace MVBP.Helpers
         /// <param name="piece"></param>
         /// <param name="pieceTable"></param>
         /// <returns> bool indicating if customPiece was added. </returns>
-        internal static bool AddPieceToPieceTable(GameObject prefab, PieceTable pieceTable)
-        {
+        internal static bool AddPieceToPieceTable(GameObject prefab, PieceTable pieceTable) {
             var piece = prefab.GetComponent<Piece>() ?? throw new Exception($"Prefab {prefab.name} has no Piece component.");
+
             return AddPieceToPieceTable(piece, pieceTable);
         }
 
@@ -224,10 +205,8 @@ namespace MVBP.Helpers
         /// <param name="piece"></param>
         /// <param name="pieceTable"></param>
         /// <returns> bool indicating if customPiece was added. </returns>
-        internal static bool AddPieceToPieceTable(Piece piece, PieceTable pieceTable)
-        {
-            if (!piece || !pieceTable || pieceTable.m_pieces == null || pieceTable.m_pieces.Contains(piece.gameObject))
-            {
+        internal static bool AddPieceToPieceTable(Piece piece, PieceTable pieceTable) {
+            if (!piece || !pieceTable || pieceTable.m_pieces == null || pieceTable.m_pieces.Contains(piece.gameObject)) {
                 return false;
             }
 
@@ -235,8 +214,7 @@ namespace MVBP.Helpers
             var name = prefab.name;
             var hash = name.GetStableHashCode();
 
-            if (ZNetScene.instance && !ZNetScene.instance.m_namedPrefabs.ContainsKey(hash))
-            {
+            if (ZNetScene.instance && !ZNetScene.instance.m_namedPrefabs.ContainsKey(hash)) {
                 RegisterToZNetScene(prefab);
             }
 
@@ -251,27 +229,21 @@ namespace MVBP.Helpers
         ///     Checks for existence of the object via GetStableHashCode() and adds the prefab if it is not already added.
         /// </summary>
         /// <param name="gameObject"></param>
-        internal static void RegisterToZNetScene(GameObject gameObject)
-        {
+        internal static void RegisterToZNetScene(GameObject gameObject) {
             var znet = ZNetScene.instance;
 
-            if (znet)
-            {
+            if (znet) {
                 string name = gameObject.name;
                 int hash = name.GetStableHashCode();
 
-                if (znet.m_namedPrefabs.ContainsKey(hash))
-                {
+                if (znet.m_namedPrefabs.ContainsKey(hash)) {
                     Log.LogDebug($"Prefab {name} already in ZNetScene");
                 }
-                else
-                {
-                    if (gameObject.GetComponent<ZNetView>() != null)
-                    {
+                else {
+                    if (gameObject.GetComponent<ZNetView>() != null) {
                         znet.m_prefabs.Add(gameObject);
                     }
-                    else
-                    {
+                    else {
                         znet.m_nonNetViewPrefabs.Add(gameObject);
                     }
                     znet.m_namedPrefabs.Add(hash, gameObject);
@@ -284,21 +256,18 @@ namespace MVBP.Helpers
         ///     Removes all pieces added by the mod from the piece table.
         /// </summary>
         /// <param name="pieceTableName"></param>
-        internal static void RemoveAllCustomPiecesFromPieceTable(string pieceTableName)
-        {
+        internal static void RemoveAllCustomPiecesFromPieceTable(string pieceTableName) {
             Log.LogInfo("RemoveAllCustomPiecesFromPieceTable()", LogLevel.Medium);
 
             int numCustomPieces = AddedPrefabs.Count;
             var prefabsToRemove = AddedPrefabs.ToList();
-            var pieceTable = GetPieceTable(pieceTableName);
+            var pieceTable = PieceManager.Instance.GetPieceTable(pieceTableName);
 
-            if (pieceTable == null)
-            {
+            if (pieceTable == null) {
                 Log.LogError($"Could not find piece table: {pieceTableName}");
             }
 
-            foreach (var name in prefabsToRemove)
-            {
+            foreach (var name in prefabsToRemove) {
                 RemovePieceFromPieceTable(name, pieceTable);
             }
 
@@ -311,21 +280,17 @@ namespace MVBP.Helpers
         /// <param name="name"></param>
         /// <param name="pieceTable"></param>
         /// <returns></returns>
-        internal static bool RemovePieceFromPieceTable(string name, PieceTable pieceTable)
-        {
-            try
-            {
+        internal static bool RemovePieceFromPieceTable(string name, PieceTable pieceTable) {
+            try {
                 var prefab = ZNetScene.instance.GetPrefab(name);
-                if (pieceTable.m_pieces.Contains(prefab))
-                {
+                if (pieceTable.m_pieces.Contains(prefab)) {
                     pieceTable.m_pieces.Remove(prefab);
                     AddedPrefabs.Remove(prefab.name);
                     return true;
                 }
                 return false;
             }
-            catch (Exception e)
-            {
+            catch (Exception e) {
                 Log.LogInfo($"{name}: {e}");
                 return false;
             }
@@ -337,20 +302,16 @@ namespace MVBP.Helpers
         /// <param name="name"></param>
         /// <param name="pieceTable"></param>
         /// <returns></returns>
-        internal static bool RemovePieceFromPieceTable(GameObject prefab, PieceTable pieceTable)
-        {
-            try
-            {
-                if (pieceTable.m_pieces.Contains(prefab))
-                {
+        internal static bool RemovePieceFromPieceTable(GameObject prefab, PieceTable pieceTable) {
+            try {
+                if (pieceTable.m_pieces.Contains(prefab)) {
                     pieceTable.m_pieces.Remove(prefab);
                     AddedPrefabs.Remove(prefab.name);
                     return true;
                 }
                 return false;
             }
-            catch (Exception e)
-            {
+            catch (Exception e) {
                 Log.LogInfo($"{prefab.name}: {e}", LogLevel.Medium);
                 return false;
             }

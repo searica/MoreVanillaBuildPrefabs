@@ -5,6 +5,11 @@ namespace MVBP.Extensions
 {
     internal static class GameObjectExtensions
     {
+        //internal static string GetPrefabName(this GameObject gameObject)
+        //{
+        //    return Utils.GetPrefabName(gameObject);
+        //}
+
         /// <summary>
         ///     Creates a deep copy of the object.
         /// </summary>

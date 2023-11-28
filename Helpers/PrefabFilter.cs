@@ -5,10 +5,8 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace MVBP.Helpers
-{
-    internal static class PrefabFilter
-    {
+namespace MVBP.Helpers {
+    internal static class PrefabFilter {
         /// <summary>
         ///     Checks if a prefab is eligible for adding. If the prefab
         ///     spawns a MineRock5 component when destroyed then result
@@ -17,10 +15,8 @@ namespace MVBP.Helpers
         /// <param name="prefab"></param>
         /// <param name="result"></param>
         /// <returns></returns>
-        internal static bool GetEligiblePrefab(GameObject prefab, out GameObject result)
-        {
-            if (ShouldIgnorePrefab(prefab))
-            {
+        internal static bool GetEligiblePrefab(GameObject prefab, out GameObject result) {
+            if (ShouldIgnorePrefab(prefab)) {
                 result = null;
                 return false;
             }
@@ -30,8 +26,7 @@ namespace MVBP.Helpers
             if (prefab.TryGetComponent(out Destructible destructible) &&
                 destructible.m_spawnWhenDestroyed &&
                 destructible.m_spawnWhenDestroyed.transform.parent == null &&
-                destructible.m_spawnWhenDestroyed.GetComponent<MineRock5>())
-            {
+                destructible.m_spawnWhenDestroyed.GetComponent<MineRock5>()) {
                 result = destructible.m_spawnWhenDestroyed;
                 return true;
             }
@@ -47,11 +42,9 @@ namespace MVBP.Helpers
         /// <param name="prefab"></param>
         /// <returns></returns>
         /// <exception cref="Exception"></exception>
-        private static bool ShouldIgnorePrefab(GameObject prefab)
-        {
+        private static bool ShouldIgnorePrefab(GameObject prefab) {
             // Ignore specific prefab names
-            if (_IgnoredPrefabs.Contains(prefab.name))
-            {
+            if (_IgnoredPrefabs.Contains(prefab.name)) {
                 return true;
             }
 
@@ -94,8 +87,7 @@ namespace MVBP.Helpers
                 prefab.name.Contains("Random") ||
                 prefab.name.Contains("random") ||
                 prefab.name.EndsWith("_test")
-            )
-            {
+            ) {
                 return true;
             }
 
