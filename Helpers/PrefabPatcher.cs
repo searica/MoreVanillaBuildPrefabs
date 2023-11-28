@@ -846,11 +846,9 @@ namespace MVBP.Helpers
                     break;
             }
 
-            if (MorePrefabs.PatchPortalTexture && prefab.name == "portal")
-            {
-                var meshRender = prefab?.transform?.Find("New")?.Find("model")?.GetComponent<MeshRenderer>();
-                if (meshRender)
-                {
+            if (MorePrefabs.PatchPortalTexture && prefab.name == "portal" && !GUIManager.IsHeadless()) {
+                var meshRender = prefab.transform.Find("New").Find("model").GetComponent<MeshRenderer>();
+                if (meshRender) {
                     meshRender.material.mainTexture = TextureHelper.GetBlackMarblePortalTexture();
                     meshRender.material.SetTexture(
                         TextureHelper.TextureNames.BumpMap,
