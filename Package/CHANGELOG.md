@@ -11,9 +11,9 @@
 			<td align="center">1.0.1</td>
 			<td align="left">
 				<ul>
-					<li>Took advantage of Unity implicit bool casts.</li>
-					<li>Changed in-game configuration changes to not require reflection.</li>
-					<li>Speed up initialization and re-initialization by ~30%.</li>
+					<li>Sped up initialization and re-initialization by ~30%.</li>
+					<li>Optimized code to use bool checks instead of null checks wherever possible.</li>
+					<li>Redesigned in-game updates to configuration to not require expensive operations like reflection.</li>
 					<li>Improved compatibility with other mods that affect the same pieces, MVBP now only overwrites the values related to the configuration settings when re-initializing.</li>
 					<li>Piece components are now disabled if the prefab is disabled in the configuration settings and the prefab does not have a piece component in the Vanilla game.</li>
 				</ul>

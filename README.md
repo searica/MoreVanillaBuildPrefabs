@@ -7,7 +7,7 @@ MoreVanillaBuildPrefabs is a Valheim mod to make all vanilla prefabs buildable w
 Because all the added build pieces are pre-existing vanilla prefabs, any pieces you build with this mod will persist in your world even if you uninstall the mod. This means that pieces you build on a server will also be visible for players without the mod and any builds using the pieces from this mod will load for players without the mod.
 
 ### Example Builds
-If you want to see what kind of pieces get added by default and are unlocked as you progress through each biome you can take a look at these builds shared by MoreVanillaBuildPrefabs users. Builds are grouped by based on the biome that the pieces used in the build are unlocked (when using the default mod configuration) and the sections containing the images are collapsed by default so people can avoid spoilers if they wish to. Also, if you make a build using MoreVanillaBuildPrefabs and want it to be featured here let me know!
+If you want to see what kind of pieces get added by default and are unlocked as you progress through each biome you can take a look at these builds shared by MoreVanillaBuildPrefabs users (thanks to DreamWraith and Goldenrevolver!). Builds are grouped by based on the biome that the pieces used in the build are unlocked (when using the default mod configuration) and the sections containing the images are collapsed by default so people can avoid spoilers if they wish to. Also, if you make a build using MoreVanillaBuildPrefabs and want it to be featured here let me know!
 
 <details>
 <summary><b>Meadows Builds</b></summary>
