@@ -75,7 +75,7 @@ namespace MVBP.Helpers {
 
                 piece.enabled = false; // disable the component unless enabled in config
 
-                piece.m_enabled = true;
+                piece.m_enabled = false;
                 piece.m_name = prefab.name;
                 piece.m_groundOnly = false;
                 piece.m_groundPiece = false;
@@ -119,6 +119,7 @@ namespace MVBP.Helpers {
 
             if (AddedPieceComponent.Contains(pieceDB.name)) {
                 piece.enabled = pieceDB.enabled; // set component enabled/disabled for components added by MVBP
+                piece.m_enabled = pieceDB.enabled; // set piece visible in PieceTable based on MVBP config
             }
 
             piece.m_name = name;
