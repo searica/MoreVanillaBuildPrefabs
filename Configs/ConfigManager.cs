@@ -149,14 +149,9 @@ namespace MVBP.Configs {
 
             try {
                 Log.LogInfo("Reloading config file");
-
-                watcher.EnableRaisingEvents = false; // turn off file watcher
                 var saveOnConfigSet = DisableSaveOnConfigSet(); // turn off saving on config entry set
-
                 configFile.Reload();
-
                 SaveOnConfigSet(saveOnConfigSet); // reset config saving state
-                watcher.EnableRaisingEvents = true; // re-enable file watcher
 
                 InvokeOnConfigFileReloaded(); // fire event
 

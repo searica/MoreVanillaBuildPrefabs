@@ -14,7 +14,7 @@
 		<MOD_DEPLOYPATH>$(r2ModManPath)\Mod-Debug\BepInEx\plugins</MOD_DEPLOYPATH>
 		<SERVER_DEPLOYPATH>$(VALHEIM_SERVER)\BepInEx\plugins</SERVER_DEPLOYPATH>
 
-		<CopyToServer>false</CopyToServer>
+		<CopyToServer>true</CopyToServer>
 		<CopyResources>false</CopyResources>
 	</PropertyGroup>
 </Project>
