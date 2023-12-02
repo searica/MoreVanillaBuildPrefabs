@@ -10,10 +10,8 @@ using System.Reflection;
 using UnityEngine;
 using UnityEngine.Rendering;
 
-namespace MVBP.Configs
-{
-    internal static class ConfigManager
-    {
+namespace MVBP.Configs {
+    internal static class ConfigManager {
         private static string ConfigFileName;
         private static string ConfigFileFullPath;
 
@@ -31,8 +29,7 @@ namespace MVBP.Configs
         /// <summary>
         ///     Safely invoke the <see cref="OnConfigWindowClosed"/> event
         /// </summary>
-        private static void InvokeOnConfigWindowClosed()
-        {
+        private static void InvokeOnConfigWindowClosed() {
             OnConfigWindowClosed?.SafeInvoke();
         }
 
@@ -44,8 +41,7 @@ namespace MVBP.Configs
         /// <summary>
         ///     Safely invoke the <see cref="OnConfigFileReloaded"/> event
         /// </summary>
-        private static void InvokeOnConfigFileReloaded()
-        {
+        private static void InvokeOnConfigFileReloaded() {
             OnConfigFileReloaded?.SafeInvoke();
         }
 
@@ -60,8 +56,7 @@ namespace MVBP.Configs
             string description,
             AcceptableValueBase acceptVals = null,
             bool synced = true
-        )
-        {
+        ) {
             string extendedDescription = GetExtendedDescription(description, synced);
             ConfigEntry<T> configEntry = configFile.Bind(
                 section,
@@ -86,21 +81,18 @@ namespace MVBP.Configs
         /// <param name="sectionName">Section name</param>
         /// <param name="priority">Number of ZWS chars to prepend</param>
         /// <returns></returns>
-        internal static string SetStringPriority(string sectionName, int priority)
-        {
+        internal static string SetStringPriority(string sectionName, int priority) {
             if (priority == 0) { return sectionName; }
             return new string(ZWS, priority) + sectionName;
         }
 
-        internal static string GetExtendedDescription(string description, bool synchronizedSetting)
-        {
+        internal static string GetExtendedDescription(string description, bool synchronizedSetting) {
             return description + (synchronizedSetting ? " [Synced with Server]" : " [Not Synced with Server]");
         }
 
         #endregion BindConfig
 
-        internal static void Init(string GUID, ConfigFile config, bool saveOnConfigSet = false)
-        {
+        internal static void Init(string GUID, ConfigFile config, bool saveOnConfigSet = false) {
             configFile = config;
             configFile.SaveOnConfigSet = saveOnConfigSet;
             ConfigFileName = GUID + ".cfg";
@@ -114,8 +106,7 @@ namespace MVBP.Configs
         ///     the Value prior to calling this method.
         /// </summary>
         /// <returns></returns>
-        internal static bool DisableSaveOnConfigSet()
-        {
+        internal static bool DisableSaveOnConfigSet() {
             var val = configFile.SaveOnConfigSet;
             configFile.SaveOnConfigSet = false;
             return val;
@@ -125,16 +116,14 @@ namespace MVBP.Configs
         ///     Set the Value for the SaveOnConfigSet field.
         /// </summary>
         /// <param name="value"></param>
-        internal static void SaveOnConfigSet(bool value)
-        {
+        internal static void SaveOnConfigSet(bool value) {
             configFile.SaveOnConfigSet = value;
         }
 
         /// <summary>
         ///     Save config file to disk.
         /// </summary>
-        internal static void Save()
-        {
+        internal static void Save() {
             configFile.Save();
         }
 
@@ -142,8 +131,7 @@ namespace MVBP.Configs
 
         #region FileWatcher
 
-        internal static void SetupWatcher()
-        {
+        internal static void SetupWatcher() {
             FileSystemWatcher watcher = new(Paths.ConfigPath, ConfigFileName);
             watcher.Changed += ReloadConfigFile;
             watcher.Created += ReloadConfigFile;
@@ -153,11 +141,12 @@ namespace MVBP.Configs
             watcher.EnableRaisingEvents = true;
         }
 
-        private static void ReloadConfigFile(object sender, FileSystemEventArgs e)
-        {
-            if (!File.Exists(ConfigFileFullPath)) { return; }
-            try
-            {
+        private static void ReloadConfigFile(object sender, FileSystemEventArgs e) {
+            if (!File.Exists(ConfigFileFullPath)) {
+                return;
+            }
+
+            try {
                 Log.LogInfo("Reloading config file");
 
                 // turn off saving on config entry set
@@ -166,8 +155,7 @@ namespace MVBP.Configs
                 SaveOnConfigSet(saveOnConfigSet); // reset config saving state
                 InvokeOnConfigFileReloaded(); // fire event
             }
-            catch
-            {
+            catch {
                 Log.LogError($"There was an issue loading your {ConfigFileName}");
                 Log.LogError("Please check your config entries for spelling and format!");
             }
@@ -181,22 +169,18 @@ namespace MVBP.Configs
         ///     Checks for in-game configuration manager and
         ///     sets Up OnConfigWindowClosed event if it is present
         /// </summary>
-        internal static void CheckForConfigManager()
-        {
-            if (SystemInfo.graphicsDeviceType == GraphicsDeviceType.Null)
-            {
+        internal static void CheckForConfigManager() {
+            if (SystemInfo.graphicsDeviceType == GraphicsDeviceType.Null) {
                 return;
             }
 
-            if (Chainloader.PluginInfos.TryGetValue(ConfigManagerGUID, out PluginInfo configManagerInfo) && configManagerInfo.Instance)
-            {
+            if (Chainloader.PluginInfos.TryGetValue(ConfigManagerGUID, out PluginInfo configManagerInfo) && configManagerInfo.Instance) {
                 ConfigurationManager = configManagerInfo.Instance;
                 Log.LogDebug("Configuration manager found, hooking DisplayingWindowChanged");
 
                 EventInfo eventinfo = ConfigurationManager.GetType().GetEvent("DisplayingWindowChanged");
 
-                if (eventinfo != null)
-                {
+                if (eventinfo != null) {
                     Action<object, object> local = new(OnConfigManagerDisplayingWindowChanged);
                     Delegate converted = Delegate.CreateDelegate(
                         eventinfo.EventHandlerType,
@@ -208,13 +192,11 @@ namespace MVBP.Configs
             }
         }
 
-        private static void OnConfigManagerDisplayingWindowChanged(object sender, object e)
-        {
+        private static void OnConfigManagerDisplayingWindowChanged(object sender, object e) {
             PropertyInfo pi = ConfigurationManager.GetType().GetProperty("DisplayingWindow");
             bool ConfigurationManagerWindowShown = (bool)pi.GetValue(ConfigurationManager, null);
 
-            if (!ConfigurationManagerWindowShown)
-            {
+            if (!ConfigurationManagerWindowShown) {
                 InvokeOnConfigWindowClosed();
             }
         }
