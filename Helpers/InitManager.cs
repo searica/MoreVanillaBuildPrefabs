@@ -55,7 +55,9 @@ namespace MVBP.Helpers {
                 pieceClone = DefaultPieceClones[prefabName];
                 return true;
             }
+
             pieceClone = null;
+
             return false;
         }
 
@@ -63,7 +65,9 @@ namespace MVBP.Helpers {
             if (!string.IsNullOrEmpty(name) && PieceRefs.TryGetValue(name, out pieceDB)) {
                 return true;
             }
+
             pieceDB = null;
+
             return false;
         }
 
@@ -72,7 +76,9 @@ namespace MVBP.Helpers {
             if (string.IsNullOrEmpty(prefabName) && PieceRefs.TryGetValue(prefabName, out pieceDB)) {
                 return true;
             }
+
             pieceDB = null;
+
             return false;
         }
 
@@ -114,6 +120,7 @@ namespace MVBP.Helpers {
             if (IsPatchedByMod(prefabName)) {
                 return MorePrefabs.IsPrefabConfigEnabled(prefabName) || MorePrefabs.IsForceAllPrefabs;
             }
+
             return false;
         }
 
@@ -157,23 +164,10 @@ namespace MVBP.Helpers {
             var PieceNameCache = PieceHelper.GetExistingPieceNames();
             var EligiblePrefabs = new Dictionary<string, GameObject>();
             foreach (var prefab in ZNetScene.instance.m_prefabs) {
-                if (!prefab.transform.parent &&
-                    !PieceNameCache.Contains(prefab.name) &&
-                    PrefabFilter.GetEligiblePrefab(prefab, out GameObject result) &&
-                    !EligiblePrefabs.ContainsKey(result.name)) {
+                if (!prefab.transform.parent && !PieceNameCache.Contains(prefab.name) &&
+                    PrefabFilter.GetEligiblePrefab(prefab, out GameObject result) && !EligiblePrefabs.ContainsKey(result.name)) {
                     EligiblePrefabs.Add(result.name, result);
                 }
-
-                //if (prefab.transform.parent == null && !PieceNameCache.Contains(prefab.name))
-                //{
-                //    if (PrefabFilter.GetEligiblePrefab(prefab, out GameObject result))
-                //    {
-                //        if (!EligiblePrefabs.ContainsKey(result.name))
-                //        {
-                //            EligiblePrefabs.Add(result.name, result);
-                //        }
-                //    }
-                //}
             }
 
             foreach (var prefab in EligiblePrefabs.Values) {
@@ -202,7 +196,6 @@ namespace MVBP.Helpers {
             // Need this to prevent NRE's if other code references the pieceClone
             // before the coroutine that is rendering the icons finishes. (Such as PlanBuild)
             var defaultIcon = PrefabManager.Cache.GetPrefab<Sprite>("mapicon_hildir1");
-            //var defaultIcon = Resources.FindObjectsOfTypeAll<Sprite>().Where(spr => spr.name == "mapicon_hildir1").First();
 
             foreach (var prefab in PrefabRefs.Values) {
                 var defaultPiece = PieceHelper.InitPieceComponent(prefab);
@@ -412,7 +405,7 @@ namespace MVBP.Helpers {
             }
 
             // Don't update unless settings have actually changed
-            if (!MorePrefabs.UpdatePieceSettings && !MorePrefabs.UpdatePlacementSettings) {
+            if (!MorePrefabs.UpdatePieceSettings && !MorePrefabs.UpdatePlacementSettings && !MorePrefabs.UpdateSeasonalSettings) {
                 return;
             }
 
@@ -448,6 +441,7 @@ namespace MVBP.Helpers {
             MorePrefabs.UpdatePieceSettings = false;
             MorePrefabs.UpdatePlacementSettings = false;
             MorePrefabs.UpdateSeasonalSettings = false;
+
             if (saveConfig) { ConfigManager.Save(); }
         }
     }
