@@ -136,7 +136,7 @@ namespace MVBP.Configs {
             watcher.Changed += ReloadConfigFile;
             watcher.Created += ReloadConfigFile;
             watcher.Renamed += ReloadConfigFile;
-            watcher.IncludeSubdirectories = true;
+            watcher.IncludeSubdirectories = false;
             watcher.SynchronizingObject = ThreadingHelper.SynchronizingObject;
             watcher.EnableRaisingEvents = true;
         }
