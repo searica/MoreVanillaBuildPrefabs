@@ -94,7 +94,8 @@ namespace MVBP.Helpers {
                 piece.m_repairPiece = false; // setting to true prevents placement
                 piece.m_onlyInBiome = Heightmap.Biome.None;
 
-                piece.m_randomTarget = false; // if it doesn't normally have a piece component then mobs shouldn't randomly target it
+                // if it doesn't normally have a piece component then mobs shouldn't randomly target it
+                piece.m_randomTarget = false;
 
                 // to prevent deconstruction of pieces that are not enabled by the mod
                 piece.m_canBeRemoved = false;
