@@ -11,6 +11,8 @@
 			<td align="center">1.0.1</td>
 			<td align="left">
 				<ul>
+					<li>Fixed issues with enemies targeting pieces they shouldn't.</li>
+					<li>Fixed rare bug that only occurred on some remote linux server hosting services.</li>
 					<li>Sped up initialization and re-initialization by ~30%.</li>
 					<li>Optimized code to use bool checks instead of null checks wherever possible.</li>
 					<li>Redesigned in-game updates to configuration to not require expensive operations like reflection.</li>
