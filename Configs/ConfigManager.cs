@@ -19,7 +19,8 @@ namespace MVBP.Configs {
         private static BaseUnityPlugin ConfigurationManager;
         private const string ConfigManagerGUID = "com.bepis.bepinex.configurationmanager";
 
-        private static FileSystemWatcher watcher;
+        private static DateTime lastRead = DateTime.MinValue;
+
         #region Events
 
         /// <summary>
@@ -133,7 +134,7 @@ namespace MVBP.Configs {
         #region FileWatcher
 
         internal static void SetupWatcher() {
-            watcher = new FileSystemWatcher(Paths.ConfigPath, ConfigFileName);
+            var watcher = new FileSystemWatcher(Paths.ConfigPath, ConfigFileName);
             watcher.Changed += ReloadConfigFile;
             watcher.Created += ReloadConfigFile;
             watcher.Renamed += ReloadConfigFile;
@@ -148,13 +149,16 @@ namespace MVBP.Configs {
             }
 
             try {
-                Log.LogInfo("Reloading config file");
-                var saveOnConfigSet = DisableSaveOnConfigSet(); // turn off saving on config entry set
-                configFile.Reload();
-                SaveOnConfigSet(saveOnConfigSet); // reset config saving state
+                var lastWriteTime = File.GetLastWriteTime(e.FullPath);
+                if (lastRead != lastWriteTime) {
+                    Log.LogInfo("Reloading config file");
+                    var saveOnConfigSet = DisableSaveOnConfigSet(); // turn off saving on config entry set
+                    configFile.Reload();
+                    SaveOnConfigSet(saveOnConfigSet); // reset config saving state
 
-                InvokeOnConfigFileReloaded(); // fire event
-
+                    InvokeOnConfigFileReloaded(); // fire event
+                    lastRead = lastWriteTime;
+                }
             }
             catch {
                 Log.LogError($"There was an issue loading your {ConfigFileName}");
