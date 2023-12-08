@@ -96,6 +96,9 @@ namespace MVBP.Helpers {
 
                 // if it doesn't normally have a piece component then mobs shouldn't randomly target it
                 piece.m_randomTarget = false;
+                //piece.m_targetNonPlayerBuilt = false;
+
+                // I could change this value for player-built pieces in piece.Awake and piece.SetCreator
 
                 // to prevent deconstruction of pieces that are not enabled by the mod
                 piece.m_canBeRemoved = false;
