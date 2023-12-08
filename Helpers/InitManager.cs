@@ -381,6 +381,7 @@ namespace MVBP.Helpers {
             InitSeasonalPieces();
             InitPieces();
             InitHammer();
+            ConfigManager.Save(); // so that cfg file has everything in it right away
         }
 
         /// <summary>
