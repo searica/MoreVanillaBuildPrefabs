@@ -223,8 +223,12 @@ namespace MVBP.Helpers {
                         SeasonalPieceRefs[name] = prefab;
                     }
                     else {
+                        Log.LogInfo($"Seasonal Piece: {name} already enabled", LogLevel.Medium);
                         nullKeys.Add(name);
                     }
+                }
+                else {
+                    Log.LogWarning($"Seasonal piece: {name} could not be found");
                 }
             }
 
