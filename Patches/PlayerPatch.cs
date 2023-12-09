@@ -46,10 +46,8 @@ namespace MVBP {
                 new Type[] { typeof(Type), typeof(Vector3), typeof(Quaternion) }
             ).MakeGenericMethod(typeof(GameObject));
 
-            var codeMatches = new CodeMatch[]
-            {
-                new CodeMatch(OpCodes.Call, instantiateMethod),
-                new CodeMatch(OpCodes.Stloc_3)
+            var codeMatches = new CodeMatch[] {
+                new CodeMatch(OpCodes.Call, instantiateMethod)
             };
 
             return new CodeMatcher(instructions)
