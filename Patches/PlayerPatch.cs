@@ -51,29 +51,27 @@ namespace MVBP {
                 new CodeMatch(OpCodes.Call, instantiateMethod),
                 new CodeMatch(OpCodes.Stloc_3)
             };
+
             return new CodeMatcher(instructions)
-                .MatchForward(useEnd: false, codeMatches)
-                .SetInstructionAndAdvance(Transpilers.EmitDelegate(PlacePieceInstantiateDelegate))
+                .MatchForward(useEnd: true, codeMatches)
+                .Advance(1)
+                .InsertAndAdvance(
+                    new CodeInstruction(OpCodes.Dup),
+                    Transpilers.EmitDelegate(PlacePieceInstantiateDelegate)
+                )
                 .InstructionEnumeration();
         }
 
-        private static GameObject PlacePieceInstantiateDelegate(
-            GameObject gameObject,
-            Vector3 position,
-            Quaternion rotation
-        ) {
+        private static GameObject PlacePieceInstantiateDelegate(GameObject gameObject) {
             Log.LogInfo("PlacePieceInstantiateDelegate()", LogLevel.Medium);
 
-            var result = UnityEngine.Object.Instantiate(gameObject, position, rotation);
-
-            if (PieceHelper.AddedPrefabs.Contains(gameObject.name)) {
-                var container = result.GetComponent<Container>();
-                if (container) {
-                    container.m_inventory.RemoveAll();
-                    Log.LogInfo($"Emptied inventory for: {gameObject.name}", LogLevel.Medium);
-                }
+            if (InitManager.IsPrefabEnabled(gameObject) &&
+                gameObject.TryGetComponent(out Container container)) {
+                container.m_inventory.RemoveAll();
+                Log.LogInfo($"Emptied inventory for: {gameObject.name}", LogLevel.Medium);
             }
-            return result;
+
+            return gameObject;
         }
 
         [HarmonyTranspiler]
