@@ -358,7 +358,7 @@ namespace MVBP.Helpers {
             if (!HasInitializedPlugin) return;
 
             foreach (var name in SeasonalPieceRefs.Keys) {
-                if (SeasonalPieceRefs.TryGetValue(name, out GameObject prefab) && prefab != null) {
+                if (SeasonalPieceRefs.TryGetValue(name, out GameObject prefab) && !prefab) {
                     if (prefab.TryGetComponent(out Piece piece)) {
                         piece.m_enabled = MorePrefabs.IsEnableSeasonalPieces;
                     }
@@ -406,7 +406,9 @@ namespace MVBP.Helpers {
             }
 
             // Don't update unless settings have actually changed
-            if (!MorePrefabs.UpdatePieceSettings && !MorePrefabs.UpdatePlacementSettings && !MorePrefabs.UpdateSeasonalSettings) {
+            if (!MorePrefabs.UpdatePieceSettings &&
+                !MorePrefabs.UpdatePlacementSettings &&
+                !MorePrefabs.UpdateSeasonalSettings) {
                 return;
             }
 
