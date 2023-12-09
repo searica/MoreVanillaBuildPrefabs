@@ -89,7 +89,10 @@ namespace MVBP {
             var codeMatches = new CodeMatch[]
             {
                  new CodeMatch(OpCodes.Call, instantiateMethod),
-                 new CodeMatch(OpCodes.Stfld, AccessTools.Field(typeof(Player), nameof(Player.m_placementGhost)))
+                 new CodeMatch(
+                     OpCodes.Stfld,
+                     AccessTools.Field(typeof(Player), nameof(Player.m_placementGhost))
+                )
             };
 
             return new CodeMatcher(instructions)
