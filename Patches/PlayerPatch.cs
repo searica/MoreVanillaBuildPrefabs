@@ -268,7 +268,7 @@ namespace MVBP {
         private static bool CreateHitEffects(Destructible destructible) {
             Log.LogInfo("Creating hit effects", LogLevel.Medium);
 
-            var hitEffects = destructible?.m_hitEffect?.m_effectPrefabs;
+            var hitEffects = destructible.m_hitEffect?.m_effectPrefabs;
             if (hitEffects != null && hitEffects.Length != 0) {
                 destructible.m_hitEffect.Create(
                     destructible.gameObject.transform.position,
