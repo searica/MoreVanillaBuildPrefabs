@@ -217,7 +217,7 @@ namespace MVBP.Helpers {
             var nullKeys = new List<string>();
             foreach (var name in pieceNames) {
                 var prefab = PrefabManager.Instance.GetPrefab(name);
-                if (prefab != null && prefab.TryGetComponent(out Piece piece)) {
+                if (prefab && prefab.TryGetComponent(out Piece piece)) {
                     // Only add pieces that are currently disabled
                     if (!piece.m_enabled) {
                         SeasonalPieceRefs[name] = prefab;
