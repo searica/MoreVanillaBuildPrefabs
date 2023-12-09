@@ -53,15 +53,12 @@ namespace MVBP {
             return new CodeMatcher(instructions)
                 .MatchForward(useEnd: true, codeMatches)
                 .Advance(1)
-                .InsertAndAdvance(
-                    new CodeInstruction(OpCodes.Dup),
-                    Transpilers.EmitDelegate(PlacePieceInstantiateDelegate)
-                )
+                .InsertAndAdvance(Transpilers.EmitDelegate(EmptyInventoryOnPlacement))
                 .InstructionEnumeration();
         }
 
-        private static GameObject PlacePieceInstantiateDelegate(GameObject gameObject) {
-            Log.LogInfo("PlacePieceInstantiateDelegate()", LogLevel.Medium);
+        private static GameObject EmptyInventoryOnPlacement(GameObject gameObject) {
+            Log.LogInfo("EmptyInventoryOnPlacement()", LogLevel.Medium);
 
             if (InitManager.IsPrefabEnabled(gameObject) &&
                 gameObject.TryGetComponent(out Container container)) {
