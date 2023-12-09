@@ -9,11 +9,9 @@ using System.Collections.Generic;
 using System.Reflection.Emit;
 using UnityEngine;
 
-namespace MVBP
-{
+namespace MVBP {
     [HarmonyPatch(typeof(Player))]
-    internal static class PlayerPatch
-    {
+    internal static class PlayerPatch {
         private static readonly int PieceRemovalMask = LayerMask.GetMask(
             "Default",
             "static_solid",
@@ -29,8 +27,7 @@ namespace MVBP
 
         [HarmonyTranspiler]
         [HarmonyPatch(nameof(Player.PlacePiece))]
-        private static IEnumerable<CodeInstruction> PlacePieceTranspiler(IEnumerable<CodeInstruction> instructions)
-        {
+        private static IEnumerable<CodeInstruction> PlacePieceTranspiler(IEnumerable<CodeInstruction> instructions) {
             // Targeting code
             // GameObject result = Object.Instantiate(gameObject, position, rotation);
             //  IL_012c: ldloc.2
@@ -64,17 +61,14 @@ namespace MVBP
             GameObject gameObject,
             Vector3 position,
             Quaternion rotation
-        )
-        {
+        ) {
             Log.LogInfo("PlacePieceInstantiateDelegate()", LogLevel.Medium);
 
             var result = UnityEngine.Object.Instantiate(gameObject, position, rotation);
 
-            if (PieceHelper.AddedPrefabs.Contains(gameObject.name))
-            {
+            if (PieceHelper.AddedPrefabs.Contains(gameObject.name)) {
                 var container = result.GetComponent<Container>();
-                if (container != null)
-                {
+                if (container != null) {
                     container.m_inventory.RemoveAll();
                     Log.LogInfo($"Emptied inventory for: {gameObject.name}", LogLevel.Medium);
                 }
@@ -84,8 +78,7 @@ namespace MVBP
 
         [HarmonyTranspiler]
         [HarmonyPatch(nameof(Player.SetupPlacementGhost))]
-        private static IEnumerable<CodeInstruction> SetupPlacementGhostTranspiler(IEnumerable<CodeInstruction> instructions)
-        {
+        private static IEnumerable<CodeInstruction> SetupPlacementGhostTranspiler(IEnumerable<CodeInstruction> instructions) {
             // Targeting this code:
             // m_placementGhost = Object.Instantiate(selectedPrefab);
             //  IL_008c: ldarg.0
@@ -112,10 +105,8 @@ namespace MVBP
                 .InstructionEnumeration();
         }
 
-        private static GameObject SetupPlacementGhostInstantiateDelegate(GameObject selectedPrefab)
-        {
-            if (!InitManager.IsPatchedByMod(selectedPrefab))
-            {
+        private static GameObject SetupPlacementGhostInstantiateDelegate(GameObject selectedPrefab) {
+            if (!InitManager.IsPatchedByMod(selectedPrefab)) {
                 // ignore pieces not touched by this mod
                 return UnityEngine.Object.Instantiate(selectedPrefab);
             }
@@ -126,52 +117,42 @@ namespace MVBP
                 selectedPrefab.GetComponent<AnimalAI>() ||
                 selectedPrefab.GetComponent<Tameable>() ||
                 selectedPrefab.GetComponent<Ragdoll>() ||
-                selectedPrefab.GetComponent<Humanoid>())
-            {
+                selectedPrefab.GetComponent<Humanoid>()) {
                 setActive = selectedPrefab.activeSelf;
                 selectedPrefab.SetActive(false);
             }
 
             GameObject clonedPrefab = UnityEngine.Object.Instantiate(selectedPrefab);
 
-            if (
-                PieceHelper.AddedPrefabs.Contains(selectedPrefab.name)
-                && MorePrefabs.NeedsCollisionPatchForGhost(selectedPrefab.name)
-                )
-            {
+            if (PieceHelper.AddedPrefabs.Contains(selectedPrefab.name) &&
+                MorePrefabs.NeedsCollisionPatchForGhost(selectedPrefab.name)) {
                 // Needed to make some things work, like Stalagmite, blackmarble_corner_stair, silvervein, etc.
                 CollisionHelper.PatchCollider(clonedPrefab);
             }
 
-            if (!setActive)
-            {
+            if (!setActive) {
                 return clonedPrefab;
             }
 
             selectedPrefab.SetActive(true);
 
-            if (clonedPrefab.TryGetComponent(out MonsterAI monsterAi))
-            {
+            if (clonedPrefab.TryGetComponent(out MonsterAI monsterAi)) {
                 UnityEngine.Object.DestroyImmediate(monsterAi);
             }
 
-            if (clonedPrefab.TryGetComponent(out AnimalAI animalAi))
-            {
+            if (clonedPrefab.TryGetComponent(out AnimalAI animalAi)) {
                 UnityEngine.Object.DestroyImmediate(animalAi);
             }
 
-            if (clonedPrefab.TryGetComponent(out Tameable tameable))
-            {
+            if (clonedPrefab.TryGetComponent(out Tameable tameable)) {
                 UnityEngine.Object.DestroyImmediate(tameable);
             }
 
-            if (clonedPrefab.TryGetComponent(out Ragdoll ragdoll))
-            {
+            if (clonedPrefab.TryGetComponent(out Ragdoll ragdoll)) {
                 UnityEngine.Object.DestroyImmediate(ragdoll);
             }
 
-            if (clonedPrefab.TryGetComponent(out Humanoid humanoid))
-            {
+            if (clonedPrefab.TryGetComponent(out Humanoid humanoid)) {
                 humanoid.m_defaultItems = Array.Empty<GameObject>();
                 humanoid.m_randomWeapon = Array.Empty<GameObject>();
                 humanoid.m_randomArmor ??= Array.Empty<GameObject>();
@@ -186,17 +167,13 @@ namespace MVBP
 
         [HarmonyPrefix]
         [HarmonyPatch(nameof(Player.RemovePiece))]
-        internal static bool RemovePiecePrefix(Player __instance, ref bool __result)
-        {
-            if (__instance.GetRightItem().m_shared.m_name == "$item_hammer")
-            {
+        internal static bool RemovePiecePrefix(Player __instance, ref bool __result) {
+            if (__instance.GetRightItem().m_shared.m_name == "$item_hammer") {
                 var cameraTrans = GameCamera.instance.transform;
                 if (Physics.Raycast(cameraTrans.position, cameraTrans.forward, out var hitInfo, 50f, PieceRemovalMask) &&
-                    Vector3.Distance(hitInfo.point, __instance.m_eye.position) < __instance.m_maxPlaceDistance)
-                {
+                    Vector3.Distance(hitInfo.point, __instance.m_eye.position) < __instance.m_maxPlaceDistance) {
                     Piece piece = hitInfo.collider.GetComponentInParent<Piece>();
-                    if (piece && InitManager.IsPatchedByMod(piece))
-                    {
+                    if (piece && InitManager.IsPatchedByMod(piece)) {
                         __result = RemoveCustomPiece(__instance, piece);
                         return false; // skip vanilla method
                     }
@@ -205,51 +182,40 @@ namespace MVBP
             return true; // run vanilla method
         }
 
-        private static bool RemoveCustomPiece(Player player, Piece piece)
-        {
-            if ((bool)piece)
-            {
-                if (!Check_m_canBeRemoved(piece))
-                {
+        private static bool RemoveCustomPiece(Player player, Piece piece) {
+            if (piece) {
+                if (!Check_m_canBeRemoved(piece)) {
                     return false;
                 }
-                if (Location.IsInsideNoBuildLocation(piece.transform.position))
-                {
+                if (Location.IsInsideNoBuildLocation(piece.transform.position)) {
                     player.Message(MessageHud.MessageType.Center, "$msg_nobuildzone");
                     return false;
                 }
-                if (!PrivateArea.CheckAccess(piece.transform.position))
-                {
+                if (!PrivateArea.CheckAccess(piece.transform.position)) {
                     player.Message(MessageHud.MessageType.Center, "$msg_privatezone");
                     return false;
                 }
-                if (!player.CheckCanRemovePiece(piece))
-                {
+                if (!player.CheckCanRemovePiece(piece)) {
                     return false;
                 }
                 ZNetView component = piece.GetComponent<ZNetView>();
-                if (component == null)
-                {
+                if (component == null) {
                     return false;
                 }
-                if (!piece.CanBeRemoved())
-                {
+                if (!piece.CanBeRemoved()) {
                     player.Message(MessageHud.MessageType.Center, "$msg_cantremovenow");
                     return false;
                 }
                 WearNTear component2 = piece.GetComponent<WearNTear>();
-                if ((bool)component2)
-                {
+                if (component2) {
                     component2.Remove();
                 }
-                else
-                {
+                else {
                     Log.LogInfo("Removing non WNT object with hammer " + piece.name);
                     component.ClaimOwnership();
                     if (!RemoveDestructiblePiece(piece)
                         && !RemoveMineRock5Piece(piece)
-                        && !RemoveMineRockPiece(piece))
-                    {
+                        && !RemoveMineRockPiece(piece)) {
                         piece.DropResources();
                         piece.m_placeEffect.Create(piece.transform.position, piece.transform.rotation, piece.gameObject.transform);
                         player.m_removeEffects.Create(piece.transform.position, Quaternion.identity);
@@ -257,8 +223,7 @@ namespace MVBP
                     }
                 }
                 ItemDrop.ItemData rightItem = player.GetRightItem();
-                if (rightItem != null)
-                {
+                if (rightItem != null) {
                     player.FaceLookDirection();
                     player.m_zanim.SetTrigger(rightItem.m_shared.m_attack.m_attackAnimation);
                 }
@@ -267,19 +232,16 @@ namespace MVBP
             return false;
         }
 
-        private static bool Check_m_canBeRemoved(Piece piece)
-        {
+        private static bool Check_m_canBeRemoved(Piece piece) {
 
             if (InitManager.IsPrefabEnabled(piece.gameObject) &&
                 PieceCategoryHelper.IsCreativeModePiece(piece) &&
-                piece.IsPlacedByPlayer())
-            {
+                piece.IsPlacedByPlayer()) {
                 // Allow creative mode pieces to be removed by creator
                 if (piece.IsCreator()) { return true; }
 
                 // Allow creative mode pieces to be removed by admin (based on config settings)
-                if (MorePrefabs.IsAdminDeconstructOtherPlayers && SynchronizationManager.Instance.PlayerIsAdmin)
-                {
+                if (MorePrefabs.IsAdminDeconstructOtherPlayers && SynchronizationManager.Instance.PlayerIsAdmin) {
                     return true;
                 }
             }
@@ -288,14 +250,11 @@ namespace MVBP
             return piece.m_canBeRemoved;
         }
 
-        private static bool RemoveDestructiblePiece(Piece piece)
-        {
-            if (piece.gameObject.TryGetComponent(out Destructible destructible))
-            {
+        private static bool RemoveDestructiblePiece(Piece piece) {
+            if (piece.gameObject.TryGetComponent(out Destructible destructible)) {
                 Log.LogInfo("Removing destructible piece", LogLevel.Medium);
 
-                if (!CreateHitEffects(destructible) && !SfxHelper.HasSfx(destructible.m_destroyedEffect))
-                {
+                if (!CreateHitEffects(destructible) && !SfxHelper.HasSfx(destructible.m_destroyedEffect)) {
                     SfxHelper.CreateRemovalSfx(piece); // create deconstruction SFX if needed
                 }
 
@@ -306,22 +265,18 @@ namespace MVBP
             return false;
         }
 
-        private static bool CreateHitEffects(Destructible destructible)
-        {
+        private static bool CreateHitEffects(Destructible destructible) {
             Log.LogInfo("Creating hit effects", LogLevel.Medium);
 
             var hitEffects = destructible?.m_hitEffect?.m_effectPrefabs;
-            if (hitEffects != null && hitEffects.Length != 0)
-            {
+            if (hitEffects != null && hitEffects.Length != 0) {
                 destructible.m_hitEffect.Create(
                     destructible.gameObject.transform.position,
                     destructible.gameObject.transform.rotation,
                     destructible.gameObject.transform
                 );
-                foreach (var effect in hitEffects)
-                {
-                    if (effect != null && effect.m_prefab.name.StartsWith("sfx_"))
-                    {
+                foreach (var effect in hitEffects) {
+                    if (effect != null && effect.m_prefab.name.StartsWith("sfx_")) {
                         return true;
                     }
                 }
@@ -329,10 +284,8 @@ namespace MVBP
             return false;
         }
 
-        private static bool RemoveMineRock5Piece(Piece piece)
-        {
-            if (piece.gameObject.TryGetComponent(out MineRock5 mineRock5))
-            {
+        private static bool RemoveMineRock5Piece(Piece piece) {
+            if (piece.gameObject.TryGetComponent(out MineRock5 mineRock5)) {
                 Log.LogInfo("Removing MineRock5 piece", LogLevel.Medium);
 
                 mineRock5.DestroyMineRock5Piece();
@@ -341,10 +294,8 @@ namespace MVBP
             return false;
         }
 
-        private static bool RemoveMineRockPiece(Piece piece)
-        {
-            if (piece.gameObject.TryGetComponent(out MineRock mineRock))
-            {
+        private static bool RemoveMineRockPiece(Piece piece) {
+            if (piece.gameObject.TryGetComponent(out MineRock mineRock)) {
                 Log.LogInfo("Removing MineRock5 piece", LogLevel.Medium);
                 mineRock.DestroyMineRockPiece();
                 return true;
