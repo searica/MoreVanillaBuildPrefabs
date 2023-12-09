@@ -68,7 +68,7 @@ namespace MVBP {
 
             if (PieceHelper.AddedPrefabs.Contains(gameObject.name)) {
                 var container = result.GetComponent<Container>();
-                if (container != null) {
+                if (container) {
                     container.m_inventory.RemoveAll();
                     Log.LogInfo($"Emptied inventory for: {gameObject.name}", LogLevel.Medium);
                 }
