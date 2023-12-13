@@ -8,6 +8,15 @@
 			<th align="center">Notes</th>
 		</tr>
 		<tr>
+			<td align="center">1.0.2</td>
+			<td align="left">
+				<ul>
+					<li>Minor performance optimizations.</li>
+					<li>Added compatibility for CustomShips mod.</li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
 			<td align="center">1.0.1</td>
 			<td align="left">
 				<ul>
