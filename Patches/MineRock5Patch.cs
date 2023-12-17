@@ -2,11 +2,9 @@
 
 using HarmonyLib;
 
-namespace MVBP.Patches
-{
+namespace MVBP.Patches {
     [HarmonyPatch(typeof(MineRock5))]
-    internal static class MineRock5Patch
-    {
+    internal static class MineRock5Patch {
         /// <summary>
         ///     Drop piece resources (if they exist) when MineRock5 is
         ///     completely destroyed to ensure a full refund even if
@@ -17,14 +15,9 @@ namespace MVBP.Patches
         /// <param name="__result"></param>
         [HarmonyPostfix]
         [HarmonyPatch(nameof(MineRock5.AllDestroyed))]
-        private static void AllDestroyedPostfix(MineRock5 __instance, ref bool __result)
-        {
-            if (__result && __instance?.gameObject != null)
-            {
-                if (__instance.gameObject.TryGetComponent(out Piece piece))
-                {
-                    piece.DropResources();
-                }
+        private static void AllDestroyedPostfix(MineRock5 __instance, ref bool __result) {
+            if (__result && __instance && __instance.TryGetComponent(out Piece piece)) {
+                piece.DropResources();
             }
         }
     }
