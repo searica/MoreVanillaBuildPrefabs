@@ -1,14 +1,13 @@
 ﻿// Ignore Spelling: MVBP
 
 using HarmonyLib;
+using MVBP.Extensions;
 using MVBP.Helpers;
 using UnityEngine.SceneManagement;
 
-namespace MVBP.Patches
-{
+namespace MVBP.Patches {
     [HarmonyPatch(typeof(ZoneSystem))]
-    internal static class ZoneSystemPatch
-    {
+    internal static class ZoneSystemPatch {
         /// <summary>
         ///     Hook to initialize the mod. This is after both PlantEverything
         ///     and PotteryBarn add pieces but before PlanBuild scans for them.
@@ -17,13 +16,11 @@ namespace MVBP.Patches
         [HarmonyPrefix]
         [HarmonyPriority(Priority.High)]
         [HarmonyPatch(nameof(ZoneSystem.Start))]
-        public static void ZoneSystemStartPrefix()
-        {
+        public static void ZoneSystemStartPrefix() {
             Log.LogInfo("ZoneSystemStartPrefix()", LogLevel.Medium);
 
             // If loading into game world and prefabs have not been added
-            if (SceneManager.GetActiveScene().name != "main")
-            {
+            if (SceneManager.GetActiveScene().name != "main") {
                 return;
             }
 
@@ -34,11 +31,21 @@ namespace MVBP.Patches
 
             InitManager.InitPlugin();
 
-            if (Log.IsVerbosityMedium)
-            {
+            if (Log.IsVerbosityMedium) {
                 watch.Stop();
                 Log.LogInfo($"Time to initialize: {watch.ElapsedMilliseconds} ms");
             }
+
+            //Log.LogInfo("Getting average drops");
+
+            //foreach (var prefab in InitManager.PrefabRefs.Values) {
+            //    if (prefab.TryGetComponent(out DropOnDestroyed dropOnDestroyed)) {
+            //        Log.LogInfo($"{prefab.name}:");
+            //        foreach (var drop in dropOnDestroyed.GetAvgDrops()) {
+            //            Log.LogInfo($"\t-{drop.item.name}: {drop.amount}");
+            //        }
+            //    }
+            //}
         }
     }
 }
