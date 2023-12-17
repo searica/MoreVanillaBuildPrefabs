@@ -36,6 +36,9 @@ namespace MVBP.Extensions {
         /// <param name="mineRock5"></param>
         /// <returns></returns>
         internal static List<DropTableExtensions.AvgItemDrop> GetAvgDrops(this MineRock5 mineRock5) {
+            if (!mineRock5) {
+                return new List<DropTableExtensions.AvgItemDrop>();
+            }
 
             var avgDrops = mineRock5.m_dropItems.GetAvgDrops();
             var hitAreasCount = mineRock5.gameObject.GetComponentsInChildren<Collider>().Length;
