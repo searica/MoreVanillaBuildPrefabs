@@ -3,10 +3,8 @@
 using Jotunn.Configs;
 using System.Collections.Generic;
 
-namespace MVBP.Configs
-{
-    internal static class PrefabConfigs
-    {
+namespace MVBP.Configs {
+    internal static class PrefabConfigs {
         private static readonly HashSet<string> DoNotCacheIcon = new()
         {
             "portal",
@@ -22,10 +20,8 @@ namespace MVBP.Configs
             "dvergrprops_wood_stair",
         };
 
-        internal static PrefabDB GetDefaultPrefabDB(string prefab_name)
-        {
-            if (DefaultConfigValues.ContainsKey(prefab_name))
-            {
+        internal static PrefabDB GetDefaultPrefabDB(string prefab_name) {
+            if (DefaultConfigValues.ContainsKey(prefab_name)) {
                 return DefaultConfigValues[prefab_name];
             }
             return new PrefabDB(prefab_name);
@@ -785,7 +781,7 @@ namespace MVBP.Configs
                     allowedInDungeons: false,
                     category: HammerCategories.Nature,
                     craftingStation: nameof(CraftingStations.None),
-                    requirements: "Stone,10;Obsidian,10",
+                    requirements: "Obsidian,7",
                     clipEverything: true,
                     clipGround: false,
                     pieceGroup: PieceGroup.Ore
@@ -813,7 +809,7 @@ namespace MVBP.Configs
                     allowedInDungeons: false,
                     category: HammerCategories.Nature,
                     craftingStation: nameof(CraftingStations.None),
-                    requirements: "Stone,10;TinOre,10",
+                    requirements: "TinOre,4",
                     clipEverything: true,
                     clipGround: false,
                     pieceGroup: PieceGroup.Ore
@@ -827,7 +823,7 @@ namespace MVBP.Configs
                     allowedInDungeons: false,
                     category: HammerCategories.CreatorShop,
                     craftingStation: nameof(CraftingStations.None),
-                    requirements: "Stone,10",
+                    requirements: "Stone,5",
                     clipEverything: true,
                     clipGround: false
                 )
