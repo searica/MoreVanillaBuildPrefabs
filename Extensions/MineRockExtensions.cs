@@ -10,7 +10,10 @@ namespace MVBP.Extensions {
         /// </summary>
         /// <param name="mineRock5"></param>
         internal static void DestroyMineRockPiece(this MineRock mineRock) {
-            if (mineRock == null || mineRock.m_nview == null || !mineRock.m_nview.IsValid() || !mineRock.m_nview.IsOwner()) {
+            if (!mineRock ||
+                mineRock.m_nview == null ||
+                !mineRock.m_nview.IsValid() ||
+                !mineRock.m_nview.IsOwner()) {
                 return;
             }
 
