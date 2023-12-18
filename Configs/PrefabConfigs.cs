@@ -2596,7 +2596,8 @@ namespace MVBP.Configs {
                     requirements: "BlackMarble,8",
                     clipEverything: false,
                     clipGround: false,
-                    pieceGroup: PieceGroup.BlackMarble
+                    pieceGroup: PieceGroup.BlackMarble,
+                    placementPatch: true
                 )
             },
             {
@@ -2610,7 +2611,8 @@ namespace MVBP.Configs {
                     requirements: "BlackMarble,8",
                     clipEverything: false,
                     clipGround: false,
-                    pieceGroup: PieceGroup.BlackMarble
+                    pieceGroup: PieceGroup.BlackMarble,
+                    placementPatch: true
                 )
             },
             {
