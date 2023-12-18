@@ -11,6 +11,14 @@
 			<td align="center">1.0.2</td>
 			<td align="left">
 				<ul>
+					<li>Bugfix for placement of corner stair pieces.</li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<td align="center">1.0.2</td>
+			<td align="left">
+				<ul>
 					<li>Minor performance optimizations.</li>
 					<li>Added compatibility for CustomShips mod.</li>
 				</ul>
