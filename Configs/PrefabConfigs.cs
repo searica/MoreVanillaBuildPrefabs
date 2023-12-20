@@ -2,6 +2,7 @@
 
 using Jotunn.Configs;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace MVBP.Configs {
     internal static class PrefabConfigs {
@@ -3169,7 +3170,8 @@ namespace MVBP.Configs {
                     requirements: "",
                     clipEverything: true,
                     clipGround: false,
-                    pieceGroup: PieceGroup.Dvergr
+                    pieceGroup: PieceGroup.Dvergr,
+                    placementOffset: new Vector3(-1f, 0f, 0f)
                 )
             },
             {
@@ -4778,7 +4780,8 @@ namespace MVBP.Configs {
                     craftingStation: nameof(CraftingStations.None),
                     requirements: "FineWood,8",
                     clipEverything: true,
-                    clipGround: false
+                    clipGround: false,
+                    placementOffset: new Vector3(0f, -1.5f, 6f)
                 )
             },
             {

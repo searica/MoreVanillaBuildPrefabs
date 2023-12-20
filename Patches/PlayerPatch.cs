@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Reflection.Emit;
 using UnityEngine;
+using MVBP.Configs;
 
 namespace MVBP {
     [HarmonyPatch(typeof(Player))]
@@ -159,6 +160,24 @@ namespace MVBP {
             clonedPrefab.SetActive(true);
 
             return clonedPrefab;
+        }
+
+        [HarmonyPostfix]
+        [HarmonyPatch(nameof(Player.UpdatePlacementGhost))]
+        private static void UpdatePlacementGhostPostfix(Player __instance) {
+            if (__instance.m_placementGhost == null) {
+                if (__instance.m_placementMarkerInstance) {
+                    __instance.m_placementMarkerInstance.SetActive(value: false);
+                }
+                return;
+            }
+
+            if (InitManager.TryGetPieceDB(__instance.m_placementGhost, out PieceDB pieceDB) &&
+                pieceDB.placementOffset != null) {
+                var quaternion = __instance.m_placementGhost.transform.rotation;
+                var pos = __instance.m_placementGhost.transform.position;
+                __instance.m_placementGhost.transform.position = pos + (quaternion * pieceDB.placementOffset.Value);
+            }
         }
 
         [HarmonyPrefix]

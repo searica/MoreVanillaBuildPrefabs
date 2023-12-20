@@ -4,10 +4,8 @@ using Jotunn.Configs;
 using MVBP.Helpers;
 using UnityEngine;
 
-namespace MVBP.Configs
-{
-    internal class PrefabDB
-    {
+namespace MVBP.Configs {
+    internal class PrefabDB {
         public string name;
         public bool enabled;
         public bool allowedInDungeons;
@@ -17,19 +15,18 @@ namespace MVBP.Configs
         public bool clipEverything;
         public bool clipGround;
         public bool placementPatch;
+        public Vector3? placementOffset;
         public string pieceName;
         public string pieceDesc;
         public PieceGroup pieceGroup;
         public bool playerBasePatch;
 
-        internal GameObject Prefab
-        {
+        internal GameObject Prefab {
             get { return InitManager.PrefabRefs[name]; }
         }
 
         // for inheritance
-        public PrefabDB()
-        { }
+        public PrefabDB() { }
 
         public PrefabDB(
             string name,
@@ -38,25 +35,26 @@ namespace MVBP.Configs
             string category = HammerCategories.CreatorShop,
             string craftingStation = nameof(CraftingStations.None),
             string requirements = null,
-            bool placementPatch = false,
             bool clipEverything = false,
             bool clipGround = false,
+            bool placementPatch = false,
+            Vector3? placementOffset = null,
             string pieceName = null,
             string pieceDesc = null,
             PieceGroup pieceGroup = default,
             bool playerBasePatch = false
 
-        )
-        {
+        ) {
             this.name = name;
             this.enabled = enabled;
             this.allowedInDungeons = allowedInDungeons;
             this.category = category;
             this.craftingStation = craftingStation;
             this.requirements = requirements;
-            this.placementPatch = placementPatch;
             this.clipEverything = clipEverything;
             this.clipGround = clipGround;
+            this.placementPatch = placementPatch;
+            this.placementOffset = placementOffset;
             this.pieceName = pieceName;
             this.pieceDesc = pieceDesc;
             this.pieceGroup = pieceGroup;

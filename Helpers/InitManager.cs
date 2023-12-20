@@ -71,15 +71,14 @@ namespace MVBP.Helpers {
             return false;
         }
 
+        internal static bool TryGetPieceDB(GameObject gameObject, out PieceDB pieceDB) {
+            var prefabName = GetPrefabName(gameObject);
+            return TryGetPieceDB(prefabName, out pieceDB);
+        }
+
         internal static bool TryGetPieceDB(Piece piece, out PieceDB pieceDB) {
             var prefabName = GetPrefabName(piece);
-            if (string.IsNullOrEmpty(prefabName) && PieceRefs.TryGetValue(prefabName, out pieceDB)) {
-                return true;
-            }
-
-            pieceDB = null;
-
-            return false;
+            return TryGetPieceDB(prefabName, out pieceDB);
         }
 
         /// <summary>
@@ -139,7 +138,7 @@ namespace MVBP.Helpers {
         /// <param name="gameObject"></param>
         /// <returns></returns>
         internal static string GetPrefabName(GameObject gameObject) {
-            if (gameObject == null) { return string.Empty; }
+            if (!gameObject) { return string.Empty; }
 
             var prefabName = gameObject.name.RemoveSuffix("(Clone)");
             if (PrefabRefs.ContainsKey(prefabName)) { return prefabName; }
