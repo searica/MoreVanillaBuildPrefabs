@@ -367,12 +367,13 @@ namespace MVBP {
 
             prefabDBConfig.enabled = ConfigManager.BindConfig(
                 sectionName,
-                ConfigManager.SetStringPriority("Enabled", 1),
+                "Enabled",
                 defaultPrefabDB.enabled,
                 "If true then allow this prefab to be built and deconstructed. " +
                 "Note: this setting is ignored if ForceAllPrefabs is true. " +
                 "It is also ignored if the piece category is CreatorShop or Nature " +
-                "and CreativeMode is false."
+                "and CreativeMode is false.",
+                order: 10
             );
             prefabDBConfig.enabled.SettingChanged += PieceSettingChanged;
             defaultPrefabDB.enabled = prefabDBConfig.enabled.Value;
