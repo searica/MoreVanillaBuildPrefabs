@@ -57,7 +57,8 @@ namespace MVBP.Configs {
             T value,
             string description,
             AcceptableValueBase acceptVals = null,
-            bool synced = true
+            bool synced = true,
+            int order = 0
         ) {
             string extendedDescription = GetExtendedDescription(description, synced);
             ConfigEntry<T> configEntry = configFile.Bind(
@@ -67,7 +68,8 @@ namespace MVBP.Configs {
                 new ConfigDescription(
                     extendedDescription,
                     acceptVals,
-                    synced ? AdminConfig : ClientConfig
+                    synced ? AdminConfig : ClientConfig,
+                    new ConfigurationManagerAttributes { Order = order }
                 )
             );
             return configEntry;
