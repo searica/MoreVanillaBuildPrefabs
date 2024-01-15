@@ -51,6 +51,10 @@ namespace MVBP.Configs {
 
         #region BindConfig
 
+        private static readonly ConfigurationManagerAttributes AdminConfig = new() { IsAdminOnly = true };
+        private static readonly ConfigurationManagerAttributes ClientConfig = new() { IsAdminOnly = false };
+        private const char ZWS = '\u200B';
+
         internal static ConfigEntry<T> BindConfig<T>(
             string section,
             string name,
@@ -69,15 +73,12 @@ namespace MVBP.Configs {
                     extendedDescription,
                     acceptVals,
                     synced ? AdminConfig : ClientConfig,
-                    new ConfigurationManagerAttributes { Order = order }
+                    new ConfigurationManagerAttributes() { Order = order }
                 )
             );
             return configEntry;
         }
 
-        private static readonly ConfigurationManagerAttributes AdminConfig = new() { IsAdminOnly = true };
-        private static readonly ConfigurationManagerAttributes ClientConfig = new() { IsAdminOnly = false };
-        private const char ZWS = '\u200B';
 
         /// <summary>
         ///     Prepends Zero-Width-Space to set ordering of configuration sections
