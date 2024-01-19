@@ -8,6 +8,14 @@
 			<th align="center">Notes</th>
 		</tr>
 		<tr>
+			<td align="center">1.0.5</td>
+			<td align="left">
+				<ul>
+					<li>Fixed bug that broke prevention of resource exploits when building and removing pickables.</b></li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
 			<td align="center">1.0.4</td>
 			<td align="left">
 				<ul>
