@@ -1,12 +1,12 @@
 {
   "name": "More_Vanilla_Build_Prefabs",
   "author": "Searica",
-  "version_number": "1.0.3",
+  "version_number": "1.0.4",
   "website_url": "https://discord.gg/sFmGTBYN6n",
   "description": "Adds almost everything in the vanilla game to the hammer for building in survival mode. Every piece can be customized and enabled/disabled. Comes with a default configuration for ease of use. Uses Jotunn to sync configs if installed on server.",
   "dependencies": [
     "denikson-BepInExPack_Valheim-5.4.2202",
-    "ValheimModding-Jotunn-2.15.2",
+    "ValheimModding-Jotunn-2.16.2",
     "ComfyMods-SearsCatalog-1.4.0"
   ]
 }

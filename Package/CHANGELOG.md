@@ -8,7 +8,17 @@
 			<th align="center">Notes</th>
 		</tr>
 		<tr>
-			<td align="center">1.0.2</td>
+			<td align="center">1.0.4</td>
+			<td align="left">
+				<ul>
+					<li>Removed special characters from cfg file. <b>YOU HAVE TO REGENERATE YOUR CONFIGURATION FILE!</b></li>
+					<li>Improved placement of some pieces to remove the large offsets relative to where players pointed their hammer.</li>
+					<li>Fixed bug where disabled pieces that were not in the CreatorShop or Nature categories could be deconstructed by players.</li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<td align="center">1.0.3</td>
 			<td align="left">
 				<ul>
 					<li>Bugfix for placement of corner stair pieces.</li>

@@ -3,6 +3,8 @@ MoreVanillaBuildPrefabs is a Valheim mod to make all vanilla prefabs buildable w
 
 **Server-Side Info**: This mod does work as a client-side only mod. It is strongly recommended that you install it on the server you play on if possible though as multiple players with conflicting configurations can result in losing build resources when pieces are deconstructed. Not installing the mod on the server also means that some pieces (like the new ship) may not function well for players without the mod.
 
+**UPDATE NOTICE:** I have removed all instances of special characters from the configuration file to make it easier for people using basic text editors to edit. This means you have to regenerate your configuration file for version 1.0.4!
+
 ## Key Feature
 Because all the added build pieces are pre-existing vanilla prefabs, any pieces you build with this mod will persist in your world even if you uninstall the mod. This means that pieces you build on a server will also be visible for players without the mod and any builds using the pieces from this mod will load for players without the mod.
 
@@ -23,7 +25,7 @@ If you want to see what kind of pieces get added by default and are unlocked as 
 <details>
 <summary><b>Mistlands Builds</b></summary>
 	<img src="https://github.com/searica/MoreVanillaBuildPrefabs/blob/main/Media/DreamWraith/Valheim%2010_29_2023%202_18_41%20PM.png?raw=true"></img>
-	<img src="https://github.com/searica/MoreVanillaBuildPrefabs/blob/main/Media/DreamWraith/Valheim_11_8_2023_7_22_51_PM.png?raw=true"></img>
+	<img src="https://raw.githubusercontent.com/searica/MoreVanillaBuildPrefabs/dev/Media/DreamWraith/Valheim%2010_29_2023%202_18_41%20PM.png"></img>
 	<img src="https://raw.githubusercontent.com/searica/MoreVanillaBuildPrefabs/main/Media/DreamWraith/Valheim%2010_29_2023%202_27_49%20PM.png"></img>
 	<img src="https://raw.githubusercontent.com/searica/MoreVanillaBuildPrefabs/main/Media/DreamWraith/Valheim%2010_29_2023%202_29_13%20PM.png"></img>
 	<img src="https://raw.githubusercontent.com/searica/MoreVanillaBuildPrefabs/main/Media/DreamWraith/Valheim%2010_29_2023%202_24_52%20PM.png"></img>
