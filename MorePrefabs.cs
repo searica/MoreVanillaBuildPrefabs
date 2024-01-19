@@ -24,11 +24,11 @@ namespace MVBP {
         public const string PluginName = "MoreVanillaBuildPrefabs";
         internal const string Author = "Searica";
         public const string PluginGUID = $"{Author}.Valheim.{PluginName}";
-        public const string PluginVersion = "1.0.3";
+        public const string PluginVersion = "1.0.4";
 
         #region Global Settings
 
-        private static readonly string MainSection = ConfigManager.SetStringPriority("Global", 5);
+        private const string MainSection = "1 - Global";
 
         private static ConfigEntry<bool> CreativeMode { get; set; }
         private static ConfigEntry<bool> ForceAllPrefabs { get; set; }
@@ -39,7 +39,7 @@ namespace MVBP {
 
         #region Admin Settings
 
-        private static readonly string AdminSection = ConfigManager.SetStringPriority("Admin", 4);
+        private const string AdminSection = "2 - Admin";
         private static ConfigEntry<bool> CreatorShopAdminOnly { get; set; }
         private static ConfigEntry<bool> AdminDeconstructOtherPlayers { get; set; }
         internal static bool IsCreatorShopAdminOnly => CreatorShopAdminOnly.Value;
@@ -49,7 +49,7 @@ namespace MVBP {
 
         #region Customization Settings
 
-        private static readonly string CustomizationSection = ConfigManager.SetStringPriority("Customization", 3);
+        private const string CustomizationSection = "3 - Customization";
         private static ConfigEntry<bool> EnableHammerCrops { get; set; }
         private static ConfigEntry<bool> EnableDoorPatches { get; set; }
         private static ConfigEntry<bool> EnableComfortPatches { get; set; }
@@ -67,7 +67,7 @@ namespace MVBP {
 
         #region Texture Patches
 
-        private static readonly string TextureSection = ConfigManager.SetStringPriority("Textures", 2);
+        private const string TextureSection = "4 - Textures";
 
         private static ConfigEntry<bool> PortalTexture;
         private static ConfigEntry<bool> DvergrWoodTexture;
@@ -78,7 +78,7 @@ namespace MVBP {
 
         #region Unsafe Patches
 
-        private static readonly string UnsafeSection = ConfigManager.SetStringPriority("Unsafe Patches", 1);
+        private const string UnsafeSection = "5 - Unsafe Patches";
         private static ConfigEntry<bool> EnableBedPatches { get; set; }
         private static ConfigEntry<bool> EnableFermenterPatches { get; set; }
         internal static bool IsEnableBedPatches => EnableBedPatches.Value;
