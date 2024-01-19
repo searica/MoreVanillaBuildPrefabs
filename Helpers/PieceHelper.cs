@@ -126,6 +126,7 @@ namespace MVBP.Helpers {
             if (AddedPieceComponent.Contains(pieceDB.name)) {
                 piece.enabled = pieceDB.enabled; // set component enabled/disabled for components added by MVBP
                 piece.m_enabled = pieceDB.enabled; // set piece visible in PieceTable based on MVBP config
+                pieceDB.piece.m_canBeRemoved = pieceDB.enabled; // set if removeable
             }
 
             piece.m_name = name;
@@ -141,14 +142,12 @@ namespace MVBP.Helpers {
             // from being removable.
             // (Player.RemovePiece patch allows removing player-built instances).
             // Mimic Vanilla, make ships/carts non-removable.
-            if (!PieceCategoryHelper.IsCreativeModePiece(pieceDB.piece) &&
-                !pieceDB.Prefab.GetComponent<Ship>() &&
-                !pieceDB.Prefab.GetComponent<Vagon>()) {
-                pieceDB.piece.m_canBeRemoved = pieceDB.enabled;
-            }
-            else {
+            if (PieceCategoryHelper.IsCreativeModePiece(pieceDB.piece) ||
+                pieceDB.Prefab.GetComponent<Ship>() ||
+                pieceDB.Prefab.GetComponent<Vagon>()) {
                 pieceDB.piece.m_canBeRemoved = false;
             }
+
 
             return piece;
         }
