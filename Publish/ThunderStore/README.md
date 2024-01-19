@@ -3,7 +3,7 @@ MoreVanillaBuildPrefabs is a Valheim mod to make all vanilla prefabs buildable w
 
 **Server-Side Info**: This mod does work as a client-side only mod. It is strongly recommended that you install it on the server you play on if possible though as multiple players with conflicting configurations can result in losing build resources when pieces are deconstructed. Not installing the mod on the server also means that some pieces (like the new ship) may not function well for players without the mod.
 
-**UPDATE NOTICE:** I have removed all instances of special characters from the configuration file to make it easier for people using basic text editors to edit. This means you have to regenerate your configuration file for version 1.0.4!
+**UPDATE NOTICE:** I have removed all instances of special characters from the configuration file to make it easier for people using basic text editors to edit. This means you have to regenerate your configuration file for version 1.0.4! The easiest way to do this while keeping your settings for pieces is to use `Find + Replace` to remove the Zero-Width-Space character (which you can copy from this link: https://symbl.cc/en/200B/) and then remove the first 4 sections manually.
 
 ## Key Feature
 Because all the added build pieces are pre-existing vanilla prefabs, any pieces you build with this mod will persist in your world even if you uninstall the mod. This means that pieces you build on a server will also be visible for players without the mod and any builds using the pieces from this mod will load for players without the mod.
