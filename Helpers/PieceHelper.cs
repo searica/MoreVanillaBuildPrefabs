@@ -144,7 +144,7 @@ namespace MVBP.Helpers {
             if (!PieceCategoryHelper.IsCreativeModePiece(pieceDB.piece) &&
                 !pieceDB.Prefab.GetComponent<Ship>() &&
                 !pieceDB.Prefab.GetComponent<Vagon>()) {
-                pieceDB.piece.m_canBeRemoved = true;
+                pieceDB.piece.m_canBeRemoved = pieceDB.enabled;
             }
             else {
                 pieceDB.piece.m_canBeRemoved = false;
