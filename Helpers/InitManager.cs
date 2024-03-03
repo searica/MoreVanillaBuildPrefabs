@@ -9,8 +9,10 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace MVBP.Helpers {
-    internal static class InitManager {
+namespace MVBP.Helpers
+{
+    internal static class InitManager
+    {
         internal static readonly Dictionary<string, GameObject> PrefabRefs = new();
         internal static readonly Dictionary<string, Piece> DefaultPieceClones = new();
         private static Dictionary<string, PieceDB> PieceRefs = new();
@@ -49,9 +51,11 @@ namespace MVBP.Helpers {
 
         internal static bool HasInitializedPlugin => PrefabRefs.Count > 0;
 
-        internal static bool TryGetDefaultPieceClone(GameObject gameObject, out Piece pieceClone) {
+        internal static bool TryGetDefaultPieceClone(GameObject gameObject, out Piece pieceClone)
+        {
             var prefabName = GetPrefabName(gameObject);
-            if (DefaultPieceClones.ContainsKey(prefabName)) {
+            if (DefaultPieceClones.ContainsKey(prefabName))
+            {
                 pieceClone = DefaultPieceClones[prefabName];
                 return true;
             }
@@ -61,8 +65,10 @@ namespace MVBP.Helpers {
             return false;
         }
 
-        internal static bool TryGetPieceDB(string name, out PieceDB pieceDB) {
-            if (!string.IsNullOrEmpty(name) && PieceRefs.TryGetValue(name, out pieceDB)) {
+        internal static bool TryGetPieceDB(string name, out PieceDB pieceDB)
+        {
+            if (!string.IsNullOrEmpty(name) && PieceRefs.TryGetValue(name, out pieceDB))
+            {
                 return true;
             }
 
@@ -71,12 +77,14 @@ namespace MVBP.Helpers {
             return false;
         }
 
-        internal static bool TryGetPieceDB(GameObject gameObject, out PieceDB pieceDB) {
+        internal static bool TryGetPieceDB(GameObject gameObject, out PieceDB pieceDB)
+        {
             var prefabName = GetPrefabName(gameObject);
             return TryGetPieceDB(prefabName, out pieceDB);
         }
 
-        internal static bool TryGetPieceDB(Piece piece, out PieceDB pieceDB) {
+        internal static bool TryGetPieceDB(Piece piece, out PieceDB pieceDB)
+        {
             var prefabName = GetPrefabName(piece);
             return TryGetPieceDB(prefabName, out pieceDB);
         }
@@ -85,7 +93,8 @@ namespace MVBP.Helpers {
         ///     Returns a bool indicating if the prefab has been changed by mod.
         /// </summary>
         /// <returns></returns>
-        internal static bool IsPatchedByMod(GameObject gameObject) {
+        internal static bool IsPatchedByMod(GameObject gameObject)
+        {
             var prefabName = GetPrefabName(gameObject);
             return PrefabRefs.ContainsKey(prefabName);
         }
@@ -94,7 +103,8 @@ namespace MVBP.Helpers {
         ///     Returns a bool indicating if the prefab has been changed by mod.
         /// </summary>
         /// <returns></returns>
-        internal static bool IsPatchedByMod(Component compo) {
+        internal static bool IsPatchedByMod(Component compo)
+        {
             var prefabName = GetPrefabName(compo);
             return PrefabRefs.ContainsKey(prefabName);
         }
@@ -104,7 +114,8 @@ namespace MVBP.Helpers {
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
-        internal static bool IsPatchedByMod(string name) {
+        internal static bool IsPatchedByMod(string name)
+        {
             return PrefabRefs.ContainsKey(name);
         }
 
@@ -114,9 +125,11 @@ namespace MVBP.Helpers {
         /// </summary>
         /// <param name="gameObject"></param>
         /// <returns></returns>
-        internal static bool IsPrefabEnabled(GameObject gameObject) {
+        internal static bool IsPrefabEnabled(GameObject gameObject)
+        {
             var prefabName = GetPrefabName(gameObject);
-            if (IsPatchedByMod(prefabName)) {
+            if (IsPatchedByMod(prefabName))
+            {
                 return MorePrefabs.IsPrefabConfigEnabled(prefabName) || MorePrefabs.IsForceAllPrefabs;
             }
 
@@ -128,7 +141,8 @@ namespace MVBP.Helpers {
         /// </summary>
         /// <param name="compo"></param>
         /// <returns></returns>
-        internal static string GetPrefabName(Component compo) {
+        internal static string GetPrefabName(Component compo)
+        {
             return GetPrefabName(compo?.gameObject);
         }
 
@@ -137,21 +151,25 @@ namespace MVBP.Helpers {
         /// </summary>
         /// <param name="gameObject"></param>
         /// <returns></returns>
-        internal static string GetPrefabName(GameObject gameObject) {
+        internal static string GetPrefabName(GameObject gameObject)
+        {
             if (!gameObject) { return string.Empty; }
 
             var prefabName = gameObject.name.RemoveSuffix("(Clone)");
             if (PrefabRefs.ContainsKey(prefabName)) { return prefabName; }
 
-            if (gameObject.TryGetComponent(out Piece piece) && PieceToPrefabMap.ContainsKey(piece.m_name)) {
+            if (gameObject.TryGetComponent(out Piece piece) && PieceToPrefabMap.ContainsKey(piece.m_name))
+            {
                 return PieceToPrefabMap[piece.m_name];
             }
 
             return prefabName;
         }
 
-        private static void InitPrefabRefs() {
-            if (PrefabRefs.Count > 0) {
+        private static void InitPrefabRefs()
+        {
+            if (PrefabRefs.Count > 0)
+            {
                 return;
             }
 
@@ -162,15 +180,19 @@ namespace MVBP.Helpers {
             // Find eligible prefabs for adding
             var PieceNameCache = PieceHelper.GetExistingPieceNames();
             var EligiblePrefabs = new Dictionary<string, GameObject>();
-            foreach (var prefab in ZNetScene.instance.m_prefabs) {
+            foreach (var prefab in ZNetScene.instance.m_prefabs)
+            {
                 if (!prefab.transform.parent && !PieceNameCache.Contains(prefab.name) &&
-                    PrefabFilter.GetEligiblePrefab(prefab, out GameObject result) && !EligiblePrefabs.ContainsKey(result.name)) {
+                    PrefabFilter.GetEligiblePrefab(prefab, out GameObject result) && !EligiblePrefabs.ContainsKey(result.name))
+                {
                     EligiblePrefabs.Add(result.name, result);
                 }
             }
 
-            foreach (var prefab in EligiblePrefabs.Values) {
-                if (!PieceHelper.EnsureNoDuplicateZNetView(prefab)) {
+            foreach (var prefab in EligiblePrefabs.Values)
+            {
+                if (!PieceHelper.EnsureNoDuplicateZNetView(prefab))
+                {
                     continue;
                 }
 
@@ -178,10 +200,12 @@ namespace MVBP.Helpers {
 
                 // Always patching means it only runs once and
                 // prevents trailership being unusable if disabled.
-                try {
+                try
+                {
                     PrefabPatcher.PatchPrefabIfNeeded(prefab);
                 }
-                catch (Exception ex) {
+                catch (Exception ex)
+                {
                     Log.LogWarning($"Failed to patch prefab {prefab.name}: {ex}");
                 }
 
@@ -196,9 +220,11 @@ namespace MVBP.Helpers {
             // before the coroutine that is rendering the icons finishes. (Such as PlanBuild)
             var defaultIcon = PrefabManager.Cache.GetPrefab<Sprite>("mapicon_hildir1");
 
-            foreach (var prefab in PrefabRefs.Values) {
+            foreach (var prefab in PrefabRefs.Values)
+            {
                 var defaultPiece = PieceHelper.InitPieceComponent(prefab);
-                if (defaultPiece.m_icon == null) {
+                if (defaultPiece.m_icon == null)
+                {
                     defaultPiece.m_icon = defaultIcon;
                 }
             }
@@ -211,27 +237,34 @@ namespace MVBP.Helpers {
         /// <summary>
         ///     Get refs to seasonal pieces that are disabled.
         /// </summary>
-        private static void InitSeasonalPieceRefs() {
+        private static void InitSeasonalPieceRefs()
+        {
             var pieceNames = SeasonalPieceRefs.Keys.ToList();
             var nullKeys = new List<string>();
-            foreach (var name in pieceNames) {
+            foreach (var name in pieceNames)
+            {
                 var prefab = PrefabManager.Instance.GetPrefab(name);
-                if (prefab && prefab.TryGetComponent(out Piece piece)) {
+                if (prefab && prefab.TryGetComponent(out Piece piece))
+                {
                     // Only add pieces that are currently disabled
-                    if (!piece.m_enabled) {
+                    if (!piece.m_enabled)
+                    {
                         SeasonalPieceRefs[name] = prefab;
                     }
-                    else {
+                    else
+                    {
                         Log.LogInfo($"Seasonal Piece: {name} already enabled", LogLevel.Medium);
                         nullKeys.Add(name);
                     }
                 }
-                else {
+                else
+                {
                     Log.LogWarning($"Seasonal piece: {name} could not be found");
                 }
             }
 
-            foreach (var key in nullKeys) {
+            foreach (var key in nullKeys)
+            {
                 SeasonalPieceRefs.Remove(key);
             }
         }
@@ -240,13 +273,16 @@ namespace MVBP.Helpers {
         ///     Initializes references to pieces and their configuration settings then applies 
         ///     the configuration settings from the PieceDB for each piece in PieceRefs.
         /// </summary>
-        private static void InitPieces() {
+        private static void InitPieces()
+        {
             Log.LogInfo("Initializing piece refs");
 
-            if (PieceRefs.Count > 0) {
+            if (PieceRefs.Count > 0)
+            {
                 PieceTable hammerTable = PieceManager.Instance.GetPieceTable(PieceTables.Hammer);
 
-                foreach (PieceDB pdb in PieceRefs.Values) {
+                foreach (PieceDB pdb in PieceRefs.Values)
+                {
                     // remove pieces from hammer build table and sheath hammer if piece table is open
                     PieceHelper.RemovePieceFromPieceTable(pdb.Prefab, hammerTable);
                     ForceUnequipHammer();
@@ -257,7 +293,8 @@ namespace MVBP.Helpers {
             PieceRefs = GeneratePieceRefs();
 
             Log.LogInfo("Initializing pieces");
-            foreach (var pieceDB in PieceRefs.Values) {
+            foreach (var pieceDB in PieceRefs.Values)
+            {
                 var piece = PieceHelper.ConfigurePiece(pieceDB);
                 SfxHelper.FixPlacementSfx(piece);
 
@@ -269,10 +306,12 @@ namespace MVBP.Helpers {
         /// <summary>
         ///     Forces hammer to be unequipped if it is currently equipped.
         /// </summary>
-        private static void ForceUnequipHammer() {
+        private static void ForceUnequipHammer()
+        {
             var player = Player.m_localPlayer;
 
-            if (player && Player.m_localPlayer.GetRightItem()?.m_shared.m_name == "$item_hammer") {
+            if (player && Player.m_localPlayer.GetRightItem()?.m_shared.m_name == "$item_hammer")
+            {
                 Log.LogWarning("Hammer updated through config change, unequipping hammer");
                 Player.m_localPlayer.HideHandItems();
             }
@@ -284,24 +323,31 @@ namespace MVBP.Helpers {
         ///     containing the configuration settings to apply.
         /// </summary>
         /// <returns></returns>
-        private static Dictionary<string, PieceDB> GeneratePieceRefs() {
+        private static Dictionary<string, PieceDB> GeneratePieceRefs()
+        {
             Dictionary<string, PieceDB> newPieceRefs = new();
-            foreach (var name in PrefabRefs.Keys) {
-                if (PrefabRefs.TryGetValue(name, out GameObject prefab)) {
-                    if (!prefab) {
+            foreach (var name in PrefabRefs.Keys)
+            {
+                if (PrefabRefs.TryGetValue(name, out GameObject prefab))
+                {
+                    if (!prefab)
+                    {
                         Log.LogWarning($"Prefab: {name} has been destroyed");
                         continue;
                     }
 
                     // reset piece component to match the default pieceClone clone
-                    if (prefab.TryGetComponent(out Piece piece)) {
+                    if (prefab.TryGetComponent(out Piece piece))
+                    {
                         newPieceRefs.Add(prefab.name, new PieceDB(MorePrefabs.GetPrefabDB(prefab), piece));
                     }
-                    else {
+                    else
+                    {
                         Log.LogWarning($"Prefab: {name} is missing piece component");
                     }
                 }
-                else {
+                else
+                {
                     Log.LogWarning($"Could not find Prefab: {name}");
                 }
             }
@@ -314,31 +360,40 @@ namespace MVBP.Helpers {
         ///     table according to CreatorShop related cfg settings. Allow sets
         ///     all pieces added to the hammer permit deconstruction by players.
         /// </summary>
-        private static void InitHammer() {
+        private static void InitHammer()
+        {
             Log.LogInfo("Initializing hammer");
 
             var pieceGroups = new SortedPieceGroups();
 
-            foreach (var pieceDB in PieceRefs.Values) {
+            foreach (var pieceDB in PieceRefs.Values)
+            {
                 // Check if pieceClone is enabled by the mod
-                if (!pieceDB.enabled && !MorePrefabs.IsForceAllPrefabs) {
+                if (!pieceDB.enabled && !MorePrefabs.IsForceAllPrefabs)
+                {
                     continue;
                 }
 
+                pieceDB.piece.enabled = pieceDB.enabled || MorePrefabs.IsForceAllPrefabs;
+                pieceDB.piece.m_enabled = pieceDB.piece.enabled;
+
                 // Prevent adding creative mode pieces if not in CreativeMode
-                if (!MorePrefabs.IsCreativeMode && PieceCategoryHelper.IsCreativeModePiece(pieceDB.piece)) {
+                if (!MorePrefabs.IsCreativeMode && PieceCategoryHelper.IsCreativeModePiece(pieceDB.piece))
+                {
                     continue;
                 }
 
                 // Only add vanilla crops if enabled
-                if (!MorePrefabs.IsEnableHammerCrops && pieceDB.pieceGroup == PieceGroup.VanillaCrop) {
+                if (!MorePrefabs.IsEnableHammerCrops && pieceDB.pieceGroup == PieceGroup.VanillaCrop)
+                {
                     continue;
                 }
 
                 // Restrict placement of CreatorShop pieces to Admins only
                 if (MorePrefabs.IsCreatorShopAdminOnly &&
                     PieceCategoryHelper.IsCreatorShopPiece(pieceDB.piece) &&
-                    !SynchronizationManager.Instance.PlayerIsAdmin) {
+                    !SynchronizationManager.Instance.PlayerIsAdmin)
+                {
                     continue;
                 }
 
@@ -346,8 +401,10 @@ namespace MVBP.Helpers {
             }
 
             PieceTable hammerTable = PieceManager.Instance.GetPieceTable(PieceTables.Hammer);
-            foreach (List<GameObject> pieceGroup in pieceGroups) {
-                foreach (var prefab in pieceGroup) {
+            foreach (List<GameObject> pieceGroup in pieceGroups)
+            {
+                foreach (var prefab in pieceGroup)
+                {
                     PieceHelper.AddPieceToPieceTable(prefab, hammerTable);
                 }
             }
@@ -357,16 +414,21 @@ namespace MVBP.Helpers {
         ///     Enables/disables seasonal pieces based on config settings.
         ///     Has no effect on seasonal pieces that are already enabled in Vanilla.
         /// </summary>
-        private static void InitSeasonalPieces() {
+        private static void InitSeasonalPieces()
+        {
             if (!HasInitializedPlugin) return;
 
-            foreach (var name in SeasonalPieceRefs.Keys) {
-                if (SeasonalPieceRefs.TryGetValue(name, out GameObject prefab) && prefab) {
-                    if (prefab.TryGetComponent(out Piece piece)) {
+            foreach (var name in SeasonalPieceRefs.Keys)
+            {
+                if (SeasonalPieceRefs.TryGetValue(name, out GameObject prefab) && prefab)
+                {
+                    if (prefab.TryGetComponent(out Piece piece))
+                    {
                         piece.m_enabled = MorePrefabs.IsEnableSeasonalPieces;
                     }
                 }
-                else {
+                else
+                {
                     Log.LogWarning($"Seasonal piece: {name} could not be found");
                 }
             }
@@ -375,7 +437,8 @@ namespace MVBP.Helpers {
         /// <summary>
         ///     Initialize plugin for the first time.
         /// </summary>
-        internal static void InitPlugin() {
+        internal static void InitPlugin()
+        {
             if (HasInitializedPlugin) { return; }
 
             PieceCategoryHelper.AddCreatorShopPieceCategory();
@@ -390,7 +453,8 @@ namespace MVBP.Helpers {
         /// <summary>
         ///     Reinitialize pieces and the hammer build table.
         /// </summary>
-        internal static void UpdatePieces() {
+        internal static void UpdatePieces()
+        {
             if (!HasInitializedPlugin) { return; }
 
             InitPieces();
@@ -403,15 +467,18 @@ namespace MVBP.Helpers {
         ///     settings have been changed for any of the config entries.
         /// </summary>
         /// <param name="msg"></param>
-        internal static void UpdatePlugin(string msg, bool saveConfig = true) {
-            if (!HasInitializedPlugin) {
+        internal static void UpdatePlugin(string msg, bool saveConfig = true)
+        {
+            if (!HasInitializedPlugin)
+            {
                 return;
             }
 
             // Don't update unless settings have actually changed
             if (!MorePrefabs.UpdatePieceSettings &&
                 !MorePrefabs.UpdatePlacementSettings &&
-                !MorePrefabs.UpdateSeasonalSettings) {
+                !MorePrefabs.UpdateSeasonalSettings)
+            {
                 return;
             }
 
@@ -419,27 +486,33 @@ namespace MVBP.Helpers {
             if (Log.IsVerbosityMedium) { watch.Start(); }
             Log.LogInfo(msg);
 
-            if (MorePrefabs.UpdatePieceSettings) {
+            if (MorePrefabs.UpdatePieceSettings)
+            {
                 UpdatePieces();
             }
 
-            if (MorePrefabs.UpdateSeasonalSettings) {
+            if (MorePrefabs.UpdateSeasonalSettings)
+            {
                 InitSeasonalPieces();
             }
 
-            if (MorePrefabs.UpdatePlacementSettings) {
+            if (MorePrefabs.UpdatePlacementSettings)
+            {
                 ForceUnequipHammer(); // reset placement ghost set up to apply patch
             }
 
-            if (Log.IsVerbosityMedium) {
+            if (Log.IsVerbosityMedium)
+            {
                 watch.Stop();
                 Log.LogInfo($"Time to re-initialize: {watch.ElapsedMilliseconds} ms");
             }
-            else {
+            else
+            {
                 Log.LogInfo("Re-initializing complete");
             }
 
-            if (MorePrefabs.UpdatePieceSettings) {
+            if (MorePrefabs.UpdatePieceSettings)
+            {
                 ModCompat.UpdateExtraSnaps();
                 ModCompat.UpdatePlanBuild();
             }
