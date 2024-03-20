@@ -114,76 +114,10 @@ namespace MVBP
         {
             if (PlanBuildScanTables == null)
             {
-                PlanBuildScanTables = AccessTools.Method("PlanBuild:UpdateScanPieces", Type.EmptyTypes);
+                PlanBuildScanTables = AccessTools.Method("PlanBuild.PlanBuildPlugin:UpdateScanPieces", Type.EmptyTypes);
             }
             return PlanBuildScanTables;
         }
-
-
-        ///// <summary>
-        /////     Triggers rescanning of piece tables by PlanBuild if it is installed.
-        ///// </summary>
-        ///// <returns></returns>
-        //internal static bool UpdatePlanBuild() {
-        //    // trigger rescanning of piece tables via reflection
-        //    if (TryGetPlanDBInstance(out object planDBInstance)) {
-        //        Log.LogInfo("PlanBuild is installed", LogLevel.Medium);
-        //        try {
-        //            var method = GetPlanBuildScanTables();
-        //            Log.LogInfo("Triggering PlanBuild ScanPieceTables", LogLevel.Medium);
-        //            method?.Invoke(planDBInstance, Array.Empty<object>()); // Invoke if not null
-        //            return true;
-        //        }
-        //        catch (Exception e) {
-        //            Log.LogWarning($"Failed to update PlanBuild:\n {e}");
-        //        }
-        //    }
-        //    return false;
-        //}
-
-        //private static MethodInfo GetPlanBuildScanTables() {
-        //    if (PlanBuildScanTables == null) {
-        //        PlanBuildScanTables = AccessTools.Method("PlanBuild.Plans.PlanDB:ScanPieceTables", Type.EmptyTypes);
-        //    }
-        //    return PlanBuildScanTables;
-        //}
-
-        //private static bool TryGetPlanDBInstance(out object planDBInstance) {
-        //    if (PlanDBInstance == null && TryGetPlanDBType(out Type planDBType)) {
-        //        MethodInfo planDBGetter = AccessTools.PropertyGetter(planDBType, "Instance");
-        //        PlanDBInstance = planDBGetter.Invoke(null, Array.Empty<object>());
-        //        planDBInstance = PlanDBInstance;
-        //    }
-        //    else {
-        //        planDBInstance = PlanDBInstance;
-        //    }
-        //    return planDBInstance != null;
-        //}
-
-        //private static bool TryGetPlanDBType(out Type planDBType) {
-        //    planDBType = null;
-        //    if (!IsPlanBuildInstalled()) { return false; }
-
-        //    if (PlanDBType != null) // return cached value
-        //    {
-        //        planDBType = PlanDBType;
-        //        return true;
-        //    }
-
-        //    var plugin = Chainloader.PluginInfos[PlanBuildGUID].Instance;
-        //    if (plugin == null) return false;
-
-        //    var assembly = Assembly.GetAssembly(plugin.GetType());
-        //    foreach (var type in AccessTools.GetTypesFromAssembly(assembly)) {
-        //        if (type.FullName == "PlanBuild.Plans.PlanDB") {
-        //            PlanDBType = type;
-        //            planDBType = type;
-        //            return true;
-        //        }
-        //    }
-
-        //    return false;
-        //}
 
         internal static bool IsWackyDBClone(string name)
         {
