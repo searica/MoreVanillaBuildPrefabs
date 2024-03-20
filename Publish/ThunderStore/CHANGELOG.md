@@ -11,7 +11,16 @@
 			<td align="center">1.0.5</td>
 			<td align="left">
 				<ul>
-					<li>Fixed bug that broke prevention of resource exploits when building and removing pickables.</b></li>
+					<li>Changed stoneblock_fracture prefab to keep it's MineRock component now that resource exploits have been prevented. This should help with using MVBP to set up vanilla servers.</li>
+					<li>Update so that piece icons from MVBP in the Plan Hammer for PlanBuild will be correct. Still need to wait for another update to PlanBuild to fix issues with pieces not being removed from the PlanHammer when disabled in MVBP though.</li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<td align="center">1.0.5</td>
+			<td align="left">
+				<ul>
+					<li>Fixed bug that broke prevention of resource exploits when building and removing pickables.</li>
 				</ul>
 			</td>
 		</tr>

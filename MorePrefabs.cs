@@ -14,17 +14,19 @@ using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
 
-namespace MVBP {
+namespace MVBP
+{
     [BepInPlugin(PluginGUID, PluginName, PluginVersion)]
     [BepInDependency(Jotunn.Main.ModGuid, Jotunn.Main.Version)]
     [BepInDependency(ModCompat.ExtraSnapsGUID, BepInDependency.DependencyFlags.SoftDependency)]
     [BepInDependency(ModCompat.PlanBuildGUID, BepInDependency.DependencyFlags.SoftDependency)]
     [NetworkCompatibility(CompatibilityLevel.VersionCheckOnly, VersionStrictness.Patch)]
-    public class MorePrefabs : BaseUnityPlugin {
+    public class MorePrefabs : BaseUnityPlugin
+    {
         public const string PluginName = "MoreVanillaBuildPrefabs";
         internal const string Author = "Searica";
         public const string PluginGUID = $"{Author}.Valheim.{PluginName}";
-        public const string PluginVersion = "1.0.5";
+        public const string PluginVersion = "1.0.6";
 
         #region Global Settings
 
@@ -88,7 +90,8 @@ namespace MVBP {
 
         #region Prefab Settings
 
-        internal class PrefabDBConfig {
+        internal class PrefabDBConfig
+        {
             internal ConfigEntry<bool> enabled;
             internal ConfigEntry<bool> allowedInDungeons;
             internal ConfigEntry<string> category;
@@ -118,7 +121,8 @@ namespace MVBP {
         ///     Event hook to set whether a config entry
         ///     for a piece setting has been changed.
         /// </summary>
-        internal static void PieceSettingChanged(object obj, EventArgs args) {
+        internal static void PieceSettingChanged(object obj, EventArgs args)
+        {
             if (!UpdatePieceSettings) UpdatePieceSettings = true;
         }
 
@@ -126,7 +130,8 @@ namespace MVBP {
         ///     Event hook to set whether a config entry
         ///     for placement patches has been changed.
         /// </summary>
-        internal static void PlacementSettingChanged(object obj, EventArgs args) {
+        internal static void PlacementSettingChanged(object obj, EventArgs args)
+        {
             if (!UpdatePlacementSettings) UpdatePlacementSettings = true;
         }
 
@@ -134,11 +139,13 @@ namespace MVBP {
         ///     Event hook to set whether a config entry
         ///     for general mod settings has been changed.
         /// </summary>
-        internal static void ModSettingChanged(object obj, EventArgs args) {
+        internal static void ModSettingChanged(object obj, EventArgs args)
+        {
             if (!UpdateModSettings) UpdateModSettings = true;
         }
 
-        internal static void SeasonalSettingChanged(object obj, EventArgs args) {
+        internal static void SeasonalSettingChanged(object obj, EventArgs args)
+        {
             if (!UpdateSeasonalSettings) UpdateSeasonalSettings = true;
         }
 
@@ -147,10 +154,13 @@ namespace MVBP {
         /// </summary>
         /// <param name="PrefabName"></param>
         /// <returns></returns>
-        internal static bool NeedsCollisionPatchForGhost(string prefabName) {
-            if (PrefabDBConfigsMap.TryGetValue(prefabName, out PrefabDBConfig prefabDBConfig)) {
+        internal static bool NeedsCollisionPatchForGhost(string prefabName)
+        {
+            if (PrefabDBConfigsMap.TryGetValue(prefabName, out PrefabDBConfig prefabDBConfig))
+            {
                 // If there is no configuration option then always apply the placement patch
-                if (prefabDBConfig.placementPatch == null) {
+                if (prefabDBConfig.placementPatch == null)
+                {
                     return true;
                 }
                 return prefabDBConfig.placementPatch.Value;
@@ -160,7 +170,8 @@ namespace MVBP {
 
         #endregion Update Flags & Checks
 
-        public void Awake() {
+        public void Awake()
+        {
             Log.Init(Logger);
             ConfigManager.Init(PluginGUID, Config, false);
             Initialize();
@@ -174,7 +185,8 @@ namespace MVBP {
             ConfigManager.CheckForConfigManager();
 
             // Re-initialization after reloading config and don't save since file was just reloaded
-            ConfigManager.OnConfigFileReloaded += () => {
+            ConfigManager.OnConfigFileReloaded += () =>
+            {
                 InitManager.UpdatePlugin("Configuration file changed, re-initializing", saveConfig: false);
             };
 
@@ -182,16 +194,19 @@ namespace MVBP {
             ConfigManager.OnConfigWindowClosed += () => InitManager.UpdatePlugin("Configuration changed in-game, re-initializing");
 
             // Re-initialize after getting updated config data and trigger a save to disk.
-            SynchronizationManager.OnConfigurationSynchronized += (obj, attr) => {
+            SynchronizationManager.OnConfigurationSynchronized += (obj, attr) =>
+            {
                 InitManager.UpdatePlugin("Configuration synced, re-initializing");
             };
         }
 
-        public void OnDestroy() {
+        public void OnDestroy()
+        {
             ConfigManager.Save();
         }
 
-        internal static void Initialize() {
+        internal static void Initialize()
+        {
             CreativeMode = ConfigManager.BindConfig(
                 MainSection,
                 "CreativeMode",
@@ -338,7 +353,8 @@ namespace MVBP {
         /// </summary>
         /// <param name="prefab"></param>
         /// <returns></returns>
-        internal static PrefabDB GetPrefabDB(GameObject prefab) {
+        internal static PrefabDB GetPrefabDB(GameObject prefab)
+        {
             string sectionName = prefab.name;
 
             // get predefined configs or generic settings if no predefined config
@@ -354,10 +370,12 @@ namespace MVBP {
                 defaultPrefabDB.category = prefabDBConfig.category.Value;
                 defaultPrefabDB.craftingStation = prefabDBConfig.craftingStation.Value;
                 defaultPrefabDB.requirements = prefabDBConfig.requirements.Value;
-                if (prefabDBConfig.clipEverything != null) {
+                if (prefabDBConfig.clipEverything != null)
+                {
                     defaultPrefabDB.clipEverything = prefabDBConfig.clipEverything.Value;
                 }
-                if (prefabDBConfig.clipGround != null) {
+                if (prefabDBConfig.clipGround != null)
+                {
                     defaultPrefabDB.clipGround = prefabDBConfig.clipGround.Value;
                 }
                 return defaultPrefabDB;
@@ -418,7 +436,8 @@ namespace MVBP {
 
             // if the prefab is not already set to use the placement patch by default
             // then add a config option to enable the placement collision patch.
-            if (!defaultPrefabDB.placementPatch) {
+            if (!defaultPrefabDB.placementPatch)
+            {
                 prefabDBConfig.placementPatch = ConfigManager.BindConfig(
                     sectionName,
                     "PlacementPatch",
@@ -431,7 +450,8 @@ namespace MVBP {
                 defaultPrefabDB.placementPatch = prefabDBConfig.placementPatch.Value;
             }
 
-            if (!defaultPrefabDB.clipEverything) {
+            if (!defaultPrefabDB.clipEverything)
+            {
                 prefabDBConfig.clipEverything = ConfigManager.BindConfig(
                     sectionName,
                     "ClipEverything",
@@ -443,7 +463,8 @@ namespace MVBP {
                 defaultPrefabDB.clipEverything = prefabDBConfig.clipEverything.Value;
             }
 
-            if (!defaultPrefabDB.clipGround) {
+            if (!defaultPrefabDB.clipGround)
+            {
                 prefabDBConfig.clipGround = ConfigManager.BindConfig(
                     sectionName,
                     "ClipGround",
@@ -464,7 +485,8 @@ namespace MVBP {
     /// <summary>
     ///     Log level to control output to BepInEx log
     /// </summary>
-    internal enum LogLevel {
+    internal enum LogLevel
+    {
         Low = 0,
         Medium = 1,
         High = 2,
@@ -473,7 +495,8 @@ namespace MVBP {
     /// <summary>
     ///     Helper class for properly logging from static contexts.
     /// </summary>
-    internal static class Log {
+    internal static class Log
+    {
         #region Verbosity
 
         internal static ConfigEntry<LogLevel> Verbosity { get; set; }
@@ -486,7 +509,8 @@ namespace MVBP {
 
         private static ManualLogSource logSource;
 
-        internal static void Init(ManualLogSource logSource) {
+        internal static void Init(ManualLogSource logSource)
+        {
             Log.logSource = logSource;
         }
 
@@ -500,39 +524,48 @@ namespace MVBP {
 
         internal static void LogWarning(object data) => logSource.LogWarning(data);
 
-        internal static void LogInfo(object data, LogLevel level = LogLevel.Low) {
-            if (Verbosity is null || VerbosityLevel >= level) {
+        internal static void LogInfo(object data, LogLevel level = LogLevel.Low)
+        {
+            if (Verbosity is null || VerbosityLevel >= level)
+            {
                 logSource.LogInfo(data);
             }
         }
 
-        internal static void LogGameObject(GameObject prefab, bool includeChildren = false) {
+        internal static void LogGameObject(GameObject prefab, bool includeChildren = false)
+        {
             LogInfo("***** " + prefab.name + " *****");
-            foreach (Component compo in prefab.GetComponents<Component>()) {
+            foreach (Component compo in prefab.GetComponents<Component>())
+            {
                 LogComponent(compo);
             }
 
             if (!includeChildren) { return; }
 
             LogInfo("***** " + prefab.name + " (children) *****");
-            foreach (Transform child in prefab.transform) {
+            foreach (Transform child in prefab.transform)
+            {
                 LogInfo($" - {child.gameObject.name}");
-                foreach (Component compo in child.gameObject.GetComponents<Component>()) {
+                foreach (Component compo in child.gameObject.GetComponents<Component>())
+                {
                     LogComponent(compo);
                 }
             }
         }
 
-        internal static void LogComponent(Component compo) {
+        internal static void LogComponent(Component compo)
+        {
             LogInfo($"--- {compo.GetType().Name}: {compo.name} ---");
 
             PropertyInfo[] properties = compo.GetType().GetProperties(ReflectionUtils.AllBindings);
-            foreach (var property in properties) {
+            foreach (var property in properties)
+            {
                 LogInfo($" - {property.Name} = {property.GetValue(compo)}");
             }
 
             FieldInfo[] fields = compo.GetType().GetFields(ReflectionUtils.AllBindings);
-            foreach (var field in fields) {
+            foreach (var field in fields)
+            {
                 LogInfo($" - {field.Name} = {field.GetValue(compo)}");
             }
         }
