@@ -6,8 +6,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace MVBP.Helpers {
-    internal class IconHelper : MonoBehaviour {
+namespace MVBP.Helpers
+{
+    internal class IconHelper : MonoBehaviour
+    {
         private static GameObject _gameObject;
         private static IconHelper _instance;
 
@@ -16,13 +18,16 @@ namespace MVBP.Helpers {
         /// </summary>
         internal static IconHelper Instance => CreateInstance();
 
-        private static IconHelper CreateInstance() {
-            if (_gameObject == null) {
+        private static IconHelper CreateInstance()
+        {
+            if (_gameObject == null)
+            {
                 _gameObject = new GameObject();
                 DontDestroyOnLoad(_gameObject);
             }
 
-            if (_instance == null) {
+            if (_instance == null)
+            {
                 _instance = _gameObject.AddComponent<IconHelper>();
             }
 
@@ -34,20 +39,25 @@ namespace MVBP.Helpers {
         /// </summary>
         private IconHelper() { }
 
-        public void GeneratePrefabIcons(IEnumerable<GameObject> prefabs) {
+        public void GeneratePrefabIcons(IEnumerable<GameObject> prefabs)
+        {
             StartCoroutine(RenderCoroutine(prefabs));
         }
 
-        private IEnumerator RenderCoroutine(IEnumerable<GameObject> gameObjects) {
-            foreach (var gameObject in gameObjects) {
-                if (gameObject == null) {
+        private IEnumerator RenderCoroutine(IEnumerable<GameObject> gameObjects)
+        {
+            foreach (var gameObject in gameObjects)
+            {
+                if (gameObject == null)
+                {
                     Log.LogWarning($"Null prefab, cannot render icon");
                     continue;
                 }
 
                 var piece = gameObject.GetComponent<Piece>();
 
-                if (piece == null) {
+                if (piece == null)
+                {
                     Log.LogWarning($"Null piece, cannot render icon");
                     continue;
                 }
@@ -57,12 +67,15 @@ namespace MVBP.Helpers {
                 // fix the lighting bug in the icons
                 yield return new WaitForEndOfFrame();
 
-                if (result == null) {
+                if (result == null)
+                {
                     PickableItem.RandomItem[] randomItemPrefabs = piece.GetComponent<PickableItem>()?.m_randomItemPrefabs;
 
-                    if (randomItemPrefabs != null && randomItemPrefabs.Length > 0) {
+                    if (randomItemPrefabs != null && randomItemPrefabs.Length > 0)
+                    {
                         GameObject item = randomItemPrefabs[0].m_itemPrefab?.gameObject;
-                        if (item != null) {
+                        if (item != null)
+                        {
                             result = GenerateObjectIcon(item);
                             // returning WaitForEndOfFrame seems to
                             // fix the lighting bug in the icons
@@ -70,13 +83,17 @@ namespace MVBP.Helpers {
                         }
                     }
                 }
-
                 piece.m_icon = result;
             }
+
+            // update icons once they have all been rendered
+            ModCompat.UpdatePlanBuild();
         }
 
-        private static Sprite GenerateObjectIcon(GameObject obj) {
-            var request = new RenderManager.RenderRequest(obj) {
+        private static Sprite GenerateObjectIcon(GameObject obj)
+        {
+            var request = new RenderManager.RenderRequest(obj)
+            {
                 Rotation = RenderManager.IsometricRotation,
                 UseCache = PrefabConfigs.ShouldCacheIcon(obj.name)
             };
