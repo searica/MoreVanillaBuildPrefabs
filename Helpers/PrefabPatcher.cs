@@ -7,8 +7,10 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace MVBP.Helpers {
-    internal static class PrefabPatcher {
+namespace MVBP.Helpers
+{
+    internal static class PrefabPatcher
+    {
         private static readonly int PieceLayer = LayerMask.NameToLayer("piece");
         private static readonly int CharacterTriggerLayer = LayerMask.NameToLayer("character_trigger");
 
@@ -16,22 +18,27 @@ namespace MVBP.Helpers {
         ///     Fix collider and snap points on the prefab if necessary
         /// </summary>
         /// <param name="prefab"></param>
-        internal static void PatchPrefabIfNeeded(GameObject prefab) {
-            if (prefab == null) {
+        internal static void PatchPrefabIfNeeded(GameObject prefab)
+        {
+            if (prefab == null)
+            {
                 return;
             }
 
             List<Vector3> pts = new();
-            switch (prefab.name) {
+            switch (prefab.name)
+            {
                 case "ArmorStand_Male":
                 case "ArmorStand_Female":
                     SnapPointHelper.AddSnapPointToCenter(prefab);
-                    try {
+                    try
+                    {
                         var body = prefab?.transform?.Find("Player Pose")?.Find("Visual")?.Find("body")?.gameObject;
                         var meshRender = body.GetComponent<SkinnedMeshRenderer>();
                         meshRender.sharedMaterial = TextureHelper.GetCustomArmorStandMaterial();
                     }
-                    catch {
+                    catch
+                    {
                         Log.LogWarning($"Failed to patch material for {prefab.name}");
                     }
                     break;
@@ -41,7 +48,8 @@ namespace MVBP.Helpers {
                     var meshFilter = prefab.FindDeepChild("hull").GetComponent<MeshFilter>();
                     var longShip = ZNetScene.instance?.GetPrefab("VikingShip");
                     var lsMeshFilter = longShip.FindDeepChild("hull").GetComponent<MeshFilter>();
-                    if (meshFilter && lsMeshFilter) {
+                    if (meshFilter && lsMeshFilter)
+                    {
                         meshFilter.mesh = lsMeshFilter.mesh;
                     }
 
@@ -49,11 +57,14 @@ namespace MVBP.Helpers {
                     var shieldBanded = ZNetScene.instance?.GetPrefab("ShieldBanded");
                     var mat = shieldBanded.GetComponentInChildren<MeshRenderer>().material;
                     var storage = prefab.transform.Find("ship").Find("visual").Find("Customize").Find("storage");
-                    if (mat && storage != null) {
+                    if (mat && storage != null)
+                    {
                         int children = storage.childCount;
-                        for (int i = 0; i < children; ++i) {
+                        for (int i = 0; i < children; ++i)
+                        {
                             var child = storage.GetChild(i);
-                            if (child != null && child.name.StartsWith("Shield")) {
+                            if (child != null && child.name.StartsWith("Shield"))
+                            {
                                 child.GetComponent<MeshRenderer>().material = mat;
                             }
                         }
@@ -62,13 +73,15 @@ namespace MVBP.Helpers {
                     // Fix Sail cloth
                     var cloth = prefab.FindDeepChild("sail_full").GetComponent<Cloth>();
                     var lsCloth = longShip.FindDeepChild("sail_full").GetComponent<Cloth>();
-                    if (cloth && lsCloth) {
+                    if (cloth && lsCloth)
+                    {
                         cloth.coefficients = lsCloth.coefficients;
                     }
 
                     // Fix missing control GUI position
                     var ship = prefab.GetComponent<Ship>();
-                    if (ship) {
+                    if (ship)
+                    {
                         var controlGui = new GameObject("ControlGui");
                         controlGui.transform.parent = prefab.transform;
                         controlGui.transform.localPosition = new Vector3(1.0f, 1.696f, -6.54f);
@@ -82,7 +95,8 @@ namespace MVBP.Helpers {
                     // Fix missing rudder button attachpoint
                     var shipControls = prefab.FindDeepChild("rudder_button").GetComponent<ShipControlls>();
                     var rudderAttach = prefab.transform?.Find("sit locations")?.Find("sit_box (4)")?.Find("attachpoint");
-                    if (shipControls && rudderAttach != null) {
+                    if (shipControls && rudderAttach != null)
+                    {
                         shipControls.m_attachPoint = rudderAttach.transform;
                     }
 
@@ -241,9 +255,12 @@ namespace MVBP.Helpers {
                     break;
 
                 case "blackmarble_floor_large":
-                    for (int y = -1; y <= 1; y += 2) {
-                        for (int x = -4; x <= 4; x += 2) {
-                            for (int z = -4; z <= 4; z += 2) {
+                    for (int y = -1; y <= 1; y += 2)
+                    {
+                        for (int x = -4; x <= 4; x += 2)
+                        {
+                            for (int z = -4; z <= 4; z += 2)
+                            {
                                 pts.Add(new Vector3(x, y, z));
                             }
                         }
@@ -453,7 +470,8 @@ namespace MVBP.Helpers {
                 case "dvergrprops_shelf":
                 case "dvergrprops_table":
                     var wearNTear = prefab.GetComponent<WearNTear>();
-                    if (wearNTear) {
+                    if (wearNTear)
+                    {
                         wearNTear.m_supports = true; // allow these pieces to support other pieces
                     }
                     break;
@@ -650,10 +668,14 @@ namespace MVBP.Helpers {
                     break;
 
                 case "stone_floor":
-                    for (float y = -0.5f; y <= 0.5f; y += 1) {
-                        for (int x = -2; x <= 2; x += 1) {
-                            for (int z = -2; z <= 2; z += 1) {   // skip corners that already have snap points
-                                if (!(Math.Abs(x) == 2 && Mathf.Abs(z) == 2)) {
+                    for (float y = -0.5f; y <= 0.5f; y += 1)
+                    {
+                        for (int x = -2; x <= 2; x += 1)
+                        {
+                            for (int z = -2; z <= 2; z += 1)
+                            {   // skip corners that already have snap points
+                                if (!(Math.Abs(x) == 2 && Mathf.Abs(z) == 2))
+                                {
                                     pts.Add(new Vector3(x, y, z));
                                 }
                             }
@@ -664,9 +686,12 @@ namespace MVBP.Helpers {
 
                 case "stoneblock_fracture":
                     // x and y scale is strange for this one
-                    for (float y = -0.5f; y <= 0.5f; y += 1) {
-                        for (int x = -1; x <= 1; x += 1) {
-                            for (int z = -1; z <= 1; z += 1) {
+                    for (float y = -0.5f; y <= 0.5f; y += 1)
+                    {
+                        for (int x = -1; x <= 1; x += 1)
+                        {
+                            for (int z = -1; z <= 1; z += 1)
+                            {
                                 {
                                     pts.Add(new Vector3(x, y, z));
                                 }
@@ -674,7 +699,10 @@ namespace MVBP.Helpers {
                         }
                     }
                     SnapPointHelper.AddSnapPoints(prefab, pts, true);
-                    UnityEngine.Object.DestroyImmediate(prefab.GetComponent<MineRock>());
+
+                    // Can keep the MineRock component now that I handle the item drops properly
+                    // UnityEngine.Object.DestroyImmediate(prefab.GetComponent<MineRock>());
+
                     CollisionHelper.AddBoxCollider(prefab, Vector3.zero, new Vector3(2, 1, 2));
                     break;
 
@@ -696,8 +724,10 @@ namespace MVBP.Helpers {
                         },
                         true
                     );
-                    foreach (var collider in prefab.GetComponentsInChildren<BoxCollider>()) {
-                        if (collider.name == "collider") {
+                    foreach (var collider in prefab.GetComponentsInChildren<BoxCollider>())
+                    {
+                        if (collider.name == "collider")
+                        {
                             collider.center += new Vector3(0.0f, 0.5f, 0.0f);
                             collider.size += new Vector3(0.0f, -1.0f, 0.0f);
                         }
@@ -785,7 +815,8 @@ namespace MVBP.Helpers {
                     );
                     break;
 
-                case "mountainkit_chair": {
+                case "mountainkit_chair":
+                    {
                         var chair = prefab.AddComponent<Chair>();
                         var attachPoint = new GameObject("attachPoint");
                         attachPoint.transform.parent = prefab.transform;
@@ -794,7 +825,8 @@ namespace MVBP.Helpers {
                     }
                     break;
 
-                case "dvergrprops_chair": {
+                case "dvergrprops_chair":
+                    {
                         var chair = prefab.AddComponent<Chair>();
                         var attachPoint = new GameObject("attachPoint");
                         attachPoint.transform.parent = prefab.transform;
@@ -804,7 +836,8 @@ namespace MVBP.Helpers {
 
                     break;
 
-                case "dvergrprops_stool": {
+                case "dvergrprops_stool":
+                    {
                         var chair = prefab.AddComponent<Chair>();
                         var attachPoint = new GameObject("attachPoint");
                         attachPoint.transform.parent = prefab.transform;
@@ -817,9 +850,11 @@ namespace MVBP.Helpers {
                     break;
             }
 
-            if (MorePrefabs.PatchPortalTexture && prefab.name == "portal" && !GUIManager.IsHeadless()) {
+            if (MorePrefabs.PatchPortalTexture && prefab.name == "portal" && !GUIManager.IsHeadless())
+            {
                 var meshRender = prefab.transform.Find("New").Find("model").GetComponent<MeshRenderer>();
-                if (meshRender) {
+                if (meshRender)
+                {
                     meshRender.material.mainTexture = TextureHelper.GetBlackMarblePortalTexture();
                     meshRender.material.SetTexture(
                         TextureHelper.TextureNames.BumpMap,
@@ -829,7 +864,8 @@ namespace MVBP.Helpers {
 
             }
 
-            if (MorePrefabs.IsEnableComfortPatches) {
+            if (MorePrefabs.IsEnableComfortPatches)
+            {
                 ApplyComfortPatches(prefab);
             }
         }
@@ -839,9 +875,12 @@ namespace MVBP.Helpers {
         ///     comfort as expected if they were vanilla pieces.
         /// </summary>
         /// <param name="prefab"></param>
-        private static void ApplyComfortPatches(GameObject prefab) {
-            if (prefab.TryGetComponent(out Piece piece)) {
-                switch (prefab.name) {
+        private static void ApplyComfortPatches(GameObject prefab)
+        {
+            if (prefab.TryGetComponent(out Piece piece))
+            {
+                switch (prefab.name)
+                {
                     case "dvergrprops_chair":
                     case "dvergrprops_stool":
                         piece.m_comfortGroup = Piece.ComfortGroup.Chair;
@@ -880,25 +919,32 @@ namespace MVBP.Helpers {
         ///     Called after Piece.Awake and Piece.SetCreator.
         /// </summary>
         /// <param name="piece"></param>
-        internal static void PatchPlayerBuiltPieceIfNeed(Piece piece) {
-            if (piece?.gameObject == null || !piece.IsPlacedByPlayer() || !InitManager.IsPatchedByMod(piece)) {
+        internal static void PatchPlayerBuiltPieceIfNeed(Piece piece)
+        {
+            if (piece?.gameObject == null || !piece.IsPlacedByPlayer() || !InitManager.IsPatchedByMod(piece))
+            {
                 return;
             }
             var prefabName = InitManager.GetPrefabName(piece);
 
-            if (MorePrefabs.IsEnableDoorPatches) {
+            if (MorePrefabs.IsEnableDoorPatches)
+            {
                 ApplyDoorPatches(prefabName, piece.gameObject);
             }
-            if (MorePrefabs.IsEnablePlayerBasePatches) {
+            if (MorePrefabs.IsEnablePlayerBasePatches)
+            {
                 ApplyPlayerBasePatches(prefabName, piece.gameObject);
             }
-            if (MorePrefabs.IsEnableBedPatches) {
+            if (MorePrefabs.IsEnableBedPatches)
+            {
                 ApplyBedPatches(prefabName, piece.gameObject);
             }
-            if (MorePrefabs.IsEnableFermenterPatches) {
+            if (MorePrefabs.IsEnableFermenterPatches)
+            {
                 ApplyFermenterPatches(prefabName, piece.gameObject);
             }
-            if (MorePrefabs.PatchDvergrWoodTexture) {
+            if (MorePrefabs.PatchDvergrWoodTexture)
+            {
                 ApplyNewDvergrTexture(prefabName, piece.gameObject);
             }
             //if (piece.gameObject.GetComponent<LiquidVolume>() != null)
@@ -928,10 +974,13 @@ namespace MVBP.Helpers {
         /// </summary>
         /// <param name="name"></param>
         /// <param name="gameObject"></param>
-        private static void ApplyNewDvergrTexture(string name, GameObject gameObject) {
-            if (PrefabConfigs.DvergrWoodPieces.Contains(name)) {
+        private static void ApplyNewDvergrTexture(string name, GameObject gameObject)
+        {
+            if (PrefabConfigs.DvergrWoodPieces.Contains(name))
+            {
                 Renderer[] componentsInChildren = gameObject.transform.Find("New").GetComponentsInChildren<Renderer>(true);
-                foreach (Renderer renderer in componentsInChildren) {
+                foreach (Renderer renderer in componentsInChildren)
+                {
                     renderer.material.mainTexture = TextureHelper.GetNewDvergrTexture();
                 }
             }
@@ -942,13 +991,16 @@ namespace MVBP.Helpers {
         /// </summary>
         /// <param name="name"></param>
         /// <param name="gameObject"></param>
-        private static void ApplyPlayerBasePatches(string name, GameObject gameObject) {
-            if (InitManager.TryGetPieceDB(name, out PieceDB pieceDB)) {
+        private static void ApplyPlayerBasePatches(string name, GameObject gameObject)
+        {
+            if (InitManager.TryGetPieceDB(name, out PieceDB pieceDB))
+            {
                 if (pieceDB.playerBasePatch) { AddPlayerBase(gameObject); }
             }
         }
 
-        private static void AddPlayerBase(GameObject gameObject) {
+        private static void AddPlayerBase(GameObject gameObject)
+        {
             // create PlayerBase object as child
             var playerBase = new GameObject("PlayerBase");
             playerBase.transform.parent = gameObject.transform;
@@ -969,14 +1021,18 @@ namespace MVBP.Helpers {
             playerBaseEffect.m_type = EffectArea.Type.PlayerBase;
         }
 
-        private static void ApplyDoorPatches(string name, GameObject gameObject) {
+        private static void ApplyDoorPatches(string name, GameObject gameObject)
+        {
             // Missing animations
             // "dungeon_queen_door"
 
-            switch (name) {
+            switch (name)
+            {
                 case "dvergrtown_slidingdoor":
-                case "dvergrtown_secretdoor": {
-                        if (gameObject.TryGetComponent(out Door door)) {
+                case "dvergrtown_secretdoor":
+                    {
+                        if (gameObject.TryGetComponent(out Door door))
+                        {
                             door.m_canNotBeClosed = false;
                             door.m_checkGuardStone = true;
                         }
@@ -988,8 +1044,10 @@ namespace MVBP.Helpers {
             }
         }
 
-        private static void ApplyBedPatches(string name, GameObject gameObject) {
-            switch (name) {
+        private static void ApplyBedPatches(string name, GameObject gameObject)
+        {
+            switch (name)
+            {
                 case "goblin_bed":
                     AddBed(gameObject, new Vector3(0, 0.45f, 0));
                     break;
@@ -1003,7 +1061,8 @@ namespace MVBP.Helpers {
             }
         }
 
-        private static void AddBed(GameObject gameObject, Vector3 spawnPosition) {
+        private static void AddBed(GameObject gameObject, Vector3 spawnPosition)
+        {
             var attachPoint = new GameObject("spawnpoint");
             attachPoint.transform.parent = gameObject.transform;
             attachPoint.transform.localPosition = spawnPosition;
@@ -1018,8 +1077,10 @@ namespace MVBP.Helpers {
         ///     function as a fermenter
         /// </summary>
         /// <param name="prefab"></param>
-        private static void ApplyFermenterPatches(string name, GameObject gameObject) {
-            switch (name) {
+        private static void ApplyFermenterPatches(string name, GameObject gameObject)
+        {
+            switch (name)
+            {
                 case "dvergrprops_barrel":
 
                     // Get child object clones
