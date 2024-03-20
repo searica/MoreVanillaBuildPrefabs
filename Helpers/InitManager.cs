@@ -374,9 +374,6 @@ namespace MVBP.Helpers
                     continue;
                 }
 
-                pieceDB.piece.enabled = pieceDB.enabled || MorePrefabs.IsForceAllPrefabs;
-                pieceDB.piece.m_enabled = pieceDB.piece.enabled;
-
                 // Prevent adding creative mode pieces if not in CreativeMode
                 if (!MorePrefabs.IsCreativeMode && PieceCategoryHelper.IsCreativeModePiece(pieceDB.piece))
                 {
