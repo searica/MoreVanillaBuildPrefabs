@@ -182,6 +182,10 @@ namespace MVBP.Functions
                 return clonedPrefab;
             }
 
+            /// <summary>
+            ///     Offset center of prefabs with poor center locations.
+            /// </summary>
+            /// <param name="__instance"></param>
             [HarmonyPostfix]
             [HarmonyPatch(nameof(Player.UpdatePlacementGhost))]
             private static void UpdatePlacementGhostPostfix(Player __instance)
