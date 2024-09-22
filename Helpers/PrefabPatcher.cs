@@ -1,11 +1,12 @@
 ﻿// Ignore Spelling: MVBP
 
 using Jotunn.Managers;
-using MVBP.Configs;
 using MVBP.Extensions;
+using MVBP.Models;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using static MVBP.Helpers.Names;
 
 namespace MVBP.Helpers
 {
@@ -30,8 +31,8 @@ namespace MVBP.Helpers
                     SnapPointHelper.AddSnapPointToCenter(prefab);
                     try
                     {
-                        var body = prefab?.transform?.Find("Player Pose")?.Find("Visual")?.Find("body")?.gameObject;
-                        var meshRender = body.GetComponent<SkinnedMeshRenderer>();
+                        GameObject body = prefab?.transform?.Find("Player Pose")?.Find("Visual")?.Find("body")?.gameObject;
+                        SkinnedMeshRenderer meshRender = body.GetComponent<SkinnedMeshRenderer>();
                         meshRender.sharedMaterial = TextureHelper.GetCustomArmorStandMaterial();
                     }
                     catch
@@ -42,24 +43,24 @@ namespace MVBP.Helpers
 
                 case "Trailership":
                     // Fix hull
-                    var meshFilter = prefab.FindDeepChild("hull").GetComponent<MeshFilter>();
-                    var longShip = ZNetScene.instance?.GetPrefab("VikingShip");
-                    var lsMeshFilter = longShip.FindDeepChild("hull").GetComponent<MeshFilter>();
+                    MeshFilter meshFilter = prefab.FindDeepChild("hull").GetComponent<MeshFilter>();
+                    GameObject longShip = ZNetScene.instance?.GetPrefab("VikingShip");
+                    MeshFilter lsMeshFilter = longShip.FindDeepChild("hull").GetComponent<MeshFilter>();
                     if (meshFilter && lsMeshFilter)
                     {
                         meshFilter.mesh = lsMeshFilter.mesh;
                     }
 
                     // Fix shields
-                    var shieldBanded = ZNetScene.instance?.GetPrefab("ShieldBanded");
-                    var mat = shieldBanded.GetComponentInChildren<MeshRenderer>().material;
-                    var storage = prefab.transform.Find("ship").Find("visual").Find("Customize").Find("storage");
+                    GameObject shieldBanded = ZNetScene.instance?.GetPrefab("ShieldBanded");
+                    Material mat = shieldBanded.GetComponentInChildren<MeshRenderer>().material;
+                    Transform storage = prefab.transform.Find("ship").Find("visual").Find("Customize").Find("storage");
                     if (mat && storage)
                     {
                         int children = storage.childCount;
                         for (int i = 0; i < children; ++i)
                         {
-                            var child = storage.GetChild(i);
+                            Transform child = storage.GetChild(i);
                             if (child && child.name.StartsWith("Shield"))
                             {
                                 child.GetComponent<MeshRenderer>().material = mat;
@@ -68,18 +69,18 @@ namespace MVBP.Helpers
                     }
 
                     // Fix Sail cloth
-                    var cloth = prefab.FindDeepChild("sail_full").GetComponent<Cloth>();
-                    var lsCloth = longShip.FindDeepChild("sail_full").GetComponent<Cloth>();
+                    Cloth cloth = prefab.FindDeepChild("sail_full").GetComponent<Cloth>();
+                    Cloth lsCloth = longShip.FindDeepChild("sail_full").GetComponent<Cloth>();
                     if (cloth && lsCloth)
                     {
                         cloth.coefficients = lsCloth.coefficients;
                     }
 
                     // Fix missing control GUI position
-                    var ship = prefab.GetComponent<Ship>();
+                    Ship ship = prefab.GetComponent<Ship>();
                     if (ship)
                     {
-                        var controlGui = new GameObject("ControlGui");
+                        GameObject controlGui = new("ControlGui");
                         controlGui.transform.parent = prefab.transform;
                         controlGui.transform.localPosition = new Vector3(1.0f, 1.696f, -6.54f);
                         ship.m_controlGuiPos = controlGui.transform;
@@ -90,8 +91,8 @@ namespace MVBP.Helpers
                     }
 
                     // Fix missing rudder button attachpoint
-                    var shipControls = prefab.FindDeepChild("rudder_button").GetComponent<ShipControlls>();
-                    var rudderAttach = prefab.transform.Find("sit locations").Find("sit_box (4)").Find("attachpoint");
+                    ShipControlls shipControls = prefab.FindDeepChild("rudder_button").GetComponent<ShipControlls>();
+                    Transform rudderAttach = prefab.transform.Find("sit locations").Find("sit_box (4)").Find("attachpoint");
                     if (shipControls && rudderAttach)
                     {
                         shipControls.m_attachPoint = rudderAttach.transform;
@@ -108,7 +109,8 @@ namespace MVBP.Helpers
 
                 case "TreasureChest_mountaincave":
                 case "TreasureChest_trollcave":
-                    SnapPointHelper.AddSnapPointsToMeshCorners(prefab, "stonechest", true);
+                    SnapPointHelper.FixPieceLayers(prefab);
+                    SnapPointHelper.AddSnapPointsToMeshCorners(prefab, "stonechest");
                     break;
                 //case "TreasureChest_dvergrtown":
                 //    break;
@@ -117,6 +119,7 @@ namespace MVBP.Helpers
                 case "TreasureChest_plains_stone":
                 case "TreasureChest_fCrypt":
                 case "TreasureChest_sunkencrypt":
+                    SnapPointHelper.FixPieceLayers(prefab);
                     SnapPointHelper.AddSnapPoints(
                        prefab,
                        new[] {
@@ -129,8 +132,7 @@ namespace MVBP.Helpers
                             new Vector3(0.65f, 0.8f, -0.35f),
                             new Vector3(-0.65f, 0.8f, 0.35f),
                             new Vector3(-0.65f, 0.8f, -0.35f)
-                       },
-                       true
+                       }
                     );
                     break;
 
@@ -138,30 +140,30 @@ namespace MVBP.Helpers
                     SnapPointHelper.AddSnapPoints(
                         prefab,
                         new Vector3[] {
-                            new Vector3(-1, 4, -1),
-                            new Vector3(1, 4, 1),
-                            new Vector3(-1, 4, 1),
-                            new Vector3(1, 4, -1),
+                            new(-1, 4, -1),
+                            new(1, 4, 1),
+                            new(-1, 4, 1),
+                            new(1, 4, -1),
 
-                            new Vector3(-1, 2, -1),
-                            new Vector3(1, 2, 1),
-                            new Vector3(-1, 2, 1),
-                            new Vector3(1, 2, -1),
+                            new(-1, 2, -1),
+                            new(1, 2, 1),
+                            new(-1, 2, 1),
+                            new(1, 2, -1),
 
-                            new Vector3(-1, 0, -1),
-                            new Vector3(1, 0, 1),
-                            new Vector3(-1, 0, 1),
-                            new Vector3(1, 0, -1),
+                            new(-1, 0, -1),
+                            new(1, 0, 1),
+                            new(-1, 0, 1),
+                            new(1, 0, -1),
 
-                            new Vector3(-1, -2, -1),
-                            new Vector3(1, -2, 1),
-                            new Vector3(-1, -2, 1),
-                            new Vector3(1, -2, -1),
+                            new(-1, -2, -1),
+                            new(1, -2, 1),
+                            new(-1, -2, 1),
+                            new(1, -2, -1),
 
-                            new Vector3(-1, -4, -1),
-                            new Vector3(1, -4, 1),
-                            new Vector3(-1, -4, 1),
-                            new Vector3(1, -4, -1),
+                            new(-1, -4, -1),
+                            new(1, -4, 1),
+                            new(-1, -4, 1),
+                            new(1, -4, -1),
                         }
                     );
                     break;
@@ -170,18 +172,18 @@ namespace MVBP.Helpers
                     SnapPointHelper.AddSnapPoints(
                         prefab,
                         new Vector3[] {
-                            new Vector3(-0.5f, 2, -0.5f),
-                            new Vector3(0.5f, 2, 0.5f),
-                            new Vector3(-0.5f, 2, 0.5f),
-                            new Vector3(0.5f, 2, -0.5f),
+                            new(-0.5f, 2, -0.5f),
+                            new(0.5f, 2, 0.5f),
+                            new(-0.5f, 2, 0.5f),
+                            new(0.5f, 2, -0.5f),
 
-                            new Vector3(-0.5f, -2, -0.5f),
-                            new Vector3(0.5f, -2, 0.5f),
-                            new Vector3(-0.5f, -2, 0.5f),
-                            new Vector3(0.5f, -2, -0.5f),
+                            new(-0.5f, -2, -0.5f),
+                            new(0.5f, -2, 0.5f),
+                            new(-0.5f, -2, 0.5f),
+                            new(0.5f, -2, -0.5f),
 
-                            new Vector3(0, -2, 0),
-                            new Vector3(0, 2, 0),
+                            new(0, -2, 0),
+                            new(0, 2, 0),
                         }
                     );
 
@@ -194,18 +196,18 @@ namespace MVBP.Helpers
                     SnapPointHelper.AddSnapPoints(
                         prefab,
                         new Vector3[] {
-                            new Vector3(1, 2, -0.5f),
-                            new Vector3(1, 2, 0.5f),
-                            new Vector3(-1, 2, -0.5f),
-                            new Vector3(-1, 2, 0.5f),
+                            new(1, 2, -0.5f),
+                            new(1, 2, 0.5f),
+                            new(-1, 2, -0.5f),
+                            new(-1, 2, 0.5f),
 
-                            new Vector3(1, -2, -0.5f),
-                            new Vector3(1, -2, 0.5f),
-                            new Vector3(-1, -2, -0.5f),
-                            new Vector3(-1, -2, 0.5f),
+                            new(1, -2, -0.5f),
+                            new(1, -2, 0.5f),
+                            new(-1, -2, -0.5f),
+                            new(-1, -2, 0.5f),
 
-                            new Vector3(0, -2, 0),
-                            new Vector3(0, 2, 0),
+                            new(0, -2, 0),
+                            new(0, 2, 0),
                         }
                     );
 
@@ -217,37 +219,37 @@ namespace MVBP.Helpers
                     SnapPointHelper.AddSnapPoints(
                         prefab,
                         new Vector3[] {
-                            new Vector3(-0.5f, 1, -0.5f),
-                            new Vector3(0.5f, 1, 0.5f),
-                            new Vector3(-0.5f, 1, 0.5f),
-                            new Vector3(0.5f, 1, -0.5f),
+                            new(-0.5f, 1, -0.5f),
+                            new(0.5f, 1, 0.5f),
+                            new(-0.5f, 1, 0.5f),
+                            new(0.5f, 1, -0.5f),
 
-                            new Vector3(0.5f, -1, -0.5f),
-                            new Vector3(-0.5f, -1, -0.5f),
+                            new(0.5f, -1, -0.5f),
+                            new(-0.5f, -1, -0.5f),
                         }
                     );
                     break;
 
                 case "blackmarble_creep_slope_inverted_2x2x1":
                     SnapPointHelper.AddSnapPoints(prefab, new Vector3[] {
-                        new Vector3(-1, 0.5f, -1),
-                        new Vector3(1, 0.5f,1),
-                        new Vector3(-1, 0.5f, 1),
-                        new Vector3(1, 0.5f, -1),
+                        new(-1, 0.5f, -1),
+                        new(1, 0.5f,1),
+                        new(-1, 0.5f, 1),
+                        new(1, 0.5f, -1),
 
-                        new Vector3(-1, -0.5f, -1),
-                        new Vector3(1, -0.5f, -1),
+                        new(-1, -0.5f, -1),
+                        new(1, -0.5f, -1),
                     });
                     break;
 
                 case "blackmarble_creep_stair":
                     SnapPointHelper.AddSnapPoints(prefab, new Vector3[] {
-                        new Vector3(-1, 1, -1),
-                        new Vector3(1, 1, -1),
-                        new Vector3(-1, 0, -1),
-                        new Vector3(1, 0, -1),
-                        new Vector3(-1, 0, 1),
-                        new Vector3(1, 0, 1),
+                        new(-1, 1, -1),
+                        new(1, 1, -1),
+                        new(-1, 0, -1),
+                        new(1, 0, -1),
+                        new(-1, 0, 1),
+                        new(1, 0, 1),
                     });
                     break;
 
@@ -267,13 +269,13 @@ namespace MVBP.Helpers
 
                 case "blackmarble_head_big01":
                     SnapPointHelper.AddSnapPoints(prefab, new Vector3[] {
-                        new Vector3(-1, 1, -1),
-                        new Vector3(1, 1,1),
-                        new Vector3(-1, 1, 1),
-                        new Vector3(1, 1, -1),
+                        new(-1, 1, -1),
+                        new(1, 1,1),
+                        new(-1, 1, 1),
+                        new(1, 1, -1),
 
-                        new Vector3(1, -1, -1),
-                        new Vector3(-1, -1, -1),
+                        new(1, -1, -1),
+                        new(-1, -1, -1),
                     });
                     break;
 
@@ -281,13 +283,13 @@ namespace MVBP.Helpers
                     SnapPointHelper.AddSnapPoints(
                         prefab,
                         new Vector3[] {
-                            new Vector3(-1, 1, -1),
-                            new Vector3(1, 1,1),
-                            new Vector3(-1, 1, 1),
-                            new Vector3(1, 1, -1),
+                            new(-1, 1, -1),
+                            new(1, 1,1),
+                            new(-1, 1, 1),
+                            new(1, 1, -1),
 
-                            new Vector3(1, -1, -1),
-                            new Vector3(-1, -1, -1),
+                            new(1, -1, -1),
+                            new(-1, -1, -1),
                         }
                     );
                     break;
@@ -349,8 +351,8 @@ namespace MVBP.Helpers
                     SnapPointHelper.AddSnapPoints(
                         prefab,
                         new Vector3[] {
-                            new Vector3(2.5f, 0, 0),
-                            new Vector3(-2.5f, 0, 0),
+                            new(2.5f, 0, 0),
+                            new(-2.5f, 0, 0),
                         }
                     );
                     break;
@@ -359,8 +361,8 @@ namespace MVBP.Helpers
                     SnapPointHelper.AddSnapPoints(
                         prefab,
                         new Vector3[] {
-                            new Vector3(1, -0.4f, 0),
-                            new Vector3(-1, -0.4f, 0),
+                            new(1, -0.4f, 0),
+                            new(-1, -0.4f, 0),
                         }
                     );
                     break;
@@ -369,8 +371,8 @@ namespace MVBP.Helpers
                     SnapPointHelper.AddSnapPoints(
                         prefab,
                         new Vector3[] {
-                            new Vector3(1, 0, 0),
-                            new Vector3(-1, 0, 0),
+                            new(1, 0, 0),
+                            new(-1, 0, 0),
                         }
                     );
                     break;
@@ -379,8 +381,8 @@ namespace MVBP.Helpers
                     SnapPointHelper.AddSnapPoints(
                         prefab,
                         new Vector3[] {
-                            new Vector3(3, 0, 0),
-                            new Vector3(-3, 0, 0),
+                            new(3, 0, 0),
+                            new(-3, 0, 0),
                         }
                     );
                     break;
@@ -389,8 +391,8 @@ namespace MVBP.Helpers
                     SnapPointHelper.AddSnapPoints(
                         prefab,
                         new Vector3[] {
-                            new Vector3(0, 2, 0),
-                            new Vector3(0, -2, 0),
+                            new(0, 2, 0),
+                            new(0, -2, 0),
                         }
                     );
                     break;
@@ -406,10 +408,10 @@ namespace MVBP.Helpers
                     SnapPointHelper.AddSnapPoints(
                         prefab,
                         new Vector3[] {
-                            new Vector3(2.2f, 2, 0),
-                            new Vector3(-2.2f, 2, 0),
-                            new Vector3(2.2f, -2, 0),
-                            new Vector3(-2.2f, -2, 0),
+                            new(2.2f, 2, 0),
+                            new(-2.2f, 2, 0),
+                            new(2.2f, -2, 0),
+                            new(-2.2f, -2, 0),
                         }
                     );
                     break;
@@ -418,7 +420,7 @@ namespace MVBP.Helpers
                     SnapPointHelper.AddSnapPoints(
                         prefab,
                         new Vector3[] {
-                            new Vector3(1, 0.5f, 0),
+                            new(1, 0.5f, 0),
                         }
                     );
                     break;
@@ -427,10 +429,10 @@ namespace MVBP.Helpers
                     SnapPointHelper.AddSnapPoints(
                         prefab,
                         new Vector3[] {
-                            new Vector3(2, 0, 0),
-                            new Vector3(-2, 0, 0),
-                            new Vector3(2, 4, 0),
-                            new Vector3(-2, 4, 0),
+                            new(2, 0, 0),
+                            new(-2, 0, 0),
+                            new(2, 4, 0),
+                            new(-2, 4, 0),
                         }
                     );
                     break;
@@ -439,10 +441,10 @@ namespace MVBP.Helpers
                     SnapPointHelper.AddSnapPoints(
                         prefab,
                         new Vector3[] {
-                            new Vector3(2, 0, 0),
-                            new Vector3(-2, 0, 0),
-                            new Vector3(2, 4, 0),
-                            new Vector3(-2, 4, 0),
+                            new(2, 0, 0),
+                            new(-2, 0, 0),
+                            new(2, 4, 0),
+                            new(-2, 4, 0),
                         }
                     );
                     break;
@@ -451,22 +453,22 @@ namespace MVBP.Helpers
                     SnapPointHelper.AddSnapPoints(
                         prefab,
                         new Vector3[] {
-                            new Vector3(0.25f, 0, -0.25f),
-                            new Vector3(0.25f, 0, 0.25f),
-                            new Vector3(0.25f, 1.1f, -0.25f),
-                            new Vector3(0.25f, 1.1f, 0.25f),
+                            new(0.25f, 0, -0.25f),
+                            new(0.25f, 0, 0.25f),
+                            new(0.25f, 1.1f, -0.25f),
+                            new(0.25f, 1.1f, 0.25f),
 
-                            new Vector3(0.25f, 0, 2),
-                            new Vector3(-0.25f, 1.1f, -0.25f),
+                            new(0.25f, 0, 2),
+                            new(-0.25f, 1.1f, -0.25f),
 
-                            new Vector3(-2, 1.1f, -0.25f)
+                            new(-2, 1.1f, -0.25f)
                         }
                     );
                     break;
 
                 case "dvergrprops_shelf":
                 case "dvergrprops_table":
-                    var wearNTear = prefab.GetComponent<WearNTear>();
+                    WearNTear wearNTear = prefab.GetComponent<WearNTear>();
                     if (wearNTear)
                     {
                         wearNTear.m_supports = true; // allow these pieces to support other pieces
@@ -477,8 +479,8 @@ namespace MVBP.Helpers
                     SnapPointHelper.AddSnapPoints(
                         prefab,
                         new Vector3[] {
-                            new Vector3(3, 0, 0),
-                            new Vector3(-3, 0, 0),
+                            new(3, 0, 0),
+                            new(-3, 0, 0),
                         }
                     );
                     break;
@@ -487,8 +489,8 @@ namespace MVBP.Helpers
                     SnapPointHelper.AddSnapPoints(
                         prefab,
                         new Vector3[] {
-                            new Vector3(0, -2, 0),
-                            new Vector3(0, 2, 0),
+                            new(0, -2, 0),
+                            new(0, 2, 0),
                         }
                     );
                     break;
@@ -518,7 +520,7 @@ namespace MVBP.Helpers
                     SnapPointHelper.AddSnapPoints(
                         prefab,
                         new Vector3[] {
-                            new Vector3(0, -3, 0),
+                            new(0, -3, 0),
                         }
                     );
                     break;
@@ -527,8 +529,8 @@ namespace MVBP.Helpers
                     SnapPointHelper.AddSnapPoints(
                         prefab,
                         new Vector3[] {
-                            new Vector3(-2, 0, 0),
-                            new Vector3(2, 0, 0),
+                            new(-2, 0, 0),
+                            new(2, 0, 0),
                         }
                     );
                     break;
@@ -539,10 +541,10 @@ namespace MVBP.Helpers
                     SnapPointHelper.AddSnapPoints(
                         prefab,
                         new Vector3[] {
-                            new Vector3(-3, -2.7f, 0),
-                            new Vector3(3, -2.7f, 0),
-                            new Vector3(-3, 2.7f, 0),
-                            new Vector3(3, 2.7f, 0),
+                            new(-3, -2.7f, 0),
+                            new(3, -2.7f, 0),
+                            new(-3, 2.7f, 0),
+                            new(3, 2.7f, 0),
                         }
                     );
                     break;
@@ -551,10 +553,10 @@ namespace MVBP.Helpers
                     SnapPointHelper.AddSnapPoints(
                         prefab,
                         new Vector3[] {
-                            new Vector3(-3, -0.5f, 0),
-                            new Vector3(3, -0.5f, 0),
-                            new Vector3(-3, 4.5f, 0),
-                            new Vector3(3, 4.5f, 0),
+                            new(-3, -0.5f, 0),
+                            new(3, -0.5f, 0),
+                            new(-3, 4.5f, 0),
+                            new(3, 4.5f, 0),
                         }
                     );
                     break;
@@ -563,14 +565,14 @@ namespace MVBP.Helpers
                     SnapPointHelper.AddSnapPoints(
                         prefab,
                         new Vector3[] {
-                            new Vector3(1.1f, 0, 0),
-                            new Vector3(-1.1f, 0, 0),
+                            new(1.1f, 0, 0),
+                            new(-1.1f, 0, 0),
 
-                            new Vector3(2, 2, 0),
-                            new Vector3(-2, 2, 0),
+                            new(2, 2, 0),
+                            new(-2, 2, 0),
 
-                            new Vector3(1.1f, 4, 0),
-                            new Vector3(-1.1f, 4, 0),
+                            new(1.1f, 4, 0),
+                            new(-1.1f, 4, 0),
                         }
                     );
                     break;
@@ -579,10 +581,10 @@ namespace MVBP.Helpers
                     SnapPointHelper.AddSnapPoints(
                         prefab,
                         new Vector3[] {
-                            new Vector3(1, 0, 1),
-                            new Vector3(-1, 0, 1),
-                            new Vector3(1, 2, -1),
-                            new Vector3(-1, 2, -1),
+                            new(1, 0, 1),
+                            new(-1, 0, 1),
+                            new(1, 2, -1),
+                            new(-1, 2, -1),
                         }
                     );
                     break;
@@ -591,8 +593,8 @@ namespace MVBP.Helpers
                     SnapPointHelper.AddSnapPoints(
                         prefab,
                         new Vector3[] {
-                            new Vector3(-1, 0, -1),
-                            new Vector3(1, 0, 1),
+                            new(-1, 0, -1),
+                            new(1, 0, 1),
                         }
                     );
                     break;
@@ -601,10 +603,10 @@ namespace MVBP.Helpers
                     SnapPointHelper.AddSnapPoints(
                         prefab,
                         new Vector3[] {
-                            new Vector3(-0.5f, 0, 0),
-                            new Vector3(0.5f, 0, 0),
-                            new Vector3(-0.5f, 2, 0),
-                            new Vector3(0.5f, 2, 0),
+                            new(-0.5f, 0, 0),
+                            new(0.5f, 0, 0),
+                            new(-0.5f, 2, 0),
+                            new(0.5f, 2, 0),
                         }
                     );
                     break;
@@ -613,10 +615,10 @@ namespace MVBP.Helpers
                     SnapPointHelper.AddSnapPoints(
                         prefab,
                         new Vector3[] {
-                            new Vector3(-1, 0, 0),
-                            new Vector3(1, 0, 0),
-                            new Vector3(-1, 2, 0),
-                            new Vector3(1, 2, 0),
+                            new(-1, 0, 0),
+                            new(1, 0, 0),
+                            new(-1, 2, 0),
+                            new(1, 2, 0),
                         }
                     );
                     break;
@@ -625,15 +627,15 @@ namespace MVBP.Helpers
                     SnapPointHelper.AddSnapPoints(
                         prefab,
                         new Vector3[] {
-                            new Vector3(2, 1, 2),
-                            new Vector3(-2, 1, -2),
-                            new Vector3(2, 1, -2),
-                            new Vector3(-2, 1, 2),
+                            new(2, 1, 2),
+                            new(-2, 1, -2),
+                            new(2, 1, -2),
+                            new(-2, 1, 2),
 
-                            new Vector3(2, -1, 2),
-                            new Vector3(-2, -1, -2),
-                            new Vector3(2, -1, -2),
-                            new Vector3(-2, -1, 2),
+                            new(2, -1, 2),
+                            new(-2, -1, -2),
+                            new(2, -1, -2),
+                            new(-2, -1, 2),
                         }
                     );
                     break;
@@ -644,8 +646,8 @@ namespace MVBP.Helpers
                         new Vector3[]
                         {
                             // mid edge points get added by ExtraSnapPointsMadeEasy
-                            new Vector3(1.0f, 0.5f, 0.0f),  // top front
-                            new Vector3(-1.0f, 0.5f, 0.0f),  // top back
+                            new(1.0f, 0.5f, 0.0f),  // top front
+                            new(-1.0f, 0.5f, 0.0f),  // top back
                         }
                     );
                     break;
@@ -655,11 +657,11 @@ namespace MVBP.Helpers
                         prefab,
                         new Vector3[]
                         {
-                            new Vector3(0.0f, 0.0f, 0.0f),
-                            new Vector3(1.0f, -1.0f, 0.0f),
-                            new Vector3(1.0f, 0.0f, 0.0f),
-                            new Vector3(-1.0f, -1.0f, 0.0f),
-                            new Vector3(-1.0f, 0.0f, 0.0f),
+                            new(0.0f, 0.0f, 0.0f),
+                            new(1.0f, -1.0f, 0.0f),
+                            new(1.0f, 0.0f, 0.0f),
+                            new(-1.0f, -1.0f, 0.0f),
+                            new(-1.0f, 0.0f, 0.0f),
                         }
                     );
                     break;
@@ -695,7 +697,8 @@ namespace MVBP.Helpers
                             }
                         }
                     }
-                    SnapPointHelper.AddSnapPoints(prefab, pts, true);
+                    SnapPointHelper.FixPieceLayers(prefab);
+                    SnapPointHelper.AddSnapPoints(prefab, pts);
 
                     // Can keep the MineRock component now that I handle the item drops properly
                     // UnityEngine.Object.DestroyImmediate(prefab.GetComponent<MineRock>());
@@ -704,24 +707,24 @@ namespace MVBP.Helpers
                     break;
 
                 case "blackmarble_post01":
+                    SnapPointHelper.FixPieceLayers(prefab);
                     SnapPointHelper.AddSnapPoints(
                         prefab,
                         new Vector3[]
                         {
-                            new Vector3(0.0f, 0.0f, 0.0f),
-                            new Vector3(1.0f, 0.0f, 1.0f),
-                            new Vector3(1.0f, 0.0f, -1.0f),
-                            new Vector3(-1.0f, 0.0f, -1.0f),
-                            new Vector3(-1.0f, 0.0f, 1.0f),
-                            new Vector3(1.0f, 1.0f, 1.0f),
-                            new Vector3(1.0f, 1.0f, -1.0f),
-                            new Vector3(-1.0f, 1.0f, -1.0f),
-                            new Vector3(-1.0f, 1.0f, 1.0f),
-                            new Vector3(0.0f, 3.5f, 0.0f), // for demisters/torches
-                        },
-                        true
+                            new(0.0f, 0.0f, 0.0f),
+                            new(1.0f, 0.0f, 1.0f),
+                            new(1.0f, 0.0f, -1.0f),
+                            new(-1.0f, 0.0f, -1.0f),
+                            new(-1.0f, 0.0f, 1.0f),
+                            new(1.0f, 1.0f, 1.0f),
+                            new(1.0f, 1.0f, -1.0f),
+                            new(-1.0f, 1.0f, -1.0f),
+                            new(-1.0f, 1.0f, 1.0f),
+                            new(0.0f, 3.5f, 0.0f), // for demisters/torches
+                        }
                     );
-                    foreach (var collider in prefab.GetComponentsInChildren<BoxCollider>())
+                    foreach (BoxCollider collider in prefab.GetComponentsInChildren<BoxCollider>())
                     {
                         if (collider.name == "collider")
                         {
@@ -736,11 +739,11 @@ namespace MVBP.Helpers
                         prefab,
                         new Vector3[]
                         {
-                            new Vector3(0.5f, 0.0f, 0.25f),
-                            new Vector3(0.0f, 0.0f, 0.25f),
-                            new Vector3(-0.5f, 0.0f, 0.25f),
-                            new Vector3(-0.5f, 0.0f, -0.25f),
-                            new Vector3(0.5f, 0.0f, -0.25f),
+                            new(0.5f, 0.0f, 0.25f),
+                            new(0.0f, 0.0f, 0.25f),
+                            new(-0.5f, 0.0f, 0.25f),
+                            new(-0.5f, 0.0f, -0.25f),
+                            new(0.5f, 0.0f, -0.25f),
                         }
                     );
                     break;
@@ -758,8 +761,8 @@ namespace MVBP.Helpers
                         prefab,
                         new Vector3[]
                         {
-                            new Vector3(0.0f, 0.0f, 0.0f),
-                            new Vector3(0.0f, -0.65f, 0.0f),
+                            new(0.0f, 0.0f, 0.0f),
+                            new(0.0f, -0.65f, 0.0f),
                         }
                     );
                     break;
@@ -777,8 +780,8 @@ namespace MVBP.Helpers
                         prefab,
                         new Vector3[]
                         {
-                            new Vector3(0.0f, 0.0f, 0.0f),
-                            new Vector3(0.0f, -0.9f, 0.0f),
+                            new(0.0f, 0.0f, 0.0f),
+                            new(0.0f, -0.9f, 0.0f),
                         }
                     );
                     break;
@@ -788,7 +791,7 @@ namespace MVBP.Helpers
                         prefab,
                         new Vector3[]
                         {
-                            new Vector3(0.0f, 2.5f, 0.0f)
+                            new(0.0f, 2.5f, 0.0f)
                         }
                     );
                     break;
@@ -798,7 +801,7 @@ namespace MVBP.Helpers
                         prefab,
                         new Vector3[]
                         {
-                            new Vector3(0.0f, -1.0f, 0.0f)
+                            new(0.0f, -1.0f, 0.0f)
                         }
                     );
                     break;
@@ -814,8 +817,8 @@ namespace MVBP.Helpers
 
                 case "mountainkit_chair":
                     {
-                        var chair = prefab.AddComponent<Chair>();
-                        var attachPoint = new GameObject("attachPoint");
+                        Chair chair = prefab.AddComponent<Chair>();
+                        GameObject attachPoint = new("attachPoint");
                         attachPoint.transform.parent = prefab.transform;
                         attachPoint.transform.localPosition = Vector3.zero;
                         chair.m_attachPoint = attachPoint.transform;
@@ -824,8 +827,8 @@ namespace MVBP.Helpers
 
                 case "dvergrprops_chair":
                     {
-                        var chair = prefab.AddComponent<Chair>();
-                        var attachPoint = new GameObject("attachPoint");
+                        Chair chair = prefab.AddComponent<Chair>();
+                        GameObject attachPoint = new("attachPoint");
                         attachPoint.transform.parent = prefab.transform;
                         attachPoint.transform.localPosition = new Vector3(0.0f, -0.15f, 0.0f);
                         chair.m_attachPoint = attachPoint.transform;
@@ -835,12 +838,133 @@ namespace MVBP.Helpers
 
                 case "dvergrprops_stool":
                     {
-                        var chair = prefab.AddComponent<Chair>();
-                        var attachPoint = new GameObject("attachPoint");
+                        Chair chair = prefab.AddComponent<Chair>();
+                        GameObject attachPoint = new("attachPoint");
                         attachPoint.transform.parent = prefab.transform;
                         attachPoint.transform.localPosition = new Vector3(0.0f, -0.1f, 0.0f);
                         chair.m_attachPoint = attachPoint.transform;
                     }
+                    break;
+                case "Ashland_Stair":
+                    SnapPointHelper.AddSnapPoints(
+                        prefab,
+                        new NamedSnapPoint[]
+                        {
+                            new( 2.0f, 0.0f, -2.0f, $"{BOTTOM} 1"),
+                            new(-2.0f, 0.0f, -2.0f, $"{BOTTOM} 2"),
+                            new(-2.0f, 0.0f,  2.0f, $"{BOTTOM} 3"),
+                            new( 2.0f, 0.0f,  2.0f, $"{BOTTOM} 4"),
+                            new( 2.0f, 2.0f, -2.0f, $"{TOP} 1"),
+                            new(-2.0f, 2.0f, -2.0f, $"{TOP} 2"),
+                        });
+                    break;
+                case "Ashlands_Fortress_Floor":
+                    SnapPointHelper.AddSnapPoints(
+                        prefab,
+                        new NamedSnapPoint[]
+                        {
+                            new( 1.0f, -0.5f, -1.0f, $"{BOTTOM} 1"),
+                            new(-1.0f, -0.5f, -1.0f, $"{BOTTOM} 2"),
+                            new(-1.0f, -0.5f,  1.0f, $"{BOTTOM} 3"),
+                            new( 1.0f, -0.5f,  1.0f, $"{BOTTOM} 4"),
+                            new( 1.0f,  0.5f, -1.0f, $"{TOP} 1"),
+                            new(-1.0f,  0.5f, -1.0f, $"{TOP} 2"),
+                            new(-1.0f,  0.5f,  1.0f, $"{TOP} 3"),
+                            new( 1.0f,  0.5f,  1.0f, $"{TOP} 4"),
+                            new(Vector3.zero, CENTER)
+                        });
+                    break;
+                case "Ashlands_Wall_2x2":
+                case "Ashlands_Wall_2x2_top":
+                case "Ashlands_Wall_2x2_edge2":
+                case "Ashlands_Wall_2x2_edge2_top":
+                    SnapPointHelper.AddSnapPoints(
+                        prefab,
+                        new NamedSnapPoint[]
+                        {
+                            new(-1.0f, 0.0f, -0.5f, $"{INNER} {BOTTOM} 1"),
+                            new( 1.0f, 0.0f, -0.5f, $"{INNER} {BOTTOM} 2"),
+                            new(-1.0f, 2.0f, -0.5f, $"{INNER} {TOP} 1"),
+                            new( 1.0f, 2.0f, -0.5f, $"{INNER} {TOP} 2"),
+
+                            new(-1.0f, 0.0f,  0.5f, $"{OUTER} {BOTTOM} 1"),
+                            new( 1.0f, 0.0f,  0.5f, $"{OUTER} {BOTTOM} 2"),
+                            new(-1.0f, 2.0f,  0.5f, $"{OUTER} {TOP} 1"),
+                            new( 1.0f, 2.0f,  0.5f, $"{OUTER} {TOP} 2"),
+                        });
+                    break;
+                case "Ashlands_Wall_2x2_edge":
+                case "Ashlands_Wall_2x2_edge_top":
+                    SnapPointHelper.AddSnapPoints(
+                        prefab,
+                        new NamedSnapPoint[]
+                        {
+                            // NOTE: Inner and Outer coordinates are inverted, as this piece seems 180 degrees rotated compared to similar pieces
+                            new( 1.0f, 0.0f,  0.5f, $"{INNER} {BOTTOM} 1"),
+                            new(-1.0f, 0.0f,  0.5f, $"{INNER} {BOTTOM} 2"),
+                            new( 1.0f, 2.0f,  0.5f, $"{INNER} {TOP} 1"),
+                            new(-1.0f, 2.0f,  0.5f, $"{INNER} {TOP} 2"),
+
+                            new( 1.0f, 0.0f, -0.5f, $"{OUTER} {BOTTOM} 1"),
+                            new(-1.0f, 0.0f, -0.5f, $"{OUTER} {BOTTOM} 2"),
+                            new( 1.0f, 2.0f, -0.5f, $"{OUTER} {TOP} 1"),
+                            new(-1.0f, 2.0f, -0.5f, $"{OUTER} {TOP} 2"),
+                        });
+                    break;
+                case "Ashlands_Wall_2x2_cornerR":
+                case "Ashlands_Wall_2x2_cornerR_top":
+                    {
+                        float xOffset = -0.25f;
+                        SnapPointHelper.AddSnapPoints(
+                            prefab,
+                            new NamedSnapPoint[]
+                            {
+                                new(xOffset + 0.0f, 0.0f, -1.0f, $"{INNER} {BOTTOM} 1"),
+                                new(xOffset + 0.0f, 0.0f,  0.0f, $"{INNER} {BOTTOM} {CORNER}"), // Also technically the BOTTOM CENTER
+                                new(xOffset + 1.0f, 0.0f,  0.0f, $"{INNER} {BOTTOM} 2"),
+                                new(xOffset + 0.0f, 2.0f, -1.0f, $"{INNER} {TOP} 1"),
+                                new(xOffset + 0.0f, 2.0f,  0.0f, $"{INNER} {TOP} {CORNER}"), // Also technically the TOP CENTER
+                                new(xOffset + 1.0f, 2.0f,  0.0f, $"{INNER} {TOP} 2"),
+
+                                new(xOffset - 1.0f, 0.0f, -1.0f, $"{OUTER} {BOTTOM} 1"),
+                                new(xOffset - 1.0f, 0.0f,  1.0f, $"{OUTER} {BOTTOM} {CORNER}"),
+                                new(xOffset + 1.0f, 0.0f,  1.0f, $"{OUTER} {BOTTOM} 2"),
+                                new(xOffset - 1.0f, 2.0f, -1.0f, $"{OUTER} {TOP} 1"),
+                                new(xOffset - 1.0f, 2.0f,  1.0f, $"{OUTER} {TOP} {CORNER}"),
+                                new(xOffset + 1.0f, 2.0f,  1.0f, $"{OUTER} {TOP} 2")
+                            });
+                        break;
+                    }
+                case "Ashlands_Wall_2x2_cornerL":
+                case "Ashlands_Wall_2x2_cornerL_top":
+                    SnapPointHelper.AddSnapPoints(
+                        prefab,
+                        new NamedSnapPoint[]
+                        {
+                            new( 0.0f,  0.0f, -1.25f, $"{INNER} {BOTTOM} 1"),
+                            new( 0.0f,  0.0f, -0.5f, $"{INNER} {BOTTOM} {CORNER}"), // Also technically the BOTTOM CENTER
+                            new( 1.25f, 0.0f, -0.5f, $"{INNER} {BOTTOM} 2"),
+                            new( 0.0f,  2.0f, -1.25f, $"{INNER} {TOP} 1"),
+                            new( 0.0f,  2.0f, -0.5f, $"{INNER} {TOP} {CORNER}"), // Also technically the TOP CENTER
+                            new( 1.25f, 2.0f, -0.5f, $"{INNER} {TOP} 2"),
+
+                            new(-1.0f,  0.0f, -1.25f, $"{OUTER} {BOTTOM} 1"),
+                            new(-1.0f,  0.0f,  0.5f, $"{OUTER} {BOTTOM} {CORNER}"),
+                            new( 1.25f, 0.0f,  0.5f, $"{OUTER} {BOTTOM} 2"),
+                            new(-1.0f,  2.0f, -1.25f, $"{OUTER} {TOP} 1"),
+                            new(-1.0f,  2.0f,  0.5f, $"{OUTER} {TOP} {CORNER}"),
+                            new( 1.25f, 2.0f,  0.5f, $"{OUTER} {TOP} 2")
+                        });
+                    break;
+                case "Ashlands_Fortress_Wall_Spikes":
+                    SnapPointHelper.AddSnapPoints(
+                        prefab,
+                        new NamedSnapPoint[]
+                        {
+                            new(0.0f, 0.0f, -2.0f, $"{EDGE} 1"),
+                            new(0.0f, 0.0f,  0.0f, CENTER),
+                            new(0.0f, 0.0f,  2.0f, $"{EDGE} 2")
+                        });
                     break;
 
                 default:
@@ -849,7 +973,7 @@ namespace MVBP.Helpers
 
             if (MorePrefabs.PatchPortalTexture && prefab.name == "portal" && !GUIManager.IsHeadless())
             {
-                var meshRender = prefab.transform.Find("New").Find("model").GetComponent<MeshRenderer>();
+                MeshRenderer meshRender = prefab.transform.Find("New").Find("model").GetComponent<MeshRenderer>();
                 if (meshRender)
                 {
                     meshRender.material.mainTexture = TextureHelper.GetBlackMarblePortalTexture();
