@@ -1,7 +1,7 @@
 ﻿// Ignore Spelling: MVBP
 
-using Jotunn.Configs;
 using System.Collections.Generic;
+using Jotunn.Configs;
 using UnityEngine;
 
 namespace MVBP.Configs
@@ -73,8 +73,8 @@ namespace MVBP.Configs
                     enabled: false,
                     allowedInDungeons: false,
                     category: HammerCategories.CreatorShop,
-                    craftingStation: nameof(CraftingStations.None),
-                    requirements: "",
+                    craftingStation: nameof(CraftingStations.Stonecutter),
+                    requirements: "Grausten,32",
                     clipEverything: false,
                     clipGround: false,
                     placementPatch: false
@@ -378,8 +378,8 @@ namespace MVBP.Configs
                     enabled: false,
                     allowedInDungeons: false,
                     category: HammerCategories.CreatorShop,
-                    craftingStation: nameof(CraftingStations.None),
-                    requirements: "",
+                    craftingStation: nameof(CraftingStations.Stonecutter),
+                    requirements: "Grausten,8",
                     clipEverything: false,
                     clipGround: false,
                     placementPatch: false
@@ -392,8 +392,8 @@ namespace MVBP.Configs
                     enabled: false,
                     allowedInDungeons: false,
                     category: HammerCategories.CreatorShop,
-                    craftingStation: nameof(CraftingStations.None),
-                    requirements: "",
+                    craftingStation: nameof(CraftingStations.Stonecutter),
+                    requirements: "Grausten,10",
                     clipEverything: false,
                     clipGround: false,
                     placementPatch: false
@@ -560,8 +560,8 @@ namespace MVBP.Configs
                     enabled: false,
                     allowedInDungeons: false,
                     category: HammerCategories.CreatorShop,
-                    craftingStation: nameof(CraftingStations.None),
-                    requirements: "",
+                    craftingStation: nameof(CraftingStations.Stonecutter),
+                    requirements: "Grausten,4",
                     clipEverything: false,
                     clipGround: false,
                     placementPatch: false
@@ -574,12 +574,11 @@ namespace MVBP.Configs
                     enabled: false,
                     allowedInDungeons: false,
                     category: HammerCategories.CreatorShop,
-                    craftingStation: nameof(CraftingStations.None),
-                    requirements: "",
+                    craftingStation: nameof(CraftingStations.Stonecutter),
+                    requirements: "Grausten,6",
                     clipEverything: false,
                     clipGround: false,
-                    placementPatch: false,
-                    placementOffset: new Vector3(0f, -0.1f, 0f)
+                    placementPatch: false
                 )
             },
             {
@@ -589,12 +588,11 @@ namespace MVBP.Configs
                     enabled: false,
                     allowedInDungeons: false,
                     category: HammerCategories.CreatorShop,
-                    craftingStation: nameof(CraftingStations.None),
-                    requirements: "",
+                    craftingStation: nameof(CraftingStations.Stonecutter),
+                    requirements: "Grausten,32",
                     clipEverything: false,
                     clipGround: false,
-                    placementPatch: false,
-                    placementOffset: new Vector3(0f, -0.1f, 0f)
+                    placementPatch: false
                 )
             },
             {
@@ -604,12 +602,11 @@ namespace MVBP.Configs
                     enabled: false,
                     allowedInDungeons: false,
                     category: HammerCategories.CreatorShop,
-                    craftingStation: nameof(CraftingStations.None),
-                    requirements: "",
+                    craftingStation: nameof(CraftingStations.BlackForge),
+                    requirements: "Copper,35",
                     clipEverything: false,
                     clipGround: false,
-                    placementPatch: false,
-                    placementOffset: new Vector3(0f, -0.1f, 0f)
+                    placementPatch: false
                 )
             },
             {
@@ -634,12 +631,11 @@ namespace MVBP.Configs
                     enabled: false,
                     allowedInDungeons: false,
                     category: HammerCategories.CreatorShop,
-                    craftingStation: nameof(CraftingStations.None),
+                    craftingStation: nameof(CraftingStations.Stonecutter),
                     requirements: "",
                     clipEverything: false,
                     clipGround: false,
-                    placementPatch: false,
-                    placementOffset: new Vector3(0f, -0.1f, 0f)
+                    placementPatch: false
                 )
             },
             {
@@ -649,12 +645,11 @@ namespace MVBP.Configs
                     enabled: false,
                     allowedInDungeons: false,
                     category: HammerCategories.CreatorShop,
-                    craftingStation: nameof(CraftingStations.None),
+                    craftingStation: nameof(CraftingStations.Stonecutter),
                     requirements: "",
                     clipEverything: false,
                     clipGround: false,
-                    placementPatch: false,
-                    placementOffset: new Vector3(0f, -0.1f, 0f)
+                    placementPatch: false
                 )
             },
             {
@@ -664,12 +659,11 @@ namespace MVBP.Configs
                     enabled: false,
                     allowedInDungeons: false,
                     category: HammerCategories.CreatorShop,
-                    craftingStation: nameof(CraftingStations.None),
-                    requirements: "",
+                    craftingStation: nameof(CraftingStations.BlackForge),
+                    requirements: "Copper,6",
                     clipEverything: false,
                     clipGround: false,
-                    placementPatch: false,
-                    placementOffset: new Vector3(0f, -0.1f, 0f)
+                    placementPatch: false
                 )
             },
             {
@@ -679,8 +673,8 @@ namespace MVBP.Configs
                     enabled: false,
                     allowedInDungeons: false,
                     category: HammerCategories.CreatorShop,
-                    craftingStation: nameof(CraftingStations.None),
-                    requirements: "",
+                    craftingStation: nameof(CraftingStations.Stonecutter),
+                    requirements: "Grausten,10",
                     clipEverything: false,
                     clipGround: false,
                     placementPatch: false
@@ -693,8 +687,8 @@ namespace MVBP.Configs
                     enabled: false,
                     allowedInDungeons: false,
                     category: HammerCategories.CreatorShop,
-                    craftingStation: nameof(CraftingStations.None),
-                    requirements: "",
+                    craftingStation: nameof(CraftingStations.Stonecutter),
+                    requirements: "Grausten,10",
                     clipEverything: false,
                     clipGround: false,
                     placementPatch: false
@@ -707,8 +701,8 @@ namespace MVBP.Configs
                     enabled: false,
                     allowedInDungeons: false,
                     category: HammerCategories.CreatorShop,
-                    craftingStation: nameof(CraftingStations.None),
-                    requirements: "",
+                    craftingStation: nameof(CraftingStations.Stonecutter),
+                    requirements: "Grausten,10",
                     clipEverything: false,
                     clipGround: false,
                     placementPatch: false
@@ -833,8 +827,8 @@ namespace MVBP.Configs
                     enabled: false,
                     allowedInDungeons: false,
                     category: HammerCategories.CreatorShop,
-                    craftingStation: nameof(CraftingStations.None),
-                    requirements: "",
+                    craftingStation: nameof(CraftingStations.Stonecutter),
+                    requirements: "Grausten,3",
                     clipEverything: false,
                     clipGround: false,
                     placementPatch: false
@@ -847,8 +841,8 @@ namespace MVBP.Configs
                     enabled: false,
                     allowedInDungeons: false,
                     category: HammerCategories.CreatorShop,
-                    craftingStation: nameof(CraftingStations.None),
-                    requirements: "",
+                    craftingStation: nameof(CraftingStations.Stonecutter),
+                    requirements: "Grausten,10",
                     clipEverything: false,
                     clipGround: false,
                     placementPatch: false
@@ -987,8 +981,8 @@ namespace MVBP.Configs
                     enabled: false,
                     allowedInDungeons: false,
                     category: HammerCategories.CreatorShop,
-                    craftingStation: nameof(CraftingStations.None),
-                    requirements: "",
+                    craftingStation: nameof(CraftingStations.Stonecutter),
+                    requirements: "Grausten,10",
                     clipEverything: false,
                     clipGround: false,
                     placementPatch: false
@@ -1001,8 +995,8 @@ namespace MVBP.Configs
                     enabled: false,
                     allowedInDungeons: false,
                     category: HammerCategories.CreatorShop,
-                    craftingStation: nameof(CraftingStations.None),
-                    requirements: "",
+                    craftingStation: nameof(CraftingStations.Stonecutter),
+                    requirements: "Grausten,10",
                     clipEverything: false,
                     clipGround: false,
                     placementPatch: false
@@ -1085,8 +1079,8 @@ namespace MVBP.Configs
                     enabled: false,
                     allowedInDungeons: false,
                     category: HammerCategories.CreatorShop,
-                    craftingStation: nameof(CraftingStations.None),
-                    requirements: "",
+                    craftingStation: nameof(CraftingStations.Stonecutter),
+                    requirements: "Grausten,16",
                     clipEverything: false,
                     clipGround: false,
                     placementPatch: false
@@ -1183,8 +1177,8 @@ namespace MVBP.Configs
                     enabled: false,
                     allowedInDungeons: false,
                     category: HammerCategories.CreatorShop,
-                    craftingStation: nameof(CraftingStations.None),
-                    requirements: "",
+                    craftingStation: nameof(CraftingStations.Stonecutter),
+                    requirements: "Grausten,8",
                     clipEverything: false,
                     clipGround: false,
                     placementPatch: false
@@ -1197,8 +1191,8 @@ namespace MVBP.Configs
                     enabled: false,
                     allowedInDungeons: false,
                     category: HammerCategories.CreatorShop,
-                    craftingStation: nameof(CraftingStations.None),
-                    requirements: "",
+                    craftingStation: nameof(CraftingStations.Stonecutter),
+                    requirements: "Grausten,8",
                     clipEverything: false,
                     clipGround: false,
                     placementPatch: false
@@ -1211,8 +1205,8 @@ namespace MVBP.Configs
                     enabled: false,
                     allowedInDungeons: false,
                     category: HammerCategories.CreatorShop,
-                    craftingStation: nameof(CraftingStations.None),
-                    requirements: "",
+                    craftingStation: nameof(CraftingStations.Stonecutter),
+                    requirements: "Grausten,3",
                     clipEverything: false,
                     clipGround: false,
                     placementPatch: false
@@ -1225,8 +1219,8 @@ namespace MVBP.Configs
                     enabled: false,
                     allowedInDungeons: false,
                     category: HammerCategories.CreatorShop,
-                    craftingStation: nameof(CraftingStations.None),
-                    requirements: "",
+                    craftingStation: nameof(CraftingStations.Stonecutter),
+                    requirements: "Grausten,24",
                     clipEverything: false,
                     clipGround: false,
                     placementPatch: false
@@ -1234,6 +1228,7 @@ namespace MVBP.Configs
             },
             {
                 "Ashlands_WallBlock",
+                // This prefab acts as if it does not have correct WearNTear data, so it may have issues.
                 new PrefabDB(
                     name: "Ashlands_WallBlock",
                     enabled: false,
@@ -1253,8 +1248,8 @@ namespace MVBP.Configs
                     enabled: false,
                     allowedInDungeons: false,
                     category: HammerCategories.CreatorShop,
-                    craftingStation: nameof(CraftingStations.None),
-                    requirements: "",
+                    craftingStation: nameof(CraftingStations.Stonecutter),
+                    requirements: "Grausten,2",
                     clipEverything: false,
                     clipGround: false,
                     placementPatch: false
@@ -1267,8 +1262,8 @@ namespace MVBP.Configs
                     enabled: false,
                     allowedInDungeons: false,
                     category: HammerCategories.CreatorShop,
-                    craftingStation: nameof(CraftingStations.None),
-                    requirements: "",
+                    craftingStation: nameof(CraftingStations.Stonecutter),
+                    requirements: "Grausten,3",
                     clipEverything: false,
                     clipGround: false,
                     placementPatch: false
@@ -1281,8 +1276,8 @@ namespace MVBP.Configs
                     enabled: false,
                     allowedInDungeons: false,
                     category: HammerCategories.CreatorShop,
-                    craftingStation: nameof(CraftingStations.None),
-                    requirements: "",
+                    craftingStation: nameof(CraftingStations.Stonecutter),
+                    requirements: "Grausten,6",
                     clipEverything: false,
                     clipGround: false,
                     placementPatch: false
@@ -1295,8 +1290,8 @@ namespace MVBP.Configs
                     enabled: false,
                     allowedInDungeons: false,
                     category: HammerCategories.CreatorShop,
-                    craftingStation: nameof(CraftingStations.None),
-                    requirements: "",
+                    craftingStation: nameof(CraftingStations.Stonecutter),
+                    requirements: "Grausten,8",
                     clipEverything: false,
                     clipGround: false,
                     placementPatch: false
@@ -1309,8 +1304,8 @@ namespace MVBP.Configs
                     enabled: false,
                     allowedInDungeons: false,
                     category: HammerCategories.CreatorShop,
-                    craftingStation: nameof(CraftingStations.None),
-                    requirements: "",
+                    craftingStation: nameof(CraftingStations.Stonecutter),
+                    requirements: "Grausten,8",
                     clipEverything: false,
                     clipGround: false,
                     placementPatch: false
@@ -1323,8 +1318,8 @@ namespace MVBP.Configs
                     enabled: false,
                     allowedInDungeons: false,
                     category: HammerCategories.CreatorShop,
-                    craftingStation: nameof(CraftingStations.None),
-                    requirements: "",
+                    craftingStation: nameof(CraftingStations.Stonecutter),
+                    requirements: "Grausten,8",
                     clipEverything: false,
                     clipGround: false,
                     placementPatch: false
@@ -1337,8 +1332,8 @@ namespace MVBP.Configs
                     enabled: false,
                     allowedInDungeons: false,
                     category: HammerCategories.CreatorShop,
-                    craftingStation: nameof(CraftingStations.None),
-                    requirements: "",
+                    craftingStation: nameof(CraftingStations.Stonecutter),
+                    requirements: "Grausten,8",
                     clipEverything: false,
                     clipGround: false,
                     placementPatch: false
@@ -1351,8 +1346,8 @@ namespace MVBP.Configs
                     enabled: false,
                     allowedInDungeons: false,
                     category: HammerCategories.CreatorShop,
-                    craftingStation: nameof(CraftingStations.None),
-                    requirements: "",
+                    craftingStation: nameof(CraftingStations.Stonecutter),
+                    requirements: "Grausten,6",
                     clipEverything: false,
                     clipGround: false,
                     placementPatch: false
@@ -1365,8 +1360,8 @@ namespace MVBP.Configs
                     enabled: false,
                     allowedInDungeons: false,
                     category: HammerCategories.CreatorShop,
-                    craftingStation: nameof(CraftingStations.None),
-                    requirements: "",
+                    craftingStation: nameof(CraftingStations.Stonecutter),
+                    requirements: "Grausten,6",
                     clipEverything: false,
                     clipGround: false,
                     placementPatch: false
@@ -1393,8 +1388,8 @@ namespace MVBP.Configs
                     enabled: false,
                     allowedInDungeons: false,
                     category: HammerCategories.CreatorShop,
-                    craftingStation: nameof(CraftingStations.None),
-                    requirements: "",
+                    craftingStation: nameof(CraftingStations.Stonecutter),
+                    requirements: "Grausten,6",
                     clipEverything: false,
                     clipGround: false,
                     placementPatch: false
@@ -1407,8 +1402,8 @@ namespace MVBP.Configs
                     enabled: false,
                     allowedInDungeons: false,
                     category: HammerCategories.CreatorShop,
-                    craftingStation: nameof(CraftingStations.None),
-                    requirements: "",
+                    craftingStation: nameof(CraftingStations.Stonecutter),
+                    requirements: "Grausten,6",
                     clipEverything: false,
                     clipGround: false,
                     placementPatch: false
@@ -1507,7 +1502,7 @@ namespace MVBP.Configs
                 "Birch1_aut",
                 new PrefabDB(
                     name: "Birch1_aut",
-                    enabled: true,
+                    enabled: false,
                     allowedInDungeons: false,
                     category: HammerCategories.Nature,
                     craftingStation: nameof(CraftingStations.None),
@@ -1538,7 +1533,7 @@ namespace MVBP.Configs
                 "Birch2_aut",
                 new PrefabDB(
                     name: "Birch2_aut",
-                    enabled: true,
+                    enabled: false,
                     allowedInDungeons: false,
                     category: HammerCategories.Nature,
                     craftingStation: nameof(CraftingStations.None),
@@ -4498,8 +4493,8 @@ namespace MVBP.Configs
                     enabled: false,
                     allowedInDungeons: false,
                     category: HammerCategories.CreatorShop,
-                    craftingStation: nameof(CraftingStations.None),
-                    requirements: "",
+                    craftingStation: nameof(CraftingStations.Workbench),
+                    requirements: "Blackwood,1",
                     clipEverything: false,
                     clipGround: false,
                     placementPatch: false
@@ -4512,8 +4507,8 @@ namespace MVBP.Configs
                     enabled: false,
                     allowedInDungeons: false,
                     category: HammerCategories.CreatorShop,
-                    craftingStation: nameof(CraftingStations.None),
-                    requirements: "",
+                    craftingStation: nameof(CraftingStations.Workbench),
+                    requirements: "Blackwood,1",
                     clipEverything: false,
                     clipGround: false,
                     placementPatch: false
@@ -6993,8 +6988,8 @@ namespace MVBP.Configs
                     enabled: true,
                     allowedInDungeons: false,
                     category: HammerCategories.CreatorShop,
-                    craftingStation: nameof(CraftingStations.None),
-                    requirements: "",
+                    craftingStation: nameof(CraftingStations.Workbench),
+                    requirements: "Blackwood,6",
                     clipEverything: false,
                     clipGround: false,
                     placementPatch: true
@@ -7713,8 +7708,8 @@ namespace MVBP.Configs
                     enabled: false,
                     allowedInDungeons: false,
                     category: HammerCategories.CreatorShop,
-                    craftingStation: nameof(CraftingStations.None),
-                    requirements: "",
+                    craftingStation: nameof(CraftingStations.Stonecutter),
+                    requirements: "Grausten,2",
                     clipEverything: false,
                     clipGround: false,
                     placementPatch: false
