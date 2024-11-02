@@ -7,6 +7,6 @@
   "dependencies": [
     "denikson-BepInExPack_Valheim-5.4.2202",
     "ValheimModding-Jotunn-2.21.3",
-    "ComfyMods-SearsCatalog-1.5.1"
+    "ComfyMods-SearsCatalog-1.6.0"
   ]
 }
