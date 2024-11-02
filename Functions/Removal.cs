@@ -218,12 +218,12 @@ namespace MVBP.Functions
             {
                 /* Target this IL code to be able to edit the resources that get dropped
                  * // Requirement[] resources = m_resources;
-                 * IL_0011: ldarg.0
-                 * IL_0012: ldfld class Piece/Requirement[] Piece::m_resources
-                 * IL_0017: stloc.1
+                 * IL_001d: ldarg.0
+                 * IL_001e: ldfld class Piece/Requirement[] Piece::m_resources
+                 * IL_0023: stloc.2
                  * // (no C# code)
-                 * IL_0018: ldc.i4.0
-                 * IL_0019: stloc.2
+                 * IL_0024: ldc.i4.0
+                 * IL_0025: stloc.3
                  * // 	foreach (Requirement requirement in resources)
                  */
                 return new CodeMatcher(instructions)
@@ -232,7 +232,7 @@ namespace MVBP.Functions
                         new CodeMatch(
                             OpCodes.Ldfld,
                             AccessTools.Field(typeof(Piece), nameof(Piece.m_resources))),
-                        new CodeMatch(OpCodes.Stloc_1)
+                        new CodeMatch(OpCodes.Stloc_2)
                     )
                     .SetInstructionAndAdvance(Transpilers.EmitDelegate(DropResources_m_resources_Delegate))
                     .InstructionEnumeration();

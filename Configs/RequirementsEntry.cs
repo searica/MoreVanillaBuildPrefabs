@@ -1,5 +1,4 @@
 ﻿using Jotunn.Configs;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -22,7 +21,7 @@ namespace MVBP.Configs
         public static List<RequirementConfig> Deserialize(string reqString)
         {
             // avoid calling Trim() on null object
-            if (reqString == null || string.IsNullOrEmpty(reqString.Trim()))
+            if (string.IsNullOrWhiteSpace(reqString))
             {
                 return new List<RequirementConfig>() { new RequirementConfig() { Item = " ", Amount = 0} };
             }
@@ -30,14 +29,14 @@ namespace MVBP.Configs
             // If not empty
             List<RequirementConfig> requirements = new();
 
-            foreach (var entry in reqString.Split(reqSep))
+            foreach (string entry in reqString.Split(reqSep))
             {
                 string[] values = entry.Split(amountSep);
 
                 var reqData = new RequirementConfig()
                 {
                     Item = values[0].Trim(),
-                    Amount = int.Parse(values[1].Trim())
+                    Amount = values.Length > 1 && int.TryParse(values[1], out int amount) ? amount : 1
                 };
                 requirements.Add(reqData);
             }
