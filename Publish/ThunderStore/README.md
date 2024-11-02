@@ -1,5 +1,5 @@
 # MoreVanillaBuildPrefabs
-MoreVanillaBuildPrefabs is a Valheim mod to make all vanilla prefabs buildable with the hammer (survival way) while allowing you to configure the requirements to build them. You can configure which prefabs are available for building and what the building requirements are, though the mod comes with a default configuration that enables ~100 new pieces so you can start playing right away.
+MoreVanillaBuildPrefabs is a Valheim mod to make all vanilla prefabs buildable with the hammer while allowing you to configure the requirements to build them. You can configure which prefabs are available for building and what the building requirements are, though the mod comes with a vanilla progression friendly default configuration that enables over 100 new pieces so you can start playing right away without any hassle or worrying about unlocking pieces you haven't found in the world yet.
 
 **Server-Side Info**: This mod does work as a client-side only mod. It is strongly recommended that you install it on the server you play on if possible though as multiple players with conflicting configurations can result in losing build resources when pieces are deconstructed. Not installing the mod on the server also means that some pieces (like the new ship) may not function well for players without the mod.
 

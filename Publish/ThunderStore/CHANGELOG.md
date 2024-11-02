@@ -8,6 +8,24 @@
 			<th align="center">Notes</th>
 		</tr>
 		<tr>
+			<td align="center">1.3.0</td>
+			<td align="left">
+				<ul>
+					<li>Quick hotfix to get things working for the bog witch update (thanks for the transpiler patch Margmas).</li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<td align="center">1.2.3</td>
+			<td align="left">
+				<ul>
+					<li>Updated naming scheme to match new piece name capitalization.</li>
+					<li>Updated dependencies.</li>
+					<li>Fixed issue with Verbosity settings in config not saving correctly.</li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
 			<td align="center">1.2.2</td>
 			<td align="left">
 				<ul>
