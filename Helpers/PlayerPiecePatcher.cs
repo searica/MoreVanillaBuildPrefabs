@@ -59,20 +59,8 @@ namespace MVBP.Helpers
         /// <param name="gameObject"></param>
         private static void ApplyContainerPatches(string prefabName, GameObject gameObject)
         {
-            var prefabDB = PrefabDefaults.GetDefaultPrefabDB(prefabName);
-            if (prefabDB.invWidth == null ||  prefabDB.invHeight == null)
-            {
-                return;
-            }
-
             var container = gameObject.GetComponentInChildren<Container>();
             if (!container)
-            {
-                return;
-            }
-
-            var inventory = container.GetInventory();
-            if (inventory == null)
             {
                 return;
             }
@@ -83,17 +71,43 @@ namespace MVBP.Helpers
                 return;
             }
 
+            // TODO: Check this works?????
+            // Add ZDO ID
+            zdo.Set("HasFields", true);
+            zdo.Set("MVBP", true); // create ID data
+
+            // Check for wards for player built containers
+            var piece = gameObject.GetComponentInChildren<Piece>();
+            if (piece && piece.IsPlacedByPlayer())
+            {
+                zdo.Set("HasFieldsContainer", true);
+                zdo.Set("Container.m_checkGuardStone", true); 
+            }
+
+            // Modify container size based on configs
+            var prefabDB = PrefabDefaults.GetDefaultPrefabDB(prefabName);
+            if (prefabDB.invWidth == null ||  prefabDB.invHeight == null)
+            {
+                return;
+            }
+
+            var inventory = container.GetInventory();
+            if (inventory == null)
+            {
+                return;
+            }
+
             var width = (int)prefabDB.invWidth;
             var height = (int)prefabDB.invHeight;
 
-            zdo.Set("HasFields", true);
             zdo.Set("HasFieldsContainer", true);
             zdo.Set("Container.m_width", width);
             zdo.Set("Container.m_height", height);
+
             zdo.Set("HasFieldsInventory", true);
             zdo.Set("Inventory.m_width", width);
             zdo.Set("Inventory.m_height", height);
-
+            
             container.m_width = width;
             container.m_height = height;
             inventory.m_width = width;
