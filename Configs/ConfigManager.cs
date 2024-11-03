@@ -61,6 +61,15 @@ namespace MVBP.Configs {
             ConfigFileFullPath = Path.Combine(Paths.ConfigPath, ConfigFileName);
         }
 
+        /// <summary>
+        ///     Returns a reference to the config file.
+        /// </summary>
+        /// <returns></returns>
+        internal static ConfigFile GetConfigFile()
+        {
+            return configFile;
+        }
+
 
         /// <summary>
         ///     Sets SaveOnConfigSet to false and returns
