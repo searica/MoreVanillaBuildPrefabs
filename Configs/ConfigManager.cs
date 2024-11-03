@@ -147,13 +147,13 @@ namespace MVBP.Configs {
             watcher.EnableRaisingEvents = true;
         }
 
-        private static void ReloadConfigFile(object sender, FileSystemEventArgs e) {
+        private static void ReloadConfigFile(object sender, FileSystemEventArgs eventArgs) {
             if (!File.Exists(ConfigFileFullPath)) {
                 return;
             }
 
             try {
-                var lastWriteTime = File.GetLastWriteTime(e.FullPath);
+                var lastWriteTime = File.GetLastWriteTime(eventArgs.FullPath);
                 if (lastRead != lastWriteTime) {
                     Log.LogInfo("Reloading config file");
                     var saveOnConfigSet = DisableSaveOnConfigSet(); // turn off saving on config entry set
@@ -198,11 +198,10 @@ namespace MVBP.Configs {
         }
 
         private static void OnConfigManagerDisplayingWindowChanged(object sender, object e) {
-            PropertyInfo pi = ConfigurationManager.GetType().GetProperty("DisplayingWindow");
-            bool ConfigurationManagerWindowShown = (bool)pi.GetValue(ConfigurationManager, null);
+            PropertyInfo propInfo = ConfigurationManager.GetType().GetProperty("DisplayingWindow");
+            bool ConfigurationManagerWindowShown = (bool)propInfo.GetValue(ConfigurationManager, null);
 
             if (!ConfigurationManagerWindowShown) {
-                // OnConfigWindowClosed.Invoke();
                 InvokeOnConfigWindowClosed();
             }
         }
