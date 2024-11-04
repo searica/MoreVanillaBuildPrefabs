@@ -1,7 +1,6 @@
 ﻿// Ignore Spelling: MVBP
 
 using HarmonyLib;
-using MVBP;
 
 namespace MVBP.Patches
 {
@@ -19,7 +18,7 @@ namespace MVBP.Patches
         [HarmonyPatch(nameof(MineRock.UpdateVisability))]
         private static bool UpdateVisabilityPrefix(MineRock __instance)
         {
-            Log.LogInfo("MineRock.UpdateVisability patch applied", LogLevel.Medium);
+            Log.LogInfo("MineRock.UpdateVisability patch applied", LogLevel.High);
             return __instance.m_nview != null;
         }
     }
