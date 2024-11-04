@@ -57,7 +57,7 @@ namespace MVBP.Helpers
             BoxCollider boxCollider
         )
         {
-            if (gameObject == null || boxCollider == null)
+            if (!gameObject || boxCollider == null)
             {
                 return;
             }
