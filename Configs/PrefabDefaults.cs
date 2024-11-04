@@ -4143,7 +4143,7 @@ namespace MVBP.Configs
                 "Trailership",
                 new PrefabDB(
                     name: "Trailership",
-                    enabled: true,
+                    enabled: false,
                     allowedInDungeons: false,
                     category: HammerCategories.Misc,
                     craftingStation: nameof(CraftingStations.Workbench),
