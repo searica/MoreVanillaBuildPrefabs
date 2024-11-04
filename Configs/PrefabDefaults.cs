@@ -1611,6 +1611,20 @@ namespace MVBP.Configs
                 )
             },
             {
+                "BogWitch_Fire_Pit",
+                new PrefabDB(
+                    name: "BogWitch_Fire_Pit",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.CreatorShop,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "",
+                    clipEverything: false,
+                    clipGround: false,
+                    placementPatch: false
+                )
+            },
+            {
                 "BossStone_Bonemass",
                 new PrefabDB(
                     name: "BossStone_Bonemass",
@@ -1757,6 +1771,20 @@ namespace MVBP.Configs
                     clipGround: false,
                     placementPatch: false,
                     pieceGroup: PieceGroup.Flora
+                )
+            },
+            {
+                "Candle_resin_bogwitch",
+                new PrefabDB(
+                    name: "Candle_resin_bogwitch",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.CreatorShop,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "",
+                    clipEverything: false,
+                    clipGround: false,
+                    placementPatch: true
                 )
             },
             {
@@ -4307,6 +4335,20 @@ namespace MVBP.Configs
                 "VineAsh",
                 new PrefabDB(
                     name: "VineAsh",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.CreatorShop,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "",
+                    clipEverything: false,
+                    clipGround: false,
+                    placementPatch: false
+                )
+            },
+            {
+                "VineGreen",
+                new PrefabDB(
+                    name: "VineGreen",
                     enabled: false,
                     allowedInDungeons: false,
                     category: HammerCategories.CreatorShop,
@@ -7575,6 +7617,48 @@ namespace MVBP.Configs
                     clipGround: false,
                     placementPatch: false,
                     pieceGroup: PieceGroup.Flora
+                )
+            },
+            {
+                "rug_bogwitch_deer",
+                new PrefabDB(
+                    name: "rug_bogwitch_deer",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.CreatorShop,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "",
+                    clipEverything: false,
+                    clipGround: false,
+                    placementPatch: false
+                )
+            },
+            {
+                "rug_bogwitch_fur",
+                new PrefabDB(
+                    name: "rug_bogwitch_fur",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.CreatorShop,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "",
+                    clipEverything: false,
+                    clipGround: false,
+                    placementPatch: false
+                )
+            },
+            {
+                "rug_bogwitch_wolf",
+                new PrefabDB(
+                    name: "rug_bogwitch_wolf",
+                    enabled: false,
+                    allowedInDungeons: false,
+                    category: HammerCategories.CreatorShop,
+                    craftingStation: nameof(CraftingStations.None),
+                    requirements: "",
+                    clipEverything: false,
+                    clipGround: false,
+                    placementPatch: false
                 )
             },
             {
