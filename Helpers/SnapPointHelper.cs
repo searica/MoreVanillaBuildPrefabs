@@ -1,8 +1,10 @@
 ﻿// Ignore Spelling: MVBP
 
 using MVBP.Extensions;
+using MVBP.Models;
 using System.Collections.Generic;
 using UnityEngine;
+using static MVBP.Helpers.SnapPointNames;
 
 /* In Unity
  * X = left/right
@@ -52,19 +54,21 @@ namespace MVBP.Helpers
         /// <param name="fixPiece"></param>
         internal static void AddSnapPointsToBoxColliderCorners(
             GameObject gameObject,
-            BoxCollider boxCollider,
-            bool fixPiece = false
+            BoxCollider boxCollider
         )
         {
-            if (gameObject == null || boxCollider == null) return;
+            if (gameObject == null || boxCollider == null)
+            {
+                return;
+            }
 
             List<Vector3> pts = new();
-            var extents = boxCollider.size / 2;
-            foreach (var corner in corners)
+            Vector3 extents = boxCollider.size / 2;
+            foreach (Vector3 corner in corners)
             {
                 pts.Add(boxCollider.center + Vector3.Scale(corner, extents));
             }
-            AddSnapPoints(gameObject, pts, fixPiece);
+            AddSnapPoints(gameObject, pts);
         }
 
         /// <summary>
@@ -75,70 +79,63 @@ namespace MVBP.Helpers
         /// <param name="fixPiece"></param>
         internal static void AddSnapPointsToMeshCorners(
             GameObject gameObject,
-            string meshName,
-            bool fixPiece = false
+            string meshName
         )
         {
-            var mesh = gameObject.GetMesh(meshName);
+            Mesh mesh = gameObject.GetMesh(meshName);
 
-            if (mesh == null) return;
+            if (mesh == null)
+            {
+                return;
+            }
 
             List<Vector3> pts = new();
-            var bounds = mesh.bounds;
-            foreach (var corner in corners)
+            Bounds bounds = mesh.bounds;
+            foreach (Vector3 corner in corners)
             {
                 pts.Add(bounds.center + Vector3.Scale(corner, bounds.extents));
             }
-            AddSnapPoints(gameObject, pts, fixPiece);
+            AddSnapPoints(gameObject, pts);
         }
 
         /// <summary>
         ///     Adds a snap point to the local center of the game object's transform.
         /// </summary>
         /// <param name="gameObject"></param>
-        internal static void AddSnapPointToCenter(GameObject gameObject)
+        internal static void AddSnapPointToOrigin(GameObject gameObject)
         {
-            AddSnapPoints(
-                gameObject,
-                new Vector3[]
-                {
-                    new Vector3(0.0f, 0.0f, 0.0f),
-                }
-            );
+            CreateSnapPoint(Vector3.zero, gameObject, ORIGIN);
         }
 
         internal static void AddSnapPoints(
             GameObject gameObject,
-            IEnumerable<Vector3> points,
-            bool fixPiece = false,
-            bool fixZClipping = false
+            IEnumerable<Vector3> points
         )
         {
-            if (fixPiece)
-            {
-                FixPieceLayers(gameObject);
-            }
-
-            float z = 0f;
+            int i = 1;
 
             foreach (Vector3 point in points)
             {
                 Vector3 pos = point;
-
-                if (fixZClipping)
-                {
-                    pos.z = z;
-                    z += 0.0001f;
-                }
-
-                CreateSnapPoint(pos, gameObject.transform);
+                CreateSnapPoint(pos, gameObject, $"{SNAPPOINT} {i++}");
             }
         }
 
-        private static void CreateSnapPoint(Vector3 pos, Transform parent)
+        internal static void AddSnapPoints(
+            GameObject gameObject,
+            NamedSnapPoint[] namedSnapPoints
+        )
         {
-            GameObject snappoint = new("_snappoint");
-            snappoint.transform.parent = parent;
+            foreach (NamedSnapPoint point in namedSnapPoints)
+            {
+                CreateSnapPoint(point.LocalPosition, gameObject, point.Name);
+            }
+        }
+
+        private static void CreateSnapPoint(Vector3 pos, GameObject prefab, string snapPointName)
+        {
+            GameObject snappoint = new(snapPointName);
+            snappoint.transform.parent = prefab.transform;
             snappoint.transform.localPosition = pos;
             snappoint.tag = "snappoint";
             snappoint.SetActive(false);
