@@ -12,6 +12,7 @@
 			<td align="left">
 				<ul>
 					<li>Quick hotfix to get things working for the bog witch update (thanks for the transpiler patch Margmas).</li>
+					<li>Improved error handling to avoid throwing errors when resource cost requirement is missing in config (thanks flo123333).</li>
 				</ul>
 			</td>
 		</tr>
