@@ -8,6 +8,14 @@
 			<th align="center">Notes</th>
 		</tr>
 		<tr>
+			<td align="center">1.3.2</td>
+			<td align="left">
+				<ul>
+					<li>Compatibility fix for Niflheim + Beastiary by Rusty.</li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
 			<td align="center">1.3.1</td>
 			<td align="left">
 				<ul>

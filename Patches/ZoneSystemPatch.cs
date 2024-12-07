@@ -1,7 +1,6 @@
 ﻿// Ignore Spelling: MVBP
 
 using HarmonyLib;
-using MVBP.Extensions;
 using UnityEngine.SceneManagement;
 
 namespace MVBP.Patches
