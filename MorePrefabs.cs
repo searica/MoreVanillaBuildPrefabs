@@ -20,6 +20,7 @@ namespace MVBP
     [BepInDependency(ModCompat.ExtraSnapsGUID, BepInDependency.DependencyFlags.SoftDependency)]
     [BepInDependency(ModCompat.PlanBuildGUID, BepInDependency.DependencyFlags.SoftDependency)]
     [NetworkCompatibility(CompatibilityLevel.VersionCheckOnly, VersionStrictness.Patch)]
+    [SynchronizationMode(AdminOnlyStrictness.IfOnServer)]
     public class MorePrefabs : BaseUnityPlugin
     {
         public const string PluginName = "MoreVanillaBuildPrefabs";
