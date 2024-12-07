@@ -19,7 +19,8 @@ namespace MVBP.Patches
         private static bool UpdateVisabilityPrefix(MineRock __instance)
         {
             Log.LogInfo("MineRock.UpdateVisability patch applied", LogLevel.High);
-            return __instance.m_nview != null;
+            // Try to avoid accessing value from null object?
+            return __instance && __instance.m_nview != null;
         }
     }
 }
