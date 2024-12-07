@@ -73,13 +73,13 @@ namespace MVBP.Helpers
 
             // TODO: Check this works?????
             // Add ZDO ID
-            zdo.Set("HasFields", true);
-            zdo.Set("MVBP", true); // create ID data
+            //zdo.Set("MVBP", true); // create ID data
 
             // Check for wards for player built containers
             var piece = gameObject.GetComponentInChildren<Piece>();
             if (piece && piece.IsPlacedByPlayer())
             {
+                zdo.Set("HasFields", true);
                 zdo.Set("HasFieldsContainer", true);
                 zdo.Set("Container.m_checkGuardStone", true); 
             }
@@ -100,6 +100,7 @@ namespace MVBP.Helpers
             var width = (int)prefabDB.invWidth;
             var height = (int)prefabDB.invHeight;
 
+            zdo.Set("HasFields", true);
             zdo.Set("HasFieldsContainer", true);
             zdo.Set("Container.m_width", width);
             zdo.Set("Container.m_height", height);
