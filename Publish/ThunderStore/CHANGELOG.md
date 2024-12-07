@@ -8,6 +8,14 @@
 			<th align="center">Notes</th>
 		</tr>
 		<tr>
+			<td align="center">1.3.1</td>
+			<td align="left">
+				<ul>
+					<li>Updated to Jotunn 2.22.0 and restored pre Bog Witch config syncing behaviour so configs are only synced if the mod is installed on the server.</li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
 			<td align="center">1.3.0</td>
 			<td align="left">
 				<ul>
