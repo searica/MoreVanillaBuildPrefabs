@@ -18,6 +18,10 @@ namespace MVBP.Helpers
         internal static readonly HashSet<string> AddedPrefabs = new();
         private static readonly HashSet<string> AddedPieceComponent = new();
 
+        internal static bool IsPieceAddedByMVBP(GameObject prefab)
+        {
+            return AddedPieceComponent.Contains(InitManager.GetPrefabName(prefab));
+        }
         internal static CraftingStation GetCraftingStation(string name)
         {
             var internalName = CraftingStations.GetInternalName(name);
@@ -118,7 +122,7 @@ namespace MVBP.Helpers
                 piece.m_canBeRemoved = false;
 
                 AddedPieceComponent.Add(prefab.name);
-                Log.LogInfo($"Created Piece component for: {prefab.name}", LogLevel.High);
+                Log.LogInfo($"Created Piece component for: {prefab.name}", LogLevel.Medium);
 
             }
 

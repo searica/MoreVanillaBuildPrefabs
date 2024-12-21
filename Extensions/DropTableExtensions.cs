@@ -56,7 +56,8 @@ namespace MVBP.Extensions {
                     avgDropAmount *= resourceRate;
                 }
 
-                if (drop.m_item.TryGetComponent(out ItemDrop itemDrop)) {
+                // check that item is not null (some modders leave null objects in their drop tables)
+                if (drop.m_item && drop.m_item.TryGetComponent(out ItemDrop itemDrop)) {
                     avgItemDrops.Add(new AvgItemDrop(itemDrop, avgDropAmount));
                 }
             }

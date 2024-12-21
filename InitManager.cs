@@ -319,6 +319,7 @@ namespace MVBP
             Log.LogInfo("Initializing pieces");
             foreach (var pieceDB in PieceRefs.Values)
             {
+                Log.LogInfo($"Configuring: {pieceDB.name}", LogLevel.High);
                 var piece = PieceHelper.ConfigurePiece(pieceDB);
                 SfxHelper.FixPlacementSfx(piece);
 

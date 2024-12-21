@@ -8,6 +8,25 @@
 			<th align="center">Notes</th>
 		</tr>
 		<tr>
+			<td align="center">1.3.3</td>
+			<td align="left">
+				<ul>
+					<li>Compatibility fix for `MonstrumDeepNorth`.</li>
+					<li>Added public method to check if `MVBP` has added a `Piece`` component to a prefab. Intended to support compatibility with `LocatationResest`.</li>
+					<li>Fixed possible NRE when verbosity set to `High` and using other mods that add pieces.</li>
+					<li>Updated README.</li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<td align="center">1.3.2</td>
+			<td align="left">
+				<ul>
+					<li>Compatibility fix for Niflheim + Beastiary by Rusty.</li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
 			<td align="center">1.3.1</td>
 			<td align="left">
 				<ul>

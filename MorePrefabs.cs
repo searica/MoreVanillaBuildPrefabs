@@ -26,74 +26,55 @@ namespace MVBP
         public const string PluginName = "MoreVanillaBuildPrefabs";
         internal const string Author = "Searica";
         public const string PluginGUID = $"{Author}.Valheim.{PluginName}";
-        public const string PluginVersion = "1.3.1 ";
+        public const string PluginVersion = "1.3.3";
 
         #region Global Settings
-
         private const string MainSection = "1 - Global";
-
         private static ConfigEntry<bool> CreativeMode { get; set; }
         private static ConfigEntry<bool> ForceAllPrefabs { get; set; }
         internal static bool IsCreativeMode => CreativeMode.Value;
         internal static bool IsForceAllPrefabs => ForceAllPrefabs.Value;
-
         #endregion Global Settings
 
         #region Admin Settings
-
         private const string AdminSection = "2 - Admin";
         private static ConfigEntry<bool> CreatorShopAdminOnly { get; set; }
         private static ConfigEntry<bool> AdminDeconstructOtherPlayers { get; set; }
         internal static bool IsCreatorShopAdminOnly => CreatorShopAdminOnly.Value;
         internal static bool IsAdminDeconstructOtherPlayers => AdminDeconstructOtherPlayers.Value;
-
         #endregion Admin Settings
 
         #region Customization Settings
-
         private const string CustomizationSection = "3 - Customization";
         private static ConfigEntry<bool> EnableHammerCrops { get; set; }
-
-        //private static ConfigEntry<bool> EnableDoorPatches { get; set; }
         private static ConfigEntry<bool> EnableComfortPatches { get; set; }
-
         private static ConfigEntry<bool> EnableSeasonalPieces { get; set; }
         private static ConfigEntry<bool> EnablePlayerBasePatches { get; set; }
         private static ConfigEntry<bool> EnablePortalPatch { get; set; }
         internal static bool IsEnableHammerCrops => EnableHammerCrops.Value;
-
-        //internal static bool IsEnableDoorPatches => EnableDoorPatches.Value;
         internal static bool IsEnableComfortPatches => EnableComfortPatches.Value;
-
         internal static bool IsEnableSeasonalPieces => EnableSeasonalPieces.Value;
         internal static bool IsEnablePlayerBasePatches => EnablePlayerBasePatches.Value;
         internal static bool IsEnablePortalPatch => EnablePortalPatch.Value;
-
         #endregion Customization Settings
 
         #region Texture Patches
-
         private const string TextureSection = "4 - Textures";
-
         private static ConfigEntry<bool> PortalTexture;
         private static ConfigEntry<bool> DvergrWoodTexture;
         internal static bool PatchPortalTexture => PortalTexture.Value;
         internal static bool PatchDvergrWoodTexture => DvergrWoodTexture.Value;
-
         #endregion Texture Patches
 
         #region Unsafe Patches
-
         private const string UnsafeSection = "5 - Unsafe Patches";
         private static ConfigEntry<bool> EnableBedPatches { get; set; }
         private static ConfigEntry<bool> EnableFermenterPatches { get; set; }
         internal static bool IsEnableBedPatches => EnableBedPatches.Value;
         internal static bool IsEnableFermenterPatches => EnableFermenterPatches.Value;
-
         #endregion Unsafe Patches
 
         #region Prefab Settings
-
         private static readonly Dictionary<string, PrefabDBConfigEntries> PrefabDBConfigsMap = new();
 
         internal static bool IsPrefabConfigEnabled(string prefabName)
@@ -104,11 +85,9 @@ namespace MVBP
             }
             return false;
         }
-
         #endregion Prefab Settings
 
         #region Update Flags & Checks
-
         internal static bool UpdatePieceSettings { get; set; } = false;
         internal static bool UpdatePlacementSettings { get; set; } = false;
         internal static bool UpdateModSettings { get; set; } = false;
@@ -160,7 +139,6 @@ namespace MVBP
 
             return false;
         }
-
         #endregion Update Flags & Checks
 
         public void Awake()
@@ -197,11 +175,6 @@ namespace MVBP
                 InitManager.UpdatePlugin("Configuration synced, re-initializing");
             };
         }
-
-        //private static void TestEvent()
-        //{
-        //    return;
-        //}
 
         public void OnDestroy()
         {
@@ -401,6 +374,20 @@ namespace MVBP
 
             return prefabDBConfig;
         }
+
+        // Public API Section
+
+        /// <summary>
+        ///     Checks if the root prefab of the GameObject has had a 
+        ///     Piece component added to it by MVBP. So this method can also
+        ///     be used on any clones of the root prefab.
+        /// </summary>
+        /// <param name="prefab"></param>
+        /// <returns>True if MVBP has added a Piece component, False otherwise.</returns>
+        public bool IsPieceAddedByMVBP(GameObject prefab)
+        {
+            return PieceHelper.IsPieceAddedByMVBP(prefab);
+        }
     }
 
     /// <summary>
@@ -466,8 +453,10 @@ namespace MVBP
             LogInfo("***** " + prefab.name + " (children) *****");
             foreach (Transform child in prefab.transform)
             {
-                LogInfo($" - {child.gameObject.name}");
-                foreach (Component compo in child.gameObject.GetComponents<Component>())
+                if (!child) { continue; }
+
+                LogInfo($" - {child.name}");
+                foreach (Component compo in child.GetComponents<Component>())
                 {
                     LogComponent(compo);
                 }
@@ -476,19 +465,62 @@ namespace MVBP
 
         internal static void LogComponent(Component compo)
         {
-            LogInfo($"--- {compo.GetType().Name}: {compo.name} ---");
-
-            PropertyInfo[] properties = compo.GetType().GetProperties(ReflectionUtils.AllBindings);
-            foreach (var property in properties)
+            if (!compo) {  return; }
+            try
             {
-                LogInfo($" - {property.Name} = {property.GetValue(compo)}");
+                LogInfo($"--- {compo.GetType().Name}: {compo.name} ---");
+            }
+            catch (Exception ex)
+            {
+                Log.LogError(ex.ToString());
+                Log.LogWarning("Could not get type name for component!");
+                return;
+            }
+            
+            try
+            {
+                PropertyInfo[] properties = compo.GetType().GetProperties(ReflectionUtils.AllBindings);
+                foreach (var property in properties)
+                {
+                    try
+                    {
+                        LogInfo($" - {property.Name} = {property.GetValue(compo)}");
+                    }
+                    catch (Exception ex)
+                    {
+                        Log.LogError(ex.ToString());
+                        Log.LogWarning($"Could not get property: {property.Name} for component!");
+                    } 
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.LogError(ex.ToString());
+                Log.LogWarning("Could not get properties for component!");
             }
 
-            FieldInfo[] fields = compo.GetType().GetFields(ReflectionUtils.AllBindings);
-            foreach (var field in fields)
+            try
             {
-                LogInfo($" - {field.Name} = {field.GetValue(compo)}");
+                FieldInfo[] fields = compo.GetType().GetFields(ReflectionUtils.AllBindings);
+                foreach (var field in fields)
+                {
+                    try
+                    {
+                        LogInfo($" - {field.Name} = {field.GetValue(compo)}");
+                    }
+                    catch (Exception ex)
+                    {
+                        Log.LogError(ex.ToString());
+                        Log.LogWarning($"Could not get field: {field.Name} for component!");
+                    }
+                }
             }
+            catch (Exception ex) 
+            {
+                Log.LogError(ex.ToString());
+                Log.LogWarning("Could not get fields for component!");
+            }
+            
         }
     }
 }

@@ -193,6 +193,10 @@ namespace MVBP.Helpers
 
         private static string FindPieceDescription(GameObject prefab)
         {
+            if (!prefab)
+            {
+                return string.Empty;
+            }
             HoverText hover = prefab.GetComponent<HoverText>();
             if (hover && !string.IsNullOrEmpty(hover.m_text))
             {
@@ -201,7 +205,7 @@ namespace MVBP.Helpers
             }
 
             ItemDrop item = prefab.GetComponent<ItemDrop>();
-            if (item && !string.IsNullOrEmpty(item.m_itemData.m_shared.m_name))
+            if (item && !string.IsNullOrEmpty(item.m_itemData?.m_shared?.m_name))
             {
                 DescCache[prefab.name] = item.m_itemData.m_shared.m_name;
                 return item.m_itemData.m_shared.m_name;
@@ -239,14 +243,17 @@ namespace MVBP.Helpers
             if (pickable) return FindPieceDescription(pickable.m_itemPrefab);
 
             CreatureSpawner creatureSpawner = prefab.GetComponent<CreatureSpawner>();
-            if (creatureSpawner) return FindPieceDescription(creatureSpawner.m_creaturePrefab);
+            if (creatureSpawner && creatureSpawner.m_creaturePrefab)
+            {
+                return FindPieceDescription(creatureSpawner.m_creaturePrefab);
+            }
 
             SpawnArea spawnArea = prefab.GetComponent<SpawnArea>();
             if (spawnArea && spawnArea.m_prefabs.Count > 0)
             {
                 return FindPieceDescription(spawnArea.m_prefabs[0].m_prefab);
             }
-            return "";
+            return string.Empty;
         }
     }
 }
