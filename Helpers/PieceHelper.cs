@@ -20,6 +20,10 @@ namespace MVBP.Helpers
 
         internal static bool IsPieceAddedByMVBP(GameObject prefab)
         {
+            if (!prefab)
+            {
+                return false;   
+            }
             return AddedPieceComponent.Contains(InitManager.GetPrefabName(prefab));
         }
         internal static CraftingStation GetCraftingStation(string name)

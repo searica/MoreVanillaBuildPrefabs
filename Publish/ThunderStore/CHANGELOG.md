@@ -8,6 +8,14 @@
 			<th align="center">Notes</th>
 		</tr>
 		<tr>
+			<td align="center">1.3.4</td>
+			<td align="left">
+				<ul>
+					<li>Added null prefab check in `IsPieceAddedByMVBP` directly rather than relying on the null check in `GetPrefabName` just in case a prefab is ever added that has the name set to an empty string.</li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
 			<td align="center">1.3.3</td>
 			<td align="left">
 				<ul>
