@@ -18,6 +18,10 @@ namespace MVBP.Helpers
         internal static readonly HashSet<string> AddedPrefabs = new();
         private static readonly HashSet<string> AddedPieceComponent = new();
 
+        internal static bool IsPieceAddedByMVBP(GameObject prefab)
+        {
+            return AddedPieceComponent.Contains(InitManager.GetPrefabName(prefab));
+        }
         internal static CraftingStation GetCraftingStation(string name)
         {
             var internalName = CraftingStations.GetInternalName(name);
