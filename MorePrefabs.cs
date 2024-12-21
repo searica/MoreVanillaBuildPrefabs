@@ -374,6 +374,20 @@ namespace MVBP
 
             return prefabDBConfig;
         }
+
+        // Public API Section
+
+        /// <summary>
+        ///     Checks if the root prefab of the GameObject has had a 
+        ///     Piece component added to it by MVBP. So this method can also
+        ///     be used on any clones of the root prefab.
+        /// </summary>
+        /// <param name="prefab"></param>
+        /// <returns>True if MVBP has added a Piece component, False otherwise.</returns>
+        public bool IsPieceAddedByMVBP(GameObject prefab)
+        {
+            return PieceHelper.IsPieceAddedByMVBP(prefab);
+        }
     }
 
     /// <summary>
