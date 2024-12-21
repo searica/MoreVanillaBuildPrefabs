@@ -239,7 +239,10 @@ namespace MVBP.Helpers
             if (pickable) return FindPieceDescription(pickable.m_itemPrefab);
 
             CreatureSpawner creatureSpawner = prefab.GetComponent<CreatureSpawner>();
-            if (creatureSpawner) return FindPieceDescription(creatureSpawner.m_creaturePrefab);
+            if (creatureSpawner && creatureSpawner.m_creaturePrefab)
+            {
+                return FindPieceDescription(creatureSpawner.m_creaturePrefab);
+            }
 
             SpawnArea spawnArea = prefab.GetComponent<SpawnArea>();
             if (spawnArea && spawnArea.m_prefabs.Count > 0)
