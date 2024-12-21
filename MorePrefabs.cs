@@ -439,8 +439,10 @@ namespace MVBP
             LogInfo("***** " + prefab.name + " (children) *****");
             foreach (Transform child in prefab.transform)
             {
-                LogInfo($" - {child.gameObject.name}");
-                foreach (Component compo in child.gameObject.GetComponents<Component>())
+                if (!child) { continue; }
+
+                LogInfo($" - {child.name}");
+                foreach (Component compo in child.GetComponents<Component>())
                 {
                     LogComponent(compo);
                 }
@@ -449,19 +451,62 @@ namespace MVBP
 
         internal static void LogComponent(Component compo)
         {
-            LogInfo($"--- {compo.GetType().Name}: {compo.name} ---");
-
-            PropertyInfo[] properties = compo.GetType().GetProperties(ReflectionUtils.AllBindings);
-            foreach (var property in properties)
+            if (!compo) {  return; }
+            try
             {
-                LogInfo($" - {property.Name} = {property.GetValue(compo)}");
+                LogInfo($"--- {compo.GetType().Name}: {compo.name} ---");
+            }
+            catch (Exception ex)
+            {
+                Log.LogError(ex.ToString());
+                Log.LogWarning("Could not get type name for component!");
+                return;
+            }
+            
+            try
+            {
+                PropertyInfo[] properties = compo.GetType().GetProperties(ReflectionUtils.AllBindings);
+                foreach (var property in properties)
+                {
+                    try
+                    {
+                        LogInfo($" - {property.Name} = {property.GetValue(compo)}");
+                    }
+                    catch (Exception ex)
+                    {
+                        Log.LogError(ex.ToString());
+                        Log.LogWarning($"Could not get property: {property.Name} for component!");
+                    } 
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.LogError(ex.ToString());
+                Log.LogWarning("Could not get properties for component!");
             }
 
-            FieldInfo[] fields = compo.GetType().GetFields(ReflectionUtils.AllBindings);
-            foreach (var field in fields)
+            try
             {
-                LogInfo($" - {field.Name} = {field.GetValue(compo)}");
+                FieldInfo[] fields = compo.GetType().GetFields(ReflectionUtils.AllBindings);
+                foreach (var field in fields)
+                {
+                    try
+                    {
+                        LogInfo($" - {field.Name} = {field.GetValue(compo)}");
+                    }
+                    catch (Exception ex)
+                    {
+                        Log.LogError(ex.ToString());
+                        Log.LogWarning($"Could not get field: {field.Name} for component!");
+                    }
+                }
             }
+            catch (Exception ex) 
+            {
+                Log.LogError(ex.ToString());
+                Log.LogWarning("Could not get fields for component!");
+            }
+            
         }
     }
 }
