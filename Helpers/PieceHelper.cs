@@ -122,7 +122,7 @@ namespace MVBP.Helpers
                 piece.m_canBeRemoved = false;
 
                 AddedPieceComponent.Add(prefab.name);
-                Log.LogInfo($"Created Piece component for: {prefab.name}", LogLevel.High);
+                Log.LogInfo($"Created Piece component for: {prefab.name}", LogLevel.Medium);
 
             }
 
