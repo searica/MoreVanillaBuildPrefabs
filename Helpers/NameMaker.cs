@@ -246,7 +246,7 @@ namespace MVBP.Helpers
             {
                 return FindPieceDescription(spawnArea.m_prefabs[0].m_prefab);
             }
-            return "";
+            return string.Empty;
         }
     }
 }
