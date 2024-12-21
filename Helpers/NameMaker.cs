@@ -193,6 +193,10 @@ namespace MVBP.Helpers
 
         private static string FindPieceDescription(GameObject prefab)
         {
+            if (!prefab)
+            {
+                return string.Empty;
+            }
             HoverText hover = prefab.GetComponent<HoverText>();
             if (hover && !string.IsNullOrEmpty(hover.m_text))
             {
