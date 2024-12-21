@@ -29,71 +29,52 @@ namespace MVBP
         public const string PluginVersion = "1.3.2";
 
         #region Global Settings
-
         private const string MainSection = "1 - Global";
-
         private static ConfigEntry<bool> CreativeMode { get; set; }
         private static ConfigEntry<bool> ForceAllPrefabs { get; set; }
         internal static bool IsCreativeMode => CreativeMode.Value;
         internal static bool IsForceAllPrefabs => ForceAllPrefabs.Value;
-
         #endregion Global Settings
 
         #region Admin Settings
-
         private const string AdminSection = "2 - Admin";
         private static ConfigEntry<bool> CreatorShopAdminOnly { get; set; }
         private static ConfigEntry<bool> AdminDeconstructOtherPlayers { get; set; }
         internal static bool IsCreatorShopAdminOnly => CreatorShopAdminOnly.Value;
         internal static bool IsAdminDeconstructOtherPlayers => AdminDeconstructOtherPlayers.Value;
-
         #endregion Admin Settings
 
         #region Customization Settings
-
         private const string CustomizationSection = "3 - Customization";
         private static ConfigEntry<bool> EnableHammerCrops { get; set; }
-
-        //private static ConfigEntry<bool> EnableDoorPatches { get; set; }
         private static ConfigEntry<bool> EnableComfortPatches { get; set; }
-
         private static ConfigEntry<bool> EnableSeasonalPieces { get; set; }
         private static ConfigEntry<bool> EnablePlayerBasePatches { get; set; }
         private static ConfigEntry<bool> EnablePortalPatch { get; set; }
         internal static bool IsEnableHammerCrops => EnableHammerCrops.Value;
-
-        //internal static bool IsEnableDoorPatches => EnableDoorPatches.Value;
         internal static bool IsEnableComfortPatches => EnableComfortPatches.Value;
-
         internal static bool IsEnableSeasonalPieces => EnableSeasonalPieces.Value;
         internal static bool IsEnablePlayerBasePatches => EnablePlayerBasePatches.Value;
         internal static bool IsEnablePortalPatch => EnablePortalPatch.Value;
-
         #endregion Customization Settings
 
         #region Texture Patches
-
         private const string TextureSection = "4 - Textures";
-
         private static ConfigEntry<bool> PortalTexture;
         private static ConfigEntry<bool> DvergrWoodTexture;
         internal static bool PatchPortalTexture => PortalTexture.Value;
         internal static bool PatchDvergrWoodTexture => DvergrWoodTexture.Value;
-
         #endregion Texture Patches
 
         #region Unsafe Patches
-
         private const string UnsafeSection = "5 - Unsafe Patches";
         private static ConfigEntry<bool> EnableBedPatches { get; set; }
         private static ConfigEntry<bool> EnableFermenterPatches { get; set; }
         internal static bool IsEnableBedPatches => EnableBedPatches.Value;
         internal static bool IsEnableFermenterPatches => EnableFermenterPatches.Value;
-
         #endregion Unsafe Patches
 
         #region Prefab Settings
-
         private static readonly Dictionary<string, PrefabDBConfigEntries> PrefabDBConfigsMap = new();
 
         internal static bool IsPrefabConfigEnabled(string prefabName)
@@ -104,11 +85,9 @@ namespace MVBP
             }
             return false;
         }
-
         #endregion Prefab Settings
 
         #region Update Flags & Checks
-
         internal static bool UpdatePieceSettings { get; set; } = false;
         internal static bool UpdatePlacementSettings { get; set; } = false;
         internal static bool UpdateModSettings { get; set; } = false;
@@ -160,7 +139,6 @@ namespace MVBP
 
             return false;
         }
-
         #endregion Update Flags & Checks
 
         public void Awake()
@@ -197,11 +175,6 @@ namespace MVBP
                 InitManager.UpdatePlugin("Configuration synced, re-initializing");
             };
         }
-
-        //private static void TestEvent()
-        //{
-        //    return;
-        //}
 
         public void OnDestroy()
         {
