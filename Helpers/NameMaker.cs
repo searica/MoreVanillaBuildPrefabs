@@ -200,9 +200,8 @@ namespace MVBP.Helpers
                 return hover.m_text;
             }
 
-            // TODO: check for null refs throughout this chain
             ItemDrop item = prefab.GetComponent<ItemDrop>();
-            if (item && !string.IsNullOrEmpty(item.m_itemData.m_shared.m_name))
+            if (item && !string.IsNullOrEmpty(item.m_itemData?.m_shared?.m_name))
             {
                 DescCache[prefab.name] = item.m_itemData.m_shared.m_name;
                 return item.m_itemData.m_shared.m_name;
