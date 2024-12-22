@@ -26,7 +26,7 @@ namespace MVBP
         public const string PluginName = "MoreVanillaBuildPrefabs";
         internal const string Author = "Searica";
         public const string PluginGUID = $"{Author}.Valheim.{PluginName}";
-        public const string PluginVersion = "1.3.4";
+        public const string PluginVersion = "1.3.5";
 
         #region Global Settings
         private const string MainSection = "1 - Global";
@@ -382,12 +382,15 @@ namespace MVBP
         ///     Piece component added to it by MVBP. So this method can also
         ///     be used on any clones of the root prefab.
         /// </summary>
-        /// <param name="prefab"></param>
+        /// <param name="prefab">GameObject to check.</param>
+        /// <param name="piece">Optional piece component to prevent duplicate GetComponent calls.</param>
         /// <returns>True if MVBP has added a Piece component, False otherwise.</returns>
-        public bool IsPieceAddedByMVBP(GameObject prefab)
+        public bool IsPieceAddedByMVBP(GameObject prefab, Piece piece = null)
         {
-            return PieceHelper.IsPieceAddedByMVBP(prefab);
+            return PieceHelper.IsPieceAddedByMVBP(prefab, piece);
         }
+
+
     }
 
     /// <summary>

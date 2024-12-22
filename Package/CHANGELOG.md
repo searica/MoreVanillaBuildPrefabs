@@ -8,6 +8,14 @@
 			<th align="center">Notes</th>
 		</tr>
 		<tr>
+			<td align="center">1.3.5</td>
+			<td align="left">
+				<ul>
+					<li>Modified public API for `IsPieceAddedByMVBP` to include an optional Piece parameter that can be passed to avoid duplicating `GetComponent` calls.</li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
 			<td align="center">1.3.4</td>
 			<td align="left">
 				<ul>
