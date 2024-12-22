@@ -1,8 +1,9 @@
 ﻿using BepInEx.Configuration;
 using Jotunn.Configs;
+using MVBP.Configs;
 using System;
 
-namespace MVBP.Configs
+namespace MVBP.Models
 {
     internal class PrefabDBConfigEntries
     {
@@ -30,8 +31,8 @@ namespace MVBP.Configs
         public PrefabDBConfigEntries(PrefabDB defaultVals)
         {
             string sectionName = defaultVals.name;
-            
-            this.enabled = ConfigManager.BindConfig(
+
+            enabled = ConfigManager.BindConfig(
                 sectionName,
                 "Enabled",
                 defaultVals.enabled,
@@ -41,44 +42,44 @@ namespace MVBP.Configs
                 "and CreativeMode is false.",
                 order: 10
             );
-      
-            this.allowedInDungeons = ConfigManager.BindConfig(
+
+            allowedInDungeons = ConfigManager.BindConfig(
                 sectionName,
                 "AllowedInDungeons",
                 defaultVals.allowedInDungeons,
                 "If true then this prefab can be built inside dungeon zones."
             );
-    
-            this.category = ConfigManager.BindConfig(
+
+            category = ConfigManager.BindConfig(
                 sectionName,
                 "Category",
                 defaultVals.category,
                 "A string defining the tab the prefab shows up on in the hammer build table.",
                 HammerCategories.GetAcceptableValueList()
             );
-       
-            this.craftingStation = ConfigManager.BindConfig(
+
+            craftingStation = ConfigManager.BindConfig(
                 sectionName,
                 "CraftingStation",
                 defaultVals.craftingStation,
                 "A string defining the crafting station required to built the prefab.",
                 CraftingStations.GetAcceptableValueList()
             );
-        
-            this.requirements = ConfigManager.BindConfig(
+
+            requirements = ConfigManager.BindConfig(
                 sectionName,
                 "Requirements",
                 defaultVals.requirements,
                 "Resources required to build the prefab. Formatted as: itemID,amount;itemID,amount where itemID is the in-game identifier for the resource and amount is an integer.",
                 acceptVals: new AcceptableValueConfigNote("You must use valid spawn item codes."),
                 drawer: true
-            );           
+            );
 
             // if the prefab is not already set to use the placement patch by default
             // then add a config option to enable the placement collision patch.
             if (!defaultVals.placementPatch)
             {
-                this.placementPatch = ConfigManager.BindConfig(
+                placementPatch = ConfigManager.BindConfig(
                     sectionName,
                     "PlacementPatch",
                     false,
@@ -90,7 +91,7 @@ namespace MVBP.Configs
 
             if (!defaultVals.clipEverything)
             {
-                this.clipEverything = ConfigManager.BindConfig(
+                clipEverything = ConfigManager.BindConfig(
                     sectionName,
                     "ClipEverything",
                     false,
@@ -101,7 +102,7 @@ namespace MVBP.Configs
 
             if (!defaultVals.clipGround)
             {
-                this.clipGround = ConfigManager.BindConfig(
+                clipGround = ConfigManager.BindConfig(
                     sectionName,
                     "ClipGround",
                     false,
@@ -120,7 +121,7 @@ namespace MVBP.Configs
             try
             {
                 // Get default prefabDB if it exists or make a new blank prefabDB
-                string prefabName = this.enabled.Definition.Section;
+                string prefabName = enabled.Definition.Section;
                 PrefabDB prefabDB = PrefabDefaults.GetDefaultPrefabDB(prefabName);
                 prefabDB.Update(this);
                 return prefabDB;
@@ -129,7 +130,7 @@ namespace MVBP.Configs
             {
                 Log.LogError($"Invalid cast from PrefabDBConfig to PrefabDB: {ex}");
                 return null;
-            }           
+            }
         }
     }
 }

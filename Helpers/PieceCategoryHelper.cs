@@ -2,7 +2,7 @@
 
 using Jotunn.Configs;
 using Jotunn.Managers;
-using MVBP.Configs;
+using MVBP.Models;
 
 namespace MVBP.Helpers
 {

@@ -1,7 +1,7 @@
 ﻿// Ignore Spelling: MVBP
 
-using MVBP.Configs;
 using MVBP.Extensions;
+using MVBP.Models;
 using System;
 using System.Collections;
 using System.Collections.Generic;

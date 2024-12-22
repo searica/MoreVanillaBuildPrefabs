@@ -2,6 +2,7 @@
 
 using System.Collections.Generic;
 using Jotunn.Configs;
+using MVBP.Models;
 using UnityEngine;
 
 namespace MVBP.Configs

@@ -8,6 +8,7 @@ using Jotunn.Managers;
 using Jotunn.Utils;
 using MVBP.Configs;
 using MVBP.Helpers;
+using MVBP.Models;
 using System;
 using System.Collections.Generic;
 using System.Reflection;

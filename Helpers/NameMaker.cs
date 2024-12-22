@@ -4,8 +4,8 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Text.RegularExpressions;
 using UnityEngine;
-using MVBP.Configs;
 using MVBP.Extensions;
+using MVBP.Models;
 
 
 namespace MVBP.Helpers

@@ -1,6 +1,7 @@
 ﻿// Ignore Spelling: MVBP
 
 using MVBP.Configs;
+using MVBP.Models;
 using System;
 using System.Collections.Generic;
 using UnityEngine;

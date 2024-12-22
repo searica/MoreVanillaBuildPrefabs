@@ -3,6 +3,7 @@
 using Jotunn.Configs;
 using Jotunn.Managers;
 using MVBP.Configs;
+using MVBP.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -123,7 +124,6 @@ namespace MVBP.Helpers
                 //piece.m_targetNonPlayerBuilt = false;
 
                 // I could change this value for player-built pieces in piece.Awake and piece.SetCreator
-
                 // to prevent deconstruction of pieces that are not enabled by the mod
                 piece.m_canBeRemoved = false;
 

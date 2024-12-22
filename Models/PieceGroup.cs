@@ -1,6 +1,6 @@
 ﻿// Ignore Spelling: MVBP
 
-namespace MVBP.Configs
+namespace MVBP.Models
 {
     internal enum PieceGroup
     {

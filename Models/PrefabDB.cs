@@ -3,7 +3,7 @@
 using Jotunn.Configs;
 using UnityEngine;
 
-namespace MVBP.Configs
+namespace MVBP.Models
 {
     internal class PrefabDB
     {
@@ -21,7 +21,7 @@ namespace MVBP.Configs
         public string pieceDesc;
         public PieceGroup pieceGroup;
         public bool playerBasePatch;
-        public string? spawnOnDestroyed;
+        public string spawnOnDestroyed;
         public uint? invWidth;
         public uint? invHeight;
 
@@ -49,7 +49,7 @@ namespace MVBP.Configs
             string pieceDesc = null,
             PieceGroup pieceGroup = default,
             bool playerBasePatch = false,
-            string? spawnOnDestroyed = null,
+            string spawnOnDestroyed = null,
             uint? invWidth = null,
             uint? invHeight = null
         )
@@ -79,17 +79,17 @@ namespace MVBP.Configs
         /// <param name="DBConfig"></param>
         public void Update(PrefabDBConfigEntries DBConfig)
         {
-            this.enabled = DBConfig.enabled.Value;
-            this.allowedInDungeons = DBConfig.allowedInDungeons.Value;
-            this.category = DBConfig.category.Value;
-            this.craftingStation = DBConfig.craftingStation.Value;
-            this.requirements = DBConfig.requirements.Value;
+            enabled = DBConfig.enabled.Value;
+            allowedInDungeons = DBConfig.allowedInDungeons.Value;
+            category = DBConfig.category.Value;
+            craftingStation = DBConfig.craftingStation.Value;
+            requirements = DBConfig.requirements.Value;
 
             // If a config settings is null then it does not show in the config file.
             // This is to avoid users changing it because it should always be set to true
-            this.placementPatch = DBConfig.placementPatch == null || DBConfig.placementPatch.Value;
-            this.clipEverything = DBConfig.clipEverything == null || DBConfig.clipEverything.Value;
-            this.clipGround = DBConfig.clipGround == null || DBConfig.clipGround.Value;
+            placementPatch = DBConfig.placementPatch == null || DBConfig.placementPatch.Value;
+            clipEverything = DBConfig.clipEverything == null || DBConfig.clipEverything.Value;
+            clipGround = DBConfig.clipGround == null || DBConfig.clipGround.Value;
         }
     }
 }
