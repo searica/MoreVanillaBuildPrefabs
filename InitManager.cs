@@ -155,7 +155,7 @@ namespace MVBP
         /// </summary>
         /// <param name="gameObject"></param>
         /// <returns></returns>
-        internal static string GetPrefabName(GameObject gameObject)
+        internal static string GetPrefabName(GameObject gameObject, Piece piece = null)
         {
             if (!gameObject)
             {
@@ -169,7 +169,8 @@ namespace MVBP
                 return prefabName;
             }
 
-            if (gameObject.TryGetComponent(out Piece piece) && PieceToPrefabMap.ContainsKey(piece.m_name))
+            piece ??= gameObject.GetComponent<Piece>();
+            if (piece && PieceToPrefabMap.ContainsKey(piece.m_name))
             {
                 return PieceToPrefabMap[piece.m_name];
             }
