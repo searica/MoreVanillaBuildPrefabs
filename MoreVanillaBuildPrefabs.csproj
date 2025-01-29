@@ -56,6 +56,12 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <Compile Remove="Libraries\**" />
+	  <EmbeddedResource Remove="Libraries\**" />
+	  <None Remove="Libraries\**" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<None Remove="Resources\texture_portal_MainTex.png" />
 		<None Remove="Resources\texture_portal_n_BumpMap.png" />
 	</ItemGroup>
@@ -70,8 +76,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Folder Include="Libraries" />
-		<Folder Include="Libraries\Debug\" />
 		<Folder Include="Publish\Nexus\" />
 		<Folder Include="Publish\ThunderStore\" />
 	</ItemGroup>

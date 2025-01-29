@@ -3,7 +3,7 @@
 using BepInEx.Configuration;
 using MVBP.Extensions;
 
-namespace MVBP.Configs
+namespace MVBP.Models
 {
     /// <summary>
     ///     Helper class to get the names of hammer piece categories for this mod.
