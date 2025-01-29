@@ -6,117 +6,140 @@ using System.Drawing.Imaging;
 using System.IO;
 using UnityEngine;
 
-namespace MVBP.Helpers {
-    internal static class TextureHelper {
-        private const string armorStandTextureName = "Planks5c_low";
-        private static Texture armorStandTexture;
-        private static Material armorStandMaterial;
+namespace MVBP.Helpers;
 
-        private const string bmPortalTextureName = "texture_portal_MainTex.png";
-        private const string bmPortalBumpMapName = "texture_portal_n_BumpMap.png";
-        private static Texture2D bmPortalTexture;
-        private static Texture2D bmPortalBumpMap;
+internal static class TextureHelper
+{
+    private const string armorStandTextureName = "Planks5c_low";
+    private static Texture armorStandTexture;
+    private static Material armorStandMaterial;
 
-        private const string cleanWoodTextureName = "spiralstair_d";
-        private static Texture cleanWoodTexture;
+    private const string bmPortalTextureName = "texture_portal_MainTex.png";
+    private const string bmPortalBumpMapName = "texture_portal_n_BumpMap.png";
+    private static Texture2D bmPortalTexture;
+    private static Texture2D bmPortalBumpMap;
 
-        internal static class TextureNames {
-            public const string SkinMap = "_SkinBumpMap";
-            public const string BumpMap = "_BumpMap";
-            public const string Main = "_MainTex";
-        }
+    private const string cleanWoodTextureName = "spiralstair_d";
+    private static Texture cleanWoodTexture;
 
-        internal static Material GetCustomArmorStandMaterial() {
-            try {
-                if (armorStandMaterial == null) {
-                    var playerBody = PrefabManager.Instance.GetPrefab("Player").transform.Find("Visual").Find("body");
-                    if (playerBody && playerBody.TryGetComponent(out SkinnedMeshRenderer playerMeshRender)) {
-                        var playerMaterial = playerMeshRender.sharedMaterial;
-                        armorStandMaterial = new Material(playerMaterial) {
-                            name = "CustomArmorStand",
-                            mainTexture = GetArmorStandTexture(),
-                            shader = playerMaterial.shader,
-                        };
-                    }
+    internal static class TextureNames
+    {
+        public const string SkinMap = "_SkinBumpMap";
+        public const string BumpMap = "_BumpMap";
+        public const string Main = "_MainTex";
+    }
+
+    internal static Material GetCustomArmorStandMaterial()
+    {
+        try
+        {
+            if (armorStandMaterial == null)
+            {
+                Transform playerBody = PrefabManager.Instance.GetPrefab("Player").transform.Find("Visual").Find("body");
+                if (playerBody && playerBody.TryGetComponent(out SkinnedMeshRenderer playerMeshRender))
+                {
+                    Material playerMaterial = playerMeshRender.sharedMaterial;
+                    armorStandMaterial = new Material(playerMaterial)
+                    {
+                        name = "CustomArmorStand",
+                        mainTexture = GetArmorStandTexture(),
+                        shader = playerMaterial.shader,
+                    };
                 }
             }
-            catch {
-                Log.LogWarning("Failed to create custom armor stand material");
-            }
-
-            return armorStandMaterial;
+        }
+        catch
+        {
+            Log.LogWarning("Failed to create custom armor stand material");
         }
 
-        internal static Texture GetArmorStandTexture() {
-            if (armorStandTexture == null) {
-                armorStandTexture = PrefabManager.Cache.GetPrefab<Texture>(armorStandTextureName);
-                if (armorStandTexture == null) {
-                    Log.LogWarning($"Failed to find {armorStandTextureName}");
-                }
-            }
+        return armorStandMaterial;
+    }
 
-            return armorStandTexture;
+    internal static Texture GetArmorStandTexture()
+    {
+        if (armorStandTexture == null)
+        {
+            armorStandTexture = PrefabManager.Cache.GetPrefab<Texture>(armorStandTextureName);
+            if (armorStandTexture == null)
+            {
+                Log.LogWarning($"Failed to find {armorStandTextureName}");
+            }
         }
 
-        internal static Texture GetNewDvergrTexture() {
-            if (cleanWoodTexture == null) {
-                cleanWoodTexture = PrefabManager.Cache.GetPrefab<Texture>(cleanWoodTextureName);
-                if (cleanWoodTexture == null) {
-                    Log.LogWarning($"Failed to find {cleanWoodTextureName}");
-                }
-            }
+        return armorStandTexture;
+    }
 
-            return cleanWoodTexture;
+    internal static Texture GetNewDvergrTexture()
+    {
+        if (cleanWoodTexture == null)
+        {
+            cleanWoodTexture = PrefabManager.Cache.GetPrefab<Texture>(cleanWoodTextureName);
+            if (cleanWoodTexture == null)
+            {
+                Log.LogWarning($"Failed to find {cleanWoodTextureName}");
+            }
         }
 
-        internal static Texture2D GetBlackMarblePortalTexture() {
-            if (bmPortalTexture == null) {
-                bmPortalTexture = LoadTextureFromResources(bmPortalTextureName);
-            }
+        return cleanWoodTexture;
+    }
 
-            return bmPortalTexture;
+    internal static Texture2D GetBlackMarblePortalTexture()
+    {
+        if (bmPortalTexture == null)
+        {
+            bmPortalTexture = LoadTextureFromResources(bmPortalTextureName);
         }
 
-        internal static Texture2D GetBlackMarblePortalBumpMap() {
-            if (bmPortalBumpMap == null) {
-                bmPortalBumpMap = LoadTextureFromResources(bmPortalBumpMapName);
-            }
+        return bmPortalTexture;
+    }
 
-            return bmPortalBumpMap;
+    internal static Texture2D GetBlackMarblePortalBumpMap()
+    {
+        if (bmPortalBumpMap == null)
+        {
+            bmPortalBumpMap = LoadTextureFromResources(bmPortalBumpMapName);
         }
 
-        internal static Texture2D LoadTextureFromResources(string fileName) {
-            var extension = Path.GetExtension(fileName).ToLower();
-            if (extension != ".png" && extension != ".jpg") {
-                Log.LogWarning("LoadTextureFromResources can only load png or jpg textures");
-                return null;
-            }
-            fileName = Path.GetFileNameWithoutExtension(fileName);
+        return bmPortalBumpMap;
+    }
 
-            if (Properties.Resources.ResourceManager.GetObject(fileName) is not Bitmap resource) {
-                Log.LogWarning($"Failed to find texture: {fileName + extension} in resources");
-                return null;
-            }
-
-            var texture = new Texture2D(0, 0);
-            using (var mStream = new MemoryStream()) {
-                switch (extension) {
-                    case ".jpg":
-                        resource.Save(mStream, ImageFormat.Jpeg);
-                        break;
-
-                    case ".png":
-                        resource.Save(mStream, ImageFormat.Png);
-                        break;
-                }
-
-                var buffer = new byte[mStream.Length];
-                mStream.Position = 0;
-                mStream.Read(buffer, 0, buffer.Length);
-                texture.LoadImage(buffer);
-            }
-
-            return texture;
+    internal static Texture2D LoadTextureFromResources(string fileName)
+    {
+        string extension = Path.GetExtension(fileName).ToLower();
+        if (extension != ".png" && extension != ".jpg")
+        {
+            Log.LogWarning("LoadTextureFromResources can only load png or jpg textures");
+            return null;
         }
+        fileName = Path.GetFileNameWithoutExtension(fileName);
+
+        if (Properties.Resources.ResourceManager.GetObject(fileName) is not Bitmap resource)
+        {
+            Log.LogWarning($"Failed to find texture: {fileName + extension} in resources");
+            return null;
+        }
+
+        var texture = new Texture2D(0, 0);
+        using (var mStream = new MemoryStream())
+        {
+            switch (extension)
+            {
+                case ".jpg":
+                    resource.Save(mStream, ImageFormat.Jpeg);
+                    break;
+
+                case ".png":
+                    resource.Save(mStream, ImageFormat.Png);
+                    break;
+            }
+
+            byte[] buffer = new byte[mStream.Length];
+            mStream.Position = 0;
+            mStream.Read(buffer, 0, buffer.Length);
+            texture.LoadImage(buffer);
+        }
+
+        return texture;
     }
 }

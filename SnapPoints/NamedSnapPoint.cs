@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace MVBP.Models;
+namespace MVBP.SnapPoints;
 
 internal sealed class NamedSnapPoint
 {

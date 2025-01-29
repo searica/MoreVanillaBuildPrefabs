@@ -2,36 +2,40 @@
 
 using HarmonyLib;
 using UnityEngine.SceneManagement;
+using Logging;
 
-namespace MVBP.Patches
+namespace MVBP.Patches;
+
+[HarmonyPatch(typeof(ZNet))]
+internal static class ZNetPatch
 {
-    [HarmonyPatch(typeof(ZNet))]
-    internal static class ZNetPatch {
-        /// <summary>
-        ///     Patch to check if world modifiers for resources are active
-        ///     and re-initialize the mod if they are so pickables have the
-        ///     correct build requirement costs.
-        /// </summary>
-        [HarmonyPostfix]
-        [HarmonyPatch(nameof(ZNet.Start))]
-        public static void ZNetStartPostfix() {
-            Log.LogInfo("Checking world modifiers", LogLevel.Medium);
+    /// <summary>
+    ///     Patch to check if world modifiers for resources are active
+    ///     and re-initialize the mod if they are so pickables have the
+    ///     correct build requirement costs.
+    /// </summary>
+    [HarmonyPostfix]
+    [HarmonyPatch(nameof(ZNet.Start))]
+    public static void ZNetStartPostfix()
+    {
+        Log.LogInfo("Checking world modifiers", Log.InfoLevel.Medium);
 
-            // If loading into game world and prefabs have not been added
-            if (SceneManager.GetActiveScene().name == "main") {
-                if (Game.m_resourceRate == 1.0f) { return; }
+        // If loading into game world and prefabs have not been added
+        if (SceneManager.GetActiveScene().name == "main")
+        {
+            if (Game.m_resourceRate == 1.0f) { return; }
 
-                Log.LogInfo("World modifiers for resource rate are active, re-initializing");
+            Log.LogInfo("World modifiers for resource rate are active, re-initializing");
 
-                var watch = new System.Diagnostics.Stopwatch();
-                if (Log.IsVerbosityMedium) { watch.Start(); }
+            var watch = new System.Diagnostics.Stopwatch();
+            if (Log.IsVerbosityMedium) { watch.Start(); }
 
-                InitManager.UpdatePieces();
+            UpdateController.UpdatePieces();
 
-                if (Log.IsVerbosityMedium) {
-                    watch.Stop();
-                    Log.LogInfo($"Time to re-initialize: {watch.ElapsedMilliseconds} ms");
-                }
+            if (Log.IsVerbosityMedium)
+            {
+                watch.Stop();
+                Log.LogInfo($"Time to re-initialize: {watch.ElapsedMilliseconds} ms");
             }
         }
     }

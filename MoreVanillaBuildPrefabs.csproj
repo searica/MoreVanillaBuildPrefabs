@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<NuGetPackages>$(UserProfile)\.nuget\packages</NuGetPackages>
-		<JotunnProps>$(NuGetPackages)\jotunnlib\2.20.0\build\JotunnLib.props</JotunnProps>
+		<JotunnProps>$(NuGetPackages)\jotunnlib\2.23.0\build\JotunnLib.props</JotunnProps>
 	</PropertyGroup>
 
 	<Import Project="ModPackageTool.targets" Condition="Exists('ModPackageTool.targets')" />
@@ -11,7 +11,7 @@
 		<OutputType>Library</OutputType>
 		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 		<!--<LangVersion>latest</LangVersion>-->
-		<LangVersion>10.0</LangVersion>
+		<LangVersion>12.0</LangVersion>
 		<AppConfig>App.config</AppConfig>
 	</PropertyGroup>
 
@@ -85,8 +85,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="JotunnLib" Version="2.22.0" />
-		<PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+		<PackageReference Include="JotunnLib" Version="2.23.0" />
 	</ItemGroup>
 
 	<ItemGroup>

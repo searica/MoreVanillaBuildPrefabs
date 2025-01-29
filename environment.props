@@ -10,7 +10,7 @@
 
 		<!-- This is the folder where your build gets copied to when using the post-build automations -->
 		<r2ModManPath>$(AppData)\r2modmanPlus-local\Valheim\profiles</r2ModManPath>
-		<BepInExPath>$(r2ModManPath)\Mod-Debug\BepInEx</BepInExPath>
+
 		<!--For Jotunn-->
 		<BEPINEX_PATH>$(r2ModManPath)\Mod-Debug\BepInEx</BEPINEX_PATH>
 		<MOD_DEPLOYPATH>$(r2ModManPath)\Mod-Debug\BepInEx\plugins</MOD_DEPLOYPATH>

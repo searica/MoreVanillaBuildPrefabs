@@ -1,4 +1,4 @@
-﻿namespace MVBP.Helpers;
+﻿namespace MVBP.SnapPoints;
 
 internal static class SnapPointNames
 {

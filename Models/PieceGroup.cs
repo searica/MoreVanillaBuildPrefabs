@@ -1,49 +1,48 @@
 ﻿// Ignore Spelling: MVBP
 
-namespace MVBP.Models
+namespace MVBP.Models;
+
+internal enum PieceGroup
 {
-    internal enum PieceGroup
-    {
-        None = 0,
-        Fire,
-        Stack,
-        Treasure,
+    None = 0,
+    Fire,
+    Stack,
+    Treasure,
 
-        Bed,
-        Chest,
-        Chair,
-        Table,
-        Torch,
-        Brazier,
-        Rug,
-        Banner,
-        ArmorStand,
-        Statue,
+    Bed,
+    Chest,
+    Chair,
+    Table,
+    Torch,
+    Brazier,
+    Rug,
+    Banner,
+    ArmorStand,
+    Statue,
 
-        Wood,
-        Darkwood,
-        Ashwood,
-        Goblin,
-        Iron,
-        Crystal,
-        Stone,
-        BlackMarble,
-        Dvergr,
+    Wood,
+    Darkwood,
+    Ashwood,
+    Goblin,
+    Iron,
+    Crystal,
+    Stone,
+    BlackMarble,
+    Dvergr,
 
-        Portal,
-        Ward,
-        Cart,
-        Ship,
+    Portal,
+    Ward,
+    Cart,
+    Ship,
 
-        VanillaCrop,
-        Plant, // pickable plants
-        Flora, // non pickable plants (shrubs, trees, etc.)
-        Rock,
-        Ice,
-        Ore,
+    VanillaCrop,
+    Plant, // pickable plants
+    Flora, // non pickable plants (shrubs, trees, etc.)
+    Rock,
+    Ice,
+    Ore,
 
-        Crafting,
-        Misc,
-        Spawner,
-    }
+    Crafting,
+    Misc,
+    Spawner,
 }
