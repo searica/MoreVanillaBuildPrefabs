@@ -41,7 +41,7 @@ internal static class Placement
             ).MakeGenericMethod(typeof(GameObject));
 
             var codeMatches = new CodeMatch[] {
-                new CodeMatch(OpCodes.Call, instantiateMethod)
+                new(OpCodes.Call, instantiateMethod)
             };
 
             return new CodeMatcher(instructions)
@@ -55,7 +55,7 @@ internal static class Placement
         {
             Log.LogInfo("EmptyInventoryOnPlacement()", Log.InfoLevel.Medium);
 
-            if (!ZNetPrefabManager.IsPatchedByMVBP(gameObject) &&
+            if (!PrefabConfigManager.IsPrefabEnabled(gameObject) &&
                 gameObject.TryGetComponent(out Container container))
             {
                 container.m_inventory.RemoveAll();
@@ -86,7 +86,7 @@ internal static class Placement
             var codeMatches = new CodeMatch[]
             {
              new CodeMatch(OpCodes.Call, instantiateMethod),
-             new CodeMatch(
+             new(
                  OpCodes.Stfld,
                  AccessTools.Field(typeof(Player), nameof(Player.m_placementGhost))
             )
@@ -225,7 +225,7 @@ internal static class Placement
         [HarmonyPatch(nameof(Piece.Awake))]
         private static void PieceAwakePostfix(Piece __instance)
         {
-            PlayerPiecePatcher.PatchPlayerBuiltPieceIfNeed(__instance);
+            PlayerPiecePatcher.PatchPlayerBuiltPieceIfNeeded(__instance);
         }
 
         /// <summary>
@@ -238,7 +238,7 @@ internal static class Placement
         [HarmonyPatch(nameof(Piece.SetCreator))]
         private static void PieceSetCreatorPostfix(Piece __instance)
         {
-            PlayerPiecePatcher.PatchPlayerBuiltPieceIfNeed(__instance);
+            PlayerPiecePatcher.PatchPlayerBuiltPieceIfNeeded(__instance);
         }
 
         /// <summary>
