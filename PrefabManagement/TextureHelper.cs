@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using UnityEngine;
+using Logging;
 
 namespace MVBP.Helpers;
 

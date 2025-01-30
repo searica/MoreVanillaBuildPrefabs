@@ -3,8 +3,9 @@ using Jotunn.Managers;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Logging;
 
-namespace MVBP.Helpers;
+namespace MVBP.PrefabManagement;
 
 /* Placement Sound Effects
  * sfx_build_cultivator
@@ -37,7 +38,7 @@ namespace MVBP.Helpers;
 
 // disable IceBlocker
 
-internal static class SfxHelper
+internal static class SfxManager
 {
     private static readonly Dictionary<string, EffectList.EffectData> PlacementSfx = new()
     {
@@ -55,9 +56,9 @@ internal static class SfxHelper
     };
 
     /// <summary>
-    ///     Initializes SfxHelper and caches SFX prefabs.
+    ///     Initializes SfxManager and caches SFX prefabs.
     /// </summary>
-    internal static void Init()
+    public static void Initialize()
     {
         InitSfx(PlacementSfx);
         InitSfx(RemovalSfx);

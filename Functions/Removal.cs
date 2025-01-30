@@ -8,6 +8,7 @@ using System.Reflection.Emit;
 using UnityEngine;
 using Logging;
 using MVBP.PrefabManagement;
+using MVBP.PieceManagement;
 
 namespace MVBP.Functions;
 
@@ -42,7 +43,7 @@ internal static class Removal
                     Vector3.Distance(hitInfo.point, __instance.m_eye.position) < __instance.m_maxPlaceDistance)
                 {
                     Piece piece = hitInfo.collider.GetComponentInParent<Piece>();
-                    if (piece && UpdateController.IsPatchedByMod(piece))
+                    if (piece && ZNetPrefabManager.IsPatchedByMVBP(piece))
                     {
                         __result = RemoveCustomPiece(__instance, piece);
                         return false; // skip vanilla method
@@ -117,8 +118,8 @@ internal static class Removal
         private static bool Check_m_canBeRemoved(Piece piece)
         {
 
-            if (UpdateController.IsPrefabEnabled(piece.gameObject) &&
-                PieceCategoryHelper.IsCreativeModePiece(piece) &&
+            if (PrefabConfigManager.IsPrefabEnabled(piece.gameObject) &&
+                PieceCategoryManager.IsCreativeModePiece(piece) &&
                 piece.IsPlacedByPlayer())
             {
                 // Allow creative mode pieces to be removed by creator
@@ -141,9 +142,9 @@ internal static class Removal
             {
                 Log.LogInfo("Removing destructible piece", Log.InfoLevel.Medium);
 
-                if (!CreateHitEffects(destructible) && !SfxHelper.HasSfx(destructible.m_destroyedEffect))
+                if (!CreateHitEffects(destructible) && !SfxManager.HasSfx(destructible.m_destroyedEffect))
                 {
-                    SfxHelper.CreateRemovalSfx(piece); // create deconstruction SFX if needed
+                    SfxManager.CreateRemovalSfx(piece); // create deconstruction SFX if needed
                 }
 
                 destructible.DestroyNow();
@@ -255,7 +256,7 @@ internal static class Removal
                 return Array.Empty<Piece.Requirement>();
             }
 
-            if (!UpdateController.IsPatchedByMod(piece))
+            if (!ZNetPrefabManager.IsPatchedByMVBP(piece))
             {
                 // do nothing if not a piece the mod changes
                 return piece.m_resources;
@@ -285,13 +286,13 @@ internal static class Removal
             // If piece has MineRock5 then adjust dropped resources
             if (piece.gameObject.TryGetComponent(out MineRock5 mineRock5))
             {
-                resources = RequirementsHelper.RemoveMineRock5DropsFromRequirements(resources, mineRock5);
+                resources = PieceReqsManager.RemoveMineRock5DropsFromRequirements(resources, mineRock5);
             }
 
             // If piece has MineRock then adjust dropped resources
             if (piece.gameObject.TryGetComponent(out MineRock mineRock))
             {
-                resources = RequirementsHelper.RemoveMineRockDropsFromRequirements(resources, mineRock);
+                resources = PieceReqsManager.RemoveMineRockDropsFromRequirements(resources, mineRock);
             }
 
             // Early return if ZNetView is missing
@@ -314,7 +315,7 @@ internal static class Removal
             {
                 zNetView.InvokeRPC("Pick");
                 // Adjust drops to avoid duplicating pickable item (avoid infinite resource exploits).
-                resources = RequirementsHelper.RemovePickableFromRequirements(resources, pickable);
+                resources = PieceReqsManager.RemovePickableFromRequirements(resources, pickable);
             }
 
             return resources;
@@ -334,7 +335,7 @@ internal static class Removal
         [HarmonyPatch(nameof(Destructible.Destroy))]
         private static bool DestroyPrefix(Destructible __instance)
         {
-            if (__instance && UpdateController.IsPatchedByMod(__instance.gameObject))
+            if (__instance && ZNetPrefabManager.IsPatchedByMVBP(__instance.gameObject))
             {
                 Piece piece = __instance.GetComponent<Piece>();
                 if (piece && piece.IsPlacedByPlayer())
@@ -366,7 +367,7 @@ internal static class Removal
         [HarmonyPatch(nameof(Pickable.RPC_Pick))]
         private static void RPC_PickPrefix(Pickable __instance, out DropTable __state)
         {
-            if (UpdateController.IsPatchedByMod(__instance) && __instance.TryGetComponent(out Piece piece) && piece.IsPlacedByPlayer())
+            if (ZNetPrefabManager.IsPatchedByMVBP(__instance) && __instance.TryGetComponent(out Piece piece) && piece.IsPlacedByPlayer())
             {
                 __state = __instance.m_extraDrops;
                 __instance.m_extraDrops = emptyDrops;
@@ -442,7 +443,7 @@ internal static class Removal
         private static bool OnDestroyedPrefix(DropOnDestroyed __instance)
         {
             if (__instance &&
-                UpdateController.IsPatchedByMod(__instance) &&
+                ZNetPrefabManager.IsPatchedByMVBP(__instance) &&
                 __instance.TryGetComponent(out Piece piece)
                 && piece.IsPlacedByPlayer())
             {
@@ -465,10 +466,10 @@ internal static class Removal
         [HarmonyPatch(nameof(WearNTear.Destroy))]
         private static void DestroyPrefix(WearNTear __instance, out EffectList __state)
         {
-            if (UpdateController.IsPatchedByMod(__instance) && !SfxHelper.HasSfx(__instance.m_destroyedEffect))
+            if (ZNetPrefabManager.IsPatchedByMVBP(__instance) && !SfxManager.HasSfx(__instance.m_destroyedEffect))
             {
                 __state = __instance.m_destroyedEffect;
-                __instance.m_destroyedEffect = SfxHelper.FixRemovalSfx(__instance);
+                __instance.m_destroyedEffect = SfxManager.FixRemovalSfx(__instance);
                 return;
             }
 

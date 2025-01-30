@@ -1,19 +1,81 @@
 ﻿// Ignore Spelling: MVBP
 
+using Jotunn.Configs;
+using Jotunn.Managers;
+using Logging;
 using MVBP.Extensions;
-using System;
+using MVBP.PrefabManagement;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace MVBP.Helpers;
+namespace MVBP.PieceManagement;
 
 
 /// <summary>
 ///     Handles modifying piece requirements.
 /// </summary>
-internal static class RequirementsHelper
+internal static class PieceReqsManager
 {
+
+    /// <summary>
+    ///     Create piece requirements array from pieceDB and modify it to prevent
+    ///     exploits if the piece has a pickable component.
+    /// </summary>
+    /// <param name="pieceDB"></param>
+    /// <returns></returns>
+    public static Piece.Requirement[] ConfigurePieceRequirements(PrefabConfig prefabConfig)
+    {
+        var reqs = CreateRequirementsArray(prefabConfig.ReadRequirements());
+
+        if (prefabConfig.Piece.TryGetComponent(out MineRock mineRock))
+        {
+            reqs = AddMineRockDropsToRequirements(reqs, mineRock);
+        }
+       
+        if (prefabConfig.Piece.TryGetComponent(out MineRock5 mineRock5))
+        {
+            reqs = AddMineRock5DropsToRequirements(reqs, mineRock5);
+        }
+
+        if (prefabConfig.Piece.TryGetComponent(out Pickable pickable))
+        {
+            reqs = AddPickableToRequirements(reqs, pickable);
+        }
+        return reqs;
+    }
+
+    /// <summary>
+    ///     Convert List<RequirementConfig> from deserialized requirement config string to Piece.Requirement Array
+    /// </summary>
+    /// <param name="data"></param>
+    /// <returns></returns>
+    internal static Piece.Requirement[] CreateRequirementsArray(List<RequirementConfig> reqConfigs)
+    {
+        var requirements = new List<Piece.Requirement>();
+        foreach (RequirementConfig reqConfig in reqConfigs)
+        {
+            if (reqConfig.Item == " ")
+            {
+                continue;
+            }
+
+            ItemDrop itm = ObjectDB.instance.GetItemPrefab(reqConfig.Item)?.GetComponent<ItemDrop>();
+            if (!itm)
+            {
+                Log.LogWarning($"Unable to find requirement ID: {reqConfig.Item}");
+                continue;
+            }
+            Piece.Requirement pieceReq = new()
+            {
+                m_resItem = itm,
+                m_amount = reqConfig.Amount,
+                m_recover = true
+            };
+            requirements.Add(pieceReq);
+        }
+        return requirements.ToArray();
+    }
 
     /// <summary>
     ///     If the pickable is not null and drops an item, then modify the

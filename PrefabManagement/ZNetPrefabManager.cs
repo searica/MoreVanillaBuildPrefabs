@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using HarmonyLib;
+
 using Logging;
 using Jotunn.Managers;
 using System.Linq;
 using System;
 using MVBP.Extensions;
 using MVBP.PieceManagement;
+using Jotunn.Configs;
 
 
 namespace MVBP.PrefabManagement;
@@ -16,25 +16,11 @@ namespace MVBP.PrefabManagement;
 /// <summary>
 ///     Manages detecting the eligible ZNetScene prefabs and patching them.
 /// </summary>
-[HarmonyPatch]
 internal static class ZNetPrefabManager
 {
     internal static readonly Dictionary<string, Piece.Requirement[]> VanillaPieceResources = [];
 
     private static readonly HashSet<string> AddedPieceComponent = [];
-
-    internal static readonly Dictionary<string, GameObject> SeasonalPiecePrefabMap = new()
-    {
-        {"piece_maypole", null },
-        {"piece_jackoturnip", null },
-        {"piece_gift1", null },
-        {"piece_gift2", null },
-        {"piece_gift3", null },
-        {"piece_mistletoe",null },
-        {"piece_xmascrown",null },
-        {"piece_xmasgarland",null },
-        {"piece_xmastree",null },
-    };
 
     internal static readonly Dictionary<string, GameObject> EligiblePrefabMap = [];
 
@@ -116,36 +102,6 @@ internal static class ZNetPrefabManager
     ];
 
     /// <summary>
-    ///     Hook to initialize the mod. This is after both PlantEverything
-    ///     and PotteryBarn add pieces but before PlanBuild scans for them.
-    /// </summary>
-    /// <param name="__instance"></param>
-    [HarmonyPrefix]
-    [HarmonyPriority(Priority.High)]
-    [HarmonyPatch(typeof(ZoneSystem), nameof(ZoneSystem.Start))]
-    private static void InitializeZNetPrefabManager()
-    {
-        // If loading into game world and prefabs have not been added
-        if (SceneManager.GetActiveScene().name != "main")
-        {
-            return;
-        }
-
-        Log.LogInfo("Performing mod initialization");
-
-        System.Diagnostics.Stopwatch watch = new System.Diagnostics.Stopwatch();
-        if (Log.IsVerbosityMedium) { watch.Start(); }
-
-        Initialize();
-
-        if (Log.IsVerbosityMedium)
-        {
-            watch.Stop();
-            Log.LogInfo($"Time to initialize: {watch.ElapsedMilliseconds} ms");
-        }
-    }
-
-    /// <summary>
     ///     Try to get default Piece Resources for the vanilla version of the gameobject.
     /// </summary>
     /// <param name="gameObject"></param>
@@ -153,13 +109,18 @@ internal static class ZNetPrefabManager
     /// <returns></returns>
     internal static bool TryGetVanillaPieceResources(GameObject gameObject, out Piece.Requirement[] defaultResources)
     {
-        if (VanillaPieceResources.TryGetValue(gameObject.GetPrefabName(), out defaultResources)) 
+        if (VanillaPieceResources.TryGetValue(gameObject.GetPrefabName(), out defaultResources))
         {
             return true;
         }
 
         defaultResources = null;
         return false;
+    }
+
+    public static bool IsPatchedByMVBP(Component component)
+    {
+        return EligiblePrefabMap.ContainsKey(component.gameObject.GetPrefabName());
     }
 
     public static bool IsPatchedByMVBP(GameObject gameObject)
@@ -176,19 +137,19 @@ internal static class ZNetPrefabManager
     {
         if (EligiblePrefabMap.TryGetValue(name, out prefab))
         {
-            return true;  
+            return true;
         }
         return false;
     }
 
-    private static void Initialize()
+    public static void Initialize()
     {
         if (EligiblePrefabMap.Count > 0)
         {
             return;
         }
-        Log.LogInfo("Initializing prefabs");
-        InitSeasonalPiecePrefabs();
+
+        
         InitEligiblePrefabs();
 
         Log.LogInfo("Initializing default pieces");
@@ -208,68 +169,22 @@ internal static class ZNetPrefabManager
     }
 
     /// <summary>
-    ///     Get HashSet of all prefab names for existing pieces in all PieceTables.
-    /// </summary>
-    /// <returns></returns>
-    private static HashSet<string> GetExistingBuildablePrefabs()
-    {
-        return Resources.FindObjectsOfTypeAll<PieceTable>()
-            .SelectMany(pieceTable => pieceTable.m_pieces)
-            .Select(piece => piece.name)
-            .ToHashSet();
-    }
-    
-    /// <summary>
-    ///     Get refs to seasonal pieces that are disabled.
-    /// </summary>
-    private static void InitSeasonalPiecePrefabs()
-    {
-        List<string> pieceNames = SeasonalPiecePrefabMap.Keys.ToList();
-        List<string> nullKeys = [];
-
-        foreach (string name in pieceNames)
-        {
-            GameObject prefab = PrefabManager.Instance.GetPrefab(name);
-            if (prefab && prefab.TryGetComponent(out Piece piece))
-            {
-                // Only add pieces that are currently disabled
-                if (!piece.m_enabled)
-                {
-                    SeasonalPiecePrefabMap[name] = prefab;
-                }
-                else
-                {
-                    Log.LogInfo($"Seasonal Piece: {name} already enabled", Log.InfoLevel.Medium);
-                    nullKeys.Add(name);
-                }
-            }
-            else
-            {
-                Log.LogWarning($"Seasonal piece: {name} could not be found");
-            }
-        }
-
-        foreach (string key in nullKeys)
-        {
-            SeasonalPiecePrefabMap.Remove(key);
-        }
-    }
-
-    /// <summary>
     ///     Get map prefabs that are eligible for MVBP.
     /// </summary>
     private static void InitEligiblePrefabs()
     {
+        Log.LogInfo("Initializing prefabs");
+
         // Find eligible prefabs for adding
         HashSet<string> ExistingBuildablePrefabs = GetExistingBuildablePrefabs();
         foreach (GameObject prefab in ZNetScene.instance.m_prefabs)
         {
-            if (!prefab.transform.parent)
+            if (prefab.transform.parent)
             {
                 continue; // not root prefab
             }
 
-            if (!ExistingBuildablePrefabs.Contains(prefab.name))
+            if (ExistingBuildablePrefabs.Contains(prefab.name))
             {
                 continue; // already buildable
             }
@@ -284,6 +199,9 @@ internal static class ZNetPrefabManager
                 continue;
             }
 
+            EligiblePrefabMap.Add(prefab.name, prefab);
+            UpdateVanillaResources(prefab);
+
             try
             {
                 // Always patching means it only runs once and
@@ -294,12 +212,20 @@ internal static class ZNetPrefabManager
             {
                 Log.LogWarning($"Failed to patch prefab {prefab.name}: {ex}");
             }
-
-            EligiblePrefabMap.Add(prefab.name, prefab);
-            UpdateVanillaResources(prefab);
-           
         }
         Log.LogInfo($"Found {EligiblePrefabMap.Count} prefabs");
+    }
+
+    /// <summary>
+    ///     Get HashSet of all prefab names for existing pieces in all PieceTables.
+    /// </summary>
+    /// <returns></returns>
+    private static HashSet<string> GetExistingBuildablePrefabs()
+    {
+        return Resources.FindObjectsOfTypeAll<PieceTable>()
+            .SelectMany(pieceTable => pieceTable.m_pieces)
+            .Select(piece => piece.name)
+            .ToHashSet();
     }
 
     /// <summary>
@@ -342,7 +268,7 @@ internal static class ZNetPrefabManager
         }
         else
         {
-            VanillaPieceResources.Add(prefab.name, Array.Empty<Piece.Requirement>());
+            VanillaPieceResources.Add(prefab.name, []);
         }
     }
 
@@ -432,7 +358,7 @@ internal static class ZNetPrefabManager
 
             // If it spawns a MineRock5 when damaged then just return the MineRock5 variant
             if (destructible.m_spawnWhenDestroyed &&
-                destructible.m_spawnWhenDestroyed.transform.parent == null &&
+                !destructible.m_spawnWhenDestroyed.transform.parent &&
                 destructible.m_spawnWhenDestroyed.GetComponent<MineRock5>())
             {
                 result = destructible.m_spawnWhenDestroyed;
@@ -510,5 +436,64 @@ internal static class ZNetPrefabManager
             return true;
         }
         return false;
+    }
+
+    /// <summary>
+    ///     Apply settings from PrefabConfigs to EligiblePrefabs
+    /// </summary>
+    public static void ApplyPrefabConfigSettings()
+    {
+        foreach (KeyValuePair<string, GameObject> pair in EligiblePrefabMap)
+        {
+            if (!pair.Value)
+            {
+                Log.LogWarning($"Prefab {pair.Key} is null!");
+                continue;
+            }
+            if (!PrefabConfigManager.TryGetPrefabConfig(pair.Key, out var prefabConfig, checkIfBound: true))
+            {
+                Log.LogWarning($"Prefab {pair.Key} does not have a valid config!");
+                continue;
+            }
+
+            Piece piece = prefabConfig.Piece;
+            piece.m_name = PieceNameManager.FormatPieceName(prefabConfig);
+            piece.m_description = PieceNameManager.GetPieceDescription(prefabConfig);
+
+            if (AddedPieceComponent.Contains(pair.Key))
+            {
+                // set component enabled/disabled for components added by MVBP
+                piece.enabled = prefabConfig.Enabled.Value || MorePrefabs.IsForceAllPrefabs;
+            }
+
+            // set piece visible in PieceTable based on MVBP config
+            piece.m_enabled = prefabConfig.Enabled.Value || MorePrefabs.IsForceAllPrefabs;
+
+            // Prevent CreativeMode pieces and any clones of them from being removable.
+            // (Player.RemovePiece patch allows removing player-built instances).
+            // Mimic Vanilla, make ships/carts non-removable.
+            if (PieceCategoryManager.IsCreativeModePiece(piece) ||
+                prefabConfig.Prefab.GetComponent<Ship>() ||
+                prefabConfig.Prefab.GetComponent<Vagon>())
+            {
+                piece.m_canBeRemoved = false;
+            }
+
+            piece.m_allowedInDungeons = prefabConfig.AllowedInDungeons.Value;
+            piece.m_clipEverything = prefabConfig.ClipEverything.Value;
+            piece.m_clipGround = prefabConfig.ClipGround.Value;
+            piece.m_category = PieceCategoryManager.GetPieceCategory(prefabConfig.Category.Value);
+            piece.m_craftingStation = GetCraftingStation(prefabConfig.CraftingStation.Value);
+            piece.m_resources = PieceReqsManager.ConfigurePieceRequirements(prefabConfig);
+            SfxManager.FixPlacementSfx(piece);
+        }
+
+    }
+
+    private static CraftingStation GetCraftingStation(string name)
+    {
+        string internalName = CraftingStations.GetInternalName(name);
+        CraftingStation station = ZNetScene.instance?.GetPrefab(internalName)?.GetComponent<CraftingStation>();
+        return station;
     }
 }

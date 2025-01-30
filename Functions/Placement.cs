@@ -1,10 +1,12 @@
 ﻿using HarmonyLib;
-using MVBP.SnapPoints;
 using System;
 using System.Collections.Generic;
 using System.Reflection.Emit;
 using UnityEngine;
 using Logging;
+using MVBP.PrefabManagement;
+using MVBP.Helpers;
+using MVBP.Utils;
 
 namespace MVBP.Functions;
 
@@ -54,7 +56,7 @@ internal static class Placement
         {
             Log.LogInfo("EmptyInventoryOnPlacement()", Log.InfoLevel.Medium);
 
-            if (UpdateController.IsPrefabEnabled(gameObject) &&
+            if (!ZNetPrefabManager.IsPatchedByMVBP(gameObject) &&
                 gameObject.TryGetComponent(out Container container))
             {
                 container.m_inventory.RemoveAll();
@@ -103,7 +105,7 @@ internal static class Placement
             {
                 return selectedPrefab;
             }
-            if (!UpdateController.IsPatchedByMod(selectedPrefab))
+            if (!ZNetPrefabManager.IsPatchedByMVBP(selectedPrefab))
             {
                 // ignore pieces not touched by this mod
                 return UnityEngine.Object.Instantiate(selectedPrefab);
@@ -130,8 +132,7 @@ internal static class Placement
 
             string prefabName = selectedPrefab.name;
 
-            if (PieceHelper.AddedPrefabs.Contains(prefabName) &&
-                MorePrefabs.NeedsCollisionPatchForGhost(prefabName))
+            if (PrefabConfigManager.NeedsCollisionPatchForGhost(prefabName))
             {
                 // Needed to make some things work, like Stalagmite, blackmarble_corner_stair, silvervein, etc.
                 ColliderManager.PatchCollider(clonedPrefab);
@@ -199,12 +200,12 @@ internal static class Placement
                 return;
             }
 
-            if (UpdateController.TryGetPieceDB(__instance.m_placementGhost, out PieceDB pieceDB) &&
-                pieceDB.placementOffset != null)
+            if (PrefabConfigManager.TryGetPrefabConfig(__instance.m_placementGhost, out var prefabConfig, checkIfBound: true) &&
+                prefabConfig.PlacementOffset.HasValue)
             {
                 Quaternion quaternion = __instance.m_placementGhost.transform.rotation;
                 Vector3 pos = __instance.m_placementGhost.transform.position;
-                __instance.m_placementGhost.transform.position = pos + (quaternion * pieceDB.placementOffset.Value);
+                __instance.m_placementGhost.transform.position = pos + (quaternion * prefabConfig.PlacementOffset.Value);
             }
         }
     }

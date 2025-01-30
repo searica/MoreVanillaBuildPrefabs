@@ -1,7 +1,6 @@
-﻿using MVBP.Configs;
-using MVBP.Extensions;
-using MVBP.Models;
+﻿using MVBP.Extensions;
 using UnityEngine;
+using MVBP.PrefabManagement;
 
 namespace MVBP.Helpers;
 
@@ -21,11 +20,11 @@ internal static class PlayerPiecePatcher
     /// <param name="piece"></param>
     internal static void PatchPlayerBuiltPieceIfNeed(Piece piece)
     {
-        if (!piece || !piece.gameObject || !piece.IsPlacedByPlayer() || !UpdateController.IsPatchedByMod(piece))
+        if (!piece || !piece.gameObject || !piece.IsPlacedByPlayer() || !ZNetPrefabManager.IsPatchedByMVBP(piece))
         {
             return;
         }
-        string prefabName = UpdateController.GetPrefabName(piece);
+        string prefabName = piece.gameObject.GetPrefabName();
 
         ApplyDoorPatches(prefabName, piece.gameObject);
         ApplyTimedDestructionPatch(piece.gameObject);
@@ -86,8 +85,12 @@ internal static class PlayerPiecePatcher
         }
 
         // Modify container size based on configs
-        var prefabDB = PrefabDefaults.GetDefaultPrefabDB(prefabName);
-        if (prefabDB.invWidth == null || prefabDB.invHeight == null)
+        if (!PrefabConfigManager.TryGetPrefabConfig(prefabName, out var prefabConfig, checkIfBound: true))
+        {
+            return;
+        }
+
+        if (!prefabConfig.InvWidth.HasValue || !prefabConfig.InvHeight.HasValue)
         {
             return;
         }
@@ -98,8 +101,8 @@ internal static class PlayerPiecePatcher
             return;
         }
 
-        int width = (int)prefabDB.invWidth;
-        int height = (int)prefabDB.invHeight;
+        int width = (int)prefabConfig.InvWidth.Value;
+        int height = (int)prefabConfig.InvHeight.Value;
 
         zdo.Set("HasFields", true);
         zdo.Set("HasFieldsContainer", true);
@@ -146,17 +149,17 @@ internal static class PlayerPiecePatcher
     /// <param name="destructible"></param>
     private static void EditDestructibleSpawn(string name, Destructible destructible)
     {
-        if (!destructible || !PrefabDefaults.DefaultConfigValues.TryGetValue(name, out var config))
+        if (!destructible || !PrefabConfigManager.TryGetPrefabConfig(name, out var prefabConfig, checkIfBound: true))
         {
             return;
         }
 
-        if (string.IsNullOrEmpty(config.spawnOnDestroyed))
+        if (string.IsNullOrEmpty(prefabConfig.SpawnOnDestroyed))
         {
             return;
         }
 
-        GameObject spawn = ZNetScene.instance.GetPrefab(config.spawnOnDestroyed);
+        GameObject spawn = ZNetScene.instance.GetPrefab(prefabConfig.SpawnOnDestroyed);
         if (!spawn)
         {
             return;
@@ -184,7 +187,7 @@ internal static class PlayerPiecePatcher
     /// <param name="gameObject"></param>
     private static void ApplyNewDvergrTexture(string name, GameObject gameObject)
     {
-        if (PrefabDefaults.DvergrWoodPieces.Contains(name))
+        if (PrefabConfigManager.DvergrWoodPieces.Contains(name))
         {
             Renderer[] componentsInChildren = gameObject.transform.Find("New").GetComponentsInChildren<Renderer>(true);
             foreach (Renderer renderer in componentsInChildren)
@@ -201,9 +204,9 @@ internal static class PlayerPiecePatcher
     /// <param name="gameObject"></param>
     private static void ApplyPlayerBasePatches(string name, GameObject gameObject)
     {
-        if (UpdateController.TryGetPieceDB(name, out PieceDB pieceDB))
+        if (PrefabConfigManager.TryGetPrefabConfig(name, out PrefabConfig prefabConfig, checkIfBound: true))
         {
-            if (pieceDB.playerBasePatch)
+            if (prefabConfig.PlayerBasePatch)
             {
                 AddPlayerBase(gameObject);
             }

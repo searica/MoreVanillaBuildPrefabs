@@ -2,10 +2,14 @@
 using Jotunn.Configs;
 using Jotunn.Extensions;
 using UnityEngine;
-using MVBP.Models;
 using System;
 using Configs;
 using Logging;
+using Jotunn.Managers;
+using MVBP.Helpers;
+using MVBP.PieceManagement;
+using MVBP.SnapPoints;
+using System.Collections.Generic;
 
 namespace MVBP.PrefabManagement;
 
@@ -22,7 +26,7 @@ internal class PrefabConfig(
     Vector3? placementOffset = null,
     string pieceName = null,
     string pieceDesc = null,
-    PieceGroup pieceGroup = default,
+    PieceClassification pieceGroup = default,
     bool playerBasePatch = false,
     string spawnOnDestroyed = null,
     uint? invWidth = null,
@@ -42,7 +46,7 @@ internal class PrefabConfig(
     public Vector3? PlacementOffset = placementOffset;
     public string PieceName = pieceName;
     public string PieceDesc = pieceDesc;
-    public PieceGroup PieceGroup = pieceGroup;
+    public PieceClassification PieceGroup = pieceGroup;
     public bool PlayerBasePatch = playerBasePatch;
     public string SpawnOnDestroyed = spawnOnDestroyed;
     public uint? InvWidth = invWidth;
@@ -65,8 +69,10 @@ internal class PrefabConfig(
     public ConfigEntry<bool> ClipEverything { get; private set; }
     public ConfigEntry<bool> ClipGround { get; private set; }
 
-    internal bool UpdatePieceSettings { get; set; } = false;
-    internal bool UpdatePlacementSettings { get; set; } = false;
+    private const char amountSeperator = ',';
+    private const char reqSeperator = ';';
+
+    private readonly ReqConfigDrawer.RequirementsParser requirementsParser = new(amountSeperator, reqSeperator);
 
     public void BindToConfig(ConfigFile configFile, GameObject prefab, Piece piece)
     {
@@ -126,7 +132,7 @@ internal class PrefabConfig(
             this._requirements,
             "Resources required to build the prefab. Formatted as: itemID,amount;itemID,amount where itemID is the in-game identifier for the resource and amount is an integer.",
             acceptableValues: new ReqConfigDrawer.AcceptableValueReqConfigNote("You must use valid spawn item codes."),
-            customDrawer: ReqConfigDrawer.ReqConfigCustomDrawer(amountSep: ',', reqSep: ';'),
+            customDrawer: ReqConfigDrawer.ReqConfigCustomDrawer(amountSeperator, reqSeperator),
             synced: true,
             sectionOrder: false,
             settingOrder: true
@@ -172,39 +178,15 @@ internal class PrefabConfig(
             configAttributes: new ConfigurationManagerAttributes() { ReadOnly = this._clipGround }
         );
 
-        this.Enabled.SettingChanged += PieceSettingChanged;
-        this.AllowedInDungeons.SettingChanged += PieceSettingChanged;
-        this.Category.SettingChanged += PieceSettingChanged;
-        this.CraftingStation.SettingChanged += PieceSettingChanged;
-        this.Requirements.SettingChanged += PieceSettingChanged;
-        this.ClipEverything.SettingChanged += PieceSettingChanged;
-        this.ClipGround.SettingChanged += PieceSettingChanged;
-
-        this.PlacementPatch.SettingChanged += PlacementSettingChanged;
         this.IsBound = true;
     }
 
     /// <summary>
-    ///     Event hook to set whether a config entry
-    ///     for a piece setting has been changed.
+    ///     Deserialize requirements config entry.
     /// </summary>
-    private void PieceSettingChanged(object obj, EventArgs args)
+    /// <returns></returns>
+    public List<RequirementConfig> ReadRequirements()
     {
-        if (!UpdatePieceSettings)
-        {
-            UpdatePieceSettings = true;
-        }
-    }
-
-    /// <summary>
-    ///     Event hook to set whether a config entry
-    ///     for placement patches has been changed.
-    /// </summary>
-    private void PlacementSettingChanged(object obj, EventArgs args)
-    {
-        if (!UpdatePlacementSettings)
-        {
-            UpdatePlacementSettings = true;
-        }
+        return this.requirementsParser.Deserialize(this.Requirements.Value);
     }
 }

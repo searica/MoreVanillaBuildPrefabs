@@ -1,6 +1,7 @@
 ﻿// Ignore Spelling: MVBP
 
 using HarmonyLib;
+using MVBP.Extensions;
 using System.Collections.Generic;
 using System.Reflection.Emit;
 
@@ -15,7 +16,7 @@ internal static class TeleportWorldPatch
     [HarmonyPatch(nameof(TeleportWorld.UpdatePortal))]
     private static void UpdatePortalPrefix(TeleportWorld __instance)
     {
-        PrefabName = UpdateController.GetPrefabName(__instance);
+        PrefabName = __instance.gameObject.GetPrefabName();
     }
 
     [HarmonyTranspiler]
@@ -59,7 +60,7 @@ internal static class TeleportWorldPatch
     [HarmonyPatch(nameof(TeleportWorld.Teleport))]
     private static void TeleportPrefix(TeleportWorld __instance)
     {
-        PrefabName = UpdateController.GetPrefabName(__instance);
+        PrefabName = __instance.gameObject.GetPrefabName();
     }
 
     [HarmonyTranspiler]

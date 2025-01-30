@@ -1,12 +1,11 @@
 ﻿// Ignore Spelling: MVBP
 
-using Jotunn.Configs;
 using Jotunn.Managers;
-
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
+using Logging;
+using MVBP.PrefabManagement;
 
 namespace MVBP.PieceManagement;
 
@@ -15,125 +14,66 @@ namespace MVBP.PieceManagement;
 /// </summary>
 internal static class PieceTableManager
 {
-    internal static readonly HashSet<string> AddedPrefabs = new();
-
-
-    internal static CraftingStation GetCraftingStation(string name)
-    {
-        string internalName = CraftingStations.GetInternalName(name);
-        CraftingStation station = ZNetScene.instance?.GetPrefab(internalName)?.GetComponent<CraftingStation>();
-        return station;
-    }
+    private static readonly Dictionary<PieceTable, List<GameObject>> AddedPrefabs = [];
 
     /// <summary>
-    ///     Method to configure Piece fields based on a PieceDB instance.
+    ///     Sorts and adds pieces based on PrefabConfigs and MorePrefabs config settings.
     /// </summary>
-    /// <param name="pieceDB"></param>
-    /// <returns></returns>
-    internal static Piece ConfigurePiece(PieceDB pieceDB)
+    /// <param name="pieceTable"></param>
+    /// <param name="prefabConfigs"></param>
+    /// <param name="clearPieces">Whether to remove all custom pieces from piece table or not.</param>
+    public static void UpdatePieceTable(PieceTable pieceTable, List<PrefabConfig> prefabConfigs, bool clearPieces = true)
     {
-        var piece = pieceDB.piece;
-        string name = NameMaker.FormatPieceName(pieceDB);
-        string description = NameMaker.GetPieceDescription(pieceDB);
-        Piece.PieceCategory pieceCategory = GetPieceCategory(pieceDB.category);
-
-        if (AddedPieceComponent.Contains(pieceDB.name))
+        if (clearPieces)
         {
-            // set component enabled/disabled for components added by MVBP
-            piece.enabled = pieceDB.enabled || MorePrefabs.IsForceAllPrefabs;
-            piece.m_enabled = pieceDB.enabled; // set piece visible in PieceTable based on MVBP config
-            pieceDB.piece.m_canBeRemoved = pieceDB.enabled; // set if removeable
+            RemoveAllCustomPiecesFromPieceTable(pieceTable);
         }
 
-        piece.m_name = name;
-        piece.m_description = description;
-        piece.m_allowedInDungeons = pieceDB.allowedInDungeons;
-        piece.m_category = pieceCategory;
-        piece.m_craftingStation = GetCraftingStation(pieceDB.craftingStation);
-        piece.m_resources = ConfigurePieceRequirements(pieceDB);
-        piece.m_clipEverything = pieceDB.clipEverything;
-        piece.m_clipGround = pieceDB.clipGround;
-
-        // Prevent CreativeMode pieces and any clones of them
-        // from being removable.
-        // (Player.RemovePiece patch allows removing player-built instances).
-        // Mimic Vanilla, make ships/carts non-removable.
-        if (PieceCategoryHelper.IsCreativeModePiece(pieceDB.piece) ||
-            pieceDB.Prefab.GetComponent<Ship>() ||
-            pieceDB.Prefab.GetComponent<Vagon>())
+        SortedPieceGroups pieceGroups = [];
+        foreach (PrefabConfig prefabConfig in prefabConfigs)
         {
-            pieceDB.piece.m_canBeRemoved = false;
+            if (!prefabConfig.Prefab)
+            {
+                Log.LogWarning($"Prefab: {prefabConfig.Name} has been destroyed");
+                continue;
+            }
+
+            // Check if defaultResources is enabled by the mod
+            if (!prefabConfig.Enabled.Value && !MorePrefabs.IsForceAllPrefabs)
+            {
+                continue;
+            }
+
+            // Prevent adding creative mode pieces if not in CreativeMode
+            if (!MorePrefabs.IsCreativeMode && PieceCategoryManager.IsCreativeModePiece(prefabConfig.Piece))
+            {
+                continue;
+            }
+
+            // Only add vanilla crops if enabled
+            if (!MorePrefabs.IsEnableHammerCrops && prefabConfig.PieceGroup == PieceClassification.VanillaCrop)
+            {
+                continue;
+            }
+
+            // Restrict placement of CreatorShop pieces to Admins only
+            if (MorePrefabs.IsCreatorShopAdminOnly &&
+                PieceCategoryManager.IsCreatorShopPiece(prefabConfig.Piece) &&
+                !SynchronizationManager.Instance.PlayerIsAdmin)
+            {
+                continue;
+            }
+
+            pieceGroups.Add(prefabConfig);
         }
 
-
-        return piece;
-    }
-
-
-    /// <summary>
-    ///     Safely search for piece category and fall back to "Misc" if
-    ///     it cannot be found.
-    /// </summary>
-    /// <param name="name"></param>
-    /// <returns></returns>
-    private static Piece.PieceCategory GetPieceCategory(string name)
-    {
-        try
+        foreach (List<GameObject> pieceGroup in pieceGroups)
         {
-            return (Piece.PieceCategory)PieceManager.Instance.GetPieceCategory(name);
+            foreach (GameObject prefab in pieceGroup)
+            {
+                AddPieceToPieceTable(prefab, pieceTable);
+            }
         }
-        catch (InvalidOperationException)
-        {
-            Log.LogWarning($"Could not find value for Piece Category: {name}");
-            return Piece.PieceCategory.Misc;
-        }
-    }
-
-    /// <summary>
-    ///     Create piece requirements array from pieceDB and modify it to prevent
-    ///     exploits if the piece has a pickable component.
-    /// </summary>
-    /// <param name="pieceDB"></param>
-    /// <returns></returns>
-    private static Piece.Requirement[] ConfigurePieceRequirements(PieceDB pieceDB)
-    {
-        var reqs = RequirementsEntry.CreateRequirementsArray(pieceDB.requirements);
-
-        if (pieceDB.piece.TryGetComponent(out MineRock mineRock))
-        {
-            reqs = RequirementsHelper.AddMineRockDropsToRequirements(reqs, mineRock);
-        }
-
-        if (pieceDB.piece.TryGetComponent(out MineRock5 mineRock5))
-        {
-            reqs = RequirementsHelper.AddMineRock5DropsToRequirements(reqs, mineRock5);
-        }
-
-        if (pieceDB.piece.TryGetComponent(out Pickable pickable))
-        {
-            reqs = RequirementsHelper.AddPickableToRequirements(reqs, pickable);
-        }
-
-        return reqs;
-    }
-
-
-    /// <summary>
-    ///     Method to add a piece to a piece table.
-    /// </summary>
-    /// <param name="pieces"></param>
-    /// <param name="pieceTableName"></param>
-    /// <returns> bool indicating if customPiece was added. </returns>
-    internal static void AddPiecesListToPieceTable(IEnumerable<Piece> pieces, string pieceTableName)
-    {
-        PieceTable pieceTable = PieceManager.Instance.GetPieceTable(pieceTableName);
-
-        foreach (Piece piece in pieces)
-        {
-            AddPieceToPieceTable(piece, pieceTable);
-        }
-
-        Log.LogInfo($"Added {AddedPrefabs.Count} custom pieces");
     }
 
     /// <summary>
@@ -142,10 +82,9 @@ internal static class PieceTableManager
     /// <param name="piece"></param>
     /// <param name="pieceTable"></param>
     /// <returns> bool indicating if customPiece was added. </returns>
-    internal static bool AddPieceToPieceTable(GameObject prefab, PieceTable pieceTable)
+    private static bool AddPieceToPieceTable(GameObject prefab, PieceTable pieceTable)
     {
         Piece piece = prefab.GetComponent<Piece>() ?? throw new Exception($"Prefab {prefab.name} has no Piece component.");
-
         return AddPieceToPieceTable(piece, pieceTable);
     }
 
@@ -155,7 +94,7 @@ internal static class PieceTableManager
     /// <param name="piece"></param>
     /// <param name="pieceTable"></param>
     /// <returns> bool indicating if customPiece was added. </returns>
-    internal static bool AddPieceToPieceTable(Piece piece, PieceTable pieceTable)
+    private static bool AddPieceToPieceTable(Piece piece, PieceTable pieceTable)
     {
         if (!piece || !pieceTable || pieceTable.m_pieces == null || pieceTable.m_pieces.Contains(piece.gameObject))
         {
@@ -172,7 +111,12 @@ internal static class PieceTableManager
         }
 
         pieceTable.m_pieces.Add(prefab);
-        AddedPrefabs.Add(prefab.name);
+        if (!AddedPrefabs.ContainsKey(pieceTable))
+        {
+            AddedPrefabs.Add(pieceTable, new List<GameObject>());
+        }
+        AddedPrefabs[pieceTable].Add(prefab);
+
         Log.LogInfo($"Added Piece {piece.m_name} to PieceTable {pieceTable.name}", Log.InfoLevel.High);
         return true;
     }
@@ -182,7 +126,7 @@ internal static class PieceTableManager
     ///     Checks for existence of the object via GetStableHashCode() and adds the prefab if it is not already added.
     /// </summary>
     /// <param name="gameObject"></param>
-    internal static void RegisterToZNetScene(GameObject gameObject)
+    private static void RegisterToZNetScene(GameObject gameObject)
     {
         ZNetScene znet = ZNetScene.instance;
 
@@ -215,51 +159,28 @@ internal static class PieceTableManager
     ///     Removes all pieces added by the mod from the piece table.
     /// </summary>
     /// <param name="pieceTableName"></param>
-    internal static void RemoveAllCustomPiecesFromPieceTable(string pieceTableName)
+    private static void RemoveAllCustomPiecesFromPieceTable(PieceTable pieceTable)
     {
-        Log.LogInfo("RemoveAllCustomPiecesFromPieceTable()", Log.InfoLevel.Medium);
-
-        int numCustomPieces = AddedPrefabs.Count;
-        var prefabsToRemove = AddedPrefabs.ToList();
-        PieceTable pieceTable = PieceManager.Instance.GetPieceTable(pieceTableName);
-
         if (pieceTable == null)
         {
-            Log.LogError($"Could not find piece table: {pieceTableName}");
+            Log.LogError($"Piece table is null!");
         }
 
-        foreach (string name in prefabsToRemove)
+        List<GameObject> AddedPieces = AddedPrefabs[pieceTable];
+        int numCustomPieces = AddedPieces.Count;
+        if (numCustomPieces == 0)
         {
-            RemovePieceFromPieceTable(name, pieceTable);
+            return;
         }
 
-        Log.LogInfo($"Removed {numCustomPieces - AddedPrefabs.Count} custom pieces", Log.InfoLevel.Medium);
-    }
-
-    /// <summary>
-    ///     Remove piece from PieceTable
-    /// </summary>
-    /// <param name="name"></param>
-    /// <param name="pieceTable"></param>
-    /// <returns></returns>
-    internal static bool RemovePieceFromPieceTable(string name, PieceTable pieceTable)
-    {
-        try
+        for (int i = numCustomPieces - 1; i > -1; i--)
         {
-            GameObject prefab = ZNetScene.instance.GetPrefab(name);
-            if (pieceTable.m_pieces.Contains(prefab))
+            if (RemovePieceFromPieceTable(AddedPieces[i], pieceTable))
             {
-                pieceTable.m_pieces.Remove(prefab);
-                AddedPrefabs.Remove(prefab.name);
-                return true;
+                AddedPieces.RemoveAt(i);
             }
-            return false;
         }
-        catch (Exception e)
-        {
-            Log.LogInfo($"{name}: {e}");
-            return false;
-        }
+        Log.LogInfo($"Removed {numCustomPieces - AddedPieces.Count} custom pieces", Log.InfoLevel.Medium);
     }
 
     /// <summary>
@@ -268,14 +189,13 @@ internal static class PieceTableManager
     /// <param name="name"></param>
     /// <param name="pieceTable"></param>
     /// <returns></returns>
-    internal static bool RemovePieceFromPieceTable(GameObject prefab, PieceTable pieceTable)
+    private static bool RemovePieceFromPieceTable(GameObject prefab, PieceTable pieceTable)
     {
         try
         {
             if (pieceTable.m_pieces.Contains(prefab))
             {
                 pieceTable.m_pieces.Remove(prefab);
-                AddedPrefabs.Remove(prefab.name);
                 return true;
             }
             return false;

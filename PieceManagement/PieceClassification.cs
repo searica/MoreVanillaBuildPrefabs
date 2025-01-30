@@ -1,8 +1,8 @@
 ﻿// Ignore Spelling: MVBP
 
-namespace MVBP.Models;
+namespace MVBP.PieceManagement;
 
-internal enum PieceGroup
+internal enum PieceClassification
 {
     None = 0,
     Fire,

@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using Logging;
 
 namespace MVBP.Extensions;
 
@@ -18,7 +19,7 @@ internal static class GameObjectExtensions
         {
             return tracker.m_prefabName;
         }
-        return Utils.GetPrefabName(gameObject);
+        return global::Utils.GetPrefabName(gameObject);
     }
 
     /// <summary>

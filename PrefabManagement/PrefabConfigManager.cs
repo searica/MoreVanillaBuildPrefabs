@@ -3,9 +3,10 @@ using System;
 using System.Collections.Generic;
 using Jotunn.Configs;
 using UnityEngine;
-using MVBP.Models;
 using Logging;
 using MVBP.Extensions;
+using MVBP.PieceManagement;
+using System.Linq;
 
 
 namespace MVBP.PrefabManagement;
@@ -27,21 +28,50 @@ internal static class PrefabConfigManager
         "dvergrprops_wood_stair",
     ];
 
+    public static List<PrefabConfig> GetPrefabConfigs(bool checkIfBound = true)
+    {
+        if (!checkIfBound)
+        {
+            return PrefabConfigMap.Values.ToList();
+        }
+        return PrefabConfigMap.Values.Where(x => x.IsBound).ToList();
+    }
 
     /// <summary>
-    ///     Gets PrefabConfig for the prefab if it exists.
+    ///     Get a bool indicating if the prefab is configured to require a placement patch.
     /// </summary>
-    /// <param name="prefab"></param>
+    /// <param name="PrefabName"></param>
     /// <returns></returns>
-    public static bool TryGetPrefabConfig(GameObject prefab, out PrefabConfig prefabConfig)
+    internal static bool NeedsCollisionPatchForGhost(string prefabName)
     {
-        if (PrefabConfigMap.TryGetValue(prefab.name, out prefabConfig))
+        if (TryGetPrefabConfig(prefabName, out var prefabConfig, checkIfBound: true))
         {
-            return true;
+            return prefabConfig.PlacementPatch.Value;
         }
         return false;
     }
 
+
+    internal static bool IsPrefabEnabled(GameObject gameObject)
+    {
+        if (TryGetPrefabConfig(gameObject.GetPrefabName(), out var prefabConfig, checkIfBound: true))
+        {
+            return prefabConfig.Enabled.Value || MorePrefabs.IsForceAllPrefabs;
+        }
+        return false;
+    }
+
+    /// <summary>
+    ///     Tries to get the PrefabConfig for the root prefab version of the game object.
+    /// </summary>
+    /// <param name="prefab"></param>
+    /// <param name="prefabConfig"></param>
+    /// <param name="checkIfBound">Whether to only return true if PrefabConfig IsBound.</param>
+    /// <returns></returns>
+    public static bool TryGetPrefabConfig(GameObject prefab, out PrefabConfig prefabConfig, bool checkIfBound = false)
+    {
+        return TryGetPrefabConfig(prefab.GetPrefabName(), out prefabConfig, checkIfBound);
+    }
 
     /// <summary>
     ///     Tries to get the PrefabConfig for the prefab name.
@@ -50,7 +80,7 @@ internal static class PrefabConfigManager
     /// <param name="prefabConfig"></param>
     /// <param name="checkIfBound">Whether to only return true if PrefabConfig IsBound.</param>
     /// <returns></returns>
-    public static bool TryGetPrefabConfig(string prefabName, out PrefabConfig prefabConfig, bool checkIfBound = true)
+    public static bool TryGetPrefabConfig(string prefabName, out PrefabConfig prefabConfig, bool checkIfBound = false)
     {
         if (PrefabConfigMap.TryGetValue(prefabName, out prefabConfig))
         {
@@ -76,7 +106,7 @@ internal static class PrefabConfigManager
 
         if (!prefabConfig.IsBound)
         {
-            prefabConfig.BindToConfig(MorePrefabs.Instance.Config, prefab, piece);
+            Internal_BindPrefabConfig(prefabConfig, prefab, piece);
         }
         return prefabConfig;
     }
@@ -109,11 +139,23 @@ internal static class PrefabConfigManager
                 Log.LogWarning(msg);
                 throw new ArgumentException(msg);
             }
-
-            prefabConfig.BindToConfig(MorePrefabs.Instance.Config, prefab, piece);
+            Internal_BindPrefabConfig(prefabConfig, prefab, piece);
         }
-
         return prefabConfig;
+    }
+
+    private static void Internal_BindPrefabConfig(PrefabConfig prefabConfig, GameObject prefab, Piece piece)
+    {
+        prefabConfig.BindToConfig(MorePrefabs.Instance.Config, prefab, piece);
+        prefabConfig.Enabled.SettingChanged += UpdateController.PieceSettingChanged;
+        prefabConfig.AllowedInDungeons.SettingChanged += UpdateController.PieceSettingChanged;
+        prefabConfig.Category.SettingChanged += UpdateController.PieceSettingChanged;
+        prefabConfig.CraftingStation.SettingChanged += UpdateController.PieceSettingChanged;
+        prefabConfig.Requirements.SettingChanged += UpdateController.PieceSettingChanged;
+        prefabConfig.ClipEverything.SettingChanged += UpdateController.PieceSettingChanged;
+        prefabConfig.ClipGround.SettingChanged += UpdateController.PieceSettingChanged;
+
+        prefabConfig.PlacementPatch.SettingChanged += UpdateController.PlacementSettingChanged;
     }
 
     private static readonly Dictionary<string, PrefabConfig> PrefabConfigMap = new()
@@ -131,7 +173,7 @@ internal static class PrefabConfigManager
                 clipGround: false,
                 placementPatch: false,
                 pieceDesc: "",
-                pieceGroup: PieceGroup.ArmorStand
+                pieceGroup: PieceClassification.ArmorStand
             )
         },
         {
@@ -147,7 +189,7 @@ internal static class PrefabConfigManager
                 clipGround: false,
                 placementPatch: false,
                 pieceDesc: "",
-                pieceGroup: PieceGroup.ArmorStand
+                pieceGroup: PieceClassification.ArmorStand
             )
         },
         {
@@ -333,7 +375,7 @@ internal static class PrefabConfigManager
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Flora
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -348,7 +390,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Flora
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -363,7 +405,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Flora
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -378,7 +420,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Flora
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -393,7 +435,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Flora
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -408,7 +450,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Flora
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -423,7 +465,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Flora
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -438,7 +480,7 @@ internal static class PrefabConfigManager
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Flora
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -1519,7 +1561,7 @@ internal static class PrefabConfigManager
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Flora
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -1534,7 +1576,7 @@ internal static class PrefabConfigManager
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Flora
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -1549,7 +1591,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Flora
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -1564,7 +1606,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Flora
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -1579,7 +1621,7 @@ internal static class PrefabConfigManager
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Flora
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -1595,7 +1637,7 @@ internal static class PrefabConfigManager
                 clipGround: false,
                 placementPatch: false,
                 pieceName: "Birch1 (autumn)",
-                pieceGroup: PieceGroup.Flora
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -1610,7 +1652,7 @@ internal static class PrefabConfigManager
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Flora
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -1626,7 +1668,7 @@ internal static class PrefabConfigManager
                 clipGround: false,
                 placementPatch: false,
                 pieceName: "Birch (autumn)",
-                pieceGroup: PieceGroup.Flora
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -1641,7 +1683,7 @@ internal static class PrefabConfigManager
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Flora
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -1656,7 +1698,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Flora
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -1671,7 +1713,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Flora
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -1686,7 +1728,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Plant
+                pieceGroup: PieceClassification.Plant
             )
         },
         {
@@ -1715,7 +1757,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: true,
-                pieceGroup: PieceGroup.Misc
+                pieceGroup: PieceClassification.Misc
             )
         },
         {
@@ -1730,7 +1772,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: true,
-                pieceGroup: PieceGroup.Misc
+                pieceGroup: PieceClassification.Misc
             )
         },
         {
@@ -1745,7 +1787,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: true,
-                pieceGroup: PieceGroup.Misc
+                pieceGroup: PieceClassification.Misc
             )
         },
         {
@@ -1774,7 +1816,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: true,
-                pieceGroup: PieceGroup.Misc
+                pieceGroup: PieceClassification.Misc
             )
         },
         {
@@ -1789,7 +1831,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: true,
-                pieceGroup: PieceGroup.Misc
+                pieceGroup: PieceClassification.Misc
             )
         },
         {
@@ -1804,7 +1846,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: true,
-                pieceGroup: PieceGroup.Misc
+                pieceGroup: PieceClassification.Misc
             )
         },
         {
@@ -1819,7 +1861,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Flora
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -1834,7 +1876,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Flora
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -1849,7 +1891,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Flora
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -1879,7 +1921,7 @@ internal static class PrefabConfigManager
                 clipGround: false,
                 placementPatch: false,
                 pieceName: "Wood box",
-                pieceGroup: PieceGroup.Misc
+                pieceGroup: PieceClassification.Misc
             )
         },
         {
@@ -1896,7 +1938,7 @@ internal static class PrefabConfigManager
                 placementPatch: false,
                 pieceName: "Standing iron torch (everburning)",
                 pieceDesc: "Burns eternally without fuel.",
-                pieceGroup: PieceGroup.Torch,
+                pieceGroup: PieceClassification.Torch,
                 playerBasePatch: true
             )
         },
@@ -1914,7 +1956,7 @@ internal static class PrefabConfigManager
                 placementPatch: false,
                 pieceName: "Standing blue-burning iron torch (everburning)",
                 pieceDesc: "Burns eternally without fuel.",
-                pieceGroup: PieceGroup.Torch,
+                pieceGroup: PieceClassification.Torch,
                 playerBasePatch: true
             )
         },
@@ -1932,7 +1974,7 @@ internal static class PrefabConfigManager
                 placementPatch: false,
                 pieceName: "Standing green-burning iron torch (everburning)",
                 pieceDesc: "Burns eternally without fuel.",
-                pieceGroup: PieceGroup.Torch,
+                pieceGroup: PieceClassification.Torch,
                 playerBasePatch: true
             )
         },
@@ -2018,7 +2060,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Chest
+                pieceGroup: PieceClassification.Chest
             )
         },
         {
@@ -2089,7 +2131,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Plant
+                pieceGroup: PieceClassification.Plant
             )
         },
         {
@@ -2216,7 +2258,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Flora
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -2231,7 +2273,7 @@ internal static class PrefabConfigManager
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Flora
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -2246,7 +2288,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Flora
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -2261,7 +2303,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Flora
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -2276,7 +2318,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Flora
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -2291,7 +2333,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Flora
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -2306,7 +2348,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Flora
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -2363,7 +2405,7 @@ internal static class PrefabConfigManager
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Flora
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -2518,7 +2560,7 @@ internal static class PrefabConfigManager
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Flora
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -2617,7 +2659,7 @@ internal static class PrefabConfigManager
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Ore
+                pieceGroup: PieceClassification.Ore
             )
         },
         {
@@ -2632,7 +2674,7 @@ internal static class PrefabConfigManager
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Ore
+                pieceGroup: PieceClassification.Ore
             )
         },
         {
@@ -2647,7 +2689,7 @@ internal static class PrefabConfigManager
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Ore
+                pieceGroup: PieceClassification.Ore
             )
         },
         {
@@ -2662,7 +2704,7 @@ internal static class PrefabConfigManager
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Ore
+                pieceGroup: PieceClassification.Ore
             )
         },
         {
@@ -2677,7 +2719,7 @@ internal static class PrefabConfigManager
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Ore
+                pieceGroup: PieceClassification.Ore
             )
         },
         {
@@ -2692,7 +2734,7 @@ internal static class PrefabConfigManager
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Ore
+                pieceGroup: PieceClassification.Ore
             )
         },
         {
@@ -2723,7 +2765,7 @@ internal static class PrefabConfigManager
                 placementPatch: false,
                 pieceName: "Standing brazier (everburning)",
                 pieceDesc: "Burns eternally without fuel.",
-                pieceGroup: PieceGroup.Brazier,
+                pieceGroup: PieceClassification.Brazier,
                 playerBasePatch: true
             )
         },
@@ -2741,7 +2783,7 @@ internal static class PrefabConfigManager
                 placementPatch: false,
                 pieceName: "Blue standing brazier (everburning)",
                 pieceDesc: "Burns eternally without fuel.",
-                pieceGroup: PieceGroup.Brazier,
+                pieceGroup: PieceClassification.Brazier,
                 playerBasePatch: true
             )
         },
@@ -2785,7 +2827,7 @@ internal static class PrefabConfigManager
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Flora
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -2800,7 +2842,7 @@ internal static class PrefabConfigManager
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Flora
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -2815,7 +2857,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Flora
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -2830,7 +2872,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Flora
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -2859,7 +2901,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.VanillaCrop
+                pieceGroup: PieceClassification.VanillaCrop
             )
         },
         {
@@ -2874,7 +2916,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Treasure
+                pieceGroup: PieceClassification.Treasure
             )
         },
         {
@@ -2889,7 +2931,7 @@ internal static class PrefabConfigManager
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Ore
+                pieceGroup: PieceClassification.Ore
             )
         },
         {
@@ -2904,7 +2946,7 @@ internal static class PrefabConfigManager
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Flora
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -2919,7 +2961,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.VanillaCrop
+                pieceGroup: PieceClassification.VanillaCrop
             )
         },
         {
@@ -2948,7 +2990,7 @@ internal static class PrefabConfigManager
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Plant
+                pieceGroup: PieceClassification.Plant
             )
         },
         {
@@ -2960,7 +3002,7 @@ internal static class PrefabConfigManager
                 category: HammerCategories.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Coins,5",
-                pieceGroup: PieceGroup.Treasure
+                pieceGroup: PieceClassification.Treasure
             )
         },
         {
@@ -3003,7 +3045,7 @@ internal static class PrefabConfigManager
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Treasure
+                pieceGroup: PieceClassification.Treasure
             )
         },
         {
@@ -3018,7 +3060,7 @@ internal static class PrefabConfigManager
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Treasure
+                pieceGroup: PieceClassification.Treasure
             )
         },
         {
@@ -3047,7 +3089,7 @@ internal static class PrefabConfigManager
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Treasure
+                pieceGroup: PieceClassification.Treasure
             )
         },
         {
@@ -3062,7 +3104,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.VanillaCrop
+                pieceGroup: PieceClassification.VanillaCrop
             )
         },
         {
@@ -3077,7 +3119,7 @@ internal static class PrefabConfigManager
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Flora
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -3092,7 +3134,7 @@ internal static class PrefabConfigManager
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Treasure
+                pieceGroup: PieceClassification.Treasure
             )
         },
         {
@@ -3107,7 +3149,7 @@ internal static class PrefabConfigManager
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Treasure
+                pieceGroup: PieceClassification.Treasure
             )
         },
         {
@@ -3122,7 +3164,7 @@ internal static class PrefabConfigManager
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Treasure
+                pieceGroup: PieceClassification.Treasure
             )
         },
         {
@@ -3137,7 +3179,7 @@ internal static class PrefabConfigManager
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Treasure
+                pieceGroup: PieceClassification.Treasure
             )
         },
         {
@@ -3152,7 +3194,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Treasure
+                pieceGroup: PieceClassification.Treasure
             )
         },
         {
@@ -3167,7 +3209,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Treasure
+                pieceGroup: PieceClassification.Treasure
             )
         },
         {
@@ -3180,7 +3222,7 @@ internal static class PrefabConfigManager
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
                 pieceName: "Coins (pickable)",
-                pieceGroup: PieceGroup.Treasure
+                pieceGroup: PieceClassification.Treasure
             )
         },
         {
@@ -3195,7 +3237,7 @@ internal static class PrefabConfigManager
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Treasure
+                pieceGroup: PieceClassification.Treasure
             )
         },
         {
@@ -3210,7 +3252,7 @@ internal static class PrefabConfigManager
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Ore
+                pieceGroup: PieceClassification.Ore
             )
         },
         {
@@ -3239,7 +3281,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Ore
+                pieceGroup: PieceClassification.Ore
             )
         },
         {
@@ -3254,7 +3296,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Ore
+                pieceGroup: PieceClassification.Ore
             )
         },
         {
@@ -3269,7 +3311,7 @@ internal static class PrefabConfigManager
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Treasure
+                pieceGroup: PieceClassification.Treasure
             )
         },
         {
@@ -3284,7 +3326,7 @@ internal static class PrefabConfigManager
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Plant
+                pieceGroup: PieceClassification.Plant
             )
         },
         {
@@ -3299,7 +3341,7 @@ internal static class PrefabConfigManager
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.VanillaCrop
+                pieceGroup: PieceClassification.VanillaCrop
             )
         },
         {
@@ -3314,7 +3356,7 @@ internal static class PrefabConfigManager
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.VanillaCrop
+                pieceGroup: PieceClassification.VanillaCrop
             )
         },
         {
@@ -3329,7 +3371,7 @@ internal static class PrefabConfigManager
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Plant
+                pieceGroup: PieceClassification.Plant
             )
         },
         {
@@ -3344,7 +3386,7 @@ internal static class PrefabConfigManager
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Plant
+                pieceGroup: PieceClassification.Plant
             )
         },
         {
@@ -3359,7 +3401,7 @@ internal static class PrefabConfigManager
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Ore
+                pieceGroup: PieceClassification.Ore
             )
         },
         {
@@ -3374,7 +3416,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.VanillaCrop
+                pieceGroup: PieceClassification.VanillaCrop
             )
         },
         {
@@ -3417,7 +3459,7 @@ internal static class PrefabConfigManager
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.VanillaCrop
+                pieceGroup: PieceClassification.VanillaCrop
             )
         },
         {
@@ -3432,7 +3474,7 @@ internal static class PrefabConfigManager
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.VanillaCrop
+                pieceGroup: PieceClassification.VanillaCrop
             )
         },
         {
@@ -3447,7 +3489,7 @@ internal static class PrefabConfigManager
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.VanillaCrop
+                pieceGroup: PieceClassification.VanillaCrop
             )
         },
         {
@@ -3476,7 +3518,7 @@ internal static class PrefabConfigManager
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Flora
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -3505,7 +3547,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Treasure
+                pieceGroup: PieceClassification.Treasure
             )
         },
         {
@@ -3562,7 +3604,7 @@ internal static class PrefabConfigManager
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Flora
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -3577,7 +3619,7 @@ internal static class PrefabConfigManager
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Flora
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -3592,7 +3634,7 @@ internal static class PrefabConfigManager
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Plant
+                pieceGroup: PieceClassification.Plant
             )
         },
         {
@@ -3607,7 +3649,7 @@ internal static class PrefabConfigManager
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Ore
+                pieceGroup: PieceClassification.Ore
             )
         },
         {
@@ -3622,7 +3664,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.VanillaCrop
+                pieceGroup: PieceClassification.VanillaCrop
             )
         },
         {
@@ -3651,7 +3693,7 @@ internal static class PrefabConfigManager
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Flora
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -3666,7 +3708,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Flora
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -3681,7 +3723,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Flora
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -3696,7 +3738,7 @@ internal static class PrefabConfigManager
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Flora
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -3711,7 +3753,7 @@ internal static class PrefabConfigManager
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Flora
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -3726,7 +3768,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Plant
+                pieceGroup: PieceClassification.Plant
             )
         },
         {
@@ -3741,7 +3783,7 @@ internal static class PrefabConfigManager
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Rock
+                pieceGroup: PieceClassification.Rock
             )
         },
         {
@@ -3756,7 +3798,7 @@ internal static class PrefabConfigManager
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Rock
+                pieceGroup: PieceClassification.Rock
             )
         },
         {
@@ -3771,7 +3813,7 @@ internal static class PrefabConfigManager
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Rock
+                pieceGroup: PieceClassification.Rock
             )
         },
         {
@@ -3862,7 +3904,7 @@ internal static class PrefabConfigManager
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,24",
                 clipEverything: true,
-                pieceGroup: PieceGroup.Rock
+                pieceGroup: PieceClassification.Rock
             )
         },
         {
@@ -3877,7 +3919,7 @@ internal static class PrefabConfigManager
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Rock
+                pieceGroup: PieceClassification.Rock
             )
         },
         {
@@ -3892,7 +3934,7 @@ internal static class PrefabConfigManager
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Rock
+                pieceGroup: PieceClassification.Rock
             )
         },
         {
@@ -3907,7 +3949,7 @@ internal static class PrefabConfigManager
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Rock
+                pieceGroup: PieceClassification.Rock
             )
         },
         {
@@ -3922,7 +3964,7 @@ internal static class PrefabConfigManager
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Rock
+                pieceGroup: PieceClassification.Rock
             )
         },
         {
@@ -3937,7 +3979,7 @@ internal static class PrefabConfigManager
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Rock
+                pieceGroup: PieceClassification.Rock
             )
         },
         {
@@ -3951,7 +3993,7 @@ internal static class PrefabConfigManager
                 requirements: "Stone,24",
                 clipEverything: true,
                 clipGround: false,
-                pieceGroup: PieceGroup.Rock
+                pieceGroup: PieceClassification.Rock
             )
         },
         {
@@ -4008,7 +4050,7 @@ internal static class PrefabConfigManager
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Flora
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -4051,7 +4093,7 @@ internal static class PrefabConfigManager
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Statue
+                pieceGroup: PieceClassification.Statue
             )
         },
         {
@@ -4066,7 +4108,7 @@ internal static class PrefabConfigManager
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Statue
+                pieceGroup: PieceClassification.Statue
             )
         },
         {
@@ -4081,7 +4123,7 @@ internal static class PrefabConfigManager
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Statue
+                pieceGroup: PieceClassification.Statue
             )
         },
         {
@@ -4096,7 +4138,7 @@ internal static class PrefabConfigManager
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Statue
+                pieceGroup: PieceClassification.Statue
             )
         },
         {
@@ -4111,7 +4153,7 @@ internal static class PrefabConfigManager
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Statue
+                pieceGroup: PieceClassification.Statue
             )
         },
         {
@@ -4126,7 +4168,7 @@ internal static class PrefabConfigManager
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Flora
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -4141,7 +4183,7 @@ internal static class PrefabConfigManager
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Flora
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -4156,7 +4198,7 @@ internal static class PrefabConfigManager
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Flora
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -4171,7 +4213,7 @@ internal static class PrefabConfigManager
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Flora
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -4186,7 +4228,7 @@ internal static class PrefabConfigManager
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Flora
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -4201,7 +4243,7 @@ internal static class PrefabConfigManager
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Flora
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -4231,7 +4273,7 @@ internal static class PrefabConfigManager
                 clipGround: false,
                 placementPatch: false,
                 pieceName: "Trader ship",
-                pieceGroup: PieceGroup.Ship
+                pieceGroup: PieceClassification.Ship
                 //invWidth: 6,
                 //invHeight: 4
             )
@@ -4248,7 +4290,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Chest,
+                pieceGroup: PieceClassification.Chest,
                 invWidth: 5,
                 invHeight: 2
             )
@@ -4265,7 +4307,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Chest,
+                pieceGroup: PieceClassification.Chest,
                 invWidth: 8,
                 invHeight: 4
             )
@@ -4283,7 +4325,7 @@ internal static class PrefabConfigManager
                 clipGround: false,
                 placementPatch: false,
                 pieceName: "Black marble chest",
-                pieceGroup: PieceGroup.Chest,
+                pieceGroup: PieceClassification.Chest,
                 invWidth: 8,
                 invHeight: 4
             )
@@ -4301,7 +4343,7 @@ internal static class PrefabConfigManager
                 clipGround: false,
                 placementPatch: false,
                 pieceName: "Dvergr chest",
-                pieceGroup: PieceGroup.Chest,
+                pieceGroup: PieceClassification.Chest,
                 invWidth: 7,
                 invHeight: 4
             )
@@ -4319,7 +4361,7 @@ internal static class PrefabConfigManager
                 clipGround: false,
                 placementPatch: false,
                 pieceName: "Dvergr chest (large)",
-                pieceGroup: PieceGroup.Chest,
+                pieceGroup: PieceClassification.Chest,
                 invWidth: 8,
                 invHeight: 4
             )
@@ -4337,7 +4379,7 @@ internal static class PrefabConfigManager
                 clipGround: false,
                 placementPatch: false,
                 pieceName: "Stone chest (mossy)",
-                pieceGroup: PieceGroup.Chest,
+                pieceGroup: PieceClassification.Chest,
                 invWidth: 5,
                 invHeight: 2
             )
@@ -4355,7 +4397,7 @@ internal static class PrefabConfigManager
                 clipGround: false,
                 placementPatch: false,
                 pieceName: "Stone chest (snow)",
-                pieceGroup: PieceGroup.Chest,
+                pieceGroup: PieceClassification.Chest,
                 invWidth: 6,
                 invHeight: 3
             )
@@ -4373,7 +4415,7 @@ internal static class PrefabConfigManager
                 clipGround: false,
                 placementPatch: false,
                 pieceName: "Stone chest (dark moss)",
-                pieceGroup: PieceGroup.Chest,
+                pieceGroup: PieceClassification.Chest,
                 invWidth: 5,
                 invHeight: 2
             )
@@ -4391,7 +4433,7 @@ internal static class PrefabConfigManager
                 clipGround: false,
                 placementPatch: false,
                 pieceName: "Stone chest (mossy, big)",
-                pieceGroup: PieceGroup.Chest,
+                pieceGroup: PieceClassification.Chest,
                 invWidth: 6,
                 invHeight: 3
             )
@@ -4450,7 +4492,7 @@ internal static class PrefabConfigManager
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Flora
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -4465,7 +4507,7 @@ internal static class PrefabConfigManager
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Flora
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -4480,7 +4522,7 @@ internal static class PrefabConfigManager
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Flora
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -4495,7 +4537,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Flora
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -4510,7 +4552,7 @@ internal static class PrefabConfigManager
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Flora
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -4738,7 +4780,7 @@ internal static class PrefabConfigManager
                 placementPatch: false,
                 pieceName: "Barrel",
                 pieceDesc: "",
-                pieceGroup: PieceGroup.Misc
+                pieceGroup: PieceClassification.Misc
             )
         },
         {
@@ -4753,7 +4795,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Flora
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -4768,7 +4810,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Flora
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -4783,7 +4825,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.BlackMarble
+                pieceGroup: PieceClassification.BlackMarble
             )
         },
         {
@@ -4798,7 +4840,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.BlackMarble
+                pieceGroup: PieceClassification.BlackMarble
             )
         },
         {
@@ -4842,7 +4884,7 @@ internal static class PrefabConfigManager
                 clipGround: false,
                 placementPatch: false,
                 pieceName: "Black marble plinth (wide)",
-                pieceGroup: PieceGroup.BlackMarble
+                pieceGroup: PieceClassification.BlackMarble
             )
         },
         {
@@ -4857,7 +4899,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.BlackMarble
+                pieceGroup: PieceClassification.BlackMarble
             )
         },
         {
@@ -4872,7 +4914,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.BlackMarble
+                pieceGroup: PieceClassification.BlackMarble
             )
         },
         {
@@ -4887,7 +4929,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.BlackMarble
+                pieceGroup: PieceClassification.BlackMarble
             )
         },
         {
@@ -4902,7 +4944,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.BlackMarble
+                pieceGroup: PieceClassification.BlackMarble
             )
         },
         {
@@ -4917,7 +4959,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.BlackMarble
+                pieceGroup: PieceClassification.BlackMarble
             )
         },
         {
@@ -4932,7 +4974,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.BlackMarble
+                pieceGroup: PieceClassification.BlackMarble
             )
         },
         {
@@ -4948,7 +4990,7 @@ internal static class PrefabConfigManager
                 clipGround: true,
                 placementPatch: false,
                 pieceName: "Black marble floor 8x8",
-                pieceGroup: PieceGroup.BlackMarble
+                pieceGroup: PieceClassification.BlackMarble
             )
         },
         {
@@ -4963,7 +5005,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.BlackMarble
+                pieceGroup: PieceClassification.BlackMarble
             )
         },
         {
@@ -4978,7 +5020,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.BlackMarble
+                pieceGroup: PieceClassification.BlackMarble
             )
         },
         {
@@ -4993,7 +5035,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.BlackMarble
+                pieceGroup: PieceClassification.BlackMarble
             )
         },
         {
@@ -5008,7 +5050,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.BlackMarble
+                pieceGroup: PieceClassification.BlackMarble
             )
         },
         {
@@ -5024,7 +5066,7 @@ internal static class PrefabConfigManager
                 clipGround: false,
                 placementPatch: false,
                 pieceName: "Black marble cornice (wide)",
-                pieceGroup: PieceGroup.BlackMarble
+                pieceGroup: PieceClassification.BlackMarble
             )
         },
         {
@@ -5039,7 +5081,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: true,
                 placementPatch: false,
-                pieceGroup: PieceGroup.BlackMarble
+                pieceGroup: PieceClassification.BlackMarble
             )
         },
         {
@@ -5054,7 +5096,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.BlackMarble
+                pieceGroup: PieceClassification.BlackMarble
             )
         },
         {
@@ -5069,7 +5111,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.BlackMarble
+                pieceGroup: PieceClassification.BlackMarble
             )
         },
         {
@@ -5084,7 +5126,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: true,
-                pieceGroup: PieceGroup.BlackMarble
+                pieceGroup: PieceClassification.BlackMarble
             )
         },
         {
@@ -5099,7 +5141,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: true,
-                pieceGroup: PieceGroup.BlackMarble
+                pieceGroup: PieceClassification.BlackMarble
             )
         },
         {
@@ -5114,7 +5156,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.BlackMarble
+                pieceGroup: PieceClassification.BlackMarble
             )
         },
         {
@@ -5129,7 +5171,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.BlackMarble
+                pieceGroup: PieceClassification.BlackMarble
             )
         },
         {
@@ -5144,7 +5186,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.BlackMarble
+                pieceGroup: PieceClassification.BlackMarble
             )
         },
         {
@@ -5159,7 +5201,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.BlackMarble
+                pieceGroup: PieceClassification.BlackMarble
             )
         },
         {
@@ -5174,7 +5216,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.BlackMarble
+                pieceGroup: PieceClassification.BlackMarble
             )
         },
         {
@@ -5189,7 +5231,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Misc
+                pieceGroup: PieceClassification.Misc
             )
         },
         {
@@ -5204,7 +5246,7 @@ internal static class PrefabConfigManager
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Ice
+                pieceGroup: PieceClassification.Ice
             )
         },
         {
@@ -5219,7 +5261,7 @@ internal static class PrefabConfigManager
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Ice
+                pieceGroup: PieceClassification.Ice
             )
         },
         {
@@ -5234,7 +5276,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Ice
+                pieceGroup: PieceClassification.Ice
             )
         },
         {
@@ -5249,7 +5291,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Ice
+                pieceGroup: PieceClassification.Ice
             )
         },
         {
@@ -5264,7 +5306,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Ice
+                pieceGroup: PieceClassification.Ice
             )
         },
         {
@@ -5389,7 +5431,7 @@ internal static class PrefabConfigManager
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,350",
                 clipEverything: true,
-                pieceGroup: PieceGroup.Rock
+                pieceGroup: PieceClassification.Rock
             )
         },
         {
@@ -5402,7 +5444,7 @@ internal static class PrefabConfigManager
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,350",
                 clipEverything: true,
-                pieceGroup: PieceGroup.Rock
+                pieceGroup: PieceClassification.Rock
             )
         },
         {
@@ -5417,7 +5459,7 @@ internal static class PrefabConfigManager
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Rock
+                pieceGroup: PieceClassification.Rock
             )
         },
         {
@@ -5432,7 +5474,7 @@ internal static class PrefabConfigManager
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Rock
+                pieceGroup: PieceClassification.Rock
             )
         },
         {
@@ -5445,7 +5487,7 @@ internal static class PrefabConfigManager
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,175",
                 clipEverything: true,
-                pieceGroup: PieceGroup.Rock
+                pieceGroup: PieceClassification.Rock
             )
         },
         {
@@ -5460,7 +5502,7 @@ internal static class PrefabConfigManager
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Rock
+                pieceGroup: PieceClassification.Rock
             )
         },
         {
@@ -5475,7 +5517,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Banner
+                pieceGroup: PieceClassification.Banner
             )
         },
         {
@@ -5490,7 +5532,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Banner
+                pieceGroup: PieceClassification.Banner
             )
         },
         {
@@ -5505,7 +5547,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Banner
+                pieceGroup: PieceClassification.Banner
             )
         },
         {
@@ -5576,7 +5618,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Iron
+                pieceGroup: PieceClassification.Iron
             )
         },
         {
@@ -5591,7 +5633,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: true,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Iron
+                pieceGroup: PieceClassification.Iron
             )
         },
         {
@@ -5606,7 +5648,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Torch
+                pieceGroup: PieceClassification.Torch
             )
         },
         {
@@ -5621,7 +5663,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Misc
+                pieceGroup: PieceClassification.Misc
             )
         },
         {
@@ -5636,7 +5678,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Torch
+                pieceGroup: PieceClassification.Torch
             )
         },
         {
@@ -5651,7 +5693,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Misc
+                pieceGroup: PieceClassification.Misc
             )
         },
         {
@@ -5680,7 +5722,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Banner
+                pieceGroup: PieceClassification.Banner
             )
         },
         {
@@ -5695,7 +5737,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Dvergr
+                pieceGroup: PieceClassification.Dvergr
             )
         },
         {
@@ -5710,7 +5752,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Bed,
+                pieceGroup: PieceClassification.Bed,
                 playerBasePatch: true
             )
         },
@@ -5726,7 +5768,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Chair
+                pieceGroup: PieceClassification.Chair
             )
         },
         {
@@ -5741,7 +5783,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Misc
+                pieceGroup: PieceClassification.Misc
             )
         },
         {
@@ -5772,7 +5814,7 @@ internal static class PrefabConfigManager
                 placementPatch: false,
                 pieceName: "Dvergr component crate",
                 pieceDesc: "",
-                pieceGroup: PieceGroup.Misc
+                pieceGroup: PieceClassification.Misc
             )
         },
         {
@@ -5787,7 +5829,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Banner
+                pieceGroup: PieceClassification.Banner
             )
         },
         {
@@ -5803,7 +5845,7 @@ internal static class PrefabConfigManager
                 clipGround: false,
                 placementPatch: false,
                 pieceName: "Dvergr hook & chain",
-                pieceGroup: PieceGroup.Misc
+                pieceGroup: PieceClassification.Misc
             )
         },
         {
@@ -5818,7 +5860,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Dvergr
+                pieceGroup: PieceClassification.Dvergr
             )
         },
         {
@@ -5834,7 +5876,7 @@ internal static class PrefabConfigManager
                 clipGround: false,
                 placementPatch: false,
                 placementOffset: new Vector3(-1f, 0f, 0f),
-                pieceGroup: PieceGroup.Dvergr
+                pieceGroup: PieceClassification.Dvergr
             )
         },
         {
@@ -5849,7 +5891,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Dvergr
+                pieceGroup: PieceClassification.Dvergr
             )
         },
         {
@@ -5864,7 +5906,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Chair
+                pieceGroup: PieceClassification.Chair
             )
         },
         {
@@ -5879,7 +5921,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Table
+                pieceGroup: PieceClassification.Table
             )
         },
         {
@@ -5894,7 +5936,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Dvergr
+                pieceGroup: PieceClassification.Dvergr
             )
         },
         {
@@ -5909,7 +5951,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Dvergr
+                pieceGroup: PieceClassification.Dvergr
             )
         },
         {
@@ -5925,7 +5967,7 @@ internal static class PrefabConfigManager
                 clipGround: false,
                 placementPatch: false,
                 pieceName: "Dvergr wood pole (large)",
-                pieceGroup: PieceGroup.Dvergr
+                pieceGroup: PieceClassification.Dvergr
             )
         },
         {
@@ -5940,7 +5982,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Dvergr
+                pieceGroup: PieceClassification.Dvergr
             )
         },
         {
@@ -5955,7 +5997,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Dvergr
+                pieceGroup: PieceClassification.Dvergr
             )
         },
         {
@@ -5971,7 +6013,7 @@ internal static class PrefabConfigManager
                 clipGround: false,
                 placementPatch: false,
                 pieceName: "Dvergr wood wall 4x4",
-                pieceGroup: PieceGroup.Dvergr
+                pieceGroup: PieceClassification.Dvergr
             )
         },
         {
@@ -5986,7 +6028,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Dvergr
+                pieceGroup: PieceClassification.Dvergr
             )
         },
         {
@@ -6003,7 +6045,7 @@ internal static class PrefabConfigManager
                 placementPatch: false,
                 pieceName: "Door hanging (creep)",
                 pieceDesc: "",
-                pieceGroup: PieceGroup.Misc
+                pieceGroup: PieceClassification.Misc
             )
         },
         {
@@ -6019,7 +6061,7 @@ internal static class PrefabConfigManager
                 clipGround: false,
                 placementPatch: false,
                 pieceName: "Dvergr secret door",
-                pieceGroup: PieceGroup.Dvergr
+                pieceGroup: PieceClassification.Dvergr
             )
         },
         {
@@ -6035,7 +6077,7 @@ internal static class PrefabConfigManager
                 clipGround: false,
                 placementPatch: false,
                 pieceName: "Dvergr sliding door",
-                pieceGroup: PieceGroup.Dvergr
+                pieceGroup: PieceClassification.Dvergr
             )
         },
         {
@@ -6050,7 +6092,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Dvergr
+                pieceGroup: PieceClassification.Dvergr
             )
         },
         {
@@ -6066,7 +6108,7 @@ internal static class PrefabConfigManager
                 clipGround: false,
                 placementPatch: false,
                 pieceName: "Dvergr wood beam (creep)",
-                pieceGroup: PieceGroup.Dvergr
+                pieceGroup: PieceClassification.Dvergr
             )
         },
         {
@@ -6081,7 +6123,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Dvergr
+                pieceGroup: PieceClassification.Dvergr
             )
         },
         {
@@ -6097,7 +6139,7 @@ internal static class PrefabConfigManager
                 clipGround: false,
                 placementPatch: false,
                 pieceName: "Dvergr wood pole (creep)",
-                pieceGroup: PieceGroup.Dvergr
+                pieceGroup: PieceClassification.Dvergr
             )
         },
         {
@@ -6112,7 +6154,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Dvergr
+                pieceGroup: PieceClassification.Dvergr
             )
         },
         {
@@ -6127,7 +6169,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Dvergr
+                pieceGroup: PieceClassification.Dvergr
             )
         },
         {
@@ -6142,7 +6184,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Dvergr
+                pieceGroup: PieceClassification.Dvergr
             )
         },
         {
@@ -6157,7 +6199,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Dvergr
+                pieceGroup: PieceClassification.Dvergr
             )
         },
         {
@@ -6172,7 +6214,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Dvergr
+                pieceGroup: PieceClassification.Dvergr
             )
         },
         {
@@ -6187,7 +6229,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Dvergr
+                pieceGroup: PieceClassification.Dvergr
             )
         },
         {
@@ -6243,7 +6285,7 @@ internal static class PrefabConfigManager
                 placementPatch: false,
                 pieceName: "Campfire (everburning)",
                 pieceDesc: "Burns eternally without fuel.",
-                pieceGroup: PieceGroup.Fire
+                pieceGroup: PieceClassification.Fire
             )
         },
         {
@@ -6260,7 +6302,7 @@ internal static class PrefabConfigManager
                 placementPatch: false,
                 pieceName: "Firepit iron (everburning)",
                 pieceDesc: "Burns eternally without fuel.",
-                pieceGroup: PieceGroup.Fire
+                pieceGroup: PieceClassification.Fire
             )
         },
         {
@@ -6498,7 +6540,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Banner
+                pieceGroup: PieceClassification.Banner
             )
         },
         {
@@ -6513,7 +6555,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Bed,
+                pieceGroup: PieceClassification.Bed,
                 playerBasePatch: true
             )
         },
@@ -6529,7 +6571,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Goblin
+                pieceGroup: PieceClassification.Goblin
             )
         },
         {
@@ -6544,7 +6586,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Goblin
+                pieceGroup: PieceClassification.Goblin
             )
         },
         {
@@ -6559,7 +6601,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Goblin
+                pieceGroup: PieceClassification.Goblin
             )
         },
         {
@@ -6574,7 +6616,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Goblin
+                pieceGroup: PieceClassification.Goblin
             )
         },
         {
@@ -6589,7 +6631,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Goblin
+                pieceGroup: PieceClassification.Goblin
             )
         },
         {
@@ -6604,7 +6646,7 @@ internal static class PrefabConfigManager
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Goblin
+                pieceGroup: PieceClassification.Goblin
             )
         },
         {
@@ -6619,7 +6661,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Goblin
+                pieceGroup: PieceClassification.Goblin
             )
         },
         {
@@ -6634,7 +6676,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Goblin
+                pieceGroup: PieceClassification.Goblin
             )
         },
         {
@@ -6651,7 +6693,7 @@ internal static class PrefabConfigManager
                 placementPatch: false,
                 pieceName: "Rug straw (large)",
                 pieceDesc: "",
-                pieceGroup: PieceGroup.Rug
+                pieceGroup: PieceClassification.Rug
             )
         },
         {
@@ -6666,7 +6708,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Goblin
+                pieceGroup: PieceClassification.Goblin
             )
         },
         {
@@ -6681,7 +6723,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Goblin
+                pieceGroup: PieceClassification.Goblin
             )
         },
         {
@@ -6696,7 +6738,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Goblin
+                pieceGroup: PieceClassification.Goblin
             )
         },
         {
@@ -6711,7 +6753,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Goblin
+                pieceGroup: PieceClassification.Goblin
             )
         },
         {
@@ -6726,7 +6768,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Goblin
+                pieceGroup: PieceClassification.Goblin
             )
         },
         {
@@ -6741,7 +6783,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Goblin
+                pieceGroup: PieceClassification.Goblin
             )
         },
         {
@@ -6768,7 +6810,7 @@ internal static class PrefabConfigManager
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,32",
                 clipEverything: true,
-                pieceGroup: PieceGroup.Rock
+                pieceGroup: PieceClassification.Rock
             )
         },
         {
@@ -6783,7 +6825,7 @@ internal static class PrefabConfigManager
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Rock
+                pieceGroup: PieceClassification.Rock
             )
         },
         {
@@ -6852,7 +6894,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Iron
+                pieceGroup: PieceClassification.Iron
             )
         },
         {
@@ -6896,7 +6938,7 @@ internal static class PrefabConfigManager
                 clipGround: false,
                 placementPatch: false,
                 pieceName: "Stone chest (light moss)",
-                pieceGroup: PieceGroup.Chest,
+                pieceGroup: PieceClassification.Chest,
                 invWidth: 5,
                 invHeight: 2
             )
@@ -6957,7 +6999,7 @@ internal static class PrefabConfigManager
                 placementPatch: false,
                 pieceName: "Black marble 1x2 enforced",
                 pieceDesc: "",
-                pieceGroup: PieceGroup.BlackMarble
+                pieceGroup: PieceClassification.BlackMarble
             )
         },
         {
@@ -7002,7 +7044,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Chair
+                pieceGroup: PieceClassification.Chair
             )
         },
         {
@@ -7017,7 +7059,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Table
+                pieceGroup: PieceClassification.Table
             )
         },
         {
@@ -7134,7 +7176,7 @@ internal static class PrefabConfigManager
                 clipGround: false,
                 placementPatch: false,
                 pieceName: "Dvergr wood pole",
-                pieceGroup: PieceGroup.Dvergr
+                pieceGroup: PieceClassification.Dvergr
             )
         },
         {
@@ -7149,7 +7191,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Dvergr
+                pieceGroup: PieceClassification.Dvergr
             )
         },
         {
@@ -7164,7 +7206,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Dvergr
+                pieceGroup: PieceClassification.Dvergr
             )
         },
         {
@@ -7265,7 +7307,7 @@ internal static class PrefabConfigManager
                 placementPatch: false,
                 pieceName: "Dvergr portal",
                 pieceDesc: "Connects another portal with equal or no tag.",
-                pieceGroup: PieceGroup.Portal
+                pieceGroup: PieceClassification.Portal
             )
         },
         {
@@ -7279,7 +7321,7 @@ internal static class PrefabConfigManager
                 requirements: "",
                 clipEverything: true,
                 pieceName: "Rock (large boulder)",
-                pieceGroup: PieceGroup.Rock
+                pieceGroup: PieceClassification.Rock
             )
         },
         {
@@ -7292,7 +7334,7 @@ internal static class PrefabConfigManager
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
                 clipEverything: true,
-                pieceGroup: PieceGroup.Rock
+                pieceGroup: PieceClassification.Rock
             )
         },
         {
@@ -7307,7 +7349,7 @@ internal static class PrefabConfigManager
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Rock
+                pieceGroup: PieceClassification.Rock
             )
         },
         {
@@ -7320,7 +7362,7 @@ internal static class PrefabConfigManager
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
                 clipEverything: true,
-                pieceGroup: PieceGroup.Rock
+                pieceGroup: PieceClassification.Rock
             )
         },
         {
@@ -7335,7 +7377,7 @@ internal static class PrefabConfigManager
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Rock
+                pieceGroup: PieceClassification.Rock
             )
         },
         {
@@ -7348,7 +7390,7 @@ internal static class PrefabConfigManager
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,64",
                 clipEverything: true,
-                pieceGroup: PieceGroup.Rock
+                pieceGroup: PieceClassification.Rock
             )
         },
         {
@@ -7363,7 +7405,7 @@ internal static class PrefabConfigManager
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Rock
+                pieceGroup: PieceClassification.Rock
             )
         },
         {
@@ -7376,7 +7418,7 @@ internal static class PrefabConfigManager
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Crystal,32",
                 clipEverything: true,
-                pieceGroup: PieceGroup.Rock
+                pieceGroup: PieceClassification.Rock
             )
         },
         {
@@ -7391,7 +7433,7 @@ internal static class PrefabConfigManager
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Rock
+                pieceGroup: PieceClassification.Rock
             )
         },
         {
@@ -7404,7 +7446,7 @@ internal static class PrefabConfigManager
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,100",
                 clipEverything: true,
-                pieceGroup: PieceGroup.Rock
+                pieceGroup: PieceClassification.Rock
             )
         },
         {
@@ -7419,7 +7461,7 @@ internal static class PrefabConfigManager
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Rock
+                pieceGroup: PieceClassification.Rock
             )
         },
         {
@@ -7432,7 +7474,7 @@ internal static class PrefabConfigManager
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,64;SilverOre,32",
                 clipEverything: true,
-                pieceGroup: PieceGroup.Ore
+                pieceGroup: PieceClassification.Ore
             )
         },
         {
@@ -7447,7 +7489,7 @@ internal static class PrefabConfigManager
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Ore
+                pieceGroup: PieceClassification.Ore
             )
         },
         {
@@ -7474,7 +7516,7 @@ internal static class PrefabConfigManager
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,64",
                 clipEverything: true,
-                pieceGroup: PieceGroup.Rock
+                pieceGroup: PieceClassification.Rock
             )
         },
         {
@@ -7489,7 +7531,7 @@ internal static class PrefabConfigManager
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Rock
+                pieceGroup: PieceClassification.Rock
             )
         },
         {
@@ -7502,7 +7544,7 @@ internal static class PrefabConfigManager
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,64;CopperOre,32",
                 clipEverything: true,
-                pieceGroup: PieceGroup.Ore
+                pieceGroup: PieceClassification.Ore
             )
         },
         {
@@ -7517,7 +7559,7 @@ internal static class PrefabConfigManager
                 clipEverything: true,
                 clipGround: true,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Ore
+                pieceGroup: PieceClassification.Ore
             )
         },
         {
@@ -7530,7 +7572,7 @@ internal static class PrefabConfigManager
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,64",
                 clipEverything: true,
-                pieceGroup: PieceGroup.Rock
+                pieceGroup: PieceClassification.Rock
             )
         },
         {
@@ -7545,7 +7587,7 @@ internal static class PrefabConfigManager
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Rock
+                pieceGroup: PieceClassification.Rock
             )
         },
         {
@@ -7558,7 +7600,7 @@ internal static class PrefabConfigManager
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,32",
                 clipEverything: true,
-                pieceGroup: PieceGroup.Rock
+                pieceGroup: PieceClassification.Rock
             )
         },
         {
@@ -7573,7 +7615,7 @@ internal static class PrefabConfigManager
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Rock
+                pieceGroup: PieceClassification.Rock
             )
         },
         {
@@ -7587,7 +7629,7 @@ internal static class PrefabConfigManager
                 requirements: "Stone,48",
                 clipEverything: true,
                 pieceName: "Rock (black)",
-                pieceGroup: PieceGroup.Rock
+                pieceGroup: PieceClassification.Rock
             )
         },
         {
@@ -7603,7 +7645,7 @@ internal static class PrefabConfigManager
                 clipGround: false,
                 placementPatch: false,
                 pieceName: "Rock (black)",
-                pieceGroup: PieceGroup.Rock
+                pieceGroup: PieceClassification.Rock
             )
         },
         {
@@ -7619,7 +7661,7 @@ internal static class PrefabConfigManager
                 clipGround: false,
                 placementPatch: false,
                 pieceName: "Rock (black, alt)",
-                pieceGroup: PieceGroup.Rock,
+                pieceGroup: PieceClassification.Rock,
                 spawnOnDestroyed: "sfx_rock_destroyed"
             )
         },
@@ -7635,7 +7677,7 @@ internal static class PrefabConfigManager
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Rock
+                pieceGroup: PieceClassification.Rock
             )
         },
         {
@@ -7650,7 +7692,7 @@ internal static class PrefabConfigManager
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Flora
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -7665,7 +7707,7 @@ internal static class PrefabConfigManager
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Flora
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -7680,7 +7722,7 @@ internal static class PrefabConfigManager
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Flora
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -7695,7 +7737,7 @@ internal static class PrefabConfigManager
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Flora
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -7751,7 +7793,7 @@ internal static class PrefabConfigManager
                 requirements: "Wood,2",
                 clipEverything: false,
                 clipGround: false,
-                pieceGroup: PieceGroup.Rug
+                pieceGroup: PieceClassification.Rug
             )
         },
         {
@@ -7851,7 +7893,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Flora
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -7866,7 +7908,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Flora
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -7897,7 +7939,7 @@ internal static class PrefabConfigManager
                 placementPatch: false,
                 pieceName: "Wood plank",
                 pieceDesc: "",
-                pieceGroup: PieceGroup.Wood
+                pieceGroup: PieceClassification.Wood
             )
         },
         {
@@ -7910,7 +7952,7 @@ internal static class PrefabConfigManager
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,50;SilverOre,50",
                 clipEverything: true,
-                pieceGroup: PieceGroup.Ore
+                pieceGroup: PieceClassification.Ore
             )
         },
         {
@@ -7925,7 +7967,7 @@ internal static class PrefabConfigManager
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Ore
+                pieceGroup: PieceClassification.Ore
             )
         },
         {
@@ -7955,7 +7997,7 @@ internal static class PrefabConfigManager
                 clipGround: true,
                 placementPatch: false,
                 pieceName: "Stone floor 4x4",
-                pieceGroup: PieceGroup.Stone
+                pieceGroup: PieceClassification.Stone
             )
         },
         {
@@ -7971,7 +8013,7 @@ internal static class PrefabConfigManager
                 clipGround: true,
                 placementPatch: false,
                 pieceName: "Stone floor 4x4 (2)",
-                pieceGroup: PieceGroup.Stone
+                pieceGroup: PieceClassification.Stone
             )
         },
         {
@@ -7986,7 +8028,7 @@ internal static class PrefabConfigManager
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Flora
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -8015,7 +8057,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Iron
+                pieceGroup: PieceClassification.Iron
             )
         },
         {
@@ -8088,7 +8130,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Wood
+                pieceGroup: PieceClassification.Wood
             )
         },
         {
@@ -8103,7 +8145,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Wood
+                pieceGroup: PieceClassification.Wood
             )
         },
         {
@@ -8146,7 +8188,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Flora
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -8173,7 +8215,7 @@ internal static class PrefabConfigManager
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,32",
                 clipEverything: true,
-                pieceGroup: PieceGroup.Rock
+                pieceGroup: PieceClassification.Rock
             )
         },
         {
@@ -8188,7 +8230,7 @@ internal static class PrefabConfigManager
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Rock
+                pieceGroup: PieceClassification.Rock
             )
         },
         {
@@ -8203,7 +8245,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Wood
+                pieceGroup: PieceClassification.Wood
             )
         },
         {
@@ -8218,7 +8260,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Flora
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -8233,7 +8275,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceGroup.Flora
+                pieceGroup: PieceClassification.Flora
             )
         },
     };

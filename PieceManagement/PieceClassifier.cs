@@ -1,13 +1,13 @@
 ﻿// Ignore Spelling: MVBP
 
 using MVBP.Extensions;
-using MVBP.Models;
+using MVBP.PrefabManagement;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace MVBP.SnapPoints;
+namespace MVBP.PieceManagement;
 
 /// <summary>
 ///     IEnumerable that has a list of prefabs for each PieceGroup
@@ -15,20 +15,20 @@ namespace MVBP.SnapPoints;
 /// </summary>
 internal class SortedPieceGroups : IEnumerable
 {
-    private readonly Dictionary<PieceGroup, List<GameObject>> pieceGroupLists;
-    private static readonly List<PieceGroup> _pieceGroupOrder = new();
-    private static List<PieceGroup> PieceGroupOrder => GetPieceGroupOrder();
+    private readonly Dictionary<PieceClassification, List<GameObject>> pieceGroupLists;
+    private static readonly List<PieceClassification> _pieceGroupOrder = new();
+    private static List<PieceClassification> PieceGroupOrder => GetPieceGroupOrder();
 
-    private static List<PieceGroup> GetPieceGroupOrder()
+    private static List<PieceClassification> GetPieceGroupOrder()
     {
         if (_pieceGroupOrder.Count > 0)
         {
             return _pieceGroupOrder;
         }
 
-        foreach (PieceGroup pieceGroup in Enum.GetValues(typeof(PieceGroup)))
+        foreach (PieceClassification pieceGroup in Enum.GetValues(typeof(PieceClassification)))
         {
-            if (pieceGroup == PieceGroup.None) { continue; }
+            if (pieceGroup == PieceClassification.None) { continue; }
             _pieceGroupOrder.Add(pieceGroup);
         }
         return _pieceGroupOrder;
@@ -40,17 +40,17 @@ internal class SortedPieceGroups : IEnumerable
     /// </summary>
     public SortedPieceGroups()
     {
-        pieceGroupLists = new Dictionary<PieceGroup, List<GameObject>>();
-        foreach (PieceGroup group in PieceGroupOrder)
+        pieceGroupLists = new Dictionary<PieceClassification, List<GameObject>>();
+        foreach (PieceClassification group in PieceGroupOrder)
         {
             pieceGroupLists[group] = new List<GameObject>();
         }
     }
 
-    public void Add(PieceDB pieceDB)
+    public void Add(PrefabConfig prefabConfig)
     {
-        PieceGroup key = PieceClassifier.GetPieceGroup(pieceDB);
-        pieceGroupLists[key].Add(pieceDB.Prefab);
+        PieceClassification key = PieceClassifier.GetPieceGroup(prefabConfig);
+        pieceGroupLists[key].Add(prefabConfig.Prefab);
     }
 
     public IEnumerator GetEnumerator()
@@ -61,9 +61,9 @@ internal class SortedPieceGroups : IEnumerable
     private class SortedPieceGroupsEnumerator : IEnumerator
     {
         private int position = -1;
-        private readonly Dictionary<PieceGroup, List<GameObject>> pieceGroupLists;
+        private readonly Dictionary<PieceClassification, List<GameObject>> pieceGroupLists;
 
-        public SortedPieceGroupsEnumerator(Dictionary<PieceGroup, List<GameObject>> pieceGroupLists)
+        public SortedPieceGroupsEnumerator(Dictionary<PieceClassification, List<GameObject>> pieceGroupLists)
         {
             this.pieceGroupLists = pieceGroupLists;
         }
@@ -98,36 +98,36 @@ internal class SortedPieceGroups : IEnumerable
 
 internal class PieceClassifier
 {
-    private static readonly Dictionary<string, PieceGroup> Cache = new();
+    private static readonly Dictionary<string, PieceClassification> Cache = new();
 
-    internal static PieceGroup GetPieceGroup(PieceDB pieceDB)
+    internal static PieceClassification GetPieceGroup(PrefabConfig prefabConfig)
     {
-        if (Cache.ContainsKey(pieceDB.name))
+        if (Cache.ContainsKey(prefabConfig.Name))
         {
-            return Cache[pieceDB.name];
+            return Cache[prefabConfig.Name];
         }
-        if (pieceDB.pieceGroup != PieceGroup.None)
+        if (prefabConfig.PieceGroup != PieceClassification.None)
         {
-            Cache[pieceDB.name] = pieceDB.pieceGroup;
-            return pieceDB.pieceGroup;
+            Cache[prefabConfig.Name] = prefabConfig.PieceGroup;
+            return prefabConfig.PieceGroup;
         }
-        PieceGroup result = DetectPieceGroup(pieceDB.Prefab);
-        Cache[pieceDB.name] = result;
+        PieceClassification result = DetectPieceGroup(prefabConfig.Prefab);
+        Cache[prefabConfig.Name] = result;
         return result;
     }
 
-    internal static PieceGroup GetPieceGroup(GameObject prefab)
+    internal static PieceClassification GetPieceGroup(GameObject prefab)
     {
         if (Cache.ContainsKey(prefab.name))
         {
             return Cache[prefab.name];
         }
-        PieceGroup result = DetectPieceGroup(prefab);
+        PieceClassification result = DetectPieceGroup(prefab);
         Cache[prefab.name] = result;
         return result;
     }
 
-    private static PieceGroup DetectPieceGroup(GameObject prefab)
+    private static PieceClassification DetectPieceGroup(GameObject prefab)
     {
         string prefabName = prefab.name.ToLower();
         Piece piece = prefab.GetComponent<Piece>();
@@ -135,27 +135,27 @@ internal class PieceClassifier
 
         if (prefab.GetComponent<PrivateArea>())
         {
-            return PieceGroup.Ward;
+            return PieceClassification.Ward;
         }
 
         if (prefab.GetComponent<Ship>())
         {
-            return PieceGroup.Ship;
+            return PieceClassification.Ship;
         }
 
         if (prefab.GetComponent<Vagon>())
         {
-            return PieceGroup.Cart;
+            return PieceClassification.Cart;
         }
 
         if (prefab.GetComponent<TeleportWorld>())
         {
-            return PieceGroup.Portal;
+            return PieceClassification.Portal;
         }
 
         if (prefab.GetComponent<Bed>() || prefabName.Contains("bed"))
         {
-            return PieceGroup.Bed;
+            return PieceClassification.Bed;
         }
 
         if (
@@ -165,7 +165,7 @@ internal class PieceClassifier
             "TriggerSpawner")
         )
         {
-            return PieceGroup.Spawner;
+            return PieceClassification.Spawner;
         }
 
         if (prefab.HasAnyComponent(
@@ -177,12 +177,12 @@ internal class PieceClassifier
             )
         )
         {
-            return PieceGroup.Crafting;
+            return PieceClassification.Crafting;
         }
 
         if (prefabName.Contains("chest") && prefab.GetComponent<Container>())
         {
-            return PieceGroup.Chest;
+            return PieceClassification.Chest;
         }
 
         if (
@@ -193,62 +193,62 @@ internal class PieceClassifier
         {
             if (prefabName.Contains("brazier"))
             {
-                return PieceGroup.Brazier;
+                return PieceClassification.Brazier;
             }
 
             if (prefabName.ContainsAny("torch", "demister"))
             {
-                return PieceGroup.Torch;
+                return PieceClassification.Torch;
             }
 
             if (prefabName.Contains("fire") || prefab.GetComponent<Fireplace>())
             {
-                return PieceGroup.Fire;
+                return PieceClassification.Fire;
             }
         }
 
         if (prefabName.Contains("armorstand")
             || prefab.GetComponent<ArmorStand>())
         {
-            return PieceGroup.ArmorStand;
+            return PieceClassification.ArmorStand;
         }
 
         if (prefabName.EndsWith("pile") || prefabName.EndsWith("stack"))
         {
-            return PieceGroup.Stack;
+            return PieceClassification.Stack;
         }
 
         if (prefabName.ContainsAny("iron", "rusty")
             && !prefab.GetComponent<CookingStation>())
         {
-            return PieceGroup.Iron;
+            return PieceClassification.Iron;
         }
 
         if (prefabName.ContainsAny("dvergr", "dverger"))
         {
-            return PieceGroup.Dvergr;
+            return PieceClassification.Dvergr;
         }
 
         if (prefab.HasAnyComponent(typeof(WearNTear), typeof(Door)))
         {
             if (prefabName.Contains("darkwood"))
             {
-                return PieceGroup.Darkwood;
+                return PieceClassification.Darkwood;
             }
 
             if (prefabName.Contains("ashwood"))
             {
-                return PieceGroup.Ashwood;
+                return PieceClassification.Ashwood;
             }
 
             if (prefabName.ContainsAny("wood", "turf"))
             {
-                return PieceGroup.Wood;
+                return PieceClassification.Wood;
             }
 
             if (prefabName.Contains("stone"))
             {
-                return PieceGroup.Stone;
+                return PieceClassification.Stone;
             }
         }
 
@@ -260,7 +260,7 @@ internal class PieceClassifier
         {
             if (!prefab.HasAnyComponent("CraftingStation", "StationExtension", "Barber"))
             {
-                return PieceGroup.Chair;
+                return PieceClassification.Chair;
             }
         }
 
@@ -269,7 +269,7 @@ internal class PieceClassifier
             || prefabName.ContainsAny("banner", "curtain", "drape", "cloth_hanging")
         )
         {
-            return PieceGroup.Banner;
+            return PieceClassification.Banner;
         }
 
         if (
@@ -277,7 +277,7 @@ internal class PieceClassifier
             || prefab.GetComponent<MineRock>()
         )
         {
-            return PieceGroup.Ore;
+            return PieceClassification.Ore;
         }
 
         if (
@@ -286,7 +286,7 @@ internal class PieceClassifier
             && !prefab.HasAnyComponent("CraftingStation", "StationExtension", "MapTable"))
         )
         {
-            return PieceGroup.Table;
+            return PieceClassification.Table;
         }
 
         if (
@@ -304,7 +304,7 @@ internal class PieceClassifier
                 && prefab.GetComponent<Pickable>()
             )
         {
-            return PieceGroup.Plant;
+            return PieceClassification.Plant;
         }
 
         if (
@@ -312,7 +312,7 @@ internal class PieceClassifier
             || prefabName.ContainsAny("rug", "carpet")
         )
         {
-            return PieceGroup.Rug;
+            return PieceClassification.Rug;
         }
 
         if (
@@ -322,34 +322,34 @@ internal class PieceClassifier
             || prefab.HasAnyComponent("TreeBase", "TreeLog")
             || destructible?.m_destructibleType == DestructibleType.Tree)
         {
-            return PieceGroup.Flora;
+            return PieceClassification.Flora;
         }
 
         if (prefabName.Contains("ice"))
         {
-            return PieceGroup.Ice;
+            return PieceClassification.Ice;
         }
 
         if (prefabName.ContainsAny("rock", "cliff"))
         {
-            return PieceGroup.Rock;
+            return PieceClassification.Rock;
         }
 
         if (prefabName.Contains("blackmarble"))
         {
-            return PieceGroup.BlackMarble;
+            return PieceClassification.BlackMarble;
         }
 
         if (prefabName.Contains("goblin"))
         {
-            return PieceGroup.Goblin;
+            return PieceClassification.Goblin;
         }
 
         if (prefabName.Contains("statue"))
         {
-            return PieceGroup.Statue;
+            return PieceClassification.Statue;
         }
 
-        return PieceGroup.Misc;
+        return PieceClassification.Misc;
     }
 }

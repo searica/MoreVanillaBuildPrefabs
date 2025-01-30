@@ -5,12 +5,12 @@ using System.Globalization;
 using System.Text.RegularExpressions;
 using UnityEngine;
 using MVBP.Extensions;
-using MVBP.Models;
+using MVBP.PrefabManagement;
 
 
-namespace MVBP.SnapPoints;
+namespace MVBP.PieceManagement;
 
-internal static class NameMaker
+internal static class PieceNameManager
 {
     private static TextInfo EngTextInfo = new CultureInfo("en-US", false).TextInfo;
 
@@ -79,23 +79,23 @@ internal static class NameMaker
     ///     to use as a piece name, or applies a custom name map
     ///     if one exists.
     /// </summary>
-    /// <param name="pieceDB"></param>
+    /// <param name="prefabConfig"></param>
     /// <returns></returns>
-    internal static string FormatPieceName(PieceDB pieceDB)
+    internal static string FormatPieceName(PrefabConfig prefabConfig)
     {
         // TODO: custom renaming format for BossStone prefabs
-        if (NameCache.ContainsKey(pieceDB.name))
+        if (NameCache.ContainsKey(prefabConfig.Name))
         {
-            return NameCache[pieceDB.name];
+            return NameCache[prefabConfig.Name];
         }
 
-        if (pieceDB.pieceName != null)
+        if (prefabConfig.PieceName != null)
         {
-            NameCache[pieceDB.name] = pieceDB.pieceName;
-            return pieceDB.pieceName;
+            NameCache[prefabConfig.Name] = prefabConfig.PieceName;
+            return prefabConfig.PieceName;
         }
 
-        string name = pieceDB.name.RemoveSuffix("_frac");
+        string name = prefabConfig.Name.RemoveSuffix("_frac");
         name = name.RemoveSuffix("_destruction");
         name = CreepToEndRegex.Replace(name, "$1$3 ($2)");
         name = DigitsToEndRegex.Replace(name, "$1$3 $2");
@@ -170,26 +170,26 @@ internal static class NameMaker
         //name = name.CapitalizeFirstLetter();
         name = EngTextInfo.ToTitleCase(name);
 
-        NameCache[pieceDB.name] = name;
+        NameCache[prefabConfig.Name] = name;
         return name;
     }
 
-    internal static string GetPieceDescription(PieceDB pieceDB)
+    internal static string GetPieceDescription(PrefabConfig PrefabConfig)
     {
-        if (DescCache.ContainsKey(pieceDB.name))
+        if (DescCache.ContainsKey(PrefabConfig.Name))
         {
-            return DescCache[pieceDB.name];
+            return DescCache[PrefabConfig.Name];
         }
 
-        if (pieceDB.pieceDesc != null)
+        if (PrefabConfig.PieceDesc != null)
         {
-            DescCache[pieceDB.name] = pieceDB.pieceDesc;
-            return pieceDB.pieceDesc;
+            DescCache[PrefabConfig.Name] = PrefabConfig.PieceDesc;
+            return PrefabConfig.PieceDesc;
         }
 
-        pieceDB.pieceDesc = FindPieceDescription(pieceDB.Prefab);
-        DescCache[pieceDB.name] = pieceDB.pieceDesc;
-        return pieceDB.pieceDesc;
+        PrefabConfig.PieceDesc = FindPieceDescription(PrefabConfig.Prefab);
+        DescCache[PrefabConfig.Name] = PrefabConfig.PieceDesc;
+        return PrefabConfig.PieceDesc;
     }
 
     private static string FindPieceDescription(GameObject prefab)

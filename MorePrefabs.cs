@@ -1,19 +1,13 @@
 ﻿// Ignore Spelling: Plugin MVBP
-using System;
-using System.Collections.Generic;
 using System.Reflection;
-using UnityEngine;
 using BepInEx;
 using BepInEx.Configuration;
-using BepInEx.Logging;
 using HarmonyLib;
 using Jotunn.Managers;
 using Jotunn.Utils;
 using Jotunn.Extensions;
 using Logging;
 using Configs;
-using MVBP.SnapPoints;
-using MVBP.Models;
 
 namespace MVBP;
 
@@ -79,84 +73,6 @@ public class MorePrefabs : BaseUnityPlugin
     internal static bool IsEnableFermenterPatches => EnableFermenterPatches.Value;
     #endregion Unsafe Patches
 
-    #region Prefab Settings
-    private static readonly Dictionary<string, PrefabDBConfigEntries> PrefabDBConfigsMap = new();
-
-    internal static bool IsPrefabConfigEnabled(string prefabName)
-    {
-        if (PrefabDBConfigsMap.ContainsKey(prefabName) && PrefabDBConfigsMap[prefabName].enabled != null)
-        {
-            return PrefabDBConfigsMap[prefabName].enabled.Value;
-        }
-        return false;
-    }
-    #endregion Prefab Settings
-
-    #region Update Flags & Checks
-    internal static bool UpdatePieceSettings { get; set; } = false;
-    internal static bool UpdatePlacementSettings { get; set; } = false;
-    internal static bool UpdateModSettings { get; set; } = false;
-    internal static bool UpdateSeasonalSettings { get; set; } = false;
-
-    /// <summary>
-    ///     Event hook to set whether a config entry
-    ///     for a piece setting has been changed.
-    /// </summary>
-    internal static void PieceSettingChanged(object obj, EventArgs args)
-    {
-        if (!UpdatePieceSettings)
-        {
-            UpdatePieceSettings = true;
-        }
-    }
-
-    /// <summary>
-    ///     Event hook to set whether a config entry
-    ///     for placement patches has been changed.
-    /// </summary>
-    internal static void PlacementSettingChanged(object obj, EventArgs args)
-    {
-        if (!UpdatePlacementSettings)
-        {
-            UpdatePlacementSettings = true;
-        }
-    }
-
-    /// <summary>
-    ///     Event hook to set whether a config entry
-    ///     for general mod settings has been changed.
-    /// </summary>
-    internal static void ModSettingChanged(object obj, EventArgs args)
-    {
-        if (!UpdateModSettings)
-        {
-            UpdateModSettings = true;
-        }
-    }
-
-    internal static void SeasonalSettingChanged(object obj, EventArgs args)
-    {
-        if (!UpdateSeasonalSettings)
-        {
-            UpdateSeasonalSettings = true;
-        }
-    }
-
-    /// <summary>
-    ///     Get a bool indicating if the prefab is configured to require a placement patch.
-    /// </summary>
-    /// <param name="PrefabName"></param>
-    /// <returns></returns>
-    internal static bool NeedsCollisionPatchForGhost(string prefabName)
-    {
-        if (PrefabDBConfigsMap.TryGetValue(prefabName, out PrefabDBConfigEntries prefabDBConfig))
-        {
-            return prefabDBConfig.ApplyPlacementPatch;
-        }
-
-        return false;
-    }
-    #endregion Update Flags & Checks
 
     public void Awake()
     {
@@ -320,33 +236,33 @@ public class MorePrefabs : BaseUnityPlugin
         );
 
         // Set up event hooks
-        CreativeMode.SettingChanged += PieceSettingChanged;
-        ForceAllPrefabs.SettingChanged += PieceSettingChanged;
-        CreatorShopAdminOnly.SettingChanged += PieceSettingChanged;
-        EnableHammerCrops.SettingChanged += PieceSettingChanged;
+        CreativeMode.SettingChanged += UpdateController.PieceSettingChanged;
+        ForceAllPrefabs.SettingChanged += UpdateController.PieceSettingChanged;
+        CreatorShopAdminOnly.SettingChanged += UpdateController.PieceSettingChanged;
+        EnableHammerCrops.SettingChanged += UpdateController.PieceSettingChanged;
 
-        AdminDeconstructOtherPlayers.SettingChanged += ModSettingChanged;
-        Log.Verbosity.SettingChanged += ModSettingChanged;
+        AdminDeconstructOtherPlayers.SettingChanged += UpdateController.ModSettingChanged;
+        Log.Verbosity.SettingChanged += UpdateController.ModSettingChanged;
 
-        EnableSeasonalPieces.SettingChanged += SeasonalSettingChanged;
+        EnableSeasonalPieces.SettingChanged += UpdateController.SeasonalSettingChanged;
     }
 
 
 
     // Public API Section
 
-    /// <summary>
-    ///     Checks if the root prefab of the GameObject has had a 
-    ///     Piece component added to it by MVBP. So this method can also
-    ///     be used on any clones of the root prefab.
-    /// </summary>
-    /// <param name="prefab">GameObject to check.</param>
-    /// <param name="piece">Optional piece component to prevent duplicate GetComponent calls.</param>
-    /// <returns>True if MVBP has added a Piece component, False otherwise.</returns>
-    public bool IsPieceAddedByMVBP(GameObject prefab, Piece piece = null)
-    {
-        return PieceHelper.IsPieceAddedByMVBP(prefab, piece);
-    }
+    ///// <summary>
+    /////     Checks if the root prefab of the GameObject has had a 
+    /////     Piece component added to it by MVBP. So this method can also
+    /////     be used on any clones of the root prefab.
+    ///// </summary>
+    ///// <param name="prefab">GameObject to check.</param>
+    ///// <param name="piece">Optional piece component to prevent duplicate GetComponent calls.</param>
+    ///// <returns>True if MVBP has added a Piece component, False otherwise.</returns>
+    //public bool IsPieceAddedByMVBP(GameObject prefab, Piece piece = null)
+    //{
+    //    return ZNetPrefabManager.IsPieceAddedByMVBP(prefab, piece);
+    //}
 
 
 }

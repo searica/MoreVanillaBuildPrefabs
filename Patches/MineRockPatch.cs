@@ -1,6 +1,7 @@
 ﻿// Ignore Spelling: MVBP
 
 using HarmonyLib;
+using Logging;
 
 namespace MVBP.Patches;
 

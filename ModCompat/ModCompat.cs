@@ -2,9 +2,9 @@
 
 using BepInEx.Bootstrap;
 using HarmonyLib;
-using MVBP.SnapPoints;
 using System;
 using System.Reflection;
+using Logging;
 
 namespace MVBP;
 
@@ -69,7 +69,8 @@ internal static class ModCompat
         {
             try
             {
-                ReInitExtraSnapPoints = ReflectionUtils.GetMethod(plugin.GetType(), "ReInitExtraSnapPoints", Type.EmptyTypes);
+                
+                ReInitExtraSnapPoints = AccessTools.Method(plugin.GetType(), "ReInitExtraSnapPoints");
             }
             catch (Exception e)
             {

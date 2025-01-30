@@ -3,7 +3,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace MVBP.Helpers;
+namespace MVBP.Utils;
 
 internal static class ColliderManager
 {

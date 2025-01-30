@@ -51,7 +51,7 @@ internal static class ReqConfigDrawer
     /// <param name="reqSep">Char used to separate requirements.</param>
     /// <param name="hasUpgrades">Whether the item can be upgraded and there is an amount per level value.</param>
     /// <returns></returns>
-    public static Action<ConfigEntryBase> ReqConfigCustomDrawer(char amountSep = ',', char reqSep = '|', bool hasUpgrades = false)
+    public static Action<ConfigEntryBase> ReqConfigCustomDrawer(char amountSep = ',', char reqSep = ';', bool hasUpgrades = false)
     {
         return cfg =>
         {

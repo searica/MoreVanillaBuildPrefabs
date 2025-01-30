@@ -5,9 +5,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Logging;
-using MVBP.PrefabManagement;
 
-namespace MVBP.PieceManagement;
+namespace MVBP.PrefabManagement;
 
 internal class IconManager : MonoBehaviour
 {

@@ -1,5 +1,6 @@
 ﻿// Ignore Spelling: MVBP
 using HarmonyLib;
+using MVBP.Extensions;
 
 namespace MVBP.Patches;
 
@@ -36,7 +37,7 @@ internal static class SecretDoorPatch
         int? currentState = GetDoorState(ref __instance);
         if (currentState == null || __state == null) { return; }
 
-        string prefabName = UpdateController.GetPrefabName(__instance);
+        string prefabName = __instance.gameObject.GetPrefabName();
         if (prefabName == "dvergrtown_secretdoor")
         {
             bool isDoorClosing = (__state == -1 || __state == 1) && currentState == 0;

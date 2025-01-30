@@ -23,7 +23,7 @@ internal static class MineRock5Extensions
         if (!__instance.GetComponent<MineRock5Tracker>())
         {
             MineRock5Tracker tracker = __instance.gameObject.AddComponent<MineRock5Tracker>();
-            tracker.m_prefabName = Utils.GetPrefabName(__instance.gameObject);
+            tracker.m_prefabName = global::Utils.GetPrefabName(__instance.gameObject);
         }
     }
 
