@@ -17,7 +17,7 @@ internal static class PlayerPiecePatcher
     ///     Called after Piece.Awake and Piece.SetCreator.
     /// </summary>
     /// <param name="piece"></param>
-    internal static void PatchPlayerBuiltPieceIfNeed(Piece piece)
+    internal static void PatchPlayerBuiltPieceIfNeeded(Piece piece)
     {
         if (!piece || !piece.gameObject || !piece.IsPlacedByPlayer() || !ZNetPrefabManager.IsPatchedByMVBP(piece))
         {
@@ -69,10 +69,6 @@ internal static class PlayerPiecePatcher
         {
             return;
         }
-
-        // TODO: Check this works?????
-        // Add ZDO ID
-        //zdo.Set("MVBP", true); // create ID data
 
         // Check for wards for player built containers
         Piece piece = gameObject.GetComponentInChildren<Piece>();

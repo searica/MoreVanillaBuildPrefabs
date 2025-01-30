@@ -44,7 +44,7 @@ internal static class PrefabConfigManager
     /// <returns></returns>
     internal static bool NeedsCollisionPatchForGhost(string prefabName)
     {
-        if (TryGetPrefabConfig(prefabName, out var prefabConfig, checkIfBound: true))
+        if (TryGetPrefabConfig(prefabName, out PrefabConfig prefabConfig, checkIfBound: true))
         {
             return prefabConfig.PlacementPatch.Value;
         }
@@ -54,7 +54,7 @@ internal static class PrefabConfigManager
 
     internal static bool IsPrefabEnabled(GameObject gameObject)
     {
-        if (TryGetPrefabConfig(gameObject.GetPrefabName(), out var prefabConfig, checkIfBound: true))
+        if (TryGetPrefabConfig(gameObject.GetPrefabName(), out PrefabConfig prefabConfig, checkIfBound: true))
         {
             return prefabConfig.Enabled.Value || MorePrefabs.IsForceAllPrefabs;
         }
