@@ -16,8 +16,8 @@ namespace MVBP.SnapPoints;
 internal static class SnapPointManager
 {
     // List of points in a 2x2 box that would be the corners
-    private static readonly List<Vector3> corners = new()
-    {
+    private static readonly List<Vector3> corners =
+    [
         new Vector3(-1, -1, -1),
         new Vector3(-1, -1, 1),
         new Vector3(1, -1, 1),
@@ -26,7 +26,7 @@ internal static class SnapPointManager
         new Vector3(-1, 1, 1),
         new Vector3(1, 1, 1),
         new Vector3(1, 1, -1),
-    };
+    ];
 
     // List of points in a 2x2 box that would be the middle of each edge
     //private static readonly List<Vector3> edgeMidPoints = new()
