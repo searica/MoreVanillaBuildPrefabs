@@ -1,8 +1,7 @@
 ﻿using MVBP.Extensions;
 using UnityEngine;
-using MVBP.PrefabManagement;
 
-namespace MVBP.Helpers;
+namespace MVBP.PrefabManagement;
 
 /// <summary>
 ///  Applies edits to player built pieces.

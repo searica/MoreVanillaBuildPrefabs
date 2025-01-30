@@ -3,7 +3,7 @@
 using System;
 using System.Reflection;
 
-namespace MVBP.Helpers;
+namespace MVBP.Utils;
 
 internal static class ReflectionUtils
 {

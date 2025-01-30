@@ -7,7 +7,7 @@ using System.IO;
 using UnityEngine;
 using Logging;
 
-namespace MVBP.Helpers;
+namespace MVBP.PrefabManagement;
 
 internal static class TextureHelper
 {
