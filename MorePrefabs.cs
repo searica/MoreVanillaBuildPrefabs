@@ -91,19 +91,19 @@ public class MorePrefabs : BaseUnityPlugin
         configFileWatcher = new(Config);
         configFileWatcher.OnConfigFileReloaded += () =>
         {
-            UpdateController.UpdatePlugin("Configuration file changed, re-initializing", saveConfig: false);
+            UpdateMananger.UpdatePlugin("Configuration file changed, re-initializing", saveConfig: false);
         };
 
         // Re-initialize after changing config data in-game and trigger a save to disk.
         SynchronizationManager.OnConfigurationWindowClosed += () =>
         {
-            UpdateController.UpdatePlugin("Configuration changed in-game, re-initializing");
+            UpdateMananger.UpdatePlugin("Configuration changed in-game, re-initializing");
         };
 
         // Re-initialize after getting updated config data and trigger a save to disk.
         SynchronizationManager.OnConfigurationSynchronized += (obj, attr) =>
         {
-            UpdateController.UpdatePlugin("Configuration synced, re-initializing");
+            UpdateMananger.UpdatePlugin("Configuration synced, re-initializing");
         };
     }
 
@@ -236,15 +236,15 @@ public class MorePrefabs : BaseUnityPlugin
         );
 
         // Set up event hooks
-        CreativeMode.SettingChanged += UpdateController.PieceSettingChanged;
-        ForceAllPrefabs.SettingChanged += UpdateController.PieceSettingChanged;
-        CreatorShopAdminOnly.SettingChanged += UpdateController.PieceSettingChanged;
-        EnableHammerCrops.SettingChanged += UpdateController.PieceSettingChanged;
+        CreativeMode.SettingChanged += UpdateMananger.PieceSettingChanged;
+        ForceAllPrefabs.SettingChanged += UpdateMananger.PieceSettingChanged;
+        CreatorShopAdminOnly.SettingChanged += UpdateMananger.PieceSettingChanged;
+        EnableHammerCrops.SettingChanged += UpdateMananger.PieceSettingChanged;
 
-        AdminDeconstructOtherPlayers.SettingChanged += UpdateController.ModSettingChanged;
-        Log.Verbosity.SettingChanged += UpdateController.ModSettingChanged;
+        AdminDeconstructOtherPlayers.SettingChanged += UpdateMananger.ModSettingChanged;
+        Log.Verbosity.SettingChanged += UpdateMananger.ModSettingChanged;
 
-        EnableSeasonalPieces.SettingChanged += UpdateController.SeasonalSettingChanged;
+        EnableSeasonalPieces.SettingChanged += UpdateMananger.SeasonalSettingChanged;
     }
 
 

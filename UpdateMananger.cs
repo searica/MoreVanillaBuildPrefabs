@@ -12,7 +12,7 @@ using Jotunn.Configs;
 namespace MVBP;
 
 [HarmonyPatch]
-internal static class UpdateController
+internal static class UpdateMananger
 {
     private static bool HasInit = false;
     private static bool PieceSettingsChanged { get; set; } = false;

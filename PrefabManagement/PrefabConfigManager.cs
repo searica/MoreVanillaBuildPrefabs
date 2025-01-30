@@ -147,15 +147,15 @@ internal static class PrefabConfigManager
     private static void Internal_BindPrefabConfig(PrefabConfig prefabConfig, GameObject prefab, Piece piece)
     {
         prefabConfig.BindToConfig(MorePrefabs.Instance.Config, prefab, piece);
-        prefabConfig.Enabled.SettingChanged += UpdateController.PieceSettingChanged;
-        prefabConfig.AllowedInDungeons.SettingChanged += UpdateController.PieceSettingChanged;
-        prefabConfig.Category.SettingChanged += UpdateController.PieceSettingChanged;
-        prefabConfig.CraftingStation.SettingChanged += UpdateController.PieceSettingChanged;
-        prefabConfig.Requirements.SettingChanged += UpdateController.PieceSettingChanged;
-        prefabConfig.ClipEverything.SettingChanged += UpdateController.PieceSettingChanged;
-        prefabConfig.ClipGround.SettingChanged += UpdateController.PieceSettingChanged;
+        prefabConfig.Enabled.SettingChanged += UpdateMananger.PieceSettingChanged;
+        prefabConfig.AllowedInDungeons.SettingChanged += UpdateMananger.PieceSettingChanged;
+        prefabConfig.Category.SettingChanged += UpdateMananger.PieceSettingChanged;
+        prefabConfig.CraftingStation.SettingChanged += UpdateMananger.PieceSettingChanged;
+        prefabConfig.Requirements.SettingChanged += UpdateMananger.PieceSettingChanged;
+        prefabConfig.ClipEverything.SettingChanged += UpdateMananger.PieceSettingChanged;
+        prefabConfig.ClipGround.SettingChanged += UpdateMananger.PieceSettingChanged;
 
-        prefabConfig.PlacementPatch.SettingChanged += UpdateController.PlacementSettingChanged;
+        prefabConfig.PlacementPatch.SettingChanged += UpdateMananger.PlacementSettingChanged;
     }
 
     private static readonly Dictionary<string, PrefabConfig> PrefabConfigMap = new()

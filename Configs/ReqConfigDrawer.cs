@@ -41,8 +41,7 @@ internal static class ReqConfigDrawer
     private const int AmountWidth = 33;
     private const int UpgradeWidth = 37;
     private const int ButtonWidth = 21;
-    private static readonly GUIStyle amountStyle = new GUIStyle(UnityEngine.GUI.skin.textField) { fixedWidth = AmountWidth };
-    private static readonly GUIStyle buttonStyle = new GUIStyle(UnityEngine.GUI.skin.button) { fixedWidth = ButtonWidth };
+
 
     /// <summary>
     ///     Custom drawer for RequirementConfigs.
@@ -55,6 +54,9 @@ internal static class ReqConfigDrawer
     {
         return cfg =>
         {
+            GUIStyle amountStyle = new GUIStyle(UnityEngine.GUI.skin.textField) { fixedWidth = AmountWidth };
+            GUIStyle buttonStyle = new GUIStyle(UnityEngine.GUI.skin.button) { fixedWidth = ButtonWidth };
+
             var reqParser = new RequirementsParser(amountSep, reqSep);
 
             List<RequirementConfig> newReqs = new List<RequirementConfig>();

@@ -165,8 +165,11 @@ internal static class PieceTableManager
         {
             Log.LogError($"Piece table is null!");
         }
+        if (!AddedPrefabs.TryGetValue(pieceTable, out List<GameObject> AddedPieces))
+        {
+            return;
+        }
 
-        List<GameObject> AddedPieces = AddedPrefabs[pieceTable];
         int numCustomPieces = AddedPieces.Count;
         if (numCustomPieces == 0)
         {

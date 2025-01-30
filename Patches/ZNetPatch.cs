@@ -30,7 +30,7 @@ internal static class ZNetPatch
             var watch = new System.Diagnostics.Stopwatch();
             if (Log.IsVerbosityMedium) { watch.Start(); }
 
-            UpdateController.UpdatePieces();
+            UpdateMananger.UpdatePieces();
 
             if (Log.IsVerbosityMedium)
             {
