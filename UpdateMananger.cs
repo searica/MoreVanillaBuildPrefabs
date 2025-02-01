@@ -94,6 +94,48 @@ internal static class UpdateMananger
         }
     }
 
+    /// <summary>
+    ///     Patch to check if world modifiers for resources are active
+    ///     and re-initialize the mod if they are so pickables have the
+    ///     correct build requirement costs.
+    /// </summary>
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(ZNet), nameof(ZNet.Start))]
+    private static void ApplyResourceRateToPieceResources()
+    {
+        Log.LogInfo("Checking world modifiers", Log.InfoLevel.Medium);
+
+        // If loading into game world and prefabs have not been added
+        if (SceneManager.GetActiveScene().name == "main")
+        {
+            // Resource rate modifiers are not active if == 1.0f
+            if (Game.m_resourceRate == 1.0f) 
+            {
+                return; 
+            }
+
+            Log.LogInfo("World modifiers for resource rate are active, re-initializing");
+
+            System.Diagnostics.Stopwatch watch = new();
+            if (Log.IsVerbosityMedium) 
+            { 
+                watch.Start();
+            }
+
+            UpdatePieces();
+
+            if (Log.IsVerbosityMedium)
+            {
+                watch.Stop();
+                Log.LogInfo($"Time to re-initialize: {watch.ElapsedMilliseconds} ms");
+            }
+        }
+    }
+
+    /// <summary>
+    ///     Initialize managers for the mod and update pieces for
+    ///     the hammer piece table based on the config.
+    /// </summary>
     private static void Initialize()
     {
         if (HasInit)
@@ -111,11 +153,10 @@ internal static class UpdateMananger
     }
 
     /// <summary>
-    ///     Method to re-initialize the plugin when the configuration
-    ///     has been updated based on whether the defaultResources or placement
-    ///     settings have been changed for any of the config entries.
+    ///     Method to update pieces added by MVBP when the configuration has been updated.
     /// </summary>
-    /// <param name="msg"></param>
+    /// <param name="msg">Text to log when triggering the update.</param>
+    /// <param name="saveConfig">Whether to save the config after updating.</param>
     internal static void UpdatePlugin(string msg, bool saveConfig = true)
     {
         if (!HasInit)
@@ -132,10 +173,10 @@ internal static class UpdateMananger
             return;
         }
 
-        var watch = new System.Diagnostics.Stopwatch();
-        if (Log.IsVerbosityMedium) { watch.Start(); }
         Log.LogInfo(msg);
-
+        System.Diagnostics.Stopwatch watch = new();
+        watch.Start();
+        
         if (PieceSettingsChanged)
         {
             UpdatePieces();
@@ -151,15 +192,9 @@ internal static class UpdateMananger
             ForceUnequipHammer(); // reset placement ghost set up to apply patch
         }
 
-        if (Log.IsVerbosityMedium)
-        {
-            watch.Stop();
-            Log.LogInfo($"Time to re-initialize: {watch.ElapsedMilliseconds} ms");
-        }
-        else
-        {
-            Log.LogInfo("Re-initializing complete");
-        }
+        watch.Stop();
+        Log.LogInfo($"Time to re-initialize: {watch.ElapsedMilliseconds} ms");
+   
 
         if (PieceSettingsChanged || SeasonalSettingsChanged)
         {
@@ -178,7 +213,7 @@ internal static class UpdateMananger
     /// <summary>
     ///     Reinitialize pieces and the hammer build table.
     /// </summary>
-    internal static void UpdatePieces()
+    private static void UpdatePieces()
     {
         if (!HasInit) { return; }
         ZNetPrefabManager.ApplyPrefabConfigSettings();
