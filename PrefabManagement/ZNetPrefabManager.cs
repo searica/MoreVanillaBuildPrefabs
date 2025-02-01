@@ -133,6 +133,22 @@ internal static class ZNetPrefabManager
         return EligiblePrefabMap.ContainsKey(name);
     }
 
+    public static bool HasPieceAddedByMVBP(GameObject gameObject)
+    {
+        return AddedPieceComponent.Contains(gameObject.GetPrefabName());
+    }
+
+
+    public static bool HasPieceAddedByMVBP(string name)
+    {
+        return AddedPieceComponent.Contains(name);
+    }
+
+    public static bool HasPieceAddedByMVBP(Component component)
+    {
+        return AddedPieceComponent.Contains(component.gameObject.GetPrefabName());
+    }
+
     public static bool TryGetEligiblePrefab(string name, out GameObject prefab)
     {
         if (EligiblePrefabMap.TryGetValue(name, out prefab))
@@ -311,7 +327,7 @@ internal static class ZNetPrefabManager
             // to prevent deconstruction of pieces that are not enabled by the mod
             piece.m_canBeRemoved = false;
 
-            AddedPieceComponent.Add(prefab.name);
+            AddedPieceComponent.Add(prefab.GetPrefabName());
             Log.LogInfo($"Created Piece component for: {prefab.name}", Log.InfoLevel.Medium);
         }
 
@@ -460,23 +476,22 @@ internal static class ZNetPrefabManager
             piece.m_name = PieceNameManager.FormatPieceName(prefabConfig);
             piece.m_description = PieceNameManager.GetPieceDescription(prefabConfig);
 
-            if (AddedPieceComponent.Contains(pair.Key))
-            {
-                // set component enabled/disabled for components added by MVBP
-                piece.enabled = prefabConfig.Enabled.Value || MorePrefabs.IsForceAllPrefabs;
-            }
-
             // set piece visible in PieceTable based on MVBP config
             piece.m_enabled = prefabConfig.Enabled.Value || MorePrefabs.IsForceAllPrefabs;
 
             // Prevent CreativeMode pieces and any clones of them from being removable.
             // (Player.RemovePiece patch allows removing player-built instances).
             // Mimic Vanilla, make ships/carts non-removable.
-            if (PieceCategoryManager.IsCreativeModePiece(piece) ||
+            if (HasPieceAddedByMVBP(pair.Key) ||
+                PieceCategoryManager.IsCreativeModePiece(piece) ||
                 prefabConfig.Prefab.GetComponent<Ship>() ||
                 prefabConfig.Prefab.GetComponent<Vagon>())
             {
                 piece.m_canBeRemoved = false;
+            }
+            else
+            {
+                piece.m_canBeRemoved = true;
             }
 
             piece.m_allowedInDungeons = prefabConfig.AllowedInDungeons.Value;
