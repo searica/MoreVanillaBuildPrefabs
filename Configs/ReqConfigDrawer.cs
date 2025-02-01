@@ -54,33 +54,34 @@ internal static class ReqConfigDrawer
     {
         return cfg =>
         {
-            GUIStyle amountStyle = new GUIStyle(UnityEngine.GUI.skin.textField) { fixedWidth = AmountWidth };
-            GUIStyle buttonStyle = new GUIStyle(UnityEngine.GUI.skin.button) { fixedWidth = ButtonWidth };
-
-            var reqParser = new RequirementsParser(amountSep, reqSep);
-
-            List<RequirementConfig> newReqs = new List<RequirementConfig>();
-            bool wasUpdated = false;
-
             int RightColumnWidth = GetRightColumnWidth();
+            GUIStyle amountStyle = new(GUI.skin.textField) { fixedWidth = AmountWidth };
+            GUIStyle buttonStyle = new(GUI.skin.button) { fixedWidth = ButtonWidth };
+            GUIStyle prefabStyle = new(GUI.skin.textField)
+            {
+                fixedWidth = RightColumnWidth - AmountWidth - (hasUpgrades ? UpgradeWidth : 0) - ButtonWidth * 2 - GutterWidth
+            };
 
-            GUILayout.BeginVertical();
-
+            RequirementsParser reqParser = new(amountSep, reqSep);
+            List<RequirementConfig> newReqs = [];      
             List<RequirementConfig> reqs = reqParser.Deserialize((string)cfg.BoxedValue);
 
+            bool wasUpdated = false;
+            GUILayout.BeginVertical();
             foreach (RequirementConfig req in reqs)
             {
                 GUILayout.BeginHorizontal();
-
-                string newItem = GUILayout.TextField(
-                    req.Item,
-                    new GUIStyle(UnityEngine.GUI.skin.textField)
-                    {
-                        fixedWidth = RightColumnWidth - AmountWidth - (hasUpgrades ? UpgradeWidth : 0) - ButtonWidth * 2 - GutterWidth
-                    }
-                );
+                string newItem = GUILayout.TextField(req.Item, prefabStyle);
                 string prefabName = string.IsNullOrEmpty(newItem) ? req.Item : newItem;
                 wasUpdated = wasUpdated || prefabName != req.Item;
+      
+                //string newItem = GUILayout.TextField(
+                //    req.Item,
+                //    new GUIStyle(GUI.skin.textField)
+                //    {
+                //        fixedWidth = RightColumnWidth - AmountWidth - (hasUpgrades ? UpgradeWidth : 0) - ButtonWidth * 2 - GutterWidth
+                //    }
+                //);
 
 
                 int amount = req.Amount;
@@ -107,7 +108,6 @@ internal static class ReqConfigDrawer
 
                 GUILayout.EndHorizontal();
             }
-
             GUILayout.EndVertical();
 
             if (wasUpdated)
