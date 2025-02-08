@@ -142,6 +142,8 @@ internal static class UpdateMananger
         {
             return;
         }
+        HasInit = true;
+
         Log.LogInfo("Initializing managers.");
         PieceCategoryManager.AddCustomPieceCategories();
         SeasonalPieceMananger.Initialize();
@@ -149,7 +151,6 @@ internal static class UpdateMananger
         ZNetPrefabManager.Initialize();
         UpdatePieces();
         MorePrefabs.Instance.Config.Save(); // save after binding prefab configs
-        HasInit = true; 
     }
 
     /// <summary>
