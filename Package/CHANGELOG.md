@@ -8,6 +8,27 @@
 			<th align="center">Notes</th>
 		</tr>
 		<tr>
+			<td align="center">1.4.0</td>
+			<td align="left">
+				<ul>
+					<li>Removed portal patch config setting. The Dvergr stone portal now allows allows you to teleport all items (even after removing MVBP).</li>
+					<li>Added support for shudnal's configuration manager.</li>
+					<li>Added snap points to Dvergr treasure chests.</li>
+					<li>Limited implementation of named snap points. Will be expanded on in the future.<li>
+					<li>Updated config section ordering to work with new configuration manager changes to sorting config sections.</li>
+					<li>Exposed placement patch and clipping config settings for all prefabs but ones that need to be true are set to read only.</li>
+					<li>Refactored a lot of code to make future updates easier and prepare for adding localization support.</li>
+					<li>Removed public API for `IsPieceAddedByMVBP` as it was not needed for `LocationReset` compatibility.</li>
+					<li>Added filtering to ignore explosions and AOE effects.</li>
+					<li>Automatically filter out MineRock5 prefabs with missing colliders.</li>
+					<li>Set default requirements to an example string rather than an empty string to avoid draw field issues with configuration maangers.</li>
+					<li>Fixed everburing piece names to match new case convention and changed (Everburning) to (Eternal).</li>
+					<li>Added some new pieces to be enabled by default.</li>
+					<li>Updated Jotunn.</li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
 			<td align="center">1.3.5</td>
 			<td align="left">
 				<ul>

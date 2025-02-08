@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<NuGetPackages>$(UserProfile)\.nuget\packages</NuGetPackages>
-		<JotunnProps>$(NuGetPackages)\jotunnlib\2.20.0\build\JotunnLib.props</JotunnProps>
+		<JotunnProps>$(NuGetPackages)\jotunnlib\2.23.0\build\JotunnLib.props</JotunnProps>
 	</PropertyGroup>
 
 	<Import Project="ModPackageTool.targets" Condition="Exists('ModPackageTool.targets')" />
@@ -11,7 +11,7 @@
 		<OutputType>Library</OutputType>
 		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 		<!--<LangVersion>latest</LangVersion>-->
-		<LangVersion>10.0</LangVersion>
+		<LangVersion>12.0</LangVersion>
 		<AppConfig>App.config</AppConfig>
 	</PropertyGroup>
 
@@ -56,6 +56,12 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <Compile Remove="Libraries\**" />
+	  <EmbeddedResource Remove="Libraries\**" />
+	  <None Remove="Libraries\**" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<None Remove="Resources\texture_portal_MainTex.png" />
 		<None Remove="Resources\texture_portal_n_BumpMap.png" />
 	</ItemGroup>
@@ -70,8 +76,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Folder Include="Libraries" />
-		<Folder Include="Libraries\Debug\" />
 		<Folder Include="Publish\Nexus\" />
 		<Folder Include="Publish\ThunderStore\" />
 	</ItemGroup>
@@ -81,8 +85,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="JotunnLib" Version="2.22.0" />
-		<PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+		<PackageReference Include="JotunnLib" Version="2.23.2" />
 	</ItemGroup>
 
 	<ItemGroup>

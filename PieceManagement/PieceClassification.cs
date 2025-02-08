@@ -1,0 +1,48 @@
+﻿// Ignore Spelling: MVBP
+
+namespace MVBP.PieceManagement;
+
+internal enum PieceClassification
+{
+    None = 0,
+    Fire,
+    Stack,
+    Treasure,
+
+    Bed,
+    Chest,
+    Chair,
+    Table,
+    Torch,
+    Brazier,
+    Rug,
+    Banner,
+    ArmorStand,
+    Statue,
+
+    Wood,
+    Darkwood,
+    Ashwood,
+    Goblin,
+    Iron,
+    Crystal,
+    Stone,
+    BlackMarble,
+    Dvergr,
+
+    Portal,
+    Ward,
+    Cart,
+    Ship,
+
+    VanillaCrop,
+    Plant, // pickable plants
+    Flora, // non pickable plants (shrubs, trees, etc.)
+    Rock,
+    Ice,
+    Ore,
+
+    Crafting,
+    Misc,
+    Spawner,
+}
