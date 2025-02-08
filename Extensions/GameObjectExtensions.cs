@@ -23,6 +23,16 @@ internal static class GameObjectExtensions
     }
 
     /// <summary>
+    ///     True if the GameObject does not have a parent transform.
+    /// </summary>
+    /// <param name="gameObject"></param>
+    /// <returns></returns>
+    internal static bool IsRootPrefab(this GameObject gameObject)
+    {
+        return !gameObject.transform.parent;
+    }
+
+    /// <summary>
     ///     Creates a deep copy of the object.
     /// </summary>
     /// <param name="obj"></param>
