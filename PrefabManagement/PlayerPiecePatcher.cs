@@ -1,4 +1,7 @@
-﻿using MVBP.Extensions;
+﻿using HarmonyLib;
+using MVBP.Extensions;
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace MVBP.PrefabManagement;
@@ -11,6 +14,12 @@ internal static class PlayerPiecePatcher
     private static readonly int PieceLayer = LayerMask.NameToLayer("piece");
     private static readonly int CharacterTriggerLayer = LayerMask.NameToLayer("character_trigger");
     private const float timeout = 1e30f;
+
+    private static readonly HashSet<string> DvergrWoodPieces =
+    [
+        "dvergrprops_wood_floor",
+        "dvergrprops_wood_stair",
+    ];
 
     /// <summary>
     ///     Applies patches from when pieces are loaded.
@@ -43,20 +52,21 @@ internal static class PlayerPiecePatcher
     /// <param name="piece"></param>
     private static void ApplyPlayerBuiltPiecePatches(Piece piece)
     {
-        if (!piece || !piece.gameObject || !piece.IsPlacedByPlayer() || !ZNetPrefabManager.IsPatchedByMVBP(piece))
+        if (!piece || !piece.gameObject || !piece.IsPlacedByPlayer())
         {
-            return;
+            return;  // invalid piece or non-player piece.
         }
+
         string prefabName = piece.gameObject.GetPrefabName();
-
-        ApplyDoorPatches(prefabName, piece.gameObject);
-        ApplyTimedDestructionPatch(piece.gameObject);
-        ApplyContainerPatches(prefabName, piece.gameObject);
-
-        if (piece.TryGetComponent(out Destructible destructible))
-        {
-            EditDestructibleSpawn(prefabName, destructible);
+        if (!ZNetPrefabManager.IsPatchedByMVBP(prefabName)){
+            return;  // not patched by MVBP don't touch it.
         }
+
+        ApplyDoorPatches(prefabName, piece);
+        ApplyTimedDestructionPatch(piece);
+        ApplyContainerPatches(prefabName, piece);
+        EditDestructibleSpawn(prefabName, piece);
+
         if (MorePrefabs.IsEnablePlayerBasePatches)
         {
             ApplyPlayerBasePatches(prefabName, piece.gameObject);
@@ -75,33 +85,58 @@ internal static class PlayerPiecePatcher
         }
     }
 
+    private static bool TryGetZDO(Piece piece, out ZDO zdo)
+    {
+        if (!piece.m_nview || !piece.m_nview.IsValid())
+        {
+            zdo = null;
+            return false;
+        }
+        zdo = piece.m_nview.GetZDO();
+        return zdo != null;
+    }
+
     /// <summary>
     ///     Modifies container size based on settings in default PrefabDB
     /// </summary>
     /// <param name="prefabName"></param>
     /// <param name="gameObject"></param>
-    private static void ApplyContainerPatches(string prefabName, GameObject gameObject)
     {
-        Container container = gameObject.GetComponentInChildren<Container>();
+        if (prefabName != "portal")
+        {
+            return;
+        }
+
+        if (!TryGetZDO(piece, out ZDO zdo))
+        {
+            return;
+        }
+
+
+    /// <summary>
+    ///     Sets chest to check for wards and modifies container 
+    ///     size based on settings in in the PrefabConfig for this prefab.
+    /// </summary>
+    /// <param name="prefabName"></param>
+    /// <param name="gameObject"></param>
+    private static void ApplyContainerPatches(string prefabName, Piece piece)
+    {
+        Container container = piece.gameObject.GetComponentInChildren<Container>();
         if (!container)
         {
             return;
         }
 
-        ZDO zdo = container.m_nview.GetZDO();
-        if (zdo == null)
+        if (!TryGetZDO(piece, out ZDO zdo))
         {
             return;
         }
-
+  
         // Check for wards for player built containers
-        Piece piece = gameObject.GetComponentInChildren<Piece>();
-        if (piece && piece.IsPlacedByPlayer())
-        {
-            zdo.Set("HasFields", true);
-            zdo.Set("HasFieldsContainer", true);
-            zdo.Set("Container.m_checkGuardStone", true);
-        }
+        zdo.Set("HasFields", true);
+        zdo.Set("HasFieldsContainer", true);
+        zdo.Set("Container.m_checkGuardStone", true);
+       
 
         // Modify container size based on configs
         if (!PrefabConfigManager.TryGetPrefabConfig(prefabName, out var prefabConfig, checkIfBound: true))
@@ -139,15 +174,14 @@ internal static class PlayerPiecePatcher
     }
 
 
-    private static void ApplyTimedDestructionPatch(GameObject gameObject)
+    private static void ApplyTimedDestructionPatch(Piece piece)
     {
-        if (!gameObject.TryGetComponent(out TimedDestruction timedDestruction))
+        if (!piece.gameObject.TryGetComponent(out TimedDestruction timedDestruction))
         {
             return;
         }
 
-        ZDO zdo = timedDestruction.m_nview.GetZDO();
-        if (zdo == null)
+        if (!TryGetZDO(piece, out ZDO zdo))
         {
             return;
         }
@@ -155,9 +189,7 @@ internal static class PlayerPiecePatcher
         zdo.Set("HasFields", true);
         zdo.Set("HasFieldsTimedDestruction", true);
         zdo.Set("TimedDestruction.m_timeout", timeout);
-
         timedDestruction.m_timeout = timeout;
-
     }
 
     /// <summary>
@@ -166,9 +198,19 @@ internal static class PlayerPiecePatcher
     /// </summary>
     /// <param name="name"></param>
     /// <param name="destructible"></param>
-    private static void EditDestructibleSpawn(string name, Destructible destructible)
+    private static void EditDestructibleSpawn(string name, Piece piece)
     {
-        if (!destructible || !PrefabConfigManager.TryGetPrefabConfig(name, out var prefabConfig, checkIfBound: true))
+        if (!piece.TryGetComponent(out Destructible destructible) || !destructible)
+        {
+            return;
+        }
+
+        if (!TryGetZDO(piece, out ZDO zdo))
+        {
+            return;
+        }
+
+        if (!PrefabConfigManager.TryGetPrefabConfig(name, out var prefabConfig, checkIfBound: true))
         {
             return;
         }
@@ -184,15 +226,9 @@ internal static class PlayerPiecePatcher
             return;
         }
 
-        ZDO zdo = destructible.m_nview.GetZDO();
-        if (zdo == null)
-        {
-            return;
-        }
         zdo.Set("HasFields", true);
         zdo.Set("HasFieldsDestructible", true);
-        zdo.Set("Destructible.m_spawnWhenDestroyed", "fx_crystal_destruction");
-
+        zdo.Set("Destructible.m_spawnWhenDestroyed", prefabConfig.SpawnOnDestroyed);
         destructible.m_spawnWhenDestroyed = spawn;
     }
 
@@ -206,7 +242,7 @@ internal static class PlayerPiecePatcher
     /// <param name="gameObject"></param>
     private static void ApplyNewDvergrTexture(string name, GameObject gameObject)
     {
-        if (PrefabConfigManager.DvergrWoodPieces.Contains(name))
+        if (DvergrWoodPieces.Contains(name))
         {
             Renderer[] componentsInChildren = gameObject.transform.Find("New").GetComponentsInChildren<Renderer>(true);
             foreach (Renderer renderer in componentsInChildren)
@@ -255,7 +291,13 @@ internal static class PlayerPiecePatcher
         playerBaseEffect.m_type = EffectArea.Type.PlayerBase;
     }
 
-    private static void ApplyDoorPatches(string name, GameObject gameObject)
+
+    /// <summary>
+    ///     Edit fields and zdo to make door closable after opening.
+    /// </summary>
+    /// <param name="name"></param>
+    /// <param name="gameObject"></param>
+    private static void ApplyDoorPatches(string name, Piece piece)
     {
         // Missing animations
         // dungeon_queen_door
@@ -266,23 +308,21 @@ internal static class PlayerPiecePatcher
             case "dvergrtown_slidingdoor":
             case "dvergrtown_secretdoor":
                 {
-                    if (!gameObject.TryGetComponent(out Door door))
+
+                    if (!piece.TryGetComponent(out Door door))
                     {
                         return;
                     }
-
+                    if (!TryGetZDO(piece, out ZDO zdo))
+                    {
+                        return;
+                    }
                     door.m_canNotBeClosed = false;
                     door.m_checkGuardStone = true;
-
-                    if (gameObject.TryGetComponent(out ZNetView nview))
-                    {
-                        ZDO zdo = nview.GetZDO();
-                        if (zdo == null) { return; }
-                        zdo.Set("HasFields", true);
-                        zdo.Set("HasFieldsDoor", true);
-                        zdo.Set("Door.m_canNotBeClosed", false);
-                        zdo.Set("Door.m_checkGuardStone", true);
-                    }
+                    zdo.Set("HasFields", true);
+                    zdo.Set("HasFieldsDoor", true);
+                    zdo.Set("Door.m_canNotBeClosed", false);
+                    zdo.Set("Door.m_checkGuardStone", true);
                 }
                 break;
 
@@ -291,6 +331,12 @@ internal static class PlayerPiecePatcher
         }
     }
 
+
+    /// <summary>
+    ///     Adds bed to select prefabs.
+    /// </summary>
+    /// <param name="name"></param>
+    /// <param name="gameObject"></param>
     private static void ApplyBedPatches(string name, GameObject gameObject)
     {
         switch (name)
@@ -307,10 +353,15 @@ internal static class PlayerPiecePatcher
                 break;
         }
     }
-
+    
+    /// <summary>
+    ///     Add bed component and set spawn point attach point.
+    /// </summary>
+    /// <param name="gameObject"></param>
+    /// <param name="spawnPosition"></param>
     private static void AddBed(GameObject gameObject, Vector3 spawnPosition)
     {
-        var attachPoint = new GameObject("spawnpoint");
+        GameObject attachPoint = new("spawnpoint");
         attachPoint.transform.parent = gameObject.transform;
         attachPoint.transform.localPosition = spawnPosition;
         attachPoint.layer = PieceLayer;
