@@ -14,7 +14,15 @@ internal static class HammerCategories
     public const string Nature = "Nature";
     public const string Misc = "Misc";
     public const string Crafting = "Crafting";
+
+    /// <summary>
+    ///     Building Category
+    /// </summary>
     public const string Building = "BuildingWorkbench";
+
+    /// <summary>
+    ///     Heavy build category.
+    /// </summary>
     public const string Stonecutter = "BuildingStonecutter";
     public const string Furniture = "Furniture";
 
