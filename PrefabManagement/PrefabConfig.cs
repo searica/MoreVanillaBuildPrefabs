@@ -1,51 +1,40 @@
-﻿using BepInEx.Configuration;
+﻿using System.Collections.Generic;
+using UnityEngine;
+using BepInEx.Configuration;
 using Jotunn.Configs;
 using Jotunn.Extensions;
-using UnityEngine;
 using Configs;
+using static Configs.ReqConfigDrawer;
 using MVBP.PieceManagement;
-using System.Collections.Generic;
+
+
 
 namespace MVBP.PrefabManagement;
 
-internal class PrefabConfig(
-    string name,
-    bool enabled = false,
-    bool allowedInDungeons = false,
-    string category = HammerCategories.CreatorShop,
-    string craftingStation = nameof(CraftingStations.None),
-    string requirements = null,
-    bool clipEverything = false,
-    bool clipGround = false,
-    bool placementPatch = false,
-    Vector3? placementOffset = null,
-    string pieceName = null,
-    string pieceDesc = null,
-    PieceClassification pieceGroup = default,
-    bool playerBasePatch = false,
-    string spawnOnDestroyed = null,
-    uint? invWidth = null,
-    uint? invHeight = null
-    )
+internal class PrefabConfig
 {
-    public string Name = name;
-    private readonly bool _enabled = enabled;
-    private readonly bool _allowedInDungeons = allowedInDungeons;
-    private readonly string _category = category;
-    private readonly string _craftingStation = craftingStation;
-    private readonly string _requirements = requirements;
-    private readonly bool _clipEverything = clipEverything;
-    private readonly bool _clipGround = clipGround;
-    private readonly bool _placementPatch = placementPatch;
+    private const char amountSeperator = ',';
+    private const char reqSeperator = ';';
+    private readonly RequirementsParser reqParser = new(amountSeperator, reqSeperator);
 
-    public Vector3? PlacementOffset = placementOffset;
-    public string PieceName = pieceName;
-    public string PieceDesc = pieceDesc;
-    public PieceClassification PieceGroup = pieceGroup;
-    public bool PlayerBasePatch = playerBasePatch;
-    public string SpawnOnDestroyed = spawnOnDestroyed;
-    public uint? InvWidth = invWidth;
-    public uint? InvHeight = invHeight;
+    public string Name;
+    private readonly bool _enabled;
+    private readonly bool _allowedInDungeons;
+    private readonly string _category;
+    private readonly string _craftingStation;
+    private readonly string _requirements;
+    private readonly bool _clipEverything;
+    private readonly bool _clipGround;
+    private readonly bool _placementPatch;
+
+    public Vector3? PlacementOffset;
+    public string PieceName;
+    public string PieceDesc;
+    public PieceClassification PieceGroup;
+    public bool PlayerBasePatch;
+    public string SpawnOnDestroyed;
+    public uint? InvWidth;
+    public uint? InvHeight;
 
     /// <summary>
     ///     Whether BindToConfig has been called for this PrefabConfig
@@ -64,11 +53,48 @@ internal class PrefabConfig(
     public ConfigEntry<bool> ClipEverything { get; private set; }
     public ConfigEntry<bool> ClipGround { get; private set; }
 
-    private const char amountSeperator = ',';
-    private const char reqSeperator = ';';
 
-    private readonly ReqConfigDrawer.RequirementsParser requirementsParser = new(amountSeperator, reqSeperator);
+    public PrefabConfig(
+       string name,
+       bool enabled = false,
+       bool allowedInDungeons = false,
+       string category = HammerCategories.CreatorShop,
+       string craftingStation = nameof(CraftingStations.None),
+       string requirements = "",
+       bool clipEverything = false,
+       bool clipGround = false,
+       bool placementPatch = false,
+       Vector3? placementOffset = null,
+       string pieceName = null,
+       string pieceDesc = null,
+       PieceClassification pieceGroup = default,
+       bool playerBasePatch = false,
+       string spawnOnDestroyed = null,
+       uint? invWidth = null,
+       uint? invHeight = null
+    )
+    {
+        Name = name;
+        PlacementOffset = placementOffset;
+        PieceName = pieceName;
+        PieceDesc = pieceDesc;
+        PieceGroup = pieceGroup;
+        PlayerBasePatch = playerBasePatch;
+        SpawnOnDestroyed = spawnOnDestroyed;
+        InvWidth = invWidth;
+        InvHeight = invHeight;
 
+        // Set default internal values for config entry settings
+        _enabled = enabled;
+        _allowedInDungeons = allowedInDungeons;
+        _category = category;
+        _craftingStation = craftingStation;
+        _requirements = string.IsNullOrWhiteSpace(requirements) ? reqParser.GetPlaceholderReqString() : requirements;
+        _clipEverything = clipEverything;
+        _clipGround = clipGround;
+        _placementPatch = placementPatch;
+    }
+    
     public void BindToConfig(ConfigFile configFile, GameObject prefab, Piece piece)
     {
         this.Prefab = prefab;
@@ -182,6 +208,6 @@ internal class PrefabConfig(
     /// <returns></returns>
     public List<RequirementConfig> ReadRequirements()
     {
-        return this.requirementsParser.Deserialize(this.Requirements.Value);
+        return this.reqParser.Deserialize(this.Requirements.Value);
     }
 }
