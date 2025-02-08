@@ -1,5 +1,6 @@
 ﻿// Ignore Spelling: MVBP
 
+using Configs;
 using Jotunn.Configs;
 using Jotunn.Managers;
 using Logging;
@@ -52,10 +53,10 @@ internal static class PieceReqsManager
     /// <returns></returns>
     internal static Piece.Requirement[] CreateRequirementsArray(List<RequirementConfig> reqConfigs)
     {
-        var requirements = new List<Piece.Requirement>();
+        List<Piece.Requirement> requirements = [];
         foreach (RequirementConfig reqConfig in reqConfigs)
         {
-            if (reqConfig.Item == " ")
+            if (ReqConfigDrawer.RequirementsParser.IsPlaceHolderPrefabName(reqConfig.Item))
             {
                 continue;
             }
