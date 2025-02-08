@@ -107,10 +107,27 @@ internal static class PrefabPatcher
                 SnapPointManager.FixPieceLayers(prefab);
                 SnapPointManager.AddSnapPointsToMeshCorners(prefab, "stonechest");
                 break;
-            //case "TreasureChest_dvergrtown":
-            //    break;
-            //case "TreasureChest_dvergrtower":
-            //    break;
+
+            case "TreasureChest_dvergrtower":
+            case "TreasureChest_dvergrtown":
+                SnapPointManager.FixPieceLayers(prefab);
+                SnapPointManager.AddSnapPoints(
+                    prefab,
+                    new Vector3[]
+                    {
+                        Vector3.zero,
+                        new(0.66f, 0.0f, 0.33f),
+                        new(0.66f, 0.0f, -0.33f),
+                        new(-0.66f, 0.0f, 0.33f),
+                        new(-0.66f, 0.0f, -0.33f),
+                        new(0.6f, 0.7f, 0.33f),
+                        new(0.6f, 0.7f, -0.33f),
+                        new(-0.6f, 0.7f, 0.33f),
+                        new(-0.6f, 0.7f, -0.33f),
+                    }
+                );
+                break;
+
             case "TreasureChest_plains_stone":
             case "TreasureChest_fCrypt":
             case "TreasureChest_sunkencrypt":
