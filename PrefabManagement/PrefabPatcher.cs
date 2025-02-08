@@ -969,7 +969,9 @@ internal static class PrefabPatcher
                         new(0.0f, 0.0f,  2.0f, $"{EDGE} 2")
                     });
                 break;
-
+            case "portal":
+                PatchDvergrPortal(prefab);
+                break;
             default:
                 break;
         }
@@ -993,6 +995,25 @@ internal static class PrefabPatcher
         }
     }
 
+
+    /// <summary>
+    ///     Patch "portal" (Dvegr Stone Portal) to allow teleporting all
+    ///     items and set Piece.m_description = "$piece_portal_stone_description".
+    /// </summary>
+    /// <param name="prefab"></param>
+    internal static void PatchDvergrPortal(GameObject prefab)
+    {
+        if (!prefab.TryGetComponent(out TeleportWorld teleportWorld))
+        {
+            return;
+        }
+        teleportWorld.m_allowAllItems = true;
+
+        if (prefab.TryGetComponent(out Piece piece))
+        {
+            piece.m_description = "$piece_portal_stone_description";
+        }
+    }
     /// <summary>
     ///     Applies patches to selected pieces so they grant
     ///     comfort as expected if they were vanilla pieces.

@@ -62,6 +62,7 @@ internal static class PlayerPiecePatcher
             return;  // not patched by MVBP don't touch it.
         }
 
+        ApplyDvergrPortalPatches(prefabName, piece);
         ApplyDoorPatches(prefabName, piece);
         ApplyTimedDestructionPatch(piece);
         ApplyContainerPatches(prefabName, piece);
@@ -97,10 +98,12 @@ internal static class PlayerPiecePatcher
     }
 
     /// <summary>
-    ///     Modifies container size based on settings in default PrefabDB
+    ///     Patch "portal" to save changes made by PrefabPatcher to zdo
+    ///     for player build pieces. (see PrefabPatcher.PatchDvergrPortal)
     /// </summary>
     /// <param name="prefabName"></param>
     /// <param name="gameObject"></param>
+    private static void ApplyDvergrPortalPatches(string prefabName, Piece piece)
     {
         if (prefabName != "portal")
         {
@@ -112,6 +115,13 @@ internal static class PlayerPiecePatcher
             return;
         }
 
+        zdo.Set("HasFields", true);
+        zdo.Set("HasTeleportWorld", true);
+        zdo.Set("TeleportWorld.m_allowAlItems", true);
+ 
+        zdo.Set("HasPiece", true);
+        zdo.Set("Piece.m_description", "$piece_portal_stone_description");
+    }
 
     /// <summary>
     ///     Sets chest to check for wards and modifies container 
