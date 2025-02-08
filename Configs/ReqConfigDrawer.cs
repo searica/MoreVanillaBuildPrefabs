@@ -93,7 +93,7 @@ internal static class ReqConfigDrawer
                 if (GUILayout.Button("+", buttonStyle))
                 {
                     wasUpdated = true;
-                    newReqs.Add(new RequirementConfig { Item = "<Prefab Name>", Amount = 1 });
+                    newReqs.Add(RequirementsParser.GetPlaceholderReqConfig());
                 }
 
                 GUILayout.EndHorizontal();
@@ -170,6 +170,7 @@ internal static class ReqConfigDrawer
     /// </summary>
     public class RequirementsParser
     {
+        public const string PrefabNamePlaceholder = "<PrefabName>";
         private readonly char reqSep;
         private readonly char amountSep;
 
@@ -182,6 +183,37 @@ internal static class ReqConfigDrawer
         {
             this.reqSep = reqSep;
             this.amountSep = amountSep;
+        }
+
+        /// <summary>
+        ///     Check if text is null, empty, whitespace, or equal
+        ///     to the default placeholder text.
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns></returns>
+        public static bool IsPlaceHolderPrefabName(string text)
+        {
+            return string.IsNullOrWhiteSpace(text) || text == PrefabNamePlaceholder;
+        }
+
+        /// <summary>
+        ///     Get a RequirementConfig with 
+        ///     Item = PrefabNamePlaceholder and Amount = 0.
+        /// </summary>
+        /// <returns></returns>
+        public static RequirementConfig GetPlaceholderReqConfig()
+        {
+            return new RequirementConfig(PrefabNamePlaceholder, 0);
+        }
+
+        /// <summary>
+        ///     Get a RequirementConfig with Item = PrefabNamePlaceholder
+        ///     and Amount = 0.
+        /// </summary>
+        /// <returns></returns>
+        public string GetPlaceholderReqString()
+        {
+            return $"{PrefabNamePlaceholder}{amountSep}0";
         }
 
         /// <summary>
@@ -212,7 +244,7 @@ internal static class ReqConfigDrawer
             // avoid calling Trim() on null object
             if (string.IsNullOrWhiteSpace(reqString))
             {
-                return new List<RequirementConfig>() { new RequirementConfig() { Item = " ", Amount = 0 } };
+                return new List<RequirementConfig>() { new(PrefabNamePlaceholder, 0) };
             }
 
             // If not empty
