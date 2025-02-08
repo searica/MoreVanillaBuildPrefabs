@@ -6,6 +6,7 @@ using UnityEngine;
 
 namespace MVBP.PrefabManagement;
 
+[HarmonyPatch]
 /// <summary>
 ///  Applies edits to player built pieces.
 /// </summary>
