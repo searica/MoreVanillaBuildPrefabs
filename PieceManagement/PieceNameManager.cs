@@ -12,7 +12,7 @@ namespace MVBP.PieceManagement;
 
 internal static class PieceNameManager
 {
-    private static TextInfo EngTextInfo = new CultureInfo("en-US", false).TextInfo;
+    private static readonly TextInfo EngTextInfo = new CultureInfo("en-US", false).TextInfo;
 
     /// <summary>
     ///     Matches (text)(#)(text) but only if the # is not preceded by an "x"
@@ -167,7 +167,6 @@ internal static class PieceNameManager
 
         name = IsLastCharDigit.Replace(name, " ($1)");
         name = WhiteSpaceRegex.Replace(name, " ");
-        //name = name.CapitalizeFirstLetter();
         name = EngTextInfo.ToTitleCase(name);
 
         NameCache[prefabConfig.Name] = name;
