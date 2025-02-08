@@ -98,7 +98,11 @@ internal static class ZNetPrefabManager
 
         // Duplicate of Dvergr Crate
         "dvergrprops_crate_ashlands",
-        "Charredfortress_LOD"
+        "Charredfortress_LOD",
+
+        // broken
+        //"cliff_ashlands2_frac",
+        //"cliff_ashlands2_frac",
     ];
 
     /// <summary>
@@ -197,38 +201,36 @@ internal static class ZNetPrefabManager
         HashSet<string> ExistingBuildablePrefabs = GetExistingBuildablePrefabs();
         foreach (GameObject prefab in ZNetScene.instance.m_prefabs)
         {
-            if (prefab.transform.parent)
+            if (!prefab.IsRootPrefab())
             {
                 continue; // not root prefab
             }
 
-            if (ExistingBuildablePrefabs.Contains(prefab.name))
-            {
-                continue; // already buildable
-            }
-
-            if (!GetEligiblePrefab(prefab, out GameObject result) || EligiblePrefabMap.ContainsKey(result.name))
+            if (!GetEligiblePrefab(prefab, out GameObject eligiblePrefab) || 
+                EligiblePrefabMap.ContainsKey(eligiblePrefab.name) ||  // already added
+                ExistingBuildablePrefabs.Contains(eligiblePrefab.name)  // already buildable
+            )
             {
                 continue;  // not eligible or already added
             }
 
-            if (!EnsureNoDuplicateZNetView(prefab))
+            if (!EnsureNoDuplicateZNetView(eligiblePrefab))
             {
                 continue;
             }
 
-            EligiblePrefabMap.Add(prefab.name, prefab);
-            UpdateVanillaResources(prefab);
+            EligiblePrefabMap.Add(eligiblePrefab.name, eligiblePrefab);
+            UpdateVanillaResources(eligiblePrefab);
 
             try
             {
                 // Always patching means it only runs once and
                 // prevents trailership being unusable if disabled.
-                PrefabPatcher.PatchPrefabIfNeeded(prefab);
+                PrefabPatcher.PatchPrefabIfNeeded(eligiblePrefab);
             }
             catch (Exception ex)
             {
-                Log.LogWarning($"Failed to patch prefab {prefab.name}: {ex}");
+                Log.LogWarning($"Failed to patch prefab {eligiblePrefab.name}: {ex}");
             }
         }
 
@@ -364,21 +366,21 @@ internal static class ZNetPrefabManager
             return false;
         }
 
+        // Is it set up to be patched to spawn something other than the vanilla spawn prefab.
+        // If yes then skip checking for MineRock5 prefab.
+        if (PrefabConfigManager.TryGetPrefabConfig(prefab.name, out PrefabConfig prefabConfig, checkIfBound: false) &&
+            !string.IsNullOrWhiteSpace(prefabConfig.SpawnOnDestroyed))
+        {
+            result = prefab;
+            return true;
+        }
+
         // Is it a destructible thing that spawns something else?
         if (prefab.TryGetComponent(out Destructible destructible))
         {
-            // Is it set up to be patched to spawn something other than the vanilla spawn prefab.
-            // If yes then skip checking for MineRock5 prefab.
-            if (PrefabConfigManager.TryGetPrefabConfig(prefab.name, out PrefabConfig prefabConfig, checkIfBound: false) &&
-                !string.IsNullOrEmpty(prefabConfig.SpawnOnDestroyed))
-            {
-                result = prefab;
-                return true;
-            }
-
             // If it spawns a MineRock5 when damaged then just return the MineRock5 variant
             if (destructible.m_spawnWhenDestroyed &&
-                !destructible.m_spawnWhenDestroyed.transform.parent &&
+                destructible.m_spawnWhenDestroyed.IsRootPrefab() &&
                 destructible.m_spawnWhenDestroyed.GetComponent<MineRock5>())
             {
                 result = destructible.m_spawnWhenDestroyed;
