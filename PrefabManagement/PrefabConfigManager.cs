@@ -22,12 +22,6 @@ internal static class PrefabConfigManager
 
     internal static bool ShouldCacheIcon(string name) => !DoNotCacheIcon.Contains(name);
 
-    internal static readonly HashSet<string> DvergrWoodPieces =
-    [
-        "dvergrprops_wood_floor",
-        "dvergrprops_wood_stair",
-    ];
-
     public static List<PrefabConfig> GetPrefabConfigs(bool checkIfBound = true)
     {
         if (!checkIfBound)
