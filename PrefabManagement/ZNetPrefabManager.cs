@@ -432,6 +432,9 @@ internal static class ZNetPrefabManager
             prefab.GetComponent<TriggerSpawner>() ||
             prefab.GetComponent<TeleportAbility>() ||
             prefab.GetComponent<Trader>() ||
+            prefab.GetComponent<Aoe>() ||  // these are AOE effects
+            prefab.GetComponent<CamShaker>() ||  // These are magic AOE destruction effects
+            
 
             prefab.name.StartsWith("_") ||
             prefab.name.StartsWith("OLD_") ||
