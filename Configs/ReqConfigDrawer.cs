@@ -55,12 +55,11 @@ internal static class ReqConfigDrawer
         return cfg =>
         {
             int RightColumnWidth = GetRightColumnWidth();
+            int prefabNameWidth = RightColumnWidth - AmountWidth - (hasUpgrades ? UpgradeWidth : 0) - ButtonWidth * 2 - GutterWidth;
+
             GUIStyle amountStyle = new(GUI.skin.textField) { fixedWidth = AmountWidth };
             GUIStyle buttonStyle = new(GUI.skin.button) { fixedWidth = ButtonWidth };
-            GUIStyle prefabStyle = new(GUI.skin.textField)
-            {
-                fixedWidth = RightColumnWidth - AmountWidth - (hasUpgrades ? UpgradeWidth : 0) - ButtonWidth * 2 - GutterWidth
-            };
+            GUIStyle prefabStyle = new(GUI.skin.textField) { fixedWidth = prefabNameWidth };
 
             RequirementsParser reqParser = new(amountSep, reqSep);
             List<RequirementConfig> newReqs = [];      
@@ -74,14 +73,6 @@ internal static class ReqConfigDrawer
                 string newItem = GUILayout.TextField(req.Item, prefabStyle);
                 string prefabName = string.IsNullOrEmpty(newItem) ? req.Item : newItem;
                 wasUpdated = wasUpdated || prefabName != req.Item;
-      
-                //string newItem = GUILayout.TextField(
-                //    req.Item,
-                //    new GUIStyle(GUI.skin.textField)
-                //    {
-                //        fixedWidth = RightColumnWidth - AmountWidth - (hasUpgrades ? UpgradeWidth : 0) - ButtonWidth * 2 - GutterWidth
-                //    }
-                //);
 
                 int amount = req.Amount;
                 if (int.TryParse(GUILayout.TextField(amount.ToString(), amountStyle), out int newAmount) && newAmount != amount)
