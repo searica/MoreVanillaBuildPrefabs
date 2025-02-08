@@ -1930,7 +1930,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceName: "Standing iron torch (everburning)",
+                pieceName: "Standing Iron Torch (Eternal)",
                 pieceDesc: "Burns eternally without fuel.",
                 pieceGroup: PieceClassification.Torch,
                 playerBasePatch: true
@@ -1948,7 +1948,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceName: "Standing blue-burning iron torch (everburning)",
+                pieceName: "Standing Blue-Burning Iron Torch (Eternal)",
                 pieceDesc: "Burns eternally without fuel.",
                 pieceGroup: PieceClassification.Torch,
                 playerBasePatch: true
@@ -1966,7 +1966,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceName: "Standing green-burning iron torch (everburning)",
+                pieceName: "Standing Green-Burning Iron Torch (Eternal)",
                 pieceDesc: "Burns eternally without fuel.",
                 pieceGroup: PieceClassification.Torch,
                 playerBasePatch: true
@@ -2757,7 +2757,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceName: "Standing brazier (everburning)",
+                pieceName: "Standing Brazier (Eternal)",
                 pieceDesc: "Burns eternally without fuel.",
                 pieceGroup: PieceClassification.Brazier,
                 playerBasePatch: true
@@ -2775,7 +2775,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceName: "Blue standing brazier (everburning)",
+                pieceName: "Blue Standing Brazier (Eternal)",
                 pieceDesc: "Burns eternally without fuel.",
                 pieceGroup: PieceClassification.Brazier,
                 playerBasePatch: true
@@ -2789,7 +2789,8 @@ internal static class PrefabConfigManager
                 allowedInDungeons: false,
                 category: HammerCategories.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                requirements: "",
+                pieceName: "Purple Standing Brazier (Eternal)",
+                pieceDesc: "Burns eternally without fuel.",
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false
@@ -6277,7 +6278,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceName: "Campfire (everburning)",
+                pieceName: "Campfire (Eternal)",
                 pieceDesc: "Burns eternally without fuel.",
                 pieceGroup: PieceClassification.Fire
             )
@@ -6294,7 +6295,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceName: "Firepit iron (everburning)",
+                pieceName: "Firepit Iron (Eternal)",
                 pieceDesc: "Burns eternally without fuel.",
                 pieceGroup: PieceClassification.Fire
             )
