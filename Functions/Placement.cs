@@ -216,32 +216,6 @@ internal static class Placement
     internal static class PiecePatch
     {
         /// <summary>
-        ///     Applies patches from PatchPlayerBuildPieceIfNeeded
-        ///     when pieces are loaded in.
-        /// </summary>
-        /// <param name="__instance"></param>
-        [HarmonyPostfix]
-        [HarmonyPriority(Priority.VeryHigh)]
-        [HarmonyPatch(nameof(Piece.Awake))]
-        private static void PieceAwakePostfix(Piece __instance)
-        {
-            PlayerPiecePatcher.PatchPlayerBuiltPieceIfNeeded(__instance);
-        }
-
-        /// <summary>
-        ///     Applies patches from PatchPlayerBuildPieceIfNeeded
-        ///     when pieces are loaded are placed.
-        /// </summary>
-        /// <param name="__instance"></param>
-        [HarmonyPostfix]
-        [HarmonyPriority(Priority.VeryHigh)]
-        [HarmonyPatch(nameof(Piece.SetCreator))]
-        private static void PieceSetCreatorPostfix(Piece __instance)
-        {
-            PlayerPiecePatcher.PatchPlayerBuiltPieceIfNeeded(__instance);
-        }
-
-        /// <summary>
         ///     Called when just before piece is placed to synchronize the
         ///     positions and rotations of otherwise non-persistent objects
         /// </summary>

@@ -13,11 +13,35 @@ internal static class PlayerPiecePatcher
     private const float timeout = 1e30f;
 
     /// <summary>
+    ///     Applies patches from when pieces are loaded.
+    /// </summary>
+    /// <param name="__instance"></param>
+    [HarmonyPostfix]
+    [HarmonyPriority(Priority.VeryHigh)]
+    [HarmonyPatch(nameof(Piece.Awake))]
+    private static void PieceAwakePostfix(Piece __instance)
+    {
+        ApplyPlayerBuiltPiecePatches(__instance);
+    }
+
+    /// <summary>
+    ///     Applies patches when pieces are first placed.
+    /// </summary>
+    /// <param name="__instance"></param>
+    [HarmonyPostfix]
+    [HarmonyPriority(Priority.VeryHigh)]
+    [HarmonyPatch(nameof(Piece.SetCreator))]
+    private static void PieceSetCreatorPostfix(Piece __instance)
+    {
+        ApplyPlayerBuiltPiecePatches(__instance);
+    }
+
+    /// <summary>
     ///     Apply patches to player built pieces.
     ///     Called after Piece.Awake and Piece.SetCreator.
     /// </summary>
     /// <param name="piece"></param>
-    internal static void PatchPlayerBuiltPieceIfNeeded(Piece piece)
+    private static void ApplyPlayerBuiltPiecePatches(Piece piece)
     {
         if (!piece || !piece.gameObject || !piece.IsPlacedByPlayer() || !ZNetPrefabManager.IsPatchedByMVBP(piece))
         {
