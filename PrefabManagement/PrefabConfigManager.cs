@@ -5343,7 +5343,7 @@ internal static class PrefabConfigManager
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
                 clipEverything: false,
-                clipGround: false,
+                clipGround: true,
                 placementPatch: true
             )
         },
