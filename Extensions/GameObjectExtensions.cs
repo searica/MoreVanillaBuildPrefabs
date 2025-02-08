@@ -95,23 +95,25 @@ internal static class GameObjectExtensions
     }
 
 
-    internal static Mesh GetMesh(this GameObject gameObject, string meshName)
+    internal static bool TryGetMesh(this GameObject gameObject, string meshName, out Mesh mesh)
     {
         foreach (MeshFilter meshFilter in gameObject.GetComponentsInChildren<MeshFilter>())
         {
-            Mesh mesh = meshFilter.mesh;
-            if (mesh == null)
+            Mesh tempMesh = meshFilter.mesh;
+            if (tempMesh == null)
             {
                 continue;
             }
 
-            if (mesh.name.RemoveSuffix("Instance").Trim() == meshName)
-            {
-                return mesh;
+            if (tempMesh.name.RemoveSuffix("Instance").Trim() == meshName)
+            {   
+                mesh = tempMesh;
+                return true;
             }
         }
 
         Log.LogWarning($"Could not find Mesh: {meshName} for GameObject: {gameObject.name}");
-        return null;
+        mesh = null;
+        return false;
     }
 }

@@ -138,13 +138,11 @@ internal static class SnapPointManager
         string meshName
     )
     {
-        Mesh mesh = gameObject.GetMesh(meshName);
-
-        if (mesh == null)
+        if (!gameObject.TryGetMesh(meshName, out Mesh mesh))
         {
             return;
         }
-
+  
         List<Vector3> pts = new();
         Bounds bounds = mesh.bounds;
         foreach (Vector3 corner in corners)
