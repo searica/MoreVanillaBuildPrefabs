@@ -102,13 +102,6 @@ internal static class PrefabPatcher
 
                 break;
 
-            // Causes the chest to break if loaded without mod
-            //case "TreasureChest_dvergr_loose_stone":
-            //    var boxCollider = gameObject.AddComponent<BoxCollider>();
-            //    boxCollider.size = new Vector3(2, 1, 2);
-            //    SnapPointManager.AddSnapPointsToBoxColliderCorners(gameObject, boxCollider);
-            //    break;
-
             case "TreasureChest_mountaincave":
             case "TreasureChest_trollcave":
                 SnapPointManager.FixPieceLayers(prefab);
@@ -976,17 +969,9 @@ internal static class PrefabPatcher
                 break;
         }
 
-        if (MorePrefabs.PatchPortalTexture && prefab.name == "portal" && !GUIManager.IsHeadless())
+        if (MorePrefabs.PatchPortalTexture)
         {
-            MeshRenderer meshRender = prefab.transform.Find("New").Find("model").GetComponent<MeshRenderer>();
-            if (meshRender)
-            {
-                meshRender.material.mainTexture = TextureHelper.GetBlackMarblePortalTexture();
-                meshRender.material.SetTexture(
-                    TextureHelper.TextureNames.BumpMap,
-                    TextureHelper.GetBlackMarblePortalBumpMap()
-                );
-            }
+            ApplyPortalTexturePatch(prefab);   
         }
 
         if (MorePrefabs.IsEnableComfortPatches)
@@ -1014,6 +999,31 @@ internal static class PrefabPatcher
             piece.m_description = "$piece_portal_stone_description";
         }
     }
+
+    /// <summary>
+    ///     Patch "portal" prefab to use custom black marble texture.
+    /// </summary>
+    /// <param name="prefab"></param>
+    private static void ApplyPortalTexturePatch(GameObject prefab)
+    {
+        if (prefab.name != "portal" || GUIManager.IsHeadless())
+        {
+            return;
+        }
+
+        MeshRenderer meshRender = prefab.transform.Find("New/model").GetComponent<MeshRenderer>();
+        if (!meshRender)
+        {
+            return;
+        }
+        
+        meshRender.material.mainTexture = TextureHelper.GetBlackMarblePortalTexture();
+        meshRender.material.SetTexture(
+            TextureHelper.TextureNames.BumpMap,
+            TextureHelper.GetBlackMarblePortalBumpMap()
+        );
+    }
+
     /// <summary>
     ///     Applies patches to selected pieces so they grant
     ///     comfort as expected if they were vanilla pieces.
