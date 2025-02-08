@@ -49,12 +49,11 @@ public class MorePrefabs : BaseUnityPlugin
     private static ConfigEntry<bool> EnableComfortPatches { get; set; }
     private static ConfigEntry<bool> EnableSeasonalPieces { get; set; }
     private static ConfigEntry<bool> EnablePlayerBasePatches { get; set; }
-    private static ConfigEntry<bool> EnablePortalPatch { get; set; }
     internal static bool IsEnableHammerCrops => EnableHammerCrops.Value;
     internal static bool IsEnableComfortPatches => EnableComfortPatches.Value;
     internal static bool IsEnableSeasonalPieces => EnableSeasonalPieces.Value;
     internal static bool IsEnablePlayerBasePatches => EnablePlayerBasePatches.Value;
-    internal static bool IsEnablePortalPatch => EnablePortalPatch.Value;
+ 
     #endregion Customization Settings
 
     #region Texture Patches
@@ -186,14 +185,6 @@ public class MorePrefabs : BaseUnityPlugin
             "SeasonalPieces",
             true,
             "Set to true/enabled to add all currently disabled seasonal pieces to the hammer build table."
-        );
-
-        EnablePortalPatch = Config.BindConfigInOrder(
-            CustomizationSection,
-            "PortalPatch",
-            true,
-            "Set to true/enabled to have the new portal allow unrestricted teleporting. " +
-            "Set to false/disabled to have the new portal work the same as the vanilla portal."
         );
 
         // Texture Section
