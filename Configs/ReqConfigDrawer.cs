@@ -83,7 +83,6 @@ internal static class ReqConfigDrawer
                 //    }
                 //);
 
-
                 int amount = req.Amount;
                 if (int.TryParse(GUILayout.TextField(amount.ToString(), amountStyle), out int newAmount) && newAmount != amount)
                 {
@@ -93,7 +92,7 @@ internal static class ReqConfigDrawer
 
                 if (GUILayout.Button("x", buttonStyle))
                 {
-                    wasUpdated = true;
+                    wasUpdated = true;  // this requirement was removed
                 }
                 else
                 {
