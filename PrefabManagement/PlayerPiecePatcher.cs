@@ -28,7 +28,7 @@ internal static class PlayerPiecePatcher
     /// <param name="__instance"></param>
     [HarmonyPostfix]
     [HarmonyPriority(Priority.VeryHigh)]
-    [HarmonyPatch(nameof(Piece.Awake))]
+    [HarmonyPatch(typeof(Piece), nameof(Piece.Awake))]
     private static void PieceAwakePostfix(Piece __instance)
     {
         ApplyPlayerBuiltPiecePatches(__instance);
@@ -40,7 +40,7 @@ internal static class PlayerPiecePatcher
     /// <param name="__instance"></param>
     [HarmonyPostfix]
     [HarmonyPriority(Priority.VeryHigh)]
-    [HarmonyPatch(nameof(Piece.SetCreator))]
+    [HarmonyPatch(typeof(Piece), nameof(Piece.SetCreator))]
     private static void PieceSetCreatorPostfix(Piece __instance)
     {
         ApplyPlayerBuiltPiecePatches(__instance);
