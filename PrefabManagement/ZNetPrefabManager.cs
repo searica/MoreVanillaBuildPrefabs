@@ -173,11 +173,13 @@ internal static class ZNetPrefabManager
         // Need this to prevent NRE's if other code references the defaultResources
         // before the coroutine that is rendering the icons finishes. (Such as PlanBuild)
         Sprite defaultIcon = PrefabManager.Cache.GetPrefab<Sprite>("mapicon_hildir1");
-
-        foreach (GameObject prefab in EligiblePrefabMap.Values)
+           
+        // Loop over eligible prefabs in sorted order by name 
+        // Makes sure configs are bound in the right order.
+        foreach (KeyValuePair<string, GameObject> kvp in EligiblePrefabMap.OrderBy(x => x.Key))
         {
-            Piece piece = InitPieceComponent(prefab, defaultIcon);
-            PrefabConfigManager.BindPrefabConfig(prefab, piece);
+            Piece piece = InitPieceComponent(kvp.Value, defaultIcon);
+            PrefabConfigManager.BindPrefabConfig(kvp.Value, piece);
         }
 
         Log.LogInfo("Initializing default icons", Log.InfoLevel.Medium);
@@ -229,6 +231,8 @@ internal static class ZNetPrefabManager
                 Log.LogWarning($"Failed to patch prefab {prefab.name}: {ex}");
             }
         }
+
+
         Log.LogInfo($"Found {EligiblePrefabMap.Count} prefabs");
     }
 
