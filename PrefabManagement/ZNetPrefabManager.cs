@@ -99,10 +99,6 @@ internal static class ZNetPrefabManager
         // Duplicate of Dvergr Crate
         "dvergrprops_crate_ashlands",
         "Charredfortress_LOD",
-
-        // broken
-        //"cliff_ashlands2_frac",
-        //"cliff_ashlands2_frac",
     ];
 
     /// <summary>
@@ -375,22 +371,49 @@ internal static class ZNetPrefabManager
             return true;
         }
 
+     
         // Is it a destructible thing that spawns something else?
         if (prefab.TryGetComponent(out Destructible destructible))
         {
-            // If it spawns a MineRock5 when damaged then just return the MineRock5 variant
-            if (destructible.m_spawnWhenDestroyed &&
-                destructible.m_spawnWhenDestroyed.IsRootPrefab() &&
-                destructible.m_spawnWhenDestroyed.GetComponent<MineRock5>())
+            // If it spawns a something and that thing is a root prefab
+            if (destructible.m_spawnWhenDestroyed && destructible.m_spawnWhenDestroyed.IsRootPrefab())
             {
-                result = destructible.m_spawnWhenDestroyed;
-                return true;
+                // if it spawns a MineRock5 only return the spawned prefab if it is valid,
+                // otherwise disqualify this prefab.
+                if (destructible.m_spawnWhenDestroyed.TryGetComponent(out MineRock5 mineRock5Spawn))
+                {
+                    if (!IsValidMineRock5(mineRock5Spawn))
+                    {
+                        result = null;
+                        return false;
+                    }
+                    result = destructible.m_spawnWhenDestroyed;
+                    return true;
+                }
             }
+        }
+
+        // Disqualify prefab if it has a MineRock5 and it's colliders are not set up correctly 
+        if (prefab.TryGetComponent(out MineRock5 mineRock5) && !IsValidMineRock5(mineRock5))
+        {
+            result = null;
+            return false;
         }
 
         // Return the original prefab
         result = prefab;
         return true;
+    }
+
+
+    /// <summary>
+    ///     Checks if the MineRock5 has colliders set up.
+    /// </summary>
+    /// <param name="mineRock5"></param>
+    /// <returns></returns>
+    private static bool IsValidMineRock5(MineRock5 mineRock5)
+    {
+        return mineRock5 && mineRock5.GetComponentsInChildren<Collider>().Length >= 1;
     }
 
     /// <summary>
