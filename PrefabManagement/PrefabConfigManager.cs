@@ -1729,14 +1729,15 @@ internal static class PrefabConfigManager
             "BogWitch_Fire_Pit",
             new PrefabConfig(
                 name: "BogWitch_Fire_Pit",
-                enabled: false,
+                enabled: true,
                 allowedInDungeons: false,
-                category: HammerCategories.CreatorShop,
+                category: HammerCategories.Misc,
                 craftingStation: nameof(CraftingStations.None),
-                requirements: "",
+                requirements: "PowderedDragonEgg,2;Stone,5",
                 clipEverything: false,
                 clipGround: false,
-                placementPatch: false
+                placementPatch: false,
+                placementOffset: new Vector3(0f, -1f, 0)
             )
         },
         {
