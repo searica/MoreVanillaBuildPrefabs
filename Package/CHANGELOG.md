@@ -8,6 +8,14 @@
 			<th align="center">Notes</th>
 		</tr>
 		<tr>
+			<td align="center">1.4.1</td>
+			<td align="left">
+				<ul>
+					<li>Bugfix not emptying loot from placed chests.</li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
 			<td align="center">1.4.0</td>
 			<td align="left">
 				<ul>

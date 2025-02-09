@@ -66,7 +66,7 @@ internal static class Placement
     {
         Log.LogInfo("EmptyInventoryOnPlacement()", Log.InfoLevel.Medium);
 
-        if (!PrefabConfigManager.IsPrefabEnabled(gameObject) &&
+        if (PrefabConfigManager.IsPrefabEnabled(gameObject) &&
             gameObject.TryGetComponent(out Container container))
         {
             container.m_inventory.RemoveAll();
