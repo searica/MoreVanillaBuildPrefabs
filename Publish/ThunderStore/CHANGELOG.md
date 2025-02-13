@@ -8,6 +8,14 @@
 			<th align="center">Notes</th>
 		</tr>
 		<tr>
+			<td align="center">1.4.2</td>
+			<td align="left">
+				<ul>
+					<li>Fix boss stones not dropping trophy.</li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
 			<td align="center">1.4.1</td>
 			<td align="left">
 				<ul>
