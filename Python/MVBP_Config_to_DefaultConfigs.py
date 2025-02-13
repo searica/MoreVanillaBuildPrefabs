@@ -62,6 +62,7 @@ class PrefabConfig:
         return self._ordering[name]
 
     def get_attr_names(self) -> List[str]:
+        """Get sorted list of attribute names."""
         names = [x for x in dir(self) if self.__is_attr(x)]
         names.sort(key=self._sort_attr_names)
         return names
@@ -70,10 +71,11 @@ class PrefabConfig:
         return not name.startswith('_') and not callable(getattr(self, name))
 
     def is_valid(self):
+        """Checks that name is not None"""
         return self.name is not None
 
     def __str__(self):
-        result = ["new PrefabDB("]
+        result = [f"new {PrefabConfig.__name__}("]
 
         for name in self.get_attr_names():
             if getattr(self, name) is not None:
@@ -88,60 +90,69 @@ class PrefabConfig:
 
 
 def main():
+    """Function to read and generate new prefab config dictionary."""
     default_config_path = Path(__file__).parents[1].joinpath(
-        "Configs",
-        "PrefabDefaults.cs"
+        "PrefabManagement",
+        "PrefabConfigManager.cs"
+    )
+    start_line = (
+        "    private static readonly Dictionary<string, PrefabConfig>"
+        + " PrefabConfigMap = new()\n"
     )
 
+    r2modman_profile_name = "Mod-Debug"
+    config_file_name = "Searica.Valheim.MoreVanillaBuildPrefabs.cfg"
     cfg_file_path = Path(os.getenv('APPDATA')).joinpath(
         "r2modmanPlus-local",
         "Valheim",
         "profiles",
-        "Mod-Debug",
+        r2modman_profile_name,
         "BepInEx",
         "config",
-        "Searica.Valheim.MoreVanillaBuildPrefabs.cfg"
+        config_file_name
     )
+    default_req_string = "<PrefabName>,0"
 
     out_path = Path(__file__).parent.joinpath("DefaultConfigs.txt")
 
-    start_line = "        internal static readonly Dictionary<string, PrefabDB> DefaultConfigValues = new()\n"
-
-    default_configs = read_default_prefabs(default_config_path, start_line)
-    prefab_configs = read_config_file(cfg_file_path)
+    default_cfg_settings = read_default_configs(default_config_path, start_line)
+    cfg_file_settings = read_config_file(cfg_file_path, default_req_string)
 
     # Add entries from the config file to the default configs
     # Also overwrite any values in default configs with values from
     # the config file (iff values exist in config file)
-    for key, val in prefab_configs.items():
-        if key not in default_configs:
-            default_configs.update({key: val})
+    for key, val in cfg_file_settings.items():
+        if key not in default_cfg_settings:
+            default_cfg_settings.update({key: val})
             print(f"Added Prefab: {key}")
-            print(val)
-        else:
-            for attr in val.get_attr_names():
-                attr_val = getattr(val, attr)
-                if attr_val is not None:
-                    current_val = getattr(default_configs[key], attr)
-                    if current_val != attr_val:
-                        setattr(default_configs[key], attr, attr_val)
-                        if current_val is not None:
-                            print("Modified Prefab:", key)
-                            print(
-                                f"Changed {attr}: {current_val} to {attr_val}"
-                            )
+            print(val, "\n")
+            continue
+
+        for attr in val.get_attr_names():
+            attr_val = getattr(val, attr)
+            if attr_val is None:
+                continue
+            current_val = getattr(default_cfg_settings[key], attr)
+            if current_val == attr_val:
+                continue
+            setattr(default_cfg_settings[key], attr, attr_val)
+            if current_val is not None:
+                print("Modified Prefab:", key)
+                print(f"Changed {attr}: {current_val} to {attr_val}\n")
 
     # write modified default configs to output
-    write_output(out_path, default_configs)
+    write_output(out_path, default_cfg_settings, start_line=start_line)
 
 
-def read_default_prefabs(file_path, start_line) -> Dict[str, PrefabConfig]:
+def read_default_configs(
+    file_path: Path, start_line: str
+) -> Dict[str, PrefabConfig]:
     """Reads the cs file containing the prefab
     configs and construct a dictionary of them."""
     default_configs = {}
     prefab_config = PrefabConfig()
 
-    with open(file_path, "r") as file:
+    with open(file_path, "r", encoding="utf-8") as file:
         lines = file.readlines()
         i = 0
         while (lines[i] != start_line):
@@ -173,13 +184,16 @@ def read_default_prefabs(file_path, start_line) -> Dict[str, PrefabConfig]:
     return default_configs
 
 
-def read_config_file(file_path) -> Dict[str, PrefabConfig]:
-    """Reads mod cfg file to create dictionary of prefab configs"""
+def read_config_file(
+    file_path: Path, ignore_text: str
+) -> Dict[str, PrefabConfig]:
+    """Reads mod cfg file to create dictionary of prefab configs.
+    Ignores the value for any setting where the value == `ignore_text`."""
 
     prefab_configs = {}
     prefab_config = PrefabConfig()
 
-    with open(file_path, "r") as file:
+    with open(file_path, "r", encoding="utf-8") as file:
         lines = file.readlines()
 
         prefab_config = PrefabConfig()
@@ -193,9 +207,11 @@ def read_config_file(file_path) -> Dict[str, PrefabConfig]:
                 prefab_config.name = line[1:-2]  # strip ["name"]\n
 
             for name in prefab_config.get_attr_names():
-                line_start = f"{captialize_first_letter(name)} = "
+                line_start = f"{capitalize_first_letter(name)} = "
                 if line.startswith(line_start):
-                    setattr(prefab_config, name, get_line_value(line, "="))
+                    text = get_line_value(line, "=")
+                    if text != ignore_text:
+                        setattr(prefab_config, name, text)
 
     if (prefab_config.is_valid()):
         prefab_configs.update({prefab_config.name: prefab_config})
@@ -203,7 +219,8 @@ def read_config_file(file_path) -> Dict[str, PrefabConfig]:
     return prefab_configs
 
 
-def captialize_first_letter(text: str):
+def capitalize_first_letter(text: str):
+    """Capitalizes first letter of string"""
     first = text[0].capitalize()
     return first + text[1:]
 
@@ -221,23 +238,37 @@ def get_line_value(line: str, split: str):
     return val
 
 
-def write_output(out_path: Path, prefab_configs: Dict[str, PrefabConfig]):
+def write_output(
+    out_path: Path,
+    prefab_configs: Dict[str, PrefabConfig],
+    start_line: str,
+    tab: str = "    "
+):
     """Write output to a text file"""
-    tab = "    "
-    with open(out_path, "w") as out_file:
-        out_file.write(tab*2 + "internal static readonly Dictionary<string, PrefabDB> DefaultConfigValues = new()\n")
-        out_file.write(tab*2 + "{\n")
+    indent = " "*(len(start_line) - len(start_line.lstrip()))
+    if len(indent) != 0:
+        tab = indent
 
-        sorted_keys = sorted([x for x in prefab_configs.keys()])
+    with open(out_path, "w", encoding="utf-8") as out_file:
+        out_file.write(start_line)
+        out_file.write(indent+"{\n")
+
+        open_key_value_pair = f"{indent}{tab}" + "{\n"
+        close_key_value_pair = f"{indent}{tab}" + "},\n"
+        kvp_indent = f"{indent}{tab*2}"
+        sorted_keys = sorted(x for x in prefab_configs.keys())
         for key in sorted_keys:
             prefab_config = prefab_configs[key]
-            out_file.write(tab*3 + "{\n")
-            out_file.write(f'{tab*4}"{prefab_config.name}",\n')
+            out_file.write(open_key_value_pair)
+            out_file.write(
+                f'{kvp_indent}"{prefab_config.name}",\n'  # key for PrefabConfigMap
+            )
+            # write prefab config entry as Value in KeyValue pair
             prefab_str = str(prefab_config)
-            lines = [tab*4 + line for line in prefab_str.split("\n")]
+            lines = [f"{kvp_indent}{line}" for line in prefab_str.split("\n")]
             out_file.write("\n".join(lines) + "\n")
-            out_file.write(tab*3 + "},\n")
-        out_file.write(tab*2 + "};\n")
+            out_file.write(close_key_value_pair)
+        out_file.write(indent+"};\n")
 
 
 if __name__ == "__main__":
