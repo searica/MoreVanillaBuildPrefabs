@@ -301,14 +301,15 @@ internal static class Removal
                 return resources;
             }
 
-            // If piece has an ItemStand and it has an item, then drop it.
-            if (piece.gameObject.TryGetComponent(out ItemStand itemStand))
+            // If piece has any ItemStand's, then drop make it drop what it is holding.
+            foreach (ItemStand itemStand in piece.GetComponentsInChildren<ItemStand>())
             {
                 bool canBeRemoved = itemStand.m_canBeRemoved;
                 itemStand.m_canBeRemoved = true;
                 zNetView.InvokeRPC("DropItem");
                 itemStand.m_canBeRemoved = canBeRemoved;
             }
+            
 
             // If piece is pickable and it has not been picked, then pick it.
             if (piece.gameObject.TryGetComponent(out Pickable pickable))
