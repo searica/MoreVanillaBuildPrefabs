@@ -119,7 +119,7 @@ internal static class Removal
         {
             // not placed by Player so follow vanilla rules
             // not enabled by MVBP so follow vanilla rules
-            if (!piece.IsPlacedByPlayer()  || PrefabConfigManager.IsPrefabEnabled(piece.gameObject))
+            if (!piece.IsPlacedByPlayer() || !PrefabConfigManager.IsPrefabEnabled(piece.gameObject))
             {
                 return piece.m_canBeRemoved;  
             }

@@ -362,7 +362,7 @@ internal static class ZNetPrefabManager
             piece.m_canBeRemoved = false;
 
             AddedPieceComponent.Add(prefab.GetPrefabName());
-            Log.LogInfo($"Created Piece component for: {prefab.name}", Log.InfoLevel.Medium);
+            Log.LogInfo($"Created Piece component for: {prefab.name}", Log.InfoLevel.High);
         }
 
         if (piece.m_icon == null)
