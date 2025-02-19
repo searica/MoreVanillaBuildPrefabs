@@ -537,28 +537,11 @@ internal static class ZNetPrefabManager
             }
 
             Piece piece = prefabConfig.Piece;
-            piece.m_name = PieceNameManager.FormatPieceName(prefabConfig);
-            piece.m_description = PieceNameManager.GetPieceDescription(prefabConfig);
-
             // set piece visible in PieceTable based on MVBP config
             piece.m_enabled = prefabConfig.Enabled.Value || MorePrefabs.IsForceAllPrefabs;
-
-            // Prevent CreativeMode pieces and any clones of them from being removable.
-            // (Player.RemovePiece patch allows removing player-built instances).
-            // Mimic Vanilla, make ships/carts non-removable.
-            if (HasPieceAddedByMVBP(pair.Key) ||
-                PieceCategoryManager.IsCreativeModePiece(piece) ||
-                prefabConfig.Prefab.GetComponent<Ship>() ||
-                prefabConfig.Prefab.GetComponent<Vagon>())
-            {
-                piece.m_canBeRemoved = false;
-            }
-            else
-            {
-                TryGetDefaultRemoveSettings(piece.gameObject, out bool canRemove);
-                piece.m_canBeRemoved = canRemove;
-            }
-
+            piece.m_name = PieceNameManager.FormatPieceName(prefabConfig);
+            piece.m_description = PieceNameManager.GetPieceDescription(prefabConfig);
+            SetCanBeRemoved(piece);
             piece.m_allowedInDungeons = prefabConfig.AllowedInDungeons.Value;
             piece.m_clipEverything = prefabConfig.ClipEverything.Value;
             piece.m_clipGround = prefabConfig.ClipGround.Value;
@@ -567,7 +550,36 @@ internal static class ZNetPrefabManager
             piece.m_resources = PieceReqsManager.ConfigurePieceRequirements(prefabConfig);
             SfxManager.FixPlacementSfx(piece);
         }
+    }
 
+    /// <summary>
+    ///     Set whether a piece can be removed based on the build hammer category and
+    ///     if it has had a Piece component added by MVBP. 
+    /// </summary>
+    /// <param name="piece"></param>
+    private static void SetCanBeRemoved(Piece piece)
+    {
+        // Prevent CreativeMode pieces and any clones of them from being removable.
+        // (Player.RemovePiece patch allows removing player-built instances).
+        // Mimic Vanilla, make ships/carts non-removable.
+        if (HasPieceAddedByMVBP(piece) || IsNonRemovablePiece(piece))
+        {
+            piece.m_canBeRemoved = false;
+        }
+        else
+        {
+            TryGetDefaultRemoveSettings(piece.gameObject, out bool canRemove);
+            piece.m_canBeRemoved = canRemove;
+        }
+    }
+
+    internal static bool IsNonRemovablePiece(Piece piece)
+    {
+        return (
+            PieceCategoryManager.IsCreativeModePiece(piece) ||
+            piece.GetComponent<Ship>() ||
+            piece.GetComponent<Vagon>()
+        );
     }
 
     private static CraftingStation GetCraftingStation(string name)
