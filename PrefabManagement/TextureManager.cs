@@ -6,11 +6,18 @@ using System.Drawing.Imaging;
 using System.IO;
 using UnityEngine;
 using Logging;
+using System.Collections.Generic;
 
 namespace MVBP.PrefabManagement;
 
-internal static class TextureHelper
+internal static class TextureManager
 {
+    private static readonly HashSet<string> DvergrWoodPieces =
+    [
+        "dvergrprops_wood_floor",
+        "dvergrprops_wood_stair",
+    ];
+
     private const string armorStandTextureName = "Planks5c_low";
     private static Texture armorStandTexture;
     private static Material armorStandMaterial;
@@ -28,6 +35,48 @@ internal static class TextureHelper
         public const string SkinMap = "_SkinBumpMap";
         public const string BumpMap = "_BumpMap";
         public const string Main = "_MainTex";
+    }
+
+    /// <summary>
+    ///     Sets the texture of certain dvergr pieces to use
+    ///     a cleaner texture when they are above 50% health
+    /// </summary>
+    /// <param name="name"></param>
+    /// <param name="gameObject"></param>
+    internal static void ApplyNewDvergrTexture(string name, GameObject gameObject)
+    {
+        if (DvergrWoodPieces.Contains(name))
+        {
+            Renderer[] componentsInChildren = gameObject.transform.Find("New").GetComponentsInChildren<Renderer>(true);
+            foreach (Renderer renderer in componentsInChildren)
+            {
+                renderer.material.mainTexture = TextureManager.GetNewDvergrTexture();
+            }
+        }
+    }
+
+    /// <summary>
+    ///     Patch "portal" prefab to use custom black marble texture.
+    /// </summary>
+    /// <param name="prefab"></param>
+    internal static void ApplyPortalTexturePatch(string prefabName, GameObject prefab)
+    {
+        if (prefabName != "portal" || GUIManager.IsHeadless())
+        {
+            return;
+        }
+
+        MeshRenderer meshRender = prefab.transform.Find("New/model").GetComponent<MeshRenderer>();
+        if (!meshRender)
+        {
+            return;
+        }
+
+        meshRender.material.mainTexture = TextureManager.GetBlackMarblePortalTexture();
+        meshRender.material.SetTexture(
+            TextureManager.TextureNames.BumpMap,
+            TextureManager.GetBlackMarblePortalBumpMap()
+        );
     }
 
     internal static Material GetCustomArmorStandMaterial()
