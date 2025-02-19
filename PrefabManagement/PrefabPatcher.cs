@@ -35,7 +35,7 @@ internal static class PrefabPatcher
                 {
                     GameObject body = prefab?.transform?.Find("Player Pose")?.Find("Visual")?.Find("body")?.gameObject;
                     SkinnedMeshRenderer meshRender = body.GetComponent<SkinnedMeshRenderer>();
-                    meshRender.sharedMaterial = TextureHelper.GetCustomArmorStandMaterial();
+                    meshRender.sharedMaterial = TextureManager.GetCustomArmorStandMaterial();
                 }
                 catch
                 {
@@ -986,14 +986,19 @@ internal static class PrefabPatcher
                 break;
         }
 
-        if (MorePrefabs.PatchPortalTexture)
-        {
-            ApplyPortalTexturePatch(prefab);   
-        }
-
         if (MorePrefabs.IsEnableComfortPatches)
         {
             ApplyComfortPatches(prefab);
+        }
+
+        // Apply texture patches here to force icons to update.
+        if (MorePrefabs.PatchDvergrWoodTexture)
+        {
+            TextureManager.ApplyNewDvergrTexture(prefab.name, prefab);
+        }
+        if (MorePrefabs.PatchPortalTexture)
+        {
+            TextureManager.ApplyPortalTexturePatch(prefab.name, prefab);
         }
     }
 
@@ -1015,30 +1020,6 @@ internal static class PrefabPatcher
         {
             piece.m_description = "$piece_portal_stone_description";
         }
-    }
-
-    /// <summary>
-    ///     Patch "portal" prefab to use custom black marble texture.
-    /// </summary>
-    /// <param name="prefab"></param>
-    private static void ApplyPortalTexturePatch(GameObject prefab)
-    {
-        if (prefab.name != "portal" || GUIManager.IsHeadless())
-        {
-            return;
-        }
-
-        MeshRenderer meshRender = prefab.transform.Find("New/model").GetComponent<MeshRenderer>();
-        if (!meshRender)
-        {
-            return;
-        }
-        
-        meshRender.material.mainTexture = TextureHelper.GetBlackMarblePortalTexture();
-        meshRender.material.SetTexture(
-            TextureHelper.TextureNames.BumpMap,
-            TextureHelper.GetBlackMarblePortalBumpMap()
-        );
     }
 
     /// <summary>
