@@ -219,7 +219,6 @@ internal static class UpdateMananger
         if (!HasInit) { return; }
         ZNetPrefabManager.ApplyPrefabConfigSettings();
         UpdateHammerTable();
-        
     }
 
     /// <summary>
