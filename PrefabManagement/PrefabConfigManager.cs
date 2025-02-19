@@ -46,6 +46,15 @@ internal static class PrefabConfigManager
         return false;
     }
 
+    internal static bool IsPrefabEnabled(string name)
+    {
+        if (TryGetPrefabConfig(name, out PrefabConfig prefabConfig, checkIfBound: true))
+        {
+            return prefabConfig.Enabled.Value || MorePrefabs.IsForceAllPrefabs;
+        }
+        return false;
+    }
+
     /// <summary>
     ///     Tries to get the PrefabConfig for the root prefab version of the game object.
     /// </summary>
