@@ -10,6 +10,15 @@ namespace MVBP.PrefabManagement;
 
 internal class IconManager : MonoBehaviour
 {
+    private static readonly HashSet<string> DoNotCacheIcon =
+    [
+        "portal",
+        "dvergrprops_wood_floor",
+        "dvergrprops_wood_stair",
+    ];
+
+    internal static bool ShouldCacheIcon(string name) => !DoNotCacheIcon.Contains(name);
+
     private static GameObject _gameObject;
     private static IconManager _instance;
 
@@ -90,10 +99,10 @@ internal class IconManager : MonoBehaviour
 
     private static Sprite GenerateObjectIcon(GameObject obj)
     {
-        var request = new RenderManager.RenderRequest(obj)
+        RenderManager.RenderRequest request = new(obj)
         {
             Rotation = RenderManager.IsometricRotation,
-            UseCache = PrefabConfigManager.ShouldCacheIcon(obj.name)
+            UseCache = ShouldCacheIcon(obj.name)
         };
 
         return RenderManager.Instance.Render(request);

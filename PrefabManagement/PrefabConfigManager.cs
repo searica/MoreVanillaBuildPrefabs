@@ -13,15 +13,6 @@ namespace MVBP.PrefabManagement;
 
 internal static class PrefabConfigManager
 {
-    private static readonly HashSet<string> DoNotCacheIcon =
-    [
-        "portal",
-        "dvergrprops_wood_floor",
-        "dvergrprops_wood_stair",
-    ];
-
-    internal static bool ShouldCacheIcon(string name) => !DoNotCacheIcon.Contains(name);
-
     public static List<PrefabConfig> GetPrefabConfigs(bool checkIfBound = true)
     {
         if (!checkIfBound)
