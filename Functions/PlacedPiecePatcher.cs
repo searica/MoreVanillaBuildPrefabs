@@ -1,26 +1,23 @@
 ﻿using HarmonyLib;
+using Jotunn.Managers;
 using MVBP.Extensions;
-using System;
+using MVBP.PieceManagement;
+using MVBP.PrefabManagement;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace MVBP.PrefabManagement;
+namespace MVBP.Functions;
 
 [HarmonyPatch]
 /// <summary>
 ///  Applies edits to player built pieces.
 /// </summary>
-internal static class PlayerPiecePatcher
+internal static class PlacedPiecePatcher
 {
     private static readonly int PieceLayer = LayerMask.NameToLayer("piece");
     private static readonly int CharacterTriggerLayer = LayerMask.NameToLayer("character_trigger");
     private const float timeout = 1e30f;
 
-    private static readonly HashSet<string> DvergrWoodPieces =
-    [
-        "dvergrprops_wood_floor",
-        "dvergrprops_wood_stair",
-    ];
 
     /// <summary>
     ///     Applies patches from when pieces are loaded.
@@ -59,8 +56,17 @@ internal static class PlayerPiecePatcher
         }
 
         string prefabName = piece.gameObject.GetPrefabName();
-        if (!ZNetPrefabManager.IsPatchedByMVBP(prefabName)){
+        if (!ZNetPrefabManager.IsPatchedByMVBP(prefabName))
+        {
             return;  // not patched by MVBP don't touch it.
+        }
+
+
+        // Make player-built remove-able pieces removeable
+        // Have to do this after placement to avoid affecting non-player built instances.
+        if (!ZNetPrefabManager.IsNonRemovablePiece(piece))
+        {
+            piece.m_canBeRemoved = true;
         }
 
         ApplyDvergrPortalPatches(prefabName, piece);
@@ -83,7 +89,11 @@ internal static class PlayerPiecePatcher
         }
         if (MorePrefabs.PatchDvergrWoodTexture)
         {
-            ApplyNewDvergrTexture(prefabName, piece.gameObject);
+            TextureManager.ApplyNewDvergrTexture(prefabName, piece.gameObject);
+        }
+        if (MorePrefabs.PatchPortalTexture)
+        {
+            TextureManager.ApplyPortalTexturePatch(prefabName, piece.gameObject);
         }
     }
 
@@ -119,10 +129,11 @@ internal static class PlayerPiecePatcher
         zdo.Set("HasFields", true);
         zdo.Set("HasTeleportWorld", true);
         zdo.Set("TeleportWorld.m_allowAlItems", true);
- 
+
         zdo.Set("HasPiece", true);
         zdo.Set("Piece.m_description", "$piece_portal_stone_description");
     }
+
 
     /// <summary>
     ///     Sets chest to check for wards and modifies container 
@@ -142,12 +153,12 @@ internal static class PlayerPiecePatcher
         {
             return;
         }
-  
+
         // Check for wards for player built containers
         zdo.Set("HasFields", true);
         zdo.Set("HasFieldsContainer", true);
         zdo.Set("Container.m_checkGuardStone", true);
-       
+
 
         // Modify container size based on configs
         if (!PrefabConfigManager.TryGetPrefabConfig(prefabName, out var prefabConfig, checkIfBound: true))
@@ -241,26 +252,6 @@ internal static class PlayerPiecePatcher
         zdo.Set("HasFieldsDestructible", true);
         zdo.Set("Destructible.m_spawnWhenDestroyed", prefabConfig.SpawnOnDestroyed);
         destructible.m_spawnWhenDestroyed = spawn;
-    }
-
-
-
-    /// <summary>
-    ///     Sets the texture of certain dvergr pieces to use
-    ///     a cleaner texture when they are above 50% health
-    /// </summary>
-    /// <param name="name"></param>
-    /// <param name="gameObject"></param>
-    private static void ApplyNewDvergrTexture(string name, GameObject gameObject)
-    {
-        if (DvergrWoodPieces.Contains(name))
-        {
-            Renderer[] componentsInChildren = gameObject.transform.Find("New").GetComponentsInChildren<Renderer>(true);
-            foreach (Renderer renderer in componentsInChildren)
-            {
-                renderer.material.mainTexture = TextureHelper.GetNewDvergrTexture();
-            }
-        }
     }
 
     /// <summary>
@@ -364,7 +355,7 @@ internal static class PlayerPiecePatcher
                 break;
         }
     }
-    
+
     /// <summary>
     ///     Add bed component and set spawn point attach point.
     /// </summary>
