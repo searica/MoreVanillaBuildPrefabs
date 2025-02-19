@@ -8,6 +8,17 @@
 			<th align="center">Notes</th>
 		</tr>
 		<tr>
+			<td align="center">1.4.3</td>
+			<td align="left">
+				<ul>
+					<li>Bugfix for icons of pieces with texture patches not always updating on restart.</li>
+					<li>Improved handling of if a piece should be remove-able.</li>
+					<li>All pieces you build are now always remove-able by you.</li>
+					<li>For any prefab that MVBP adds a Piece component to, only player built instances of it are removeable with the hammer.</li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
 			<td align="center">1.4.2</td>
 			<td align="left">
 				<ul>

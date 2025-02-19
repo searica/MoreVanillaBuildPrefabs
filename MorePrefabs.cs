@@ -22,7 +22,7 @@ public class MorePrefabs : BaseUnityPlugin
     public const string PluginName = "MoreVanillaBuildPrefabs";
     internal const string Author = "Searica";
     public const string PluginGUID = $"{Author}.Valheim.{PluginName}";
-    public const string PluginVersion = "1.4.2";
+    public const string PluginVersion = "1.4.3";
 
     public static MorePrefabs Instance { get; private set; }
     private ConfigFileWatcher configFileWatcher;
