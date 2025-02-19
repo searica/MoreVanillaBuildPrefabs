@@ -19,6 +19,7 @@ namespace MVBP.PrefabManagement;
 internal static class ZNetPrefabManager
 {
     internal static readonly Dictionary<string, Piece.Requirement[]> VanillaPieceResources = [];
+    private static readonly Dictionary<string, bool> DefaultRemoveSettings = [];
 
     private static readonly HashSet<string> AddedPieceComponent = [];
 
@@ -180,6 +181,7 @@ internal static class ZNetPrefabManager
         {
             Piece piece = InitPieceComponent(kvp.Value, defaultIcon);
             PrefabConfigManager.BindPrefabConfig(kvp.Value, piece);
+            UpdateDefaultRemoveSettings(piece);
         }
 
         Log.LogInfo("Initializing default icons", Log.InfoLevel.Medium);
@@ -289,6 +291,19 @@ internal static class ZNetPrefabManager
             VanillaPieceResources.Add(prefab.name, []);
         }
     }
+
+    /// <summary>
+    ///     Track the default Piece.m_removePiece settings for this prefab.
+    /// </summary>
+    /// <param name="prefab"></param>
+    private static void UpdateDefaultRemoveSettings(Piece piece)
+    {
+        if (!DefaultRemoveSettings.ContainsKey(piece.name))
+        {
+            DefaultRemoveSettings.Add(piece.name, piece.m_removePiece);
+        }
+    }
+
 
     /// <summary>
     ///     Create and initialize piece component if needed.
