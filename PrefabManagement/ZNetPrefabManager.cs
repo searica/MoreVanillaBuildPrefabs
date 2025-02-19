@@ -119,6 +119,23 @@ internal static class ZNetPrefabManager
         return false;
     }
 
+    /// <summary>
+    ///     Try to get default Piece Resources for the vanilla version of the gameobject.
+    /// </summary>
+    /// <param name="gameObject"></param>
+    /// <param name="defaultResources"></param>
+    /// <returns></returns>
+    internal static bool TryGetDefaultRemoveSettings(GameObject gameObject, out bool canRemove)
+    {
+        if (DefaultRemoveSettings.TryGetValue(gameObject.GetPrefabName(), out canRemove))
+        {
+            return true;
+        }
+
+        canRemove = false;
+        return false;
+    }
+
     public static bool IsPatchedByMVBP(Component component)
     {
         return EligiblePrefabMap.ContainsKey(component.gameObject.GetPrefabName());
@@ -538,7 +555,8 @@ internal static class ZNetPrefabManager
             }
             else
             {
-                piece.m_canBeRemoved = true;
+                TryGetDefaultRemoveSettings(piece.gameObject, out bool canRemove);
+                piece.m_canBeRemoved = canRemove;
             }
 
             piece.m_allowedInDungeons = prefabConfig.AllowedInDungeons.Value;
