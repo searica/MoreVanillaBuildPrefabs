@@ -117,22 +117,31 @@ internal static class Removal
 
         private static bool Check_m_canBeRemoved(Piece piece)
         {
+            // not placed by Player so follow vanilla rules
+            // not enabled by MVBP so follow vanilla rules
+            if (!piece.IsPlacedByPlayer()  || PrefabConfigManager.IsPrefabEnabled(piece.gameObject))
+            {
+                return piece.m_canBeRemoved;  
+            }
 
-            if (PrefabConfigManager.IsPrefabEnabled(piece.gameObject) &&
-                PieceCategoryManager.IsCreativeModePiece(piece) &&
-                piece.IsPlacedByPlayer())
+
+            // For creative mode pieces and pieces added by MVBP always let the creator remove them.
+            if (PieceCategoryManager.IsCreativeModePiece(piece) || ZNetPrefabManager.HasPieceAddedByMVBP(piece)) 
             {
                 // Allow creative mode pieces to be removed by creator
-                if (piece.IsCreator()) { return true; }
+                if (piece.IsCreator())
+                {
+                    return true;
+                }
 
-                // Allow creative mode pieces to be removed by admin (based on config settings)
+                // If enabled, allow admins to remove other players pieces.
                 if (MorePrefabs.IsAdminDeconstructOtherPlayers && SynchronizationManager.Instance.PlayerIsAdmin)
                 {
                     return true;
                 }
             }
 
-            // Follow vanilla rules for non-creative mode pieces
+            // Follow vanilla rules for all other cases
             return piece.m_canBeRemoved;
         }
 
