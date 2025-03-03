@@ -310,14 +310,14 @@ internal static class ZNetPrefabManager
     }
 
     /// <summary>
-    ///     Track the default Piece.m_removePiece settings for this prefab.
+    ///     Track the default Piece.m_canBeRemoved settings for this prefab.
     /// </summary>
     /// <param name="prefab"></param>
     private static void UpdateDefaultRemoveSettings(Piece piece)
     {
         if (!DefaultRemoveSettings.ContainsKey(piece.name))
         {
-            DefaultRemoveSettings.Add(piece.name, piece.m_removePiece);
+            DefaultRemoveSettings.Add(piece.name, piece.m_canBeRemoved);
         }
     }
 
