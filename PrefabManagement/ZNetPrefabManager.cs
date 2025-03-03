@@ -566,10 +566,13 @@ internal static class ZNetPrefabManager
         {
             piece.m_canBeRemoved = false;
         }
+        else if (TryGetDefaultRemoveSettings(piece.gameObject, out bool canRemove))
+        {
+            piece.m_canBeRemoved = canRemove;
+        }
         else
         {
-            TryGetDefaultRemoveSettings(piece.gameObject, out bool canRemove);
-            piece.m_canBeRemoved = canRemove;
+            Log.LogWarning($"Could not find remove settings for {piece.name}");
         }
     }
 
