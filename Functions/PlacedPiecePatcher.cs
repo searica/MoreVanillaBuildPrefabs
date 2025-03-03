@@ -62,8 +62,9 @@ internal static class PlacedPiecePatcher
         }
 
 
-        // Make player-built remove-able pieces removeable
+        // Make non-creative mode player built pieces removeable
         // Have to do this after placement to avoid affecting non-player built instances.
+        // Targeted at pieces that MVBP has added a piece component to.
         if (!ZNetPrefabManager.IsNonRemovablePiece(piece))
         {
             piece.m_canBeRemoved = true;
