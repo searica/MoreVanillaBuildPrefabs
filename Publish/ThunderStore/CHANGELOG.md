@@ -8,6 +8,15 @@
 			<th align="center">Notes</th>
 		</tr>
 		<tr>
+			<td align="center">1.4.4</td>
+			<td align="left">
+				<ul>
+					<li>Bugfix for piece removal.</li>
+					<li>update for new game version.</li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
 			<td align="center">1.4.3</td>
 			<td align="left">
 				<ul>
