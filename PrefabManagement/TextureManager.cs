@@ -1,17 +1,23 @@
 ﻿// Ignore Spelling: MVBP
 
+using HarmonyLib;
 using Jotunn.Managers;
+using Logging;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
+using System.Reflection;
 using UnityEngine;
-using Logging;
-using System.Collections.Generic;
 
 namespace MVBP.PrefabManagement;
 
 internal static class TextureManager
 {
+
+    private static readonly MethodInfo LoadImageMethod = AccessTools.Method(typeof(ImageConversion), nameof(ImageConversion.LoadImage), [typeof(Texture2D), typeof(byte[])]);
+
+
     private static readonly HashSet<string> DvergrWoodPieces =
     [
         "dvergrprops_wood_floor",
@@ -187,7 +193,7 @@ internal static class TextureManager
             byte[] buffer = new byte[mStream.Length];
             mStream.Position = 0;
             mStream.Read(buffer, 0, buffer.Length);
-            texture.LoadImage(buffer);
+            LoadImageMethod.Invoke(null, [texture, buffer]);
         }
 
         return texture;

@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<NuGetPackages>$(UserProfile)\.nuget\packages</NuGetPackages>
-		<JotunnProps>$(NuGetPackages)\jotunnlib\2.23.0\build\JotunnLib.props</JotunnProps>
+		<JotunnProps>$(NuGetPackages)\jotunnlib\2.30.0\build\JotunnLib.props</JotunnProps>
 	</PropertyGroup>
 
 	<Import Project="ModPackageTool.targets" Condition="Exists('ModPackageTool.targets')" />
@@ -12,7 +12,6 @@
 		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 		<!--<LangVersion>latest</LangVersion>-->
 		<LangVersion>12.0</LangVersion>
-		<AppConfig>App.config</AppConfig>
 	</PropertyGroup>
 
 	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -55,16 +54,6 @@
 		<RootNamespace>MVBP</RootNamespace>
 	</PropertyGroup>
 
-	<ItemGroup>
-	  <Compile Remove="Libraries\**" />
-	  <EmbeddedResource Remove="Libraries\**" />
-	  <None Remove="Libraries\**" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<None Remove="Resources\texture_portal_MainTex.png" />
-		<None Remove="Resources\texture_portal_n_BumpMap.png" />
-	</ItemGroup>
 
 	<ItemGroup>
 		<Content Include="LICENSE" />
@@ -81,11 +70,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<None Include="App.config" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<PackageReference Include="JotunnLib" Version="2.24.2" />
+		<PackageReference Include="JotunnLib" Version="2.30.0" />
 	</ItemGroup>
 
 	<ItemGroup>
