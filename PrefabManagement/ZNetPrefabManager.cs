@@ -361,6 +361,9 @@ internal static class ZNetPrefabManager
             // to prevent deconstruction of pieces that are not enabled by the mod
             piece.m_canBeRemoved = false;
 
+            // do this last in case the defaults influence it
+            piece.m_usage = UsageTagManager.GetPieceUsage(prefab);
+
             AddedPieceComponent.Add(prefab.GetPrefabName());
             Log.LogInfo($"Created Piece component for: {prefab.name}", Log.InfoLevel.High);
         }
@@ -368,6 +371,11 @@ internal static class ZNetPrefabManager
         if (piece.m_icon == null)
         {
             piece.m_icon = defaultIcon;
+        }
+
+        if (piece.m_usage == 0)
+        {
+            piece.m_usage = UsageTagManager.GetPieceUsage(prefab);
         }
         return piece;
     }
@@ -541,7 +549,9 @@ internal static class ZNetPrefabManager
             piece.m_enabled = prefabConfig.Enabled.Value || MorePrefabs.IsForceAllPrefabs;
             piece.m_name = PieceNameManager.FormatPieceName(prefabConfig);
             piece.m_description = PieceNameManager.GetPieceDescription(prefabConfig);
+
             SetCanBeRemoved(piece);
+
             piece.m_allowedInDungeons = prefabConfig.AllowedInDungeons.Value;
             piece.m_clipEverything = prefabConfig.ClipEverything.Value;
             piece.m_clipGround = prefabConfig.ClipGround.Value;

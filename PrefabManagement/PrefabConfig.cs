@@ -58,7 +58,7 @@ internal class PrefabConfig
        string name,
        bool enabled = false,
        bool allowedInDungeons = false,
-       string category = HammerCategories.CreatorShop,
+       string category = PieceCategoryNames.CreatorShop,
        string craftingStation = nameof(CraftingStations.None),
        string requirements = "",
        bool clipEverything = false,
@@ -130,7 +130,7 @@ internal class PrefabConfig
             "Category",
             this._category,
             "A string defining the tab the prefab shows up on in the hammer build table.",
-            acceptableValues: HammerCategories.GetAcceptableValueList(),
+            acceptableValues: PieceCategoryNames.GetAcceptableValueList(),
             synced: true,
             sectionOrder: false,
             settingOrder: true

@@ -14,19 +14,31 @@ internal static class PieceCategoryManager
 
     internal static void AddCustomPieceCategories()
     {
-        if (PieceManager.Instance.GetPieceCategory(HammerCategories.Nature) == null
-            || PieceManager.Instance.GetPieceCategory(HammerCategories.CreatorShop) == null)
+        foreach (string name in PieceCategoryNames.GetCustomCategoryNames())
         {
-            Log.LogInfo("Adding custom piece categories", Log.InfoLevel.Medium);
-            Nature = PieceManager.Instance.AddPieceCategory(HammerCategories.Nature);
-            CreatorShop = PieceManager.Instance.AddPieceCategory(HammerCategories.CreatorShop);
+            if (PieceManager.Instance.GetPieceCategory(name) == null)
+            {
+                Log.LogInfo($"Adding custom piece category {name}", Log.InfoLevel.Medium);
+                Piece.PieceCategory customCategory = PieceManager.Instance.AddPieceCategory(name);
+                switch (name)
+                {
+                    case "Nature":
+                        Nature = customCategory;
+                        break;
+                    case "CreatorShop":
+                        CreatorShop = customCategory;
+                        break;
+                    default:
+                        break;
+                }
+            }
         }
     }
 
     internal static void RemoveCreatorShopPieceCategory()
     {
         Log.LogInfo("Removing custom piece categories", Log.InfoLevel.Medium);
-        PieceManager.Instance.RemovePieceCategory(HammerCategories.CreatorShop);
+        PieceManager.Instance.RemovePieceCategory(PieceCategoryNames.CreatorShop);
     }
 
     internal static bool IsCreativeModePiece(Piece piece)

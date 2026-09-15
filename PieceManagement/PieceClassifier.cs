@@ -207,8 +207,7 @@ internal class PieceClassifier
             }
         }
 
-        if (prefabName.Contains("armorstand")
-            || prefab.GetComponent<ArmorStand>())
+        if (prefabName.Contains("armorstand") || prefab.GetComponent<ArmorStand>())
         {
             return PieceClassification.ArmorStand;
         }

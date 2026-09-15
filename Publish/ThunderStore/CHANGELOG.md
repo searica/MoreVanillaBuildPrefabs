@@ -8,6 +8,18 @@
 			<th align="center">Notes</th>
 		</tr>
 		<tr>
+			<td align="center">1.5.0</td>
+			<td align="left">
+				<ul>
+					<li>Updated for Deep North release!</li>
+					<li>Removed dependency on SearsCatalog as it is no longer needed.</li>
+					<li>Added automatic tagging of new pieces so they are sorted correctly in the new build menu.</li>
+					<li>Added more config options for piece categories to match the current game options (note: this no longer seem to affect placement in build menu).</li>
+					<li>Config file will auto update to find all possible pieces after you start up the game, be warned that I have not tested or patched any of the new pieces it will find yet!</li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
 			<td align="center">1.4.4</td>
 			<td align="left">
 				<ul>
