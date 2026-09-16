@@ -16,6 +16,7 @@
 - [SkilledCarryWeight](https://thunderstore.io/c/valheim/p/Searica/SkilledCarryWeight/)
 - [SafetyStatus](https://thunderstore.io/c/valheim/p/Searica/SafetyStatus/)
 - [ShowMeTheGoods](https://thunderstore.io/c/valheim/p/Searica/ShowMeTheGoods/)
+- [UnderTheSea](https://thunderstore.io/c/valheim/p/Searica/UnderTheSea/)
 - [WatchWhereYouStab](https://thunderstore.io/c/valheim/p/Searica/WatchWhereYouStab/)
 
 #### Networking Mods
