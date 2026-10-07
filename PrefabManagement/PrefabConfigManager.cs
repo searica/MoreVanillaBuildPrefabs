@@ -90,10 +90,10 @@ internal static class PrefabConfigManager
     /// <returns></returns>
     public static PrefabConfig BindPrefabConfig(GameObject prefab, Piece piece)
     {
-        string prefabName = prefab.GetPrefabName();      
+        string prefabName = prefab.GetPrefabName();
         if (!PrefabConfigMap.TryGetValue(prefabName, out PrefabConfig prefabConfig))
         {
-            // if no existing PrefabConfig then make one.
+            // if no existing PrefabConfig then make one and add to map
             prefabConfig = new(prefabName);
             PrefabConfigMap[prefabName] = prefabConfig;
         }
@@ -167,7 +167,8 @@ internal static class PrefabConfigManager
                 clipGround: false,
                 placementPatch: false,
                 pieceDesc: "",
-                pieceGroup: PieceClassification.ArmorStand
+                pieceGroup: PieceClassification.ArmorStand,
+                comfortGroup: Piece.ComfortGroup.Display
             )
         },
         {
@@ -183,7 +184,8 @@ internal static class PrefabConfigManager
                 clipGround: false,
                 placementPatch: false,
                 pieceDesc: "",
-                pieceGroup: PieceClassification.ArmorStand
+                pieceGroup: PieceClassification.ArmorStand,
+                comfortGroup: Piece.ComfortGroup.Display
             )
         },
         {
@@ -7297,8 +7299,8 @@ internal static class PrefabConfigManager
                 enabled: true,
                 allowedInDungeons: false,
                 category: PieceCategoryNames.Misc,
-                craftingStation: nameof(CraftingStations.GaldrTable),
-                requirements: "GreydwarfEye,10;Stone,20;BlackCore,2",
+                craftingStation: nameof(CraftingStations.Stonecutter),
+                requirements: "GreydwarfEye,10;BlackMarble,20;MoltenCore,2",
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,

@@ -126,4 +126,14 @@ internal static class GameObjectExtensions
         mesh = null;
         return false;
     }
+
+    public static bool TryGetComponentInChildren<T>(
+      this UnityEngine.GameObject gameObject,
+      out T component,
+      bool includeInactive = false)
+      where T : UnityEngine.Component
+    {
+        component = gameObject.GetComponentInChildren<T>(includeInactive);
+        return component;
+    }
 }

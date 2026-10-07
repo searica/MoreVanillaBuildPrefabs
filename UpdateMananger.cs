@@ -150,6 +150,7 @@ internal static class UpdateMananger
         SfxManager.Initialize();
         ZNetPrefabManager.Initialize();
         UpdatePieces();
+        SeasonalPieceMananger.UpdateSeasonalPieces();
         MorePrefabs.Instance.Config.Save(); // save after binding prefab configs
     }
 

@@ -8,6 +8,28 @@
 			<th align="center">Notes</th>
 		</tr>
 		<tr>
+			<td align="center">1.5.2</td>
+			<td align="left">
+				<ul>
+					<li>Fixed vanilla bug where placing a cape on the male/female armor stands threw a bunch of errors and could crash the game.</li>
+					<li>Fixed the comfort group category of the male/female armor stands not always being changed to the "Display" group.</li>
+					<li>Attempted to fix issue with trailership and SnowFirTree 2 but that will need more work.</li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<td align="center">1.5.1</td>
+			<td align="left">
+				<ul>
+					<li>Fixed seasonal pieces not being enabled until you toggled the seasonal pieces config setting.</li>
+					<li>Patched player built eternal braziers to provide warmth in the same radius as normal braziers. Note: only works while MVBP is installed.</li>
+					<li>Set the comfort group for eternal braziers and other sources of fire to the Fire comfort group, this only applies to player built pieces and should persist after removing MVBP.</li>
+					<li>Set the fancy armor stands to be part of the display comfort group.</li>
+					<li>Adjusted default config settings for portal prefab.</li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
 			<td align="center">1.5.0</td>
 			<td align="left">
 				<ul>

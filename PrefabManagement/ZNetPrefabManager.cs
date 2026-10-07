@@ -33,6 +33,7 @@ internal static class ZNetPrefabManager
     ];
 
     private static readonly HashSet<string> IgnoredPrefabs = [
+        "",
         "Player",
         "Valkyrie",
         "HelmetOdin",
@@ -538,7 +539,7 @@ internal static class ZNetPrefabManager
                 Log.LogWarning($"Prefab {pair.Key} is null!");
                 continue;
             }
-            if (!PrefabConfigManager.TryGetPrefabConfig(pair.Key, out var prefabConfig, checkIfBound: true))
+            if (!PrefabConfigManager.TryGetPrefabConfig(pair.Key, out PrefabConfig prefabConfig, checkIfBound: true))
             {
                 Log.LogWarning($"Prefab {pair.Key} does not have a valid config!");
                 continue;
@@ -558,6 +559,11 @@ internal static class ZNetPrefabManager
             piece.m_category = PieceCategoryManager.GetPieceCategory(prefabConfig.Category.Value);
             piece.m_craftingStation = GetCraftingStation(prefabConfig.CraftingStation.Value);
             piece.m_resources = PieceReqsManager.ConfigurePieceRequirements(prefabConfig);
+            if (prefabConfig._comfortGroup.HasValue) 
+            {
+                piece.m_comfortGroup = prefabConfig._comfortGroup.Value;
+            }
+
             SfxManager.FixPlacementSfx(piece);
         }
     }

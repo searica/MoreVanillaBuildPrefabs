@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<NuGetPackages>$(UserProfile)\.nuget\packages</NuGetPackages>
-		<JotunnProps>$(NuGetPackages)\jotunnlib\2.30.0\build\JotunnLib.props</JotunnProps>
+		<JotunnProps>$(NuGetPackages)\jotunnlib\2.30.2\build\JotunnLib.props</JotunnProps>
 	</PropertyGroup>
 
 	<Import Project="ModPackageTool.targets" Condition="Exists('ModPackageTool.targets')" />
@@ -54,7 +54,6 @@
 		<RootNamespace>MVBP</RootNamespace>
 	</PropertyGroup>
 
-
 	<ItemGroup>
 		<Content Include="LICENSE" />
 	</ItemGroup>
@@ -70,9 +69,15 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="JotunnLib" Version="2.30.0" />
+		<PackageReference Include="JotunnLib" Version="2.30.2" />
 	</ItemGroup>
 
+	<ItemGroup>
+		<Reference Include="MagicaClothV2" Private="false">
+			<HintPath>$(VALHEIM_INSTALL)\valheim_Data\Managed\MagicaClothV2.dll</HintPath>
+		</Reference>
+	</ItemGroup>
+	
 	<ItemGroup>
 		<Compile Update="Properties\Resources.Designer.cs">
 			<DesignTime>True</DesignTime>

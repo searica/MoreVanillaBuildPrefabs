@@ -75,6 +75,7 @@ internal static class PlacedPiecePatcher
         ApplyTimedDestructionPatch(piece);
         ApplyContainerPatches(prefabName, piece);
         EditDestructibleSpawn(prefabName, piece);
+        ApplyFireWarmthPatches(prefabName, piece);
 
         if (MorePrefabs.IsEnablePlayerBasePatches)
         {
@@ -451,6 +452,40 @@ internal static class PlacedPiecePatcher
 
             default:
                 break;
+        }
+    }
+
+    private static void ApplyFireWarmthPatches(string prefabName, Piece piece)
+    {
+        Transform fire = piece.transform.FindDeepChild("FireWarmth");
+        if (!fire)
+        {
+            return;
+        }
+
+        if (piece.m_comfortGroup == Piece.ComfortGroup.None)
+        {
+            piece.m_comfortGroup = Piece.ComfortGroup.Fire;
+            if (!TryGetZDO(piece, out ZDO zdo))
+            {
+                zdo.Set("HasFields", true);
+                zdo.Set("HasFieldsPiece", true);
+                zdo.Set("Piece.m_comfortGroup", true);
+            }
+            
+        }
+
+        SphereCollider collider = fire.GetComponent<SphereCollider>();
+        if (!collider)
+        {
+            return;
+        }
+        if (prefabName.Contains("brazier") && collider.radius < 5f)
+        {
+            collider.radius = 5f;
+            //zdo.Set("HasFields", true);
+            //zdo.Set("HasFieldsSphereCollider", true);
+            //zdo.Set("SphereCollider.radius", 5f);
         }
     }
 }

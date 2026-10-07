@@ -26,6 +26,7 @@ internal class PrefabConfig
     private readonly bool _clipEverything;
     private readonly bool _clipGround;
     private readonly bool _placementPatch;
+    
 
     public Vector3? PlacementOffset;
     public string PieceName;
@@ -35,6 +36,7 @@ internal class PrefabConfig
     public string SpawnOnDestroyed;
     public uint? InvWidth;
     public uint? InvHeight;
+    public readonly Piece.ComfortGroup? _comfortGroup;
 
     /// <summary>
     ///     Whether BindToConfig has been called for this PrefabConfig
@@ -71,7 +73,8 @@ internal class PrefabConfig
        bool playerBasePatch = false,
        string spawnOnDestroyed = null,
        uint? invWidth = null,
-       uint? invHeight = null
+       uint? invHeight = null,
+       Piece.ComfortGroup? comfortGroup = null
     )
     {
         Name = name;
@@ -93,6 +96,7 @@ internal class PrefabConfig
         _clipEverything = clipEverything;
         _clipGround = clipGround;
         _placementPatch = placementPatch;
+        _comfortGroup = comfortGroup;
     }
     
     public void BindToConfig(ConfigFile configFile, GameObject prefab, Piece piece)

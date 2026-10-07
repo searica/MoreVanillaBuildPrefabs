@@ -1,6 +1,5 @@
 ﻿// Ignore Spelling: MVBP
 
-using Jotunn.Managers;
 using MVBP.Extensions;
 using System;
 using System.Collections.Generic;
@@ -14,6 +13,8 @@ namespace MVBP.PrefabManagement;
 
 internal static class PrefabPatcher
 {
+    static readonly string[] TrailerShipHullPaths = ["hull_new/hull", "hull_worn/hull_worn", "hull_broken/hull"];
+
     /// <summary>
     ///     Fix collider and snap points on the prefab if necessary
     /// </summary>
@@ -33,7 +34,7 @@ internal static class PrefabPatcher
                 SnapPointManager.AddSnapPointToOrigin(prefab);
                 try
                 {
-                    GameObject body = prefab?.transform?.Find("Player Pose")?.Find("Visual")?.Find("body")?.gameObject;
+                    GameObject body = prefab.transform.Find("Player Pose").Find("Visual").Find("body").gameObject;
                     SkinnedMeshRenderer meshRender = body.GetComponent<SkinnedMeshRenderer>();
                     meshRender.sharedMaterial = TextureManager.GetCustomArmorStandMaterial();
                 }
@@ -44,19 +45,30 @@ internal static class PrefabPatcher
                 break;
 
             case "Trailership":
+                GameObject longShip = ZNetScene.instance.GetPrefab("VikingShip");
                 // Fix hull
-                MeshFilter meshFilter = prefab.FindDeepChild("hull").GetComponent<MeshFilter>();
-                GameObject longShip = ZNetScene.instance?.GetPrefab("VikingShip");
-                MeshFilter lsMeshFilter = longShip.FindDeepChild("hull").GetComponent<MeshFilter>();
-                if (meshFilter && lsMeshFilter)
+                Transform longShipVisual = longShip.transform.Find("ship/visual");
+                Transform shipVisual = prefab.transform.Find("ship/visual");
+                MeshFilter meshFilter;
+                MeshFilter longShipMeshFilter;
+                foreach (string transformPath in TrailerShipHullPaths)
                 {
-                    meshFilter.mesh = lsMeshFilter.mesh;
+                    if (!shipVisual.Find(transformPath).TryGetComponent(out meshFilter))
+                    {
+                        continue;
+                    }
+
+                    if (!longShipVisual.Find(transformPath).TryGetComponent(out longShipMeshFilter))
+                    {
+                        continue;
+                    }
+                    meshFilter.mesh = longShipMeshFilter.mesh;
                 }
 
                 // Fix shields
-                GameObject shieldBanded = ZNetScene.instance?.GetPrefab("ShieldBanded");
+                GameObject shieldBanded = ZNetScene.instance.GetPrefab("ShieldBanded");
                 Material mat = shieldBanded.GetComponentInChildren<MeshRenderer>().material;
-                Transform storage = prefab.transform.Find("ship").Find("visual").Find("Customize").Find("storage");
+                Transform storage = shipVisual.Find("Customize/storage");
                 if (mat && storage)
                 {
                     int children = storage.childCount;
@@ -94,7 +106,7 @@ internal static class PrefabPatcher
 
                 // Fix missing rudder button attachpoint
                 ShipControlls shipControls = prefab.FindDeepChild("rudder_button").GetComponent<ShipControlls>();
-                Transform rudderAttach = prefab.transform.Find("sit locations").Find("sit_box (4)").Find("attachpoint");
+                Transform rudderAttach = prefab.transform.Find("sit locations/sit_box (4)/attachpoint");
                 if (shipControls && rudderAttach)
                 {
                     shipControls.m_attachPoint = rudderAttach.transform;

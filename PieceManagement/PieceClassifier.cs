@@ -159,10 +159,7 @@ internal class PieceClassifier
         }
 
         if (
-            prefab.HasAnyComponent(
-            "CreatureSpawner",
-            "SpawnArea",
-            "TriggerSpawner")
+            prefab.HasAnyComponent("CreatureSpawner", "SpawnArea", "TriggerSpawner")
         )
         {
             return PieceClassification.Spawner;
@@ -186,7 +183,7 @@ internal class PieceClassifier
         }
 
         if (
-            piece?.m_comfortGroup == Piece.ComfortGroup.Fire
+            piece.m_comfortGroup == Piece.ComfortGroup.Fire
             || prefab.transform.FindDeepChild("FireWarmth") != null
             || prefab.GetComponentInChildren<Demister>(true)
         )
@@ -280,7 +277,7 @@ internal class PieceClassifier
         }
 
         if (
-            piece?.m_comfortGroup == Piece.ComfortGroup.Table ||
+            piece.m_comfortGroup == Piece.ComfortGroup.Table ||
             (prefabName.Contains("table")
             && !prefab.HasAnyComponent("CraftingStation", "StationExtension", "MapTable"))
         )
