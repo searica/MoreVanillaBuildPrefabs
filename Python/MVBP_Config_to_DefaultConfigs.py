@@ -22,10 +22,11 @@ class PrefabConfig:
         "pieceName": 12,
         "pieceDesc": 13,
         "pieceGroup": 14,
-        "playerBasePatch": 15,
-        "spawnOnDestroyed": 16,
-        "invWidth": 17,
-        "invHeight": 18
+        "comfortGroup": 15,
+        "playerBasePatch": 16,
+        "spawnOnDestroyed": 17,
+        "invWidth": 18,
+        "invHeight": 19
     }
 
     _needs_quotes = set(
@@ -57,6 +58,7 @@ class PrefabConfig:
         self.spawnOnDestroyed = None
         self.invWidth = None
         self.invHeight = None
+        self.comfortGroup = None
 
     def _sort_attr_names(self, name: str):
         if name not in self._ordering:
@@ -270,6 +272,7 @@ def write_output(
 
         for key in sorted_keys:
             prefab_config = prefab_configs[key]
+
             out_file.write(open_key_value_pair)
             out_file.write(
                 f'{kvp_indent}"{prefab_config.name}",\n'  # key for PrefabConfigMap

@@ -160,6 +160,7 @@ internal static class PrefabConfigManager
                 name: "ArmorStand_Female",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Furniture,
                 craftingStation: nameof(CraftingStations.Workbench),
                 requirements: "FineWood,8;BronzeNails,2;Tar,4",
@@ -177,6 +178,7 @@ internal static class PrefabConfigManager
                 name: "ArmorStand_Male",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Furniture,
                 craftingStation: nameof(CraftingStations.Workbench),
                 requirements: "FineWood,8;BronzeNails,2;Tar,4",
@@ -194,6 +196,7 @@ internal static class PrefabConfigManager
                 name: "Ashland_Stair",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,32",
@@ -208,6 +211,7 @@ internal static class PrefabConfigManager
                 name: "Ashland_Steepstair",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -222,14 +226,14 @@ internal static class PrefabConfigManager
                 name: "AshlandsBranch1",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Cultivator),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: true,
-                pieceGroup: PieceClassification.Flora,
-                pieceTable: nameof(PieceTables.Cultivator)
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -238,14 +242,14 @@ internal static class PrefabConfigManager
                 name: "AshlandsBranch2",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Cultivator),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Flora,
-                pieceTable: nameof(PieceTables.Cultivator)
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -254,14 +258,14 @@ internal static class PrefabConfigManager
                 name: "AshlandsBranch3",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Cultivator),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: true,
-                pieceGroup: PieceClassification.Flora,
-                pieceTable: nameof(PieceTables.Cultivator)
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -270,14 +274,14 @@ internal static class PrefabConfigManager
                 name: "AshlandsBush1",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Cultivator),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: true,
-                pieceGroup: PieceClassification.Flora,
-                pieceTable: nameof(PieceTables.Cultivator)
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -286,14 +290,14 @@ internal static class PrefabConfigManager
                 name: "AshlandsBush2",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Cultivator),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: true,
-                pieceGroup: PieceClassification.Flora,
-                pieceTable: nameof(PieceTables.Cultivator)
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -302,6 +306,7 @@ internal static class PrefabConfigManager
                 name: "AshlandsTree1",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Cultivator),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -309,8 +314,7 @@ internal static class PrefabConfigManager
                 clipGround: false,
                 placementPatch: false,
                 placementOffset: new Vector3(0f, 1f, 0f),
-                pieceGroup: PieceClassification.Flora,
-                pieceTable: nameof(PieceTables.Cultivator)
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -319,6 +323,7 @@ internal static class PrefabConfigManager
                 name: "AshlandsTree3",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Cultivator),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -326,8 +331,7 @@ internal static class PrefabConfigManager
                 clipGround: false,
                 placementPatch: false,
                 placementOffset: new Vector3(0f, 1f, 0f),
-                pieceGroup: PieceClassification.Flora,
-                pieceTable: nameof(PieceTables.Cultivator)
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -336,14 +340,14 @@ internal static class PrefabConfigManager
                 name: "AshlandsTree4",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Cultivator),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Flora,
-                pieceTable: nameof(PieceTables.Cultivator)
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -352,6 +356,7 @@ internal static class PrefabConfigManager
                 name: "AshlandsTree5",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Cultivator),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -359,8 +364,7 @@ internal static class PrefabConfigManager
                 clipGround: false,
                 placementPatch: false,
                 placementOffset: new Vector3(0f, 0.5f, 0f),
-                pieceGroup: PieceClassification.Flora,
-                pieceTable: nameof(PieceTables.Cultivator)
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -369,14 +373,14 @@ internal static class PrefabConfigManager
                 name: "AshlandsTree6",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Cultivator),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Flora,
-                pieceTable: nameof(PieceTables.Cultivator)
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -385,14 +389,14 @@ internal static class PrefabConfigManager
                 name: "AshlandsTree6_big",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Cultivator),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Flora,
-                pieceTable: nameof(PieceTables.Cultivator)
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -401,14 +405,14 @@ internal static class PrefabConfigManager
                 name: "AshlandsTreeLog1",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Cultivator),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Flora,
-                pieceTable: nameof(PieceTables.Cultivator)
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -417,14 +421,14 @@ internal static class PrefabConfigManager
                 name: "AshlandsTreeLog2",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Cultivator),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Flora,
-                pieceTable: nameof(PieceTables.Cultivator)
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -433,14 +437,14 @@ internal static class PrefabConfigManager
                 name: "AshlandsTreeLogHalf1",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Cultivator),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Flora,
-                pieceTable: nameof(PieceTables.Cultivator)
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -449,14 +453,14 @@ internal static class PrefabConfigManager
                 name: "AshlandsTreeLogHalf2",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Cultivator),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Flora,
-                pieceTable: nameof(PieceTables.Cultivator)
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -465,14 +469,14 @@ internal static class PrefabConfigManager
                 name: "AshlandsTreeStump1",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Cultivator),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Flora,
-                pieceTable: nameof(PieceTables.Cultivator)
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -481,14 +485,14 @@ internal static class PrefabConfigManager
                 name: "AshlandsTreeStump2",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Cultivator),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Flora,
-                pieceTable: nameof(PieceTables.Cultivator)
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -497,14 +501,14 @@ internal static class PrefabConfigManager
                 name: "AshlandsTreeStump3",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Cultivator),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Flora,
-                pieceTable: nameof(PieceTables.Cultivator)
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -513,6 +517,7 @@ internal static class PrefabConfigManager
                 name: "Ashlands_Altar",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -527,6 +532,7 @@ internal static class PrefabConfigManager
                 name: "Ashlands_Arch1",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,8",
@@ -541,6 +547,7 @@ internal static class PrefabConfigManager
                 name: "Ashlands_Arch2",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,10",
@@ -555,6 +562,7 @@ internal static class PrefabConfigManager
                 name: "Ashlands_Arch2_Broken1",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -569,6 +577,7 @@ internal static class PrefabConfigManager
                 name: "Ashlands_Arch2_Broken2",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -583,6 +592,7 @@ internal static class PrefabConfigManager
                 name: "Ashlands_ArchRoof",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -597,6 +607,7 @@ internal static class PrefabConfigManager
                 name: "Ashlands_ArchRoofDamaged",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -611,6 +622,7 @@ internal static class PrefabConfigManager
                 name: "Ashlands_ArchRoofDamaged_half1",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -625,6 +637,7 @@ internal static class PrefabConfigManager
                 name: "Ashlands_ArchRoofDamaged_half2",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -639,6 +652,7 @@ internal static class PrefabConfigManager
                 name: "Ashlands_ArchRoofLong_Damaged",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -653,6 +667,7 @@ internal static class PrefabConfigManager
                 name: "Ashlands_Boss_Pillar",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -667,6 +682,7 @@ internal static class PrefabConfigManager
                 name: "Ashlands_Boss_Pillar_Twist_broken1",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -681,6 +697,7 @@ internal static class PrefabConfigManager
                 name: "Ashlands_Boss_Pillar_Twist_broken2",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -695,6 +712,7 @@ internal static class PrefabConfigManager
                 name: "Ashlands_Boss_Pillar_Twist_broken3",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -709,6 +727,7 @@ internal static class PrefabConfigManager
                 name: "Ashlands_Floor",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,4",
@@ -723,6 +742,7 @@ internal static class PrefabConfigManager
                 name: "Ashlands_Fortress_Floor",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,6",
@@ -737,6 +757,7 @@ internal static class PrefabConfigManager
                 name: "Ashlands_Fortress_Gate",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,32",
@@ -751,6 +772,7 @@ internal static class PrefabConfigManager
                 name: "Ashlands_Fortress_Gate_Door",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.BlackForge),
                 requirements: "Copper,30;FlametalNew,5",
@@ -765,6 +787,7 @@ internal static class PrefabConfigManager
                 name: "Ashlands_Fortress_Wall_PillarTopStone_frac",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -780,6 +803,7 @@ internal static class PrefabConfigManager
                 name: "Ashlands_Fortress_Wall_PillarTop_frac",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "",
@@ -794,6 +818,7 @@ internal static class PrefabConfigManager
                 name: "Ashlands_Fortress_Wall_Pillar_frac",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "",
@@ -808,6 +833,7 @@ internal static class PrefabConfigManager
                 name: "Ashlands_Fortress_Wall_Spikes",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.BlackForge),
                 requirements: "Copper,4;FlametalNew,2",
@@ -822,6 +848,7 @@ internal static class PrefabConfigManager
                 name: "Ashlands_Pillar4",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,10",
@@ -836,6 +863,7 @@ internal static class PrefabConfigManager
                 name: "Ashlands_Pillar4_tip",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,10",
@@ -850,6 +878,7 @@ internal static class PrefabConfigManager
                 name: "Ashlands_Pillar4_tip2",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,10",
@@ -864,6 +893,7 @@ internal static class PrefabConfigManager
                 name: "Ashlands_Pillar4_tip2_broken1",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -878,6 +908,7 @@ internal static class PrefabConfigManager
                 name: "Ashlands_Pillar4_tip2_broken2",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -892,6 +923,7 @@ internal static class PrefabConfigManager
                 name: "Ashlands_Pillar4_tip3",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -906,6 +938,7 @@ internal static class PrefabConfigManager
                 name: "Ashlands_Pillar4_tip3_broken1",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -920,6 +953,7 @@ internal static class PrefabConfigManager
                 name: "Ashlands_Pillar4_tip3_broken2",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -934,6 +968,7 @@ internal static class PrefabConfigManager
                 name: "Ashlands_Pillar4_tip3_broken3",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -948,6 +983,7 @@ internal static class PrefabConfigManager
                 name: "Ashlands_Pillar4_tip_broken1",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -962,6 +998,7 @@ internal static class PrefabConfigManager
                 name: "Ashlands_Pillar4_tip_broken2",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -976,6 +1013,7 @@ internal static class PrefabConfigManager
                 name: "Ashlands_PillarBase3_double",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,3",
@@ -990,6 +1028,7 @@ internal static class PrefabConfigManager
                 name: "Ashlands_Ramp",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,10",
@@ -1004,6 +1043,7 @@ internal static class PrefabConfigManager
                 name: "Ashlands_Ruins_Floor_1point5x1point5",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -1018,6 +1058,7 @@ internal static class PrefabConfigManager
                 name: "Ashlands_Ruins_Floor_1point5x1point5_broken",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -1032,6 +1073,7 @@ internal static class PrefabConfigManager
                 name: "Ashlands_Ruins_Floor_3x3",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -1046,6 +1088,7 @@ internal static class PrefabConfigManager
                 name: "Ashlands_Ruins_Floor_3x3_broken1",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -1060,6 +1103,7 @@ internal static class PrefabConfigManager
                 name: "Ashlands_Ruins_Floor_3x3_broken2",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -1074,6 +1118,7 @@ internal static class PrefabConfigManager
                 name: "Ashlands_Ruins_Floor_3x3_broken3",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -1088,6 +1133,7 @@ internal static class PrefabConfigManager
                 name: "Ashlands_Ruins_Floor_6x6",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -1102,6 +1148,7 @@ internal static class PrefabConfigManager
                 name: "Ashlands_Ruins_Floor_6x6_broken1",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -1116,6 +1163,7 @@ internal static class PrefabConfigManager
                 name: "Ashlands_Ruins_Floor_6x6_broken2",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -1130,6 +1178,7 @@ internal static class PrefabConfigManager
                 name: "Ashlands_Ruins_Ramp",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,10",
@@ -1144,6 +1193,7 @@ internal static class PrefabConfigManager
                 name: "Ashlands_Ruins_Ramp_Upsidedown",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,10",
@@ -1158,6 +1208,7 @@ internal static class PrefabConfigManager
                 name: "Ashlands_Ruins_TopStone",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -1172,6 +1223,7 @@ internal static class PrefabConfigManager
                 name: "Ashlands_Ruins_Wall_4x6",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -1186,6 +1238,7 @@ internal static class PrefabConfigManager
                 name: "Ashlands_Ruins_Wall_Broken3_4x6",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -1200,6 +1253,7 @@ internal static class PrefabConfigManager
                 name: "Ashlands_Ruins_Wall_Broken4_4x6",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -1214,6 +1268,7 @@ internal static class PrefabConfigManager
                 name: "Ashlands_Ruins_Wall_Broken5_4x6",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -1228,6 +1283,7 @@ internal static class PrefabConfigManager
                 name: "Ashlands_Ruins_Wall_Top_wHole",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,16",
@@ -1242,6 +1298,7 @@ internal static class PrefabConfigManager
                 name: "Ashlands_Ruins_Wall_Window_4x6_broken2",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -1256,6 +1313,7 @@ internal static class PrefabConfigManager
                 name: "Ashlands_Ruins_Wall_Window_4x6_broken3",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -1270,6 +1328,7 @@ internal static class PrefabConfigManager
                 name: "Ashlands_Ruins_Wall_Window_4x6_broken4",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -1284,6 +1343,7 @@ internal static class PrefabConfigManager
                 name: "Ashlands_Ruins_Wall_Window_4x6_broken5",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -1298,6 +1358,7 @@ internal static class PrefabConfigManager
                 name: "Ashlands_Ruins_Wall_Window_4x6_broken6",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -1312,6 +1373,7 @@ internal static class PrefabConfigManager
                 name: "Ashlands_Ruins_Wall_Windows_Broken_4x6",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -1326,6 +1388,7 @@ internal static class PrefabConfigManager
                 name: "Ashlands_Ruins_twist_ArchBig",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,8",
@@ -1340,6 +1403,7 @@ internal static class PrefabConfigManager
                 name: "Ashlands_Ruins_twist_PillarBase",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,8",
@@ -1354,6 +1418,7 @@ internal static class PrefabConfigManager
                 name: "Ashlands_Ruins_twist_PillarBaseSmall",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,3",
@@ -1368,6 +1433,7 @@ internal static class PrefabConfigManager
                 name: "Ashlands_StairsBroad",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,24",
@@ -1378,11 +1444,11 @@ internal static class PrefabConfigManager
         },
         {
             "Ashlands_WallBlock",
-            // This prefab acts as if it does not have correct WearNTear data, so it may have issues.
             new PrefabConfig(
                 name: "Ashlands_WallBlock",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -1397,6 +1463,7 @@ internal static class PrefabConfigManager
                 name: "Ashlands_WallBlock_1x2x2",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,2",
@@ -1411,6 +1478,7 @@ internal static class PrefabConfigManager
                 name: "Ashlands_WallBlock_base",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,3",
@@ -1425,6 +1493,7 @@ internal static class PrefabConfigManager
                 name: "Ashlands_Wall_2x2",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,6",
@@ -1439,6 +1508,7 @@ internal static class PrefabConfigManager
                 name: "Ashlands_Wall_2x2_cornerL",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,8",
@@ -1453,6 +1523,7 @@ internal static class PrefabConfigManager
                 name: "Ashlands_Wall_2x2_cornerL_top",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,8",
@@ -1467,6 +1538,7 @@ internal static class PrefabConfigManager
                 name: "Ashlands_Wall_2x2_cornerR",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,8",
@@ -1481,6 +1553,7 @@ internal static class PrefabConfigManager
                 name: "Ashlands_Wall_2x2_cornerR_top",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,8",
@@ -1495,6 +1568,7 @@ internal static class PrefabConfigManager
                 name: "Ashlands_Wall_2x2_edge",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,6",
@@ -1509,6 +1583,7 @@ internal static class PrefabConfigManager
                 name: "Ashlands_Wall_2x2_edge2",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,6",
@@ -1523,6 +1598,7 @@ internal static class PrefabConfigManager
                 name: "Ashlands_Wall_2x2_edge2_top",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Grausten,6",
@@ -1537,6 +1613,7 @@ internal static class PrefabConfigManager
                 name: "Ashlands_Wall_2x2_edge_top",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,6",
@@ -1551,6 +1628,7 @@ internal static class PrefabConfigManager
                 name: "Ashlands_Wall_2x2_top",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,6",
@@ -1565,6 +1643,7 @@ internal static class PrefabConfigManager
                 name: "Ashlands_floor_large_fractured",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -1579,14 +1658,14 @@ internal static class PrefabConfigManager
                 name: "Beech1",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Cultivator),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Wood,16",
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Flora,
-                pieceTable: nameof(PieceTables.Cultivator)
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -1595,14 +1674,14 @@ internal static class PrefabConfigManager
                 name: "Beech_Stub",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Cultivator),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Flora,
-                pieceTable: nameof(PieceTables.Cultivator)
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -1611,14 +1690,14 @@ internal static class PrefabConfigManager
                 name: "Beech_small1",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Cultivator),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Flora,
-                pieceTable: nameof(PieceTables.Cultivator)
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -1627,14 +1706,28 @@ internal static class PrefabConfigManager
                 name: "Beech_small2",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Cultivator),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Wood,1",
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Flora,
-                pieceTable: nameof(PieceTables.Cultivator)
+                pieceGroup: PieceClassification.Flora
+            )
+        },
+        {
+            "BigBranch",
+            new PrefabConfig(
+                name: "BigBranch",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
             )
         },
         {
@@ -1643,14 +1736,14 @@ internal static class PrefabConfigManager
                 name: "Birch1",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Cultivator),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "BirchSeeds,1;FineWood,2",
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Flora,
-                pieceTable: nameof(PieceTables.Cultivator)
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -1659,6 +1752,7 @@ internal static class PrefabConfigManager
                 name: "Birch1_aut",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Cultivator),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "BirchSeeds,1;FineWood,2",
@@ -1666,8 +1760,7 @@ internal static class PrefabConfigManager
                 clipGround: false,
                 placementPatch: false,
                 pieceName: "Birch1 (autumn)",
-                pieceGroup: PieceClassification.Flora,
-                pieceTable: nameof(PieceTables.Cultivator)
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -1676,14 +1769,14 @@ internal static class PrefabConfigManager
                 name: "Birch2",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Cultivator),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "BirchSeeds,1;FineWood,2",
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Flora,
-                pieceTable: nameof(PieceTables.Cultivator)
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -1692,6 +1785,7 @@ internal static class PrefabConfigManager
                 name: "Birch2_aut",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Cultivator),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "BirchSeeds,1;FineWood,2",
@@ -1699,8 +1793,7 @@ internal static class PrefabConfigManager
                 clipGround: false,
                 placementPatch: false,
                 pieceName: "Birch (autumn)",
-                pieceGroup: PieceClassification.Flora,
-                pieceTable: nameof(PieceTables.Cultivator)
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -1709,14 +1802,14 @@ internal static class PrefabConfigManager
                 name: "BirchStub",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Cultivator),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Flora,
-                pieceTable: nameof(PieceTables.Cultivator)
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -1725,14 +1818,14 @@ internal static class PrefabConfigManager
                 name: "Birch_log",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Cultivator),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Flora,
-                pieceTable: nameof(PieceTables.Cultivator)
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -1741,14 +1834,98 @@ internal static class PrefabConfigManager
                 name: "Birch_log_half",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Cultivator),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Flora,
-                pieceTable: nameof(PieceTables.Cultivator)
+                pieceGroup: PieceClassification.Flora
+            )
+        },
+        {
+            "BlackIceShard_01",
+            new PrefabConfig(
+                name: "BlackIceShard_01",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "BlackIceShard_02",
+            new PrefabConfig(
+                name: "BlackIceShard_02",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "BlackIce_Core",
+            new PrefabConfig(
+                name: "BlackIce_Core",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "BlackIce_Core_outer",
+            new PrefabConfig(
+                name: "BlackIce_Core_outer",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "BlackIce_Start",
+            new PrefabConfig(
+                name: "BlackIce_Start",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "BlobMorkBig",
+            new PrefabConfig(
+                name: "BlobMorkBig",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
             )
         },
         {
@@ -1757,14 +1934,14 @@ internal static class PrefabConfigManager
                 name: "BlueberryBush",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Cultivator),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Blueberries,5",
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Plant,
-                pieceTable: nameof(PieceTables.Cultivator)
+                pieceGroup: PieceClassification.Plant
             )
         },
         {
@@ -1773,6 +1950,7 @@ internal static class PrefabConfigManager
                 name: "BogWitch_Fire_Pit",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Misc,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "PowderedDragonEgg,2;Stone,5",
@@ -1783,11 +1961,40 @@ internal static class PrefabConfigManager
             )
         },
         {
+            "BonePileSpawner",
+            new PrefabConfig(
+                name: "BonePileSpawner",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "BonePileSpawner_swamp",
+            new PrefabConfig(
+                name: "BonePileSpawner_swamp",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
             "BossStone_Bonemass",
             new PrefabConfig(
                 name: "BossStone_Bonemass",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -1803,6 +2010,7 @@ internal static class PrefabConfigManager
                 name: "BossStone_DragonQueen",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -1818,6 +2026,7 @@ internal static class PrefabConfigManager
                 name: "BossStone_Eikthyr",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -1833,6 +2042,7 @@ internal static class PrefabConfigManager
                 name: "BossStone_Fader",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -1847,6 +2057,7 @@ internal static class PrefabConfigManager
                 name: "BossStone_TheElder",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -1862,6 +2073,7 @@ internal static class PrefabConfigManager
                 name: "BossStone_TheQueen",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -1877,6 +2089,7 @@ internal static class PrefabConfigManager
                 name: "BossStone_Yagluth",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -1892,14 +2105,28 @@ internal static class PrefabConfigManager
                 name: "Bush01",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Cultivator),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Wood,2",
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Flora,
-                pieceTable: nameof(PieceTables.Cultivator)
+                pieceGroup: PieceClassification.Flora
+            )
+        },
+        {
+            "Bush01_deepnorth",
+            new PrefabConfig(
+                name: "Bush01_deepnorth",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
             )
         },
         {
@@ -1908,14 +2135,14 @@ internal static class PrefabConfigManager
                 name: "Bush01_heath",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Cultivator),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Wood,2",
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Flora,
-                pieceTable: nameof(PieceTables.Cultivator)
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -1924,14 +2151,14 @@ internal static class PrefabConfigManager
                 name: "Bush02_en",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Cultivator),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Wood,2",
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Flora,
-                pieceTable: nameof(PieceTables.Cultivator)
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -1940,6 +2167,7 @@ internal static class PrefabConfigManager
                 name: "Candle_resin_bogwitch",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -1954,6 +2182,7 @@ internal static class PrefabConfigManager
                 name: "CastleKit_braided_box01",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Misc,
                 craftingStation: nameof(CraftingStations.Workbench),
                 requirements: "Wood,2",
@@ -1970,6 +2199,7 @@ internal static class PrefabConfigManager
                 name: "CastleKit_groundtorch",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Furniture,
                 craftingStation: nameof(CraftingStations.Forge),
                 requirements: "Iron,2;Resin,2;SurtlingCore,1",
@@ -1988,6 +2218,7 @@ internal static class PrefabConfigManager
                 name: "CastleKit_groundtorch_blue",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Furniture,
                 craftingStation: nameof(CraftingStations.Forge),
                 requirements: "Iron,2;GreydwarfEye,2;SurtlingCore,1",
@@ -2006,6 +2237,7 @@ internal static class PrefabConfigManager
                 name: "CastleKit_groundtorch_green",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Furniture,
                 craftingStation: nameof(CraftingStations.Forge),
                 requirements: "Iron,2;Guck,2;SurtlingCore,1",
@@ -2024,6 +2256,7 @@ internal static class PrefabConfigManager
                 name: "CharredBanner1",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -2038,6 +2271,7 @@ internal static class PrefabConfigManager
                 name: "CharredBanner2",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -2052,6 +2286,7 @@ internal static class PrefabConfigManager
                 name: "CharredBanner3",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -2066,6 +2301,7 @@ internal static class PrefabConfigManager
                 name: "Charred_altar_bellfragment",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -2094,6 +2330,7 @@ internal static class PrefabConfigManager
                 name: "Chest",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Furniture,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Wood,10;Iron,1",
@@ -2109,6 +2346,7 @@ internal static class PrefabConfigManager
                 name: "Cinder",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -2123,6 +2361,7 @@ internal static class PrefabConfigManager
                 name: "CinderSky",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -2137,6 +2376,7 @@ internal static class PrefabConfigManager
                 name: "CinderStorm",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -2151,6 +2391,7 @@ internal static class PrefabConfigManager
                 name: "Cinder_campfire",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -2165,14 +2406,14 @@ internal static class PrefabConfigManager
                 name: "CloudberryBush",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Cultivator),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Cloudberry,5",
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Plant,
-                pieceTable: nameof(PieceTables.Cultivator)
+                pieceGroup: PieceClassification.Plant
             )
         },
         {
@@ -2181,6 +2422,7 @@ internal static class PrefabConfigManager
                 name: "CreepProp_egg_hanging01",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "YggdrasilWood,2",
@@ -2195,6 +2437,7 @@ internal static class PrefabConfigManager
                 name: "CreepProp_egg_hanging02",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "YggdrasilWood,2",
@@ -2209,6 +2452,7 @@ internal static class PrefabConfigManager
                 name: "CreepProp_entrance1",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "YggdrasilWood,2",
@@ -2223,6 +2467,7 @@ internal static class PrefabConfigManager
                 name: "CreepProp_entrance2",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "YggdrasilWood,2",
@@ -2237,6 +2482,7 @@ internal static class PrefabConfigManager
                 name: "CreepProp_hanging01",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "YggdrasilWood,2",
@@ -2251,9 +2497,206 @@ internal static class PrefabConfigManager
                 name: "CreepProp_wall01",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "YggdrasilWood,2",
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Enemy_Barka_Attack_BackSlam",
+            new PrefabConfig(
+                name: "Enemy_Barka_Attack_BackSlam",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Enemy_Barka_Attack_HeavyImpact",
+            new PrefabConfig(
+                name: "Enemy_Barka_Attack_HeavyImpact",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Enemy_Barka_Attack_HeavySwings",
+            new PrefabConfig(
+                name: "Enemy_Barka_Attack_HeavySwings",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Enemy_Barka_Attack_SlamDrive",
+            new PrefabConfig(
+                name: "Enemy_Barka_Attack_SlamDrive",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Enemy_Barka_Attack_WhipFlurry",
+            new PrefabConfig(
+                name: "Enemy_Barka_Attack_WhipFlurry",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Enemy_Barka_Attack_WhipSlam",
+            new PrefabConfig(
+                name: "Enemy_Barka_Attack_WhipSlam",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Enemy_Barka_Death",
+            new PrefabConfig(
+                name: "Enemy_Barka_Death",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Enemy_Barka_Death_Debris",
+            new PrefabConfig(
+                name: "Enemy_Barka_Death_Debris",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Enemy_Barka_Footstep",
+            new PrefabConfig(
+                name: "Enemy_Barka_Footstep",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Enemy_Barka_Hurt",
+            new PrefabConfig(
+                name: "Enemy_Barka_Hurt",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Enemy_Barka_Idle",
+            new PrefabConfig(
+                name: "Enemy_Barka_Idle",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Enemy_Barka_Verse_Death",
+            new PrefabConfig(
+                name: "Enemy_Barka_Verse_Death",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "EvilHeart_Forest",
+            new PrefabConfig(
+                name: "EvilHeart_Forest",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "EvilHeart_Swamp",
+            new PrefabConfig(
+                name: "EvilHeart_Swamp",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false
@@ -2265,6 +2708,7 @@ internal static class PrefabConfigManager
                 name: "FernAshlands",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -2279,6 +2723,7 @@ internal static class PrefabConfigManager
                 name: "FernFiddleHeadAshlands",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -2288,19 +2733,117 @@ internal static class PrefabConfigManager
             )
         },
         {
+            "FimbulvinterOrb",
+            new PrefabConfig(
+                name: "FimbulvinterOrb",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "FimbulvinterOrb_start",
+            new PrefabConfig(
+                name: "FimbulvinterOrb_start",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
             "FirTree",
             new PrefabConfig(
                 name: "FirTree",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Cultivator),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Wood,16",
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Flora,
-                pieceTable: nameof(PieceTables.Cultivator)
+                pieceGroup: PieceClassification.Flora
+            )
+        },
+        {
+            "FirTree_Big_log",
+            new PrefabConfig(
+                name: "FirTree_Big_log",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "FirTree_Big_plantable_Stub",
+            new PrefabConfig(
+                name: "FirTree_Big_plantable_Stub",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "FirTree_Snow_Stub",
+            new PrefabConfig(
+                name: "FirTree_Snow_Stub",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "FirTree_Snow_log",
+            new PrefabConfig(
+                name: "FirTree_Snow_log",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "FirTree_Snow_log_half",
+            new PrefabConfig(
+                name: "FirTree_Snow_log_half",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
             )
         },
         {
@@ -2309,14 +2852,42 @@ internal static class PrefabConfigManager
                 name: "FirTree_Stub",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Cultivator),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Flora,
-                pieceTable: nameof(PieceTables.Cultivator)
+                pieceGroup: PieceClassification.Flora
+            )
+        },
+        {
+            "FirTree_big",
+            new PrefabConfig(
+                name: "FirTree_big",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "FirTree_big_log_half",
+            new PrefabConfig(
+                name: "FirTree_big_log_half",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
             )
         },
         {
@@ -2325,14 +2896,14 @@ internal static class PrefabConfigManager
                 name: "FirTree_log",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Cultivator),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Flora,
-                pieceTable: nameof(PieceTables.Cultivator)
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -2341,14 +2912,14 @@ internal static class PrefabConfigManager
                 name: "FirTree_log_half",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Cultivator),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Flora,
-                pieceTable: nameof(PieceTables.Cultivator)
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -2357,14 +2928,28 @@ internal static class PrefabConfigManager
                 name: "FirTree_oldLog",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Cultivator),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Flora,
-                pieceTable: nameof(PieceTables.Cultivator)
+                pieceGroup: PieceClassification.Flora
+            )
+        },
+        {
+            "FirTree_oldLog_deepnorth",
+            new PrefabConfig(
+                name: "FirTree_oldLog_deepnorth",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
             )
         },
         {
@@ -2373,14 +2958,14 @@ internal static class PrefabConfigManager
                 name: "FirTree_small",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Cultivator),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Flora,
-                pieceTable: nameof(PieceTables.Cultivator)
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -2389,14 +2974,14 @@ internal static class PrefabConfigManager
                 name: "FirTree_small_dead",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Cultivator),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Flora,
-                pieceTable: nameof(PieceTables.Cultivator)
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -2405,6 +2990,7 @@ internal static class PrefabConfigManager
                 name: "Fire",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -2419,6 +3005,7 @@ internal static class PrefabConfigManager
                 name: "FireFlies",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -2433,14 +3020,98 @@ internal static class PrefabConfigManager
                 name: "FlametalRockstand_frac",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hoe),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Rock,
-                pieceTable: nameof(PieceTables.Hoe)
+                pieceGroup: PieceClassification.Rock
+            )
+        },
+        {
+            "FrostWisp_Storm",
+            new PrefabConfig(
+                name: "FrostWisp_Storm",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "FrozenGD",
+            new PrefabConfig(
+                name: "FrozenGD",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "FrozenKing_Summon",
+            new PrefabConfig(
+                name: "FrozenKing_Summon",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "FrozenSkeleton_Pose1",
+            new PrefabConfig(
+                name: "FrozenSkeleton_Pose1",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "FrozenSkeleton_Pose2",
+            new PrefabConfig(
+                name: "FrozenSkeleton_Pose2",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "GhostSkull",
+            new PrefabConfig(
+                name: "GhostSkull",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
             )
         },
         {
@@ -2449,14 +3120,42 @@ internal static class PrefabConfigManager
                 name: "GlowingMushroom",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Cultivator),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Ooze,1",
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Flora,
-                pieceTable: nameof(PieceTables.Cultivator)
+                pieceGroup: PieceClassification.Flora
+            )
+        },
+        {
+            "GrapplingPoint",
+            new PrefabConfig(
+                name: "GrapplingPoint",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "GrapplingPointSecondary",
+            new PrefabConfig(
+                name: "GrapplingPointSecondary",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
             )
         },
         {
@@ -2465,6 +3164,7 @@ internal static class PrefabConfigManager
                 name: "GraveStone_Broken_CharredTwitcherNest",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -2479,6 +3179,7 @@ internal static class PrefabConfigManager
                 name: "GraveStone_Broken_World",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -2493,6 +3194,7 @@ internal static class PrefabConfigManager
                 name: "GraveStone_CharredFaderLocation",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -2507,6 +3209,7 @@ internal static class PrefabConfigManager
                 name: "GraveStone_CharredTwitcherNest",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -2521,6 +3224,7 @@ internal static class PrefabConfigManager
                 name: "GraveStone_Elite_Broken_CharredTwitcherNest",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -2535,9 +3239,24 @@ internal static class PrefabConfigManager
                 name: "GraveStone_Elite_CharredTwitcherNest",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "GreydwarfSurprise",
+            new PrefabConfig(
+                name: "GreydwarfSurprise",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false
@@ -2549,14 +3268,28 @@ internal static class PrefabConfigManager
                 name: "Greydwarf_Root",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Cultivator),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Wood,2",
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Flora,
-                pieceTable: nameof(PieceTables.Cultivator)
+                pieceGroup: PieceClassification.Flora
+            )
+        },
+        {
+            "Greydwarf_Surprise",
+            new PrefabConfig(
+                name: "Greydwarf_Surprise",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
             )
         },
         {
@@ -2565,14 +3298,14 @@ internal static class PrefabConfigManager
                 name: "GuckSack",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Cultivator),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Guck,12",
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Flora,
-                pieceTable: nameof(PieceTables.Cultivator)
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -2581,14 +3314,84 @@ internal static class PrefabConfigManager
                 name: "GuckSack_small",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Cultivator),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Guck,6",
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Flora,
-                pieceTable: nameof(PieceTables.Cultivator)
+                pieceGroup: PieceClassification.Flora
+            )
+        },
+        {
+            "HoleRock_opening_znet",
+            new PrefabConfig(
+                name: "HoleRock_opening_znet",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "HoleRock_root1",
+            new PrefabConfig(
+                name: "HoleRock_root1",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "HoleRock_rootBush1",
+            new PrefabConfig(
+                name: "HoleRock_rootBush1",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "HoleRock_rootFloor1",
+            new PrefabConfig(
+                name: "HoleRock_rootFloor1",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "HoleRock_rootWall1",
+            new PrefabConfig(
+                name: "HoleRock_rootWall1",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
             )
         },
         {
@@ -2597,6 +3400,7 @@ internal static class PrefabConfigManager
                 name: "HouseFire",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -2611,14 +3415,14 @@ internal static class PrefabConfigManager
                 name: "HugeRoot1",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Cultivator),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "ElderBark,32",
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Flora,
-                pieceTable: nameof(PieceTables.Cultivator)
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -2627,9 +3431,290 @@ internal static class PrefabConfigManager
                 name: "IceBlocker",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "IcePond_rock_frac",
+            new PrefabConfig(
+                name: "IcePond_rock_frac",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "IceShard_01",
+            new PrefabConfig(
+                name: "IceShard_01",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "IceShard_02",
+            new PrefabConfig(
+                name: "IceShard_02",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "IceShard_03",
+            new PrefabConfig(
+                name: "IceShard_03",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "IceShard_04",
+            new PrefabConfig(
+                name: "IceShard_04",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "IceShard_05",
+            new PrefabConfig(
+                name: "IceShard_05",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "IceShard_06",
+            new PrefabConfig(
+                name: "IceShard_06",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "IceShelf_01",
+            new PrefabConfig(
+                name: "IceShelf_01",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "IceShelf_02",
+            new PrefabConfig(
+                name: "IceShelf_02",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "IceShelf_03",
+            new PrefabConfig(
+                name: "IceShelf_03",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "IceShelf_04",
+            new PrefabConfig(
+                name: "IceShelf_04",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "IceShelf_05",
+            new PrefabConfig(
+                name: "IceShelf_05",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "IceShelf_06",
+            new PrefabConfig(
+                name: "IceShelf_06",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "IceShelf_07",
+            new PrefabConfig(
+                name: "IceShelf_07",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "IceShelf_08",
+            new PrefabConfig(
+                name: "IceShelf_08",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "IceShelf_09",
+            new PrefabConfig(
+                name: "IceShelf_09",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "IceShelf_10",
+            new PrefabConfig(
+                name: "IceShelf_10",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "IceShoreShard",
+            new PrefabConfig(
+                name: "IceShoreShard",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "IceShore_frac",
+            new PrefabConfig(
+                name: "IceShore_frac",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "IceWall",
+            new PrefabConfig(
+                name: "IceWall",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false
@@ -2641,6 +3726,7 @@ internal static class PrefabConfigManager
                 name: "Ice_floor",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Crystal,16",
@@ -2650,19 +3736,159 @@ internal static class PrefabConfigManager
             )
         },
         {
+            "Ice_ship_1",
+            new PrefabConfig(
+                name: "Ice_ship_1",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Ice_ship_2",
+            new PrefabConfig(
+                name: "Ice_ship_2",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Ice_ship_3",
+            new PrefabConfig(
+                name: "Ice_ship_3",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Ice_ship_4",
+            new PrefabConfig(
+                name: "Ice_ship_4",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Ice_ship_5",
+            new PrefabConfig(
+                name: "Ice_ship_5",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Ice_ship_6",
+            new PrefabConfig(
+                name: "Ice_ship_6",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Ice_ship_7",
+            new PrefabConfig(
+                name: "Ice_ship_7",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "LargeBone",
+            new PrefabConfig(
+                name: "LargeBone",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "LargeBone_half01",
+            new PrefabConfig(
+                name: "LargeBone_half01",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "LargeBone_half02",
+            new PrefabConfig(
+                name: "LargeBone_half02",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
             "LavaRock",
             new PrefabConfig(
                 name: "LavaRock",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hoe),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: true,
-                pieceGroup: PieceClassification.Rock,
-                pieceTable: nameof(PieceTables.Hoe)
+                pieceGroup: PieceClassification.Rock
             )
         },
         {
@@ -2671,6 +3897,7 @@ internal static class PrefabConfigManager
                 name: "Leviathan",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Chitin,50",
@@ -2685,14 +3912,42 @@ internal static class PrefabConfigManager
                 name: "LeviathanLava",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hoe),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Ore,
-                pieceTable: nameof(PieceTables.Hoe)
+                pieceGroup: PieceClassification.Ore
+            )
+        },
+        {
+            "LingonberryBush",
+            new PrefabConfig(
+                name: "LingonberryBush",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "LuredFaderEmber",
+            new PrefabConfig(
+                name: "LuredFaderEmber",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
             )
         },
         {
@@ -2701,9 +3956,52 @@ internal static class PrefabConfigManager
                 name: "LuredWisp",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Wisp,1",
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "MemorialStone_Large",
+            new PrefabConfig(
+                name: "MemorialStone_Large",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "MemorialStone_Medium",
+            new PrefabConfig(
+                name: "MemorialStone_Medium",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "MemorialStone_Small",
+            new PrefabConfig(
+                name: "MemorialStone_Small",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false
@@ -2715,14 +4013,14 @@ internal static class PrefabConfigManager
                 name: "MineRock_Copper",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hoe),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,10;CopperOre,10",
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Ore,
-                pieceTable: nameof(PieceTables.Hoe)
+                pieceGroup: PieceClassification.Ore
             )
         },
         {
@@ -2731,14 +4029,14 @@ internal static class PrefabConfigManager
                 name: "MineRock_Iron",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hoe),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,10;IronScrap,10",
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Ore,
-                pieceTable: nameof(PieceTables.Hoe)
+                pieceGroup: PieceClassification.Ore
             )
         },
         {
@@ -2747,14 +4045,14 @@ internal static class PrefabConfigManager
                 name: "MineRock_Meteorite",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hoe),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Ore,
-                pieceTable: nameof(PieceTables.Hoe)
+                pieceGroup: PieceClassification.Ore
             )
         },
         {
@@ -2763,14 +4061,14 @@ internal static class PrefabConfigManager
                 name: "MineRock_Obsidian",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hoe),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Obsidian,7",
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Ore,
-                pieceTable: nameof(PieceTables.Hoe)
+                pieceGroup: PieceClassification.Ore
             )
         },
         {
@@ -2779,14 +4077,14 @@ internal static class PrefabConfigManager
                 name: "MineRock_Stone",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hoe),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,10",
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Ore,
-                pieceTable: nameof(PieceTables.Hoe)
+                pieceGroup: PieceClassification.Ore
             )
         },
         {
@@ -2795,14 +4093,1134 @@ internal static class PrefabConfigManager
                 name: "MineRock_Tin",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hoe),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "TinOre,4",
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Ore,
-                pieceTable: nameof(PieceTables.Hoe)
+                pieceGroup: PieceClassification.Ore
+            )
+        },
+        {
+            "Morkborg_gate",
+            new PrefabConfig(
+                name: "Morkborg_gate",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Morkhalla_Banner1",
+            new PrefabConfig(
+                name: "Morkhalla_Banner1",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Morkhalla_Banner2",
+            new PrefabConfig(
+                name: "Morkhalla_Banner2",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Morkhalla_Bedroll1",
+            new PrefabConfig(
+                name: "Morkhalla_Bedroll1",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Morkhalla_Bedroll2",
+            new PrefabConfig(
+                name: "Morkhalla_Bedroll2",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Morkhalla_Bench",
+            new PrefabConfig(
+                name: "Morkhalla_Bench",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Morkhalla_Block",
+            new PrefabConfig(
+                name: "Morkhalla_Block",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Morkhalla_Chain",
+            new PrefabConfig(
+                name: "Morkhalla_Chain",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Morkhalla_ChestAncient",
+            new PrefabConfig(
+                name: "Morkhalla_ChestAncient",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Morkhalla_Drawbridge",
+            new PrefabConfig(
+                name: "Morkhalla_Drawbridge",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Morkhalla_Eye1",
+            new PrefabConfig(
+                name: "Morkhalla_Eye1",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Morkhalla_Eye2",
+            new PrefabConfig(
+                name: "Morkhalla_Eye2",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Morkhalla_Eye3",
+            new PrefabConfig(
+                name: "Morkhalla_Eye3",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Morkhalla_Eye4",
+            new PrefabConfig(
+                name: "Morkhalla_Eye4",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Morkhalla_Eye5_gemstone",
+            new PrefabConfig(
+                name: "Morkhalla_Eye5_gemstone",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Morkhalla_Eye6_gemstone",
+            new PrefabConfig(
+                name: "Morkhalla_Eye6_gemstone",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Morkhalla_Eye7_gemstone",
+            new PrefabConfig(
+                name: "Morkhalla_Eye7_gemstone",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Morkhalla_Floor_2x2",
+            new PrefabConfig(
+                name: "Morkhalla_Floor_2x2",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Morkhalla_Floor_4x4",
+            new PrefabConfig(
+                name: "Morkhalla_Floor_4x4",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Morkhalla_Floor_4x4_broken01",
+            new PrefabConfig(
+                name: "Morkhalla_Floor_4x4_broken01",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Morkhalla_Floor_4x4_broken02",
+            new PrefabConfig(
+                name: "Morkhalla_Floor_4x4_broken02",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Morkhalla_GateDoor",
+            new PrefabConfig(
+                name: "Morkhalla_GateDoor",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Morkhalla_GateDoor02",
+            new PrefabConfig(
+                name: "Morkhalla_GateDoor02",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Morkhalla_GateDoor03",
+            new PrefabConfig(
+                name: "Morkhalla_GateDoor03",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Morkhalla_MetalBar",
+            new PrefabConfig(
+                name: "Morkhalla_MetalBar",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Morkhalla_Rubble1",
+            new PrefabConfig(
+                name: "Morkhalla_Rubble1",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Morkhalla_Rubble1_fall",
+            new PrefabConfig(
+                name: "Morkhalla_Rubble1_fall",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Morkhalla_Rubble2",
+            new PrefabConfig(
+                name: "Morkhalla_Rubble2",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Morkhalla_Rubble2_fall",
+            new PrefabConfig(
+                name: "Morkhalla_Rubble2_fall",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Morkhalla_Rubble3",
+            new PrefabConfig(
+                name: "Morkhalla_Rubble3",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Morkhalla_Rubble4",
+            new PrefabConfig(
+                name: "Morkhalla_Rubble4",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Morkhalla_Rug_corner",
+            new PrefabConfig(
+                name: "Morkhalla_Rug_corner",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Morkhalla_Rug_end1",
+            new PrefabConfig(
+                name: "Morkhalla_Rug_end1",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Morkhalla_Rug_end2",
+            new PrefabConfig(
+                name: "Morkhalla_Rug_end2",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Morkhalla_Rug_middle",
+            new PrefabConfig(
+                name: "Morkhalla_Rug_middle",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Morkhalla_Rug_stair",
+            new PrefabConfig(
+                name: "Morkhalla_Rug_stair",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Morkhalla_Stairs_giant_railing",
+            new PrefabConfig(
+                name: "Morkhalla_Stairs_giant_railing",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Morkhalla_Stairs_giant_short",
+            new PrefabConfig(
+                name: "Morkhalla_Stairs_giant_short",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Morkhalla_Stairs_giant_short_broken1",
+            new PrefabConfig(
+                name: "Morkhalla_Stairs_giant_short_broken1",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Morkhalla_Stairs_giant_short_broken2",
+            new PrefabConfig(
+                name: "Morkhalla_Stairs_giant_short_broken2",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Morkhalla_StatuePieceArmL",
+            new PrefabConfig(
+                name: "Morkhalla_StatuePieceArmL",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Morkhalla_StatuePieceArmL_big",
+            new PrefabConfig(
+                name: "Morkhalla_StatuePieceArmL_big",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Morkhalla_StatuePieceArmR",
+            new PrefabConfig(
+                name: "Morkhalla_StatuePieceArmR",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Morkhalla_StatuePieceArmR_big",
+            new PrefabConfig(
+                name: "Morkhalla_StatuePieceArmR_big",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Morkhalla_StatuePieceFace",
+            new PrefabConfig(
+                name: "Morkhalla_StatuePieceFace",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Morkhalla_StatuePieceFace_big",
+            new PrefabConfig(
+                name: "Morkhalla_StatuePieceFace_big",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Morkhalla_StatuePieceFeet",
+            new PrefabConfig(
+                name: "Morkhalla_StatuePieceFeet",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Morkhalla_StatuePieceFeet_big",
+            new PrefabConfig(
+                name: "Morkhalla_StatuePieceFeet_big",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Morkhalla_StatuePieceHorn",
+            new PrefabConfig(
+                name: "Morkhalla_StatuePieceHorn",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Morkhalla_StatuePieceHorn2",
+            new PrefabConfig(
+                name: "Morkhalla_StatuePieceHorn2",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Morkhalla_StatuePieceHorn2_big",
+            new PrefabConfig(
+                name: "Morkhalla_StatuePieceHorn2_big",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Morkhalla_StatuePieceHorn_big",
+            new PrefabConfig(
+                name: "Morkhalla_StatuePieceHorn_big",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Morkhalla_StatuePieceLegs",
+            new PrefabConfig(
+                name: "Morkhalla_StatuePieceLegs",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Morkhalla_StatuePieceLegs_big",
+            new PrefabConfig(
+                name: "Morkhalla_StatuePieceLegs_big",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Morkhalla_StatuePieceSword",
+            new PrefabConfig(
+                name: "Morkhalla_StatuePieceSword",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Morkhalla_StatuePieceSword_big",
+            new PrefabConfig(
+                name: "Morkhalla_StatuePieceSword_big",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Morkhalla_StatuePieceTorso",
+            new PrefabConfig(
+                name: "Morkhalla_StatuePieceTorso",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Morkhalla_StatuePieceTorso_big",
+            new PrefabConfig(
+                name: "Morkhalla_StatuePieceTorso_big",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Morkhalla_StatueSword",
+            new PrefabConfig(
+                name: "Morkhalla_StatueSword",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Morkhalla_StatueSword_hanging",
+            new PrefabConfig(
+                name: "Morkhalla_StatueSword_hanging",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Morkhalla_Stonepile",
+            new PrefabConfig(
+                name: "Morkhalla_Stonepile",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Morkhalla_Stool",
+            new PrefabConfig(
+                name: "Morkhalla_Stool",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Morkhalla_Table",
+            new PrefabConfig(
+                name: "Morkhalla_Table",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Morkhalla_Trainingdummy1",
+            new PrefabConfig(
+                name: "Morkhalla_Trainingdummy1",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Morkhalla_Trainingdummy2",
+            new PrefabConfig(
+                name: "Morkhalla_Trainingdummy2",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Morkhalla_WallChain1",
+            new PrefabConfig(
+                name: "Morkhalla_WallChain1",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Morkhalla_WeaponStand",
+            new PrefabConfig(
+                name: "Morkhalla_WeaponStand",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Morkhalla_WoodBoards",
+            new PrefabConfig(
+                name: "Morkhalla_WoodBoards",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Morkhalla_bridge_davinci",
+            new PrefabConfig(
+                name: "Morkhalla_bridge_davinci",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Morkhalla_coal_pile_memorial",
+            new PrefabConfig(
+                name: "Morkhalla_coal_pile_memorial",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Morkhalla_firepit",
+            new PrefabConfig(
+                name: "Morkhalla_firepit",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Morkhalla_giant_railing",
+            new PrefabConfig(
+                name: "Morkhalla_giant_railing",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Morkhalla_giant_railing_corner",
+            new PrefabConfig(
+                name: "Morkhalla_giant_railing_corner",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Morkhalla_giant_railing_deco",
+            new PrefabConfig(
+                name: "Morkhalla_giant_railing_deco",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Morkhalla_giant_railing_half",
+            new PrefabConfig(
+                name: "Morkhalla_giant_railing_half",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Morkhalla_giant_railing_single",
+            new PrefabConfig(
+                name: "Morkhalla_giant_railing_single",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Morkhalla_giant_railing_torch",
+            new PrefabConfig(
+                name: "Morkhalla_giant_railing_torch",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Morkhalla_giant_railing_torch_unlit",
+            new PrefabConfig(
+                name: "Morkhalla_giant_railing_torch_unlit",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Morkhalla_jotun_gate",
+            new PrefabConfig(
+                name: "Morkhalla_jotun_gate",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Morkhalla_rubble_trashpile",
+            new PrefabConfig(
+                name: "Morkhalla_rubble_trashpile",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
             )
         },
         {
@@ -2811,6 +5229,7 @@ internal static class PrefabConfigManager
                 name: "MountainGraveStone01",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,5",
@@ -2825,6 +5244,7 @@ internal static class PrefabConfigManager
                 name: "MountainKit_brazier",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Furniture,
                 craftingStation: nameof(CraftingStations.Forge),
                 requirements: "Bronze,5;Coal,2;BlackCore,1;WolfClaw,3",
@@ -2843,6 +5263,7 @@ internal static class PrefabConfigManager
                 name: "MountainKit_brazier_blue",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Furniture,
                 craftingStation: nameof(CraftingStations.Forge),
                 requirements: "Bronze,5;GreydwarfEye,2;BlackCore,1;WolfClaw,3",
@@ -2861,14 +5282,15 @@ internal static class PrefabConfigManager
                 name: "MountainKit_brazier_purple",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Furniture,
                 craftingStation: nameof(CraftingStations.Forge),
                 requirements: "Bronze,5;CharcoalResin,2;BlackCore,1;WolfClaw,3",
-                pieceName: "Purple Standing Brazier (Eternal)",
-                pieceDesc: "Burns eternally without fuel.",
                 clipEverything: false,
                 clipGround: false,
-                placementPatch: false
+                placementPatch: false,
+                pieceName: "Purple Standing Brazier (Eternal)",
+                pieceDesc: "Burns eternally without fuel."
             )
         },
         {
@@ -2877,6 +5299,7 @@ internal static class PrefabConfigManager
                 name: "MountainKit_wood_gate",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Building,
                 craftingStation: nameof(CraftingStations.Forge),
                 requirements: "Wood,20;Iron,4",
@@ -2891,14 +5314,14 @@ internal static class PrefabConfigManager
                 name: "Oak1",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Cultivator),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Wood,20;FineWood,20",
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Flora,
-                pieceTable: nameof(PieceTables.Cultivator)
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -2907,14 +5330,14 @@ internal static class PrefabConfigManager
                 name: "OakStub",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Cultivator),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Wood,5;FineWood,5",
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Flora,
-                pieceTable: nameof(PieceTables.Cultivator)
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -2923,14 +5346,14 @@ internal static class PrefabConfigManager
                 name: "Oak_log",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Cultivator),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Wood,10;FineWood,10",
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Flora,
-                pieceTable: nameof(PieceTables.Cultivator)
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -2939,14 +5362,14 @@ internal static class PrefabConfigManager
                 name: "Oak_log_half",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Cultivator),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Wood,5;FineWood,5",
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Flora,
-                pieceTable: nameof(PieceTables.Cultivator)
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -2955,6 +5378,7 @@ internal static class PrefabConfigManager
                 name: "Pickable_Ashstone",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -2969,6 +5393,7 @@ internal static class PrefabConfigManager
                 name: "Pickable_Barley",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Barley,1",
@@ -2984,6 +5409,7 @@ internal static class PrefabConfigManager
                 name: "Pickable_BlackCoreStand",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.BlackForge),
                 requirements: "Iron,2;BlackCore,1",
@@ -2999,14 +5425,14 @@ internal static class PrefabConfigManager
                 name: "Pickable_BogIronOre",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hoe),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "IronScrap,1",
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Ore,
-                pieceTable: nameof(PieceTables.Hoe)
+                pieceGroup: PieceClassification.Ore
             )
         },
         {
@@ -3015,14 +5441,28 @@ internal static class PrefabConfigManager
                 name: "Pickable_Branch",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Cultivator),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Wood,5",
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Flora,
-                pieceTable: nameof(PieceTables.Cultivator)
+                pieceGroup: PieceClassification.Flora
+            )
+        },
+        {
+            "Pickable_Branch_Snow",
+            new PrefabConfig(
+                name: "Pickable_Branch_Snow",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
             )
         },
         {
@@ -3031,6 +5471,7 @@ internal static class PrefabConfigManager
                 name: "Pickable_Carrot",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Carrot,1",
@@ -3046,6 +5487,7 @@ internal static class PrefabConfigManager
                 name: "Pickable_Charredskull",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -3060,14 +5502,14 @@ internal static class PrefabConfigManager
                 name: "Pickable_Dandelion",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Cultivator),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Dandelion,5",
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Plant,
-                pieceTable: nameof(PieceTables.Cultivator)
+                pieceGroup: PieceClassification.Plant
             )
         },
         {
@@ -3088,6 +5530,7 @@ internal static class PrefabConfigManager
                 name: "Pickable_DragonEgg",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "DragonEgg,1",
@@ -3102,6 +5545,7 @@ internal static class PrefabConfigManager
                 name: "Pickable_DvergrLantern",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -3116,6 +5560,7 @@ internal static class PrefabConfigManager
                 name: "Pickable_DvergrMineTreasure",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -3131,6 +5576,7 @@ internal static class PrefabConfigManager
                 name: "Pickable_DvergrStein",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -3146,6 +5592,7 @@ internal static class PrefabConfigManager
                 name: "Pickable_Fiddlehead",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -3160,6 +5607,7 @@ internal static class PrefabConfigManager
                 name: "Pickable_Fishingrod",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -3175,6 +5623,7 @@ internal static class PrefabConfigManager
                 name: "Pickable_Flax",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Flax,1",
@@ -3190,14 +5639,14 @@ internal static class PrefabConfigManager
                 name: "Pickable_Flint",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Cultivator),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Flint,5",
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Flora,
-                pieceTable: nameof(PieceTables.Cultivator)
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -3206,6 +5655,7 @@ internal static class PrefabConfigManager
                 name: "Pickable_ForestCryptRemains01",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -3221,6 +5671,7 @@ internal static class PrefabConfigManager
                 name: "Pickable_ForestCryptRemains02",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -3236,6 +5687,7 @@ internal static class PrefabConfigManager
                 name: "Pickable_ForestCryptRemains03",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -3251,6 +5703,7 @@ internal static class PrefabConfigManager
                 name: "Pickable_ForestCryptRemains04",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -3261,11 +5714,40 @@ internal static class PrefabConfigManager
             )
         },
         {
+            "Pickable_FrostCoreHanger",
+            new PrefabConfig(
+                name: "Pickable_FrostCoreHanger",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Pickable_GlowWorm",
+            new PrefabConfig(
+                name: "Pickable_GlowWorm",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
             "Pickable_Hairstrands01",
             new PrefabConfig(
                 name: "Pickable_Hairstrands01",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -3281,6 +5763,7 @@ internal static class PrefabConfigManager
                 name: "Pickable_Hairstrands02",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -3288,6 +5771,20 @@ internal static class PrefabConfigManager
                 clipGround: false,
                 placementPatch: false,
                 pieceGroup: PieceClassification.Treasure
+            )
+        },
+        {
+            "Pickable_HardRockOffspring",
+            new PrefabConfig(
+                name: "Pickable_HardRockOffspring",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
             )
         },
         {
@@ -3304,11 +5801,26 @@ internal static class PrefabConfigManager
             )
         },
         {
+            "Pickable_Kale",
+            new PrefabConfig(
+                name: "Pickable_Kale",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
             "Pickable_MeatPile",
             new PrefabConfig(
                 name: "Pickable_MeatPile",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -3324,14 +5836,14 @@ internal static class PrefabConfigManager
                 name: "Pickable_Meteorite",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hoe),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Ore,
-                pieceTable: nameof(PieceTables.Hoe)
+                pieceGroup: PieceClassification.Ore
             )
         },
         {
@@ -3340,9 +5852,24 @@ internal static class PrefabConfigManager
                 name: "Pickable_MoltenCoreStand",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Pickable_MorkHallaTreasure",
+            new PrefabConfig(
+                name: "Pickable_MorkHallaTreasure",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false
@@ -3354,14 +5881,14 @@ internal static class PrefabConfigManager
                 name: "Pickable_MountainCaveCrystal",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hoe),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Ore,
-                pieceTable: nameof(PieceTables.Hoe)
+                pieceGroup: PieceClassification.Ore
             )
         },
         {
@@ -3370,14 +5897,14 @@ internal static class PrefabConfigManager
                 name: "Pickable_MountainCaveObsidian",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hoe),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Ore,
-                pieceTable: nameof(PieceTables.Hoe)
+                pieceGroup: PieceClassification.Ore
             )
         },
         {
@@ -3386,6 +5913,7 @@ internal static class PrefabConfigManager
                 name: "Pickable_MountainRemains01_buried",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -3401,14 +5929,14 @@ internal static class PrefabConfigManager
                 name: "Pickable_Mushroom",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Cultivator),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Mushroom,5",
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Plant,
-                pieceTable: nameof(PieceTables.Cultivator)
+                pieceGroup: PieceClassification.Plant
             )
         },
         {
@@ -3417,6 +5945,7 @@ internal static class PrefabConfigManager
                 name: "Pickable_Mushroom_JotunPuffs",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "MushroomJotunPuffs,1",
@@ -3432,6 +5961,7 @@ internal static class PrefabConfigManager
                 name: "Pickable_Mushroom_Magecap",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "MushroomMagecap,1",
@@ -3447,14 +5977,14 @@ internal static class PrefabConfigManager
                 name: "Pickable_Mushroom_blue",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Cultivator),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "MushroomBlue,5",
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Plant,
-                pieceTable: nameof(PieceTables.Cultivator)
+                pieceGroup: PieceClassification.Plant
             )
         },
         {
@@ -3463,14 +5993,28 @@ internal static class PrefabConfigManager
                 name: "Pickable_Mushroom_yellow",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Cultivator),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "MushroomYellow,5",
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Plant,
-                pieceTable: nameof(PieceTables.Cultivator)
+                pieceGroup: PieceClassification.Plant
+            )
+        },
+        {
+            "Pickable_Oat",
+            new PrefabConfig(
+                name: "Pickable_Oat",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
             )
         },
         {
@@ -3479,14 +6023,14 @@ internal static class PrefabConfigManager
                 name: "Pickable_Obsidian",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hoe),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Obsidian,1",
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Ore,
-                pieceTable: nameof(PieceTables.Hoe)
+                pieceGroup: PieceClassification.Ore
             )
         },
         {
@@ -3495,6 +6039,7 @@ internal static class PrefabConfigManager
                 name: "Pickable_Onion",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Obsidian,1",
@@ -3510,9 +6055,24 @@ internal static class PrefabConfigManager
                 name: "Pickable_Pot_Shard",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Pickable_Poteitr",
+            new PrefabConfig(
+                name: "Pickable_Poteitr",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false
@@ -3524,6 +6084,7 @@ internal static class PrefabConfigManager
                 name: "Pickable_RoyalJelly",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -3538,6 +6099,7 @@ internal static class PrefabConfigManager
                 name: "Pickable_SeedCarrot",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -3548,11 +6110,26 @@ internal static class PrefabConfigManager
             )
         },
         {
+            "Pickable_SeedKale",
+            new PrefabConfig(
+                name: "Pickable_SeedKale",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
             "Pickable_SeedOnion",
             new PrefabConfig(
                 name: "Pickable_SeedOnion",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -3568,6 +6145,7 @@ internal static class PrefabConfigManager
                 name: "Pickable_SeedTurnip",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -3583,9 +6161,24 @@ internal static class PrefabConfigManager
                 name: "Pickable_SmokePuff",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Pickable_Snowball",
+            new PrefabConfig(
+                name: "Pickable_Snowball",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false
@@ -3597,14 +6190,28 @@ internal static class PrefabConfigManager
                 name: "Pickable_Stone",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Cultivator),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,5",
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Flora,
-                pieceTable: nameof(PieceTables.Cultivator)
+                pieceGroup: PieceClassification.Flora
+            )
+        },
+        {
+            "Pickable_StoneRock",
+            new PrefabConfig(
+                name: "Pickable_StoneRock",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
             )
         },
         {
@@ -3613,6 +6220,7 @@ internal static class PrefabConfigManager
                 name: "Pickable_SulfurRock",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -3627,6 +6235,7 @@ internal static class PrefabConfigManager
                 name: "Pickable_SurtlingCoreStand",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Forge),
                 requirements: "Iron,2;SurtlingCore,1",
@@ -3642,6 +6251,7 @@ internal static class PrefabConfigManager
                 name: "Pickable_Swordpiece1",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -3656,6 +6266,7 @@ internal static class PrefabConfigManager
                 name: "Pickable_Swordpiece2",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -3670,6 +6281,7 @@ internal static class PrefabConfigManager
                 name: "Pickable_Swordpiece3",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -3684,14 +6296,14 @@ internal static class PrefabConfigManager
                 name: "Pickable_Tar",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Cultivator),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Tar,1",
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Flora,
-                pieceTable: nameof(PieceTables.Cultivator)
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -3700,14 +6312,14 @@ internal static class PrefabConfigManager
                 name: "Pickable_TarBig",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Cultivator),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Flora,
-                pieceTable: nameof(PieceTables.Cultivator)
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -3716,14 +6328,14 @@ internal static class PrefabConfigManager
                 name: "Pickable_Thistle",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Cultivator),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Thistle,5",
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Plant,
-                pieceTable: nameof(PieceTables.Cultivator)
+                pieceGroup: PieceClassification.Plant
             )
         },
         {
@@ -3732,14 +6344,14 @@ internal static class PrefabConfigManager
                 name: "Pickable_Tin",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hoe),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "TinOre,1",
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Ore,
-                pieceTable: nameof(PieceTables.Hoe)
+                pieceGroup: PieceClassification.Ore
             )
         },
         {
@@ -3748,6 +6360,7 @@ internal static class PrefabConfigManager
                 name: "Pickable_Turnip",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Turnip,1",
@@ -3763,6 +6376,7 @@ internal static class PrefabConfigManager
                 name: "Pickable_VoltureEgg",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -3777,14 +6391,84 @@ internal static class PrefabConfigManager
                 name: "PineTree",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Cultivator),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Flora,
-                pieceTable: nameof(PieceTables.Cultivator)
+                pieceGroup: PieceClassification.Flora
+            )
+        },
+        {
+            "PineTree_Snow_log",
+            new PrefabConfig(
+                name: "PineTree_Snow_log",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "PineTree_Snow_log_XL",
+            new PrefabConfig(
+                name: "PineTree_Snow_log_XL",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "PineTree_Snow_log_XL_half",
+            new PrefabConfig(
+                name: "PineTree_Snow_log_XL_half",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "PineTree_Snow_log_half",
+            new PrefabConfig(
+                name: "PineTree_Snow_log_half",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "PineTree_Snow_log_half_frost_troll",
+            new PrefabConfig(
+                name: "PineTree_Snow_log_half_frost_troll",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
             )
         },
         {
@@ -3793,14 +6477,14 @@ internal static class PrefabConfigManager
                 name: "PineTree_log",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Cultivator),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Wood,10;RoundLog,10",
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Flora,
-                pieceTable: nameof(PieceTables.Cultivator)
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -3809,14 +6493,28 @@ internal static class PrefabConfigManager
                 name: "PineTree_log_half",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Cultivator),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Wood,5;RoundLog,5",
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Flora,
-                pieceTable: nameof(PieceTables.Cultivator)
+                pieceGroup: PieceClassification.Flora
+            )
+        },
+        {
+            "PineTree_snowfall",
+            new PrefabConfig(
+                name: "PineTree_snowfall",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
             )
         },
         {
@@ -3825,14 +6523,14 @@ internal static class PrefabConfigManager
                 name: "Pinetree_01",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Cultivator),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Wood,10;RoundLog,10",
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Flora,
-                pieceTable: nameof(PieceTables.Cultivator)
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -3841,14 +6539,70 @@ internal static class PrefabConfigManager
                 name: "Pinetree_01_Stub",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Cultivator),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Wood,5;RoundLog,5",
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Flora,
-                pieceTable: nameof(PieceTables.Cultivator)
+                pieceGroup: PieceClassification.Flora
+            )
+        },
+        {
+            "Pinetree_Snow",
+            new PrefabConfig(
+                name: "Pinetree_Snow",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Pinetree_Snow_Stub",
+            new PrefabConfig(
+                name: "Pinetree_Snow_Stub",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Pinetree_Snow_dead",
+            new PrefabConfig(
+                name: "Pinetree_Snow_dead",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "PropFeastDeepNorth",
+            new PrefabConfig(
+                name: "PropFeastDeepNorth",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
             )
         },
         {
@@ -3857,14 +6611,14 @@ internal static class PrefabConfigManager
                 name: "RaspberryBush",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Cultivator),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Raspberry,5",
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Plant,
-                pieceTable: nameof(PieceTables.Cultivator)
+                pieceGroup: PieceClassification.Plant
             )
         },
         {
@@ -3873,14 +6627,14 @@ internal static class PrefabConfigManager
                 name: "RockDolmen_1",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hoe),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,75",
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Rock,
-                pieceTable: nameof(PieceTables.Hoe)
+                pieceGroup: PieceClassification.Rock
             )
         },
         {
@@ -3889,14 +6643,14 @@ internal static class PrefabConfigManager
                 name: "RockDolmen_2",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hoe),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,50",
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Rock,
-                pieceTable: nameof(PieceTables.Hoe)
+                pieceGroup: PieceClassification.Rock
             )
         },
         {
@@ -3905,14 +6659,14 @@ internal static class PrefabConfigManager
                 name: "RockDolmen_3",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hoe),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,75",
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Rock,
-                pieceTable: nameof(PieceTables.Hoe)
+                pieceGroup: PieceClassification.Rock
             )
         },
         {
@@ -3921,12 +6675,12 @@ internal static class PrefabConfigManager
                 name: "RockFinger",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hoe),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,350",
                 clipEverything: true,
-                pieceGroup: PieceClassification.Rock,
-                pieceTable: nameof(PieceTables.Hoe)
+                pieceGroup: PieceClassification.Rock
             )
         },
         {
@@ -3935,12 +6689,12 @@ internal static class PrefabConfigManager
                 name: "RockFingerBroken",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hoe),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,175",
                 clipEverything: true,
-                pieceGroup: PieceClassification.Rock,
-                pieceTable: nameof(PieceTables.Hoe)
+                pieceGroup: PieceClassification.Rock
             )
         },
         {
@@ -3949,14 +6703,14 @@ internal static class PrefabConfigManager
                 name: "RockFingerBroken_frac",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hoe),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,175",
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Rock,
-                pieceTable: nameof(PieceTables.Hoe)
+                pieceGroup: PieceClassification.Rock
             )
         },
         {
@@ -3965,14 +6719,14 @@ internal static class PrefabConfigManager
                 name: "RockFinger_frac",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hoe),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,350",
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Rock,
-                pieceTable: nameof(PieceTables.Hoe)
+                pieceGroup: PieceClassification.Rock
             )
         },
         {
@@ -3981,12 +6735,12 @@ internal static class PrefabConfigManager
                 name: "RockThumb",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hoe),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,200",
                 clipEverything: true,
-                pieceGroup: PieceClassification.Rock,
-                pieceTable: nameof(PieceTables.Hoe)
+                pieceGroup: PieceClassification.Rock
             )
         },
         {
@@ -3995,14 +6749,14 @@ internal static class PrefabConfigManager
                 name: "RockThumb_frac",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hoe),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,200",
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Rock,
-                pieceTable: nameof(PieceTables.Hoe)
+                pieceGroup: PieceClassification.Rock
             )
         },
         {
@@ -4011,12 +6765,26 @@ internal static class PrefabConfigManager
                 name: "Rock_3",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hoe),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,24",
                 clipEverything: true,
-                pieceGroup: PieceClassification.Rock,
-                pieceTable: nameof(PieceTables.Hoe)
+                pieceGroup: PieceClassification.Rock
+            )
+        },
+        {
+            "Rock_3_deepnorth_frac",
+            new PrefabConfig(
+                name: "Rock_3_deepnorth_frac",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
             )
         },
         {
@@ -4025,14 +6793,14 @@ internal static class PrefabConfigManager
                 name: "Rock_3_frac",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hoe),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,24",
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Rock,
-                pieceTable: nameof(PieceTables.Hoe)
+                pieceGroup: PieceClassification.Rock
             )
         },
         {
@@ -4041,14 +6809,28 @@ internal static class PrefabConfigManager
                 name: "Rock_4",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hoe),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,16",
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Rock,
-                pieceTable: nameof(PieceTables.Hoe)
+                pieceGroup: PieceClassification.Rock
+            )
+        },
+        {
+            "Rock_4_deepnorth",
+            new PrefabConfig(
+                name: "Rock_4_deepnorth",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
             )
         },
         {
@@ -4057,14 +6839,14 @@ internal static class PrefabConfigManager
                 name: "Rock_4_plains",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hoe),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,24",
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Rock,
-                pieceTable: nameof(PieceTables.Hoe)
+                pieceGroup: PieceClassification.Rock
             )
         },
         {
@@ -4073,14 +6855,42 @@ internal static class PrefabConfigManager
                 name: "Rock_7",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hoe),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,32",
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Rock,
-                pieceTable: nameof(PieceTables.Hoe)
+                pieceGroup: PieceClassification.Rock
+            )
+        },
+        {
+            "Rock_7_deepnorth",
+            new PrefabConfig(
+                name: "Rock_7_deepnorth",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Rock_7_meadows",
+            new PrefabConfig(
+                name: "Rock_7_meadows",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
             )
         },
         {
@@ -4089,14 +6899,14 @@ internal static class PrefabConfigManager
                 name: "Rock_destructible",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hoe),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,24",
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Rock,
-                pieceTable: nameof(PieceTables.Hoe)
+                pieceGroup: PieceClassification.Rock
             )
         },
         {
@@ -4105,13 +6915,13 @@ internal static class PrefabConfigManager
                 name: "Rock_destructible_test",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hoe),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,24",
                 clipEverything: true,
                 clipGround: false,
-                pieceGroup: PieceClassification.Rock,
-                pieceTable: nameof(PieceTables.Hoe)
+                pieceGroup: PieceClassification.Rock
             )
         },
         {
@@ -4120,6 +6930,7 @@ internal static class PrefabConfigManager
                 name: "SeekerEgg",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -4134,6 +6945,7 @@ internal static class PrefabConfigManager
                 name: "SeekerEgg_alwayshatch",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -4148,9 +6960,24 @@ internal static class PrefabConfigManager
                 name: "SeekerQueen_spithit",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "ShimmeringSand_rock_frac",
+            new PrefabConfig(
+                name: "ShimmeringSand_rock_frac",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false
@@ -4162,14 +6989,14 @@ internal static class PrefabConfigManager
                 name: "ShootStump",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Cultivator),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "YggdrasilWood,10",
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Flora,
-                pieceTable: nameof(PieceTables.Cultivator)
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -4178,6 +7005,7 @@ internal static class PrefabConfigManager
                 name: "Skull1",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "TrophySkeleton,1",
@@ -4192,9 +7020,248 @@ internal static class PrefabConfigManager
                 name: "Skull2",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Sled",
+            new PrefabConfig(
+                name: "Sled",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "SnowFirTree",
+            new PrefabConfig(
+                name: "SnowFirTree",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "SnowFirTree2_snowfall",
+            new PrefabConfig(
+                name: "SnowFirTree2_snowfall",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "SnowFirTreeSmall_snowfall",
+            new PrefabConfig(
+                name: "SnowFirTreeSmall_snowfall",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "SnowFirTree_small",
+            new PrefabConfig(
+                name: "SnowFirTree_small",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "SnowFirTree_snowfall",
+            new PrefabConfig(
+                name: "SnowFirTree_snowfall",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "SnowRoller",
+            new PrefabConfig(
+                name: "SnowRoller",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Spawner_CharredCross",
+            new PrefabConfig(
+                name: "Spawner_CharredCross",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Spawner_CharredStone",
+            new PrefabConfig(
+                name: "Spawner_CharredStone",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Spawner_CharredStone_Elite",
+            new PrefabConfig(
+                name: "Spawner_CharredStone_Elite",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Spawner_CharredStone_event",
+            new PrefabConfig(
+                name: "Spawner_CharredStone_event",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Spawner_DraugrPile",
+            new PrefabConfig(
+                name: "Spawner_DraugrPile",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Spawner_GreydwarfNest",
+            new PrefabConfig(
+                name: "Spawner_GreydwarfNest",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Spawner_Hole",
+            new PrefabConfig(
+                name: "Spawner_Hole",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Spawner_Hole_double",
+            new PrefabConfig(
+                name: "Spawner_Hole_double",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Spawner_Kvastur",
+            new PrefabConfig(
+                name: "Spawner_Kvastur",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "StartPlatform",
+            new PrefabConfig(
+                name: "StartPlatform",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false
@@ -4206,6 +7273,7 @@ internal static class PrefabConfigManager
                 name: "StatueCorgi",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Furniture,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Stone,24",
@@ -4221,6 +7289,7 @@ internal static class PrefabConfigManager
                 name: "StatueDeer",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Furniture,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Stone,24",
@@ -4236,6 +7305,7 @@ internal static class PrefabConfigManager
                 name: "StatueEvil",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Furniture,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Stone,32",
@@ -4246,11 +7316,54 @@ internal static class PrefabConfigManager
             )
         },
         {
+            "StatueFreya",
+            new PrefabConfig(
+                name: "StatueFreya",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "StatueFreya_broken_left",
+            new PrefabConfig(
+                name: "StatueFreya_broken_left",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "StatueFreya_broken_right",
+            new PrefabConfig(
+                name: "StatueFreya_broken_right",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
             "StatueHare",
             new PrefabConfig(
                 name: "StatueHare",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Furniture,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Stone,24",
@@ -4266,6 +7379,7 @@ internal static class PrefabConfigManager
                 name: "StatueSeed",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Furniture,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Stone,16",
@@ -4276,19 +7390,103 @@ internal static class PrefabConfigManager
             )
         },
         {
+            "StatueThor",
+            new PrefabConfig(
+                name: "StatueThor",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "StatueThor_broken_bottom",
+            new PrefabConfig(
+                name: "StatueThor_broken_bottom",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "StatueThor_broken_top",
+            new PrefabConfig(
+                name: "StatueThor_broken_top",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "StumpHole",
+            new PrefabConfig(
+                name: "StumpHole",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "StumpHut_frac",
+            new PrefabConfig(
+                name: "StumpHut_frac",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "StumpLog",
+            new PrefabConfig(
+                name: "StumpLog",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
             "SwampTree1",
             new PrefabConfig(
                 name: "SwampTree1",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Cultivator),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "ElderBark,10",
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Flora,
-                pieceTable: nameof(PieceTables.Cultivator)
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -4297,14 +7495,14 @@ internal static class PrefabConfigManager
                 name: "SwampTree1_Stub",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Cultivator),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Flora,
-                pieceTable: nameof(PieceTables.Cultivator)
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -4313,14 +7511,14 @@ internal static class PrefabConfigManager
                 name: "SwampTree1_log",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Cultivator),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Flora,
-                pieceTable: nameof(PieceTables.Cultivator)
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -4329,14 +7527,14 @@ internal static class PrefabConfigManager
                 name: "SwampTree2",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Cultivator),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "ElderBark,32",
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Flora,
-                pieceTable: nameof(PieceTables.Cultivator)
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -4345,14 +7543,14 @@ internal static class PrefabConfigManager
                 name: "SwampTree2_darkland",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Cultivator),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "ElderBark,32",
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Flora,
-                pieceTable: nameof(PieceTables.Cultivator)
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -4361,14 +7559,14 @@ internal static class PrefabConfigManager
                 name: "SwampTree2_log",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Cultivator),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "ElderBark,32",
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Flora,
-                pieceTable: nameof(PieceTables.Cultivator)
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -4391,6 +7589,7 @@ internal static class PrefabConfigManager
                 name: "Trailership",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Misc,
                 craftingStation: nameof(CraftingStations.Workbench),
                 requirements: "IronNails,100;DeerHide,10;FineWood,40;ElderBark,40",
@@ -4398,9 +7597,9 @@ internal static class PrefabConfigManager
                 clipGround: false,
                 placementPatch: false,
                 pieceName: "Trader ship",
-                pieceGroup: PieceClassification.Ship
-                //invWidth: 6,
-                //invHeight: 4
+                pieceGroup: PieceClassification.Ship,
+                invWidth: 6,
+                invHeight: 4
             )
         },
         {
@@ -4409,6 +7608,7 @@ internal static class PrefabConfigManager
                 name: "TreasureChest_ashland_stone",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -4426,6 +7626,7 @@ internal static class PrefabConfigManager
                 name: "TreasureChest_charredfortress",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Misc,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,10;ProustitePowder,2;FlametalNew,6",
@@ -4439,11 +7640,26 @@ internal static class PrefabConfigManager
             )
         },
         {
+            "TreasureChest_deepnorth_village",
+            new PrefabConfig(
+                name: "TreasureChest_deepnorth_village",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
             "TreasureChest_dvergr_loose_stone",
             new PrefabConfig(
                 name: "TreasureChest_dvergr_loose_stone",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Furniture,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "BlackMarble,10",
@@ -4462,6 +7678,7 @@ internal static class PrefabConfigManager
                 name: "TreasureChest_dvergrtower",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Furniture,
                 craftingStation: nameof(CraftingStations.BlackForge),
                 requirements: "YggdrasilWood,10;Copper,2",
@@ -4480,6 +7697,7 @@ internal static class PrefabConfigManager
                 name: "TreasureChest_dvergrtown",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Furniture,
                 craftingStation: nameof(CraftingStations.BlackForge),
                 requirements: "YggdrasilWood,10;Copper,6",
@@ -4498,6 +7716,7 @@ internal static class PrefabConfigManager
                 name: "TreasureChest_fCrypt",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Furniture,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Stone,10;RoundLog,1",
@@ -4511,11 +7730,82 @@ internal static class PrefabConfigManager
             )
         },
         {
+            "TreasureChest_meadows_01",
+            new PrefabConfig(
+                name: "TreasureChest_meadows_01",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "TreasureChest_meadows_02",
+            new PrefabConfig(
+                name: "TreasureChest_meadows_02",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "TreasureChest_meadows_combat",
+            new PrefabConfig(
+                name: "TreasureChest_meadows_combat",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "TreasureChest_memorial_buried",
+            new PrefabConfig(
+                name: "TreasureChest_memorial_buried",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "TreasureChest_morkhalla",
+            new PrefabConfig(
+                name: "TreasureChest_morkhalla",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
             "TreasureChest_mountaincave",
             new PrefabConfig(
                 name: "TreasureChest_mountaincave",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Furniture,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Stone,10;Crystal,1",
@@ -4534,6 +7824,7 @@ internal static class PrefabConfigManager
                 name: "TreasureChest_sunkencrypt",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Furniture,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Stone,10;ElderBark,1",
@@ -4552,6 +7843,7 @@ internal static class PrefabConfigManager
                 name: "TreasureChest_trollcave",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Furniture,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Stone,10;RoundLog,2",
@@ -4565,19 +7857,61 @@ internal static class PrefabConfigManager
             )
         },
         {
+            "TrollFrost_Frac",
+            new PrefabConfig(
+                name: "TrollFrost_Frac",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
             "UnstableLavaRock",
             new PrefabConfig(
                 name: "UnstableLavaRock",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hoe),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Rock,
-                pieceTable: nameof(PieceTables.Hoe)
+                pieceGroup: PieceClassification.Rock
+            )
+        },
+        {
+            "UpgradeStation",
+            new PrefabConfig(
+                name: "UpgradeStation",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "Valkyrie_End",
+            new PrefabConfig(
+                name: "Valkyrie_End",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
             )
         },
         {
@@ -4586,14 +7920,14 @@ internal static class PrefabConfigManager
                 name: "VineAsh",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Cultivator),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Plant,
-                pieceTable: nameof(PieceTables.Cultivator)
+                pieceGroup: PieceClassification.Plant
             )
         },
         {
@@ -4602,14 +7936,70 @@ internal static class PrefabConfigManager
                 name: "VineGreen",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Cultivator),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Plant,
-                pieceTable: nameof(PieceTables.Cultivator)
+                pieceGroup: PieceClassification.Plant
+            )
+        },
+        {
+            "WallSnow1",
+            new PrefabConfig(
+                name: "WallSnow1",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "WallSnow2",
+            new PrefabConfig(
+                name: "WallSnow2",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "WallSnow3",
+            new PrefabConfig(
+                name: "WallSnow3",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "WallSnow4",
+            new PrefabConfig(
+                name: "WallSnow4",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
             )
         },
         {
@@ -4618,14 +8008,14 @@ internal static class PrefabConfigManager
                 name: "YggaShoot1",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Cultivator),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "YggdrasilWood,16",
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Flora,
-                pieceTable: nameof(PieceTables.Cultivator)
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -4634,14 +8024,14 @@ internal static class PrefabConfigManager
                 name: "YggaShoot2",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Cultivator),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "YggdrasilWood,16",
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Flora,
-                pieceTable: nameof(PieceTables.Cultivator)
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -4650,14 +8040,14 @@ internal static class PrefabConfigManager
                 name: "YggaShoot3",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Cultivator),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "YggdrasilWood,16",
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Flora,
-                pieceTable: nameof(PieceTables.Cultivator)
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -4666,14 +8056,14 @@ internal static class PrefabConfigManager
                 name: "YggaShoot_small1",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Cultivator),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "YggdrasilWood,10",
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Flora,
-                pieceTable: nameof(PieceTables.Cultivator)
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -4682,14 +8072,14 @@ internal static class PrefabConfigManager
                 name: "YggdrasilRoot",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Cultivator),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "YggdrasilWood,64;Sap,10",
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Flora,
-                pieceTable: nameof(PieceTables.Cultivator)
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -4698,15 +8088,15 @@ internal static class PrefabConfigManager
                 name: "ancient_skull",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hoe),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "BlackMarble,100",
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: true,
-                spawnOnDestroyed: "sfx_rock_destroyed",
                 pieceGroup: PieceClassification.Rock,
-                pieceTable: nameof(PieceTables.Hoe)
+                spawnOnDestroyed: "sfx_rock_destroyed"
             )
         },
         {
@@ -4715,6 +8105,7 @@ internal static class PrefabConfigManager
                 name: "ashland_pot1_green",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -4729,6 +8120,7 @@ internal static class PrefabConfigManager
                 name: "ashland_pot1_red",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -4743,6 +8135,7 @@ internal static class PrefabConfigManager
                 name: "ashland_pot2_green",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -4757,6 +8150,7 @@ internal static class PrefabConfigManager
                 name: "ashland_pot2_red",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -4771,6 +8165,7 @@ internal static class PrefabConfigManager
                 name: "ashland_pot3_green",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -4785,6 +8180,7 @@ internal static class PrefabConfigManager
                 name: "ashland_pot3_red",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -4799,6 +8195,7 @@ internal static class PrefabConfigManager
                 name: "ashwood_arch_bottom",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Workbench),
                 requirements: "Blackwood,1",
@@ -4813,6 +8210,7 @@ internal static class PrefabConfigManager
                 name: "ashwood_arch_top",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Workbench),
                 requirements: "Blackwood,1",
@@ -4827,6 +8225,7 @@ internal static class PrefabConfigManager
                 name: "ashwood_wall_beam_26_alt",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -4841,6 +8240,7 @@ internal static class PrefabConfigManager
                 name: "ashwood_wall_beam_45_alt",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -4855,6 +8255,7 @@ internal static class PrefabConfigManager
                 name: "ashwood_wall_cross_26_alt",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -4869,6 +8270,7 @@ internal static class PrefabConfigManager
                 name: "ashwood_wall_cross_45_alt",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -4883,6 +8285,7 @@ internal static class PrefabConfigManager
                 name: "asksvin_carrion",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -4897,9 +8300,24 @@ internal static class PrefabConfigManager
                 name: "asksvin_carrion2",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "bar_ancientmetal_stack",
+            new PrefabConfig(
+                name: "bar_ancientmetal_stack",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false
@@ -4911,6 +8329,7 @@ internal static class PrefabConfigManager
                 name: "barrell",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Misc,
                 craftingStation: nameof(CraftingStations.Workbench),
                 requirements: "FineWood,2",
@@ -4928,14 +8347,14 @@ internal static class PrefabConfigManager
                 name: "beech_log",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Cultivator),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "BeechSeeds,1,Wood,20",
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Flora,
-                pieceTable: nameof(PieceTables.Cultivator)
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -4944,14 +8363,14 @@ internal static class PrefabConfigManager
                 name: "beech_log_half",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Cultivator),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "BeechSeeds,1,Wood,10",
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Flora,
-                pieceTable: nameof(PieceTables.Cultivator)
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -4960,6 +8379,7 @@ internal static class PrefabConfigManager
                 name: "blackmarble_2x2_enforced",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Stonecutter,
                 craftingStation: nameof(CraftingStations.BlackForge),
                 requirements: "BlackMarble,8;Copper,2",
@@ -4975,6 +8395,7 @@ internal static class PrefabConfigManager
                 name: "blackmarble_2x2x1",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Stonecutter,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "BlackMarble,4",
@@ -4990,6 +8411,7 @@ internal static class PrefabConfigManager
                 name: "blackmarble_altar_crystal",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -5004,6 +8426,7 @@ internal static class PrefabConfigManager
                 name: "blackmarble_altar_crystal_broken",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -5018,6 +8441,7 @@ internal static class PrefabConfigManager
                 name: "blackmarble_base_2",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Stonecutter,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "BlackMarble,6",
@@ -5034,6 +8458,7 @@ internal static class PrefabConfigManager
                 name: "blackmarble_column_3",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Stonecutter,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "BlackMarble,16",
@@ -5049,6 +8474,7 @@ internal static class PrefabConfigManager
                 name: "blackmarble_creep_4x1x1",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Stonecutter,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "BlackMarble,4",
@@ -5064,6 +8490,7 @@ internal static class PrefabConfigManager
                 name: "blackmarble_creep_4x2x1",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Stonecutter,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "BlackMarble,8",
@@ -5079,6 +8506,7 @@ internal static class PrefabConfigManager
                 name: "blackmarble_creep_slope_inverted_1x1x2",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Stonecutter,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "BlackMarble,2",
@@ -5094,6 +8522,7 @@ internal static class PrefabConfigManager
                 name: "blackmarble_creep_slope_inverted_2x2x1",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Stonecutter,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "BlackMarble,4",
@@ -5109,6 +8538,7 @@ internal static class PrefabConfigManager
                 name: "blackmarble_creep_stair",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Stonecutter,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "BlackMarble,8",
@@ -5124,6 +8554,7 @@ internal static class PrefabConfigManager
                 name: "blackmarble_floor_large",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Stonecutter,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "BlackMarble,32",
@@ -5140,6 +8571,7 @@ internal static class PrefabConfigManager
                 name: "blackmarble_head01",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Stonecutter,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "BlackMarble,2",
@@ -5155,6 +8587,7 @@ internal static class PrefabConfigManager
                 name: "blackmarble_head02",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Stonecutter,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "BlackMarble,2",
@@ -5170,6 +8603,7 @@ internal static class PrefabConfigManager
                 name: "blackmarble_head_big01",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Stonecutter,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "BlackMarble,6",
@@ -5185,6 +8619,7 @@ internal static class PrefabConfigManager
                 name: "blackmarble_head_big02",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Stonecutter,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "BlackMarble,6",
@@ -5200,6 +8635,7 @@ internal static class PrefabConfigManager
                 name: "blackmarble_out_2",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Stonecutter,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "BlackMarble,6",
@@ -5216,6 +8652,7 @@ internal static class PrefabConfigManager
                 name: "blackmarble_post01",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Stonecutter,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "BlackMarble,8",
@@ -5231,6 +8668,7 @@ internal static class PrefabConfigManager
                 name: "blackmarble_slope_1x2",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Stonecutter,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "BlackMarble,2",
@@ -5246,6 +8684,7 @@ internal static class PrefabConfigManager
                 name: "blackmarble_slope_inverted_1x2",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Stonecutter,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "BlackMarble,2",
@@ -5261,6 +8700,7 @@ internal static class PrefabConfigManager
                 name: "blackmarble_stair_corner",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Stonecutter,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "BlackMarble,8",
@@ -5276,6 +8716,7 @@ internal static class PrefabConfigManager
                 name: "blackmarble_stair_corner_left",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Stonecutter,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "BlackMarble,8",
@@ -5291,6 +8732,7 @@ internal static class PrefabConfigManager
                 name: "blackmarble_tile_floor_1x1",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Stonecutter,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "BlackMarble,2",
@@ -5306,6 +8748,7 @@ internal static class PrefabConfigManager
                 name: "blackmarble_tile_floor_2x2",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Stonecutter,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "BlackMarble,2",
@@ -5321,6 +8764,7 @@ internal static class PrefabConfigManager
                 name: "blackmarble_tile_wall_1x1",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Stonecutter,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "BlackMarble,1",
@@ -5336,6 +8780,7 @@ internal static class PrefabConfigManager
                 name: "blackmarble_tile_wall_2x2",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Stonecutter,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "BlackMarble,2",
@@ -5351,6 +8796,7 @@ internal static class PrefabConfigManager
                 name: "blackmarble_tile_wall_2x4",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Stonecutter,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "BlackMarble,4",
@@ -5366,6 +8812,7 @@ internal static class PrefabConfigManager
                 name: "bucket",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Misc,
                 craftingStation: nameof(CraftingStations.Workbench),
                 requirements: "Wood,2",
@@ -5381,6 +8828,7 @@ internal static class PrefabConfigManager
                 name: "caverock_ice_pillar_wall",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Crystal,10",
@@ -5396,6 +8844,7 @@ internal static class PrefabConfigManager
                 name: "caverock_ice_stalagmite",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Crystal,2",
@@ -5411,6 +8860,7 @@ internal static class PrefabConfigManager
                 name: "caverock_ice_stalagmite_broken",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Crystal,4",
@@ -5426,6 +8876,7 @@ internal static class PrefabConfigManager
                 name: "caverock_ice_stalagtite",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Crystal,2",
@@ -5441,6 +8892,7 @@ internal static class PrefabConfigManager
                 name: "caverock_ice_stalagtite_falling",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Crystal,2",
@@ -5456,6 +8908,7 @@ internal static class PrefabConfigManager
                 name: "charred_shieldgenerator",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -5470,14 +8923,14 @@ internal static class PrefabConfigManager
                 name: "cliff_ashlands1_frac",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hoe),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Rock,
-                pieceTable: nameof(PieceTables.Hoe)
+                pieceGroup: PieceClassification.Rock
             )
         },
         {
@@ -5486,15 +8939,14 @@ internal static class PrefabConfigManager
                 name: "cliff_ashlands2_frac",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hoe),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
                 clipEverything: false,
                 clipGround: true,
                 placementPatch: true,
-                pieceGroup: PieceClassification.Rock,
-                pieceTable: nameof(PieceTables.Hoe)
-
+                pieceGroup: PieceClassification.Rock
             )
         },
         {
@@ -5503,14 +8955,14 @@ internal static class PrefabConfigManager
                 name: "cliff_ashlands4_frac",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hoe),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Rock,
-                pieceTable: nameof(PieceTables.Hoe)
+                pieceGroup: PieceClassification.Rock
             )
         },
         {
@@ -5519,14 +8971,14 @@ internal static class PrefabConfigManager
                 name: "cliff_ashlands6_frac",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hoe),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Rock,
-                pieceTable: nameof(PieceTables.Hoe)
+                pieceGroup: PieceClassification.Rock
             )
         },
         {
@@ -5535,14 +8987,14 @@ internal static class PrefabConfigManager
                 name: "cliff_ashlands7_HalfArch_frac",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hoe),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Rock,
-                pieceTable: nameof(PieceTables.Hoe)
+                pieceGroup: PieceClassification.Rock
             )
         },
         {
@@ -5551,14 +9003,14 @@ internal static class PrefabConfigManager
                 name: "cliff_ashlands_Arch_frac",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hoe),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Rock,
-                pieceTable: nameof(PieceTables.Hoe)
+                pieceGroup: PieceClassification.Rock
             )
         },
         {
@@ -5567,14 +9019,14 @@ internal static class PrefabConfigManager
                 name: "cliff_ashlandsflowrock_frac",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hoe),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Rock,
-                pieceTable: nameof(PieceTables.Hoe)
+                pieceGroup: PieceClassification.Rock
             )
         },
         {
@@ -5583,12 +9035,12 @@ internal static class PrefabConfigManager
                 name: "cliff_mistlands1",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hoe),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,350",
                 clipEverything: true,
-                pieceGroup: PieceClassification.Rock,
-                pieceTable: nameof(PieceTables.Hoe)
+                pieceGroup: PieceClassification.Rock
             )
         },
         {
@@ -5597,12 +9049,12 @@ internal static class PrefabConfigManager
                 name: "cliff_mistlands1_creep",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hoe),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,350",
                 clipEverything: true,
-                pieceGroup: PieceClassification.Rock,
-                pieceTable: nameof(PieceTables.Hoe)
+                pieceGroup: PieceClassification.Rock
             )
         },
         {
@@ -5611,14 +9063,14 @@ internal static class PrefabConfigManager
                 name: "cliff_mistlands1_creep_frac",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hoe),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,350",
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Rock,
-                pieceTable: nameof(PieceTables.Hoe)
+                pieceGroup: PieceClassification.Rock
             )
         },
         {
@@ -5627,14 +9079,14 @@ internal static class PrefabConfigManager
                 name: "cliff_mistlands1_frac",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hoe),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,350",
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Rock,
-                pieceTable: nameof(PieceTables.Hoe)
+                pieceGroup: PieceClassification.Rock
             )
         },
         {
@@ -5643,12 +9095,12 @@ internal static class PrefabConfigManager
                 name: "cliff_mistlands2",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hoe),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,175",
                 clipEverything: true,
-                pieceGroup: PieceClassification.Rock,
-                pieceTable: nameof(PieceTables.Hoe)
+                pieceGroup: PieceClassification.Rock
             )
         },
         {
@@ -5657,14 +9109,14 @@ internal static class PrefabConfigManager
                 name: "cliff_mistlands2_frac",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hoe),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,175",
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Rock,
-                pieceTable: nameof(PieceTables.Hoe)
+                pieceGroup: PieceClassification.Rock
             )
         },
         {
@@ -5673,6 +9125,7 @@ internal static class PrefabConfigManager
                 name: "cloth_hanging_door",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Furniture,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -5688,6 +9141,7 @@ internal static class PrefabConfigManager
                 name: "cloth_hanging_door_double",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Furniture,
                 craftingStation: nameof(CraftingStations.Workbench),
                 requirements: "JuteRed,4",
@@ -5703,6 +9157,7 @@ internal static class PrefabConfigManager
                 name: "cloth_hanging_long",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Furniture,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -5718,6 +9173,7 @@ internal static class PrefabConfigManager
                 name: "crypt_skeleton_chest",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -5732,10 +9188,25 @@ internal static class PrefabConfigManager
                 name: "dead_deer",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
                 clipEverything: true,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "deepnorth_lantern_standing",
+            new PrefabConfig(
+                name: "deepnorth_lantern_standing",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
                 clipGround: false,
                 placementPatch: false
             )
@@ -5746,6 +9217,7 @@ internal static class PrefabConfigManager
                 name: "dungeon_forestcrypt_door",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -5760,6 +9232,7 @@ internal static class PrefabConfigManager
                 name: "dungeon_queen_door",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "BlackMarble,40;DvergrKeyFragment,4;Iron,12",
@@ -5774,6 +9247,7 @@ internal static class PrefabConfigManager
                 name: "dungeon_sunkencrypt_irongate",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Stonecutter,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Iron,4",
@@ -5789,6 +9263,7 @@ internal static class PrefabConfigManager
                 name: "dungeon_sunkencrypt_irongate_rusty",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Stonecutter,
                 craftingStation: nameof(CraftingStations.Forge),
                 requirements: "Iron,4",
@@ -5804,6 +9279,7 @@ internal static class PrefabConfigManager
                 name: "dverger_demister",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Furniture,
                 craftingStation: nameof(CraftingStations.BlackForge),
                 requirements: "Iron,1;Wisp,1",
@@ -5819,6 +9295,7 @@ internal static class PrefabConfigManager
                 name: "dverger_demister_broken",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -5834,6 +9311,7 @@ internal static class PrefabConfigManager
                 name: "dverger_demister_large",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Furniture,
                 craftingStation: nameof(CraftingStations.BlackForge),
                 requirements: "Iron,1;Wisp,2",
@@ -5849,6 +9327,7 @@ internal static class PrefabConfigManager
                 name: "dverger_demister_ruins",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -5864,6 +9343,7 @@ internal static class PrefabConfigManager
                 name: "dverger_guardstone",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Misc,
                 craftingStation: nameof(CraftingStations.BlackForge),
                 requirements: "YggdrasilWood,5;BlackMarble,5;BlackCore,1",
@@ -5878,6 +9358,7 @@ internal static class PrefabConfigManager
                 name: "dvergrprops_banner",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Furniture,
                 craftingStation: nameof(CraftingStations.Workbench),
                 requirements: "JuteBlue,6;FineWood,2",
@@ -5893,6 +9374,7 @@ internal static class PrefabConfigManager
                 name: "dvergrprops_barrel",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Furniture,
                 craftingStation: nameof(CraftingStations.Workbench),
                 requirements: "YggdrasilWood,20;Bronze,5;Resin,10",
@@ -5908,6 +9390,7 @@ internal static class PrefabConfigManager
                 name: "dvergrprops_bed",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Furniture,
                 craftingStation: nameof(CraftingStations.BlackForge),
                 requirements: "YggdrasilWood,8;ScaleHide,2;IronNails,5",
@@ -5924,6 +9407,7 @@ internal static class PrefabConfigManager
                 name: "dvergrprops_chair",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Furniture,
                 craftingStation: nameof(CraftingStations.BlackForge),
                 requirements: "YggdrasilWood,4",
@@ -5939,6 +9423,7 @@ internal static class PrefabConfigManager
                 name: "dvergrprops_crate",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Misc,
                 craftingStation: nameof(CraftingStations.BlackForge),
                 requirements: "YggdrasilWood,4",
@@ -5968,6 +9453,7 @@ internal static class PrefabConfigManager
                 name: "dvergrprops_crate_long",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Misc,
                 craftingStation: nameof(CraftingStations.BlackForge),
                 requirements: "YggdrasilWood,4",
@@ -5985,6 +9471,7 @@ internal static class PrefabConfigManager
                 name: "dvergrprops_curtain",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Furniture,
                 craftingStation: nameof(CraftingStations.Workbench),
                 requirements: "JuteBlue,6;FineWood,2",
@@ -6000,6 +9487,7 @@ internal static class PrefabConfigManager
                 name: "dvergrprops_hooknchain",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Stonecutter,
                 craftingStation: nameof(CraftingStations.BlackForge),
                 requirements: "Chain,2;Iron,2",
@@ -6016,6 +9504,7 @@ internal static class PrefabConfigManager
                 name: "dvergrprops_lantern_standing",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -6031,6 +9520,7 @@ internal static class PrefabConfigManager
                 name: "dvergrprops_pickaxe",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -6047,6 +9537,7 @@ internal static class PrefabConfigManager
                 name: "dvergrprops_shelf",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Furniture,
                 craftingStation: nameof(CraftingStations.BlackForge),
                 requirements: "YggdrasilWood,4;IronNails,5",
@@ -6062,6 +9553,7 @@ internal static class PrefabConfigManager
                 name: "dvergrprops_stool",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Furniture,
                 craftingStation: nameof(CraftingStations.BlackForge),
                 requirements: "YggdrasilWood,2",
@@ -6077,6 +9569,7 @@ internal static class PrefabConfigManager
                 name: "dvergrprops_table",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Furniture,
                 craftingStation: nameof(CraftingStations.BlackForge),
                 requirements: "YggdrasilWood,6;IronNails,10",
@@ -6092,6 +9585,7 @@ internal static class PrefabConfigManager
                 name: "dvergrprops_wood_beam",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Building,
                 craftingStation: nameof(CraftingStations.BlackForge),
                 requirements: "YggdrasilWood,4",
@@ -6107,6 +9601,7 @@ internal static class PrefabConfigManager
                 name: "dvergrprops_wood_floor",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Building,
                 craftingStation: nameof(CraftingStations.BlackForge),
                 requirements: "YggdrasilWood,2",
@@ -6122,6 +9617,7 @@ internal static class PrefabConfigManager
                 name: "dvergrprops_wood_pole",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Building,
                 craftingStation: nameof(CraftingStations.BlackForge),
                 requirements: "YggdrasilWood,2",
@@ -6138,6 +9634,7 @@ internal static class PrefabConfigManager
                 name: "dvergrprops_wood_stair",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Building,
                 craftingStation: nameof(CraftingStations.BlackForge),
                 requirements: "YggdrasilWood,2",
@@ -6153,6 +9650,7 @@ internal static class PrefabConfigManager
                 name: "dvergrprops_wood_stakewall",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Building,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "YggdrasilWood,4",
@@ -6168,6 +9666,7 @@ internal static class PrefabConfigManager
                 name: "dvergrprops_wood_wall",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Building,
                 craftingStation: nameof(CraftingStations.BlackForge),
                 requirements: "YggdrasilWood,10",
@@ -6184,6 +9683,7 @@ internal static class PrefabConfigManager
                 name: "dvergrtown_arch",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Stonecutter,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "BlackMarble,8",
@@ -6199,6 +9699,7 @@ internal static class PrefabConfigManager
                 name: "dvergrtown_creep_door",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "YggdrasilWood,4",
@@ -6216,6 +9717,7 @@ internal static class PrefabConfigManager
                 name: "dvergrtown_secretdoor",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Stonecutter,
                 craftingStation: nameof(CraftingStations.BlackForge),
                 requirements: "BlackMarble,12;Eitr,2",
@@ -6232,6 +9734,7 @@ internal static class PrefabConfigManager
                 name: "dvergrtown_slidingdoor",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Stonecutter,
                 craftingStation: nameof(CraftingStations.BlackForge),
                 requirements: "BlackMarble,32;Copper,8",
@@ -6248,6 +9751,7 @@ internal static class PrefabConfigManager
                 name: "dvergrtown_stair_corner_wood_left",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Building,
                 craftingStation: nameof(CraftingStations.BlackForge),
                 requirements: "YggdrasilWood,5;CopperScrap,2",
@@ -6263,6 +9767,7 @@ internal static class PrefabConfigManager
                 name: "dvergrtown_wood_beam",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Building,
                 craftingStation: nameof(CraftingStations.BlackForge),
                 requirements: "YggdrasilWood,4",
@@ -6279,6 +9784,7 @@ internal static class PrefabConfigManager
                 name: "dvergrtown_wood_crane",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Building,
                 craftingStation: nameof(CraftingStations.BlackForge),
                 requirements: "YggdrasilWood,8;Chain,2;Iron,2",
@@ -6294,6 +9800,7 @@ internal static class PrefabConfigManager
                 name: "dvergrtown_wood_pole",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -6310,6 +9817,7 @@ internal static class PrefabConfigManager
                 name: "dvergrtown_wood_stake",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Building,
                 craftingStation: nameof(CraftingStations.BlackForge),
                 requirements: "YggdrasilWood,1",
@@ -6325,6 +9833,7 @@ internal static class PrefabConfigManager
                 name: "dvergrtown_wood_stakewall",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Building,
                 craftingStation: nameof(CraftingStations.BlackForge),
                 requirements: "YggdrasilWood,4",
@@ -6340,6 +9849,7 @@ internal static class PrefabConfigManager
                 name: "dvergrtown_wood_support",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Building,
                 craftingStation: nameof(CraftingStations.BlackForge),
                 requirements: "YggdrasilWood,10",
@@ -6355,6 +9865,7 @@ internal static class PrefabConfigManager
                 name: "dvergrtown_wood_wall01",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Building,
                 craftingStation: nameof(CraftingStations.BlackForge),
                 requirements: "YggdrasilWood,20",
@@ -6370,6 +9881,7 @@ internal static class PrefabConfigManager
                 name: "dvergrtown_wood_wall02",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Building,
                 craftingStation: nameof(CraftingStations.BlackForge),
                 requirements: "YggdrasilWood,12",
@@ -6385,6 +9897,7 @@ internal static class PrefabConfigManager
                 name: "dvergrtown_wood_wall03",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Building,
                 craftingStation: nameof(CraftingStations.BlackForge),
                 requirements: "YggdrasilWood,10;IronNails,6",
@@ -6395,11 +9908,26 @@ internal static class PrefabConfigManager
             )
         },
         {
+            "elaking_trashpile",
+            new PrefabConfig(
+                name: "elaking_trashpile",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
             "fader_bellholder",
             new PrefabConfig(
                 name: "fader_bellholder",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -6414,6 +9942,7 @@ internal static class PrefabConfigManager
                 name: "fenrirhide_hanging",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "WolfHairBundle,2",
@@ -6439,6 +9968,7 @@ internal static class PrefabConfigManager
                 name: "fire_pit_haldor",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Misc,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,5;Wood,2;BlackCore,1",
@@ -6456,6 +9986,7 @@ internal static class PrefabConfigManager
                 name: "fire_pit_hildir",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Misc,
                 craftingStation: nameof(CraftingStations.Forge),
                 requirements: "Ironpit,1;Wood,1;BlackCore,1",
@@ -6473,6 +10004,7 @@ internal static class PrefabConfigManager
                 name: "flying_core",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Crystal,24",
@@ -6483,11 +10015,54 @@ internal static class PrefabConfigManager
             )
         },
         {
+            "frozenship",
+            new PrefabConfig(
+                name: "frozenship",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "frozenship02",
+            new PrefabConfig(
+                name: "frozenship02",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "frozenship03",
+            new PrefabConfig(
+                name: "frozenship03",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
             "fuling_trap",
             new PrefabConfig(
                 name: "fuling_trap",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -6502,12 +10077,12 @@ internal static class PrefabConfigManager
                 name: "giant_arm",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hoe),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "BlackMarble,32",
                 clipEverything: true,
-                pieceGroup: PieceClassification.Rock,
-                pieceTable: nameof(PieceTables.Hoe)
+                pieceGroup: PieceClassification.Rock
             )
         },
         {
@@ -6528,6 +10103,7 @@ internal static class PrefabConfigManager
                 name: "giant_brain_frac",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Softtissue,64",
@@ -6554,6 +10130,7 @@ internal static class PrefabConfigManager
                 name: "giant_helmet1_destruction",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Iron,24",
@@ -6580,6 +10157,7 @@ internal static class PrefabConfigManager
                 name: "giant_helmet2_destruction",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Iron,24",
@@ -6594,12 +10172,12 @@ internal static class PrefabConfigManager
                 name: "giant_ribs",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hoe),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "BlackMarble,64",
                 clipEverything: true,
-                pieceGroup: PieceClassification.Rock,
-                pieceTable: nameof(PieceTables.Hoe)
+                pieceGroup: PieceClassification.Rock
             )
         },
         {
@@ -6608,14 +10186,14 @@ internal static class PrefabConfigManager
                 name: "giant_ribs_frac",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hoe),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "BlackMarble,64",
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Rock,
-                pieceTable: nameof(PieceTables.Hoe)
+                pieceGroup: PieceClassification.Rock
             )
         },
         {
@@ -6624,12 +10202,12 @@ internal static class PrefabConfigManager
                 name: "giant_skull",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hoe),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "BlackMarble,32",
                 clipEverything: true,
-                pieceGroup: PieceClassification.Rock,
-                pieceTable: nameof(PieceTables.Hoe)
+                pieceGroup: PieceClassification.Rock
             )
         },
         {
@@ -6638,14 +10216,14 @@ internal static class PrefabConfigManager
                 name: "giant_skull_frac",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hoe),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "BlackMarble,32",
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Rock,
-                pieceTable: nameof(PieceTables.Hoe)
+                pieceGroup: PieceClassification.Rock
             )
         },
         {
@@ -6666,6 +10244,7 @@ internal static class PrefabConfigManager
                 name: "giant_sword1_destruction",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Iron,16",
@@ -6692,6 +10271,7 @@ internal static class PrefabConfigManager
                 name: "giant_sword2_destruction",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Iron,16",
@@ -6706,6 +10286,7 @@ internal static class PrefabConfigManager
                 name: "goblin_banner",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Furniture,
                 craftingStation: nameof(CraftingStations.Workbench),
                 requirements: "Wood,1;DeerHide,1;Tar,1",
@@ -6721,6 +10302,7 @@ internal static class PrefabConfigManager
                 name: "goblin_bed",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Furniture,
                 craftingStation: nameof(CraftingStations.Workbench),
                 requirements: "Wood,8;Tar,1",
@@ -6737,6 +10319,7 @@ internal static class PrefabConfigManager
                 name: "goblin_fence",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Building,
                 craftingStation: nameof(CraftingStations.Workbench),
                 requirements: "Wood,2;Tar,1",
@@ -6752,6 +10335,7 @@ internal static class PrefabConfigManager
                 name: "goblin_pole",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Building,
                 craftingStation: nameof(CraftingStations.Workbench),
                 requirements: "Wood,1;Tar,1",
@@ -6767,6 +10351,7 @@ internal static class PrefabConfigManager
                 name: "goblin_pole_small",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Building,
                 craftingStation: nameof(CraftingStations.Workbench),
                 requirements: "Wood,1;Tar,1",
@@ -6782,6 +10367,7 @@ internal static class PrefabConfigManager
                 name: "goblin_roof_45d",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Building,
                 craftingStation: nameof(CraftingStations.Workbench),
                 requirements: "Wood,1;DeerHide,1;Tar,1",
@@ -6797,6 +10383,7 @@ internal static class PrefabConfigManager
                 name: "goblin_roof_45d_corner",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Building,
                 craftingStation: nameof(CraftingStations.Workbench),
                 requirements: "Wood,1;DeerHide,1;Tar,1",
@@ -6812,6 +10399,7 @@ internal static class PrefabConfigManager
                 name: "goblin_roof_cap",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Building,
                 craftingStation: nameof(CraftingStations.Workbench),
                 requirements: "Wood,4;DeerHide,4;Tar,1",
@@ -6827,6 +10415,7 @@ internal static class PrefabConfigManager
                 name: "goblin_stairs",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Building,
                 craftingStation: nameof(CraftingStations.Workbench),
                 requirements: "Wood,2;Tar,1",
@@ -6842,6 +10431,7 @@ internal static class PrefabConfigManager
                 name: "goblin_stepladder",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Building,
                 craftingStation: nameof(CraftingStations.Workbench),
                 requirements: "Wood,2;Tar,1",
@@ -6857,6 +10447,7 @@ internal static class PrefabConfigManager
                 name: "goblin_strawpile",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Furniture,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Wood,4",
@@ -6874,6 +10465,7 @@ internal static class PrefabConfigManager
                 name: "goblin_totempole",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Workbench),
                 requirements: "Wood,2;GoblinTotem,1",
@@ -6889,6 +10481,7 @@ internal static class PrefabConfigManager
                 name: "goblin_trashpile",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -6904,6 +10497,7 @@ internal static class PrefabConfigManager
                 name: "goblin_woodwall_1m",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Building,
                 craftingStation: nameof(CraftingStations.Workbench),
                 requirements: "Wood,1;Tar,1",
@@ -6919,6 +10513,7 @@ internal static class PrefabConfigManager
                 name: "goblin_woodwall_2m",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Building,
                 craftingStation: nameof(CraftingStations.Workbench),
                 requirements: "Wood,2;Tar,1",
@@ -6934,6 +10529,7 @@ internal static class PrefabConfigManager
                 name: "goblin_woodwall_2m_ribs",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "BoneFragments,6;Tar,1",
@@ -6949,6 +10545,7 @@ internal static class PrefabConfigManager
                 name: "goblinking_totemholder",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Stone,1;Tar,1",
@@ -6959,11 +10556,26 @@ internal static class PrefabConfigManager
             )
         },
         {
+            "goldvein_frac",
+            new PrefabConfig(
+                name: "goldvein_frac",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
             "hanging_hairstrands",
             new PrefabConfig(
                 name: "hanging_hairstrands",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -6978,12 +10590,12 @@ internal static class PrefabConfigManager
                 name: "highstone",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hoe),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,32",
                 clipEverything: true,
-                pieceGroup: PieceClassification.Rock,
-                pieceTable: nameof(PieceTables.Hoe)
+                pieceGroup: PieceClassification.Rock
             )
         },
         {
@@ -6992,14 +10604,14 @@ internal static class PrefabConfigManager
                 name: "highstone_frac",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hoe),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,32",
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Rock,
-                pieceTable: nameof(PieceTables.Hoe)
+                pieceGroup: PieceClassification.Rock
             )
         },
         {
@@ -7008,6 +10620,7 @@ internal static class PrefabConfigManager
                 name: "ice1",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -7034,6 +10647,7 @@ internal static class PrefabConfigManager
                 name: "ice_rock1_frac",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Crystal,32",
@@ -7048,6 +10662,7 @@ internal static class PrefabConfigManager
                 name: "iron_floor_1x1",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -7062,6 +10677,7 @@ internal static class PrefabConfigManager
                 name: "iron_wall_1x1_rusty",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Stonecutter,
                 craftingStation: nameof(CraftingStations.Forge),
                 requirements: "Iron,1",
@@ -7077,14 +10693,14 @@ internal static class PrefabConfigManager
                 name: "lavabomb_rock1",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hoe),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: true,
-                pieceGroup: PieceClassification.Rock,
-                pieceTable: nameof(PieceTables.Hoe)
+                pieceGroup: PieceClassification.Rock
             )
         },
         {
@@ -7107,6 +10723,7 @@ internal static class PrefabConfigManager
                 name: "loot_chest_stone",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Furniture,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Stone,10",
@@ -7120,11 +10737,40 @@ internal static class PrefabConfigManager
             )
         },
         {
+            "loot_deepNorth_Granary",
+            new PrefabConfig(
+                name: "loot_deepNorth_Granary",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "loot_deepNorth_TimberHall",
+            new PrefabConfig(
+                name: "loot_deepNorth_TimberHall",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
             "lox_ribs",
             new PrefabConfig(
                 name: "lox_ribs",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "BoneFragments,30",
@@ -7139,6 +10785,7 @@ internal static class PrefabConfigManager
                 name: "marker01",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,4",
@@ -7153,6 +10800,7 @@ internal static class PrefabConfigManager
                 name: "marker02",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,4",
@@ -7167,6 +10815,7 @@ internal static class PrefabConfigManager
                 name: "metalbar_1x2",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Building,
                 craftingStation: nameof(CraftingStations.BlackForge),
                 requirements: "BlackMarble,2;Copper,1",
@@ -7184,6 +10833,7 @@ internal static class PrefabConfigManager
                 name: "mistvolume",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Eitr,10;Wisp,4",
@@ -7200,9 +10850,52 @@ internal static class PrefabConfigManager
                 name: "morgenhole_pile",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "morkhalla_web_corner",
+            new PrefabConfig(
+                name: "morkhalla_web_corner",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "morkhalla_web_horisontal",
+            new PrefabConfig(
+                name: "morkhalla_web_horisontal",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "morkhalla_web_tunnel",
+            new PrefabConfig(
+                name: "morkhalla_web_tunnel",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false
@@ -7214,6 +10907,7 @@ internal static class PrefabConfigManager
                 name: "mountainkit_chair",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Furniture,
                 craftingStation: nameof(CraftingStations.Workbench),
                 requirements: "FineWood,4",
@@ -7229,6 +10923,7 @@ internal static class PrefabConfigManager
                 name: "mountainkit_table",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Furniture,
                 craftingStation: nameof(CraftingStations.Workbench),
                 requirements: "FineWood,10;IronNails,20",
@@ -7267,6 +10962,7 @@ internal static class PrefabConfigManager
                 name: "mudpile2_frac",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "IronScrap,10",
@@ -7292,6 +10988,7 @@ internal static class PrefabConfigManager
                 name: "mudpile_frac",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "IronScrap,10",
@@ -7312,14 +11009,57 @@ internal static class PrefabConfigManager
             )
         },
         {
+            "obsidian_pile",
+            new PrefabConfig(
+                name: "obsidian_pile",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "offeraltar_FrozenKing_bossroom",
+            new PrefabConfig(
+                name: "offeraltar_FrozenKing_bossroom",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
             "piece_Charred_Balista",
             new PrefabConfig(
                 name: "piece_Charred_Balista",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "piece_FaderEmbers",
+            new PrefabConfig(
+                name: "piece_FaderEmbers",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false
@@ -7331,6 +11071,7 @@ internal static class PrefabConfigManager
                 name: "piece_blackwood_bench",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Workbench),
                 requirements: "Blackwood,6",
@@ -7345,6 +11086,7 @@ internal static class PrefabConfigManager
                 name: "piece_dvergr_pole",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Building,
                 craftingStation: nameof(CraftingStations.BlackForge),
                 requirements: "YggdrasilWood,1",
@@ -7361,6 +11103,7 @@ internal static class PrefabConfigManager
                 name: "piece_dvergr_wood_door",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Building,
                 craftingStation: nameof(CraftingStations.BlackForge),
                 requirements: "YggdrasilWood,16;IronNails,24",
@@ -7376,6 +11119,7 @@ internal static class PrefabConfigManager
                 name: "piece_dvergr_wood_wall",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Building,
                 craftingStation: nameof(CraftingStations.BlackForge),
                 requirements: "YggdrasilWood,5",
@@ -7391,6 +11135,7 @@ internal static class PrefabConfigManager
                 name: "piece_pot1_cracked",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -7405,6 +11150,7 @@ internal static class PrefabConfigManager
                 name: "piece_pot1_red",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -7419,6 +11165,7 @@ internal static class PrefabConfigManager
                 name: "piece_pot2_cracked",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -7433,6 +11180,7 @@ internal static class PrefabConfigManager
                 name: "piece_pot2_red",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -7447,6 +11195,7 @@ internal static class PrefabConfigManager
                 name: "piece_pot3_cracked",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -7461,6 +11210,7 @@ internal static class PrefabConfigManager
                 name: "piece_pot3_red",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -7475,6 +11225,7 @@ internal static class PrefabConfigManager
                 name: "portal",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Misc,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "GreydwarfEye,10;BlackMarble,20;MoltenCore,2",
@@ -7487,18 +11238,480 @@ internal static class PrefabConfigManager
             )
         },
         {
+            "prop_FeastAshlands",
+            new PrefabConfig(
+                name: "prop_FeastAshlands",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "prop_FeastMeadows",
+            new PrefabConfig(
+                name: "prop_FeastMeadows",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "prop_Tankard",
+            new PrefabConfig(
+                name: "prop_Tankard",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "prop_ashwood_bed",
+            new PrefabConfig(
+                name: "prop_ashwood_bed",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "prop_bed02",
+            new PrefabConfig(
+                name: "prop_bed02",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "prop_bonfire",
+            new PrefabConfig(
+                name: "prop_bonfire",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "prop_cauldron_ext1_spice",
+            new PrefabConfig(
+                name: "prop_cauldron_ext1_spice",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "prop_cauldron_ext3_butchertable",
+            new PrefabConfig(
+                name: "prop_cauldron_ext3_butchertable",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "prop_cauldron_ext5_mortarandpestle",
+            new PrefabConfig(
+                name: "prop_cauldron_ext5_mortarandpestle",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "prop_cauldron_ext6_rollingpins",
+            new PrefabConfig(
+                name: "prop_cauldron_ext6_rollingpins",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "prop_chest_warderobe",
+            new PrefabConfig(
+                name: "prop_chest_warderobe",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "prop_forge_ext2",
+            new PrefabConfig(
+                name: "prop_forge_ext2",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "prop_forge_ext5",
+            new PrefabConfig(
+                name: "prop_forge_ext5",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "prop_hearth",
+            new PrefabConfig(
+                name: "prop_hearth",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "prop_itemstand",
+            new PrefabConfig(
+                name: "prop_itemstand",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "prop_itemstand_TrophyDraugrElite",
+            new PrefabConfig(
+                name: "prop_itemstand_TrophyDraugrElite",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "prop_itemstand_TrophyGoblinBrute",
+            new PrefabConfig(
+                name: "prop_itemstand_TrophyGoblinBrute",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "prop_itemstand_TrophyGoblinShaman",
+            new PrefabConfig(
+                name: "prop_itemstand_TrophyGoblinShaman",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "prop_itemstand_TrophyGreydwarf",
+            new PrefabConfig(
+                name: "prop_itemstand_TrophyGreydwarf",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "prop_itemstand_TrophyGreydwarfBrute",
+            new PrefabConfig(
+                name: "prop_itemstand_TrophyGreydwarfBrute",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "prop_itemstand_TrophySeekerBrute",
+            new PrefabConfig(
+                name: "prop_itemstand_TrophySeekerBrute",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "prop_piece_MeadCauldron",
+            new PrefabConfig(
+                name: "prop_piece_MeadCauldron",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "prop_piece_bench_runed",
+            new PrefabConfig(
+                name: "prop_piece_bench_runed",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "prop_piece_brazierfloor01",
+            new PrefabConfig(
+                name: "prop_piece_brazierfloor01",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "prop_piece_cauldron",
+            new PrefabConfig(
+                name: "prop_piece_cauldron",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "prop_piece_chair03",
+            new PrefabConfig(
+                name: "prop_piece_chair03",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "prop_piece_cookingstation",
+            new PrefabConfig(
+                name: "prop_piece_cookingstation",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "prop_piece_workbench_ext1",
+            new PrefabConfig(
+                name: "prop_piece_workbench_ext1",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "prop_piece_workbench_ext2",
+            new PrefabConfig(
+                name: "prop_piece_workbench_ext2",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "prop_piece_workbench_ext3",
+            new PrefabConfig(
+                name: "prop_piece_workbench_ext3",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "prop_piece_workbench_ext4",
+            new PrefabConfig(
+                name: "prop_piece_workbench_ext4",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "prop_preptable",
+            new PrefabConfig(
+                name: "prop_preptable",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "prop_wood_stack",
+            new PrefabConfig(
+                name: "prop_wood_stack",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
             "rock1_mistlands",
             new PrefabConfig(
                 name: "rock1_mistlands",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hoe),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
                 clipEverything: true,
                 pieceName: "Rock (large boulder)",
-                pieceGroup: PieceClassification.Rock,
-                pieceTable: nameof(PieceTables.Hoe)
+                pieceGroup: PieceClassification.Rock
             )
         },
         {
@@ -7507,12 +11720,12 @@ internal static class PrefabConfigManager
                 name: "rock1_mountain",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hoe),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
                 clipEverything: true,
-                pieceGroup: PieceClassification.Rock,
-                pieceTable: nameof(PieceTables.Hoe)
+                pieceGroup: PieceClassification.Rock
             )
         },
         {
@@ -7521,14 +11734,14 @@ internal static class PrefabConfigManager
                 name: "rock1_mountain_frac",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hoe),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,350",
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Rock,
-                pieceTable: nameof(PieceTables.Hoe)
+                pieceGroup: PieceClassification.Rock
             )
         },
         {
@@ -7537,12 +11750,12 @@ internal static class PrefabConfigManager
                 name: "rock2_heath",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hoe),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
                 clipEverything: true,
-                pieceGroup: PieceClassification.Rock,
-                pieceTable: nameof(PieceTables.Hoe)
+                pieceGroup: PieceClassification.Rock
             )
         },
         {
@@ -7551,14 +11764,14 @@ internal static class PrefabConfigManager
                 name: "rock2_heath_frac",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hoe),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,32",
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Rock,
-                pieceTable: nameof(PieceTables.Hoe)
+                pieceGroup: PieceClassification.Rock
             )
         },
         {
@@ -7567,12 +11780,12 @@ internal static class PrefabConfigManager
                 name: "rock2_mountain",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hoe),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,64",
                 clipEverything: true,
-                pieceGroup: PieceClassification.Rock,
-                pieceTable: nameof(PieceTables.Hoe)
+                pieceGroup: PieceClassification.Rock
             )
         },
         {
@@ -7581,14 +11794,14 @@ internal static class PrefabConfigManager
                 name: "rock2_mountain_frac",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hoe),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,64",
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Rock,
-                pieceTable: nameof(PieceTables.Hoe)
+                pieceGroup: PieceClassification.Rock
             )
         },
         {
@@ -7597,12 +11810,12 @@ internal static class PrefabConfigManager
                 name: "rock3_ice",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hoe),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Crystal,32",
                 clipEverything: true,
-                pieceGroup: PieceClassification.Rock,
-                pieceTable: nameof(PieceTables.Hoe)
+                pieceGroup: PieceClassification.Rock
             )
         },
         {
@@ -7611,14 +11824,14 @@ internal static class PrefabConfigManager
                 name: "rock3_ice_frac",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hoe),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Crystal,32",
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Rock,
-                pieceTable: nameof(PieceTables.Hoe)
+                pieceGroup: PieceClassification.Rock
             )
         },
         {
@@ -7627,12 +11840,26 @@ internal static class PrefabConfigManager
                 name: "rock3_mountain",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hoe),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,100",
                 clipEverything: true,
-                pieceGroup: PieceClassification.Rock,
-                pieceTable: nameof(PieceTables.Hoe)
+                pieceGroup: PieceClassification.Rock
+            )
+        },
+        {
+            "rock3_mountain_1_frac",
+            new PrefabConfig(
+                name: "rock3_mountain_1_frac",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
             )
         },
         {
@@ -7641,14 +11868,14 @@ internal static class PrefabConfigManager
                 name: "rock3_mountain_frac",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hoe),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,100",
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Rock,
-                pieceTable: nameof(PieceTables.Hoe)
+                pieceGroup: PieceClassification.Rock
             )
         },
         {
@@ -7657,12 +11884,12 @@ internal static class PrefabConfigManager
                 name: "rock3_silver",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hoe),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,64;SilverOre,32",
                 clipEverything: true,
-                pieceGroup: PieceClassification.Ore,
-                pieceTable: nameof(PieceTables.Hoe)
+                pieceGroup: PieceClassification.Ore
             )
         },
         {
@@ -7671,14 +11898,14 @@ internal static class PrefabConfigManager
                 name: "rock3_silver_frac",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hoe),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,64;SilverOre,32",
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Ore,
-                pieceTable: nameof(PieceTables.Hoe)
+                pieceGroup: PieceClassification.Ore
             )
         },
         {
@@ -7687,14 +11914,28 @@ internal static class PrefabConfigManager
                 name: "rock4_ashlands_frac",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hoe),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Rock,
-                pieceTable: nameof(PieceTables.Hoe)
+                pieceGroup: PieceClassification.Rock
+            )
+        },
+        {
+            "rock4_bigrock_frac",
+            new PrefabConfig(
+                name: "rock4_bigrock_frac",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
             )
         },
         {
@@ -7703,12 +11944,12 @@ internal static class PrefabConfigManager
                 name: "rock4_coast",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hoe),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,64",
                 clipEverything: true,
-                pieceGroup: PieceClassification.Rock,
-                pieceTable: nameof(PieceTables.Hoe)
+                pieceGroup: PieceClassification.Rock
             )
         },
         {
@@ -7717,14 +11958,14 @@ internal static class PrefabConfigManager
                 name: "rock4_coast_frac",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hoe),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,64",
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Rock,
-                pieceTable: nameof(PieceTables.Hoe)
+                pieceGroup: PieceClassification.Rock
             )
         },
         {
@@ -7733,12 +11974,12 @@ internal static class PrefabConfigManager
                 name: "rock4_copper",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hoe),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,64;CopperOre,32",
                 clipEverything: true,
-                pieceGroup: PieceClassification.Ore,
-                pieceTable: nameof(PieceTables.Hoe)
+                pieceGroup: PieceClassification.Ore
             )
         },
         {
@@ -7747,14 +11988,14 @@ internal static class PrefabConfigManager
                 name: "rock4_copper_frac",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hoe),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
                 clipEverything: true,
                 clipGround: true,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Ore,
-                pieceTable: nameof(PieceTables.Hoe)
+                pieceGroup: PieceClassification.Ore
             )
         },
         {
@@ -7763,12 +12004,12 @@ internal static class PrefabConfigManager
                 name: "rock4_forest",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hoe),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,64",
                 clipEverything: true,
-                pieceGroup: PieceClassification.Rock,
-                pieceTable: nameof(PieceTables.Hoe)
+                pieceGroup: PieceClassification.Rock
             )
         },
         {
@@ -7777,14 +12018,14 @@ internal static class PrefabConfigManager
                 name: "rock4_forest_frac",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hoe),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,64",
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Rock,
-                pieceTable: nameof(PieceTables.Hoe)
+                pieceGroup: PieceClassification.Rock
             )
         },
         {
@@ -7793,12 +12034,12 @@ internal static class PrefabConfigManager
                 name: "rock4_heath",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hoe),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,32",
                 clipEverything: true,
-                pieceGroup: PieceClassification.Rock,
-                pieceTable: nameof(PieceTables.Hoe)
+                pieceGroup: PieceClassification.Rock
             )
         },
         {
@@ -7807,14 +12048,14 @@ internal static class PrefabConfigManager
                 name: "rock4_heath_frac",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hoe),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,32",
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Rock,
-                pieceTable: nameof(PieceTables.Hoe)
+                pieceGroup: PieceClassification.Rock
             )
         },
         {
@@ -7823,13 +12064,13 @@ internal static class PrefabConfigManager
                 name: "rock_mistlands1",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hoe),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,48",
                 clipEverything: true,
                 pieceName: "Rock (black)",
-                pieceGroup: PieceClassification.Rock,
-                pieceTable: nameof(PieceTables.Hoe)
+                pieceGroup: PieceClassification.Rock
             )
         },
         {
@@ -7838,6 +12079,7 @@ internal static class PrefabConfigManager
                 name: "rock_mistlands1_frac",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hoe),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,48",
@@ -7845,8 +12087,7 @@ internal static class PrefabConfigManager
                 clipGround: false,
                 placementPatch: false,
                 pieceName: "Rock (black)",
-                pieceGroup: PieceClassification.Rock,
-                pieceTable: nameof(PieceTables.Hoe)
+                pieceGroup: PieceClassification.Rock
             )
         },
         {
@@ -7855,6 +12096,7 @@ internal static class PrefabConfigManager
                 name: "rock_mistlands2",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hoe),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,48",
@@ -7863,7 +12105,6 @@ internal static class PrefabConfigManager
                 placementPatch: false,
                 pieceName: "Rock (black, alt)",
                 pieceGroup: PieceClassification.Rock,
-                pieceTable: nameof(PieceTables.Hoe),
                 spawnOnDestroyed: "sfx_rock_destroyed"
             )
         },
@@ -7873,14 +12114,14 @@ internal static class PrefabConfigManager
                 name: "rockformation1",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hoe),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,350",
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Rock,
-                pieceTable: nameof(PieceTables.Hoe)
+                pieceGroup: PieceClassification.Rock
             )
         },
         {
@@ -7889,14 +12130,14 @@ internal static class PrefabConfigManager
                 name: "root07",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Cultivator),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "ElderBark,2",
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Flora,
-                pieceTable: nameof(PieceTables.Cultivator)
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -7905,14 +12146,14 @@ internal static class PrefabConfigManager
                 name: "root08",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Cultivator),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "ElderBark,4",
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Flora,
-                pieceTable: nameof(PieceTables.Cultivator)
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -7921,14 +12162,14 @@ internal static class PrefabConfigManager
                 name: "root11",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Cultivator),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "ElderBark,4",
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Flora,
-                pieceTable: nameof(PieceTables.Cultivator)
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -7937,14 +12178,14 @@ internal static class PrefabConfigManager
                 name: "root12",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Cultivator),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "ElderBark,4",
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Flora,
-                pieceTable: nameof(PieceTables.Cultivator)
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -7953,6 +12194,7 @@ internal static class PrefabConfigManager
                 name: "rug_bogwitch_deer",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -7968,6 +12210,7 @@ internal static class PrefabConfigManager
                 name: "rug_bogwitch_fur",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -7983,6 +12226,7 @@ internal static class PrefabConfigManager
                 name: "rug_bogwitch_wolf",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -8026,6 +12270,7 @@ internal static class PrefabConfigManager
                 name: "shipwreck_karve_bottomboards",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "FineWood,8",
@@ -8040,6 +12285,7 @@ internal static class PrefabConfigManager
                 name: "shipwreck_karve_bow",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "FineWood,16",
@@ -8054,6 +12300,7 @@ internal static class PrefabConfigManager
                 name: "shipwreck_karve_dragonhead",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "FineWood,8",
@@ -8069,6 +12316,7 @@ internal static class PrefabConfigManager
                 name: "shipwreck_karve_stern",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "FineWood,16",
@@ -8083,10 +12331,81 @@ internal static class PrefabConfigManager
                 name: "shipwreck_karve_sternpost",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "FineWood,10",
                 clipEverything: true,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "shipwreck_vikingship_chest",
+            new PrefabConfig(
+                name: "shipwreck_vikingship_chest",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "shipwreck_vikingship_front",
+            new PrefabConfig(
+                name: "shipwreck_vikingship_front",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "shipwreck_vikingship_frontpiece",
+            new PrefabConfig(
+                name: "shipwreck_vikingship_frontpiece",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "shipwreck_vikingship_mast1",
+            new PrefabConfig(
+                name: "shipwreck_vikingship_mast1",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "shipwreck_vikingship_rear",
+            new PrefabConfig(
+                name: "shipwreck_vikingship_rear",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
                 clipGround: false,
                 placementPatch: false
             )
@@ -8097,14 +12416,14 @@ internal static class PrefabConfigManager
                 name: "shrub_2",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Cultivator),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Flora,
-                pieceTable: nameof(PieceTables.Cultivator)
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -8113,14 +12432,14 @@ internal static class PrefabConfigManager
                 name: "shrub_2_heath",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Cultivator),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Flora,
-                pieceTable: nameof(PieceTables.Cultivator)
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -8129,6 +12448,7 @@ internal static class PrefabConfigManager
                 name: "siege_wall_1x1",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,2",
@@ -8144,6 +12464,7 @@ internal static class PrefabConfigManager
                 name: "sign_notext",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Building,
                 craftingStation: nameof(CraftingStations.Workbench),
                 requirements: "Wood,1",
@@ -8161,12 +12482,12 @@ internal static class PrefabConfigManager
                 name: "silvervein",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hoe),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,50;SilverOre,50",
                 clipEverything: true,
-                pieceGroup: PieceClassification.Ore,
-                pieceTable: nameof(PieceTables.Hoe)
+                pieceGroup: PieceClassification.Ore
             )
         },
         {
@@ -8175,14 +12496,14 @@ internal static class PrefabConfigManager
                 name: "silvervein_frac",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hoe),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,50;SilverOre,50",
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Ore,
-                pieceTable: nameof(PieceTables.Hoe)
+                pieceGroup: PieceClassification.Ore
             )
         },
         {
@@ -8191,6 +12512,7 @@ internal static class PrefabConfigManager
                 name: "smokebomb_explosion",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -8205,6 +12527,7 @@ internal static class PrefabConfigManager
                 name: "stone_floor",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Stonecutter,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Stone,16",
@@ -8216,11 +12539,68 @@ internal static class PrefabConfigManager
             )
         },
         {
+            "stone_wall_1x1_ruin",
+            new PrefabConfig(
+                name: "stone_wall_1x1_ruin",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "stone_wall_2x1_ruin",
+            new PrefabConfig(
+                name: "stone_wall_2x1_ruin",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "stone_wall_ruin",
+            new PrefabConfig(
+                name: "stone_wall_ruin",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "stone_wall_ruin_2",
+            new PrefabConfig(
+                name: "stone_wall_ruin_2",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
             "stoneblock_fracture",
             new PrefabConfig(
                 name: "stoneblock_fracture",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Stonecutter,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Stone,16",
@@ -8232,19 +12612,61 @@ internal static class PrefabConfigManager
             )
         },
         {
+            "stonewall_2",
+            new PrefabConfig(
+                name: "stonewall_2",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "stonewall_3",
+            new PrefabConfig(
+                name: "stonewall_3",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
             "stubbe",
             new PrefabConfig(
                 name: "stubbe",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Cultivator),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Flora,
-                pieceTable: nameof(PieceTables.Cultivator)
+                pieceGroup: PieceClassification.Flora
+            )
+        },
+        {
+            "stubbe_deepnorth",
+            new PrefabConfig(
+                name: "stubbe_deepnorth",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
             )
         },
         {
@@ -8253,6 +12675,7 @@ internal static class PrefabConfigManager
                 name: "stubbe_spawner",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -8267,6 +12690,7 @@ internal static class PrefabConfigManager
                 name: "sunken_crypt_gate",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Stonecutter,
                 craftingStation: nameof(CraftingStations.Forge),
                 requirements: "Iron,4",
@@ -8297,6 +12721,7 @@ internal static class PrefabConfigManager
                 name: "tarlump1_frac",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hoe),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Tar,50",
@@ -8304,8 +12729,7 @@ internal static class PrefabConfigManager
                 clipGround: false,
                 placementPatch: false,
                 pieceName: "Crystallized tar",
-                pieceGroup: PieceClassification.Ore,
-                pieceTable: nameof(PieceTables.Hoe)
+                pieceGroup: PieceClassification.Ore
             )
         },
         {
@@ -8314,6 +12738,7 @@ internal static class PrefabConfigManager
                 name: "trader_wagon_destructable",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Furniture,
                 craftingStation: nameof(CraftingStations.BlackForge),
                 requirements: "FineWood,32",
@@ -8328,6 +12753,7 @@ internal static class PrefabConfigManager
                 name: "tunnel_web",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -8342,6 +12768,7 @@ internal static class PrefabConfigManager
                 name: "turf_roof",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Building,
                 craftingStation: nameof(CraftingStations.Workbench),
                 requirements: "Wood,2",
@@ -8357,6 +12784,7 @@ internal static class PrefabConfigManager
                 name: "turf_roof_top",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Building,
                 craftingStation: nameof(CraftingStations.Workbench),
                 requirements: "Wood,2",
@@ -8372,6 +12800,7 @@ internal static class PrefabConfigManager
                 name: "veg_skull_Ashlands",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -8386,6 +12815,7 @@ internal static class PrefabConfigManager
                 name: "vertical_web",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -8400,14 +12830,14 @@ internal static class PrefabConfigManager
                 name: "vines",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Cultivator),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Wood,2",
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Flora,
-                pieceTable: nameof(PieceTables.Cultivator)
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -8416,6 +12846,7 @@ internal static class PrefabConfigManager
                 name: "volture_strawpile",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
@@ -8430,12 +12861,26 @@ internal static class PrefabConfigManager
                 name: "widestone",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hoe),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,32",
                 clipEverything: true,
-                pieceGroup: PieceClassification.Rock,
-                pieceTable: nameof(PieceTables.Hoe)
+                pieceGroup: PieceClassification.Rock
+            )
+        },
+        {
+            "widestone_2_frac",
+            new PrefabConfig(
+                name: "widestone_2_frac",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
             )
         },
         {
@@ -8444,14 +12889,14 @@ internal static class PrefabConfigManager
                 name: "widestone_frac",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hoe),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,32",
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Rock,
-                pieceTable: nameof(PieceTables.Hoe)
+                pieceGroup: PieceClassification.Rock
             )
         },
         {
@@ -8460,6 +12905,7 @@ internal static class PrefabConfigManager
                 name: "wood_ledge",
                 enabled: true,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Building,
                 craftingStation: nameof(CraftingStations.Workbench),
                 requirements: "Wood,1",
@@ -8470,19 +12916,61 @@ internal static class PrefabConfigManager
             )
         },
         {
+            "wood_pole_log_4_worn",
+            new PrefabConfig(
+                name: "wood_pole_log_4_worn",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "wood_wall_roof",
+            new PrefabConfig(
+                name: "wood_wall_roof",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
+            "wooden_path",
+            new PrefabConfig(
+                name: "wooden_path",
+                enabled: false,
+                allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Hammer),
+                category: PieceCategoryManager.CreatorShop,
+                craftingStation: nameof(CraftingStations.None),
+                clipEverything: false,
+                clipGround: false,
+                placementPatch: false
+            )
+        },
+        {
             "yggashoot_log",
             new PrefabConfig(
                 name: "yggashoot_log",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Cultivator),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "YggdrasilWood,10",
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Flora,
-                pieceTable: nameof(PieceTables.Cultivator)
+                pieceGroup: PieceClassification.Flora
             )
         },
         {
@@ -8491,15 +12979,16 @@ internal static class PrefabConfigManager
                 name: "yggashoot_log_half",
                 enabled: false,
                 allowedInDungeons: false,
+                pieceTable: nameof(PieceTables.Cultivator),
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "YggdrasilWood,10",
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceGroup: PieceClassification.Flora,
-                pieceTable: nameof(PieceTables.Cultivator)
+                pieceGroup: PieceClassification.Flora
             )
         },
     };
+
 }
