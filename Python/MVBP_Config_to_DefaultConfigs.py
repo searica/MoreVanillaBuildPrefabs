@@ -80,8 +80,8 @@ class PrefabConfig:
         result = [f"new {PrefabConfig.__name__}("]
 
         for name in self.get_attr_names():
-            if getattr(self, name) is not None:
-                val = getattr(self, name)
+            val = getattr(self, name)
+            if val is not None:
                 if name in self._needs_quotes:
                     val = f'\"{val}\"'
                 result.append(f'{self._tab}{name}: {val},')
@@ -102,7 +102,7 @@ def main():
         + " PrefabConfigMap = new()\n"
     )
 
-    mod_manager_name = "Roaming/com.kesomannen.gale"
+    mod_manager_name = "com.kesomannen.gale"
     game_name = "valheim"
     mod_profile_name = "Debug"
     config_file_name = "Searica.Valheim.MoreVanillaBuildPrefabs.cfg"
@@ -164,7 +164,6 @@ def read_default_configs(
             i = i + 1
 
         prefab_config = PrefabConfig()
-
         for line in lines[i:]:
             if "name:" in line:
                 # Encountering a "name:" line when prefab_config is valid
@@ -203,7 +202,7 @@ def read_config_file(
 
         prefab_config = PrefabConfig()
 
-        for line in lines[88:]:
+        for line in lines[82:]:
             if line.startswith("["):  # prefab config section
                 # add config to dictionary is it has been initialized
                 if (prefab_config.is_valid()):
@@ -233,14 +232,18 @@ def capitalize_first_letter(text: str):
 def get_line_value(line: str, split: str):
     """Gets value from line after the split string"""
     val = line.split(split)[-1].strip(",\n").strip().strip('"')
+
+    # handle config file lines to convert to the field name
     val = val.replace("BuildingWorkbench", "Building")
     val = val.replace("BuildingStonecutter", "Stonecutter")
+
+    # convert config file friendly lines to the C# code
     if "Category = " in line:
         return f"PieceCategoryManager.{val}"
     elif "CraftingStation = " in line:
         val = f"nameof(CraftingStations.{val})"
     elif "PieceTable = " in line:
-            val = f"nameof(PieceTables.{val})"
+        val = f"nameof(PieceTables.{val})"
 
     return val
 
@@ -264,6 +267,7 @@ def write_output(
         close_key_value_pair = f"{indent}{tab}" + "},\n"
         kvp_indent = f"{indent}{tab*2}"
         sorted_keys = sorted(x for x in prefab_configs.keys())
+
         for key in sorted_keys:
             prefab_config = prefab_configs[key]
             out_file.write(open_key_value_pair)
