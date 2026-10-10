@@ -2,6 +2,7 @@
 
 using MVBP.Extensions;
 using MVBP.PrefabManagement;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -41,176 +42,168 @@ internal class UsageTagManager
     private static Piece.UsageTagFlags DetectUsageTag(GameObject prefab)
     {
         string prefabName = prefab.name.ToLower();
+
         Piece piece = prefab.GetComponent<Piece>();
-        Destructible destructible = prefab.GetComponent<Destructible>();
 
-        List<Piece.UsageTagFlags> tags = new();
-
-        // Crafting tag
-        if (prefab.HasAnyComponent(
-                "CraftingStation",
-                "StationExtension",
-                "CookingStation",
-                "Smelter", // includes windmills
-                "WispSpawner"
-            )
-        )
+        var flags = piece.m_category switch
         {
-            tags.Add(Piece.UsageTagFlags.Crafting);
-        }
-
-        // Building tag
-        if (prefab.GetComponent<WearNTear>())
-        {
-            tags.Add(Piece.UsageTagFlags.Building);
-        }
-
-        // Floor tag
-        if (prefabName.Contains("floor"))
-        {
-            tags.Add(Piece.UsageTagFlags.Floor);
-        }
-
-        // Wall tag
-        if (prefabName.Contains("wall"))
-        {
-            tags.Add(Piece.UsageTagFlags.Wall);
-        }
-
-        // Roof tag
-        if (prefabName.Contains("roof") || (prefab.TryGetComponent(out WearNTear roof) && roof.m_noSupportWear))
-        {
-            tags.Add(Piece.UsageTagFlags.Roof);
-        }
-
-        // Architecture tag
-        if (prefabName.ContainsAny("pole", "beam", "cross"))
-        {
-            tags.Add(Piece.UsageTagFlags.Architecture);
-        }
-
-        // Furniture tag
-        if (
-            (prefab.GetComponent<Chair>() ||
-            prefabName.ContainsAny("chair", "throne", "bench", "stool") ||
-            piece.m_comfortGroup == Piece.ComfortGroup.Chair) &&
-            !prefab.HasAnyComponent("CraftingStation", "StationExtension", "Barber")
-        )
-        {
-            tags.Add(Piece.UsageTagFlags.Furniture);
-        }
-        else if (
-            piece?.m_comfortGroup == Piece.ComfortGroup.Table ||
-            (prefabName.Contains("table") &&
-            !prefab.HasAnyComponent("CraftingStation", "StationExtension", "MapTable"))
-        )
-        {
-            tags.Add(Piece.UsageTagFlags.Furniture);
-        }
-        else if (prefab.GetComponent<Bed>() || prefabName.Contains("bed"))
-        {
-            tags.Add(Piece.UsageTagFlags.Furniture);
-        }
-
-        // Lighting tag
-        if (
-            piece?.m_comfortGroup == Piece.ComfortGroup.Fire
-            || prefab.transform.FindDeepChild("FireWarmth") != null
-            || prefab.GetComponentInChildren<Demister>(true)
-        )
-        {
-            tags.Add(Piece.UsageTagFlags.Lighting);
-        }
-
-        // Decor tag
-        if (prefabName.Contains("armorstand") || prefab.GetComponent<ArmorStand>())
-        {
-            tags.Add(Piece.UsageTagFlags.Decor);
-        }
-        else if (
-            piece?.m_comfortGroup == Piece.ComfortGroup.Banner || prefabName.ContainsAny("banner", "curtain", "drape", "cloth_hanging")
-        )
-        {
-            tags.Add(Piece.UsageTagFlags.Decor);
-        }
-        else if (prefabName.Contains("statue"))
-        {
-            tags.Add(Piece.UsageTagFlags.Decor);
-        }
-        else if (piece?.m_comfortGroup == Piece.ComfortGroup.Carpet || prefabName.ContainsAny("rug", "carpet"))
-        {
-            tags.Add(Piece.UsageTagFlags.Decor);
-        }
-        else if (piece.GetComponent<ItemStand>())
-        {
-            tags.Add(Piece.UsageTagFlags.Decor);
-        }
+            Piece.PieceCategory.Misc => Piece.UsageTagFlags.Misc,
+            Piece.PieceCategory.Crafting => Piece.UsageTagFlags.Crafting,
+            Piece.PieceCategory.BuildingWorkbench => Piece.UsageTagFlags.Building,
+            Piece.PieceCategory.BuildingStonecutter => Piece.UsageTagFlags.Building,
+            Piece.PieceCategory.Furniture => Piece.UsageTagFlags.Furniture,
+            Piece.PieceCategory.DeepNorth => (Piece.UsageTagFlags)0,
+            Piece.PieceCategory.Feasts => Piece.UsageTagFlags.Feasts,
+            Piece.PieceCategory.Food => Piece.UsageTagFlags.Food,
+            Piece.PieceCategory.Meads => Piece.UsageTagFlags.Meads,
+            _ => (Piece.UsageTagFlags)0
+        };
 
         // Storage tag
-        if ((prefabName.Contains("chest") && prefab.GetComponent<Container>()) || prefab.GetComponent<ItemStand>())
+        if ((prefabName.Contains("chest") || prefab.GetComponent<Container>()) || prefab.GetComponent<ItemStand>())
         {
-            tags.Add(Piece.UsageTagFlags.Storage);
-        }
-
-        // Transport tag
-        if (prefab.GetComponent<Ship>() || prefab.GetComponent<Vagon>())
-        {
-            tags.Add(Piece.UsageTagFlags.Transport);
-        }
-
-        // Food Tag
-
-        // Mead tag
-
-        // Feasts Tag
-
-        // Defense tag
-        if (prefab.HasAnyComponent("PrivateArea", "ShieldGenerator"))
-        {
-            tags.Add(Piece.UsageTagFlags.Defense);
-        }
-
-        // Stacks tag
-        if (prefabName.EndsWith("pile") || prefabName.EndsWith("stack"))
-        {
-            tags.Add(Piece.UsageTagFlags.Stacks);
-        }
-
-        // Stairs tag
-        if (prefabName.Contains("stair"))
-        {
-            tags.Add(Piece.UsageTagFlags.Stairs);
+            flags |= Piece.UsageTagFlags.Storage;
         }
 
         // Doors tag
         if (prefab.GetComponent<Door>())
         {
-            tags.Add(Piece.UsageTagFlags.Doors);
+            flags |= Piece.UsageTagFlags.Doors;
         }
 
-        // Seasonal tag
-
-
-        //if (prefab.GetComponent<TeleportWorld>())
-        //{
-        //    return PieceClassification.Portal;
-        //}
-
-        if (tags.Count == 0)
+        // Lighting tag
+        if (
+            piece.m_comfortGroup == Piece.ComfortGroup.Fire
+            || piece.GetComponent<Fireplace>()
+            || prefabName.ContainsAny("torch", "lantern", "demister")
+            || prefab.transform.FindDeepChild("FireWarmth")
+            || prefab.GetComponentInChildren<Demister>(true)
+        )
         {
-            return Piece.UsageTagFlags.Misc;
+            flags |= Piece.UsageTagFlags.Lighting;
         }
 
-        if (tags.Count == 1)
+        // Crafting tag
+        if (piece.m_category != Piece.PieceCategory.Crafting &&
+            prefab.HasAnyComponent(
+                "CraftingStation",
+                "StationExtension",
+                "CookingStation",
+                "Smelter", // includes windmills
+                "Fermenter",
+                "Beehive",
+                "WispSpawner",
+                "SapCollector"
+            )
+        )
         {
-            return tags[0];
+            flags |= Piece.UsageTagFlags.Crafting;
         }
 
-        Piece.UsageTagFlags result = tags[0];
-        for (int i = 1; i < tags.Count; i++) 
+        // Transport tag
+        if (prefab.GetComponent<Ship>() || prefab.GetComponent<Vagon>() || piece.GetComponent<TeleportWorld>())
         {
-            result = result | tags[i];
+            flags |= Piece.UsageTagFlags.Transport;
         }
-        return result;
+
+        // Decor tag
+        if (prefabName.Contains("armorstand") || prefab.GetComponent<ArmorStand>())
+        {
+            flags |= Piece.UsageTagFlags.Decor;
+        }
+        else if (
+            piece.m_comfortGroup == Piece.ComfortGroup.Banner || prefabName.ContainsAny("banner", "curtain", "drape", "cloth_hanging")
+        )
+        {
+            flags |= Piece.UsageTagFlags.Decor;
+        }
+        else if (prefabName.Contains("statue"))
+        {
+            flags |= Piece.UsageTagFlags.Decor;
+        }
+        else if (piece.m_comfortGroup == Piece.ComfortGroup.Carpet || prefabName.ContainsAny("rug", "carpet"))
+        {
+            flags |= Piece.UsageTagFlags.Decor;
+        }
+        else if (piece.GetComponent<ItemStand>()  || piece.GetComponent<Sign>())
+        {
+            flags |= Piece.UsageTagFlags.Decor;
+        }
+
+        // Furniture tag
+        if (piece.m_comfort > 0)
+        {
+            flags |= Piece.UsageTagFlags.Furniture;
+        }
+        else if (
+            (prefab.GetComponent<Chair>() || prefabName.ContainsAny("chair", "throne", "bench", "stool") || piece.m_comfortGroup == Piece.ComfortGroup.Chair) &&
+            !prefab.HasAnyComponent("CraftingStation", "StationExtension")
+        )
+        {
+            flags |= Piece.UsageTagFlags.Furniture;
+        }
+        else if (
+            piece.m_comfortGroup == Piece.ComfortGroup.Table ||
+            (prefabName.Contains("table") && !prefab.HasAnyComponent("CraftingStation", "StationExtension", "MapTable"))
+        )
+        {
+            flags |= Piece.UsageTagFlags.Furniture;
+        }
+        else if (prefab.GetComponent<Bed>() || prefabName.Contains("bed"))
+        {
+            flags |= Piece.UsageTagFlags.Furniture;
+        }
+
+        // Stairs tag
+        if (prefabName.ContainsAny("stair", "ladder", "ramp"))
+        {
+            flags |= Piece.UsageTagFlags.Stairs;
+        }
+
+        // Wall tag
+        if (prefabName.ContainsAny("wall", "window", "fence"))
+        {
+            flags |= Piece.UsageTagFlags.Wall;
+        }
+
+        // Stacks tag
+        if (prefabName.EndsWith("pile") || prefabName.EndsWith("stack"))
+        {
+            flags |= Piece.UsageTagFlags.Stacks;
+        }
+
+        // Floor tag
+        if (prefabName.ContainsAny("floor", "slap"))
+        {
+            flags |= Piece.UsageTagFlags.Floor;
+        }
+
+        // Roof tag
+        // || (prefab.TryGetComponent(out WearNTear roof) && roof.m_noSupportWear)
+        if (prefabName.Contains("roof"))
+        {
+            flags |= Piece.UsageTagFlags.Roof;
+        }
+
+        // Building tag
+        // prefab.GetComponent<WearNTear>()
+        if (prefabName.ContainsAny("beam", "pole", "pillar", "arch", "sharpstakes"))
+        {
+            flags |= Piece.UsageTagFlags.Building;
+        }
+
+        // Architecture tag
+        if (prefabName.ContainsAny("pole", "beam", "cross", "pillar"))
+        {
+            flags |= Piece.UsageTagFlags.Architecture;
+        }
+
+        // Defense tag
+        if (prefab.HasAnyComponent("PrivateArea", "ShieldGenerator", "Turret") || prefabName.ContainsAny("stakes", "spikes"))
+        {
+            flags |= Piece.UsageTagFlags.Defense;
+        }
+
+        return flags;
     }
 }

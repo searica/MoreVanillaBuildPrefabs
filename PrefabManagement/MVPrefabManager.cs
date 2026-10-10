@@ -1,13 +1,13 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
-
-using Logging;
+﻿using Jotunn.Configs;
 using Jotunn.Managers;
-using System.Linq;
-using System;
+using Logging;
 using MVBP.Extensions;
 using MVBP.PieceManagement;
-using Jotunn.Configs;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Policy;
+using UnityEngine;
 
 
 namespace MVBP.PrefabManagement;
@@ -16,7 +16,7 @@ namespace MVBP.PrefabManagement;
 /// <summary>
 ///     Manages detecting the eligible ZNetScene prefabs and patching them.
 /// </summary>
-internal static class ZNetPrefabManager
+internal static class MVPrefabManager
 {
     internal static readonly Dictionary<string, Piece.Requirement[]> VanillaPieceResources = [];
     private static readonly Dictionary<string, bool> DefaultRemoveSettings = [];
@@ -33,7 +33,7 @@ internal static class ZNetPrefabManager
     ];
 
     private static readonly HashSet<string> IgnoredPrefabs = [
-        "",
+        "SnowFirTree 2",
         "Player",
         "Valkyrie",
         "HelmetOdin",
@@ -378,6 +378,7 @@ internal static class ZNetPrefabManager
         {
             piece.m_usage = UsageTagManager.GetPieceUsage(prefab);
         }
+
         return piece;
     }
 
@@ -477,7 +478,7 @@ internal static class ZNetPrefabManager
             prefab.GetComponent<AnimalAI>() ||
             prefab.GetComponent<Character>() ||
             prefab.GetComponent<CreatureSpawner>() ||
-            prefab.GetComponent<SpawnArea>() ||
+            //prefab.GetComponent<SpawnArea>() ||
             prefab.GetComponent<Fish>() ||
             prefab.GetComponent<RandomFlyingBird>() ||
             prefab.GetComponent<MusicLocation>() ||
@@ -604,7 +605,10 @@ internal static class ZNetPrefabManager
     private static CraftingStation GetCraftingStation(string name)
     {
         string internalName = CraftingStations.GetInternalName(name);
-        CraftingStation station = ZNetScene.instance?.GetPrefab(internalName)?.GetComponent<CraftingStation>();
-        return station;
+        if (ZNetScene.instance.m_namedPrefabs.TryGetValue(internalName.GetStableHashCode(), out GameObject prefab) && prefab)
+        {
+            return prefab.GetComponent<CraftingStation>();
+        }
+        return null;
     }
 }

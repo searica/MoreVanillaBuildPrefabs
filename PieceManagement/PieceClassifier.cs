@@ -6,8 +6,57 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Logging;
 
 namespace MVBP.PieceManagement;
+
+internal enum PieceClassification
+{
+    None = 0,
+    Fire,
+    Stack,
+    Treasure,
+
+    Bed,
+    Chest,
+    Chair,
+    Table,
+    Torch,
+    Brazier,
+    Rug,
+    Banner,
+    ArmorStand,
+    Statue,
+
+    Wood,
+    Darkwood,
+    Ashwood,
+    Goblin,
+    Iron,
+    Crystal,
+    Stone,
+    BlackMarble,
+    Dvergr,
+    Grausten,
+    Fortress,
+
+    Portal,
+    Ward,
+    Cart,
+    Ship,
+
+    VanillaCrop,
+    Plant, // pickable plants
+    Flora, // non pickable plants (shrubs, trees, etc.)
+    Rock,
+    Ice,
+    Ore,
+
+    Crafting,
+    Misc,
+    Spawner,
+}
+
 
 /// <summary>
 ///     IEnumerable that has a list of prefabs for each PieceGroup
@@ -51,6 +100,19 @@ internal class SortedPieceGroups : IEnumerable
     {
         PieceClassification key = PieceClassifier.GetPieceGroup(prefabConfig);
         pieceGroupLists[key].Add(prefabConfig.Prefab);
+    }
+
+    /// <summary>
+    ///     Check if is empty
+    /// </summary>
+    /// <returns>true is empty and false if not</returns>
+    public bool IsEmpty()
+    {
+        foreach (List<GameObject> list in this.pieceGroupLists.Values)
+        {
+            if (list.Count != 0) { return false; }
+        }
+        return true;
     }
 
     public IEnumerator GetEnumerator()
@@ -129,223 +191,228 @@ internal class PieceClassifier
 
     private static PieceClassification DetectPieceGroup(GameObject prefab)
     {
-        string prefabName = prefab.name.ToLower();
-        Piece piece = prefab.GetComponent<Piece>();
-        Destructible destructible = prefab.GetComponent<Destructible>();
-
-        if (prefab.GetComponent<PrivateArea>())
+        try
         {
-            return PieceClassification.Ward;
-        }
+            string prefabName = prefab.name.ToLower();
+            if (!prefab.TryGetComponent(out Piece piece) || !piece)
+            {
+                return PieceClassification.None;
+            }
 
-        if (prefab.GetComponent<Ship>())
-        {
-            return PieceClassification.Ship;
-        }
+            if (prefab.GetComponent<PrivateArea>())
+            {
+                return PieceClassification.Ward;
+            }
 
-        if (prefab.GetComponent<Vagon>())
-        {
-            return PieceClassification.Cart;
-        }
+            if (prefab.GetComponent<Ship>())
+            {
+                return PieceClassification.Ship;
+            }
 
-        if (prefab.GetComponent<TeleportWorld>())
-        {
-            return PieceClassification.Portal;
-        }
+            if (prefab.GetComponent<Vagon>())
+            {
+                return PieceClassification.Cart;
+            }
 
-        if (prefab.GetComponent<Bed>() || prefabName.Contains("bed"))
-        {
-            return PieceClassification.Bed;
-        }
+            if (prefab.GetComponent<TeleportWorld>())
+            {
+                return PieceClassification.Portal;
+            }
 
-        if (
-            prefab.HasAnyComponent("CreatureSpawner", "SpawnArea", "TriggerSpawner")
-        )
-        {
-            return PieceClassification.Spawner;
-        }
+            if (prefab.GetComponent<Bed>() || prefabName.Contains("bed"))
+            {
+                return PieceClassification.Bed;
+            }
 
-        if (prefab.HasAnyComponent(
-                "CraftingStation",
-                "StationExtension",
-                "CookingStation",
-                "Smelter", // includes windmills
-                "WispSpawner"
+            if (
+                prefab.HasAnyComponent("CreatureSpawner", "SpawnArea", "TriggerSpawner")
             )
-        )
-        {
-            return PieceClassification.Crafting;
-        }
-
-        if (prefabName.Contains("chest") && prefab.GetComponent<Container>())
-        {
-            return PieceClassification.Chest;
-        }
-
-        if (
-            piece.m_comfortGroup == Piece.ComfortGroup.Fire
-            || prefab.transform.FindDeepChild("FireWarmth") != null
-            || prefab.GetComponentInChildren<Demister>(true)
-        )
-        {
-            if (prefabName.Contains("brazier"))
             {
-                return PieceClassification.Brazier;
+                return PieceClassification.Spawner;
             }
 
-            if (prefabName.ContainsAny("torch", "demister"))
-            {
-                return PieceClassification.Torch;
-            }
-
-            if (prefabName.Contains("fire") || prefab.GetComponent<Fireplace>())
-            {
-                return PieceClassification.Fire;
-            }
-        }
-
-        if (prefabName.Contains("armorstand") || prefab.GetComponent<ArmorStand>())
-        {
-            return PieceClassification.ArmorStand;
-        }
-
-        if (prefabName.EndsWith("pile") || prefabName.EndsWith("stack"))
-        {
-            return PieceClassification.Stack;
-        }
-
-        if (prefabName.ContainsAny("iron", "rusty")
-            && !prefab.GetComponent<CookingStation>())
-        {
-            return PieceClassification.Iron;
-        }
-
-        if (prefabName.ContainsAny("dvergr", "dverger"))
-        {
-            return PieceClassification.Dvergr;
-        }
-
-        if (prefab.HasAnyComponent(typeof(WearNTear), typeof(Door)))
-        {
-            if (prefabName.Contains("darkwood"))
-            {
-                return PieceClassification.Darkwood;
-            }
-
-            if (prefabName.Contains("ashwood"))
-            {
-                return PieceClassification.Ashwood;
-            }
-
-            if (prefabName.ContainsAny("wood", "turf"))
-            {
-                return PieceClassification.Wood;
-            }
-
-            if (prefabName.Contains("stone"))
-            {
-                return PieceClassification.Stone;
-            }
-        }
-
-        if (
-            prefab.GetComponent<Chair>()
-            || prefabName.ContainsAny("chair", "throne", "bench", "stool")
-            || piece.m_comfortGroup == Piece.ComfortGroup.Chair
-        )
-        {
-            if (!prefab.HasAnyComponent("CraftingStation", "StationExtension", "Barber"))
-            {
-                return PieceClassification.Chair;
-            }
-        }
-
-        if (
-            piece?.m_comfortGroup == Piece.ComfortGroup.Banner
-            || prefabName.ContainsAny("banner", "curtain", "drape", "cloth_hanging")
-        )
-        {
-            return PieceClassification.Banner;
-        }
-
-        if (
-            prefabName.ContainsAny("minerock")
-            || prefab.GetComponent<MineRock>()
-        )
-        {
-            return PieceClassification.Ore;
-        }
-
-        if (
-            piece.m_comfortGroup == Piece.ComfortGroup.Table ||
-            (prefabName.Contains("table")
-            && !prefab.HasAnyComponent("CraftingStation", "StationExtension", "MapTable"))
-        )
-        {
-            return PieceClassification.Table;
-        }
-
-        if (
-                prefabName.ContainsAny(
-                    "onion",
-                    "carrot",
-                    "turnip",
-                    "mushroom",
-                    "barley",
-                    "flax",
-                    "berry",
-                    "thistle",
-                    "dandelion"
+            if (prefab.HasAnyComponent(
+                    "CraftingStation",
+                    "StationExtension",
+                    "CookingStation",
+                    "Fermenter",
+                    "Smelter", // includes windmills
+                    "WispSpawner",
+                    "Beehive"
                 )
-                && prefab.GetComponent<Pickable>()
             )
-        {
-            return PieceClassification.Plant;
-        }
+            {
+                return PieceClassification.Crafting;
+            }
 
-        if (
-            piece?.m_comfortGroup == Piece.ComfortGroup.Carpet
-            || prefabName.ContainsAny("rug", "carpet")
-        )
-        {
-            return PieceClassification.Rug;
-        }
+            if (prefabName.Contains("chest") && prefab.GetComponent<Container>())
+            {
+                return PieceClassification.Chest;
+            }
 
-        if (
-            prefabName.ContainsAny(
-                "bush", "root", "shrub", "stubbe", "vines", "tree"
+            if (
+                piece.m_comfortGroup == Piece.ComfortGroup.Fire ||
+                prefab.GetComponent<Fireplace>() ||
+                prefab.transform.FindDeepChild("FireWarmth") != null ||
+                prefab.GetComponentInChildren<Demister>(true)
             )
-            || prefab.HasAnyComponent("TreeBase", "TreeLog")
-            || destructible?.m_destructibleType == DestructibleType.Tree)
-        {
-            return PieceClassification.Flora;
-        }
+            {
+                if (prefabName.Contains("brazier"))
+                {
+                    return PieceClassification.Brazier;
+                }
 
-        if (prefabName.Contains("ice"))
-        {
-            return PieceClassification.Ice;
-        }
+                if (prefabName.ContainsAny("torch", "demister"))
+                {
+                    return PieceClassification.Torch;
+                }
 
-        if (prefabName.ContainsAny("rock", "cliff"))
-        {
-            return PieceClassification.Rock;
-        }
+                if (prefabName.Contains("fire") || prefab.GetComponent<Fireplace>())
+                {
+                    return PieceClassification.Fire;
+                }
+            }
 
-        if (prefabName.Contains("blackmarble"))
-        {
-            return PieceClassification.BlackMarble;
-        }
+            if (prefabName.Contains("armorstand") || prefab.GetComponent<ArmorStand>())
+            {
+                return PieceClassification.ArmorStand;
+            }
 
-        if (prefabName.Contains("goblin"))
-        {
-            return PieceClassification.Goblin;
-        }
+            if (prefabName.EndsWith("pile") || prefabName.EndsWith("stack"))
+            {
+                return PieceClassification.Stack;
+            }
 
-        if (prefabName.Contains("statue"))
-        {
-            return PieceClassification.Statue;
-        }
+            if (prefabName.ContainsAny("iron", "rusty") && !prefab.GetComponent<CookingStation>())
+            {
+                return PieceClassification.Iron;
+            }
 
-        return PieceClassification.Misc;
+            if (prefabName.ContainsAny("dvergr", "dverger"))
+            {
+                return PieceClassification.Dvergr;
+            }
+
+            if (prefab.HasAnyComponent(typeof(WearNTear), typeof(Door)))
+            {
+                if (prefabName.Contains("darkwood"))
+                {
+                    return PieceClassification.Darkwood;
+                }
+
+                if (prefabName.Contains("ashwood"))
+                {
+                    return PieceClassification.Ashwood;
+                }
+
+                if (prefabName.ContainsAny("wood", "turf"))
+                {
+                    return PieceClassification.Wood;
+                }
+
+                if (prefabName.Contains("stone"))
+                {
+                    return PieceClassification.Stone;
+                }
+            }
+
+            if (
+                prefab.GetComponent<Chair>() ||
+                prefabName.ContainsAny("chair", "throne", "bench", "stool") ||
+                piece.m_comfortGroup == Piece.ComfortGroup.Chair
+            )
+            {
+                if (!prefab.HasAnyComponent("CraftingStation", "StationExtension", "Barber"))
+                {
+                    return PieceClassification.Chair;
+                }
+            }
+
+            if (
+                piece.m_comfortGroup == Piece.ComfortGroup.Banner ||
+                prefabName.ContainsAny("banner", "curtain", "drape", "cloth_hanging")
+            )
+            {
+                return PieceClassification.Banner;
+            }
+
+            if (prefabName.ContainsAny("minerock") || prefab.GetComponent<MineRock>())
+            {
+                return PieceClassification.Ore;
+            }
+
+            if (
+                piece.m_comfortGroup == Piece.ComfortGroup.Table ||
+                (prefabName.Contains("table") &&
+                !prefab.HasAnyComponent("CraftingStation", "StationExtension", "MapTable"))
+            )
+            {
+                return PieceClassification.Table;
+            }
+
+            if (
+                    prefabName.ContainsAny(
+                        "onion",
+                        "carrot",
+                        "turnip",
+                        "mushroom",
+                        "barley",
+                        "flax",
+                        "berry",
+                        "thistle",
+                        "dandelion"
+                    )
+                    && prefab.GetComponent<Pickable>()
+                )
+            {
+                return PieceClassification.Plant;
+            }
+
+            if (piece.m_comfortGroup == Piece.ComfortGroup.Carpet || prefabName.ContainsAny("rug", "carpet"))
+            {
+                return PieceClassification.Rug;
+            }
+
+            if (
+                prefabName.ContainsAny("bush", "root", "shrub", "stubbe", "vines", "tree") ||
+                prefab.HasAnyComponent("TreeBase", "TreeLog") ||
+                (prefab.TryGetComponent(out Destructible destructible) && destructible.m_destructibleType == DestructibleType.Tree)
+            )
+            {
+                return PieceClassification.Flora;
+            }
+
+            if (prefabName.Contains("ice"))
+            {
+                return PieceClassification.Ice;
+            }
+
+            if (prefabName.ContainsAny("rock", "cliff"))
+            {
+                return PieceClassification.Rock;
+            }
+
+            if (prefabName.Contains("blackmarble"))
+            {
+                return PieceClassification.BlackMarble;
+            }
+
+            if (prefabName.Contains("goblin"))
+            {
+                return PieceClassification.Goblin;
+            }
+
+            if (prefabName.Contains("statue"))
+            {
+                return PieceClassification.Statue;
+            }
+            return PieceClassification.Misc;
+        }
+        catch (Exception ex)
+        {
+            Log.LogWarning($"Failed to detect piece group for prefab {prefab.name}: {ex}");
+        }
+        return PieceClassification.None;
+
     }
 }

@@ -1,6 +1,7 @@
 ﻿// Ignore Spelling: MVBP
 
 using Jotunn.Managers;
+using Jotunn.Configs;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,6 +16,7 @@ namespace MVBP.PieceManagement;
 internal static class PieceTableManager
 {
     private static readonly Dictionary<PieceTable, List<GameObject>> AddedPrefabs = [];
+    private static readonly Dictionary<PieceTable, bool> DefaultHideAdvancedMenuValuesMap = [];
 
     /// <summary>
     ///     Sorts and adds pieces based on PrefabConfigs and MorePrefabs config settings.
@@ -44,6 +46,12 @@ internal static class PieceTableManager
                 continue;
             }
 
+            // Check if this piece should be added to this pieceTable
+            if (PieceTables.GetInternalName(prefabConfig.PieceTable.Value) != pieceTable.name)
+            {
+                continue;
+            }
+
             // Prevent adding creative mode pieces if not in CreativeMode
             if (!MorePrefabs.IsCreativeMode && PieceCategoryManager.IsCreativeModePiece(prefabConfig.Piece))
             {
@@ -67,6 +75,22 @@ internal static class PieceTableManager
             pieceGroups.Add(prefabConfig);
         }
 
+        // respect default values for piece table set ups and only change them if needed
+        if (!DefaultHideAdvancedMenuValuesMap.ContainsKey(pieceTable))
+        {
+            DefaultHideAdvancedMenuValuesMap.Add(pieceTable, pieceTable.m_hideAdvancedMenu);
+        }
+
+        if (pieceGroups.IsEmpty())
+        {
+            pieceTable.m_hideAdvancedMenu = DefaultHideAdvancedMenuValuesMap[pieceTable];
+        }
+        else
+        {
+            pieceTable.m_hideAdvancedMenu = false;
+        }
+
+        // add prefabs to piece table
         foreach (List<GameObject> pieceGroup in pieceGroups)
         {
             foreach (GameObject prefab in pieceGroup)

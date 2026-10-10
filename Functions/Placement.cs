@@ -6,6 +6,7 @@ using UnityEngine;
 using Logging;
 using MVBP.PrefabManagement;
 using MVBP.Utils;
+using Jotunn;
 
 namespace MVBP.Functions;
 
@@ -16,6 +17,16 @@ namespace MVBP.Functions;
 [HarmonyPatch(typeof(Placement))]
 internal static class Placement
 {
+    private static Type[] ComponentsToDisable = new Type[] {
+        typeof(MonsterAI),
+        typeof(AnimalAI),
+        typeof(TimedDestruction),
+        typeof(Ragdoll),
+        typeof(Tameable),
+        typeof(SpawnArea),
+        typeof(Humanoid),
+    };
+
     /// <summary>
     ///     Transpiler to allow calling EmptyInventoryOnPlacement 
     ///     after placing a piece. Do not want to do this on Piece.Awake
@@ -125,7 +136,7 @@ internal static class Placement
         {
             return selectedPrefab;
         }
-        if (!ZNetPrefabManager.IsPatchedByMVBP(selectedPrefab))
+        if (!MVPrefabManager.IsPatchedByMVBP(selectedPrefab))
         {
             // ignore pieces not touched by this mod
             return UnityEngine.Object.Instantiate(selectedPrefab);
@@ -133,13 +144,7 @@ internal static class Placement
 
         bool setActive = false;
 
-        if (selectedPrefab.GetComponent<MonsterAI>() ||
-            selectedPrefab.GetComponent<AnimalAI>() ||
-            selectedPrefab.GetComponent<Tameable>() ||
-            selectedPrefab.GetComponent<Ragdoll>() ||
-            selectedPrefab.GetComponent<Humanoid>() ||
-            selectedPrefab.GetComponent<TimedDestruction>()
-        )
+        if (selectedPrefab.HasAnyComponent(ComponentsToDisable))
         {
             setActive = selectedPrefab.activeSelf;
             selectedPrefab.SetActive(false);
@@ -165,39 +170,21 @@ internal static class Placement
 
         selectedPrefab.SetActive(true);
 
-        if (clonedPrefab.TryGetComponent(out MonsterAI monsterAi))
+        foreach (Type componentType in ComponentsToDisable)
         {
-            UnityEngine.Object.DestroyImmediate(monsterAi);
+            if (componentType == typeof(Humanoid) && clonedPrefab.TryGetComponent(out Humanoid humanoid))
+            {
+                humanoid.m_defaultItems = Array.Empty<GameObject>();
+                humanoid.m_randomWeapon = Array.Empty<GameObject>();
+                humanoid.m_randomArmor ??= Array.Empty<GameObject>();
+                humanoid.m_randomShield ??= Array.Empty<GameObject>();
+                humanoid.m_randomSets ??= Array.Empty<Humanoid.ItemSet>();
+            }
+            else if (clonedPrefab.TryGetComponent(componentType, out Component component))
+            {
+                UnityEngine.Object.DestroyImmediate(component);
+            }
         }
-
-        if (clonedPrefab.TryGetComponent(out AnimalAI animalAi))
-        {
-            UnityEngine.Object.DestroyImmediate(animalAi);
-        }
-
-        if (clonedPrefab.TryGetComponent(out Tameable tameable))
-        {
-            UnityEngine.Object.DestroyImmediate(tameable);
-        }
-
-        if (clonedPrefab.TryGetComponent(out Ragdoll ragdoll))
-        {
-            UnityEngine.Object.DestroyImmediate(ragdoll);
-        }
-        if (clonedPrefab.TryGetComponent(out TimedDestruction timedDestruction))
-        {
-            UnityEngine.Object.DestroyImmediate(timedDestruction);
-        }
-
-        if (clonedPrefab.TryGetComponent(out Humanoid humanoid))
-        {
-            humanoid.m_defaultItems = Array.Empty<GameObject>();
-            humanoid.m_randomWeapon = Array.Empty<GameObject>();
-            humanoid.m_randomArmor ??= Array.Empty<GameObject>();
-            humanoid.m_randomShield ??= Array.Empty<GameObject>();
-            humanoid.m_randomSets ??= Array.Empty<Humanoid.ItemSet>();
-        }
-
         clonedPrefab.SetActive(true);
 
         return clonedPrefab;

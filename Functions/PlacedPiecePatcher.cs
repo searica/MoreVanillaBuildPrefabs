@@ -1,10 +1,8 @@
 ﻿using HarmonyLib;
-using Jotunn.Managers;
 using MVBP.Extensions;
-using MVBP.PieceManagement;
 using MVBP.PrefabManagement;
-using System.Collections.Generic;
 using UnityEngine;
+using Logging;
 
 namespace MVBP.Functions;
 
@@ -16,6 +14,7 @@ internal static class PlacedPiecePatcher
 {
     private static readonly int PieceLayer = LayerMask.NameToLayer("piece");
     private static readonly int CharacterTriggerLayer = LayerMask.NameToLayer("character_trigger");
+    private static readonly int AllLayer = LayerMask.NameToLayer("All");
     private const float timeout = 1e30f;
 
 
@@ -56,7 +55,7 @@ internal static class PlacedPiecePatcher
         }
 
         string prefabName = piece.gameObject.GetPrefabName();
-        if (!ZNetPrefabManager.IsPatchedByMVBP(prefabName))
+        if (!MVPrefabManager.IsPatchedByMVBP(prefabName))
         {
             return;  // not patched by MVBP don't touch it.
         }
@@ -65,11 +64,12 @@ internal static class PlacedPiecePatcher
         // Make non-creative mode player built pieces removeable
         // Have to do this after placement to avoid affecting non-player built instances.
         // Targeted at pieces that MVBP has added a piece component to.
-        if (!ZNetPrefabManager.IsNonRemovablePiece(piece))
+        if (!MVPrefabManager.IsNonRemovablePiece(piece))
         {
             piece.m_canBeRemoved = true;
         }
 
+        ApplyChestRigidBodyPatches(prefabName, piece);
         ApplyDvergrPortalPatches(prefabName, piece);
         ApplyDoorPatches(prefabName, piece);
         ApplyTimedDestructionPatch(piece);
@@ -118,7 +118,7 @@ internal static class PlacedPiecePatcher
     /// <param name="gameObject"></param>
     private static void ApplyDvergrPortalPatches(string prefabName, Piece piece)
     {
-        if (prefabName != "portal")
+        if (prefabName != "portal"  || !piece.GetComponent<TeleportWorld>())
         {
             return;
         }
@@ -128,11 +128,13 @@ internal static class PlacedPiecePatcher
             return;
         }
 
+        Log.LogInfo("Set ZDO for portal");
         zdo.Set("HasFields", true);
-        zdo.Set("HasTeleportWorld", true);
-        zdo.Set("TeleportWorld.m_allowAlItems", true);
 
-        zdo.Set("HasPiece", true);
+        zdo.Set("HasFieldsTeleportWorld", true);
+        zdo.Set("TeleportWorld.m_allowAllItems", true);
+
+        zdo.Set("HasFieldsPiece", true);
         zdo.Set("Piece.m_description", "$piece_portal_stone_description");
     }
 
@@ -142,7 +144,7 @@ internal static class PlacedPiecePatcher
     ///     size based on settings in in the PrefabConfig for this prefab.
     /// </summary>
     /// <param name="prefabName"></param>
-    /// <param name="gameObject"></param>
+    /// <param name="piece"></param>
     private static void ApplyContainerPatches(string prefabName, Piece piece)
     {
         Container container = piece.gameObject.GetComponentInChildren<Container>();
@@ -466,7 +468,7 @@ internal static class PlacedPiecePatcher
         if (piece.m_comfortGroup == Piece.ComfortGroup.None)
         {
             piece.m_comfortGroup = Piece.ComfortGroup.Fire;
-            if (!TryGetZDO(piece, out ZDO zdo))
+            if (TryGetZDO(piece, out ZDO zdo))
             {
                 zdo.Set("HasFields", true);
                 zdo.Set("HasFieldsPiece", true);
@@ -480,12 +482,39 @@ internal static class PlacedPiecePatcher
         {
             return;
         }
+
         if (prefabName.Contains("brazier") && collider.radius < 5f)
         {
             collider.radius = 5f;
-            //zdo.Set("HasFields", true);
-            //zdo.Set("HasFieldsSphereCollider", true);
-            //zdo.Set("SphereCollider.radius", 5f);
+            if (collider.gameObject.layer != CharacterTriggerLayer)
+            {
+                collider.gameObject.layer = CharacterTriggerLayer;
+            }
+        }        
+    }
+
+    internal static void ApplyChestRigidBodyPatches(string prefabName, Piece piece)
+    {
+        if (prefabName != "Chest" || !piece.gameObject.TryGetComponent(out Rigidbody body) || !body)
+        {
+            return;
+        }
+
+        body.freezeRotation = true;
+        body.useGravity = false;
+        //body.constraints = RigidbodyConstraints.FreezeAll;
+        //body.excludeLayers = AllLayer;
+        
+        if (TryGetZDO(piece, out ZDO zdo))
+        {
+            Log.LogInfo("Set ZDO for Chest");
+            zdo.Set("HasFields", true);
+            zdo.Set("HasRigidBody", true);
+            zdo.Set("HasFieldsRigidBody", true);
+            zdo.Set("RigidBody.useGravity", false);
+            //zdo.Set("RigidBody.excludeLayers", AllLayer);
+            zdo.Set("RigidBody.freezeRotation", true);
+            //zdo.Set("RigidBody.constraints", (int)RigidbodyConstraints.FreezeAll);
         }
     }
 }

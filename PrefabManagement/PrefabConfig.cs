@@ -26,6 +26,7 @@ internal class PrefabConfig
     private readonly bool _clipEverything;
     private readonly bool _clipGround;
     private readonly bool _placementPatch;
+    private readonly string _pieceTable;
     
 
     public Vector3? PlacementOffset;
@@ -48,6 +49,7 @@ internal class PrefabConfig
 
     public ConfigEntry<bool> Enabled { get; private set; }
     public ConfigEntry<bool> AllowedInDungeons { get; private set; }
+    public ConfigEntry<string> PieceTable { get; private set; }
     public ConfigEntry<string> Category { get; private set; }
     public ConfigEntry<string> CraftingStation { get; private set; }
     public ConfigEntry<string> Requirements { get; private set; }
@@ -55,12 +57,14 @@ internal class PrefabConfig
     public ConfigEntry<bool> ClipEverything { get; private set; }
     public ConfigEntry<bool> ClipGround { get; private set; }
 
+ 
 
     public PrefabConfig(
        string name,
        bool enabled = false,
        bool allowedInDungeons = false,
-       string category = PieceCategoryNames.CreatorShop,
+       string pieceTable = "Hammer",
+       string category = PieceCategoryManager.CreatorShop,
        string craftingStation = nameof(CraftingStations.None),
        string requirements = "",
        bool clipEverything = false,
@@ -90,6 +94,7 @@ internal class PrefabConfig
         // Set default internal values for config entry settings
         _enabled = enabled;
         _allowedInDungeons = allowedInDungeons;
+        _pieceTable = pieceTable;
         _category = category;
         _craftingStation = craftingStation;
         _requirements = string.IsNullOrWhiteSpace(requirements) ? reqParser.GetPlaceholderReqString() : requirements;
@@ -129,12 +134,23 @@ internal class PrefabConfig
             settingOrder: true
         );
 
+        PieceTable = configFile.BindConfigInOrder(
+            sectionName,
+            "PieceTable",
+            this._pieceTable,
+            "The piece table that this prefab should be added to.",
+            synced: true,
+            sectionOrder: false,
+            settingOrder: true,
+            acceptableValues: PieceTables.GetAcceptableValueList()
+        );
+
         Category = configFile.BindConfigInOrder(
             sectionName,
             "Category",
             this._category,
             "A string defining the tab the prefab shows up on in the hammer build table.",
-            acceptableValues: PieceCategoryNames.GetAcceptableValueList(),
+            acceptableValues: PieceCategoryManager.GetAcceptableValueList(),
             synced: true,
             sectionOrder: false,
             settingOrder: true

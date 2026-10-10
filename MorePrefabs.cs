@@ -22,7 +22,7 @@ public class MorePrefabs : BaseUnityPlugin
     public const string PluginName = "MoreVanillaBuildPrefabs";
     internal const string Author = "Searica";
     public const string PluginGUID = $"{Author}.Valheim.{PluginName}";
-    public const string PluginVersion = "1.5.2";
+    public const string PluginVersion = "1.6.0";
 
     public static MorePrefabs Instance { get; private set; }
     private ConfigFileWatcher configFileWatcher;
@@ -117,8 +117,10 @@ public class MorePrefabs : BaseUnityPlugin
             MainSection,
             "CreativeMode",
             false,
-            "Set to true/enabled to enable pieces from the CreatorShop or Nature piece categories. " +
-            "By default, pieces set to those categories are not standard build pieces."
+            "Set to true/enabled to enable pieces from the custom CreatorShop, Nature, Plants, Flora, Rocks, Ore, Ice, and Spawner piece categories." +
+            " By default, pieces set to those categories are not enabled as they are not standard build pieces and deconstructing" +
+            " any pieces in these categories is prevented unless you built them yourself.",
+            synced: true
         );
 
         ForceAllPrefabs = Config.BindConfigInOrder(
@@ -126,7 +128,8 @@ public class MorePrefabs : BaseUnityPlugin
             "ForceAllPrefabs",
             false,
             "If true/enabled, adds all prefabs to the hammer for building. Unless CreativeMode is " +
-            "also enabled it will not add pieces set to the CreatorShop or Nature category though."
+            "also enabled it will not add pieces from CreativeMode categories though.",
+            synced: true
         );
 
         Log.Verbosity = Config.BindConfigInOrder(
@@ -143,8 +146,8 @@ public class MorePrefabs : BaseUnityPlugin
             AdminSection,
             "CreatorShopAdminOnly",
             false,
-            "Set to true/enabled to restrict placement and deconstruction of CreatorShop pieces " +
-            "to players with Admin status."
+            "Set to true/enabled to restrict placement and deconstruction of CreatorShop pieces to players with Admin status.",
+            synced: true
         );
 
         AdminDeconstructOtherPlayers = Config.BindConfigInOrder(
@@ -152,8 +155,9 @@ public class MorePrefabs : BaseUnityPlugin
             "AdminDeconstructOtherPlayers",
             true,
             "Set to true/enabled to allow admin players to deconstruct any pieces built by other players," +
-            " even if doing so would normally be prevented (such as for CreatorShop or Nature pieces)." +
-            " Intended to prevent griefing via placement of indestructible objects."
+            " even if doing so would normally be prevented (such as for CreativeMode pieces)." +
+            " Intended to prevent griefing via placement of indestructible objects.",
+            synced: true
         );
 
         // Customization settings
@@ -162,14 +166,16 @@ public class MorePrefabs : BaseUnityPlugin
             "HammerCrops",
             false,
             "Set to true/enabled to enable placing vanilla crops with the hammer." +
-            " Unless this setting is true Vanilla crops will not be available for placing with the hammer."
+            " Unless this setting is true Vanilla crops will not be enabled for placing as pieces. This is because you can already plant them normally.",
+            synced: true
         );
 
         EnableComfortPatches = Config.BindConfigInOrder(
             CustomizationSection,
             "ComfortPatches (Requires Restart)",
             true,
-            "Set to true/enabled to patch new pieces to have comfort values like their vanilla counterparts."
+            "Set to true/enabled to patch new pieces to have comfort values like their vanilla counterparts.",
+            synced: true
         );
 
         EnablePlayerBasePatches = Config.BindConfigInOrder(
@@ -237,23 +243,4 @@ public class MorePrefabs : BaseUnityPlugin
 
         EnableSeasonalPieces.SettingChanged += UpdateMananger.SeasonalSettingChanged;
     }
-
-
-
-    // Public API Section
-
-    ///// <summary>
-    /////     Checks if the root prefab of the GameObject has had a 
-    /////     Piece component added to it by MVBP. So this method can also
-    /////     be used on any clones of the root prefab.
-    ///// </summary>
-    ///// <param name="prefab">GameObject to check.</param>
-    ///// <param name="piece">Optional piece component to prevent duplicate GetComponent calls.</param>
-    ///// <returns>True if MVBP has added a Piece component, False otherwise.</returns>
-    //public bool IsPieceAddedByMVBP(GameObject prefab, Piece piece = null)
-    //{
-    //    return ZNetPrefabManager.IsPieceAddedByMVBP(prefab, piece);
-    //}
-
-
 }

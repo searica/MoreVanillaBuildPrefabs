@@ -8,6 +8,24 @@
 			<th align="center">Notes</th>
 		</tr>
 		<tr>
+			<td align="center">1.6.0</td>
+			<td align="left">
+				<ul>
+					<li>Fixed bug with purple brazier collider layer.</li>
+					<li>Patched the "Chest" prefab to no longer be able to get knocked around when placed by a player. This applies to vanilla clients who interact with the chest and persists after removing MVBP.</li>
+					<li>Configured default resource costs and enabled more ashlands pieces by default.</li>
+					<li>Increased the inventory sizes of chest unlocked in the mistlands and later.</li>
+					<li>Improved automatic piece tagging for build menu filtering.</li>
+					<li>Improved automatic sorting of pieces added by MVBP within the build menu.</li>
+					<li>Added configuration options to set which piece table a prefab should be added to so that pieces can be added to the hammer, hoe, or cultivator.</li>
+					<li>Adjusted the default piece table config settings for most nature based pieces to move them to the hoe and cultivator.</li>
+					<li>Enabled advanced piece table options for the hoe and cultivator, but only when there are pieces added to it by MVBP, otherwise it retains default behaviour.</li>
+					<li>Added more custom categories to improve filtering of pieces added by MVBP. Currently all pieces in custom categories that are added by MVBP are considered "CreativeMode" pieces.</li>
+					<li>Some small performance improvements and tidying up of code.</li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
 			<td align="center">1.5.2</td>
 			<td align="left">
 				<ul>

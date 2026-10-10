@@ -43,7 +43,7 @@ internal static class Removal
                     Vector3.Distance(hitInfo.point, __instance.m_eye.position) < __instance.m_maxPlaceDistance)
                 {
                     Piece piece = hitInfo.collider.GetComponentInParent<Piece>();
-                    if (piece && ZNetPrefabManager.IsPatchedByMVBP(piece))
+                    if (piece && MVPrefabManager.IsPatchedByMVBP(piece))
                     {
                         __result = RemoveCustomPiece(__instance, piece);
                         return false; // skip vanilla method
@@ -126,7 +126,7 @@ internal static class Removal
 
 
             // For creative mode pieces and pieces added by MVBP always let the creator remove them.
-            if (PieceCategoryManager.IsCreativeModePiece(piece) || ZNetPrefabManager.HasPieceAddedByMVBP(piece)) 
+            if (PieceCategoryManager.IsCreativeModePiece(piece) || MVPrefabManager.HasPieceAddedByMVBP(piece)) 
             {
                 // Allow creative mode pieces to be removed by creator
                 if (piece.IsCreator())
@@ -265,7 +265,7 @@ internal static class Removal
                 return Array.Empty<Piece.Requirement>();
             }
 
-            if (!ZNetPrefabManager.IsPatchedByMVBP(piece))
+            if (!MVPrefabManager.IsPatchedByMVBP(piece))
             {
                 // do nothing if not a piece the mod changes
                 return piece.m_resources;
@@ -277,7 +277,7 @@ internal static class Removal
 
             // Set resources to defaults is piece is not placed by player (world-generated pieces)
             if (!piece.IsPlacedByPlayer() && 
-                ZNetPrefabManager.TryGetVanillaPieceResources(piece.gameObject, out Piece.Requirement[] defaultResources) && 
+                MVPrefabManager.TryGetVanillaPieceResources(piece.gameObject, out Piece.Requirement[] defaultResources) && 
                 defaultResources != null)
             {
                 return defaultResources;
@@ -345,7 +345,7 @@ internal static class Removal
         [HarmonyPatch(nameof(Destructible.Destroy))]
         private static bool DestroyPrefix(Destructible __instance)
         {
-            if (__instance && ZNetPrefabManager.IsPatchedByMVBP(__instance.gameObject))
+            if (__instance && MVPrefabManager.IsPatchedByMVBP(__instance.gameObject))
             {
                 Piece piece = __instance.GetComponent<Piece>();
                 if (piece && piece.IsPlacedByPlayer())
@@ -377,7 +377,7 @@ internal static class Removal
         [HarmonyPatch(nameof(Pickable.RPC_Pick))]
         private static void RPC_PickPrefix(Pickable __instance, out DropTable __state)
         {
-            if (ZNetPrefabManager.IsPatchedByMVBP(__instance) && __instance.TryGetComponent(out Piece piece) && piece.IsPlacedByPlayer())
+            if (MVPrefabManager.IsPatchedByMVBP(__instance) && __instance.TryGetComponent(out Piece piece) && piece.IsPlacedByPlayer())
             {
                 __state = __instance.m_extraDrops;
                 __instance.m_extraDrops = emptyDrops;
@@ -453,7 +453,7 @@ internal static class Removal
         private static bool OnDestroyedPrefix(DropOnDestroyed __instance)
         {
             if (__instance &&
-                ZNetPrefabManager.IsPatchedByMVBP(__instance) &&
+                MVPrefabManager.IsPatchedByMVBP(__instance) &&
                 __instance.TryGetComponent(out Piece piece)
                 && piece.IsPlacedByPlayer())
             {
@@ -476,7 +476,7 @@ internal static class Removal
         [HarmonyPatch(nameof(WearNTear.Destroy))]
         private static void DestroyPrefix(WearNTear __instance, out EffectList __state)
         {
-            if (ZNetPrefabManager.IsPatchedByMVBP(__instance) && !SfxManager.HasSfx(__instance.m_destroyedEffect))
+            if (MVPrefabManager.IsPatchedByMVBP(__instance) && !SfxManager.HasSfx(__instance.m_destroyedEffect))
             {
                 __state = __instance.m_destroyedEffect;
                 __instance.m_destroyedEffect = SfxManager.FixRemovalSfx(__instance);

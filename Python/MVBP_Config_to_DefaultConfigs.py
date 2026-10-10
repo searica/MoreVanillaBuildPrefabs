@@ -11,20 +11,21 @@ class PrefabConfig:
         "name": 1,
         "enabled": 2,
         "allowedInDungeons": 3,
-        "category": 4,
-        "craftingStation": 5,
-        "requirements": 6,
-        "clipEverything": 7,
-        "clipGround": 8,
-        "placementPatch": 9,
-        "placementOffset": 10,
-        "pieceName": 11,
-        "pieceDesc": 12,
-        "pieceGroup": 13,
-        "playerBasePatch": 14,
-        "spawnOnDestroyed": 15,
-        "invWidth": 16,
-        "invHeight": 17
+        "pieceTable": 4,
+        "category": 5,
+        "craftingStation": 6,
+        "requirements": 7,
+        "clipEverything": 8,
+        "clipGround": 9,
+        "placementPatch": 10,
+        "placementOffset": 11,
+        "pieceName": 12,
+        "pieceDesc": 13,
+        "pieceGroup": 14,
+        "playerBasePatch": 15,
+        "spawnOnDestroyed": 16,
+        "invWidth": 17,
+        "invHeight": 18
     }
 
     _needs_quotes = set(
@@ -41,6 +42,7 @@ class PrefabConfig:
         self.name = None
         self.enabled = None
         self.allowedInDungeons = None
+        self.pieceTable = None
         self.category = None
         self.craftingStation = None
         self.requirements = None
@@ -100,13 +102,16 @@ def main():
         + " PrefabConfigMap = new()\n"
     )
 
-    r2modman_profile_name = "Mod-Debug"
+    mod_manager_name = "Roaming/com.kesomannen.gale"
+    game_name = "valheim"
+    mod_profile_name = "Debug"
     config_file_name = "Searica.Valheim.MoreVanillaBuildPrefabs.cfg"
+
     cfg_file_path = Path(os.getenv('APPDATA')).joinpath(
-        "r2modmanPlus-local",
-        "Valheim",
+        mod_manager_name,
+        game_name,
         "profiles",
-        r2modman_profile_name,
+        mod_profile_name,
         "BepInEx",
         "config",
         config_file_name
@@ -231,9 +236,11 @@ def get_line_value(line: str, split: str):
     val = val.replace("BuildingWorkbench", "Building")
     val = val.replace("BuildingStonecutter", "Stonecutter")
     if "Category = " in line:
-        return f"HammerCategories.{val}"
-    if "CraftingStation = " in line:
+        return f"PieceCategoryManager.{val}"
+    elif "CraftingStation = " in line:
         val = f"nameof(CraftingStations.{val})"
+    elif "PieceTable = " in line:
+            val = f"nameof(PieceTables.{val})"
 
     return val
 

@@ -8,6 +8,7 @@ using MVBP.PrefabManagement;
 using MVBP.PieceManagement;
 using Jotunn.Managers;
 using Jotunn.Configs;
+using System.Collections.Generic;
 
 namespace MVBP;
 
@@ -72,7 +73,7 @@ internal static class UpdateMananger
     [HarmonyPrefix]
     [HarmonyPriority(Priority.High)]
     [HarmonyPatch(typeof(ZoneSystem), nameof(ZoneSystem.Start))]
-    private static void InitializeZNetPrefabManager()
+    private static void InitializeMVPrefabManager()
     {
         // If loading into game world and prefabs have not been added
         if (SceneManager.GetActiveScene().name != "main")
@@ -148,7 +149,7 @@ internal static class UpdateMananger
         PieceCategoryManager.AddCustomPieceCategories();
         SeasonalPieceMananger.Initialize();
         SfxManager.Initialize();
-        ZNetPrefabManager.Initialize();
+        MVPrefabManager.Initialize();
         UpdatePieces();
         SeasonalPieceMananger.UpdateSeasonalPieces();
         MorePrefabs.Instance.Config.Save(); // save after binding prefab configs
@@ -191,7 +192,7 @@ internal static class UpdateMananger
 
         if (PlacementSettingsChanged)
         {
-            ForceUnequipHammer(); // reset placement ghost set up to apply patch
+            ForceUnequipBuildTools(); // reset placement ghost set up to apply patch
         }
 
         watch.Stop();
@@ -218,30 +219,42 @@ internal static class UpdateMananger
     private static void UpdatePieces()
     {
         if (!HasInit) { return; }
-        ZNetPrefabManager.ApplyPrefabConfigSettings();
-        UpdateHammerTable();
+        MVPrefabManager.ApplyPrefabConfigSettings();
+        UpdatePieceTables();
     }
 
     /// <summary>
     ///     Remove all added pieces and insert the new pieces in sorted order.
     /// </summary>
-    private static void UpdateHammerTable()
+    private static void UpdatePieceTables()
     {
-        ForceUnequipHammer();
-        PieceTable hammerTable = PieceManager.Instance.GetPieceTable(PieceTables.Hammer);
-        PieceTableManager.UpdatePieceTable(hammerTable, PrefabConfigManager.GetPrefabConfigs(checkIfBound: true), clearPieces: true);
+        ForceUnequipBuildTools();
+        List<PrefabConfig> boundPrefabConfigs = PrefabConfigManager.GetPrefabConfigs(checkIfBound: true);
+     
+        //PieceTable pieceTable = PieceManager.Instance.GetPieceTable(PieceTables.Hammer);
+        //Log.LogInfo($"Updating {pieceTable.name}", Log.InfoLevel.Medium);
+        //PieceTableManager.UpdatePieceTable(pieceTable, boundPrefabConfigs, clearPieces: true);
+
+        foreach (PieceTable pieceTable in PieceManager.Instance.GetPieceTables())
+        {
+            Log.LogInfo($"Updating {pieceTable.name}", Log.InfoLevel.Medium);
+            PieceTableManager.UpdatePieceTable(pieceTable, boundPrefabConfigs, clearPieces: true);
+        }
+
+
     }
 
     /// <summary>
-    ///     Forces hammer to be unequipped if it is currently equipped.
+    ///     Forces hammer and other build tools to be unequipped if they are currently equipped.
     /// </summary>
-    private static void ForceUnequipHammer()
+    private static void ForceUnequipBuildTools()
     { 
         Player player = Player.m_localPlayer;
 
-        if (player && Player.m_localPlayer.GetRightItem()?.m_shared.m_name == "$item_hammer")
+        //Player.m_localPlayer.GetRightItem()?.m_shared.m_name == "$item_hammer"
+        if (player && Player.m_localPlayer.GetRightItem()?.m_shared.m_buildPieces)
         {
-            Log.LogWarning("Hammer updated through config change, unequipping hammer");
+            Log.LogWarning("Hammer updated through config change, unequipping tool with piece table");
             Player.m_localPlayer.HideHandItems();
         }
     }
