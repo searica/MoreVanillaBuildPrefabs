@@ -11,8 +11,7 @@
 			<td align="center">1.6.0</td>
 			<td align="left">
 				<ul>
-					<li>Fixed bug with purple brazier collider layer.</li>
-					<li>Patched the "Chest" prefab to no longer be able to get knocked around when placed by a player. This applies to vanilla clients who interact with the chest and persists after removing MVBP.</li>
+					<li>Fixed bug with purple brazier collider layer and changes to the Dvergr portal not persisting without MVBP installed.</li>
 					<li>Configured default resource costs and enabled more ashlands pieces by default.</li>
 					<li>Increased the inventory sizes of chest unlocked in the mistlands and later.</li>
 					<li>Improved automatic piece tagging for build menu filtering.</li>
@@ -22,6 +21,7 @@
 					<li>Enabled advanced piece table options for the hoe and cultivator, but only when there are pieces added to it by MVBP, otherwise it retains default behaviour.</li>
 					<li>Added more custom categories to improve filtering of pieces added by MVBP. Currently all pieces in custom categories that are added by MVBP are considered "CreativeMode" pieces.</li>
 					<li>Some small performance improvements and tidying up of code.</li>
+					<li>Updated default prefab configs to include every prefab in the game and updated python script for generating default configs from a config file. Not really useful for most mod users but nessecary for me to configure default for any new prefabs.</li>
 				</ul>
 			</td>
 		</tr>
