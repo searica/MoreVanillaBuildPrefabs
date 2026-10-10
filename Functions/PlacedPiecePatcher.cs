@@ -69,7 +69,7 @@ internal static class PlacedPiecePatcher
             piece.m_canBeRemoved = true;
         }
 
-        ApplyChestRigidBodyPatches(prefabName, piece);
+        //ApplyChestRigidBodyPatches(prefabName, piece);
         ApplyDvergrPortalPatches(prefabName, piece);
         ApplyDoorPatches(prefabName, piece);
         ApplyTimedDestructionPatch(piece);
@@ -472,7 +472,7 @@ internal static class PlacedPiecePatcher
             {
                 zdo.Set("HasFields", true);
                 zdo.Set("HasFieldsPiece", true);
-                zdo.Set("Piece.m_comfortGroup", true);
+                zdo.Set("Piece.m_comfortGroup", (int)Piece.ComfortGroup.Fire);
             }
             
         }
@@ -493,28 +493,28 @@ internal static class PlacedPiecePatcher
         }        
     }
 
-    internal static void ApplyChestRigidBodyPatches(string prefabName, Piece piece)
-    {
-        if (prefabName != "Chest" || !piece.gameObject.TryGetComponent(out Rigidbody body) || !body)
-        {
-            return;
-        }
+    //internal static void ApplyChestRigidBodyPatches(string prefabName, Piece piece)
+    //{
+    //    if (prefabName != "Chest" || !piece.gameObject.TryGetComponent(out Rigidbody body) || !body)
+    //    {
+    //        return;
+    //    }
 
-        body.freezeRotation = true;
-        body.useGravity = false;
-        //body.constraints = RigidbodyConstraints.FreezeAll;
-        //body.excludeLayers = AllLayer;
+    //    body.freezeRotation = true;
+    //    body.useGravity = false;
+    //    //body.constraints = RigidbodyConstraints.FreezeAll;
+    //    //body.excludeLayers = AllLayer;
         
-        if (TryGetZDO(piece, out ZDO zdo))
-        {
-            Log.LogInfo("Set ZDO for Chest");
-            zdo.Set("HasFields", true);
-            zdo.Set("HasRigidBody", true);
-            zdo.Set("HasFieldsRigidBody", true);
-            zdo.Set("RigidBody.useGravity", false);
-            //zdo.Set("RigidBody.excludeLayers", AllLayer);
-            zdo.Set("RigidBody.freezeRotation", true);
-            //zdo.Set("RigidBody.constraints", (int)RigidbodyConstraints.FreezeAll);
-        }
-    }
+    //    if (TryGetZDO(piece, out ZDO zdo))
+    //    {
+    //        Log.LogInfo("Set ZDO for Chest");
+
+    //        zdo.Set("HasFields", true);
+    //        zdo.Set("HasFieldsZNetView", true);
+    //        zdo.Set("ZNetView.m_body.useGravity", false);
+    //        //zdo.Set("RigidBody.excludeLayers", AllLayer);
+    //        zdo.Set("ZNetView.m_body.freezeRotation", true);
+    //        //zdo.Set("RigidBody.constraints", (int)RigidbodyConstraints.FreezeAll);
+    //    }
+    //}
 }
