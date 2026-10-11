@@ -36,18 +36,27 @@ internal static class Removal
         [HarmonyPatch(nameof(Player.RemovePiece))]
         internal static bool RemovePiecePrefix(Player __instance, ref bool __result)
         {
-            if (__instance.GetRightItem().m_shared.m_name == "$item_hammer")
+            PieceTable toolPieceTable = __instance.GetRightItem().m_shared.m_buildPieces;
+            if (toolPieceTable)
             {
                 Transform cameraTrans = GameCamera.instance.transform;
                 if (Physics.Raycast(cameraTrans.position, cameraTrans.forward, out RaycastHit hitInfo, 50f, PieceRemovalMask) &&
                     Vector3.Distance(hitInfo.point, __instance.m_eye.position) < __instance.m_maxPlaceDistance)
                 {
                     Piece piece = hitInfo.collider.GetComponentInParent<Piece>();
-                    if (piece && MVPrefabManager.IsPatchedByMVBP(piece))
+                    if (PieceTableManager.CanToolRemovePiece(toolPieceTable, piece))
                     {
-                        __result = RemoveCustomPiece(__instance, piece);
-                        return false; // skip vanilla method
+                        if (piece && MVPrefabManager.IsPatchedByMVBP(piece))
+                        {
+                            __result = RemoveCustomPiece(__instance, piece);
+                            return false; // skip vanilla method
+                        }
                     }
+                    else {
+                        __result = false;
+                        return false; // skip vanilla method if tool should not actually be allowed to remove a piece
+                    }
+                    
                 }
             }
             return true; // run vanilla method
@@ -114,6 +123,7 @@ internal static class Removal
             }
             return false;
         }
+
 
         private static bool Check_m_canBeRemoved(Piece piece)
         {

@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Logging;
 using MVBP.PrefabManagement;
+using MVBP.Extensions;
 
 namespace MVBP.PieceManagement;
 
@@ -15,8 +16,50 @@ namespace MVBP.PieceManagement;
 /// </summary>
 internal static class PieceTableManager
 {
+    private sealed class PieceTableConfig
+    {
+        public bool HideAdvancedMenu;
+        public bool CanRemovePieces;
+
+        public PieceTableConfig(bool hideAdvancedMenu, bool canRemovePieces)
+        {
+            this.HideAdvancedMenu = hideAdvancedMenu;
+            this.CanRemovePieces = canRemovePieces;
+        }
+    }
     private static readonly Dictionary<PieceTable, List<GameObject>> AddedPrefabs = [];
-    private static readonly Dictionary<PieceTable, bool> DefaultHideAdvancedMenuValuesMap = [];
+    private static readonly Dictionary<PieceTable, HashSet<int>> AddedPrefabsHashMap = [];
+    private static readonly Dictionary<PieceTable, PieceTableConfig> DefaultPieceTableValuesMap = [];
+
+    public static bool WasPieceAddedToPieceTable(PieceTable pieceTable, Piece piece)
+    {
+        if (AddedPrefabsHashMap.TryGetValue(pieceTable, out HashSet<int> pieceHashes))
+        {
+            return pieceHashes.Contains(piece.gameObject.GetPrefabName().GetStableHashCode());
+        }
+        return false;
+    }
+
+    /// <summary>
+    ///     Checks if the piece table allows for removing the piece in question, first checks if MVBP has added the piece
+    ///     to the piece table and then checks the cached default value of m_canRemovePieces for that piece table and falls
+    ///     back to using the current value of m_canRemovePieces if needed. 
+    /// </summary>
+    /// <param name="pieceTable"></param>
+    /// <param name="piece"></param>
+    /// <returns></returns>
+    public static bool CanToolRemovePiece(PieceTable pieceTable, Piece piece)
+    {
+        if (WasPieceAddedToPieceTable(pieceTable, piece))
+        {
+            return true;
+        }
+        if (DefaultPieceTableValuesMap.TryGetValue(pieceTable, out PieceTableConfig pieceTableConfig))
+        {
+            return pieceTableConfig.CanRemovePieces;
+        }
+        return pieceTable.m_canRemovePieces;
+    }
 
     /// <summary>
     ///     Sorts and adds pieces based on PrefabConfigs and MorePrefabs config settings.
@@ -76,18 +119,20 @@ internal static class PieceTableManager
         }
 
         // respect default values for piece table set ups and only change them if needed
-        if (!DefaultHideAdvancedMenuValuesMap.ContainsKey(pieceTable))
+        if (!DefaultPieceTableValuesMap.ContainsKey(pieceTable))
         {
-            DefaultHideAdvancedMenuValuesMap.Add(pieceTable, pieceTable.m_hideAdvancedMenu);
+            DefaultPieceTableValuesMap.Add(pieceTable, new PieceTableConfig(pieceTable.m_hideAdvancedMenu, pieceTable.m_canRemovePieces));
         }
 
         if (pieceGroups.IsEmpty())
         {
-            pieceTable.m_hideAdvancedMenu = DefaultHideAdvancedMenuValuesMap[pieceTable];
+            pieceTable.m_hideAdvancedMenu = DefaultPieceTableValuesMap[pieceTable].HideAdvancedMenu;
+            pieceTable.m_canRemovePieces= DefaultPieceTableValuesMap[pieceTable].CanRemovePieces;
         }
         else
         {
             pieceTable.m_hideAdvancedMenu = false;
+            pieceTable.m_canRemovePieces = true;
         }
 
         // add prefabs to piece table
@@ -138,8 +183,10 @@ internal static class PieceTableManager
         if (!AddedPrefabs.ContainsKey(pieceTable))
         {
             AddedPrefabs.Add(pieceTable, new List<GameObject>());
+            AddedPrefabsHashMap.Add(pieceTable, new HashSet<int>());
         }
         AddedPrefabs[pieceTable].Add(prefab);
+        AddedPrefabsHashMap[pieceTable].Add(hash);
 
         Log.LogInfo($"Added Piece {piece.m_name} to PieceTable {pieceTable.name}", Log.InfoLevel.High);
         return true;
@@ -189,7 +236,12 @@ internal static class PieceTableManager
         {
             Log.LogError($"Piece table is null!");
         }
+        
         if (!AddedPrefabs.TryGetValue(pieceTable, out List<GameObject> AddedPieces))
+        {
+            return;
+        }
+        if (!AddedPrefabsHashMap.TryGetValue(pieceTable, out HashSet<int> pieceHashes))
         {
             return;
         }
@@ -200,10 +252,13 @@ internal static class PieceTableManager
             return;
         }
 
+        int hash;
         for (int i = numCustomPieces - 1; i > -1; i--)
         {
+            hash = AddedPieces[i].name.GetStableHashCode();
             if (RemovePieceFromPieceTable(AddedPieces[i], pieceTable))
             {
+                pieceHashes.Remove(hash);
                 AddedPieces.RemoveAt(i);
             }
         }

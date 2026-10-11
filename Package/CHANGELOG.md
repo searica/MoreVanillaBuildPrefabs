@@ -8,6 +8,15 @@
 			<th align="center">Notes</th>
 		</tr>
 		<tr>
+			<td align="center">1.6.1/1.6.2</td>
+			<td align="left">
+				<ul>
+					<li>Quick fix for removing pieces with the hoe and cultivator. The hammer can always remove anything you place but the hoe and cultivator can only remove things you place with them.</li>
+					<li>Second quick fix to correct a typo that I made between testing it worked and building the release version that broke piece removal entirely.</li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
 			<td align="center">1.6.0</td>
 			<td align="left">
 				<ul>
