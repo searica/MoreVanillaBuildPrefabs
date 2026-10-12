@@ -3,6 +3,7 @@ using MVBP.Extensions;
 using MVBP.PrefabManagement;
 using UnityEngine;
 using Logging;
+using Jotunn.Managers;
 
 namespace MVBP.Functions;
 
@@ -76,6 +77,7 @@ internal static class PlacedPiecePatcher
         ApplyContainerPatches(prefabName, piece);
         EditDestructibleSpawn(prefabName, piece);
         ApplyFireWarmthPatches(prefabName, piece);
+        //ApplyShieldGeneratorPatches(prefabName, piece);
 
         if (MorePrefabs.IsEnablePlayerBasePatches)
         {
@@ -493,28 +495,39 @@ internal static class PlacedPiecePatcher
         }        
     }
 
-    //internal static void ApplyChestRigidBodyPatches(string prefabName, Piece piece)
-    //{
-    //    if (prefabName != "Chest" || !piece.gameObject.TryGetComponent(out Rigidbody body) || !body)
-    //    {
-    //        return;
-    //    }
+    /// <summary>
+    ///     Attempt to make infinite shield option but not really working due to NRE
+    /// </summary>
+    /// <param name="prefabName"></param>
+    /// <param name="piece"></param>
+    internal static void ApplyShieldGeneratorPatches(string prefabName, Piece piece)
+    {
+        if (prefabName != "charred_shieldgenerator" || !piece.gameObject.TryGetComponent(out ShieldGenerator shield) || !shield)
+        {
+            return;
+        }
 
-    //    body.freezeRotation = true;
-    //    body.useGravity = false;
-    //    //body.constraints = RigidbodyConstraints.FreezeAll;
-    //    //body.excludeLayers = AllLayer;
+        GameObject normalShieldGenerator = PrefabManager.Instance.GetPrefab("pieceshield_generator");
+        if (!normalShieldGenerator || !normalShieldGenerator.TryGetComponent(out ShieldGenerator normalSheild) || !normalSheild)
+        {
+            return;
+        }
         
-    //    if (TryGetZDO(piece, out ZDO zdo))
-    //    {
-    //        Log.LogInfo("Set ZDO for Chest");
+        //shield.m_offWhenNoFuel = false;
+        shield.m_defaultFuel = 10;
+        shield.m_fuelPerDamage = 0f;
+        shield.m_startStopSpeed = 25f;
+        shield.m_energyParticles = normalSheild.m_energyParticles;
+        shield.m_energyParticlesFlare = normalSheild.m_energyParticlesFlare;
 
-    //        zdo.Set("HasFields", true);
-    //        zdo.Set("HasFieldsZNetView", true);
-    //        zdo.Set("ZNetView.m_body.useGravity", false);
-    //        //zdo.Set("RigidBody.excludeLayers", AllLayer);
-    //        zdo.Set("ZNetView.m_body.freezeRotation", true);
-    //        //zdo.Set("RigidBody.constraints", (int)RigidbodyConstraints.FreezeAll);
-    //    }
-    //}
+        if (TryGetZDO(piece, out ZDO zdo))
+        {
+            zdo.Set("HasFields", true);
+            zdo.Set("HasFieldsShieldGenerator", true);
+            //zdo.Set("ShieldGenerator.m_offWhenNoFuel", false);
+            zdo.Set("ShieldGenerator.m_defaultFuel", 10);
+            zdo.Set("ShieldGenerator.m_fuelPerDamage", 0f);
+            zdo.Set("ShieldGenerator.m_startStopSpeed", 25f);
+        }
+    }
 }
