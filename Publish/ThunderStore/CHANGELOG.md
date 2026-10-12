@@ -8,6 +8,17 @@
 			<th align="center">Notes</th>
 		</tr>
 		<tr>
+			<td align="center">1.6.3</td>
+			<td align="left">
+				<ul>
+					<li>Updated custom piece names to match current capitalization scheme.</li>
+					<li>Added custom names for all grausten ashlands build pieces to make the purpose of each piece clearer and avoid spoilers.</li>
+					<li>Added custom piece descriptions for all charred fortress build pieces to hint at which ones require seige weapons to break and which ones can be broken by anything because the base game forgot to set the value to require a higher tool level.</li>
+					<li>Rebalanced default resource costs for all grausten ashlands build pieces.</li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
 			<td align="center">1.6.1/1.6.2</td>
 			<td align="left">
 				<ul>

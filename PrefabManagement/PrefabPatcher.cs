@@ -1027,7 +1027,7 @@ internal static class PrefabPatcher
             case "Ashlands_Pillar4_tip3_broken1":
             case "Ashlands_Pillar4_tip3_broken2":
             case "Ashlands_Pillar4_tip3_broken3":
-            case "Ashlands_Pillar4_tip_broken1":
+            case "Ashlands_Pillar4_tip_broken1": 
             case "Ashlands_Pillar4_tip_broken2":
             case "Ashlands_Ramp":
             case "Ashlands_Ruins_Floor_1point5x1point5":
