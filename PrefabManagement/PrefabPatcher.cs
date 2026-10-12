@@ -991,6 +991,77 @@ internal static class PrefabPatcher
                         new(0.0f, 0.0f,  2.0f, $"{EDGE} 2")
                     });
                 break;
+            case "Ashlands_Arch1":
+            case "Ashlands_Arch2":
+            case "Ashland_Steepstair":
+            case "Ashlands_Floor":
+            case "Ashlands_PillarBase3_double":
+                // these have snap points already
+                break;
+            case "Ashlands_Arch2_Broken1":
+            case "Ashlands_Arch2_Broken2":
+            case "Ashlands_ArchRoof":
+            case "Ashlands_ArchRoofDamaged":
+            case "Ashlands_ArchRoofDamaged_half1":
+            case "Ashlands_ArchRoofDamaged_half2":
+            case "Ashlands_ArchRoofLong_Damaged":
+            case "Ashlands_Boss_Pillar":
+            case "Ashlands_Boss_Pillar_Twist_broken1":
+            case "Ashlands_Boss_Pillar_Twist_broken2":
+            case "Ashlands_Boss_Pillar_Twist_broken3":
+            case "Ashlands_floor_large":
+            case "Ashlands_floor_large_fractured": // same prefab
+            case "Ashlands_Fortress_Gate":
+            case "Ashlands_Fortress_Gate_Door":
+            case "Ashlands_Fortress_Wall_Pillar":
+            case "Ashlands_Fortress_Wall_PillarTop":
+            case "Ashlands_Fortress_Wall_PillarTop_frac": // same prefab
+            case "Ashlands_Fortress_Wall_PillarTopStone":
+            case "Ashlands_Fortress_Wall_PillarTopStone_frac": // same prefab
+            case "Ashlands_Pillar4":
+            case "Ashlands_Pillar4_tip":
+            case "Ashlands_Pillar4_tip2":
+            case "Ashlands_Pillar4_tip2_broken1":
+            case "Ashlands_Pillar4_tip2_broken2":
+            case "Ashlands_Pillar4_tip3":
+            case "Ashlands_Pillar4_tip3_broken1":
+            case "Ashlands_Pillar4_tip3_broken2":
+            case "Ashlands_Pillar4_tip3_broken3":
+            case "Ashlands_Pillar4_tip_broken1":
+            case "Ashlands_Pillar4_tip_broken2":
+            case "Ashlands_Ramp":
+            case "Ashlands_Ruins_Floor_1point5x1point5":
+            case "Ashlands_Ruins_Floor_1point5x1point5_broken":
+            case "Ashlands_Ruins_Floor_3x3":
+            case "Ashlands_Ruins_Floor_3x3_broken1":
+            case "Ashlands_Ruins_Floor_3x3_broken2":
+            case "Ashlands_Ruins_Floor_3x3_broken3":
+            case "Ashlands_Ruins_Floor_6x6":
+            case "Ashlands_Ruins_Floor_6x6_broken1":
+            case "Ashlands_Ruins_Floor_6x6_broken2":
+            case "Ashlands_Ruins_Ramp":
+            case "Ashlands_Ruins_Ramp_Upsidedown":
+            case "Ashlands_Ruins_TopStone":
+            case "Ashlands_Ruins_twist_ArchBig":
+            case "Ashlands_Ruins_twist_PillarBase": // needs more snap points
+            case "Ashlands_Ruins_twist_PillarBaseSmall": // needs more snap points
+            case "Ashlands_Ruins_Wall_4x6":
+            case "Ashlands_Ruins_Wall_Broken3_4x6":
+            case "Ashlands_Ruins_Wall_Broken4_4x6":
+            case "Ashlands_Ruins_Wall_Broken5_4x6":
+            case "Ashlands_Ruins_Wall_Top_wHole":
+            case "Ashlands_Ruins_Wall_Window_4x6_broken2":
+            case "Ashlands_Ruins_Wall_Window_4x6_broken3":
+            case "Ashlands_Ruins_Wall_Window_4x6_broken4":
+            case "Ashlands_Ruins_Wall_Window_4x6_broken5":
+            case "Ashlands_Ruins_Wall_Window_4x6_broken6":
+            case "Ashlands_Ruins_Wall_Windows_Broken_4x6":
+            case "Ashlands_StairsBroad":
+            case "Ashlands_WallBlock":
+            case "Ashlands_WallBlock_1x2x2":
+            case "Ashlands_WallBlock_base":
+                // these need snap points
+                break;
             case "portal":
                 PatchDvergrPortal(prefab);
                 break;
