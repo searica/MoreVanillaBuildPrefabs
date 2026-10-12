@@ -194,30 +194,34 @@ internal static class PrefabConfigManager
             "Ashland_Stair",
             new PrefabConfig(
                 name: "Ashland_Stair",
-                enabled: false,
+                enabled: true,
                 allowedInDungeons: false,
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
-                requirements: "Grausten,32",
+                requirements: "Grausten,24;FlametalNew,2",
+                pieceName: "Grausten Stairs 4x2 (Reinforced)",
                 clipEverything: false,
                 clipGround: false,
-                placementPatch: false
+                placementPatch: false,
+                pieceGroup: PieceClassification.Fortress
             )
         },
         {
             "Ashland_Steepstair",
             new PrefabConfig(
                 name: "Ashland_Steepstair",
-                enabled: false,
+                enabled: true,
                 allowedInDungeons: false,
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
-                craftingStation: nameof(CraftingStations.None),
-                requirements: "",
+                craftingStation: nameof(CraftingStations.Stonecutter),
+                requirements: "Grausten,6",
+                pieceName: "Grausten Steep Stairs",
                 clipEverything: false,
                 clipGround: false,
-                placementPatch: true
+                placementPatch: true,
+                pieceGroup: PieceClassification.Grausten
             )
         },
         {
@@ -227,7 +231,7 @@ internal static class PrefabConfigManager
                 enabled: false,
                 allowedInDungeons: false,
                 pieceTable: nameof(PieceTables.Cultivator),
-                category: PieceCategoryManager.CreatorShop,
+                category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
                 clipEverything: false,
@@ -243,7 +247,7 @@ internal static class PrefabConfigManager
                 enabled: false,
                 allowedInDungeons: false,
                 pieceTable: nameof(PieceTables.Cultivator),
-                category: PieceCategoryManager.CreatorShop,
+                category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
                 clipEverything: false,
@@ -259,7 +263,7 @@ internal static class PrefabConfigManager
                 enabled: false,
                 allowedInDungeons: false,
                 pieceTable: nameof(PieceTables.Cultivator),
-                category: PieceCategoryManager.CreatorShop,
+                category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
                 clipEverything: false,
@@ -275,7 +279,7 @@ internal static class PrefabConfigManager
                 enabled: false,
                 allowedInDungeons: false,
                 pieceTable: nameof(PieceTables.Cultivator),
-                category: PieceCategoryManager.CreatorShop,
+                category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
                 clipEverything: false,
@@ -291,7 +295,7 @@ internal static class PrefabConfigManager
                 enabled: false,
                 allowedInDungeons: false,
                 pieceTable: nameof(PieceTables.Cultivator),
-                category: PieceCategoryManager.CreatorShop,
+                category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
                 clipEverything: false,
@@ -307,7 +311,7 @@ internal static class PrefabConfigManager
                 enabled: false,
                 allowedInDungeons: false,
                 pieceTable: nameof(PieceTables.Cultivator),
-                category: PieceCategoryManager.CreatorShop,
+                category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
                 clipEverything: true,
@@ -324,7 +328,7 @@ internal static class PrefabConfigManager
                 enabled: false,
                 allowedInDungeons: false,
                 pieceTable: nameof(PieceTables.Cultivator),
-                category: PieceCategoryManager.CreatorShop,
+                category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
                 clipEverything: true,
@@ -341,7 +345,7 @@ internal static class PrefabConfigManager
                 enabled: false,
                 allowedInDungeons: false,
                 pieceTable: nameof(PieceTables.Cultivator),
-                category: PieceCategoryManager.CreatorShop,
+                category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
                 clipEverything: true,
@@ -357,7 +361,7 @@ internal static class PrefabConfigManager
                 enabled: false,
                 allowedInDungeons: false,
                 pieceTable: nameof(PieceTables.Cultivator),
-                category: PieceCategoryManager.CreatorShop,
+                category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
                 clipEverything: true,
@@ -374,7 +378,7 @@ internal static class PrefabConfigManager
                 enabled: false,
                 allowedInDungeons: false,
                 pieceTable: nameof(PieceTables.Cultivator),
-                category: PieceCategoryManager.CreatorShop,
+                category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
                 clipEverything: true,
@@ -390,7 +394,7 @@ internal static class PrefabConfigManager
                 enabled: false,
                 allowedInDungeons: false,
                 pieceTable: nameof(PieceTables.Cultivator),
-                category: PieceCategoryManager.CreatorShop,
+                category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
                 clipEverything: true,
@@ -406,7 +410,7 @@ internal static class PrefabConfigManager
                 enabled: false,
                 allowedInDungeons: false,
                 pieceTable: nameof(PieceTables.Cultivator),
-                category: PieceCategoryManager.CreatorShop,
+                category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
                 clipEverything: false,
@@ -422,7 +426,7 @@ internal static class PrefabConfigManager
                 enabled: false,
                 allowedInDungeons: false,
                 pieceTable: nameof(PieceTables.Cultivator),
-                category: PieceCategoryManager.CreatorShop,
+                category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
                 clipEverything: false,
@@ -438,7 +442,7 @@ internal static class PrefabConfigManager
                 enabled: false,
                 allowedInDungeons: false,
                 pieceTable: nameof(PieceTables.Cultivator),
-                category: PieceCategoryManager.CreatorShop,
+                category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
                 clipEverything: false,
@@ -454,7 +458,7 @@ internal static class PrefabConfigManager
                 enabled: false,
                 allowedInDungeons: false,
                 pieceTable: nameof(PieceTables.Cultivator),
-                category: PieceCategoryManager.CreatorShop,
+                category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
                 clipEverything: false,
@@ -470,7 +474,7 @@ internal static class PrefabConfigManager
                 enabled: false,
                 allowedInDungeons: false,
                 pieceTable: nameof(PieceTables.Cultivator),
-                category: PieceCategoryManager.CreatorShop,
+                category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
                 clipEverything: false,
@@ -486,7 +490,7 @@ internal static class PrefabConfigManager
                 enabled: false,
                 allowedInDungeons: false,
                 pieceTable: nameof(PieceTables.Cultivator),
-                category: PieceCategoryManager.CreatorShop,
+                category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
                 clipEverything: false,
@@ -502,7 +506,7 @@ internal static class PrefabConfigManager
                 enabled: false,
                 allowedInDungeons: false,
                 pieceTable: nameof(PieceTables.Cultivator),
-                category: PieceCategoryManager.CreatorShop,
+                category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
                 clipEverything: true,
@@ -515,12 +519,12 @@ internal static class PrefabConfigManager
             "Ashlands_Altar",
             new PrefabConfig(
                 name: "Ashlands_Altar",
-                enabled: false,
+                enabled: true,
                 allowedInDungeons: false,
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
-                craftingStation: nameof(CraftingStations.None),
-                requirements: "",
+                craftingStation: nameof(CraftingStations.Stonecutter),
+                requirements: "Grausten,5;SulfurStone,1",
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false
@@ -535,10 +539,12 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
-                requirements: "Grausten,8",
+                requirements: "Grausten,10",
+                pieceName: "Grausten arch (medium)",
                 clipEverything: false,
                 clipGround: false,
-                placementPatch: false
+                placementPatch: false,
+                pieceGroup: PieceClassification.Grausten
             )
         },
         {
@@ -550,55 +556,63 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
-                requirements: "Grausten,10",
+                requirements: "Grausten,16",
+                pieceName: "Grausten Large Arch",
                 clipEverything: false,
                 clipGround: false,
-                placementPatch: false
+                placementPatch: false,
+                pieceGroup: PieceClassification.Grausten
             )
         },
         {
             "Ashlands_Arch2_Broken1",
             new PrefabConfig(
                 name: "Ashlands_Arch2_Broken1",
-                enabled: false,
+                enabled: true,
                 allowedInDungeons: false,
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
-                craftingStation: nameof(CraftingStations.None),
-                requirements: "",
+                craftingStation: nameof(CraftingStations.Stonecutter),
+                requirements: "Grausten,10",
+                pieceName: "Grausten Large Arch (Base)",
                 clipEverything: false,
                 clipGround: false,
-                placementPatch: false
+                placementPatch: false,
+                pieceGroup: PieceClassification.Grausten
             )
         },
         {
             "Ashlands_Arch2_Broken2",
             new PrefabConfig(
                 name: "Ashlands_Arch2_Broken2",
-                enabled: false,
+                enabled: true,
                 allowedInDungeons: false,
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
-                craftingStation: nameof(CraftingStations.None),
-                requirements: "",
+                craftingStation: nameof(CraftingStations.Stonecutter),
+                requirements: "Grausten,6",
+                pieceName: "Grausten Large Arch (Top)",
                 clipEverything: false,
                 clipGround: false,
-                placementPatch: false
+                placementPatch: false,
+                pieceGroup: PieceClassification.Grausten
             )
         },
         {
             "Ashlands_ArchRoof",
             new PrefabConfig(
                 name: "Ashlands_ArchRoof",
-                enabled: false,
+                enabled: true,
                 allowedInDungeons: false,
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
-                craftingStation: nameof(CraftingStations.None),
-                requirements: "",
+                craftingStation: nameof(CraftingStations.Stonecutter),
+                requirements: "Grausten,24",
+                pieceName: "Grausten Arch Roof",
                 clipEverything: false,
                 clipGround: false,
-                placementPatch: true
+                placementPatch: true,
+                pieceGroup: PieceClassification.Grausten
             )
         },
         {
@@ -609,116 +623,132 @@ internal static class PrefabConfigManager
                 allowedInDungeons: false,
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
-                craftingStation: nameof(CraftingStations.None),
-                requirements: "",
+                craftingStation: nameof(CraftingStations.Stonecutter),
+                requirements: "Grausten,22",
+                pieceName: "Grausten Arched Roof (Damaged)",
                 clipEverything: false,
                 clipGround: false,
-                placementPatch: false
+                placementPatch: false,
+                pieceGroup: PieceClassification.Grausten
             )
         },
         {
             "Ashlands_ArchRoofDamaged_half1",
             new PrefabConfig(
                 name: "Ashlands_ArchRoofDamaged_half1",
-                enabled: false,
+                enabled: true,
                 allowedInDungeons: false,
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
-                craftingStation: nameof(CraftingStations.None),
-                requirements: "",
+                craftingStation: nameof(CraftingStations.Stonecutter),
+                requirements: "Grausten,16",
+                pieceName: "Grausten Arched Roof (Left)",
                 clipEverything: false,
                 clipGround: false,
-                placementPatch: false
+                placementPatch: false,
+                pieceGroup: PieceClassification.Grausten
             )
         },
         {
             "Ashlands_ArchRoofDamaged_half2",
             new PrefabConfig(
                 name: "Ashlands_ArchRoofDamaged_half2",
-                enabled: false,
+                enabled: true,
                 allowedInDungeons: false,
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
-                craftingStation: nameof(CraftingStations.None),
-                requirements: "",
+                craftingStation: nameof(CraftingStations.Stonecutter),
+                requirements: "Grausten,16",
+                pieceName: "Grausten Arched Roof (Right)",
                 clipEverything: false,
                 clipGround: false,
-                placementPatch: false
+                placementPatch: false,
+                pieceGroup: PieceClassification.Grausten
             )
         },
         {
             "Ashlands_ArchRoofLong_Damaged",
             new PrefabConfig(
                 name: "Ashlands_ArchRoofLong_Damaged",
-                enabled: false,
+                enabled: true,
                 allowedInDungeons: false,
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
-                craftingStation: nameof(CraftingStations.None),
-                requirements: "",
+                craftingStation: nameof(CraftingStations.Stonecutter),
+                requirements: "Grausten,16",
+                pieceName: "Grausten Arched Roof",
                 clipEverything: false,
                 clipGround: false,
-                placementPatch: false
+                placementPatch: false,
+                pieceGroup: PieceClassification.Grausten
             )
         },
         {
             "Ashlands_Boss_Pillar",
             new PrefabConfig(
                 name: "Ashlands_Boss_Pillar",
-                enabled: false,
+                enabled: true,
                 allowedInDungeons: false,
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
-                craftingStation: nameof(CraftingStations.None),
-                requirements: "",
+                craftingStation: nameof(CraftingStations.Stonecutter),
+                requirements: "Grausten,64",
+                pieceName: "Grausten Pillar (Giant)",
                 clipEverything: false,
                 clipGround: false,
-                placementPatch: true
+                placementPatch: true,
+                pieceGroup: PieceClassification.Grausten
             )
         },
         {
             "Ashlands_Boss_Pillar_Twist_broken1",
             new PrefabConfig(
                 name: "Ashlands_Boss_Pillar_Twist_broken1",
-                enabled: false,
+                enabled: true,
                 allowedInDungeons: false,
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
-                craftingStation: nameof(CraftingStations.None),
-                requirements: "",
+                craftingStation: nameof(CraftingStations.Stonecutter),
+                requirements: "Grausten,32",
+                pieceName: "Grausten Twisted Pillar (Base)",
                 clipEverything: false,
                 clipGround: false,
-                placementPatch: false
+                placementPatch: false,
+                pieceGroup: PieceClassification.Grausten
             )
         },
         {
             "Ashlands_Boss_Pillar_Twist_broken2",
             new PrefabConfig(
                 name: "Ashlands_Boss_Pillar_Twist_broken2",
-                enabled: false,
+                enabled: true,
                 allowedInDungeons: false,
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
-                craftingStation: nameof(CraftingStations.None),
-                requirements: "",
+                craftingStation: nameof(CraftingStations.Stonecutter),
+                requirements: "Grausten,32",
+                pieceName: "Grausten Twisted Pillar (Middle)",
                 clipEverything: false,
                 clipGround: false,
-                placementPatch: false
+                placementPatch: false,
+                pieceGroup: PieceClassification.Grausten
             )
         },
         {
             "Ashlands_Boss_Pillar_Twist_broken3",
             new PrefabConfig(
                 name: "Ashlands_Boss_Pillar_Twist_broken3",
-                enabled: false,
+                enabled: true,
                 allowedInDungeons: false,
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
-                craftingStation: nameof(CraftingStations.None),
-                requirements: "",
+                craftingStation: nameof(CraftingStations.Stonecutter),
+                requirements: "Grausten,32",
+                pieceName: "Grausten Twisted Pillar (Top)",
                 clipEverything: false,
                 clipGround: false,
-                placementPatch: false
+                placementPatch: false,
+                pieceGroup: PieceClassification.Grausten
             )
         },
         {
@@ -730,10 +760,12 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
-                requirements: "Grausten,4",
+                requirements: "Grausten,6",
+                pieceName: "Grausten Floor 2x2",
                 clipEverything: false,
                 clipGround: false,
-                placementPatch: false
+                placementPatch: false,
+                pieceGroup: PieceClassification.Grausten
             )
         },
         {
@@ -745,10 +777,12 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
-                requirements: "Grausten,6",
+                requirements: "Grausten,6;FlametalNew,1",
+                pieceName: "Grausten Floor 2x2 (Reinforced)",
                 clipEverything: false,
                 clipGround: false,
-                placementPatch: false
+                placementPatch: false,
+                pieceGroup: PieceClassification.Fortress
             )
         },
         {
@@ -760,10 +794,12 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
-                requirements: "Grausten,32",
+                requirements: "Grausten,32;FlametalNew,4",
+                pieceName: "Grausten gate (Reinforced)",
                 clipEverything: false,
                 clipGround: false,
-                placementPatch: false
+                placementPatch: false,
+                pieceGroup: PieceClassification.Fortress
             )
         },
         {
@@ -776,55 +812,63 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.BlackForge),
                 requirements: "Copper,30;FlametalNew,5",
+                pieceName: "Grausten gate door (Reinforced)",
                 clipEverything: false,
                 clipGround: false,
-                placementPatch: false
+                placementPatch: false,
+                pieceGroup: PieceClassification.Fortress
             )
         },
         {
             "Ashlands_Fortress_Wall_PillarTopStone_frac",
             new PrefabConfig(
                 name: "Ashlands_Fortress_Wall_PillarTopStone_frac",
-                enabled: false,
+                enabled: true,
                 allowedInDungeons: false,
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
-                craftingStation: nameof(CraftingStations.None),
-                requirements: "",
+                craftingStation: nameof(CraftingStations.Stonecutter),
+                requirements: "Grausten,12;Stone,30;FlametalNew,4",
+                pieceName: "Grausten pillar top (Reinforced)",
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: true,
-                placementOffset: new Vector3(0f, -0.1f, 0f)
+                placementOffset: new Vector3(0f, -0.1f, 0f),
+                pieceGroup: PieceClassification.Fortress
             )
         },
         {
             "Ashlands_Fortress_Wall_PillarTop_frac",
             new PrefabConfig(
                 name: "Ashlands_Fortress_Wall_PillarTop_frac",
-                enabled: false,
+                enabled: true,
                 allowedInDungeons: false,
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
-                requirements: "",
+                requirements: "Grausten,12;Stone,60;FlametalNew,4",
+                pieceName: "Grausten pillar (Reinforced)",
                 clipEverything: false,
                 clipGround: false,
-                placementPatch: false
+                placementPatch: false,
+                pieceGroup: PieceClassification.Fortress
             )
         },
         {
             "Ashlands_Fortress_Wall_Pillar_frac",
             new PrefabConfig(
                 name: "Ashlands_Fortress_Wall_Pillar_frac",
-                enabled: false,
+                enabled: true,
                 allowedInDungeons: false,
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
-                requirements: "",
+                requirements: "Grausten,12;Stone,78;FlametalNew,4",
+                pieceName: "Grausten buttress (Reinforced)",
                 clipEverything: false,
                 clipGround: false,
-                placementPatch: false
+                placementPatch: false,
+                pieceGroup: PieceClassification.Fortress
             )
         },
         {
@@ -837,9 +881,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.BlackForge),
                 requirements: "Copper,4;FlametalNew,2",
+                pieceName: "Reinforced Spikes",
                 clipEverything: false,
                 clipGround: false,
-                placementPatch: false
+                placementPatch: false,
+                pieceGroup: PieceClassification.Fortress
             )
         },
         {
@@ -851,10 +897,12 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
-                requirements: "Grausten,10",
+                requirements: "Grausten,24",
+                pieceName: "Grausten Pillar 2x2x4",
                 clipEverything: false,
                 clipGround: false,
-                placementPatch: false
+                placementPatch: false,
+                pieceGroup: PieceClassification.Grausten
             )
         },
         {
@@ -866,10 +914,12 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
-                requirements: "Grausten,10",
+                requirements: "Grausten,24",
+                pieceName: "Grausten Spiked Pillar",
                 clipEverything: false,
                 clipGround: false,
-                placementPatch: false
+                placementPatch: false,
+                pieceGroup: PieceClassification.Grausten
             )
         },
         {
@@ -881,10 +931,12 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
-                requirements: "Grausten,10",
+                requirements: "Grausten,24",
+                pieceName: "Grausten Curved Spiked Pillar",
                 clipEverything: false,
                 clipGround: false,
-                placementPatch: false
+                placementPatch: false,
+                pieceGroup: PieceClassification.Grausten
             )
         },
         {
@@ -895,11 +947,13 @@ internal static class PrefabConfigManager
                 allowedInDungeons: false,
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
-                craftingStation: nameof(CraftingStations.None),
-                requirements: "",
+                craftingStation: nameof(CraftingStations.Stonecutter),
+                requirements: "Grausten,12",
+                pieceName: "Grausten Curved Spiked Pillar (Base)",
                 clipEverything: false,
                 clipGround: false,
-                placementPatch: false
+                placementPatch: false,
+                pieceGroup: PieceClassification.Grausten
             )
         },
         {
@@ -910,26 +964,30 @@ internal static class PrefabConfigManager
                 allowedInDungeons: false,
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
-                craftingStation: nameof(CraftingStations.None),
-                requirements: "",
+                craftingStation: nameof(CraftingStations.Stonecutter),
+                requirements: "Grausten,12",
+                pieceName: "Grausten curved spiked pillar (Top)",
                 clipEverything: false,
                 clipGround: false,
-                placementPatch: false
+                placementPatch: false,
+                pieceGroup: PieceClassification.Grausten
             )
         },
         {
             "Ashlands_Pillar4_tip3",
             new PrefabConfig(
                 name: "Ashlands_Pillar4_tip3",
-                enabled: false,
+                enabled: true,
                 allowedInDungeons: false,
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
-                craftingStation: nameof(CraftingStations.None),
-                requirements: "",
+                craftingStation: nameof(CraftingStations.Stonecutter),
+                requirements: "Grausten,32",
+                pieceName: "Grausten twisted spiked pillar (large)",
                 clipEverything: false,
                 clipGround: false,
-                placementPatch: false
+                placementPatch: false,
+                pieceGroup: PieceClassification.Grausten
             )
         },
         {
@@ -940,11 +998,13 @@ internal static class PrefabConfigManager
                 allowedInDungeons: false,
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
-                craftingStation: nameof(CraftingStations.None),
-                requirements: "",
+                craftingStation: nameof(CraftingStations.Stonecutter),
+                requirements: "Grausten,10",
+                pieceName: "Grausten twisted spiked pillar (Base)",
                 clipEverything: false,
                 clipGround: false,
-                placementPatch: false
+                placementPatch: false,
+                pieceGroup: PieceClassification.Grausten
             )
         },
         {
@@ -955,11 +1015,13 @@ internal static class PrefabConfigManager
                 allowedInDungeons: false,
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
-                craftingStation: nameof(CraftingStations.None),
-                requirements: "",
+                craftingStation: nameof(CraftingStations.Stonecutter),
+                requirements: "Grausten,10",
+                pieceName: "Grausten twisted spiked pillar (middle)",
                 clipEverything: false,
                 clipGround: false,
-                placementPatch: false
+                placementPatch: false,
+                pieceGroup: PieceClassification.Grausten
             )
         },
         {
@@ -970,11 +1032,13 @@ internal static class PrefabConfigManager
                 allowedInDungeons: false,
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
-                craftingStation: nameof(CraftingStations.None),
-                requirements: "",
+                craftingStation: nameof(CraftingStations.Stonecutter),
+                requirements: "Grausten,12",
+                pieceName: "Grausten Twisted Spiked Pillar (Top)",
                 clipEverything: false,
                 clipGround: false,
-                placementPatch: false
+                placementPatch: false,
+                pieceGroup: PieceClassification.Grausten
             )
         },
         {
@@ -985,11 +1049,13 @@ internal static class PrefabConfigManager
                 allowedInDungeons: false,
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
-                craftingStation: nameof(CraftingStations.None),
-                requirements: "",
+                craftingStation: nameof(CraftingStations.Stonecutter),
+                requirements: "Grausten,12",
+                pieceName: "Grausten Spiked Pillar (Base)",
                 clipEverything: false,
                 clipGround: false,
-                placementPatch: false
+                placementPatch: false,
+                pieceGroup: PieceClassification.Grausten
             )
         },
         {
@@ -1000,11 +1066,13 @@ internal static class PrefabConfigManager
                 allowedInDungeons: false,
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
-                craftingStation: nameof(CraftingStations.None),
-                requirements: "",
+                craftingStation: nameof(CraftingStations.Stonecutter),
+                requirements: "Grausten,12",
+                pieceName: "Grausten Spiked Pillar (Top)",
                 clipEverything: false,
                 clipGround: false,
-                placementPatch: false
+                placementPatch: false,
+                pieceGroup: PieceClassification.Grausten
             )
         },
         {
@@ -1016,10 +1084,12 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
-                requirements: "Grausten,3",
+                requirements: "Grausten,5",
+                pieceName: "Grausten Pillar Base",
                 clipEverything: false,
                 clipGround: false,
-                placementPatch: false
+                placementPatch: false,
+                pieceGroup: PieceClassification.Grausten
             )
         },
         {
@@ -1031,55 +1101,63 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
-                requirements: "Grausten,10",
+                requirements: "Grausten,12",
+                pieceName: "Grausten Buttress",
                 clipEverything: false,
                 clipGround: false,
-                placementPatch: false
+                placementPatch: false,
+                pieceGroup: PieceClassification.Grausten
             )
         },
         {
             "Ashlands_Ruins_Floor_1point5x1point5",
             new PrefabConfig(
                 name: "Ashlands_Ruins_Floor_1point5x1point5",
-                enabled: false,
+                enabled: true,
                 allowedInDungeons: false,
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
-                craftingStation: nameof(CraftingStations.None),
-                requirements: "",
+                craftingStation: nameof(CraftingStations.Stonecutter),
+                requirements: "Grausten,3",
+                pieceName: "Grausten Floor 1.5x1.5",
                 clipEverything: false,
                 clipGround: false,
-                placementPatch: false
+                placementPatch: false,
+                pieceGroup: PieceClassification.Grausten
             )
         },
         {
             "Ashlands_Ruins_Floor_1point5x1point5_broken",
             new PrefabConfig(
                 name: "Ashlands_Ruins_Floor_1point5x1point5_broken",
-                enabled: false,
+                enabled: true,
                 allowedInDungeons: false,
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
-                craftingStation: nameof(CraftingStations.None),
-                requirements: "",
+                craftingStation: nameof(CraftingStations.Stonecutter),
+                requirements: "Grausten,3",
+                pieceName: "Grausten Floor 1.5x1.5 (Broken)",
                 clipEverything: false,
                 clipGround: false,
-                placementPatch: false
+                placementPatch: false,
+                pieceGroup: PieceClassification.Grausten
             )
         },
         {
             "Ashlands_Ruins_Floor_3x3",
             new PrefabConfig(
                 name: "Ashlands_Ruins_Floor_3x3",
-                enabled: false,
+                enabled: true,
                 allowedInDungeons: false,
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
-                craftingStation: nameof(CraftingStations.None),
-                requirements: "",
+                craftingStation: nameof(CraftingStations.Stonecutter),
+                requirements: "Grausten,6",
+                pieceName: "Grausten Floor 3x3",
                 clipEverything: false,
                 clipGround: false,
-                placementPatch: false
+                placementPatch: false,
+                pieceGroup: PieceClassification.Grausten
             )
         },
         {
@@ -1090,11 +1168,13 @@ internal static class PrefabConfigManager
                 allowedInDungeons: false,
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
-                craftingStation: nameof(CraftingStations.None),
-                requirements: "",
+                craftingStation: nameof(CraftingStations.Stonecutter),
+                requirements: "Grausten,5",
+                pieceName: "Grausten Floor 3x3 (Broken) (1)",
                 clipEverything: false,
                 clipGround: false,
-                placementPatch: false
+                placementPatch: false,
+                pieceGroup: PieceClassification.Grausten
             )
         },
         {
@@ -1105,11 +1185,13 @@ internal static class PrefabConfigManager
                 allowedInDungeons: false,
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
-                craftingStation: nameof(CraftingStations.None),
-                requirements: "",
+                craftingStation: nameof(CraftingStations.Stonecutter),
+                requirements: "Grausten,5",
+                pieceName: "Grausten Floor 3x3 (Broken) (2)",
                 clipEverything: false,
                 clipGround: false,
-                placementPatch: false
+                placementPatch: false,
+                pieceGroup: PieceClassification.Grausten
             )
         },
         {
@@ -1120,26 +1202,30 @@ internal static class PrefabConfigManager
                 allowedInDungeons: false,
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
-                craftingStation: nameof(CraftingStations.None),
-                requirements: "",
+                craftingStation: nameof(CraftingStations.Stonecutter),
+                requirements: "Grausten,5",
+                pieceName: "Grausten Floor 3x3 (Broken) (3)",
                 clipEverything: false,
                 clipGround: false,
-                placementPatch: false
+                placementPatch: false,
+                pieceGroup: PieceClassification.Grausten
             )
         },
         {
             "Ashlands_Ruins_Floor_6x6",
             new PrefabConfig(
                 name: "Ashlands_Ruins_Floor_6x6",
-                enabled: false,
+                enabled: true,
                 allowedInDungeons: false,
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
-                craftingStation: nameof(CraftingStations.None),
-                requirements: "",
+                craftingStation: nameof(CraftingStations.Stonecutter),
+                requirements: "Grausten,12",
+                pieceName: "Grausten Floor 6x6",
                 clipEverything: false,
                 clipGround: false,
-                placementPatch: false
+                placementPatch: false,
+                pieceGroup: PieceClassification.Grausten
             )
         },
         {
@@ -1150,11 +1236,13 @@ internal static class PrefabConfigManager
                 allowedInDungeons: false,
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
-                craftingStation: nameof(CraftingStations.None),
-                requirements: "",
+                craftingStation: nameof(CraftingStations.Stonecutter),
+                requirements: "Grausten,10",
+                pieceName: "Grausten Floor 6x6 (Broken) (1)",
                 clipEverything: false,
                 clipGround: false,
-                placementPatch: false
+                placementPatch: false,
+                pieceGroup: PieceClassification.Grausten
             )
         },
         {
@@ -1165,11 +1253,13 @@ internal static class PrefabConfigManager
                 allowedInDungeons: false,
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
-                craftingStation: nameof(CraftingStations.None),
-                requirements: "",
+                craftingStation: nameof(CraftingStations.Stonecutter),
+                requirements: "Grausten,10",
+                pieceName: "Grausten Floor 6x6 (Broken) (2)",
                 clipEverything: false,
                 clipGround: false,
-                placementPatch: true
+                placementPatch: true,
+                pieceGroup: PieceClassification.Grausten
             )
         },
         {
@@ -1181,10 +1271,12 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
-                requirements: "Grausten,10",
+                requirements: "Grausten,12",
+                pieceName: "Grausten Buttress (Weathered)",
                 clipEverything: false,
                 clipGround: false,
-                placementPatch: false
+                placementPatch: false,
+                pieceGroup: PieceClassification.Grausten
             )
         },
         {
@@ -1196,190 +1288,216 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
-                requirements: "Grausten,10",
+                requirements: "Grausten,12",
+                pieceName: "Grausten Buttress Inverted (Weathered)",
                 clipEverything: false,
                 clipGround: false,
-                placementPatch: false
+                placementPatch: false,
+                pieceGroup: PieceClassification.Grausten
             )
         },
         {
             "Ashlands_Ruins_TopStone",
             new PrefabConfig(
                 name: "Ashlands_Ruins_TopStone",
-                enabled: false,
+                enabled: true,
                 allowedInDungeons: false,
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
-                craftingStation: nameof(CraftingStations.None),
-                requirements: "",
+                craftingStation: nameof(CraftingStations.Stonecutter),
+                requirements: "Grausten,6",
+                pieceName: "Grausten Top Stone",
                 clipEverything: false,
                 clipGround: false,
-                placementPatch: false
+                placementPatch: false,
+                pieceGroup: PieceClassification.Grausten
             )
         },
         {
             "Ashlands_Ruins_Wall_4x6",
             new PrefabConfig(
                 name: "Ashlands_Ruins_Wall_4x6",
-                enabled: false,
+                enabled: true,
                 allowedInDungeons: false,
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
-                craftingStation: nameof(CraftingStations.None),
-                requirements: "",
+                craftingStation: nameof(CraftingStations.Stonecutter),
+                requirements: "Grausten,24",
+                pieceName: "Grausten Wall 4x6",
                 clipEverything: false,
                 clipGround: false,
-                placementPatch: false
+                placementPatch: false,
+                pieceGroup: PieceClassification.Grausten
             )
         },
         {
             "Ashlands_Ruins_Wall_Broken3_4x6",
             new PrefabConfig(
                 name: "Ashlands_Ruins_Wall_Broken3_4x6",
-                enabled: false,
+                enabled: true,
                 allowedInDungeons: false,
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
-                craftingStation: nameof(CraftingStations.None),
-                requirements: "",
+                craftingStation: nameof(CraftingStations.Stonecutter),
+                requirements: "Grausten,8",
+                pieceName: "Grausten Wall 4x6 (Left)",
                 clipEverything: false,
                 clipGround: false,
-                placementPatch: false
+                placementPatch: false,
+                pieceGroup: PieceClassification.Grausten
             )
         },
         {
             "Ashlands_Ruins_Wall_Broken4_4x6",
             new PrefabConfig(
                 name: "Ashlands_Ruins_Wall_Broken4_4x6",
-                enabled: false,
+                enabled: true,
                 allowedInDungeons: false,
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
-                craftingStation: nameof(CraftingStations.None),
-                requirements: "",
+                craftingStation: nameof(CraftingStations.Stonecutter),
+                requirements: "Grausten,8",
+                pieceName: "Grausten Wall 4x6 (Center)",
                 clipEverything: false,
                 clipGround: false,
-                placementPatch: false
+                placementPatch: false,
+                pieceGroup: PieceClassification.Grausten
             )
         },
         {
             "Ashlands_Ruins_Wall_Broken5_4x6",
             new PrefabConfig(
                 name: "Ashlands_Ruins_Wall_Broken5_4x6",
-                enabled: false,
+                enabled: true,
                 allowedInDungeons: false,
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
-                craftingStation: nameof(CraftingStations.None),
-                requirements: "",
+                craftingStation: nameof(CraftingStations.Stonecutter),
+                requirements: "Grausten,8",
+                pieceName: "Grausten Wall 4x6 (Right)",
                 clipEverything: false,
                 clipGround: false,
-                placementPatch: false
+                placementPatch: false,
+                pieceGroup: PieceClassification.Grausten
             )
         },
         {
             "Ashlands_Ruins_Wall_Top_wHole",
             new PrefabConfig(
                 name: "Ashlands_Ruins_Wall_Top_wHole",
-                enabled: false,
+                enabled: true,
                 allowedInDungeons: false,
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
-                requirements: "Grausten,16",
+                requirements: "Grausten,24",
+                pieceName: "Grausten Arched Window",
                 clipEverything: false,
                 clipGround: false,
-                placementPatch: false
+                placementPatch: false,
+                pieceGroup: PieceClassification.Grausten
             )
         },
         {
             "Ashlands_Ruins_Wall_Window_4x6_broken2",
             new PrefabConfig(
                 name: "Ashlands_Ruins_Wall_Window_4x6_broken2",
-                enabled: false,
+                enabled: true,
                 allowedInDungeons: false,
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
-                craftingStation: nameof(CraftingStations.None),
-                requirements: "",
+                craftingStation: nameof(CraftingStations.Stonecutter),
+                requirements: "Grausten,10",
+                pieceName: "Grausten Window 4x6 (Left Half)",
                 clipEverything: false,
                 clipGround: false,
-                placementPatch: false
+                placementPatch: false,
+                pieceGroup: PieceClassification.Grausten
             )
         },
         {
             "Ashlands_Ruins_Wall_Window_4x6_broken3",
             new PrefabConfig(
                 name: "Ashlands_Ruins_Wall_Window_4x6_broken3",
-                enabled: false,
+                enabled: true,
                 allowedInDungeons: false,
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
-                craftingStation: nameof(CraftingStations.None),
-                requirements: "",
+                craftingStation: nameof(CraftingStations.Stonecutter),
+                requirements: "Grausten,10",
+                pieceName: "Grausten Window 4x6 (Right Half)",
                 clipEverything: false,
                 clipGround: false,
-                placementPatch: false
+                placementPatch: false,
+                pieceGroup: PieceClassification.Grausten
             )
         },
         {
             "Ashlands_Ruins_Wall_Window_4x6_broken4",
             new PrefabConfig(
                 name: "Ashlands_Ruins_Wall_Window_4x6_broken4",
-                enabled: false,
+                enabled: true,
                 allowedInDungeons: false,
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
-                craftingStation: nameof(CraftingStations.None),
-                requirements: "",
+                craftingStation: nameof(CraftingStations.Stonecutter),
+                requirements: "Grausten,8",
+                pieceName: "Grausten Window 4x6 (Right End)",
                 clipEverything: false,
                 clipGround: false,
-                placementPatch: false
+                placementPatch: false,
+                pieceGroup: PieceClassification.Grausten
             )
         },
         {
             "Ashlands_Ruins_Wall_Window_4x6_broken5",
             new PrefabConfig(
                 name: "Ashlands_Ruins_Wall_Window_4x6_broken5",
-                enabled: false,
+                enabled: true,
                 allowedInDungeons: false,
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
-                craftingStation: nameof(CraftingStations.None),
-                requirements: "",
+                craftingStation: nameof(CraftingStations.Stonecutter),
+                requirements: "Grausten,7",
+                pieceName: "Grausten Window 4x6 (Left End)",
                 clipEverything: false,
                 clipGround: false,
-                placementPatch: false
+                placementPatch: false,
+                pieceGroup: PieceClassification.Grausten
             )
         },
         {
             "Ashlands_Ruins_Wall_Window_4x6_broken6",
             new PrefabConfig(
                 name: "Ashlands_Ruins_Wall_Window_4x6_broken6",
-                enabled: false,
+                enabled: true,
                 allowedInDungeons: false,
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
-                craftingStation: nameof(CraftingStations.None),
-                requirements: "",
+                craftingStation: nameof(CraftingStations.Stonecutter),
+                requirements: "Grausten,7",
+                pieceName: "Grausten Window 4x6 (Center)",
                 clipEverything: false,
                 clipGround: false,
-                placementPatch: false
+                placementPatch: false,
+                pieceGroup: PieceClassification.Grausten
             )
         },
         {
             "Ashlands_Ruins_Wall_Windows_Broken_4x6",
             new PrefabConfig(
                 name: "Ashlands_Ruins_Wall_Windows_Broken_4x6",
-                enabled: false,
+                enabled: true,
                 allowedInDungeons: false,
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
-                craftingStation: nameof(CraftingStations.None),
-                requirements: "",
+                craftingStation: nameof(CraftingStations.Stonecutter),
+                requirements: "Grausten,20",
+                pieceName: "Grausten Window 4x6 (Broken)",
                 clipEverything: false,
                 clipGround: false,
-                placementPatch: true
+                placementPatch: true,
+                pieceGroup: PieceClassification.Grausten
             )
         },
         {
@@ -1391,10 +1509,12 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
-                requirements: "Grausten,8",
+                requirements: "Grausten,16",
+                pieceName: "Grausten Arch (Large)",
                 clipEverything: false,
                 clipGround: false,
-                placementPatch: false
+                placementPatch: false,
+                pieceGroup: PieceClassification.Grausten
             )
         },
         {
@@ -1406,10 +1526,12 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
-                requirements: "Grausten,8",
+                requirements: "Grausten,18",
+                pieceName: "Grausten Twised Pillar Base (Large)",
                 clipEverything: false,
                 clipGround: false,
-                placementPatch: false
+                placementPatch: false,
+                pieceGroup: PieceClassification.Grausten
             )
         },
         {
@@ -1421,10 +1543,12 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
-                requirements: "Grausten,3",
+                requirements: "Grausten,5",
+                pieceName: "Grausten Pillar",
                 clipEverything: false,
                 clipGround: false,
-                placementPatch: false
+                placementPatch: false,
+                pieceGroup: PieceClassification.Grausten
             )
         },
         {
@@ -1437,24 +1561,28 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,24",
+                pieceName: "Grausten Dias Stairs",
                 clipEverything: false,
                 clipGround: false,
-                placementPatch: false
+                placementPatch: false,
+                pieceGroup: PieceClassification.Grausten
             )
         },
         {
             "Ashlands_WallBlock",
             new PrefabConfig(
                 name: "Ashlands_WallBlock",
-                enabled: false,
+                enabled: true,
                 allowedInDungeons: false,
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
-                craftingStation: nameof(CraftingStations.None),
-                requirements: "",
+                craftingStation: nameof(CraftingStations.Stonecutter),
+                requirements: "Grausten,6",
+                pieceName: "Grausten Wall 2x2",
                 clipEverything: false,
                 clipGround: false,
-                placementPatch: false
+                placementPatch: false,
+                pieceGroup: PieceClassification.Grausten
             )
         },
         {
@@ -1466,10 +1594,12 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
-                requirements: "Grausten,2",
+                requirements: "Grausten,5",
+                pieceName: "Grausten Wall 2x1",
                 clipEverything: false,
                 clipGround: false,
-                placementPatch: false
+                placementPatch: false,
+                pieceGroup: PieceClassification.Grausten
             )
         },
         {
@@ -1481,10 +1611,12 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
-                requirements: "Grausten,3",
+                requirements: "Grausten,5",
+                pieceName: "Grausten Plinth",
                 clipEverything: false,
                 clipGround: false,
-                placementPatch: false
+                placementPatch: false,
+                pieceGroup: PieceClassification.Grausten
             )
         },
         {
@@ -1496,10 +1628,12 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
-                requirements: "Grausten,6",
+                requirements: "Grausten,6;FlametalNew,1",
+                pieceName: "Grausten Wall 2x2 (Reinforced)",
                 clipEverything: false,
                 clipGround: false,
-                placementPatch: false
+                placementPatch: false,
+                pieceGroup: PieceClassification.Fortress
             )
         },
         {
@@ -1511,10 +1645,12 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
-                requirements: "Grausten,8",
+                requirements: "Grausten,8;FlametalNew,1",
+                pieceName: "Grausten Left Corner Wall 2x2 (Reinforced)",
                 clipEverything: false,
                 clipGround: false,
-                placementPatch: false
+                placementPatch: false,
+                pieceGroup: PieceClassification.Fortress
             )
         },
         {
@@ -1526,10 +1662,12 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
-                requirements: "Grausten,8",
+                requirements: "Grausten,8;FlametalNew,1",
+                pieceName: "Grausten Left Worner Wall Top 2x2 (Reinforced)",
                 clipEverything: false,
                 clipGround: false,
-                placementPatch: false
+                placementPatch: false,
+                pieceGroup: PieceClassification.Fortress
             )
         },
         {
@@ -1541,10 +1679,12 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
-                requirements: "Grausten,8",
+                requirements: "Grausten,8;FlametalNew,1",
+                pieceName: "Grausten Right Corner Wall 2x2 (Reinforced)",
                 clipEverything: false,
                 clipGround: false,
-                placementPatch: false
+                placementPatch: false,
+                pieceGroup: PieceClassification.Fortress
             )
         },
         {
@@ -1556,10 +1696,12 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
-                requirements: "Grausten,8",
+                requirements: "Grausten,8;FlametalNew,1",
+                pieceName: "Grausten Right Corner Wall Top 2x2 (Reinforced)",
                 clipEverything: false,
                 clipGround: false,
-                placementPatch: false
+                placementPatch: false,
+                pieceGroup: PieceClassification.Fortress
             )
         },
         {
@@ -1571,10 +1713,12 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
-                requirements: "Grausten,6",
+                requirements: "Grausten,6;FlametalNew,1",
+                pieceName: "Grausten Wall Edge 2x2 (Reinforced) (1)",
                 clipEverything: false,
                 clipGround: false,
-                placementPatch: false
+                placementPatch: false,
+                pieceGroup: PieceClassification.Fortress
             )
         },
         {
@@ -1586,10 +1730,12 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
-                requirements: "Grausten,6",
+                requirements: "Grausten,6;FlametalNew,1",
+                pieceName: "Grausten Wall Edge 2x2 (Reinforced) (2)",
                 clipEverything: false,
                 clipGround: false,
-                placementPatch: false
+                placementPatch: false,
+                pieceGroup: PieceClassification.Fortress
             )
         },
         {
@@ -1600,11 +1746,13 @@ internal static class PrefabConfigManager
                 allowedInDungeons: false,
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
-                craftingStation: nameof(CraftingStations.None),
-                requirements: "Grausten,6",
+                craftingStation: nameof(CraftingStations.Stonecutter),
+                requirements: "Grausten,6;FlametalNew,1",
+                pieceName: "Grausten Wall Edge Top 2x2 (Reinforced) (2)",
                 clipEverything: false,
                 clipGround: false,
-                placementPatch: false
+                placementPatch: false,
+                pieceGroup: PieceClassification.Fortress
             )
         },
         {
@@ -1616,10 +1764,12 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
-                requirements: "Grausten,6",
+                requirements: "Grausten,6;FlametalNew,1",
+                pieceName: "Grausten Wall Edge Top 2x2 (Reinforced) (1)",
                 clipEverything: false,
                 clipGround: false,
-                placementPatch: false
+                placementPatch: false,
+                pieceGroup: PieceClassification.Fortress
             )
         },
         {
@@ -1631,25 +1781,29 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
-                requirements: "Grausten,6",
+                requirements: "Grausten,6;FlametalNew,1",
+                pieceName: "Grausten Wall Top 2x2 (Reinforced)",
                 clipEverything: false,
                 clipGround: false,
-                placementPatch: false
+                placementPatch: false,
+                pieceGroup: PieceClassification.Fortress
             )
         },
         {
             "Ashlands_floor_large_fractured",
             new PrefabConfig(
                 name: "Ashlands_floor_large_fractured",
-                enabled: false,
+                enabled: true,
                 allowedInDungeons: false,
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
-                craftingStation: nameof(CraftingStations.None),
-                requirements: "",
+                craftingStation: nameof(CraftingStations.Stonecutter),
+                requirements: "Grausten,125",
+                pieceName: "Grausten Floor 10x10",
                 clipEverything: false,
                 clipGround: false,
-                placementPatch: false
+                placementPatch: false,
+                pieceGroup: PieceClassification.Grausten
             )
         },
         {
@@ -1759,7 +1913,7 @@ internal static class PrefabConfigManager
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceName: "Birch1 (autumn)",
+                pieceName: "Birch1 (Autumn)",
                 pieceGroup: PieceClassification.Flora
             )
         },
@@ -1792,7 +1946,7 @@ internal static class PrefabConfigManager
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceName: "Birch (autumn)",
+                pieceName: "Birch (Autumn)",
                 pieceGroup: PieceClassification.Flora
             )
         },
@@ -2189,7 +2343,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceName: "Wood box",
+                pieceName: "Wood Box",
                 pieceGroup: PieceClassification.Misc
             )
         },
@@ -5796,7 +5950,7 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                pieceName: "Coins (pickable)",
+                pieceName: "Coins (Pickable)",
                 pieceGroup: PieceClassification.Treasure
             )
         },
@@ -7596,7 +7750,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceName: "Trader ship",
+                pieceName: "Trader Ship",
                 pieceGroup: PieceClassification.Ship,
                 invWidth: 6,
                 invHeight: 4
@@ -7633,7 +7787,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceName: "Charred chest",
+                pieceName: "Charred Chest",
                 pieceGroup: PieceClassification.Chest,
                 invWidth: 8,
                 invHeight: 6
@@ -7666,7 +7820,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceName: "Black marble chest",
+                pieceName: "Black Marble Chest",
                 pieceGroup: PieceClassification.Chest,
                 invWidth: 8,
                 invHeight: 5
@@ -7685,7 +7839,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceName: "Dvergr chest",
+                pieceName: "Dvergr Chest",
                 pieceGroup: PieceClassification.Chest,
                 invWidth: 8,
                 invHeight: 4
@@ -7704,7 +7858,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceName: "Dvergr chest (large)",
+                pieceName: "Dvergr Chest (Large)",
                 pieceGroup: PieceClassification.Chest,
                 invWidth: 8,
                 invHeight: 5
@@ -7723,7 +7877,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceName: "Stone chest (mossy)",
+                pieceName: "Stone Chest (Mossy)",
                 pieceGroup: PieceClassification.Chest,
                 invWidth: 5,
                 invHeight: 2
@@ -7812,7 +7966,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceName: "Stone chest (snow)",
+                pieceName: "Stone Chest (Snow)",
                 pieceGroup: PieceClassification.Chest,
                 invWidth: 6,
                 invHeight: 3
@@ -7831,7 +7985,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceName: "Stone chest (dark moss)",
+                pieceName: "Stone Chest (Dark Moss)",
                 pieceGroup: PieceClassification.Chest,
                 invWidth: 5,
                 invHeight: 2
@@ -7850,7 +8004,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceName: "Stone chest (mossy, big)",
+                pieceName: "Stone Chest (Mossy, Big)",
                 pieceGroup: PieceClassification.Chest,
                 invWidth: 6,
                 invHeight: 3
@@ -8444,11 +8598,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Stonecutter,
                 craftingStation: nameof(CraftingStations.Stonecutter),
-                requirements: "BlackMarble,6",
+                requirements: "BlackMarble,8",
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceName: "Black marble plinth (wide)",
+                pieceName: "Black Marble Plinth (Wide)",
                 pieceGroup: PieceClassification.BlackMarble
             )
         },
@@ -8561,7 +8715,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: true,
                 placementPatch: false,
-                pieceName: "Black marble floor 8x8",
+                pieceName: "Black Marble Floor 8x8",
                 pieceGroup: PieceClassification.BlackMarble
             )
         },
@@ -8638,11 +8792,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Stonecutter,
                 craftingStation: nameof(CraftingStations.Stonecutter),
-                requirements: "BlackMarble,6",
+                requirements: "BlackMarble,8",
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceName: "Black marble cornice (wide)",
+                pieceName: "Black Marble Cornice (Wide)",
                 pieceGroup: PieceClassification.BlackMarble
             )
         },
@@ -8735,7 +8889,7 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Stonecutter,
                 craftingStation: nameof(CraftingStations.Stonecutter),
-                requirements: "BlackMarble,2",
+                requirements: "BlackMarble,1",
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
@@ -8910,7 +9064,7 @@ internal static class PrefabConfigManager
                 allowedInDungeons: false,
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
-                craftingStation: nameof(CraftingStations.None),
+                craftingStation: nameof(CraftingStations.BlackForge),
                 requirements: "",
                 clipEverything: false,
                 clipGround: false,
@@ -8924,7 +9078,7 @@ internal static class PrefabConfigManager
                 enabled: false,
                 allowedInDungeons: false,
                 pieceTable: nameof(PieceTables.Hoe),
-                category: PieceCategoryManager.CreatorShop,
+                category: PieceCategoryManager.Rocks,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
                 clipEverything: true,
@@ -8940,7 +9094,7 @@ internal static class PrefabConfigManager
                 enabled: false,
                 allowedInDungeons: false,
                 pieceTable: nameof(PieceTables.Hoe),
-                category: PieceCategoryManager.CreatorShop,
+                category: PieceCategoryManager.Rocks,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
                 clipEverything: false,
@@ -8956,7 +9110,7 @@ internal static class PrefabConfigManager
                 enabled: false,
                 allowedInDungeons: false,
                 pieceTable: nameof(PieceTables.Hoe),
-                category: PieceCategoryManager.CreatorShop,
+                category: PieceCategoryManager.Rocks,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
                 clipEverything: true,
@@ -8972,7 +9126,7 @@ internal static class PrefabConfigManager
                 enabled: false,
                 allowedInDungeons: false,
                 pieceTable: nameof(PieceTables.Hoe),
-                category: PieceCategoryManager.CreatorShop,
+                category: PieceCategoryManager.Rocks,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
                 clipEverything: true,
@@ -8988,7 +9142,7 @@ internal static class PrefabConfigManager
                 enabled: false,
                 allowedInDungeons: false,
                 pieceTable: nameof(PieceTables.Hoe),
-                category: PieceCategoryManager.CreatorShop,
+                category: PieceCategoryManager.Rocks,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
                 clipEverything: true,
@@ -9020,7 +9174,7 @@ internal static class PrefabConfigManager
                 enabled: false,
                 allowedInDungeons: false,
                 pieceTable: nameof(PieceTables.Hoe),
-                category: PieceCategoryManager.CreatorShop,
+                category: PieceCategoryManager.Rocks,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
                 clipEverything: true,
@@ -9460,7 +9614,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceName: "Dvergr component crate",
+                pieceName: "Dvergr Component Crate",
                 pieceDesc: "",
                 pieceGroup: PieceClassification.Misc
             )
@@ -9494,7 +9648,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceName: "Dvergr hook & chain",
+                pieceName: "Dvergr Hook & Chain",
                 pieceGroup: PieceClassification.Misc
             )
         },
@@ -9624,7 +9778,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceName: "Dvergr wood pole (large)",
+                pieceName: "Dvergr Wood Pole (Large)",
                 pieceGroup: PieceClassification.Dvergr
             )
         },
@@ -9673,7 +9827,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceName: "Dvergr wood wall 4x4",
+                pieceName: "Dvergr Wood Wall 4x4",
                 pieceGroup: PieceClassification.Dvergr
             )
         },
@@ -9706,7 +9860,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceName: "Door hanging (creep)",
+                pieceName: "Door Hanging (Creep)",
                 pieceDesc: "",
                 pieceGroup: PieceClassification.Misc
             )
@@ -9724,7 +9878,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceName: "Dvergr secret door",
+                pieceName: "Dvergr Secret Door",
                 pieceGroup: PieceClassification.Dvergr
             )
         },
@@ -9741,7 +9895,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceName: "Dvergr sliding door",
+                pieceName: "Dvergr Sliding Door",
                 pieceGroup: PieceClassification.Dvergr
             )
         },
@@ -9774,7 +9928,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceName: "Dvergr wood beam (creep)",
+                pieceName: "Dvergr Wood Beam (Creep)",
                 pieceGroup: PieceClassification.Dvergr
             )
         },
@@ -9807,7 +9961,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceName: "Dvergr wood pole (creep)",
+                pieceName: "Dvergr Wood Pole (Creep)",
                 pieceGroup: PieceClassification.Dvergr
             )
         },
@@ -10730,7 +10884,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceName: "Stone chest (light moss)",
+                pieceName: "Stone Chest (Light Moss)",
                 pieceGroup: PieceClassification.Chest,
                 invWidth: 5,
                 invHeight: 2
@@ -10822,7 +10976,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceName: "Black marble 1x2 enforced",
+                pieceName: "Black Marble 1x2 (Reinforced)",
                 pieceDesc: "",
                 pieceGroup: PieceClassification.BlackMarble
             )
@@ -10840,7 +10994,7 @@ internal static class PrefabConfigManager
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceName: "Mist volume",
+                pieceName: "Mist Volume",
                 pieceDesc: "Warning: requires devcommands to remove."
             )
         },
@@ -11093,7 +11247,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceName: "Dvergr wood pole",
+                pieceName: "Dvergr Wood Pole",
                 pieceGroup: PieceClassification.Dvergr
             )
         },
@@ -11230,9 +11384,9 @@ internal static class PrefabConfigManager
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "GreydwarfEye,10;BlackMarble,20;MoltenCore,2",
                 clipEverything: false,
-                clipGround: false,
+                clipGround: true,
                 placementPatch: false,
-                pieceName: "Dvergr portal",
+                pieceName: "Dvergr Portal",
                 pieceDesc: "Connects another portal with equal or no tag.",
                 pieceGroup: PieceClassification.Portal
             )
@@ -11710,7 +11864,7 @@ internal static class PrefabConfigManager
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
                 clipEverything: true,
-                pieceName: "Rock (large boulder)",
+                pieceName: "Rock (Large Boulder)",
                 pieceGroup: PieceClassification.Rock
             )
         },
@@ -12069,7 +12223,7 @@ internal static class PrefabConfigManager
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,48",
                 clipEverything: true,
-                pieceName: "Rock (black)",
+                pieceName: "Rock (Black)",
                 pieceGroup: PieceClassification.Rock
             )
         },
@@ -12086,7 +12240,7 @@ internal static class PrefabConfigManager
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceName: "Rock (black)",
+                pieceName: "Rock (Black)",
                 pieceGroup: PieceClassification.Rock
             )
         },
@@ -12103,7 +12257,7 @@ internal static class PrefabConfigManager
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceName: "Rock (black, alt)",
+                pieceName: "Rock (Black, Alt)",
                 pieceGroup: PieceClassification.Rock,
                 spawnOnDestroyed: "sfx_rock_destroyed"
             )
@@ -12471,7 +12625,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: false,
-                pieceName: "Wood plank",
+                pieceName: "Wood Plank",
                 pieceDesc: "",
                 pieceGroup: PieceClassification.Wood
             )
@@ -12534,7 +12688,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: true,
                 placementPatch: false,
-                pieceName: "Stone floor 4x4",
+                pieceName: "Stone Floor 4x4",
                 pieceGroup: PieceClassification.Stone
             )
         },
@@ -12607,7 +12761,7 @@ internal static class PrefabConfigManager
                 clipEverything: false,
                 clipGround: true,
                 placementPatch: false,
-                pieceName: "Stone floor 4x4 (2)",
+                pieceName: "Stone Floor 4x4 (2)",
                 pieceGroup: PieceClassification.Stone
             )
         },
@@ -12711,7 +12865,7 @@ internal static class PrefabConfigManager
                 requirements: "Tar,50",
                 clipEverything: true,
                 clipGround: false,
-                pieceName: "Crystallized tar",
+                pieceName: "Crystallized Tar",
                 pieceDesc: "Warning: requires devcommands to remove"
             )
         },
@@ -12728,7 +12882,7 @@ internal static class PrefabConfigManager
                 clipEverything: true,
                 clipGround: false,
                 placementPatch: false,
-                pieceName: "Crystallized tar",
+                pieceName: "Crystallized Tar",
                 pieceGroup: PieceClassification.Ore
             )
         },
@@ -12798,12 +12952,13 @@ internal static class PrefabConfigManager
             "veg_skull_Ashlands",
             new PrefabConfig(
                 name: "veg_skull_Ashlands",
-                enabled: false,
+                enabled: true,
                 allowedInDungeons: false,
-                pieceTable: nameof(PieceTables.Hammer),
-                category: PieceCategoryManager.CreatorShop,
+                pieceTable: nameof(PieceTables.Hoe),
+                category: PieceCategoryManager.Flora,
                 craftingStation: nameof(CraftingStations.None),
-                requirements: "",
+                requirements: "Charredskull,1",
+                pieceName: "Charred Skull",
                 clipEverything: false,
                 clipGround: false,
                 placementPatch: true
@@ -12990,5 +13145,4 @@ internal static class PrefabConfigManager
             )
         },
     };
-
 }
