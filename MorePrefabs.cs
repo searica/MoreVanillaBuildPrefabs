@@ -1,13 +1,12 @@
 ﻿// Ignore Spelling: Plugin MVBP
-using System.Reflection;
 using BepInEx;
 using BepInEx.Configuration;
 using HarmonyLib;
+using Jotunn.Extensions;
 using Jotunn.Managers;
 using Jotunn.Utils;
-using Jotunn.Extensions;
 using Logging;
-
+using System.Reflection;
 
 namespace MVBP;
 
@@ -22,7 +21,7 @@ public class MorePrefabs : BaseUnityPlugin
     public const string PluginName = "MoreVanillaBuildPrefabs";
     internal const string Author = "Searica";
     public const string PluginGUID = $"{Author}.Valheim.{PluginName}";
-    public const string PluginVersion = "1.6.3";
+    public const string PluginVersion = "1.6.5";
 
     public static MorePrefabs Instance { get; private set; }
     private ConfigFileWatcher configFileWatcher;
@@ -49,10 +48,14 @@ public class MorePrefabs : BaseUnityPlugin
     private static ConfigEntry<bool> EnableComfortPatches { get; set; }
     private static ConfigEntry<bool> EnableSeasonalPieces { get; set; }
     private static ConfigEntry<bool> EnablePlayerBasePatches { get; set; }
-    internal static bool IsEnableHammerCrops => EnableHammerCrops.Value;
-    internal static bool IsEnableComfortPatches => EnableComfortPatches.Value;
-    internal static bool IsEnableSeasonalPieces => EnableSeasonalPieces.Value;
-    internal static bool IsEnablePlayerBasePatches => EnablePlayerBasePatches.Value;
+    private static ConfigEntry<bool> EnableFortressPiecePatches { get; set; }
+
+    internal static bool HammerCropsEnabled => EnableHammerCrops.Value;
+    internal static bool ComfortPatchesEnabled => EnableComfortPatches.Value;
+    internal static bool SeasonalPiecePatchesEnabled => EnableSeasonalPieces.Value;
+    internal static bool PlayerBasePatchesEnabled => EnablePlayerBasePatches.Value;
+    internal static bool FortressPiecePatchesEnabeld => EnableFortressPiecePatches.Value;
+
  
     #endregion Customization Settings
 
@@ -191,6 +194,15 @@ public class MorePrefabs : BaseUnityPlugin
             "SeasonalPieces",
             true,
             "Set to true/enabled to add all currently disabled seasonal pieces to the hammer build table."
+        );
+
+        EnableFortressPiecePatches = Config.BindConfigInOrder(
+            CustomizationSection,
+            "FortressPieces",
+            false,
+            "In vanilla, only some fortress pieces actually require seige weapons to damage. Set this to true/enabled to modify player built instances of fortress pieces so that they all require" +
+            " siege weapons to damage by modifying them to have the correct value for min tool tier required to damage them. This only affects player built pieces, works for vanilla clients," +
+            " and is persistent if you uninstall this mod. If you disable this setting and reload the area, then all fortress pieces will revert to vanilla behaviour."
         );
 
         // Texture Section

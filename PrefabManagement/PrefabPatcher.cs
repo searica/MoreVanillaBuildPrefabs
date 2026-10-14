@@ -16,6 +16,13 @@ internal static class PrefabPatcher
     static readonly string[] TrailerShipHullPaths = ["hull_new/hull", "hull_worn/hull_worn", "hull_broken/hull"];
 
     /// <summary>
+    ///     Holder for various transforms that need to access various snap points and edit them
+    /// </summary>
+    static Transform SnapPointTransform;
+    static List<Vector3> pts = new();
+    static List<NamedSnapPoint> snapPoints = new();
+
+    /// <summary>
     ///     Fix collider and snap points on the prefab if necessary
     /// </summary>
     /// <param name="prefab"></param>
@@ -26,7 +33,10 @@ internal static class PrefabPatcher
             return;
         }
 
-        List<Vector3> pts = new();
+        if (pts.Count != 0) { pts.Clear(); }
+        if (snapPoints.Count != 0) { snapPoints.Clear(); }
+   
+
         switch (prefab.name)
         {
             case "ArmorStand_Male":
@@ -278,17 +288,31 @@ internal static class PrefabPatcher
                 break;
 
             case "blackmarble_floor_large":
-                for (int y = -1; y <= 1; y += 2)
                 {
-                    for (int x = -4; x <= 4; x += 2)
+                    int corner = 1;
+                    int extra = 1;
+                    for (int y = -1; y <= 1; y += 2)
                     {
-                        for (int z = -4; z <= 4; z += 2)
+                        for (int x = -4; x <= 4; x += 2)
                         {
-                            pts.Add(new Vector3(x, y, z));
+                            for (int z = -4; z <= 4; z += 2)
+                            {
+                                if (Math.Abs(z) == 4 && Math.Abs(x) == 4)
+                                {
+                                    snapPoints.Add(new NamedSnapPoint(x, y, z, $"{SnapPointNames.CORNER} {corner}"));
+                                    corner++;
+                                }
+                                else
+                                {
+                                    snapPoints.Add(new NamedSnapPoint(x, y, z, $"{SnapPointNames.EXTRA} {extra}"));
+                                    corner++;
+                                }
+
+                            }
                         }
                     }
+                    SnapPointManager.AddSnapPoints(prefab, snapPoints);
                 }
-                SnapPointManager.AddSnapPoints(prefab, pts);
                 break;
 
             case "blackmarble_head_big01":
@@ -325,50 +349,143 @@ internal static class PrefabPatcher
                 break;
 
             case "blackmarble_tile_floor_1x1":
-                prefab.transform.Find("_snappoint").gameObject.transform.localPosition = new Vector3(0.5f, 0.1f, 0.5f);
-                prefab.transform.Find("_snappoint (1)").gameObject.transform.localPosition = new Vector3(0.5f, 0.1f, -0.5f);
-                prefab.transform.Find("_snappoint (2)").gameObject.transform.localPosition = new Vector3(-0.5f, 0.1f, 0.5f);
-                prefab.transform.Find("_snappoint (3)").gameObject.transform.localPosition = new Vector3(-0.5f, 0.1f, -0.5f);
+                SnapPointTransform = prefab.transform.Find("_snappoint");
+                //SnapPointTransform.name = "";
+                SnapPointTransform.localPosition = new Vector3(0.5f, 0.1f, 0.5f);
+
+                SnapPointTransform = prefab.transform.Find("_snappoint (1)");
+                //SnapPointTransform.name = "";
+                SnapPointTransform.localPosition = new Vector3(0.5f, 0.1f, -0.5f);
+
+                SnapPointTransform = prefab.transform.Find("_snappoint (2)");
+                //SnapPointTransform.name = "";
+                SnapPointTransform.localPosition = new Vector3(-0.5f, 0.1f, 0.5f);
+
+                SnapPointTransform = prefab.transform.Find("_snappoint (3)");
+                //SnapPointTransform.name = "";
+                SnapPointTransform.localPosition = new Vector3(-0.5f, 0.1f, -0.5f);
                 break;
 
             case "blackmarble_tile_floor_2x2":
-                prefab.transform.Find("_snappoint").gameObject.transform.localPosition = new Vector3(1, 0.1f, 1);
-                prefab.transform.Find("_snappoint (1)").gameObject.transform.localPosition = new Vector3(1, 0.1f, -1);
-                prefab.transform.Find("_snappoint (2)").gameObject.transform.localPosition = new Vector3(-1, 0.1f, 1);
-                prefab.transform.Find("_snappoint (3)").gameObject.transform.localPosition = new Vector3(-1, 0.1f, -1);
+                SnapPointTransform = prefab.transform.Find("_snappoint");
+                //SnapPointTransform.name = "";
+                SnapPointTransform.localPosition = new Vector3(1, 0.1f, 1);
+
+                SnapPointTransform = prefab.transform.Find("_snappoint (1)");
+                //SnapPointTransform.name = "";
+                SnapPointTransform.localPosition = new Vector3(1, 0.1f, -1);
+
+                SnapPointTransform = prefab.transform.Find("_snappoint (2)");
+                //SnapPointTransform.name = "";
+                SnapPointTransform.localPosition = new Vector3(-1, 0.1f, 1);
+
+                SnapPointTransform = prefab.transform.Find("_snappoint (3)");
+                //SnapPointTransform.name = "";
+                SnapPointTransform.localPosition = new Vector3(-1, 0.1f, -1);
                 break;
 
             case "blackmarble_tile_wall_1x1":
-                prefab.transform.Find("_snappoint").gameObject.transform.localPosition = new Vector3(0.5f, -0.05f, 0.1f);
-                prefab.transform.Find("_snappoint (1)").gameObject.transform.localPosition = new Vector3(0.5f, 0.95f, 0.1f);
-                prefab.transform.Find("_snappoint (2)").gameObject.transform.localPosition = new Vector3(-0.5f, -0.05f, 0.1f);
-                prefab.transform.Find("_snappoint (3)").gameObject.transform.localPosition = new Vector3(-0.5f, 0.95f, 0.1f);
-                prefab.transform.Find("_snappoint (4)").gameObject.transform.localPosition = new Vector3(0, -0.05f, 0.1f);
-                prefab.transform.Find("_snappoint (5)").gameObject.transform.localPosition = new Vector3(0.5f, 0.45f, 0.1f);
-                prefab.transform.Find("_snappoint (6)").gameObject.transform.localPosition = new Vector3(0, 0.95f, 0.1f);
-                prefab.transform.Find("_snappoint (7)").gameObject.transform.localPosition = new Vector3(-0.5f, 0.45f, 0.1f);
+                SnapPointTransform = prefab.transform.Find("_snappoint");
+                //SnapPointTransform.name = "";
+                SnapPointTransform.localPosition = new Vector3(0.5f, -0.05f, 0.1f);
+
+                SnapPointTransform = prefab.transform.Find("_snappoint (1)");
+                //SnapPointTransform.name = "";
+                SnapPointTransform.localPosition = new Vector3(0.5f, 0.95f, 0.1f);
+
+                SnapPointTransform = prefab.transform.Find("_snappoint (2)");
+                //SnapPointTransform.name = "";
+                SnapPointTransform.localPosition = new Vector3(-0.5f, -0.05f, 0.1f);
+
+                SnapPointTransform = prefab.transform.Find("_snappoint (3)");
+                //SnapPointTransform.name = "";
+                SnapPointTransform.localPosition = new Vector3(-0.5f, 0.95f, 0.1f);
+
+                SnapPointTransform = prefab.transform.Find("_snappoint (4)");
+                //SnapPointTransform.name = "";
+                SnapPointTransform.localPosition = new Vector3(0, -0.05f, 0.1f);
+
+                SnapPointTransform = prefab.transform.Find("_snappoint (5)");
+                //SnapPointTransform.name = "";
+                SnapPointTransform.localPosition = new Vector3(0.5f, 0.45f, 0.1f);
+
+                SnapPointTransform = prefab.transform.Find("_snappoint (6)");
+                //SnapPointTransform.name = "";
+                SnapPointTransform.localPosition = new Vector3(0, 0.95f, 0.1f);
+
+                SnapPointTransform = prefab.transform.Find("_snappoint (7)");
+                //SnapPointTransform.name = "";
+                SnapPointTransform.localPosition = new Vector3(-0.5f, 0.45f, 0.1f);
                 break;
 
             case "blackmarble_tile_wall_2x2":
-                prefab.transform.Find("_snappoint").gameObject.transform.localPosition = new Vector3(1, -0.05f, 0.1f);
-                prefab.transform.Find("_snappoint (1)").gameObject.transform.localPosition = new Vector3(1, 1.95f, 0.1f);
-                prefab.transform.Find("_snappoint (2)").gameObject.transform.localPosition = new Vector3(-1, -0.05f, 0.1f);
-                prefab.transform.Find("_snappoint (3)").gameObject.transform.localPosition = new Vector3(-1, -0.05f, 0.1f);
-                prefab.transform.Find("_snappoint (4)").gameObject.transform.localPosition = new Vector3(0.5f, -0.05f, 0.1f);
-                prefab.transform.Find("_snappoint (5)").gameObject.transform.localPosition = new Vector3(0.5f, 0.95f, 0.1f);
-                prefab.transform.Find("_snappoint (6)").gameObject.transform.localPosition = new Vector3(-0.5f, -0.05f, 0.1f);
-                prefab.transform.Find("_snappoint (7)").gameObject.transform.localPosition = new Vector3(-0.5f, 0.95f, 0.1f);
+                SnapPointTransform = prefab.transform.Find("_snappoint");
+                //SnapPointTransform.name = "";
+                SnapPointTransform.localPosition = new Vector3(1, -0.05f, 0.1f);
+
+                SnapPointTransform = prefab.transform.Find("_snappoint (1)");
+                //SnapPointTransform.name = "";
+                SnapPointTransform.localPosition = new Vector3(1, 1.95f, 0.1f);
+
+                SnapPointTransform = prefab.transform.Find("_snappoint (2)");
+                //SnapPointTransform.name = "";
+                SnapPointTransform.localPosition = new Vector3(-1, -0.05f, 0.1f);
+
+                SnapPointTransform = prefab.transform.Find("_snappoint (3)");
+                //SnapPointTransform.name = "";
+                SnapPointTransform.localPosition = new Vector3(-1, -0.05f, 0.1f);
+
+                SnapPointTransform = prefab.transform.Find("_snappoint (4)");
+                //SnapPointTransform.name = "";
+                SnapPointTransform.localPosition = new Vector3(0.5f, -0.05f, 0.1f);
+
+                SnapPointTransform = prefab.transform.Find("_snappoint (5)");
+                //SnapPointTransform.name = "";
+                SnapPointTransform.localPosition = new Vector3(0.5f, 0.95f, 0.1f);
+
+                SnapPointTransform = prefab.transform.Find("_snappoint (6)");
+                //SnapPointTransform.name = "";
+                SnapPointTransform.localPosition = new Vector3(-0.5f, -0.05f, 0.1f);
+
+                SnapPointTransform = prefab.transform.Find("_snappoint (7)");
+                //SnapPointTransform.name = "";
+                SnapPointTransform.localPosition = new Vector3(-0.5f, 0.95f, 0.1f);
                 break;
 
             case "blackmarble_tile_wall_2x4":
-                prefab.transform.Find("_snappoint").gameObject.transform.localPosition = new Vector3(1, -0.05f, 0.1f);
-                prefab.transform.Find("_snappoint (1)").gameObject.transform.localPosition = new Vector3(1, 3.95f, 0.1f);
-                prefab.transform.Find("_snappoint (2)").gameObject.transform.localPosition = new Vector3(-1, -0.05f, 0.1f);
-                prefab.transform.Find("_snappoint (3)").gameObject.transform.localPosition = new Vector3(-1, 3.95f, 0.1f);
-                prefab.transform.Find("_snappoint (4)").gameObject.transform.localPosition = new Vector3(0.5f, -0.05f, 0.1f);
-                prefab.transform.Find("_snappoint (5)").gameObject.transform.localPosition = new Vector3(0.5f, 1.95f, 0.1f);
-                prefab.transform.Find("_snappoint (6)").gameObject.transform.localPosition = new Vector3(-0.5f, -0.05f, 0.1f);
-                prefab.transform.Find("_snappoint (7)").gameObject.transform.localPosition = new Vector3(-0.5f, 1.95f, 0.1f);
+
+                SnapPointTransform = prefab.transform.Find("_snappoint");
+                //SnapPointTransform.name = "";
+                SnapPointTransform.localPosition = new Vector3(1, -0.05f, 0.1f);
+
+                SnapPointTransform = prefab.transform.Find("_snappoint (1)");
+                //SnapPointTransform.name = "";
+                SnapPointTransform.localPosition = new Vector3(1, 3.95f, 0.1f);
+
+                SnapPointTransform = prefab.transform.Find("_snappoint (2)");
+                //SnapPointTransform.name = "";
+                SnapPointTransform.localPosition = new Vector3(-1, -0.05f, 0.1f);
+
+                SnapPointTransform = prefab.transform.Find("_snappoint (3)");
+                //SnapPointTransform.name = "";
+                SnapPointTransform.localPosition = new Vector3(-1, 3.95f, 0.1f);
+
+                SnapPointTransform = prefab.transform.Find("_snappoint (4)");
+                //SnapPointTransform.name = "";
+                SnapPointTransform.localPosition = new Vector3(0.5f, -0.05f, 0.1f);
+
+                SnapPointTransform = prefab.transform.Find("_snappoint (5)");
+                //SnapPointTransform.name = "";
+                SnapPointTransform.localPosition = new Vector3(0.5f, 1.95f, 0.1f);
+
+                SnapPointTransform = prefab.transform.Find("_snappoint (6)");
+                //SnapPointTransform.name = "";
+                SnapPointTransform.localPosition = new Vector3(-0.5f, -0.05f, 0.1f);
+
+                SnapPointTransform = prefab.transform.Find("_snappoint (7)");
+                //SnapPointTransform.name = "";
+                SnapPointTransform.localPosition = new Vector3(-0.5f, 1.95f, 0.1f);
+
                 break;
 
             case "dungeon_queen_door":
@@ -667,12 +784,10 @@ internal static class PrefabPatcher
             case "turf_roof_top":
                 SnapPointManager.AddSnapPoints(
                     prefab,
-                    new Vector3[]
-                    {
-                        // mid edge points get added by ExtraSnapPointsMadeEasy
-                        new(1.0f, 0.5f, 0.0f),  // top front
-                        new(-1.0f, 0.5f, 0.0f),  // top back
-                    }
+                    [
+                        new NamedSnapPoint(1.0f, 0.5f, 0.0f, $"{TOP} 1"), // front
+                        new NamedSnapPoint(-1.0f, 0.5f, 0.0f, $"{TOP} 2"), // front
+                    ]
                 );
                 break;
 
@@ -824,9 +939,9 @@ internal static class PrefabPatcher
             case "barrell":
                 SnapPointManager.AddSnapPoints(
                     prefab,
-                    new Vector3[]
+                    new NamedSnapPoint[]
                     {
-                        new(0.0f, -1.0f, 0.0f)
+                        new(0.0f, -1.0f, 0.0f, BOTTOM),
                     }
                 );
                 break;
@@ -870,6 +985,7 @@ internal static class PrefabPatcher
                     chair.m_attachPoint = attachPoint.transform;
                 }
                 break;
+
             case "Ashland_Stair":
                 SnapPointManager.AddSnapPoints(
                     prefab,
@@ -883,6 +999,7 @@ internal static class PrefabPatcher
                         new(-2.0f, 2.0f, -2.0f, $"{TOP} 2"),
                     });
                 break;
+
             case "Ashlands_Fortress_Floor":
                 SnapPointManager.AddSnapPoints(
                     prefab,
@@ -899,6 +1016,7 @@ internal static class PrefabPatcher
                         new(Vector3.zero, CENTER)
                     });
                 break;
+
             case "Ashlands_Wall_2x2":
             case "Ashlands_Wall_2x2_top":
             case "Ashlands_Wall_2x2_edge2":
@@ -918,6 +1036,7 @@ internal static class PrefabPatcher
                         new( 1.0f, 2.0f,  0.5f, $"{OUTER} {TOP} 2"),
                     });
                 break;
+
             case "Ashlands_Wall_2x2_edge":
             case "Ashlands_Wall_2x2_edge_top":
                 SnapPointManager.AddSnapPoints(
@@ -936,6 +1055,7 @@ internal static class PrefabPatcher
                         new(-1.0f, 2.0f, -0.5f, $"{OUTER} {TOP} 2"),
                     });
                 break;
+
             case "Ashlands_Wall_2x2_cornerR":
             case "Ashlands_Wall_2x2_cornerR_top":
                 {
@@ -960,6 +1080,7 @@ internal static class PrefabPatcher
                         });
                     break;
                 }
+
             case "Ashlands_Wall_2x2_cornerL":
             case "Ashlands_Wall_2x2_cornerL_top":
                 SnapPointManager.AddSnapPoints(
@@ -991,85 +1112,667 @@ internal static class PrefabPatcher
                         new(0.0f, 0.0f,  2.0f, $"{EDGE} 2")
                     });
                 break;
+
             case "Ashlands_Arch1":
+                // change to have named snap points
+                prefab.transform.Find("_snappoint").name = $"{TOP} {OUTER} {CORNER} 1";
+                prefab.transform.Find("_snappoint (1)").name = $"{TOP} {OUTER} {CORNER} 2";
+                prefab.transform.Find("_snappoint (2)").name = $"{BOTTOM} {OUTER} {CORNER} 1";
+                prefab.transform.Find("_snappoint (3)").name = $"{BOTTOM} {OUTER} {CORNER} 2";
+                prefab.transform.Find("_snappoint (4)").name = $"{TOP} {INNER} {CORNER} 1";
+                prefab.transform.Find("_snappoint (5)").name = $"{TOP} {INNER} {CORNER} 2";
+                prefab.transform.Find("_snappoint (6)").name = $"{BOTTOM} {INNER} {CORNER} 1";
+                prefab.transform.Find("_snappoint (7)").name = $"{BOTTOM} {INNER} {CORNER} 2";
+                break;
+
             case "Ashlands_Arch2":
+                // was given snappoints of arch 1 which are not named and in wrong position for this prefab
+                SnapPointTransform = prefab.transform.Find("_snappoint");
+                SnapPointTransform.name = $"{TOP} {OUTER} {CORNER} 1";
+                SnapPointTransform.localPosition = new Vector3(0.0f, 5.58f, -0.9824929f);
+
+                SnapPointTransform = prefab.transform.Find("_snappoint (1)");
+                SnapPointTransform.name = $"{TOP} {OUTER} {CORNER} 2";
+                SnapPointTransform.localPosition = new Vector3(0.0f, 5.58f, 0.9824929f);
+
+                SnapPointTransform = prefab.transform.Find("_snappoint (2)");
+                SnapPointTransform.name = $"{BOTTOM} {OUTER} {CORNER} 1";
+                SnapPointTransform.localPosition = new Vector3(4.151907f, 0.000425f, 0.982493f);
+
+                SnapPointTransform = prefab.transform.Find("_snappoint (3)");
+                SnapPointTransform.name = $"{BOTTOM} {OUTER} {CORNER} 2";
+                SnapPointTransform.localPosition = new Vector3(4.151907f, 0.000425f, -0.982493f);
+
+                SnapPointTransform = prefab.transform.Find("_snappoint (4)");
+                SnapPointTransform.name = $"{TOP} {INNER} {CORNER} 1";
+                SnapPointTransform.localPosition = new Vector3(0.000315f, 3.75085f, 0.459798f);
+
+                SnapPointTransform = prefab.transform.Find("_snappoint (5)");
+                SnapPointTransform.name = $"{TOP} {INNER} {CORNER} 2";
+                SnapPointTransform.localPosition = new Vector3(0.000315f, 3.75085f, -0.459798f);
+
+                SnapPointTransform = prefab.transform.Find("_snappoint (6)");
+                SnapPointTransform.name = $"{BOTTOM} {INNER} {CORNER} 1";
+                SnapPointTransform.localPosition = new Vector3(2.79729f, 0.000425f, -0.459798f);
+
+                SnapPointTransform = prefab.transform.Find("_snappoint (7)");
+                SnapPointTransform.name = $"{BOTTOM} {OUTER} {CORNER} 1";
+                SnapPointTransform.localPosition = new Vector3(2.79729f, 0.000425f, 0.459798f);
+                break;
+
             case "Ashland_Steepstair":
             case "Ashlands_Floor":
+                // these already have good snap points
+                break; 
+
             case "Ashlands_PillarBase3_double":
-                // these have snap points already
+                SnapPointManager.AddSnapPoints(prefab,
+                    [
+                        new NamedSnapPoint(-0.5f, 0.0f, 0.5f, $"{BOTTOM} {CORNER} 1"),
+                        new NamedSnapPoint(0.5f, 0.0f, 0.5f, $"{BOTTOM} {CORNER} 2"),
+                        new NamedSnapPoint(-0.5f, 0.0f, -0.5f, $"{BOTTOM} {CORNER} 3"),
+                        new NamedSnapPoint(0.5f, 0.0f, -0.5f, $"{BOTTOM} {CORNER} 4"),
+                    ]
+                );
                 break;
+
+            case "Ashlands_Fortress_Gate":
+                SnapPointManager.AddSnapPoints(prefab,
+                    [
+                        new NamedSnapPoint(0.0f, 0.0f, 0.0f, $"{CENTER}"),
+                        new NamedSnapPoint(2.0f, 0.0f, 0.0f, $"{CENTER} {EDGE} 1"),
+                        new NamedSnapPoint(-2.0f, 0.0f, 0.0f, $"{CENTER} {EDGE} 2"),
+                        new NamedSnapPoint(2.0f, 0.0f, 1.0f, $"{CORNER} 1"),
+                        new NamedSnapPoint(-2.0f, 0.0f, 1.0f, $"{CORNER} 2"),
+                        new NamedSnapPoint(-2.0f, 0.0f, -1.0f, $"{CORNER} 3"),
+                        new NamedSnapPoint(2.0f, 0.0f, -1.0f, $"{CORNER} 4"),
+                    ]
+                );
+                break;
+
+            case "Ashlands_Fortress_Gate_Door":
+                SnapPointManager.AddSnapPoints(prefab,
+                    [
+                        new NamedSnapPoint(0.0f, 0.0f, 0.0f, $"{CENTER}"),
+                        new NamedSnapPoint(2.0f, 0.0f, 0.0f, $"{CENTER} {EDGE} 1"),
+                        new NamedSnapPoint(-2.0f, 0.0f, 0.0f, $"{CENTER} {EDGE} 2"),
+                        new NamedSnapPoint(2.0f, 0.0f, 0.5f, $"{CORNER} 1"),
+                        new NamedSnapPoint(-2.0f, 0.0f, 0.5f, $"{CORNER} 2"),
+                        new NamedSnapPoint(-2.0f, 0.0f, -0.5f, $"{CORNER} 3"),
+                        new NamedSnapPoint(2.0f, 0.0f, -0.5f, $"{CORNER} 4"),
+                    ]
+                );
+                break;
+
             case "Ashlands_Arch2_Broken1":
+                // need snap points
+                break;
+
             case "Ashlands_Arch2_Broken2":
+                // need snap points
+                break;
+
             case "Ashlands_ArchRoof":
+                // need snap points
+                break;
+
             case "Ashlands_ArchRoofDamaged":
+                // need snap points
+                break;
+
             case "Ashlands_ArchRoofDamaged_half1":
+                // need snap points
+                break;
+
             case "Ashlands_ArchRoofDamaged_half2":
+                // need snap points
+                break;
+
             case "Ashlands_ArchRoofLong_Damaged":
+                // need snap points
+                break;
+
             case "Ashlands_Boss_Pillar":
+                // need snap points
+                break;
+
             case "Ashlands_Boss_Pillar_Twist_broken1":
+                // need snap points
+                break;
+
             case "Ashlands_Boss_Pillar_Twist_broken2":
+                // need snap points
+                break;
+
             case "Ashlands_Boss_Pillar_Twist_broken3":
+                // needs snap points
+                break;
+
             case "Ashlands_floor_large":
             case "Ashlands_floor_large_fractured": // same prefab
-            case "Ashlands_Fortress_Gate":
-            case "Ashlands_Fortress_Gate_Door":
+                {
+                    int cornerCount = 1;
+                    int extraCount = 1;
+                    for (int y = -1; y <= 1; y += 1)
+                    {
+                        for (int x = -5; x <= 5; x += 2)
+                        {
+                            for (int z = -5; z <= 5; z += 2)
+                            {
+                                if (Math.Abs(z) == 5 && Math.Abs(x) == 5)
+                                {
+                                    snapPoints.Add(new NamedSnapPoint(x, y, z, $"{SnapPointNames.CORNER} {cornerCount}"));
+                                    cornerCount++;
+                                }
+                                else
+                                {
+                                    snapPoints.Add(new NamedSnapPoint(x, y, z, $"{SnapPointNames.EXTRA} {extraCount}"));
+                                    extraCount++;
+                                }
+                            }
+                        }
+                    }
+                    SnapPointManager.AddSnapPoints(prefab, snapPoints);
+                }             
+                break;
+
             case "Ashlands_Fortress_Wall_Pillar":
+                SnapPointManager.AddSnapPoints(prefab,
+                    [
+                        new NamedSnapPoint(0.0f, 0.0f, 0.0f, $"{BOTTOM} {CENTER}"),
+                        new NamedSnapPoint(-2.275f, 0.0f, 0.0f, $"{BOTTOM} {CORNER} 1"),
+                        new NamedSnapPoint(2.275f, 0.0f, 0.0f, $"{BOTTOM} {CORNER} 2"),
+                        new NamedSnapPoint(0.0f, 0.0f, 4.5f, $"{BOTTOM} {CORNER} 3"),
+
+                        new NamedSnapPoint(0.0f, 8.0f, 0.0f, $"{TOP} {CENTER}"),
+                        new NamedSnapPoint(-0.8f, 8.0f, 0.0f, $"{TOP} {CORNER} 1"),
+                        new NamedSnapPoint(0.8f, 8.0f, 0.0f, $"{TOP} {CORNER} 2"),
+                        new NamedSnapPoint(0.0f, 8.0f, 1.55f, $"{TOP} {CORNER} 3"),
+                    ]
+                );
+                break;
+
             case "Ashlands_Fortress_Wall_PillarTop":
             case "Ashlands_Fortress_Wall_PillarTop_frac": // same prefab
+                SnapPointManager.AddSnapPoints(prefab,
+                    [
+                        new NamedSnapPoint(0.0f, 0.0f, 0.0f, $"{BOTTOM}"),
+                        new NamedSnapPoint(0.8f, 0.0f, 0.0f, $"{BOTTOM} {CORNER} 1"),
+                        new NamedSnapPoint(0.0f, 0.0f, 1.55f, $"{BOTTOM} {CORNER} 2"),
+                        new NamedSnapPoint(-0.8f, 0.0f, 0.0f, $"{BOTTOM} {CORNER} 3"),
+                        new NamedSnapPoint(0.0f, 0.0f, -1.55f, $"{BOTTOM} {CORNER} 4"),
+
+                        new NamedSnapPoint(0.0f, 5.0f, 0.0f, $"{TOP}"),
+                        new NamedSnapPoint(0.8f, 5.0f, 0.0f, $"{TOP} {CORNER} 1"),
+                        new NamedSnapPoint(0.0f, 5.0f, 1.55f, $"{TOP} {CORNER} 2"),
+                        new NamedSnapPoint(-0.8f, 5.0f, 0.0f, $"{TOP} {CORNER} 3"),
+                        new NamedSnapPoint(0.0f, 5.0f, -1.55f, $"{TOP} {CORNER} 4"),
+
+                    ]
+                );
+                break;
+
             case "Ashlands_Fortress_Wall_PillarTopStone":
             case "Ashlands_Fortress_Wall_PillarTopStone_frac": // same prefab
+                SnapPointManager.AddSnapPoints(prefab,
+                    [
+                        new NamedSnapPoint(0.0f, 0.0f, 0.0f, $"{CENTER}"),
+                        new NamedSnapPoint(0.8f, 0.0f, 0.0f, $"{BOTTOM} {CORNER} 1"),
+                        new NamedSnapPoint(-0.8f, 0.0f, 0.0f, $"{BOTTOM} {CORNER} 2"),
+                        new NamedSnapPoint(-0.8f, 0.0f, -1.0f, $"{BOTTOM} {CORNER} 3"),
+                        new NamedSnapPoint(0.8f, 0.0f, -1.0f, $"{BOTTOM} {CORNER} 4"),
+
+                        new NamedSnapPoint(0.8f, 1.0f, 0.0f, $"{TOP} {CORNER} 1"),
+                        new NamedSnapPoint(-0.8f, 1.0f, 0.0f, $"{TOP} {CORNER} 2"),
+                        new NamedSnapPoint(-0.8f, 1.0f, -1.0f, $"{TOP} {CORNER} 3"),
+                        new NamedSnapPoint(0.8f, 1.0f, -1.0f, $"{TOP} {CORNER} 4"),
+
+                        new NamedSnapPoint(0.0f, 8.0f, 0.0f, $"{TOP} {CENTER}"),
+                        new NamedSnapPoint(-0.8f, 8.0f, 0.0f, $"{TOP} {CORNER} 1"),
+                        new NamedSnapPoint(0.8f, 8.0f, 0.0f, $"{TOP} {CORNER} 2"),
+                        new NamedSnapPoint(0.0f, 8.0f, 1.55f, $"{TOP} {CORNER} 3"),
+
+                        new NamedSnapPoint(0.0f, -4.0f, 0.0f, $"{BOTTOM}"),
+                    ]
+                );
+                break;
+
             case "Ashlands_Pillar4":
+                // need snap points
+                break;
+
             case "Ashlands_Pillar4_tip":
+                // need snap points
+                break;
+
             case "Ashlands_Pillar4_tip2":
+                // need snap points
+                break;
+
             case "Ashlands_Pillar4_tip2_broken1":
+                // need snap points
+                break;
+
             case "Ashlands_Pillar4_tip2_broken2":
+                // need snap points
+                break;
+
             case "Ashlands_Pillar4_tip3":
+                // need snap points
+                break;
+
             case "Ashlands_Pillar4_tip3_broken1":
+                // need snap points
+                break;
+
             case "Ashlands_Pillar4_tip3_broken2":
+                // need snap points
+                break;
+
             case "Ashlands_Pillar4_tip3_broken3":
-            case "Ashlands_Pillar4_tip_broken1": 
+                // need snap points
+                break;
+
+            case "Ashlands_Pillar4_tip_broken1":
+                // need snap points
+                break;
+
             case "Ashlands_Pillar4_tip_broken2":
-            case "Ashlands_Ramp":
+                // need snap points
+                break;
+
             case "Ashlands_Ruins_Floor_1point5x1point5":
             case "Ashlands_Ruins_Floor_1point5x1point5_broken":
+                SnapPointManager.AddSnapPoints(prefab,
+                    [
+                        new NamedSnapPoint(-0.75f, -0.25f, 0.75f, $"{BOTTOM} {CORNER} 1"),
+                        new NamedSnapPoint(0.75f, -0.25f, 0.75f, $"{BOTTOM} {CORNER} 2"),
+                        new NamedSnapPoint(-0.75f, -0.25f, -0.75f, $"{BOTTOM} {CORNER} 3"),
+                        new NamedSnapPoint(0.75f, -0.25f, -0.75f, $"{BOTTOM} {CORNER} 4"),
+
+                        new NamedSnapPoint(-0.75f, 0.25f, 0.75f, $"{TOP} {CORNER} 1"),
+                        new NamedSnapPoint(0.75f, 0.25f, 0.75f, $"{TOP} {CORNER} 2"),
+                        new NamedSnapPoint(-0.75f, 0.25f, -0.75f, $"{TOP} {CORNER} 3"),
+                        new NamedSnapPoint(0.75f, 0.25f, -0.75f, $"{TOP} {CORNER} 4"),
+                    ]
+                );
+                break;
+
             case "Ashlands_Ruins_Floor_3x3":
             case "Ashlands_Ruins_Floor_3x3_broken1":
             case "Ashlands_Ruins_Floor_3x3_broken2":
             case "Ashlands_Ruins_Floor_3x3_broken3":
+                SnapPointManager.AddSnapPoints(prefab,
+                    [
+                        new NamedSnapPoint(-1.5f, -0.25f, 1.5f, $"{BOTTOM} {CORNER} 1"),
+                        new NamedSnapPoint(1.5f, -0.25f, 1.5f, $"{BOTTOM} {CORNER} 2"),
+                        new NamedSnapPoint(-1.5f, -0.25f, -1.5f, $"{BOTTOM} {CORNER} 3"),
+                        new NamedSnapPoint(1.5f, -0.25f, -1.5f, $"{BOTTOM} {CORNER} 4"),
+
+                        new NamedSnapPoint(-1.5f, 0.25f, 1.5f, $"{TOP} {CORNER} 1"),
+                        new NamedSnapPoint(1.5f, 0.25f, 1.5f, $"{TOP} {CORNER} 2"),
+                        new NamedSnapPoint(-1.5f, 0.25f, -1.5f, $"{TOP} {CORNER} 3"),
+                        new NamedSnapPoint(1.5f, 0.25f, -1.5f, $"{TOP} {CORNER} 4"),
+                    ]
+                );
+                break;
+
             case "Ashlands_Ruins_Floor_6x6":
             case "Ashlands_Ruins_Floor_6x6_broken1":
             case "Ashlands_Ruins_Floor_6x6_broken2":
-            case "Ashlands_Ruins_Ramp":
-            case "Ashlands_Ruins_Ramp_Upsidedown":
-            case "Ashlands_Ruins_TopStone":
-            case "Ashlands_Ruins_twist_ArchBig":
-            case "Ashlands_Ruins_twist_PillarBase": // needs more snap points
-            case "Ashlands_Ruins_twist_PillarBaseSmall": // needs more snap points
-            case "Ashlands_Ruins_Wall_4x6":
-            case "Ashlands_Ruins_Wall_Broken3_4x6":
-            case "Ashlands_Ruins_Wall_Broken4_4x6":
-            case "Ashlands_Ruins_Wall_Broken5_4x6":
-            case "Ashlands_Ruins_Wall_Top_wHole":
-            case "Ashlands_Ruins_Wall_Window_4x6_broken2":
-            case "Ashlands_Ruins_Wall_Window_4x6_broken3":
-            case "Ashlands_Ruins_Wall_Window_4x6_broken4":
-            case "Ashlands_Ruins_Wall_Window_4x6_broken5":
-            case "Ashlands_Ruins_Wall_Window_4x6_broken6":
-            case "Ashlands_Ruins_Wall_Windows_Broken_4x6":
-            case "Ashlands_StairsBroad":
-            case "Ashlands_WallBlock":
-            case "Ashlands_WallBlock_1x2x2":
-            case "Ashlands_WallBlock_base":
-                // these need snap points
+                SnapPointManager.AddSnapPoints(prefab,
+                    [
+                        new NamedSnapPoint(-3.0f, -0.25f, 3.0f, $"{BOTTOM} {CORNER} 1"),
+                        new NamedSnapPoint(3.0f, -0.25f, 3.0f, $"{BOTTOM} {CORNER} 2"),
+                        new NamedSnapPoint(-3.0f, -0.25f, -3.0f, $"{BOTTOM} {CORNER} 3"),
+                        new NamedSnapPoint(3.0f, -0.25f, -3.0f, $"{BOTTOM} {CORNER} 4"),
+
+                        new NamedSnapPoint(-1.5f, 0.25f, 1.5f, $"{TOP} {CORNER} 1"),
+                        new NamedSnapPoint(1.5f, 0.25f, 1.5f, $"{TOP} {CORNER} 2"),
+                        new NamedSnapPoint(-1.5f, 0.25f, -1.5f, $"{TOP} {CORNER} 3"),
+                        new NamedSnapPoint(1.5f, 0.25f, -1.5f, $"{TOP} {CORNER} 4"),
+                    ]
+                );
                 break;
+
+            case "Ashlands_Ramp":
+                SnapPointManager.AddSnapPoints(prefab,
+                    [
+                        new NamedSnapPoint(0.5f, 4.0f, 0.0f, $"{TOP}"),
+                        new NamedSnapPoint(0.5f, 0.0f, 0.0f, $"{BOTTOM}"),
+                        
+                        new NamedSnapPoint(0.0f, 0.0f, -1.0f, $"{BOTTOM} {CORNER} 1"),
+                        new NamedSnapPoint(3.0f, 0.0f, -1.0f, $"{BOTTOM} {CORNER} 2"),
+                        new NamedSnapPoint(3.0f, 0.0f, 1.0f, $"{BOTTOM} {CORNER} 3"),
+                        new NamedSnapPoint(0.0f, 0.0f, 1.0f, $"{BOTTOM} {CORNER} 4"),
+
+
+                        new NamedSnapPoint(0.0f, 4.0f, -1.0f, $"{TOP} {CORNER} 1"),
+                        new NamedSnapPoint(1.0f, 4.0f, -1.0f, $"{TOP} {CORNER} 2"),
+                        new NamedSnapPoint(1.0f, 4.0f, 1.0f, $"{TOP} {CORNER} 3"),
+                        new NamedSnapPoint(0.0f, 4.0f, 1.0f, $"{TOP} {CORNER} 4"),
+                    ]
+                );
+                break;
+
+            case "Ashlands_Ruins_Ramp":
+                // adds more snap points
+                SnapPointManager.AddSnapPoints(prefab,
+                    [
+                        new NamedSnapPoint(0.0f, 0.0f, -1.0f, $"{BOTTOM} {CORNER} 1"),
+                        new NamedSnapPoint(3.0f, 0.0f, -1.0f, $"{BOTTOM} {CORNER} 2"),
+                        new NamedSnapPoint(3.0f, 0.0f, 1.0f, $"{BOTTOM} {CORNER} 3"),
+                        new NamedSnapPoint(0.0f, 0.0f, 1.0f, $"{BOTTOM} {CORNER} 4"),
+
+
+                        new NamedSnapPoint(0.0f, 4.0f, -1.0f, $"{TOP} {CORNER} 1"),
+                        new NamedSnapPoint(1.0f, 4.0f, -1.0f, $"{TOP} {CORNER} 2"),
+                        new NamedSnapPoint(1.0f, 4.0f, 1.0f, $"{TOP} {CORNER} 3"),
+                        new NamedSnapPoint(0.0f, 4.0f, 1.0f, $"{TOP} {CORNER} 4"),
+                    ]
+                );
+                break;
+
+            case "Ashlands_Ruins_Ramp_Upsidedown":
+                // adds more snap points
+                SnapPointManager.AddSnapPoints(prefab,
+                    [
+                        new NamedSnapPoint(0.0f, 0.0f, -1.0f, $"{BOTTOM} {CORNER} 1"),
+                        new NamedSnapPoint(1.0f, 0.0f, -1.0f, $"{BOTTOM} {CORNER} 2"),
+                        new NamedSnapPoint(1.0f, 0.0f, 1.0f, $"{BOTTOM} {CORNER} 3"),
+                        new NamedSnapPoint(0.0f, 0.0f, 1.0f, $"{BOTTOM} {CORNER} 4"),
+
+
+                        new NamedSnapPoint(0.0f, 4.0f, -1.0f, $"{TOP} {CORNER} 1"),
+                        new NamedSnapPoint(3.0f, 4.0f, -1.0f, $"{TOP} {CORNER} 2"),
+                        new NamedSnapPoint(3.0f, 4.0f, 1.0f, $"{TOP} {CORNER} 3"),
+                        new NamedSnapPoint(0.0f, 4.0f, 1.0f, $"{TOP} {CORNER} 4"),
+                    ]
+                );
+                break;
+
+            case "Ashlands_Ruins_TopStone":
+                // need snap points
+                break;
+
+            case "Ashlands_Ruins_twist_ArchBig":
+                SnapPointManager.AddSnapPoints(prefab,
+                    [
+                        new NamedSnapPoint(-1.0f, -2.5f, 0.0f, $"{BOTTOM}"),
+
+                        new NamedSnapPoint(-1.5f, -2.5f, 0.5f, $"{BOTTOM} {CORNER} 1"),
+                        new NamedSnapPoint(-0.5f, -2.5f, 0.5f, $"{BOTTOM} {CORNER} 2"),
+                        new NamedSnapPoint(-1.5f, -2.5f, -0.5f, $"{BOTTOM} {CORNER} 3"),
+                        new NamedSnapPoint(-0.5f, -2.5f, -0.5f, $"{BOTTOM} {CORNER} 4"),
+
+                        new NamedSnapPoint(2.5f, 1.0f, 0.0f, $"{TOP}"),
+                        new NamedSnapPoint(2.5f, 1.5f, 0.5f, $"{TOP} {CORNER} 1"),
+                        new NamedSnapPoint(2.5f, 0.5f, 0.5f, $"{TOP} {CORNER} 2"),
+                        new NamedSnapPoint(2.5f, 1.5f, -0.5f, $"{TOP} {CORNER} 3"),
+                        new NamedSnapPoint(2.5f, 0.5f, -0.5f, $"{TOP} {CORNER} 4"),
+                    ]
+                );
+                break;
+
+            case "Ashlands_Ruins_twist_PillarBase": 
+                // needs more snap points
+                break;
+
+            case "Ashlands_Ruins_twist_PillarBaseSmall": // adds more snap points
+                SnapPointManager.AddSnapPoints(prefab,
+                    [
+                        new NamedSnapPoint(-0.5f, 0.0f, 0.5f, $"{BOTTOM} {CORNER} 1"),
+                        new NamedSnapPoint(0.5f, 0.0f, 0.5f, $"{BOTTOM} {CORNER} 2"),
+                        new NamedSnapPoint(-0.5f, 0.0f, -0.5f, $"{BOTTOM} {CORNER} 3"),
+                        new NamedSnapPoint(0.5f, 0.0f, -0.5f, $"{BOTTOM} {CORNER} 4"),
+
+
+                        new NamedSnapPoint(-0.5f, 2.0f, 0.5f, $"{TOP} {CORNER} 1"),
+                        new NamedSnapPoint(0.5f, 2.0f, 0.5f, $"{TOP} {CORNER} 2"),
+                        new NamedSnapPoint(-0.5f, 2.0f, -0.5f, $"{TOP} {CORNER} 3"),
+                        new NamedSnapPoint(0.5f, 2.0f, -0.5f, $"{TOP} {CORNER} 4"),
+                    ]
+                );
+                break;
+
+            case "Ashlands_Ruins_Wall_4x6":
+                SnapPointManager.AddSnapPoints(prefab,
+                    [
+                        new NamedSnapPoint(-3.0f, 0.0f, 1.0f, $"{BOTTOM} {CORNER} 1"),
+                        new NamedSnapPoint(3.0f, 0.0f, 1.0f, $"{BOTTOM} {CORNER} 2"),
+                        new NamedSnapPoint(-3.0f, 0.0f, -1.0f, $"{BOTTOM} {CORNER} 3"),
+                        new NamedSnapPoint(3.0f, 0.0f, -1.0f, $"{BOTTOM} {CORNER} 4"),
+
+
+                        new NamedSnapPoint(-3.0f, 4.0f, 1.0f, $"{TOP} {CORNER} 1"),
+                        new NamedSnapPoint(3.0f, 4.0f, 1.0f, $"{TOP} {CORNER} 2"),
+                        new NamedSnapPoint(-3.0f, 4.0f, -1.0f, $"{TOP} {CORNER} 3"),
+                        new NamedSnapPoint(3.0f, 4.0f, -1.0f, $"{TOP} {CORNER} 4"),
+                    ]
+                );
+                break;
+
+            case "Ashlands_Ruins_Wall_Broken3_4x6":
+                // adds more snap points
+                SnapPointManager.AddSnapPoints(prefab,
+                    [
+                        new NamedSnapPoint(-1.0f, 0.0f, 1.0f, $"{BOTTOM} {INNER} {CORNER} 1"),
+                        new NamedSnapPoint(-1.0f, 0.0f, -1.0f, $"{BOTTOM} {INNER} {CORNER} 2"),
+
+
+                        new NamedSnapPoint(-1.0f, 4.0f, 1.0f, $"{TOP} {INNER} {CORNER} 1"),
+                        new NamedSnapPoint(-1.0f, 4.0f, -1.0f, $"{TOP} {INNER} {CORNER} 2"),
+
+                    ]
+                );
+                break;
+
+            case "Ashlands_Ruins_Wall_Broken4_4x6":
+                // adds more snap points
+                SnapPointManager.AddSnapPoints(prefab,
+                    [
+                        new NamedSnapPoint(1.0f, 0.0f, 1.0f, $"{BOTTOM} {INNER} {CORNER} 1"),
+                        new NamedSnapPoint(1.0f, 0.0f, -1.0f, $"{BOTTOM} {INNER} {CORNER} 2"),
+
+
+                        new NamedSnapPoint(1.0f, 4.0f, 1.0f, $"{TOP} {INNER} {CORNER} 1"),
+                        new NamedSnapPoint(1.0f, 4.0f, -1.0f, $"{TOP} {INNER} {CORNER} 2"),
+
+                    ]
+                );
+                break;
+
+            case "Ashlands_Ruins_Wall_Broken5_4x6":
+                SnapPointManager.AddSnapPoints(prefab,
+                    [
+                        new NamedSnapPoint(-1.0f, 0.0f, 1.0f, $"{BOTTOM} {CORNER} 1"),
+                        new NamedSnapPoint(1.0f, 0.0f, 1.0f, $"{BOTTOM} {CORNER} 2"),
+                        new NamedSnapPoint(-1.0f, 0.0f, -1.0f, $"{BOTTOM} {CORNER} 3"),
+                        new NamedSnapPoint(1.0f, 0.0f, -1.0f, $"{BOTTOM} {CORNER} 4"),
+
+
+                        new NamedSnapPoint(-1.0f, 4.0f, 1.0f, $"{TOP} {CORNER} 1"),
+                        new NamedSnapPoint(1.0f, 4.0f, 1.0f, $"{TOP} {CORNER} 2"),
+                        new NamedSnapPoint(-1.0f, 4.0f, -1.0f, $"{TOP} {CORNER} 3"),
+                        new NamedSnapPoint(1.0f, 4.0f, -1.0f, $"{TOP} {CORNER} 4"),
+                    ]
+                );
+                break;
+
+            case "Ashlands_Ruins_Wall_Top_wHole":
+                SnapPointManager.AddSnapPoints(prefab,
+                    [
+                        new NamedSnapPoint(0.0f, 0.0f, 0.0f, $"{CENTER}"),
+                        new NamedSnapPoint(-3.0f, 0.0f, 1.0f, $"{BOTTOM} {CORNER} 1"),
+                        new NamedSnapPoint(3.0f, 0.0f, 1.0f, $"{BOTTOM} {CORNER} 2"),
+                        new NamedSnapPoint(-3.0f, 0.0f, -1.0f, $"{BOTTOM} {CORNER} 3"),
+                        new NamedSnapPoint(3.0f, 0.0f, -1.0f, $"{BOTTOM} {CORNER} 4"),
+
+                        new NamedSnapPoint(0.0f, 4.365f, 0.0f, $"{TOP}"),
+                        new NamedSnapPoint(0.0f, 4.365f, 1.0f, $"{TOP} {CORNER} 1"),
+                        new NamedSnapPoint(0.0f, 4.365f, -1.0f, $"{TOP} {CORNER} 2"),
+                    ]
+                );
+                break;
+
+            case "Ashlands_Ruins_Wall_Window_4x6_broken2":
+                // adds more snap points
+                SnapPointManager.AddSnapPoints(prefab,
+                    [
+                        new NamedSnapPoint(1.0f, 0.0f, 1.0f, $"{BOTTOM} {INNER} {CORNER} 1"),
+                        new NamedSnapPoint(1.0f, 0.0f, -1.0f, $"{BOTTOM} {INNER} {CORNER} 2"),
+
+
+
+                        new NamedSnapPoint(-2.0f, 4.0f, 1.0f, $"{TOP} {INNER} {CORNER} 1"),
+                        new NamedSnapPoint(-2.0f, 4.0f, -1.0f, $"{TOP} {INNER} {CORNER} 2"),
+                    ]
+                );
+                break;
+
+            case "Ashlands_Ruins_Wall_Window_4x6_broken3":
+                // adds more snap points
+                SnapPointManager.AddSnapPoints(prefab,
+                    [
+                        new NamedSnapPoint(1.0f, 0.0f, 1.0f, $"{BOTTOM} {INNER} {CORNER} 1"),
+                        new NamedSnapPoint(1.0f, 0.0f, -1.0f, $"{BOTTOM} {INNER} {CORNER} 2"),
+
+                        new NamedSnapPoint(-2.0f, 4.0f, 1.0f, $"{TOP} {INNER} {CORNER} 1"),
+                        new NamedSnapPoint(-2.0f, 4.0f, -1.0f, $"{TOP} {INNER} {CORNER} 2"),
+                    ]
+                );
+                break;
+
+            case "Ashlands_Ruins_Wall_Window_4x6_broken4":
+                // adds more snap points
+                SnapPointManager.AddSnapPoints(prefab,
+                    [
+                        new NamedSnapPoint(1.0f, 0.0f, 1.0f, $"{BOTTOM} {INNER} {CORNER} 1"),
+                        new NamedSnapPoint(1.0f, 0.0f, -1.0f, $"{BOTTOM} {INNER} {CORNER} 2"),
+
+                        new NamedSnapPoint(1.0f, 4.0f, 1.0f, $"{TOP} {INNER} {CORNER} 1"),
+                        new NamedSnapPoint(1.0f, 4.0f, -1.0f, $"{TOP} {INNER} {CORNER} 2"),
+                    ]
+                );
+                break;
+
+            case "Ashlands_Ruins_Wall_Window_4x6_broken5":
+                // adds more snap points
+                SnapPointManager.AddSnapPoints(prefab,
+                    [
+                        new NamedSnapPoint(-3f, 4f, 1f, $"{TOP} 2"), // missing from vanilla prefab
+
+                        new NamedSnapPoint(-1.0f, 0.0f, 1.0f, $"{BOTTOM} {INNER} {CORNER} 1"),
+                        new NamedSnapPoint(-1.0f, 0.0f, -1.0f, $"{BOTTOM} {INNER} {CORNER} 2"),
+
+                        new NamedSnapPoint(-1.0f, 4.0f, 1.0f, $"{TOP} {INNER} {CORNER} 1"),
+                        new NamedSnapPoint(-1.0f, 4.0f, -1.0f, $"{TOP} {INNER} {CORNER} 2"),
+                    ]
+                );
+                break;
+
+            case "Ashlands_Ruins_Wall_Window_4x6_broken6":
+                SnapPointManager.AddSnapPoints(prefab,
+                    [
+                        new NamedSnapPoint(-1.0f, 0.0f, 1.0f, $"{BOTTOM} {CORNER} 1"),
+                        new NamedSnapPoint(1.0f, 0.0f, 1.0f, $"{BOTTOM} {CORNER} 2"),
+                        new NamedSnapPoint(-1.0f, 0.0f, -1.0f, $"{BOTTOM} {CORNER} 3"),
+                        new NamedSnapPoint(1.0f, 0.0f, -1.0f, $"{BOTTOM} {CORNER} 4"),
+
+
+                        new NamedSnapPoint(-1.0f, 4.0f, 1.0f, $"{TOP} {CORNER} 1"),
+                        new NamedSnapPoint(1.0f, 4.0f, 1.0f, $"{TOP} {CORNER} 2"),
+                        new NamedSnapPoint(-1.0f, 4.0f, -1.0f, $"{TOP} {CORNER} 3"),
+                        new NamedSnapPoint(1.0f, 4.0f, -1.0f, $"{TOP} {CORNER} 4"),
+                    ]
+                );
+                break;
+
+            case "Ashlands_Ruins_Wall_Windows_Broken_4x6":
+                // needs snap points
+                break;
+
+            case "Ashlands_StairsBroad":
+                SnapPointManager.AddSnapPoints(prefab,
+                    [
+                        
+                        new NamedSnapPoint(-3.0f, 0.0f, 0.0f, $"{BOTTOM} {CORNER} 1"),
+                        new NamedSnapPoint(-1.0f, 0.0f, 0.0f, $"{BOTTOM} {EDGE} 1"),
+                        new NamedSnapPoint(0.0f, 0.0f, 0.0f, $"{BOTTOM} {EDGE} 2"),
+                        new NamedSnapPoint(1.0f, 0.0f, 0.0f, $"{BOTTOM} {EDGE} 3"),
+                        new NamedSnapPoint(3.0f, 0.0f, 0.0f, $"{BOTTOM} {CORNER} 2"),
+                        new NamedSnapPoint(3.0f, 0.0f, -2.0f, $"{BOTTOM} {EDGE} 4"),
+                        new NamedSnapPoint(3.0f, 0.0f, -2.25f, $"{BOTTOM} {CORNER} 3"),
+                        new NamedSnapPoint(0.0f, 0.0f, -3.825f, $"{BOTTOM} {CORNER} 4"),
+                        new NamedSnapPoint(-3.0f, 0.0f, -2.25f, $"{BOTTOM} {CORNER} 5"),
+                        new NamedSnapPoint(-3.0f, 0.0f, -2.0f, $"{BOTTOM} {EDGE} 5"),
+                        new NamedSnapPoint(-1.5f, 1.0f, 0.0f, $"{TOP} {CORNER} 1"),
+                        new NamedSnapPoint(0.0f, 1.0f, 0.0f, $"{TOP} {EDGE} 1"),
+                        new NamedSnapPoint(1.5f, 1.0f, 0.0f, $"{TOP} {CORNER} 2"),
+                        new NamedSnapPoint(1.5f, 1.0f, -1.45f, $"{TOP} {CORNER} 3"),
+                        new NamedSnapPoint(0.0f, 1.0f, -2.1f, $"{TOP} {CORNER} 4"),
+                        new NamedSnapPoint(-1.5f, 1.0f, -1.45f, $"{TOP} {CORNER} 5"),
+                    ]
+                );
+                break;
+
+            case "Ashlands_WallBlock":
+                SnapPointManager.AddSnapPoints(prefab,
+                    [
+                        new NamedSnapPoint(0.5f, -1.0f, -1.0f, $"{BOTTOM} {CORNER} 1"),
+                        new NamedSnapPoint(-0.5f, -1.0f, -1.0f, $"{BOTTOM} {CORNER} 2"),
+                        new NamedSnapPoint(-0.5f, -1.0f, 1.0f, $"{BOTTOM} {CORNER} 3"),
+                        new NamedSnapPoint(0.5f, -1.0f, -1.0f, $"{BOTTOM} {CORNER} 4"),
+
+                        new NamedSnapPoint(0.5f, 1.0f, -1.0f, $"{TOP} {CORNER} 1"),
+                        new NamedSnapPoint(-0.5f, 1.0f, -1.0f, $"{TOP} {CORNER} 2"),
+                        new NamedSnapPoint(-0.5f, 1.0f, 1.0f, $"{TOP} {CORNER} 3"),
+                        new NamedSnapPoint(0.5f, 1.0f, -1.0f, $"{TOP} {CORNER} 4"),
+                    ]
+                );
+                break;
+
+            case "Ashlands_WallBlock_1x2x2":
+                SnapPointManager.AddSnapPoints(prefab,
+                    [
+                        new NamedSnapPoint(0.5f, -1.0f, -0.5f, $"{BOTTOM} {CORNER} 1"),
+                        new NamedSnapPoint(-0.5f, -1.0f, -0.5f, $"{BOTTOM} {CORNER} 2"),
+                        new NamedSnapPoint(-0.5f, -1.0f, 0.5f, $"{BOTTOM} {CORNER} 3"),
+                        new NamedSnapPoint(0.5f, -1.0f, -0.5f, $"{BOTTOM} {CORNER} 4"),
+
+                        new NamedSnapPoint(0.5f, 1.0f, -0.5f, $"{TOP} {CORNER} 1"),
+                        new NamedSnapPoint(-0.5f, 1.0f, -0.5f, $"{TOP} {CORNER} 2"),
+                        new NamedSnapPoint(-0.5f, 1.0f, 0.5f, $"{TOP} {CORNER} 3"),
+                        new NamedSnapPoint(0.5f, 1.0f, -0.5f, $"{TOP} {CORNER} 4"),
+                    ]
+                );
+                break;
+
+            case "Ashlands_WallBlock_base":
+                SnapPointManager.AddSnapPoints(prefab,
+                    [
+                        new NamedSnapPoint(1.0f, -1.0f, -0.5f, $"{BOTTOM} {CORNER} 1"),
+                        new NamedSnapPoint(-1.0f, -1.0f, -0.5f, $"{BOTTOM} {CORNER} 2"),
+                        new NamedSnapPoint(-1.0f, -1.0f, 0.5f, $"{BOTTOM} {CORNER} 3"),
+                        new NamedSnapPoint(1.0f, -1.0f, -0.5f, $"{BOTTOM} {CORNER} 4"),
+
+                        new NamedSnapPoint(0.0f, 1.0f, -0.5f, $"{TOP} {CORNER} 1"),
+                        new NamedSnapPoint(-1.0f, 1.0f, -0.5f, $"{TOP} {CORNER} 2"),
+                        new NamedSnapPoint(-1.0f, 1.0f, 0.5f, $"{TOP} {CORNER} 3"),
+                        new NamedSnapPoint(0.0f, 1.0f, -0.5f, $"{TOP} {CORNER} 4"),
+                    ]
+                );
+                break;
+
             case "portal":
                 PatchDvergrPortal(prefab);
                 break;
+
             default:
                 break;
         }
 
-        if (MorePrefabs.IsEnableComfortPatches)
+        if (MorePrefabs.ComfortPatchesEnabled)
         {
             ApplyComfortPatches(prefab);
         }
@@ -1079,6 +1782,7 @@ internal static class PrefabPatcher
         {
             TextureManager.ApplyNewDvergrTexture(prefab.name, prefab);
         }
+
         if (MorePrefabs.PatchPortalTexture)
         {
             TextureManager.ApplyPortalTexturePatch(prefab.name, prefab);
@@ -1139,7 +1843,7 @@ internal static class PrefabPatcher
 
                 case "ArmorStand_Female":
                 case "ArmorStand_Male":
-                    piece.m_comfortGroup = Piece.ComfortGroup.None;
+                    piece.m_comfortGroup = Piece.ComfortGroup.Display;
                     piece.m_comfort = 2;
                     break;
 

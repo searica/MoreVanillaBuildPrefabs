@@ -9,6 +9,10 @@ internal static class SnapPointNames
     public const string EDGE = "$hud_snappoint_edge";
     public const string MID = "$hud_snappoint_mid";
     public const string INNER = "$hud_snappoint_inner";
+    public const string FRONT = "Front";
+    public const string BACK = "Back";
+    public const string LEFT = "Left";
+    public const string RIGHT = "Right";
     public const string OUTER = "Outer";
     public const string SNAPPOINT = "Snappoint";
     public const string ORIGIN = "Origin";

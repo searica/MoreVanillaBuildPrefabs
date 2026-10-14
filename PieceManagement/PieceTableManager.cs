@@ -102,7 +102,7 @@ internal static class PieceTableManager
             }
 
             // Only add vanilla crops if enabled
-            if (!MorePrefabs.IsEnableHammerCrops && prefabConfig.PieceGroup == PieceClassification.VanillaCrop)
+            if (!MorePrefabs.HammerCropsEnabled && prefabConfig.PieceGroup == PieceClassification.VanillaCrop)
             {
                 continue;
             }

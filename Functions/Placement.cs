@@ -17,7 +17,7 @@ namespace MVBP.Functions;
 [HarmonyPatch(typeof(Placement))]
 internal static class Placement
 {
-    private static Type[] ComponentsToDisable = new Type[] {
+    private static readonly Type[] ComponentsToDisable = new Type[] {
         typeof(MonsterAI),
         typeof(AnimalAI),
         typeof(TimedDestruction),
@@ -47,9 +47,6 @@ internal static class Placement
         //  IL_012f: call !!0 [UnityEngine.CoreModule] UnityEngine.Object::Instantiate<class [UnityEngine.CoreModule] UnityEngine.GameObject>(!!0, valuetype[UnityEngine.CoreModule] UnityEngine.Vector3, valuetype[UnityEngine.CoreModule] UnityEngine.Quaternion)
         //      IL_0134: stloc.3
 
-        // want to be able to edit the instantiated gameObject
-        // such that I can remove things like the pickable property from the surtling core stands
-
         System.Reflection.MethodInfo instantiateMethod = ReflectionUtils.GetGenericMethod(
             typeof(UnityEngine.Object),
             nameof(UnityEngine.Object.Instantiate),
@@ -57,6 +54,8 @@ internal static class Placement
             new Type[] { typeof(Type), typeof(Vector3), typeof(Quaternion) }
         ).MakeGenericMethod(typeof(GameObject));
 
+        // want to be able to edit the instantiated gameObject
+        // such that I can remove things like the pickable property from the surtling core stands
         var codeMatches = new CodeMatch[] {
             new(OpCodes.Call, instantiateMethod)
         };
@@ -195,6 +194,7 @@ internal static class Placement
     /// </summary>
     /// <param name="__instance"></param>
     [HarmonyPostfix]
+    [HarmonyBefore("Searica.Valheim.ExtraSnapPointsMadeEasy")]
     [HarmonyPatch(typeof(Player), nameof(Player.UpdatePlacementGhost))]
     private static void UpdatePlacementGhostPostfix(Player __instance)
     {

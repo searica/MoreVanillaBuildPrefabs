@@ -2,8 +2,10 @@
 
 using MVBP.Extensions;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using static MVBP.SnapPoints.SnapPointNames;
+using static UnityEngine.UI.GridLayoutGroup;
 
 /* In Unity
  * X = left/right
@@ -15,18 +17,19 @@ namespace MVBP.SnapPoints;
 
 internal static class SnapPointManager
 {
-    // List of points in a 2x2 box that would be the corners
-    private static readonly List<Vector3> corners =
-    [
-        new Vector3(-1, -1, -1),
-        new Vector3(-1, -1, 1),
-        new Vector3(1, -1, 1),
-        new Vector3(1, -1, -1),
-        new Vector3(-1, 1, -1),
-        new Vector3(-1, 1, 1),
-        new Vector3(1, 1, 1),
-        new Vector3(1, 1, -1),
-    ];
+
+    // Map of snap point names to the corners of a 2x2 box centered on the origin
+    private static readonly Dictionary<string, Vector3> Corners = new() {
+        { $"{SnapPointNames.BOTTOM} {SnapPointNames.CORNER} 1", new Vector3(-1, -1, -1) },
+        { $"{SnapPointNames.BOTTOM} {SnapPointNames.CORNER} 2", new Vector3(-1, -1, 1) },
+        { $"{SnapPointNames.BOTTOM} {SnapPointNames.CORNER} 3", new Vector3(1, -1, 1) },
+        { $"{SnapPointNames.BOTTOM} {SnapPointNames.CORNER} 4", new Vector3(1, -1, -1) },
+        { $"{SnapPointNames.TOP} {SnapPointNames.CORNER} 1", new Vector3(-1, 1, -1) },
+        { $"{SnapPointNames.TOP} {SnapPointNames.CORNER} 2", new Vector3(-1, 1, 1) },
+        { $"{SnapPointNames.TOP} {SnapPointNames.CORNER} 3", new Vector3(1, 1, 1) },
+        { $"{SnapPointNames.TOP} {SnapPointNames.CORNER} 4", new Vector3(1, 1, -1) },
+
+    };
 
     // List of points in a 2x2 box that would be the middle of each edge
     //private static readonly List<Vector3> edgeMidPoints = new()
@@ -47,16 +50,12 @@ internal static class SnapPointManager
 
     internal static void AddSnapPoints(
         GameObject gameObject,
-        IEnumerable<Vector3> points
+        IEnumerable<Vector3> points,
+        string prefix = EXTRA, 
+        int startNumber = 1
     )
     {
-        int i = 1;
-
-        foreach (Vector3 point in points)
-        {
-            Vector3 pos = point;
-            CreateSnapPoint(pos, gameObject, $"{SnapPointNames.SNAPPOINT} {i++}");
-        }
+        AddSnapPoints(gameObject, CreateNamedSnapPoints(points, prefix, startNumber));
     }
 
     internal static void AddSnapPoints(
@@ -66,29 +65,18 @@ internal static class SnapPointManager
     {
         foreach (NamedSnapPoint point in namedSnapPoints)
         {
-            CreateSnapPoint(point.LocalPosition, gameObject, point.Name);
+            AddSnapPointInternal(point.LocalPosition, gameObject, point.Name);
         }
     }
 
-    private static void CreateSnapPoint(Vector3 pos, GameObject prefab, string snapPointName)
+    internal static void AddSnapPoints(
+        GameObject gameObject,
+        IEnumerable<NamedSnapPoint> namedSnapPoints
+    )
     {
-        GameObject snappoint = new(snapPointName);
-        snappoint.transform.parent = prefab.transform;
-        snappoint.transform.localPosition = pos;
-        snappoint.tag = SnapPointNames.TAG;
-        snappoint.SetActive(false);
-    }
-
-    
-    /// <summary>
-    ///     Set all colliders to the piece layer.
-    /// </summary>
-    /// <param name="gameObject"></param>
-    internal static void FixPieceLayers(GameObject gameObject)
-    {
-        foreach (Collider collider in gameObject.GetComponentsInChildren<Collider>())
+        foreach (NamedSnapPoint point in namedSnapPoints)
         {
-            collider.gameObject.layer = LayerMask.NameToLayer("piece");
+            AddSnapPointInternal(point.LocalPosition, gameObject, point.Name);
         }
     }
 
@@ -98,9 +86,8 @@ internal static class SnapPointManager
     /// <param name="gameObject"></param>
     internal static void AddSnapPointToOrigin(GameObject gameObject)
     {
-        CreateSnapPoint(Vector3.zero, gameObject, ORIGIN);
+        AddSnapPointInternal(Vector3.zero, gameObject, ORIGIN);
     }
-
 
     /// <summary>
     ///     Adds snap points for the game object to the corners of the specified mesh.
@@ -118,11 +105,11 @@ internal static class SnapPointManager
             return;
         }
 
-        List<Vector3> pts = [];
+        List<NamedSnapPoint> pts = [];
         Vector3 extents = boxCollider.size / 2;
-        foreach (Vector3 corner in corners)
+        foreach (KeyValuePair<string, Vector3> kvp in Corners)
         {
-            pts.Add(boxCollider.center + Vector3.Scale(corner, extents));
+            pts.Add(new NamedSnapPoint(boxCollider.center + Vector3.Scale(kvp.Value, extents), kvp.Key));
         }
         AddSnapPoints(gameObject, pts);
     }
@@ -142,13 +129,54 @@ internal static class SnapPointManager
         {
             return;
         }
-  
-        List<Vector3> pts = new();
+
+        List<NamedSnapPoint> pts = [];
         Bounds bounds = mesh.bounds;
-        foreach (Vector3 corner in corners)
+        foreach (KeyValuePair<string, Vector3> kvp in Corners)
         {
-            pts.Add(bounds.center + Vector3.Scale(corner, bounds.extents));
+            pts.Add(new NamedSnapPoint(bounds.center + Vector3.Scale(kvp.Value, bounds.extents), kvp.Key));
         }
         AddSnapPoints(gameObject, pts);
+    }
+
+    /// <summary>
+    ///     Set all colliders to the piece layer.
+    /// </summary>
+    /// <param name="gameObject"></param>
+    internal static void FixPieceLayers(GameObject gameObject)
+    {
+        foreach (Collider collider in gameObject.GetComponentsInChildren<Collider>())
+        {
+            collider.gameObject.layer = LayerMask.NameToLayer("piece");
+        }
+    }
+
+    private static void AddSnapPointInternal(Vector3 pos, GameObject prefab, string snapPointName)
+    {
+        GameObject snappoint = new(snapPointName);
+        snappoint.transform.parent = prefab.transform;
+        snappoint.transform.localPosition = pos;
+        snappoint.tag = SnapPointNames.TAG;
+        snappoint.SetActive(false);
+    }
+
+    private static NamedSnapPoint[] CreateNamedSnapPoints(Vector3[] positions, string prefix = EXTRA, int startNumber = 1)
+    {
+        NamedSnapPoint[] result = new NamedSnapPoint[positions.Length];
+        for (int i = 0; i < result.Length; i++)
+        {
+            result[i] = new NamedSnapPoint(positions[i], $"{prefix} {startNumber + i}");
+        }
+        return result;
+    }
+
+    private static NamedSnapPoint[] CreateNamedSnapPoints(IEnumerable<Vector3> positions, string prefix = EXTRA, int startNumber = 1)
+    {
+        NamedSnapPoint[] result = new NamedSnapPoint[positions.Count()];
+        for (int i = 0; i < result.Length; i++)
+        {
+            result[i] = new NamedSnapPoint(positions.ElementAt(i), $"{prefix} {startNumber + i}");
+        }
+        return result;
     }
 }

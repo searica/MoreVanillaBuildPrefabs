@@ -79,7 +79,7 @@ internal static class SeasonalPieceMananger
                 Log.LogWarning($"Invalid reference for seasonal piece {pair.Key}");
                 continue;
             }
-            piece.m_enabled = MorePrefabs.IsEnableSeasonalPieces;
+            piece.m_enabled = MorePrefabs.SeasonalPiecePatchesEnabled;
         }
     }
 }

@@ -4,6 +4,7 @@ using MVBP.PrefabManagement;
 using UnityEngine;
 using Logging;
 using Jotunn.Managers;
+using System.Collections.Generic;
 
 namespace MVBP.Functions;
 
@@ -18,6 +19,18 @@ internal static class PlacedPiecePatcher
     private static readonly int AllLayer = LayerMask.NameToLayer("All");
     private const float timeout = 1e30f;
 
+
+    private static readonly Dictionary<string, int> FortressPiecesToPatch = new Dictionary<string, int>  {
+        { "Ashland_Stair", -1 },
+        { "Ashlands_Wall_2x2_cornerL", -1 },
+        { "Ashlands_Wall_2x2_cornerL_top", -1 },
+        { "Ashlands_Wall_2x2_cornerR", -1 },
+        { "Ashlands_Wall_2x2_cornerR_top", -1 },
+        { "Ashlands_Wall_2x2_edge", -1 },
+        { "Ashlands_Wall_2x2_edge2", -1 },
+        { "Ashlands_Wall_2x2_edge2_top", -1 },
+        { "Ashlands_Wall_2x2_top", -1 },
+    };
 
     /// <summary>
     ///     Applies patches from when pieces are loaded.
@@ -70,16 +83,16 @@ internal static class PlacedPiecePatcher
             piece.m_canBeRemoved = true;
         }
 
-        //ApplyChestRigidBodyPatches(prefabName, piece);
         ApplyDvergrPortalPatches(prefabName, piece);
         ApplyDoorPatches(prefabName, piece);
         ApplyTimedDestructionPatch(piece);
         ApplyContainerPatches(prefabName, piece);
         EditDestructibleSpawn(prefabName, piece);
         ApplyFireWarmthPatches(prefabName, piece);
+        ApplyFortressPiecePatches(prefabName, piece);
         //ApplyShieldGeneratorPatches(prefabName, piece);
 
-        if (MorePrefabs.IsEnablePlayerBasePatches)
+        if (MorePrefabs.PlayerBasePatchesEnabled)
         {
             ApplyPlayerBasePatches(prefabName, piece.gameObject);
         }
@@ -130,7 +143,6 @@ internal static class PlacedPiecePatcher
             return;
         }
 
-        Log.LogInfo("Set ZDO for portal");
         zdo.Set("HasFields", true);
 
         zdo.Set("HasFieldsTeleportWorld", true);
@@ -167,7 +179,7 @@ internal static class PlacedPiecePatcher
 
 
         // Modify container size based on configs
-        if (!PrefabConfigManager.TryGetPrefabConfig(prefabName, out var prefabConfig, checkIfBound: true))
+        if (!PrefabConfigManager.TryGetPrefabConfig(prefabName, out PrefabConfig prefabConfig, checkIfBound: true))
         {
             return;
         }
@@ -238,7 +250,7 @@ internal static class PlacedPiecePatcher
             return;
         }
 
-        if (!PrefabConfigManager.TryGetPrefabConfig(name, out var prefabConfig, checkIfBound: true))
+        if (!PrefabConfigManager.TryGetPrefabConfig(name, out PrefabConfig prefabConfig, checkIfBound: true))
         {
             return;
         }
@@ -528,6 +540,41 @@ internal static class PlacedPiecePatcher
             zdo.Set("ShieldGenerator.m_defaultFuel", 10);
             zdo.Set("ShieldGenerator.m_fuelPerDamage", 0f);
             zdo.Set("ShieldGenerator.m_startStopSpeed", 25f);
+        }
+    }
+
+    /// <summary>
+    ///     Attempt to make infinite shield option but not really working due to NRE
+    /// </summary>
+    /// <param name="prefabName"></param>
+    /// <param name="piece"></param>
+    internal static void ApplyFortressPiecePatches(string prefabName, Piece piece)
+    {
+        if (!FortressPiecesToPatch.ContainsKey(prefabName) || !piece.gameObject.TryGetComponent(out WearNTear wearNTear) || !TryGetZDO(piece, out ZDO zdo))
+        {
+            return;
+        }
+
+        // update with default vanilla value on first time interacting with this piece.
+        int toolTier = FortressPiecesToPatch[prefabName];
+        if (toolTier < 0)
+        {
+            toolTier = PrefabManager.Instance.GetPrefab(prefabName).GetComponent<WearNTear>().m_minToolTier; 
+            FortressPiecesToPatch[prefabName] = toolTier;
+        }
+
+        // set min tool tier for pieces
+        zdo.Set("HasFields", true);
+        zdo.Set("HasFieldsWearNTear", true);
+        if (MorePrefabs.FortressPiecePatchesEnabeld)
+        {
+            wearNTear.m_minToolTier = 5;  // siege weapon value
+            zdo.Set("WearNTear.m_minToolTier", 5);
+        }
+        else
+        {
+            wearNTear.m_minToolTier = toolTier;  // default vanilla value
+            zdo.Set("WearNTear.m_minToolTier", toolTier);
         }
     }
 }

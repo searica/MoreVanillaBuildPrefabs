@@ -8,6 +8,29 @@
 			<th align="center">Notes</th>
 		</tr>
 		<tr>
+			<td align="center">1.6.5</td>
+			<td align="left">
+				<ul>
+					<li>Adjust default portal placement settings so that it stops clipping into the ground when not placed on a floor.</li>
+					<li>Adjusted patch priority to enforce stable interactions with snapping to custom points from ExtraSnapPointsMadeEasy.</li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<td align="center">1.6.4</td>
+			<td align="left">
+				<ul>
+					<li>Added a new config setting to allow player build fortress pieces to become invunerable to damage from anything with a lower tool tier than seige weapons. Does not affect actual fortress locations at all.</li>
+					<li>Added snap points to almost all ashlands build pieces. Some pillar and roof pieces still do not have snap points yet.</li>
+					<li>Implemented the same automatic snap point naming conventions as for Extra Snaps Made Easy, so most custom snap points added by this mod will now be named "Extra" unless I have manually named them.</li>
+					<li>Tweaked various build pieces to add snap points names for the custom snap points added by this mod. Nowhere near complete, but it's a start.</li>
+					<li>Adjusted placement of the Dvergr Portal piece so that it is now allowed to clip into the ground and will do so when placing. This avoids the issue of not actually being able to walk into the portal due how sharp the rim of the platform is.</li>
+					<li>Caught some capitialization mistakes I had missed last update (hopefully got them all now).</li>
+					<li>Added custom name for Ashlands_Altar prefab and tweaked default build resources.</li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
 			<td align="center">1.6.3</td>
 			<td align="left">
 				<ul>
