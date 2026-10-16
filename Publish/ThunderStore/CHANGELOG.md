@@ -8,6 +8,22 @@
 			<th align="center">Notes</th>
 		</tr>
 		<tr>
+			<td align="center">1.6.8</td>
+			<td align="left">
+				<ul>
+					<li>Okay, the compatibility issue with PlantEverything is actually fixed now. Turned out that there was still an unintended interaction preventing the cultivator from removing things if you did not add any pieces from MVBP to the cultivator in you config.</li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<td align="center">1.6.7</td>
+			<td align="left">
+				<ul>
+					<li>Fixed new compatibility issue with PlantEverything that prevented you from using the cultivator to remove pickables if you enabled CanRemoveFlora in PlantEverything.</li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
 			<td align="center">1.6.7</td>
 			<td align="left">
 				<ul>
@@ -21,6 +37,7 @@
 				<ul>
 					<li>Bugfix for serving tray not being able to remove the pieces it places while MVBP is installed. Serving tray now works normally and correctly handles any pieces added to it using MVBP.</li>
 					<li>Fixed compatibility issue with PlantEverything that allowed you to remove any piece added by MVBP with the cultivator if you enabled CanRemoveFlora in PlantEverything.</li>
+					<li>Fixed bug when removing non WearNTear pieces that prevented the zdo from being properly destroyed.</li>
 				</ul>
 			</td>
 		</tr>

@@ -8,6 +8,22 @@
 			<th align="center">Notes</th>
 		</tr>
 		<tr>
+			<td align="center">1.6.8</td>
+			<td align="left">
+				<ul>
+					<li>Okay, the compatibility issue with PlantEverything is actually fixed now. Turned out that there was still an unintended interaction preventing the cultivator from removing things if you did not add any pieces from MVBP to the cultivator in you config.</li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<td align="center">1.6.7</td>
+			<td align="left">
+				<ul>
+					<li>Fixed new compatibility issue with PlantEverything that prevented you from using the cultivator to remove pickables if you enabled CanRemoveFlora in PlantEverything.</li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
 			<td align="center">1.6.7</td>
 			<td align="left">
 				<ul>

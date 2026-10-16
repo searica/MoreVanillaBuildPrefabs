@@ -180,15 +180,20 @@ internal static class PieceTableManager
             DefaultPieceTableValuesMap.Add(pieceTable, new PieceTableConfig(pieceTable.m_hideAdvancedMenu, pieceTable.m_canRemovePieces));
         }
 
-        if (pieceGroups.IsEmpty())
-        {
-            pieceTable.m_hideAdvancedMenu = DefaultPieceTableValuesMap[pieceTable].HideAdvancedMenu;
-            pieceTable.m_canRemovePieces= DefaultPieceTableValuesMap[pieceTable].CanRemovePieces;
-        }
-        else
+        if (!pieceGroups.IsEmpty())
         {
             pieceTable.m_hideAdvancedMenu = false;
             pieceTable.m_canRemovePieces = true;
+        }
+        else if (ModCompat.IsPlantEverythingInstalled() && pieceTable.name == "_CultivatorPieceTable")
+        {
+            pieceTable.m_hideAdvancedMenu = DefaultPieceTableValuesMap[pieceTable].HideAdvancedMenu;
+            pieceTable.m_canRemovePieces = true;
+        }
+        else 
+        {
+            pieceTable.m_hideAdvancedMenu = DefaultPieceTableValuesMap[pieceTable].HideAdvancedMenu;
+            pieceTable.m_canRemovePieces = DefaultPieceTableValuesMap[pieceTable].CanRemovePieces;
         }
 
         // add prefabs to piece table

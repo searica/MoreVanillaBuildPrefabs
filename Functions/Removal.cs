@@ -54,11 +54,6 @@ internal static class Removal
                             return false; // skip vanilla method
                         }
                     }
-                    else if (ModCompat.IsPlantEverythingInstalled() && __instance.GetRightItem().m_shared.m_name == "$item_cultivator")
-                    {
-                        __result = false;
-                        return true; // don't abort the vanilla method because the prefix patch from PlantEverything still has to run after this
-                    }
                     else { 
                         __result = false;
                         return false; // skip vanilla method if tool should not actually be allowed to remove a piece
