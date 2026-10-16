@@ -8,6 +8,23 @@
 			<th align="center">Notes</th>
 		</tr>
 		<tr>
+			<td align="center">1.6.7</td>
+			<td align="left">
+				<ul>
+					<li>Fixed new compatibility issue with PlantEverything that prevented you from using the cultivator to remove pickables if you enabled CanRemoveFlora in PlantEverything.</li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<td align="center">1.6.6</td>
+			<td align="left">
+				<ul>
+					<li>Bugfix for serving tray not being able to remove the pieces it places while MVBP is installed. Serving tray now works normally and correctly handles any pieces added to it using MVBP.</li>
+					<li>Fixed compatibility issue with PlantEverything that allowed you to remove any piece added by MVBP with the cultivator if you enabled CanRemoveFlora in PlantEverything.</li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
 			<td align="center">1.6.5</td>
 			<td align="left">
 				<ul>

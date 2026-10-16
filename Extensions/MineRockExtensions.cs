@@ -34,6 +34,11 @@ internal static class MineRockExtensions
                 mineRock.m_nview.InvokeRPC("Hit", hitData, i);
             }
         }
+
+        if (mineRock.m_removeWhenDestroyed && mineRock.AllDestroyed())
+        {
+            mineRock.m_nview.Destroy();
+        }
     }
 
     /// <summary>

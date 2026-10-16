@@ -56,6 +56,11 @@ internal static class MineRock5Extensions
                 mineRock5.DamageArea(i, hitData);
             }
         }
+        if (mineRock5.AllDestroyed())
+        {
+            mineRock5.m_nview.Destroy();
+            mineRock5.m_allDestroyed = true;
+        }
     }
 
     /// <summary>

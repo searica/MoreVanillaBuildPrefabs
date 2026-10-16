@@ -19,6 +19,7 @@ internal static class Removal
     [HarmonyPatch(typeof(Player))]
     internal static class PlayerPatch
     {
+        private static readonly int VanillaPieceRemovalMask = LayerMask.GetMask("piece", "piece_nonsolid");
         private static readonly int PieceRemovalMask = LayerMask.GetMask(
             "Default",
             "static_solid",
@@ -33,6 +34,7 @@ internal static class Removal
         );
 
         [HarmonyPrefix]
+        [HarmonyBefore("advize.PlantEverything")]
         [HarmonyPatch(nameof(Player.RemovePiece))]
         internal static bool RemovePiecePrefix(Player __instance, ref bool __result)
         {
@@ -52,7 +54,12 @@ internal static class Removal
                             return false; // skip vanilla method
                         }
                     }
-                    else {
+                    else if (ModCompat.IsPlantEverythingInstalled() && __instance.GetRightItem().m_shared.m_name == "$item_cultivator")
+                    {
+                        __result = false;
+                        return true; // don't abort the vanilla method because the prefix patch from PlantEverything still has to run after this
+                    }
+                    else { 
                         __result = false;
                         return false; // skip vanilla method if tool should not actually be allowed to remove a piece
                     }

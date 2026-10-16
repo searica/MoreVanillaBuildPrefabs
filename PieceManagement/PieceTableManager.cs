@@ -8,12 +8,15 @@ using UnityEngine;
 using Logging;
 using MVBP.PrefabManagement;
 using MVBP.Extensions;
+using HarmonyLib;
+using System.Linq;
 
 namespace MVBP.PieceManagement;
 
 /// <summary>
 ///     Manages Piece configuration and updating Hammer piece table.
 /// </summary>
+[HarmonyPatch]
 internal static class PieceTableManager
 {
     private sealed class PieceTableConfig
@@ -30,6 +33,47 @@ internal static class PieceTableManager
     private static readonly Dictionary<PieceTable, List<GameObject>> AddedPrefabs = [];
     private static readonly Dictionary<PieceTable, HashSet<int>> AddedPrefabsHashMap = [];
     private static readonly Dictionary<PieceTable, PieceTableConfig> DefaultPieceTableValuesMap = [];
+    private static readonly HashSet<PieceTable> PieceTablesCache = [];
+
+
+    /// <summary>
+    ///     Need to cache default menu and removal values for piece tables before other
+    ///     mods alter them to prevent compatibility issues and ensure the cached values
+    ///     reflect the default vanilla settings.
+    /// </summary>
+    [HarmonyPostfix]
+    [HarmonyPriority(Priority.First)]
+    [HarmonyBefore("advize.PlantEverything")]
+    [HarmonyPatch(typeof(ZNetScene), nameof(ZNetScene.Awake))]
+    private static void InitPieceTableDefaults()
+    {
+        Initialize();
+    }
+        
+    public static void Initialize()
+    {
+        Log.LogInfo("Initializing PieceTableManager");
+
+        if (PieceTablesCache.Count == 0)
+        {
+            PieceTablesCache.UnionWith(Resources.FindObjectsOfTypeAll<PieceTable>());
+        }
+        else
+        {
+            PieceTablesCache.UnionWith(PieceManager.Instance.GetPieceTables());
+        }
+
+        foreach (PieceTable pieceTable in PieceTablesCache)
+        {
+            Log.LogInfo($"Found piece table: {pieceTable.name}", Log.InfoLevel.Medium);
+            // cache the default menu and removal values for piece tables 
+            if (!DefaultPieceTableValuesMap.ContainsKey(pieceTable))
+            {
+                Log.LogInfo($"Initializing default values for piece table: {pieceTable.name}", Log.InfoLevel.Medium);
+                DefaultPieceTableValuesMap.Add(pieceTable, new PieceTableConfig(pieceTable.m_hideAdvancedMenu, pieceTable.m_canRemovePieces));
+            }
+        }
+    }
 
     public static bool WasPieceAddedToPieceTable(PieceTable pieceTable, Piece piece)
     {
@@ -54,10 +98,21 @@ internal static class PieceTableManager
         {
             return true;
         }
+        
+        if (pieceTable.m_canRemoveFeasts)  // ensure serving tray works properly
+        {
+            if (piece.GetComponent<Feast>() || (piece.TryGetComponent(out ItemDrop itemDrop) && itemDrop && itemDrop.IsPiece()))
+            {
+                return true;
+            }
+        }
+
+        // fall back to relying on unmodified can remove piece value for piece table
         if (DefaultPieceTableValuesMap.TryGetValue(pieceTable, out PieceTableConfig pieceTableConfig))
         {
             return pieceTableConfig.CanRemovePieces;
         }
+
         return pieceTable.m_canRemovePieces;
     }
 
@@ -121,6 +176,7 @@ internal static class PieceTableManager
         // respect default values for piece table set ups and only change them if needed
         if (!DefaultPieceTableValuesMap.ContainsKey(pieceTable))
         {
+            Log.LogInfo($"Initializing default values for piece table: {pieceTable.name}", Log.InfoLevel.Medium);
             DefaultPieceTableValuesMap.Add(pieceTable, new PieceTableConfig(pieceTable.m_hideAdvancedMenu, pieceTable.m_canRemovePieces));
         }
 
