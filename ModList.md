@@ -19,6 +19,7 @@
 - [ShowMeTheGoods](https://thunderstore.io/c/valheim/p/Searica/ShowMeTheGoods/)
 - [UnderTheSea](https://thunderstore.io/c/valheim/p/Searica/UnderTheSea/)
 - [QueueEquipChanges](https://thunderstore.io/c/valheim/p/Searica/QueueEquipChanges/)
+- [QuickCart](https://thunderstore.io/c/valheim/p/Searica/QuickCart/)
 - [WatchWhereYouStab](https://thunderstore.io/c/valheim/p/Searica/WatchWhereYouStab/)
 
 #### QoL/Utility Mods

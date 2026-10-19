@@ -2,6 +2,7 @@
 
 using System.Collections.Generic;
 using UnityEngine;
+using Logging;
 
 namespace MVBP.Utils;
 
@@ -66,7 +67,10 @@ internal static class ColliderManager
     /// <returns></returns>
     internal static Bounds GetRendererBounds(GameObject prefab)
     {
-        Bounds desiredBounds = new();
+        Bounds desiredBounds = new()
+        {
+            center = prefab.transform.localPosition
+        };
         foreach (Renderer renderer in prefab.GetComponentsInChildren<Renderer>())
         {
             desiredBounds.Encapsulate(renderer.bounds);
@@ -85,13 +89,24 @@ internal static class ColliderManager
     internal static Bounds GetMeshBounds(GameObject prefab)
     {
         Bounds desiredBounds = new();
+        bool hasInitBounds = false; // need to center the bounds on the initial mesh itself
+
         foreach (MeshRenderer meshRenderer in prefab.GetComponentsInChildren<MeshRenderer>())
         {
             // Uses world space bounds
-            desiredBounds.Encapsulate(meshRenderer.bounds);
+            if (!hasInitBounds)
+            {
+                desiredBounds.center = meshRenderer.bounds.center;
+                desiredBounds.size = meshRenderer.bounds.size;  
+                hasInitBounds = true;
+            }
+            else
+            {
+                desiredBounds.Encapsulate(meshRenderer.bounds);
+            }                
         }
 
-        // Need to use mesh bounds here rather than skinned mesh renderer
+        // Need to use shared mesh bounds here rather than skinned mesh renderer
         // bounds those bounds include animations and can be much larger
         foreach (SkinnedMeshRenderer skinMeshRender in prefab.GetComponentsInChildren<SkinnedMeshRenderer>())
         {
@@ -101,9 +116,20 @@ internal static class ColliderManager
             Vector3 maxPoint = trans.TransformPoint(bounds.max);
             Vector3 minPoint = trans.TransformPoint(bounds.min);
 
-            desiredBounds.Encapsulate(maxPoint);
-            desiredBounds.Encapsulate(minPoint);
+            if (!hasInitBounds)
+            {
+                desiredBounds.center = 0.5f * (bounds.min + bounds.max);
+                desiredBounds.size = bounds.max - bounds.min;
+                hasInitBounds = true;
+            }
+            else
+            {
+                desiredBounds.Encapsulate(maxPoint);
+                desiredBounds.Encapsulate(minPoint);
+            }
+            
         }
+
         return desiredBounds;
     }
 

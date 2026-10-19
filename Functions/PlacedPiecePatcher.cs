@@ -32,6 +32,11 @@ internal static class PlacedPiecePatcher
         { "Ashlands_Wall_2x2_top", -1 },
     };
 
+    private static readonly HashSet<string> ShouldProvideSupport = [
+        "dvergrprops_shelf",
+        "dvergrprops_table",
+    ];
+
     /// <summary>
     ///     Applies patches from when pieces are loaded.
     /// </summary>
@@ -83,13 +88,22 @@ internal static class PlacedPiecePatcher
             piece.m_canBeRemoved = true;
         }
 
+        if (piece.TryGetComponent(out WearNTear wearNTear))
+        {
+            ApplyWearNTearSupportPatch(prefabName, wearNTear);
+            ApplyProvidesSupportPatches(prefabName, wearNTear);
+            ApplyFortressPiecePatches(prefabName, wearNTear);
+        }
+
+        
         ApplyDvergrPortalPatches(prefabName, piece);
         ApplyDoorPatches(prefabName, piece);
         ApplyTimedDestructionPatch(piece);
         ApplyContainerPatches(prefabName, piece);
         EditDestructibleSpawn(prefabName, piece);
         ApplyFireWarmthPatches(prefabName, piece);
-        ApplyFortressPiecePatches(prefabName, piece);
+        
+        
         //ApplyShieldGeneratorPatches(prefabName, piece);
 
         if (MorePrefabs.PlayerBasePatchesEnabled)
@@ -111,7 +125,7 @@ internal static class PlacedPiecePatcher
         if (MorePrefabs.PatchPortalTexture)
         {
             TextureManager.ApplyPortalTexturePatch(prefabName, piece.gameObject);
-        }
+        }    
     }
 
     private static bool TryGetZDO(Piece piece, out ZDO zdo)
@@ -123,6 +137,59 @@ internal static class PlacedPiecePatcher
         }
         zdo = piece.m_nview.GetZDO();
         return zdo != null;
+    }
+
+    private static bool TryGetZDO(WearNTear WearNTear, out ZDO zdo)
+    {
+        if (!WearNTear.m_nview || !WearNTear.m_nview.IsValid())
+        {
+            zdo = null;
+            return false;
+        }
+        zdo = WearNTear.m_nview.GetZDO();
+        return zdo != null;
+    }
+
+
+    private static void ApplyWearNTearSupportPatch(string prefabName, WearNTear wearNTear)
+    {
+        if (wearNTear.m_noSupportWear) 
+        {
+            return; // WearNTear already needs support
+        }
+
+        // set to true if not in the list of things to ignore and false if it is in the list
+        wearNTear.m_noSupportWear = !MorePrefabs.IgnoreWearNTearPatchesSet.Contains(prefabName);
+
+        // update ZDO to make sure that the setting is changed in a way that is persistent in
+        // case the list of IgnoreWearNTearPatches has changed since the last time ZDO were saved
+        if (TryGetZDO(wearNTear, out ZDO zdo))
+        {
+            zdo.Set("HasFields", true);
+            zdo.Set("HasFieldsWearNTear", true);
+            zdo.Set("WearNTear.m_noSupportWear", wearNTear.m_noSupportWear);
+        }
+    }
+
+
+    /// <summary>
+    ///     Make sure these prefabs provide support when loaded by clients without the mod
+    ///     and continue to provide support after removing MVBP.
+    /// </summary>
+    /// <param name="prefabName"></param>
+    /// <param name="wearNTear"></param>
+    private static void ApplyProvidesSupportPatches(string prefabName, WearNTear wearNTear)
+    {
+        if (ShouldProvideSupport.Contains(prefabName))
+        {
+            wearNTear.m_supports = true; // allow these pieces to support other pieces
+            if (TryGetZDO(wearNTear, out ZDO zdo))
+            {
+                zdo.Set("HasFields", true);
+                zdo.Set("HasFieldsWearNTear", true);
+                zdo.Set("WearNTear.m_supports", true);
+            }
+        }
     }
 
     /// <summary>
@@ -548,9 +615,9 @@ internal static class PlacedPiecePatcher
     /// </summary>
     /// <param name="prefabName"></param>
     /// <param name="piece"></param>
-    internal static void ApplyFortressPiecePatches(string prefabName, Piece piece)
+    internal static void ApplyFortressPiecePatches(string prefabName, WearNTear wearNTear)
     {
-        if (!FortressPiecesToPatch.ContainsKey(prefabName) || !piece.gameObject.TryGetComponent(out WearNTear wearNTear) || !TryGetZDO(piece, out ZDO zdo))
+        if (!FortressPiecesToPatch.ContainsKey(prefabName) || !TryGetZDO(wearNTear, out ZDO zdo))
         {
             return;
         }

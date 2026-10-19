@@ -45,20 +45,25 @@ internal static class Removal
                 if (Physics.Raycast(cameraTrans.position, cameraTrans.forward, out RaycastHit hitInfo, 50f, PieceRemovalMask) &&
                     Vector3.Distance(hitInfo.point, __instance.m_eye.position) < __instance.m_maxPlaceDistance)
                 {
-                    Piece piece = hitInfo.collider.GetComponentInParent<Piece>();
-                    if (PieceTableManager.CanToolRemovePiece(toolPieceTable, piece))
+                    Piece piece = hitInfo.collider.GetComponentInParent<Piece>(includeInactive: false); // for things like trader wagon
+                    if (!piece)
                     {
-                        if (piece && MVPrefabManager.IsPatchedByMVBP(piece))
+                        Log.LogWarning("Object selected for removal did not have a piece component in parent.");
+                        return true; // failed to get piece, run vanilla method
+                    }
+                    if (PieceTableManager.CanToolRemovePiece(toolPieceTable, piece))
+                    { 
+                        if (MVPrefabManager.IsPatchedByMVBP(piece))
                         {
                             __result = RemoveCustomPiece(__instance, piece);
                             return false; // skip vanilla method
                         }
                     }
-                    else { 
+                    else
+                    {
                         __result = false;
                         return false; // skip vanilla method if tool should not actually be allowed to remove a piece
                     }
-                    
                 }
             }
             return true; // run vanilla method
@@ -66,64 +71,66 @@ internal static class Removal
 
         private static bool RemoveCustomPiece(Player player, Piece piece)
         {
-            if (piece)
+            if (!piece)
             {
-                if (!Check_m_canBeRemoved(piece))
-                {
-                    return false;
-                }
-                if (Location.IsInsideNoBuildLocation(piece.transform.position))
-                {
-                    player.Message(MessageHud.MessageType.Center, "$msg_nobuildzone");
-                    return false;
-                }
-                if (!PrivateArea.CheckAccess(piece.transform.position))
-                {
-                    player.Message(MessageHud.MessageType.Center, "$msg_privatezone");
-                    return false;
-                }
-                if (!player.CheckCanRemovePiece(piece))
-                {
-                    return false;
-                }
-                ZNetView component = piece.GetComponent<ZNetView>();
-                if (component == null)
-                {
-                    return false;
-                }
-                if (!piece.CanBeRemoved())
-                {
-                    player.Message(MessageHud.MessageType.Center, "$msg_cantremovenow");
-                    return false;
-                }
-                WearNTear component2 = piece.GetComponent<WearNTear>();
-                if (component2)
-                {
-                    component2.Remove();
-                }
-                else
-                {
-                    Log.LogInfo("Removing non WNT object with hammer " + piece.name);
-                    component.ClaimOwnership();
-                    if (!RemoveDestructiblePiece(piece)
-                        && !RemoveMineRock5Piece(piece)
-                        && !RemoveMineRockPiece(piece))
-                    {
-                        piece.DropResources();
-                        piece.m_placeEffect.Create(piece.transform.position, piece.transform.rotation, piece.gameObject.transform);
-                        player.m_removeEffects.Create(piece.transform.position, Quaternion.identity);
-                        ZNetScene.instance.Destroy(piece.gameObject);
-                    }
-                }
-                ItemDrop.ItemData rightItem = player.GetRightItem();
-                if (rightItem != null)
-                {
-                    player.FaceLookDirection();
-                    player.m_zanim.SetTrigger(rightItem.m_shared.m_attack.m_attackAnimation);
-                }
-                return true;
+                return false;
             }
-            return false;
+   
+            if (Location.IsInsideNoBuildLocation(piece.transform.position))
+            {
+                player.Message(MessageHud.MessageType.Center, "$msg_nobuildzone");
+                return false;
+            }
+
+            if (!PrivateArea.CheckAccess(piece.transform.position))
+            {
+                player.Message(MessageHud.MessageType.Center, "$msg_privatezone");
+                return false;
+            }
+
+            if (!player.CheckCanRemovePiece(piece))
+            {
+                return false;
+            }
+
+       
+            if (!piece.TryGetComponent(out ZNetView znview))
+            {
+                return false;
+            }
+
+            if (!piece.CanBeRemoved())
+            {
+                player.Message(MessageHud.MessageType.Center, "$msg_cantremovenow");
+                return false;
+            }
+
+            if (piece.TryGetComponent(out WearNTear wearNTear))
+            {
+                wearNTear.Remove();
+            }
+            else
+            {
+                Log.LogInfo("Removing non WNT object with hammer " + piece.name);
+                znview.ClaimOwnership();
+                if (!RemoveDestructiblePiece(piece)
+                    && !RemoveMineRock5Piece(piece)
+                    && !RemoveMineRockPiece(piece))
+                {
+                    piece.DropResources();
+                    piece.m_placeEffect.Create(piece.transform.position, piece.transform.rotation, piece.gameObject.transform);
+                    player.m_removeEffects.Create(piece.transform.position, Quaternion.identity);
+                    ZNetScene.instance.Destroy(piece.gameObject);
+                }
+            }
+            ItemDrop.ItemData rightItem = player.GetRightItem();
+            if (rightItem != null)
+            {
+                player.FaceLookDirection();
+                player.m_zanim.SetTrigger(rightItem.m_shared.m_attack.m_attackAnimation);
+            }
+            return true;
+       
         }
 
 
@@ -464,12 +471,10 @@ internal static class Removal
         [HarmonyPatch(nameof(DropOnDestroyed.OnDestroyed))]
         private static bool OnDestroyedPrefix(DropOnDestroyed __instance)
         {
-            if (__instance &&
-                MVPrefabManager.IsPatchedByMVBP(__instance) &&
-                __instance.TryGetComponent(out Piece piece)
-                && piece.IsPlacedByPlayer())
+            if (__instance && MVPrefabManager.IsPatchedByMVBP(__instance) && 
+                __instance.TryGetComponent(out Piece piece) && piece.IsPlacedByPlayer())
             {
-                Log.LogInfo("Disabling on destroyed drops for player-built object", Log.InfoLevel.Medium);
+                Log.LogInfo("Disabling OnDestroyed drops for player-built object", Log.InfoLevel.Medium);
                 return false;
             }
 

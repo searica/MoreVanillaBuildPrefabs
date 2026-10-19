@@ -33,6 +33,7 @@ internal static class MVPrefabManager
     ];
 
     private static readonly HashSet<string> IgnoredPrefabs = [
+        "Morkhalla_Stonepile", // destroys itself when placed and the visibility of it is broken due to a missing New reference for the WearNTear component
         "SnowFirTree 2",
         "Player",
         "Valkyrie",

@@ -6,6 +6,8 @@ using Jotunn.Extensions;
 using Jotunn.Managers;
 using Jotunn.Utils;
 using Logging;
+using System;
+using System.Collections.Generic;
 using System.Reflection;
 
 namespace MVBP;
@@ -21,7 +23,7 @@ public class MorePrefabs : BaseUnityPlugin
     public const string PluginName = "MoreVanillaBuildPrefabs";
     internal const string Author = "Searica";
     public const string PluginGUID = $"{Author}.Valheim.{PluginName}";
-    public const string PluginVersion = "1.6.8";
+    public const string PluginVersion = "1.7.0";
 
     public static MorePrefabs Instance { get; private set; }
     private ConfigFileWatcher configFileWatcher;
@@ -49,7 +51,9 @@ public class MorePrefabs : BaseUnityPlugin
     private static ConfigEntry<bool> EnableSeasonalPieces { get; set; }
     private static ConfigEntry<bool> EnablePlayerBasePatches { get; set; }
     private static ConfigEntry<bool> EnableFortressPiecePatches { get; set; }
-
+    internal static ConfigEntry<string> IgnoreWearNTearPatches { get; set; }
+    
+    internal static readonly HashSet<string> IgnoreWearNTearPatchesSet = [];
     internal static bool HammerCropsEnabled => EnableHammerCrops.Value;
     internal static bool ComfortPatchesEnabled => EnableComfortPatches.Value;
     internal static bool SeasonalPiecePatchesEnabled => EnableSeasonalPieces.Value;
@@ -73,8 +77,11 @@ public class MorePrefabs : BaseUnityPlugin
     private static ConfigEntry<bool> EnableFermenterPatches { get; set; }
     internal static bool IsEnableBedPatches => EnableBedPatches.Value;
     internal static bool IsEnableFermenterPatches => EnableFermenterPatches.Value;
+
     #endregion Unsafe Patches
 
+
+    
 
     public void Awake()
     {
@@ -205,6 +212,14 @@ public class MorePrefabs : BaseUnityPlugin
             " and is persistent if you uninstall this mod. If you disable this setting and reload the area, then all fortress pieces will revert to vanilla behaviour."
         );
 
+        IgnoreWearNTearPatches = Config.BindConfigInOrder(
+             CustomizationSection,
+             "IgnoreWearNTearPatches",
+             "",
+             "Comma or semi-colon seperated list of prefabs that should not have the WearNTear settings patched so that they will break if they are not supported." +
+             "\nNOTE: as of v1.7.0 MVBP patches all player built pieces to require support, which can result in some old builds breaking, but you can use this setting to exempt pieces from requiring support to prevent that."
+         );
+
         // Texture Section
         PortalTexture = Config.BindConfigInOrder(
             TextureSection,
@@ -254,5 +269,7 @@ public class MorePrefabs : BaseUnityPlugin
         Log.Verbosity.SettingChanged += UpdateMananger.ModSettingChanged;
 
         EnableSeasonalPieces.SettingChanged += UpdateMananger.SeasonalSettingChanged;
+
+        IgnoreWearNTearPatches.SettingChanged += UpdateMananger.IgnoreWearNTearPatchesListChanged;
     }
 }

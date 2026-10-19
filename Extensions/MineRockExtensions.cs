@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using Logging;
 
 namespace MVBP.Extensions;
 
@@ -13,29 +14,35 @@ internal static class MineRockExtensions
     /// <param name="mineRock5"></param>
     internal static void DestroyMineRockPiece(this MineRock mineRock)
     {
-        if (!mineRock ||
-            mineRock.m_nview == null ||
-            !mineRock.m_nview.IsValid() ||
-            !mineRock.m_nview.IsOwner())
+        if (!mineRock || mineRock.m_nview == null || !mineRock.m_nview.IsValid() || !mineRock.m_nview.IsOwner())
         {
             return;
         }
+
+        var hitData = new HitData();
+        hitData.m_damage.m_damage = mineRock.m_health;
+        hitData.m_toolTier = 100;
+        hitData.m_hitType = HitData.HitType.Structural;
+        //hitData.m_attacker = ZDOID.None; // ideally use this
+        hitData.m_attacker = Player.m_localPlayer.GetZDOID(); // have to use this because of the silly hit.GetAttacker().GetZDOID()
 
         for (int i = 0; i < mineRock.m_hitAreas.Length; i++)
         {
             if (mineRock && mineRock.m_nview != null && mineRock.m_nview.IsValid() && mineRock.m_nview.IsOwner())
             {
                 Collider hitArea = mineRock.m_hitAreas[i];
-                var hitData = new HitData();
-                hitData.m_damage.m_damage = mineRock.m_health;
+                if (!hitArea)
+                {
+                    Log.LogWarning($"Missing hit area {i}");
+                    continue;
+                }
                 hitData.m_point = hitArea.bounds.center;
-                hitData.m_toolTier = 100;
-                hitData.m_hitType = HitData.HitType.Structural;
+                Log.LogInfo($"Hitting area {i}");
                 mineRock.m_nview.InvokeRPC("Hit", hitData, i);
             }
         }
 
-        if (mineRock.m_removeWhenDestroyed && mineRock.AllDestroyed())
+        if (mineRock && mineRock.m_nview != null && mineRock.m_nview.IsValid() && mineRock.m_removeWhenDestroyed && mineRock.AllDestroyed())
         {
             mineRock.m_nview.Destroy();
         }

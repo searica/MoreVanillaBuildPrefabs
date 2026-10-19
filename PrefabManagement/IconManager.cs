@@ -69,6 +69,7 @@ internal class IconManager : MonoBehaviour
                 continue;
             }
 
+            
             Sprite result = GenerateObjectIcon(gameObject);
             // returning WaitForEndOfFrame seems to
             // fix the lighting bug in the icons
@@ -105,6 +106,7 @@ internal class IconManager : MonoBehaviour
             UseCache = ShouldCacheIcon(obj.name)
         };
 
-        return RenderManager.Instance.Render(request);
+        Sprite result = RenderManager.Instance.Render(request);
+        return result;
     }
 }

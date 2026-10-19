@@ -35,28 +35,28 @@ internal static class MineRock5Extensions
     /// <param name="mineRock5"></param>
     internal static void DestroyMineRock5Piece(this MineRock5 mineRock5)
     {
-        if (!mineRock5 ||
-            mineRock5.m_nview == null ||
-            !mineRock5.m_nview.IsValid() ||
-            !mineRock5.m_nview.IsOwner())
+        if (!mineRock5 || mineRock5.m_nview == null ||
+            !mineRock5.m_nview.IsValid() || !mineRock5.m_nview.IsOwner())
         {
             return;
         }
+
+        var hitData = new HitData();
+        hitData.m_damage.m_damage = mineRock5.m_health;
+        hitData.m_toolTier = 100;
+        hitData.m_hitType = HitData.HitType.Structural;
+        hitData.m_attacker = ZDOID.None;
 
         for (int i = 0; i < mineRock5.m_hitAreas.Count; i++)
         {
             MineRock5.HitArea hitArea = mineRock5.m_hitAreas[i];
             if (hitArea.m_health > 0f)
             {
-                var hitData = new HitData();
-                hitData.m_damage.m_damage = mineRock5.m_health;
                 hitData.m_point = hitArea.m_collider.bounds.center;
-                hitData.m_toolTier = 100;
-                hitData.m_hitType = HitData.HitType.Structural;
                 mineRock5.DamageArea(i, hitData);
             }
         }
-        if (mineRock5.AllDestroyed())
+        if (mineRock5 && !mineRock5.m_allDestroyed)
         {
             mineRock5.m_nview.Destroy();
             mineRock5.m_allDestroyed = true;

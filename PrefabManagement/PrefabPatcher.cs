@@ -21,6 +21,8 @@ internal static class PrefabPatcher
     static Transform SnapPointTransform;
     static List<Vector3> pts = new();
     static List<NamedSnapPoint> snapPoints = new();
+    private static WearNTear wearNTearRef;
+    private static ZNetView nviewRef;
 
     /// <summary>
     ///     Fix collider and snap points on the prefab if necessary
@@ -123,7 +125,6 @@ internal static class PrefabPatcher
                 }
 
                 break;
-
             case "TreasureChest_mountaincave":
             case "TreasureChest_trollcave":
                 SnapPointManager.FixPieceLayers(prefab);
@@ -609,10 +610,9 @@ internal static class PrefabPatcher
 
             case "dvergrprops_shelf":
             case "dvergrprops_table":
-                WearNTear wearNTear = prefab.GetComponent<WearNTear>();
-                if (wearNTear)
+                if (prefab.TryGetComponent(out wearNTearRef))
                 {
-                    wearNTear.m_supports = true; // allow these pieces to support other pieces
+                    wearNTearRef.m_supports = true; // allow these pieces to support other pieces
                 }
                 break;
 
@@ -1768,6 +1768,13 @@ internal static class PrefabPatcher
                 PatchDvergrPortal(prefab);
                 break;
 
+            case "Morkhalla_Stonepile":
+                if (prefab.TryGetComponent(out wearNTearRef))
+                {
+                    wearNTearRef.m_new = wearNTearRef.m_worn;
+                }
+                
+                break;
             default:
                 break;
         }

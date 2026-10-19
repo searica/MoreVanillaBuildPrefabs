@@ -21,6 +21,8 @@ internal static class UpdateMananger
     private static bool ModSettingsChanged { get; set; } = false;
     private static bool SeasonalSettingsChanged { get; set; } = false;
 
+    private static bool IgnoreWearNTearPatchesChanged { get; set; } = false;
+
     /// <summary>
     ///     Event hook to set whether a config entry
     ///     for a piece setting has been changed.
@@ -62,6 +64,14 @@ internal static class UpdateMananger
         if (!SeasonalSettingsChanged)
         {
             SeasonalSettingsChanged = true;
+        }
+    }
+
+    public static void IgnoreWearNTearPatchesListChanged(object obj, EventArgs args)
+    {
+        if (!IgnoreWearNTearPatchesChanged)
+        {
+            IgnoreWearNTearPatchesChanged = true;
         }
     }
 
@@ -152,6 +162,7 @@ internal static class UpdateMananger
         MVPrefabManager.Initialize();
         UpdatePieces();
         SeasonalPieceMananger.UpdateSeasonalPieces();
+        UpdateIgnoreWearNTearPatchesSet();
         MorePrefabs.Instance.Config.Save(); // save after binding prefab configs
     }
 
@@ -168,10 +179,8 @@ internal static class UpdateMananger
         }
 
         // Don't update unless settings have actually changed
-        if (!PieceSettingsChanged &&
-            !PlacementSettingsChanged &&
-            !SeasonalSettingsChanged&&
-            !ModSettingsChanged)
+        if (!PieceSettingsChanged && !PlacementSettingsChanged && !SeasonalSettingsChanged && 
+            !IgnoreWearNTearPatchesChanged && !ModSettingsChanged )
         {
             return;
         }
@@ -205,10 +214,16 @@ internal static class UpdateMananger
             ModCompat.UpdatePlanBuild();
         }
 
+        if (IgnoreWearNTearPatchesChanged)
+        {
+            UpdateIgnoreWearNTearPatchesSet();
+        }
+
         ModSettingsChanged = false;
         PieceSettingsChanged = false;
         PlacementSettingsChanged = false;
         SeasonalSettingsChanged = false;
+        IgnoreWearNTearPatchesChanged = false;  
  
         if (saveConfig) { MorePrefabs.Instance.Config.Save(); }
     }
@@ -258,4 +273,26 @@ internal static class UpdateMananger
             Player.m_localPlayer.HideHandItems();
         }
     }
+
+    private static void UpdateIgnoreWearNTearPatchesSet()
+    {
+        try
+        {
+            List<string> newItems = [];
+            foreach (string item in MorePrefabs.IgnoreWearNTearPatches.Value.Split(',', ';'))
+            {
+                newItems.Add(item.Trim());
+            }
+            if (newItems.Count > 0)
+            {
+                MorePrefabs.IgnoreWearNTearPatchesSet.Clear();
+                MorePrefabs.IgnoreWearNTearPatchesSet.UnionWith(newItems);
+            }
+        }
+        catch (Exception ex)
+        {
+            Log.LogWarning($"Error parsing IgnoreWearNTearPatches: {ex}");
+        }
+    }
+
 }

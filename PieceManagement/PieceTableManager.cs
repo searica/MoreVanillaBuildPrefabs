@@ -9,7 +9,6 @@ using Logging;
 using MVBP.PrefabManagement;
 using MVBP.Extensions;
 using HarmonyLib;
-using System.Linq;
 
 namespace MVBP.PieceManagement;
 
@@ -77,6 +76,11 @@ internal static class PieceTableManager
 
     public static bool WasPieceAddedToPieceTable(PieceTable pieceTable, Piece piece)
     {
+        if (!piece)
+        {
+            Log.LogWarning("Could not check if piece was added to piece table because piece is not valid.");
+            return false;
+        }
         if (AddedPrefabsHashMap.TryGetValue(pieceTable, out HashSet<int> pieceHashes))
         {
             return pieceHashes.Contains(piece.gameObject.GetPrefabName().GetStableHashCode());
@@ -99,7 +103,7 @@ internal static class PieceTableManager
             return true;
         }
         
-        if (pieceTable.m_canRemoveFeasts)  // ensure serving tray works properly
+        if (pieceTable.m_canRemoveFeasts && piece)  // ensure serving tray works properly
         {
             if (piece.GetComponent<Feast>() || (piece.TryGetComponent(out ItemDrop itemDrop) && itemDrop && itemDrop.IsPiece()))
             {

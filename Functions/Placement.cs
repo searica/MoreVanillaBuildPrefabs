@@ -7,6 +7,7 @@ using Logging;
 using MVBP.PrefabManagement;
 using MVBP.Utils;
 using Jotunn;
+using MVBP.Extensions;
 
 namespace MVBP.Functions;
 
@@ -25,6 +26,7 @@ internal static class Placement
         typeof(Tameable),
         typeof(SpawnArea),
         typeof(Humanoid),
+        typeof(Animator)
     };
 
     /// <summary>
@@ -149,12 +151,15 @@ internal static class Placement
             selectedPrefab.SetActive(false);
         }
 
+        // Handle selection of non-standard prefabs (like in InfinityHammer)
+        string prefabName = selectedPrefab.GetPrefabName();
+
         GameObject clonedPrefab = UnityEngine.Object.Instantiate(selectedPrefab);
 
-        // Handle selection of non-standard prefabs (like in InfinityHammer)
-        //string prefabName = selectedPrefab.GetPrefabName();
-
-        string prefabName = selectedPrefab.name;
+        if (PrefabConfigManager.NeedsOffsetPatch(prefabName) && selectedPrefab.transform.localPosition != Vector3.zero)
+        {
+            clonedPrefab.transform.Translate(-1 * selectedPrefab.transform.localPosition); // fix pieces with bullshit offsets
+        }
 
         if (PrefabConfigManager.NeedsCollisionPatchForGhost(prefabName))
         {
@@ -189,6 +194,7 @@ internal static class Placement
         return clonedPrefab;
     }
 
+
     /// <summary>
     ///     Offset center of prefabs with poor center locations.
     /// </summary>
@@ -208,14 +214,14 @@ internal static class Placement
         }
 
         if (PrefabConfigManager.TryGetPrefabConfig(__instance.m_placementGhost, out var prefabConfig, checkIfBound: true) &&
-            prefabConfig.PlacementOffset.HasValue)
+            prefabConfig.PlacementOffset.Value != Vector3.zero)
         {
             Quaternion quaternion = __instance.m_placementGhost.transform.rotation;
             Vector3 pos = __instance.m_placementGhost.transform.position;
             __instance.m_placementGhost.transform.position = pos + (quaternion * prefabConfig.PlacementOffset.Value);
         }
     }
-    
+
 
     /// <summary>
     ///     Patch pieces upon placement. Patch piece right after placement 
