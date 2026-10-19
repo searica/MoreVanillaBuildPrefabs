@@ -29,10 +29,19 @@ internal static class Removal
             "terrain",
             "vehicle",
             "item",
-            "piece_nonsolid",
-            "Default_small"
+            "piece_nonsolid"
+            //"WaterVolume"
         );
 
+
+        /// <summary>
+        ///     Note: possible to get error on piece removal because in UpdatePlacement, if the player succesfully removes a piece
+        ///     it assumes that the hoveringPiece is valid and uses it to trigger the destroy effect of your equiped item but that
+        ///     is not always true, even in vanilla.
+        /// </summary>
+        /// <param name="__instance"></param>
+        /// <param name="__result"></param>
+        /// <returns></returns>
         [HarmonyPrefix]
         [HarmonyBefore("advize.PlantEverything")]
         [HarmonyPatch(nameof(Player.RemovePiece))]
@@ -48,13 +57,16 @@ internal static class Removal
                     Piece piece = hitInfo.collider.GetComponentInParent<Piece>(includeInactive: false); // for things like trader wagon
                     if (!piece)
                     {
-                        Log.LogWarning("Object selected for removal did not have a piece component in parent.");
+                        //Log.LogWarning("Object selected for removal did not have a piece component in parent.");
                         return true; // failed to get piece, run vanilla method
                     }
+                    //Log.LogInfo($"Detected piece {piece.name} for removal");
                     if (PieceTableManager.CanToolRemovePiece(toolPieceTable, piece))
-                    { 
+                    {
+                        //Log.LogInfo("Tool can remove piece");
                         if (MVPrefabManager.IsPatchedByMVBP(piece))
                         {
+                            //Log.LogInfo("MVBP handling piece removal");
                             __result = RemoveCustomPiece(__instance, piece);
                             return false; // skip vanilla method
                         }
@@ -334,7 +346,7 @@ internal static class Removal
             {
                 bool canBeRemoved = itemStand.m_canBeRemoved;
                 itemStand.m_canBeRemoved = true;
-                zNetView.InvokeRPC("DropItem");
+                zNetView.InvokeRPC("RPC_DropItem");
                 itemStand.m_canBeRemoved = canBeRemoved;
             }
             
@@ -342,9 +354,11 @@ internal static class Removal
             // If piece is pickable and it has not been picked, then pick it.
             if (piece.gameObject.TryGetComponent(out Pickable pickable))
             {
-                zNetView.InvokeRPC("Pick");
                 // Adjust drops to avoid duplicating pickable item (avoid infinite resource exploits).
                 resources = PieceReqsManager.RemovePickableFromRequirements(resources, pickable);
+                // already force pickable to be in piece resource costs so it's fine to not pick it
+                // also remove it from dropped resources if it is already picked
+                //zNetView.InvokeRPC("RPC_Pick"); 
             }
 
             return resources;
@@ -371,8 +385,7 @@ internal static class Removal
                 {
                     piece.DropResources();
                     // If it got picked during DropResources then it may no longer be valid.
-                    ZNetView nview = __instance.m_nview;
-                    if (!nview.IsValid() || !nview.IsOwner())
+                    if (!__instance || !__instance.m_nview.IsValid() || !__instance.m_nview.IsOwner())
                     {
                         Log.LogInfo("Piece nview was destroyed during DropResources()", Log.InfoLevel.Medium);
                         return false;

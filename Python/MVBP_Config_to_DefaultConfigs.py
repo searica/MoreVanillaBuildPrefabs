@@ -15,18 +15,19 @@ class PrefabConfig:
         "category": 5,
         "craftingStation": 6,
         "requirements": 7,
-        "clipEverything": 8,
-        "clipGround": 9,
-        "placementPatch": 10,
-        "placementOffset": 11,
-        "pieceName": 12,
-        "pieceDesc": 13,
-        "pieceGroup": 14,
-        "comfortGroup": 15,
-        "playerBasePatch": 16,
-        "spawnOnDestroyed": 17,
-        "invWidth": 18,
-        "invHeight": 19
+        "offsetPatch": 8,
+        "placementPatch": 9,
+        "clipGround": 10,
+        "clipEverything": 11,
+        "placementOffset": 12,
+        "pieceName": 13,
+        "pieceDesc": 14,
+        "pieceGroup": 15,
+        "comfortGroup": 16,
+        "playerBasePatch": 17,
+        "spawnOnDestroyed": 18,
+        "invWidth": 19,
+        "invHeight": 20
     }
 
     _needs_quotes = set(
@@ -51,6 +52,7 @@ class PrefabConfig:
         self.clipGround = None
         self.placementPatch = None
         self.placementOffset = None
+        self.offsetPatch = None
         self.pieceName = None
         self.pieceDesc = None
         self.pieceGroup = None
@@ -246,6 +248,12 @@ def get_line_value(line: str, split: str):
         val = f"nameof(CraftingStations.{val})"
     elif "PieceTable = " in line:
         val = f"nameof(PieceTables.{val})"
+    elif "PlacementOffset = " in line:
+        vals = [
+            round(float(x.split(',')[0]), 5)
+            for x in val.strip("}").strip("{").split(":")[1:]
+        ]
+        val = f"new Vector3({vals[0]}f, {vals[1]}f, {vals[2]}f)"
 
     return val
 

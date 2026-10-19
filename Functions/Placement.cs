@@ -26,7 +26,8 @@ internal static class Placement
         typeof(Tameable),
         typeof(SpawnArea),
         typeof(Humanoid),
-        typeof(Animator)
+        typeof(Animator),
+        typeof(RandomSpawn)
     };
 
     /// <summary>
@@ -137,6 +138,7 @@ internal static class Placement
         {
             return selectedPrefab;
         }
+
         if (!MVPrefabManager.IsPatchedByMVBP(selectedPrefab))
         {
             // ignore pieces not touched by this mod
@@ -166,6 +168,11 @@ internal static class Placement
             // Needed to make some things work, like Stalagmite, blackmarble_corner_stair, silvervein, etc.
             ColliderManager.PatchCollider(clonedPrefab);
         }
+        
+        //if (clonedPrefab.TryGetComponent(out LODGroup lodGroup))
+        //{
+        //    lodGroup.GetRelativeHeight(GameCamera.instance.m_camera);
+        //}
 
         if (!setActive)
         {
@@ -192,6 +199,42 @@ internal static class Placement
         clonedPrefab.SetActive(true);
 
         return clonedPrefab;
+    }
+
+
+    public static float GetRelativeHeight(this LODGroup lodGroup, Camera camera)
+    {
+        float magnitude = (lodGroup.transform.TransformPoint(lodGroup.localReferencePoint) - camera.transform.position).magnitude;
+        return DistanceToRelativeHeight(camera, magnitude, lodGroup.GetWorldSpaceSize()) * QualitySettings.lodBias;
+    }
+    public static float DistanceToRelativeHeight(Camera camera, float distance, float size)
+    {
+        bool orthographic = camera.orthographic;
+        float result;
+        if (orthographic)
+        {
+            result = size * 0.5f / camera.orthographicSize;
+        }
+        else
+        {
+            float num = Mathf.Tan(0.017453292f * camera.fieldOfView * 0.5f);
+            float num2 = size * 0.5f / (distance * num);
+            result = num2;
+        }
+        return result;
+    }
+
+    public static float GetWorldSpaceSize(this LODGroup lodGroup)
+    {
+        return GetWorldSpaceScale(lodGroup.transform) * lodGroup.size;
+    }
+
+    private static float GetWorldSpaceScale(Transform t)
+    {
+        Vector3 lossyScale = t.lossyScale;
+        float a = Mathf.Abs(lossyScale.x);
+        a = Mathf.Max(a, Mathf.Abs(lossyScale.y));
+        return Mathf.Max(a, Mathf.Abs(lossyScale.z));
     }
 
 

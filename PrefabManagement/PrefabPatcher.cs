@@ -22,8 +22,8 @@ internal static class PrefabPatcher
     static List<Vector3> pts = new();
     static List<NamedSnapPoint> snapPoints = new();
     private static WearNTear wearNTearRef;
-    private static ZNetView nviewRef;
 
+ 
     /// <summary>
     ///     Fix collider and snap points on the prefab if necessary
     /// </summary>
@@ -863,14 +863,17 @@ internal static class PrefabPatcher
                         new(0.0f, 3.5f, 0.0f), // for demisters/torches
                     }
                 );
-                foreach (BoxCollider collider in prefab.GetComponentsInChildren<BoxCollider>())
-                {
-                    if (collider.name == "collider")
+                { // local scope to avoid name collision for collider
+                    foreach (BoxCollider collider in prefab.GetComponentsInChildren<BoxCollider>())
                     {
-                        collider.center += new Vector3(0.0f, 0.5f, 0.0f);
-                        collider.size += new Vector3(0.0f, -1.0f, 0.0f);
+                        if (collider.name == "collider")
+                        {
+                            collider.center += new Vector3(0.0f, 0.5f, 0.0f);
+                            collider.size += new Vector3(0.0f, -1.0f, 0.0f);
+                        }
                     }
                 }
+                
                 break;
 
             case "wood_ledge":
@@ -1772,9 +1775,119 @@ internal static class PrefabPatcher
                 if (prefab.TryGetComponent(out wearNTearRef))
                 {
                     wearNTearRef.m_new = wearNTearRef.m_worn;
-                }
-                
+                }                
                 break;
+
+            case "tunnel_web":
+                { // local scope to avoid collider name collision
+                    bool isActive = prefab.activeSelf;
+                    prefab.SetActive(false);
+
+                    GameObject collider = new("collider");
+                    collider.transform.parent = prefab.transform;
+                    collider.transform.localPosition = Vector3.zero;
+                    collider.transform.localEulerAngles = Vector3.zero;
+
+                    BoxCollider colliderComp = collider.AddComponent<BoxCollider>();
+                    colliderComp.enabled = true;
+                    colliderComp.center = new Vector3(0f, 3f, 0f);
+                    colliderComp.size = new Vector3(15f, 8.0f, 8.0f);
+                    SnapPointManager.FixPieceLayers(prefab, solid: false);
+
+                    prefab.SetActive(isActive);
+                }
+                break;
+
+            case "vertical_web":
+                { // local scope to avoid collider name collision
+                    bool isActive = prefab.activeSelf;
+                    prefab.SetActive(false);
+
+                    GameObject collider = new("collider");
+                    collider.transform.parent = prefab.transform;
+                    collider.transform.localPosition = Vector3.zero;
+                    collider.transform.localEulerAngles = new Vector3(-15f, 45f, 0f);
+
+                    BoxCollider colliderCompTall = collider.AddComponent<BoxCollider>();
+                    colliderCompTall.enabled = true;
+                    colliderCompTall.center = new Vector3(-1f, 45f, 0f);
+                    colliderCompTall.size = new Vector3(6f, 30f, 1f);
+
+                    BoxCollider colliderCompBase = collider.AddComponent<BoxCollider>();
+                    colliderCompBase.enabled = true;
+                    colliderCompBase.center = new Vector3(-1f, 5f, 0f);
+                    colliderCompBase.size = new Vector3(30f, 10f, 1f);
+
+                    BoxCollider colliderCompMid = collider.AddComponent<BoxCollider>();
+                    colliderCompMid.enabled = true;
+                    colliderCompMid.center = new Vector3(-1f, 15f, 0f);
+                    colliderCompMid.size = new Vector3(20f, 10f, 1f);
+
+                    BoxCollider colliderCompMid2 = collider.AddComponent<BoxCollider>();
+                    colliderCompMid2.enabled = true;
+                    colliderCompMid2.center = new Vector3(-1f, 25f, 0f);
+                    colliderCompMid2.size = new Vector3(11f, 10f, 1f);
+
+                    SnapPointManager.FixPieceLayers(prefab, solid: false);
+
+                    prefab.SetActive(isActive);
+                }
+                break;
+
+            case "FernFiddleHeadAshlands":
+                { // local scope to avoid collider name collision
+                    bool isActive = prefab.activeSelf;
+                    prefab.SetActive(false);
+
+                    GameObject collider = new("collider");
+                    collider.transform.parent = prefab.transform;
+                    collider.transform.localPosition = Vector3.zero;
+                    collider.transform.localEulerAngles = Vector3.zero;
+
+                    BoxCollider colliderComp = collider.AddComponent<BoxCollider>();
+                    colliderComp.center = new Vector3(0f, 0.5f, 0f);
+                    colliderComp.size = new Vector3(0.5f, 1.0f, 0.5f);
+                    SnapPointManager.FixPieceLayers(prefab, solid: false);
+
+                    prefab.SetActive(isActive);
+                }
+                break;
+
+            case "Morkhalla_Rug_stair":
+                { // local scope to avoid collider name collision
+                    bool isActive = prefab.activeSelf;
+                    prefab.SetActive(false);
+
+                    GameObject collider = new("collider");
+                    collider.transform.parent = prefab.transform;
+                    collider.transform.localPosition = Vector3.zero;
+                    collider.transform.localEulerAngles = new Vector3(-31.75905f, 0f, 0f);
+
+                    BoxCollider colliderComp = collider.AddComponent<BoxCollider>();
+                    colliderComp.center = new Vector3(0f, 0.4f, 0f);
+                    colliderComp.size = new Vector3(2.4f, 0.2f, 5f);
+                    SnapPointManager.FixPieceLayers(prefab, solid: false);
+                    prefab.SetActive(isActive);
+                }
+                break;
+
+            case "Morkhalla_Rug_corner":
+            case "Morkhalla_Rug_end1":
+            case "Morkhalla_Rug_end2":
+            case "Morkhalla_Rug_middle":
+                SnapPointManager.FixPieceLayers(prefab, solid: false);
+                break;
+
+            case "Candle_resin_bogwitch":
+                { // local scope to avoid collider name collision
+                    bool isActive = prefab.activeSelf;
+                    prefab.SetActive(false);
+                    BoxCollider colliderComp = prefab.GetComponentInChildren<BoxCollider>();
+                    colliderComp.enabled = true;
+                    prefab.SetActive(isActive);
+                }
+                break;
+
             default:
                 break;
         }

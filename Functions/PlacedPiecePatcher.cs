@@ -37,6 +37,10 @@ internal static class PlacedPiecePatcher
         "dvergrprops_table",
     ];
 
+    private static readonly HashSet<string> HasNullFragments = [
+        "obsidian_pile"
+    ];
+
     /// <summary>
     ///     Applies patches from when pieces are loaded.
     /// </summary>
@@ -93,17 +97,20 @@ internal static class PlacedPiecePatcher
             ApplyWearNTearSupportPatch(prefabName, wearNTear);
             ApplyProvidesSupportPatches(prefabName, wearNTear);
             ApplyFortressPiecePatches(prefabName, wearNTear);
+            PreventNullFragmentsOnDestroy(prefabName, wearNTear);
         }
 
-        
+        if (piece.TryGetComponent(out Destructible destructible))
+        {
+            EditDestructibleSpawn(prefabName, destructible);
+            //PreventPersistentEventTrigger(prefabName, destructible);
+        }
         ApplyDvergrPortalPatches(prefabName, piece);
         ApplyDoorPatches(prefabName, piece);
         ApplyTimedDestructionPatch(piece);
         ApplyContainerPatches(prefabName, piece);
-        EditDestructibleSpawn(prefabName, piece);
         ApplyFireWarmthPatches(prefabName, piece);
-        
-        
+                
         //ApplyShieldGeneratorPatches(prefabName, piece);
 
         if (MorePrefabs.PlayerBasePatchesEnabled)
@@ -139,17 +146,41 @@ internal static class PlacedPiecePatcher
         return zdo != null;
     }
 
-    private static bool TryGetZDO(WearNTear WearNTear, out ZDO zdo)
+    private static bool TryGetZDO(WearNTear wearNTear, out ZDO zdo)
     {
-        if (!WearNTear.m_nview || !WearNTear.m_nview.IsValid())
+        if (!wearNTear.m_nview || !wearNTear.m_nview.IsValid())
         {
             zdo = null;
             return false;
         }
-        zdo = WearNTear.m_nview.GetZDO();
+        zdo = wearNTear.m_nview.GetZDO();
         return zdo != null;
     }
 
+    private static bool TryGetZDO(Destructible destructible, out ZDO zdo)
+    {
+        if (!destructible.m_nview || !destructible.m_nview.IsValid())
+        {
+            zdo = null;
+            return false;
+        }
+        zdo = destructible.m_nview.GetZDO();
+        return zdo != null;
+    }
+
+    ///// <summary>
+    /////     I think I actually can't stop the event persistently since its controlled by
+    /////     private fields and is a vanilla error
+    ///// </summary>
+    ///// <param name="prefabName"></param>
+    ///// <param name="destructible"></param>
+    //private static void PreventPersistentEventTrigger(string prefabName, Destructible destructible)
+    //{
+    //    if (!destructible.TryGetComponent(out TriggerPersistentEventOnDestroy triggerEvent))
+    //    {
+    //        return;
+    //    }
+    // }
 
     private static void ApplyWearNTearSupportPatch(string prefabName, WearNTear wearNTear)
     {
@@ -159,7 +190,8 @@ internal static class PlacedPiecePatcher
         }
 
         // set to true if not in the list of things to ignore and false if it is in the list
-        wearNTear.m_noSupportWear = !MorePrefabs.IgnoreWearNTearPatchesSet.Contains(prefabName);
+        // or set to true if there is a Vagon or Ship component since those don't need support in Vanilla
+        wearNTear.m_noSupportWear = !MorePrefabs.IgnoreWearNTearPatchesSet.Contains(prefabName) && !(wearNTear.GetComponent<Vagon>() || wearNTear.GetComponent<Ship>());
 
         // update ZDO to make sure that the setting is changed in a way that is persistent in
         // case the list of IgnoreWearNTearPatches has changed since the last time ZDO were saved
@@ -169,6 +201,23 @@ internal static class PlacedPiecePatcher
             zdo.Set("HasFieldsWearNTear", true);
             zdo.Set("WearNTear.m_noSupportWear", wearNTear.m_noSupportWear);
         }
+    }
+
+
+    private static void PreventNullFragmentsOnDestroy(string prefabName, WearNTear wearNTear)
+    {
+        if (!HasNullFragments.Contains(prefabName))
+        {
+            return;
+        }
+        wearNTear.m_autoCreateFragments = false;
+        if (TryGetZDO(wearNTear, out ZDO zdo))
+        {
+            zdo.Set("HasFields", true);
+            zdo.Set("HasFieldsWearNTear", true);
+            zdo.Set("WearNTear.m_autoCreateFragments", false);
+        }
+
     }
 
 
@@ -305,14 +354,10 @@ internal static class PlacedPiecePatcher
     /// </summary>
     /// <param name="name"></param>
     /// <param name="destructible"></param>
-    private static void EditDestructibleSpawn(string name, Piece piece)
+    private static void EditDestructibleSpawn(string name, Destructible destructible)
     {
-        if (!piece.TryGetComponent(out Destructible destructible) || !destructible)
-        {
-            return;
-        }
 
-        if (!TryGetZDO(piece, out ZDO zdo))
+        if (!TryGetZDO(destructible, out ZDO zdo))
         {
             return;
         }

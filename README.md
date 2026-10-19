@@ -8,6 +8,11 @@ I have updated the mod to work with the Deep North update but I haven't had a ch
 
 Expect more updates in the near future to improve the configuration options and expand the default settings to enable more pieces by default. 
 
+As of version 1.7.0 the default configuration settings now allow you to place every single thing in the vanilla game that is discovered by this mod. I have also patched almost everything to make sure that you can remove it after placing it. Configuring default resource costs and adding custom snap points is still a work in progress.
+
+## Version 1.7.0 Notice
+**WARNING:** This mod no longer allows player-built pieces to not require support, this means that if you have builds that relied on floating pieces with 100% stability then those builds may break after this update. However you can configure which pieces you want to still not require support by adding the names of them to the new configuration setting `IgnoreWearNTearPatches` to preserve your existing floating builds.
+
 ## Key Feature
 Because all the added build pieces are pre-existing vanilla prefabs, any pieces you build with this mod will persist in your world even if you uninstall the mod. This means that pieces you build on a server will also be visible for players without the mod and any builds using the pieces from this mod will load for players without the mod.
 
@@ -199,24 +204,20 @@ The mod has a default configuration that enables ~100 new pieces by default. The
 		</tr>
 		<tr>
 			<td align="center"><b>SeasonalPieces</b></td>
-      <td align="center">Yes</td>
+			<td align="center">Yes</td>
 			<td align="left">
-        Set to true/enabled to add all currently disabled seasonal pieces to the hammer build table.
+				Set to true/enabled to add all currently disabled seasonal pieces to the hammer build table.
 				<ul>
 					<li>Acceptable values: False, True</li>
 					<li>Default value: true</li>
 				</ul>
 			</td>
 		</tr>
-    <tr>
-			<td align="center"><b>PortalPatch</b></td>
-      <td align="center">Yes</td>
+		<tr>
+			<td align="center"><b>IgnoreWearNTearPatches</b></td>
+			<td align="center">Yes</td>
 			<td align="left">
-        Set to true/enabled to have the new portal allow unrestricted teleporting. Set to false/disabled to have the new portal work the same as the vanilla portal.
-				<ul>
-					<li>Acceptable values: False, True</li>
-					<li>Default value: true</li>
-				</ul>
+				Comma or semi-colon seperated list of prefabs that should not have the WearNTear settings patched so that they will break if they are not supported. NOTE: as of v1.7.0 MVBP patches all player built pieces to require support, which can result in some old builds breaking, but you can use this setting to exempt pieces from requiring support to prevent that.
 			</td>
 		</tr>
   </tbody>

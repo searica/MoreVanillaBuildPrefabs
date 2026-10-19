@@ -37,6 +37,7 @@ internal static class MVPrefabManager
         "SnowFirTree 2",
         "Player",
         "Valkyrie",
+        "Valkyrie_End",
         "HelmetOdin",
         "CapeOdin",
         "CastleKit_pot03",

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using static MVBP.SnapPoints.SnapPointNames;
-using static UnityEngine.UI.GridLayoutGroup;
+
 
 /* In Unity
  * X = left/right
@@ -30,6 +30,9 @@ internal static class SnapPointManager
         { $"{SnapPointNames.TOP} {SnapPointNames.CORNER} 4", new Vector3(1, 1, -1) },
 
     };
+
+    private static readonly LayerMask PieceLayer = LayerMask.NameToLayer("piece");
+    private static readonly LayerMask NonSolidPieceLayer = LayerMask.NameToLayer("piece_nonsolid");
 
     // List of points in a 2x2 box that would be the middle of each edge
     //private static readonly List<Vector3> edgeMidPoints = new()
@@ -143,11 +146,19 @@ internal static class SnapPointManager
     ///     Set all colliders to the piece layer.
     /// </summary>
     /// <param name="gameObject"></param>
-    internal static void FixPieceLayers(GameObject gameObject)
+    internal static void FixPieceLayers(GameObject gameObject, bool solid = true)
     {
         foreach (Collider collider in gameObject.GetComponentsInChildren<Collider>())
         {
-            collider.gameObject.layer = LayerMask.NameToLayer("piece");
+            if (solid)
+            {
+                collider.gameObject.layer = PieceLayer;
+            }
+            else
+            {
+                collider.gameObject.layer = NonSolidPieceLayer;
+            }
+            
         }
     }
 

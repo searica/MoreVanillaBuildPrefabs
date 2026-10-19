@@ -183,9 +183,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Furniture,
                 craftingStation: nameof(CraftingStations.Workbench),
                 requirements: "FineWood,8;BronzeNails,2;Tar,4",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceDesc: "",
                 pieceGroup: PieceClassification.ArmorStand,
                 comfortGroup: Piece.ComfortGroup.Display
@@ -201,9 +203,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Furniture,
                 craftingStation: nameof(CraftingStations.Workbench),
                 requirements: "FineWood,8;BronzeNails,2;Tar,4",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceDesc: "",
                 pieceGroup: PieceClassification.ArmorStand,
                 comfortGroup: Piece.ComfortGroup.Display
@@ -219,9 +223,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,24;FlametalNew,2",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Grausten Stairs 4x2 (Reinforced)",
                 pieceDesc: "Nothing short of a siege should break this, however...",
                 pieceGroup: PieceClassification.Fortress
@@ -237,9 +243,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,6",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: true,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Grausten Steep Stairs",
                 pieceGroup: PieceClassification.Grausten
             )
@@ -254,9 +262,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: true,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Flora
             )
         },
@@ -270,9 +280,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Flora
             )
         },
@@ -286,9 +298,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: true,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Flora
             )
         },
@@ -302,9 +316,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: true,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Flora
             )
         },
@@ -318,9 +334,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: true,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Flora
             )
         },
@@ -334,10 +352,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
-                placementOffset: new Vector3(0f, 1f, 0f),
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 1.0f, 0.0f),
                 pieceGroup: PieceClassification.Flora
             )
         },
@@ -351,10 +370,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
-                placementOffset: new Vector3(0f, 1f, 0f),
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 1.0f, 0.0f),
                 pieceGroup: PieceClassification.Flora
             )
         },
@@ -368,9 +388,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Flora
             )
         },
@@ -384,10 +406,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
-                placementOffset: new Vector3(0f, 0.5f, 0f),
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.5f, 0.0f),
                 pieceGroup: PieceClassification.Flora
             )
         },
@@ -401,9 +424,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Flora
             )
         },
@@ -417,9 +442,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Flora
             )
         },
@@ -433,9 +460,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Flora
             )
         },
@@ -449,9 +478,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Flora
             )
         },
@@ -465,9 +496,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Flora
             )
         },
@@ -481,9 +514,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Flora
             )
         },
@@ -497,9 +532,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Flora
             )
         },
@@ -513,9 +550,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Flora
             )
         },
@@ -529,9 +568,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
-                clipGround: true,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: true,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Flora
             )
         },
@@ -545,9 +586,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,5;ProustitePowder,2",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Grausten Altar"
             )
         },
@@ -561,9 +604,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,10",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Grausten Arch (Medium)",
                 pieceGroup: PieceClassification.Grausten
             )
@@ -578,9 +623,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,16",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Grausten Large Arch",
                 pieceGroup: PieceClassification.Grausten
             )
@@ -595,9 +642,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,10",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Grausten Large Arch (Base)",
                 pieceGroup: PieceClassification.Grausten
             )
@@ -612,9 +661,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,6",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Grausten Large Arch (Top)",
                 pieceGroup: PieceClassification.Grausten
             )
@@ -629,9 +680,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,24",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: true,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Grausten Arched Roof",
                 pieceGroup: PieceClassification.Grausten
             )
@@ -646,9 +699,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,22",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Grausten Arched Roof (Damaged)",
                 pieceGroup: PieceClassification.Grausten
             )
@@ -663,9 +718,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,16",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Grausten Arched Roof (Left)",
                 pieceGroup: PieceClassification.Grausten
             )
@@ -680,9 +737,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,16",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Grausten Arched Roof (Right)",
                 pieceGroup: PieceClassification.Grausten
             )
@@ -697,9 +756,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,16",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Grausten Arched Roof",
                 pieceGroup: PieceClassification.Grausten
             )
@@ -714,9 +775,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,64",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: true,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Grausten Pillar (Giant)",
                 pieceGroup: PieceClassification.Grausten
             )
@@ -731,9 +794,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,32",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Grausten Twisted Pillar (Base)",
                 pieceGroup: PieceClassification.Grausten
             )
@@ -748,9 +813,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,32",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Grausten Twisted Pillar (Middle)",
                 pieceGroup: PieceClassification.Grausten
             )
@@ -765,9 +832,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,32",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Grausten Twisted Pillar (Top)",
                 pieceGroup: PieceClassification.Grausten
             )
@@ -782,9 +851,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,6",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Grausten Floor 2x2",
                 pieceGroup: PieceClassification.Grausten
             )
@@ -799,9 +870,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,6;FlametalNew,1",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Grausten Floor 2x2 (Reinforced)",
                 pieceDesc: "It would take a siege to break this.",
                 pieceGroup: PieceClassification.Fortress
@@ -817,9 +890,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,32;FlametalNew,4",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Grausten Gateway (Reinforced)",
                 pieceDesc: "It would take a siege to break this.",
                 pieceGroup: PieceClassification.Fortress
@@ -835,9 +910,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.BlackForge),
                 requirements: "Copper,30;FlametalNew,5",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Grausten Gate Door (Reinforced)",
                 pieceDesc: "It would take a siege to break this.",
                 pieceGroup: PieceClassification.Fortress
@@ -853,10 +930,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,12;Stone,30;FlametalNew,4",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: true,
-                placementOffset: new Vector3(0f, -0.1f, 0f),
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Grausten Pillar Top (Reinforced)",
                 pieceDesc: "It would take a siege to break this.",
                 pieceGroup: PieceClassification.Fortress
@@ -872,9 +950,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,12;Stone,60;FlametalNew,4",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Grausten Pillar (Reinforced)",
                 pieceDesc: "It would take a siege to break this.",
                 pieceGroup: PieceClassification.Fortress
@@ -890,9 +970,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,12;Stone,78;FlametalNew,4",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Grausten Buttress (Reinforced)",
                 pieceDesc: "It would take a siege to break this.",
                 pieceGroup: PieceClassification.Fortress
@@ -908,9 +990,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.BlackForge),
                 requirements: "Copper,4;FlametalNew,2",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Reinforced Spikes",
                 pieceDesc: "It would take a siege to break this.",
                 pieceGroup: PieceClassification.Fortress
@@ -926,9 +1010,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,24",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Grausten Pillar 2x2x4",
                 pieceGroup: PieceClassification.Grausten
             )
@@ -943,9 +1029,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,24",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Grausten Spiked Pillar",
                 pieceGroup: PieceClassification.Grausten
             )
@@ -960,9 +1048,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,24",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Grausten Curved Spiked Pillar",
                 pieceGroup: PieceClassification.Grausten
             )
@@ -977,9 +1067,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,12",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Grausten Curved Spiked Pillar (Base)",
                 pieceGroup: PieceClassification.Grausten
             )
@@ -994,9 +1086,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,12",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Grausten Curved Spiked Pillar (Top)",
                 pieceGroup: PieceClassification.Grausten
             )
@@ -1011,9 +1105,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,32",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Grausten Twisted Spiked Pillar (Large)",
                 pieceGroup: PieceClassification.Grausten
             )
@@ -1028,9 +1124,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,10",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Grausten Twisted Spiked Pillar (Base)",
                 pieceGroup: PieceClassification.Grausten
             )
@@ -1045,9 +1143,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,10",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Grausten Twisted Spiked Pillar (Middle)",
                 pieceGroup: PieceClassification.Grausten
             )
@@ -1062,9 +1162,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,12",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Grausten Twisted Spiked Pillar (Top)",
                 pieceGroup: PieceClassification.Grausten
             )
@@ -1079,9 +1181,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,12",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Grausten Spiked Pillar (Base)",
                 pieceGroup: PieceClassification.Grausten
             )
@@ -1096,9 +1200,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,12",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Grausten Spiked Pillar (Top)",
                 pieceGroup: PieceClassification.Grausten
             )
@@ -1113,9 +1219,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,5",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Grausten Pillar Base",
                 pieceGroup: PieceClassification.Grausten
             )
@@ -1130,9 +1238,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,12",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Grausten Buttress",
                 pieceGroup: PieceClassification.Grausten
             )
@@ -1147,9 +1257,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,3",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Grausten Floor 1.5x1.5",
                 pieceGroup: PieceClassification.Grausten
             )
@@ -1164,9 +1276,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,3",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Grausten Floor 1.5x1.5 (Broken)",
                 pieceGroup: PieceClassification.Grausten
             )
@@ -1181,9 +1295,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,6",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Grausten Floor 3x3",
                 pieceGroup: PieceClassification.Grausten
             )
@@ -1198,9 +1314,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,5",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Grausten Floor 3x3 (Broken) (1)",
                 pieceGroup: PieceClassification.Grausten
             )
@@ -1215,9 +1333,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,5",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Grausten Floor 3x3 (Broken) (2)",
                 pieceGroup: PieceClassification.Grausten
             )
@@ -1232,9 +1352,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,5",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Grausten Floor 3x3 (Broken) (3)",
                 pieceGroup: PieceClassification.Grausten
             )
@@ -1249,9 +1371,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,12",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Grausten Floor 6x6",
                 pieceGroup: PieceClassification.Grausten
             )
@@ -1266,9 +1390,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,10",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Grausten Floor 6x6 (Broken) (1)",
                 pieceGroup: PieceClassification.Grausten
             )
@@ -1283,9 +1409,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,10",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: true,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Grausten Floor 6x6 (Broken) (2)",
                 pieceGroup: PieceClassification.Grausten
             )
@@ -1300,9 +1428,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,12",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Grausten Buttress (Weathered)",
                 pieceGroup: PieceClassification.Grausten
             )
@@ -1317,9 +1447,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,12",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Grausten Buttress Inverted (Weathered)",
                 pieceGroup: PieceClassification.Grausten
             )
@@ -1334,9 +1466,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,6",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Grausten Top Stone",
                 pieceGroup: PieceClassification.Grausten
             )
@@ -1351,9 +1485,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,24",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Grausten Wall 4x6",
                 pieceGroup: PieceClassification.Grausten
             )
@@ -1368,9 +1504,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,8",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Grausten Wall 4x6 (Left)",
                 pieceGroup: PieceClassification.Grausten
             )
@@ -1385,9 +1523,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,8",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Grausten Wall 4x6 (Center)",
                 pieceGroup: PieceClassification.Grausten
             )
@@ -1402,9 +1542,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,8",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Grausten Wall 4x6 (Right)",
                 pieceGroup: PieceClassification.Grausten
             )
@@ -1419,9 +1561,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,24",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Grausten Arched Window",
                 pieceGroup: PieceClassification.Grausten
             )
@@ -1436,9 +1580,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,10",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Grausten Window 4x6 (Left Half)",
                 pieceGroup: PieceClassification.Grausten
             )
@@ -1453,9 +1599,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,10",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Grausten Window 4x6 (Right Half)",
                 pieceGroup: PieceClassification.Grausten
             )
@@ -1470,9 +1618,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,8",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Grausten Window 4x6 (Right End)",
                 pieceGroup: PieceClassification.Grausten
             )
@@ -1487,9 +1637,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,7",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Grausten Window 4x6 (Left End)",
                 pieceGroup: PieceClassification.Grausten
             )
@@ -1504,9 +1656,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,7",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Grausten Window 4x6 (Center)",
                 pieceGroup: PieceClassification.Grausten
             )
@@ -1521,9 +1675,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,20",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: true,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Grausten Window 4x6 (Broken)",
                 pieceGroup: PieceClassification.Grausten
             )
@@ -1538,9 +1694,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,16",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Grausten Arch (Large)",
                 pieceGroup: PieceClassification.Grausten
             )
@@ -1555,9 +1713,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,18",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Grausten Twised Pillar Base (Large)",
                 pieceGroup: PieceClassification.Grausten
             )
@@ -1572,9 +1732,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,5",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Grausten Pillar",
                 pieceGroup: PieceClassification.Grausten
             )
@@ -1589,9 +1751,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,24",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Grausten Dias Stairs",
                 pieceGroup: PieceClassification.Grausten
             )
@@ -1606,9 +1770,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,6",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Grausten Wall 2x2",
                 pieceGroup: PieceClassification.Grausten
             )
@@ -1623,9 +1789,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,5",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Grausten Wall 2x1",
                 pieceGroup: PieceClassification.Grausten
             )
@@ -1640,9 +1808,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,5",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Grausten Plinth",
                 pieceGroup: PieceClassification.Grausten
             )
@@ -1657,9 +1827,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,6;FlametalNew,1",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Grausten Wall 2x2 (Reinforced)",
                 pieceDesc: "It would take a siege to break this.",
                 pieceGroup: PieceClassification.Fortress
@@ -1675,9 +1847,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,8;FlametalNew,1",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Grausten Left Corner Wall 2x2 (Reinforced)",
                 pieceDesc: "Nothing short of a siege should break this, however...",
                 pieceGroup: PieceClassification.Fortress
@@ -1693,9 +1867,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,8;FlametalNew,1",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Grausten Left Worner Wall Top 2x2 (Reinforced)",
                 pieceDesc: "Nothing short of a siege should break this, however...",
                 pieceGroup: PieceClassification.Fortress
@@ -1711,9 +1887,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,8;FlametalNew,1",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Grausten Right Corner Wall 2x2 (Reinforced)",
                 pieceDesc: "Nothing short of a siege should break this, however...",
                 pieceGroup: PieceClassification.Fortress
@@ -1729,9 +1907,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,8;FlametalNew,1",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Grausten Right Corner Wall Top 2x2 (Reinforced)",
                 pieceDesc: "Nothing short of a siege should break this, however...",
                 pieceGroup: PieceClassification.Fortress
@@ -1747,9 +1927,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,6;FlametalNew,1",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Grausten Wall Edge 2x2 (Reinforced) (1)",
                 pieceDesc: "Nothing short of a siege should break this, however...",
                 pieceGroup: PieceClassification.Fortress
@@ -1765,9 +1947,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,6;FlametalNew,1",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Grausten Wall Edge 2x2 (Reinforced) (2)",
                 pieceDesc: "Nothing short of a siege should break this, however...",
                 pieceGroup: PieceClassification.Fortress
@@ -1783,9 +1967,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,6;FlametalNew,1",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Grausten Wall Edge Top 2x2 (Reinforced) (2)",
                 pieceDesc: "Nothing short of a siege should break this, however...",
                 pieceGroup: PieceClassification.Fortress
@@ -1801,9 +1987,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,6;FlametalNew,1",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Grausten Wall Edge Top 2x2 (Reinforced) (1)",
                 pieceDesc: "Nothing short of a siege should break this, however...",
                 pieceGroup: PieceClassification.Fortress
@@ -1819,9 +2007,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,6;FlametalNew,1",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Grausten Wall Top 2x2 (Reinforced)",
                 pieceDesc: "Nothing short of a siege should break this, however...",
                 pieceGroup: PieceClassification.Fortress
@@ -1837,9 +2027,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,125",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Grausten Floor 10x10",
                 pieceGroup: PieceClassification.Grausten
             )
@@ -1854,9 +2046,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Wood,16",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Flora
             )
         },
@@ -1870,9 +2064,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Flora
             )
         },
@@ -1886,9 +2082,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Flora
             )
         },
@@ -1902,9 +2100,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Wood,1",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Flora
             )
         },
@@ -1917,9 +2117,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
+                offsetPatch: true,
+                placementPatch: false,
+                clipGround: true,
                 clipEverything: false,
-                clipGround: true,  // not sure if this good
-                placementPatch: false
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -1932,9 +2134,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "BirchSeeds,1;FineWood,2",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Flora
             )
         },
@@ -1948,9 +2152,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "BirchSeeds,1;FineWood,2",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Birch1 (Autumn)",
                 pieceGroup: PieceClassification.Flora
             )
@@ -1965,9 +2171,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "BirchSeeds,1;FineWood,2",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Flora
             )
         },
@@ -1981,9 +2189,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "BirchSeeds,1;FineWood,2",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Birch (Autumn)",
                 pieceGroup: PieceClassification.Flora
             )
@@ -1998,9 +2208,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Flora
             )
         },
@@ -2014,9 +2226,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Flora
             )
         },
@@ -2030,9 +2244,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Flora
             )
         },
@@ -2045,9 +2261,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: true,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -2059,9 +2277,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: true,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -2073,9 +2293,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: true,
                 clipGround: false,
-                placementPatch: true
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -2087,9 +2309,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: true,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -2101,9 +2325,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: true,
                 clipGround: false,
-                placementPatch: true
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -2115,9 +2341,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -2130,9 +2358,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Blueberries,5",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Plant
             )
         },
@@ -2146,10 +2376,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Misc,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "PowderedDragonEgg,2;Stone,5",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
-                placementOffset: new Vector3(0f, -1f, 0)
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, -1.0f, 0.0f)
             )
         },
         {
@@ -2161,9 +2392,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -2175,9 +2408,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -2190,9 +2425,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: true,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Misc
             )
         },
@@ -2206,9 +2443,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: true,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Misc
             )
         },
@@ -2222,9 +2461,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: true,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Misc
             )
         },
@@ -2238,9 +2479,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: true,
                 clipGround: false,
-                placementPatch: true
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -2253,9 +2496,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: true,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Misc
             )
         },
@@ -2269,9 +2514,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: true,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Misc
             )
         },
@@ -2285,9 +2532,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: true,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Misc
             )
         },
@@ -2301,9 +2550,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Wood,2",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Flora
             )
         },
@@ -2316,9 +2567,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -2331,9 +2584,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Wood,2",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Flora
             )
         },
@@ -2347,9 +2602,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Wood,2",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Flora
             )
         },
@@ -2363,9 +2620,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: true,
                 clipGround: false,
-                placementPatch: true
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -2378,9 +2637,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Misc,
                 craftingStation: nameof(CraftingStations.Workbench),
                 requirements: "Wood,2",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Wood Box",
                 pieceGroup: PieceClassification.Misc
             )
@@ -2395,9 +2656,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Furniture,
                 craftingStation: nameof(CraftingStations.Forge),
                 requirements: "Iron,2;Resin,2;SurtlingCore,1",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Standing Iron Torch (Eternal)",
                 pieceDesc: "Burns eternally without fuel.",
                 pieceGroup: PieceClassification.Torch,
@@ -2414,9 +2677,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Furniture,
                 craftingStation: nameof(CraftingStations.Forge),
                 requirements: "Iron,2;GreydwarfEye,2;SurtlingCore,1",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Standing Blue-Burning Iron Torch (Eternal)",
                 pieceDesc: "Burns eternally without fuel.",
                 pieceGroup: PieceClassification.Torch,
@@ -2433,9 +2698,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Furniture,
                 craftingStation: nameof(CraftingStations.Forge),
                 requirements: "Iron,2;Guck,2;SurtlingCore,1",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Standing Green-Burning Iron Torch (Eternal)",
                 pieceDesc: "Burns eternally without fuel.",
                 pieceGroup: PieceClassification.Torch,
@@ -2452,9 +2719,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -2467,9 +2736,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -2482,9 +2753,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -2497,9 +2770,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -2511,9 +2786,9 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: true,
+                placementPatch: true,
                 clipGround: false,
-                placementPatch: true
+                clipEverything: true
             )
         },
         {
@@ -2526,9 +2801,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Furniture,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Wood,10;Iron,1",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Chest
             )
         },
@@ -2542,9 +2819,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: true,
                 clipGround: false,
-                placementPatch: true
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -2557,9 +2836,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
+                offsetPatch: false,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -2572,9 +2853,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -2587,9 +2870,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
+                offsetPatch: false,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -2602,9 +2887,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Cloudberry,5",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Plant
             )
         },
@@ -2618,9 +2905,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "YggdrasilWood,2",
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -2633,9 +2922,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "YggdrasilWood,2",
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -2648,9 +2939,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "YggdrasilWood,2",
-                clipEverything: true,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -2663,9 +2956,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "YggdrasilWood,2",
-                clipEverything: true,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -2678,9 +2973,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "YggdrasilWood,2",
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -2693,9 +2990,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "YggdrasilWood,2",
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -2707,9 +3006,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -2721,9 +3022,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -2735,9 +3038,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -2749,9 +3054,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -2763,9 +3070,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -2777,9 +3086,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -2791,9 +3102,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -2805,9 +3118,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -2819,9 +3134,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -2833,9 +3150,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -2847,9 +3166,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -2861,9 +3182,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -2875,9 +3198,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -2889,9 +3214,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -2904,9 +3231,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -2919,9 +3248,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: true,
                 clipGround: false,
-                placementPatch: true
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -2933,9 +3264,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -2947,9 +3280,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -2962,9 +3297,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Wood,16",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Flora
             )
         },
@@ -2977,9 +3314,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -2991,9 +3330,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
+                offsetPatch: true,
+                placementPatch: false,
+                clipGround: true,
                 clipEverything: false,
-                clipGround: false,
-                placementPatch: false
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -3005,9 +3346,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -3019,9 +3362,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -3033,9 +3378,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -3048,9 +3395,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Flora
             )
         },
@@ -3063,9 +3412,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -3077,9 +3428,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -3092,9 +3445,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Flora
             )
         },
@@ -3108,9 +3463,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Flora
             )
         },
@@ -3124,9 +3481,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Flora
             )
         },
@@ -3139,9 +3498,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -3154,9 +3515,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Flora
             )
         },
@@ -3170,9 +3533,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Flora
             )
         },
@@ -3186,10 +3551,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
+                offsetPatch: true,
+                placementPatch: false,
+                clipGround: true,
                 clipEverything: false,
-                clipGround: false,
-                placementPatch: false
-                //placementOffset: new Vector3(1.166f, 0f, -0.575f)  // reverse offset in the prefab to center it
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -3202,9 +3568,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -3217,9 +3585,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Rock
             )
         },
@@ -3232,9 +3602,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -3246,9 +3618,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -3260,9 +3634,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -3274,9 +3650,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -3288,9 +3666,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -3302,9 +3682,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -3317,9 +3699,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Ooze,1",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Flora
             )
         },
@@ -3332,9 +3716,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: true,
                 clipGround: false,
-                placementPatch: true
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -3346,9 +3732,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: true,
                 clipGround: false,
-                placementPatch: true
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -3361,9 +3749,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -3376,9 +3766,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -3391,9 +3783,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -3406,9 +3800,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -3421,9 +3817,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -3436,9 +3834,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -3450,9 +3850,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -3465,9 +3867,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Wood,2",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Flora
             )
         },
@@ -3480,9 +3884,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -3495,9 +3901,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Guck,12",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Flora
             )
         },
@@ -3511,9 +3919,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Guck,6",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Flora
             )
         },
@@ -3526,9 +3936,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: true,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -3540,9 +3952,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -3554,9 +3968,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -3568,9 +3984,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -3582,9 +4000,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -3597,9 +4017,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -3612,9 +4034,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "ElderBark,32",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Flora
             )
         },
@@ -3628,9 +4052,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -3642,9 +4068,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: true,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -3656,9 +4084,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: true,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -3670,9 +4100,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: true,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -3684,9 +4116,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: true,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -3698,9 +4132,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: true,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -3712,9 +4148,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: true,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -3726,9 +4164,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: true,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -3740,9 +4180,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: true,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -3754,9 +4196,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: true,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -3768,9 +4212,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: true,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -3782,9 +4228,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: true,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -3796,9 +4244,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: true,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -3810,9 +4260,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: true,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -3824,9 +4276,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: true,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -3838,9 +4292,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: true,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -3852,9 +4308,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: true,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -3866,9 +4324,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: true,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -3880,9 +4340,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -3894,9 +4356,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -3908,9 +4372,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -3923,9 +4389,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Crystal,16",
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: true,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -3937,9 +4405,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: true,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -3951,9 +4421,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: true,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -3965,9 +4437,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: true,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -3979,9 +4453,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: true,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -3993,9 +4469,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: true,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -4007,9 +4485,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: true,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -4021,9 +4501,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: true,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -4035,9 +4517,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: true,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -4049,9 +4533,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -4063,9 +4549,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -4078,9 +4566,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: true,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Rock
             )
         },
@@ -4094,9 +4584,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Chitin,50",
-                clipEverything: true,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -4109,9 +4601,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Ore
             )
         },
@@ -4124,9 +4618,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -4138,9 +4634,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -4153,9 +4651,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Wisp,1",
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -4167,9 +4667,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -4181,9 +4683,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -4195,9 +4699,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -4210,9 +4716,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,10;CopperOre,10",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Ore
             )
         },
@@ -4226,9 +4734,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,10;IronScrap,10",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Ore
             )
         },
@@ -4242,9 +4752,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Ore
             )
         },
@@ -4258,9 +4770,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Obsidian,7",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Ore
             )
         },
@@ -4274,9 +4788,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,10",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Ore
             )
         },
@@ -4290,9 +4806,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "TinOre,4",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Ore
             )
         },
@@ -4305,9 +4823,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -4319,9 +4839,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -4333,9 +4855,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -4347,9 +4871,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -4361,9 +4887,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -4375,9 +4903,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -4389,9 +4919,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -4403,9 +4935,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -4417,9 +4951,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -4431,9 +4967,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -4445,9 +4983,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -4459,9 +4999,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -4473,9 +5015,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -4487,9 +5031,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -4501,9 +5047,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -4515,9 +5063,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -4529,9 +5079,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -4543,9 +5095,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -4557,9 +5111,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -4571,9 +5127,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -4585,9 +5143,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -4599,9 +5159,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -4613,9 +5175,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -4627,9 +5191,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -4641,9 +5207,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -4655,9 +5223,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -4669,9 +5239,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: true,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -4683,9 +5255,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -4697,9 +5271,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: true,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -4711,9 +5287,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -4725,79 +5303,96 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
             "Morkhalla_Rug_corner",
             new PrefabConfig(
                 name: "Morkhalla_Rug_corner",
-                enabled: false,
+                enabled: true,
                 allowedInDungeons: false,
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
-                craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                craftingStation: nameof(CraftingStations.Workbench),
+                requirements: "JuteRed,2;Leatherstraps,1",
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.01f, 0.0f)
             )
         },
         {
             "Morkhalla_Rug_end1",
             new PrefabConfig(
                 name: "Morkhalla_Rug_end1",
-                enabled: false,
+                enabled: true,
                 allowedInDungeons: false,
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
-                craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                craftingStation: nameof(CraftingStations.Workbench),
+                requirements: "JuteRed,2;Leatherstraps,1",
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.01f, 0.0f)
             )
         },
         {
             "Morkhalla_Rug_end2",
             new PrefabConfig(
                 name: "Morkhalla_Rug_end2",
-                enabled: false,
+                enabled: true,
                 allowedInDungeons: false,
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
-                craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                craftingStation: nameof(CraftingStations.Workbench),
+                requirements: "JuteRed,2;Leatherstraps,1",
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.01f, 0.0f)
             )
         },
         {
             "Morkhalla_Rug_middle",
             new PrefabConfig(
                 name: "Morkhalla_Rug_middle",
-                enabled: false,
+                enabled: true,
                 allowedInDungeons: false,
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
-                craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                craftingStation: nameof(CraftingStations.Workbench),
+                requirements: "JuteRed,2;Leatherstraps,1",
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.01f, 0.0f)
             )
         },
         {
             "Morkhalla_Rug_stair",
             new PrefabConfig(
                 name: "Morkhalla_Rug_stair",
-                enabled: false,
+                enabled: true,
                 allowedInDungeons: false,
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
-                craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                craftingStation: nameof(CraftingStations.Workbench),
+                requirements: "JuteRed,2;Leatherstraps,1",
+                offsetPatch: true,
+                placementPatch: true,
                 clipGround: false,
-                placementPatch: true
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -4809,9 +5404,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -4823,9 +5420,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: true,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -4837,9 +5436,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: true,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -4851,9 +5452,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: true,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -4865,10 +5468,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
+                offsetPatch: true,
+                placementPatch: true,
+                clipGround: false,
                 clipEverything: false,
-                clipGround: true,
-                placementPatch: false
-                //placementOffset: new Vector3(0f, 0f, 0f)
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -4880,10 +5484,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
+                offsetPatch: true,
+                placementPatch: true,
+                clipGround: false,
                 clipEverything: false,
-                clipGround: true,
-                placementPatch: false
-                //placementOffset: new Vector3(0f, 0f, 0f)
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -4895,10 +5500,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
+                offsetPatch: true,
+                placementPatch: true,
+                clipGround: false,
                 clipEverything: false,
-                clipGround: true,
-                placementPatch: false
-                //placementOffset: new Vector3(0f, 0f, 0f)
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -4910,10 +5516,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
+                offsetPatch: true,
+                placementPatch: true,
+                clipGround: false,
                 clipEverything: false,
-                clipGround: true,
-                placementPatch: false
-                //placementOffset: new Vector3(0f, 0f, 0f)
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -4925,10 +5532,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
+                offsetPatch: true,
+                placementPatch: true,
+                clipGround: false,
                 clipEverything: false,
-                clipGround: true,
-                placementPatch: false
-                //placementOffset: new Vector3(0f, 0f, 0f)
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -4940,10 +5548,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
+                offsetPatch: true,
+                placementPatch: true,
+                clipGround: false,
                 clipEverything: false,
-                clipGround: true,
-                placementPatch: false
-                //placementOffset: new Vector3(0f, 0f, 0f)
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -4955,10 +5564,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
+                offsetPatch: true,
+                placementPatch: true,
+                clipGround: false,
                 clipEverything: false,
-                clipGround: true,
-                placementPatch: false
-                //placementOffset: new Vector3(0f, 0f, 0f)
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -4970,10 +5580,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
+                offsetPatch: true,
+                placementPatch: true,
+                clipGround: false,
                 clipEverything: false,
-                clipGround: true,
-                placementPatch: false
-                //placementOffset: new Vector3(0f, 0f, 0f)
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -4985,10 +5596,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
+                offsetPatch: true,
+                placementPatch: true,
+                clipGround: false,
                 clipEverything: false,
-                clipGround: true,
-                placementPatch: false
-                //placementOffset: new Vector3(-0.2f, -7f, -0.45f)
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -5000,10 +5612,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
+                offsetPatch: true,
+                placementPatch: true,
+                clipGround: false,
                 clipEverything: false,
-                clipGround: true,
-                placementPatch: false
-                //placementOffset: new Vector3(0f, -5f, 0f)
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -5015,10 +5628,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
+                offsetPatch: true,
+                placementPatch: true,
+                clipGround: false,
                 clipEverything: false,
-                clipGround: true,
-                placementPatch: false
-                //placementOffset: new Vector3(0f, -5f, 0f)
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -5030,10 +5644,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
+                offsetPatch: true,
+                placementPatch: true,
+                clipGround: false,
                 clipEverything: false,
-                clipGround: true,
-                placementPatch: false
-                //placementOffset: new Vector3(0f, -5f, 0f)
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -5045,10 +5660,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
+                offsetPatch: true,
+                placementPatch: true,
+                clipGround: false,
                 clipEverything: false,
-                clipGround: true,
-                placementPatch: false
-                //placementOffset: new Vector3(0f, -5f, 0f)
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -5060,10 +5676,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
+                offsetPatch: true,
+                placementPatch: true,
+                clipGround: false,
                 clipEverything: false,
-                clipGround: true,
-                placementPatch: false
-                //placementOffset: new Vector3(0f, -5f, 0f)
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -5075,10 +5692,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
+                offsetPatch: true,
+                placementPatch: true,
+                clipGround: false,
                 clipEverything: false,
-                clipGround: true,
-                placementPatch: false
-                //placementOffset: new Vector3(0f, -5f, 0f)
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -5090,10 +5708,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
+                offsetPatch: true,
+                placementPatch: true,
+                clipGround: false,
                 clipEverything: false,
-                clipGround: true,
-                placementPatch: false
-                //placementOffset: new Vector3(0f, -5f, 0f)
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -5105,10 +5724,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
+                offsetPatch: true,
+                placementPatch: true,
+                clipGround: false,
                 clipEverything: false,
-                clipGround: true,
-                placementPatch: false
-                //placementOffset: new Vector3(0f, -5f, 0f)
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -5120,10 +5740,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
+                offsetPatch: true,
+                placementPatch: true,
+                clipGround: false,
                 clipEverything: false,
-                clipGround: true,
-                placementPatch: false
-                //placementOffset: new Vector3(0f, -5f, 0f)
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -5135,10 +5756,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
-                //placementOffset: new Vector3(0f, 0f, 0f)
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -5150,10 +5772,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
-                //placementOffset: new Vector3(0f, 0f, 0f)
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -5165,10 +5788,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: true,
                 clipGround: false,
-                placementPatch: false
-                //placementOffset: new Vector3(1.91f, -50f, 3.279f)
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -5180,9 +5804,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -5194,9 +5820,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: true,
                 clipGround: false,
-                placementPatch: true
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -5208,9 +5836,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: true,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -5222,9 +5852,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: true,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -5236,10 +5868,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
-                placementOffset: new Vector3(0f, -50f, 0f)
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -5251,9 +5884,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -5265,9 +5900,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -5279,9 +5916,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -5293,9 +5932,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -5307,9 +5948,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -5321,9 +5964,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -5335,9 +5980,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -5349,9 +5996,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -5363,9 +6012,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -5377,9 +6028,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: true,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -5391,9 +6044,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -5405,9 +6060,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -5419,9 +6076,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -5433,9 +6092,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -5448,9 +6109,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,5",
-                clipEverything: true,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -5463,9 +6126,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Furniture,
                 craftingStation: nameof(CraftingStations.Forge),
                 requirements: "Bronze,5;Coal,2;BlackCore,1;WolfClaw,3",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Standing Brazier (Eternal)",
                 pieceDesc: "Burns eternally without fuel.",
                 pieceGroup: PieceClassification.Brazier,
@@ -5482,9 +6147,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Furniture,
                 craftingStation: nameof(CraftingStations.Forge),
                 requirements: "Bronze,5;GreydwarfEye,2;BlackCore,1;WolfClaw,3",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Blue Standing Brazier (Eternal)",
                 pieceDesc: "Burns eternally without fuel.",
                 pieceGroup: PieceClassification.Brazier,
@@ -5501,9 +6168,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Furniture,
                 craftingStation: nameof(CraftingStations.Forge),
                 requirements: "Bronze,5;CharcoalResin,2;BlackCore,1;WolfClaw,3",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Purple Standing Brazier (Eternal)",
                 pieceDesc: "Burns eternally without fuel."
             )
@@ -5518,9 +6187,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Building,
                 craftingStation: nameof(CraftingStations.Forge),
                 requirements: "Wood,20;Iron,4",
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -5533,9 +6204,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Wood,20;FineWood,20",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Flora
             )
         },
@@ -5549,9 +6222,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Wood,5;FineWood,5",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Flora
             )
         },
@@ -5565,9 +6240,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Wood,10;FineWood,10",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Flora
             )
         },
@@ -5581,9 +6258,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Wood,5;FineWood,5",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Flora
             )
         },
@@ -5597,9 +6276,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -5612,9 +6293,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Barley,1",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.VanillaCrop
             )
         },
@@ -5628,9 +6311,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.BlackForge),
                 requirements: "Iron,2;BlackCore,1",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Treasure
             )
         },
@@ -5644,9 +6329,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "IronScrap,1",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Ore
             )
         },
@@ -5660,9 +6347,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Wood,5",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Flora
             )
         },
@@ -5675,9 +6364,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: true,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -5690,9 +6381,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Carrot,1",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.VanillaCrop
             )
         },
@@ -5706,9 +6399,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: true,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -5721,9 +6416,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Dandelion,5",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Plant
             )
         },
@@ -5749,9 +6446,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "DragonEgg,1",
-                clipEverything: true,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -5764,9 +6463,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: true,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -5779,9 +6480,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Treasure
             )
         },
@@ -5795,9 +6498,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: true,
+                offsetPatch: true,
+                placementPatch: true,
                 clipGround: false,
-                placementPatch: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Treasure
             )
         },
@@ -5811,9 +6516,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -5826,9 +6533,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Treasure
             )
         },
@@ -5842,9 +6551,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Flax,1",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.VanillaCrop
             )
         },
@@ -5858,9 +6569,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Flint,5",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Flora
             )
         },
@@ -5874,9 +6587,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Treasure
             )
         },
@@ -5890,9 +6605,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Treasure
             )
         },
@@ -5906,9 +6623,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Treasure
             )
         },
@@ -5922,9 +6641,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Treasure
             )
         },
@@ -5937,9 +6658,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -5951,9 +6674,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: true,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -5966,9 +6691,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Treasure
             )
         },
@@ -5982,9 +6709,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Treasure
             )
         },
@@ -5997,9 +6726,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: true,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -6024,9 +6755,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -6039,9 +6772,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Treasure
             )
         },
@@ -6055,9 +6790,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Ore
             )
         },
@@ -6071,9 +6808,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -6085,9 +6824,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: true,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -6100,9 +6841,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Ore
             )
         },
@@ -6116,9 +6859,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Ore
             )
         },
@@ -6132,9 +6877,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Treasure
             )
         },
@@ -6148,9 +6895,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Mushroom,5",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Plant
             )
         },
@@ -6164,9 +6913,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "MushroomJotunPuffs,1",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.VanillaCrop
             )
         },
@@ -6180,9 +6931,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "MushroomMagecap,1",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.VanillaCrop
             )
         },
@@ -6196,9 +6949,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "MushroomBlue,5",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Plant
             )
         },
@@ -6212,9 +6967,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "MushroomYellow,5",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Plant
             )
         },
@@ -6227,9 +6984,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -6242,9 +7001,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Obsidian,1",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Ore
             )
         },
@@ -6258,9 +7019,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Obsidian,1",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.VanillaCrop
             )
         },
@@ -6274,9 +7037,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: true,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -6288,9 +7053,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -6303,9 +7070,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -6318,9 +7087,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.VanillaCrop
             )
         },
@@ -6333,9 +7104,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -6348,9 +7121,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.VanillaCrop
             )
         },
@@ -6364,9 +7139,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.VanillaCrop
             )
         },
@@ -6380,9 +7157,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -6394,9 +7173,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: true,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -6409,9 +7190,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,5",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Flora
             )
         },
@@ -6424,9 +7207,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: true,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -6439,9 +7224,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -6454,9 +7241,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Forge),
                 requirements: "Iron,2;SurtlingCore,1",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Treasure
             )
         },
@@ -6470,9 +7259,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: true,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -6485,9 +7276,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: true,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -6500,9 +7293,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: true,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -6515,9 +7310,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Tar,1",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Flora
             )
         },
@@ -6531,9 +7328,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Flora
             )
         },
@@ -6547,9 +7346,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Thistle,5",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Plant
             )
         },
@@ -6563,9 +7364,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "TinOre,1",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Ore
             )
         },
@@ -6579,9 +7382,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Turnip,1",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.VanillaCrop
             )
         },
@@ -6595,9 +7400,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: true,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -6610,9 +7417,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Flora
             )
         },
@@ -6625,9 +7434,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -6639,9 +7450,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -6653,9 +7466,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -6667,9 +7482,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -6681,9 +7498,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -6696,9 +7515,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Wood,10;RoundLog,10",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Flora
             )
         },
@@ -6712,9 +7533,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Wood,5;RoundLog,5",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Flora
             )
         },
@@ -6727,9 +7550,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -6742,9 +7567,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Wood,10;RoundLog,10",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Flora
             )
         },
@@ -6758,9 +7585,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Wood,5;RoundLog,5",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Flora
             )
         },
@@ -6773,9 +7602,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -6787,9 +7618,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -6801,9 +7634,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -6815,9 +7650,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -6830,9 +7667,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Raspberry,5",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Plant
             )
         },
@@ -6846,9 +7685,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,75",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Rock
             )
         },
@@ -6862,9 +7703,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,50",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Rock
             )
         },
@@ -6878,9 +7721,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,75",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Rock
             )
         },
@@ -6922,9 +7767,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,175",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Rock
             )
         },
@@ -6938,9 +7785,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,350",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Rock
             )
         },
@@ -6968,9 +7817,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,200",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Rock
             )
         },
@@ -6997,9 +7848,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: true,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -7012,9 +7865,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,24",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Rock
             )
         },
@@ -7028,9 +7883,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,16",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Rock
             )
         },
@@ -7043,9 +7900,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: true,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -7058,9 +7917,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,24",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Rock
             )
         },
@@ -7074,9 +7935,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,32",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Rock
             )
         },
@@ -7089,9 +7952,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: true,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -7103,9 +7968,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: true,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -7118,9 +7985,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,24",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Rock
             )
         },
@@ -7134,8 +8003,8 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,24",
-                clipEverything: true,
                 clipGround: false,
+                clipEverything: true,
                 pieceGroup: PieceClassification.Rock
             )
         },
@@ -7149,9 +8018,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -7164,9 +8035,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -7179,9 +8052,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: true,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -7193,9 +8068,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: true,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -7208,9 +8085,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "YggdrasilWood,10",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Flora
             )
         },
@@ -7224,9 +8103,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "TrophySkeleton,1",
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -7239,9 +8120,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -7253,9 +8136,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, -0.25f, 0.0f)
             )
         },
         {
@@ -7267,9 +8152,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -7281,9 +8168,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -7295,9 +8184,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -7309,9 +8200,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -7323,9 +8216,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -7337,9 +8232,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -7351,9 +8248,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: true,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -7365,9 +8264,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -7379,9 +8280,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -7393,9 +8296,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -7407,9 +8312,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -7421,9 +8328,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: true,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -7435,9 +8344,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -7449,9 +8360,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -7463,9 +8376,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -7477,9 +8392,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -7492,9 +8409,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Furniture,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Stone,24",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Statue
             )
         },
@@ -7508,9 +8427,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Furniture,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Stone,24",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Statue
             )
         },
@@ -7524,9 +8445,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Furniture,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Stone,32",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Statue
             )
         },
@@ -7539,9 +8462,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -7553,9 +8478,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -7567,9 +8494,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -7582,9 +8511,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Furniture,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Stone,24",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Statue
             )
         },
@@ -7598,9 +8529,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Furniture,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Stone,16",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Statue
             )
         },
@@ -7613,9 +8546,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -7627,9 +8562,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -7641,9 +8578,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -7655,9 +8594,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: true,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -7669,9 +8610,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: true,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -7683,9 +8626,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: true,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -7698,9 +8643,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "ElderBark,10",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Flora
             )
         },
@@ -7714,9 +8661,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Flora
             )
         },
@@ -7730,9 +8679,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Flora
             )
         },
@@ -7746,9 +8697,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "ElderBark,32",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Flora
             )
         },
@@ -7762,9 +8715,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "ElderBark,32",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Flora
             )
         },
@@ -7778,9 +8733,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "ElderBark,32",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Flora
             )
         },
@@ -7793,9 +8750,9 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: true
             )
         },
         {
@@ -7808,9 +8765,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Misc,
                 craftingStation: nameof(CraftingStations.Workbench),
                 requirements: "IronNails,100;DeerHide,10;FineWood,40;ElderBark,40",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Trader Ship",
                 pieceGroup: PieceClassification.Ship,
                 invWidth: 6,
@@ -7827,9 +8786,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Chest,
                 invWidth: 5,
                 invHeight: 2
@@ -7845,9 +8806,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Misc,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,10;ProustitePowder,2;FlametalNew,6",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Charred Chest",
                 pieceGroup: PieceClassification.Chest,
                 invWidth: 8,
@@ -7863,9 +8826,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -7878,9 +8843,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Furniture,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "BlackMarble,10",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Black Marble Chest",
                 pieceGroup: PieceClassification.Chest,
                 invWidth: 8,
@@ -7897,9 +8864,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Furniture,
                 craftingStation: nameof(CraftingStations.BlackForge),
                 requirements: "YggdrasilWood,10;Copper,2",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Dvergr Chest",
                 pieceGroup: PieceClassification.Chest,
                 invWidth: 8,
@@ -7916,9 +8885,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Furniture,
                 craftingStation: nameof(CraftingStations.BlackForge),
                 requirements: "YggdrasilWood,10;Copper,6",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Dvergr Chest (Large)",
                 pieceGroup: PieceClassification.Chest,
                 invWidth: 8,
@@ -7935,9 +8906,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Furniture,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Stone,10;RoundLog,1",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Stone Chest (Mossy)",
                 pieceGroup: PieceClassification.Chest,
                 invWidth: 5,
@@ -7953,9 +8926,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -7967,9 +8942,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -7981,9 +8958,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -7995,9 +8974,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -8009,9 +8990,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -8024,9 +9007,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Furniture,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Stone,10;Crystal,1",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Stone Chest (Snow)",
                 pieceGroup: PieceClassification.Chest,
                 invWidth: 6,
@@ -8043,9 +9028,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Furniture,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Stone,10;ElderBark,1",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Stone Chest (Dark Moss)",
                 pieceGroup: PieceClassification.Chest,
                 invWidth: 5,
@@ -8062,9 +9049,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Furniture,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Stone,10;RoundLog,2",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Stone Chest (Mossy, Big)",
                 pieceGroup: PieceClassification.Chest,
                 invWidth: 6,
@@ -8080,10 +9069,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
-                placementOffset: new Vector3(0f, -0.5f, 0f)
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, -0.5f, 0.0f)
             )
         },
         {
@@ -8096,9 +9086,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Rock
             )
         },
@@ -8111,9 +9103,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -8125,9 +9119,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: true,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -8140,9 +9136,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Plant
             )
         },
@@ -8156,9 +9154,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Plant
             )
         },
@@ -8171,9 +9171,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: true,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -8185,9 +9187,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -8199,9 +9203,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -8213,9 +9219,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -8228,9 +9236,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "YggdrasilWood,16",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Flora
             )
         },
@@ -8244,9 +9254,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "YggdrasilWood,16",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Flora
             )
         },
@@ -8260,9 +9272,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "YggdrasilWood,16",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Flora
             )
         },
@@ -8276,9 +9290,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "YggdrasilWood,10",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Flora
             )
         },
@@ -8292,9 +9308,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "YggdrasilWood,64;Sap,10",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Flora
             )
         },
@@ -8308,9 +9326,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "BlackMarble,100",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: true,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Rock,
                 spawnOnDestroyed: "sfx_rock_destroyed"
             )
@@ -8325,9 +9345,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -8340,9 +9362,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -8355,9 +9379,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -8370,9 +9396,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -8385,9 +9413,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -8400,9 +9430,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -8415,9 +9447,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Workbench),
                 requirements: "Blackwood,1",
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -8430,9 +9464,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Workbench),
                 requirements: "Blackwood,1",
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -8445,9 +9481,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -8460,9 +9498,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -8475,9 +9515,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -8490,9 +9532,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -8505,9 +9549,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -8520,9 +9566,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -8534,9 +9582,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -8549,9 +9599,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Misc,
                 craftingStation: nameof(CraftingStations.Workbench),
                 requirements: "FineWood,2",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Barrel",
                 pieceDesc: "",
                 pieceGroup: PieceClassification.Misc
@@ -8567,9 +9619,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "BeechSeeds,1,Wood,20",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Flora
             )
         },
@@ -8583,9 +9637,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "BeechSeeds,1,Wood,10",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Flora
             )
         },
@@ -8599,9 +9655,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Stonecutter,
                 craftingStation: nameof(CraftingStations.BlackForge),
                 requirements: "BlackMarble,8;Copper,2",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.BlackMarble
             )
         },
@@ -8615,9 +9673,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Stonecutter,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "BlackMarble,4",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.BlackMarble
             )
         },
@@ -8631,9 +9691,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -8646,9 +9708,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -8661,9 +9725,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Stonecutter,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "BlackMarble,8",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Black Marble Plinth (Wide)",
                 pieceGroup: PieceClassification.BlackMarble
             )
@@ -8678,9 +9744,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Stonecutter,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "BlackMarble,16",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.BlackMarble
             )
         },
@@ -8694,9 +9762,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Stonecutter,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "BlackMarble,4",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.BlackMarble
             )
         },
@@ -8710,9 +9780,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Stonecutter,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "BlackMarble,8",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.BlackMarble
             )
         },
@@ -8726,9 +9798,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Stonecutter,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "BlackMarble,2",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.BlackMarble
             )
         },
@@ -8742,9 +9816,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Stonecutter,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "BlackMarble,4",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.BlackMarble
             )
         },
@@ -8758,9 +9834,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Stonecutter,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "BlackMarble,8",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.BlackMarble
             )
         },
@@ -8774,9 +9852,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Stonecutter,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "BlackMarble,32",
-                clipEverything: false,
-                clipGround: true,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: true,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Black Marble Floor 8x8",
                 pieceGroup: PieceClassification.BlackMarble
             )
@@ -8791,9 +9871,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Stonecutter,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "BlackMarble,2",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.BlackMarble
             )
         },
@@ -8807,9 +9889,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Stonecutter,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "BlackMarble,2",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.BlackMarble
             )
         },
@@ -8823,9 +9907,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Stonecutter,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "BlackMarble,6",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.BlackMarble
             )
         },
@@ -8839,9 +9925,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Stonecutter,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "BlackMarble,6",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.BlackMarble
             )
         },
@@ -8855,9 +9943,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Stonecutter,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "BlackMarble,8",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Black Marble Cornice (Wide)",
                 pieceGroup: PieceClassification.BlackMarble
             )
@@ -8872,9 +9962,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Stonecutter,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "BlackMarble,8",
-                clipEverything: false,
-                clipGround: true,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: true,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.BlackMarble
             )
         },
@@ -8888,9 +9980,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Stonecutter,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "BlackMarble,2",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.BlackMarble
             )
         },
@@ -8904,9 +9998,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Stonecutter,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "BlackMarble,2",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.BlackMarble
             )
         },
@@ -8920,9 +10016,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Stonecutter,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "BlackMarble,8",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: true,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.BlackMarble
             )
         },
@@ -8936,9 +10034,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Stonecutter,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "BlackMarble,8",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: true,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.BlackMarble
             )
         },
@@ -8952,9 +10052,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Stonecutter,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "BlackMarble,1",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.BlackMarble
             )
         },
@@ -8968,9 +10070,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Stonecutter,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "BlackMarble,2",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.BlackMarble
             )
         },
@@ -8984,9 +10088,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Stonecutter,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "BlackMarble,1",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.BlackMarble
             )
         },
@@ -9000,9 +10106,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Stonecutter,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "BlackMarble,2",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.BlackMarble
             )
         },
@@ -9016,9 +10124,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Stonecutter,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "BlackMarble,4",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.BlackMarble
             )
         },
@@ -9032,9 +10142,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Misc,
                 craftingStation: nameof(CraftingStations.Workbench),
                 requirements: "Wood,2",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Misc
             )
         },
@@ -9048,9 +10160,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Crystal,10",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Ice
             )
         },
@@ -9064,9 +10178,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Crystal,2",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Ice
             )
         },
@@ -9080,9 +10196,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Crystal,4",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Ice
             )
         },
@@ -9096,9 +10214,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Crystal,2",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Ice
             )
         },
@@ -9112,9 +10232,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Crystal,2",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Ice
             )
         },
@@ -9128,9 +10250,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.BlackForge),
                 requirements: "",
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -9143,9 +10267,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Rocks,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Rock
             )
         },
@@ -9159,9 +10285,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Rocks,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
-                clipGround: true,
+                offsetPatch: true,
                 placementPatch: true,
+                clipGround: true,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Rock
             )
         },
@@ -9175,9 +10303,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Rocks,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Rock
             )
         },
@@ -9191,9 +10321,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Rocks,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Rock
             )
         },
@@ -9207,9 +10339,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Rocks,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Rock
             )
         },
@@ -9223,9 +10357,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Rock
             )
         },
@@ -9239,9 +10375,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Rocks,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Rock
             )
         },
@@ -9283,9 +10421,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,350",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Rock
             )
         },
@@ -9299,9 +10439,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,350",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Rock
             )
         },
@@ -9329,9 +10471,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,175",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Rock
             )
         },
@@ -9345,9 +10489,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Furniture,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Banner
             )
         },
@@ -9361,9 +10507,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Furniture,
                 craftingStation: nameof(CraftingStations.Workbench),
                 requirements: "JuteRed,4",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Banner
             )
         },
@@ -9377,9 +10525,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Furniture,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Banner
             )
         },
@@ -9393,9 +10543,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -9408,9 +10560,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: true,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -9422,9 +10576,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -9437,9 +10593,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -9452,9 +10610,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "BlackMarble,40;DvergrKeyFragment,4;Iron,12",
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -9467,9 +10627,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Stonecutter,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Iron,4",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Iron
             )
         },
@@ -9483,9 +10645,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Stonecutter,
                 craftingStation: nameof(CraftingStations.Forge),
                 requirements: "Iron,4",
-                clipEverything: false,
-                clipGround: true,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: true,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Iron
             )
         },
@@ -9499,9 +10663,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Furniture,
                 craftingStation: nameof(CraftingStations.BlackForge),
                 requirements: "Iron,1;Wisp,1",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Torch
             )
         },
@@ -9515,9 +10681,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Misc
             )
         },
@@ -9531,9 +10699,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Furniture,
                 craftingStation: nameof(CraftingStations.BlackForge),
                 requirements: "Iron,1;Wisp,2",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Torch
             )
         },
@@ -9547,9 +10717,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Misc
             )
         },
@@ -9563,9 +10735,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Misc,
                 craftingStation: nameof(CraftingStations.BlackForge),
                 requirements: "YggdrasilWood,5;BlackMarble,5;BlackCore,1",
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -9578,9 +10752,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Furniture,
                 craftingStation: nameof(CraftingStations.Workbench),
                 requirements: "JuteBlue,6;FineWood,2",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Banner
             )
         },
@@ -9594,9 +10770,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Furniture,
                 craftingStation: nameof(CraftingStations.Workbench),
                 requirements: "YggdrasilWood,20;Bronze,5;Resin,10",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Dvergr
             )
         },
@@ -9610,9 +10788,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Furniture,
                 craftingStation: nameof(CraftingStations.BlackForge),
                 requirements: "YggdrasilWood,8;ScaleHide,2;IronNails,5",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Bed,
                 playerBasePatch: true
             )
@@ -9627,9 +10807,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Furniture,
                 craftingStation: nameof(CraftingStations.BlackForge),
                 requirements: "YggdrasilWood,4",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Chair
             )
         },
@@ -9643,9 +10825,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Misc,
                 craftingStation: nameof(CraftingStations.BlackForge),
                 requirements: "YggdrasilWood,4",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Misc
             )
         },
@@ -9658,9 +10842,9 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false
             )
         },
         {
@@ -9673,9 +10857,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Misc,
                 craftingStation: nameof(CraftingStations.BlackForge),
                 requirements: "YggdrasilWood,4",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Dvergr Component Crate",
                 pieceDesc: "",
                 pieceGroup: PieceClassification.Misc
@@ -9691,9 +10877,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Furniture,
                 craftingStation: nameof(CraftingStations.Workbench),
                 requirements: "JuteBlue,6;FineWood,2",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Banner
             )
         },
@@ -9707,9 +10895,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Stonecutter,
                 craftingStation: nameof(CraftingStations.BlackForge),
                 requirements: "Chain,2;Iron,2",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Dvergr Hook & Chain",
                 pieceGroup: PieceClassification.Misc
             )
@@ -9724,9 +10914,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Dvergr
             )
         },
@@ -9740,10 +10932,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
-                placementOffset: new Vector3(-1f, 0f, 0f),
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(-1.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Dvergr
             )
         },
@@ -9757,9 +10950,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Furniture,
                 craftingStation: nameof(CraftingStations.BlackForge),
                 requirements: "YggdrasilWood,4;IronNails,5",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Dvergr
             )
         },
@@ -9773,9 +10968,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Furniture,
                 craftingStation: nameof(CraftingStations.BlackForge),
                 requirements: "YggdrasilWood,2",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Chair
             )
         },
@@ -9789,9 +10986,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Furniture,
                 craftingStation: nameof(CraftingStations.BlackForge),
                 requirements: "YggdrasilWood,6;IronNails,10",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Table
             )
         },
@@ -9805,9 +11004,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Building,
                 craftingStation: nameof(CraftingStations.BlackForge),
                 requirements: "YggdrasilWood,4",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Dvergr
             )
         },
@@ -9821,9 +11022,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Building,
                 craftingStation: nameof(CraftingStations.BlackForge),
                 requirements: "YggdrasilWood,2",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Dvergr
             )
         },
@@ -9837,9 +11040,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Building,
                 craftingStation: nameof(CraftingStations.BlackForge),
                 requirements: "YggdrasilWood,2",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Dvergr Wood Pole (Large)",
                 pieceGroup: PieceClassification.Dvergr
             )
@@ -9854,9 +11059,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Building,
                 craftingStation: nameof(CraftingStations.BlackForge),
                 requirements: "YggdrasilWood,2",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Dvergr
             )
         },
@@ -9870,9 +11077,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Building,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "YggdrasilWood,4",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Dvergr
             )
         },
@@ -9886,9 +11095,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Building,
                 craftingStation: nameof(CraftingStations.BlackForge),
                 requirements: "YggdrasilWood,10",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Dvergr Wood Wall 4x4",
                 pieceGroup: PieceClassification.Dvergr
             )
@@ -9903,9 +11114,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Stonecutter,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "BlackMarble,8",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Dvergr
             )
         },
@@ -9919,9 +11132,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "YggdrasilWood,4",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Door Hanging (Creep)",
                 pieceDesc: "",
                 pieceGroup: PieceClassification.Misc
@@ -9937,9 +11152,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Stonecutter,
                 craftingStation: nameof(CraftingStations.BlackForge),
                 requirements: "BlackMarble,12;Eitr,2",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Dvergr Secret Door",
                 pieceGroup: PieceClassification.Dvergr
             )
@@ -9954,9 +11171,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Stonecutter,
                 craftingStation: nameof(CraftingStations.BlackForge),
                 requirements: "BlackMarble,32;Copper,8",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Dvergr Sliding Door",
                 pieceGroup: PieceClassification.Dvergr
             )
@@ -9971,9 +11190,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Building,
                 craftingStation: nameof(CraftingStations.BlackForge),
                 requirements: "YggdrasilWood,5;CopperScrap,2",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Dvergr
             )
         },
@@ -9987,9 +11208,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Building,
                 craftingStation: nameof(CraftingStations.BlackForge),
                 requirements: "YggdrasilWood,4",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Dvergr Wood Beam (Creep)",
                 pieceGroup: PieceClassification.Dvergr
             )
@@ -10004,9 +11227,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Building,
                 craftingStation: nameof(CraftingStations.BlackForge),
                 requirements: "YggdrasilWood,8;Chain,2;Iron,2",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Dvergr
             )
         },
@@ -10020,9 +11245,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Dvergr Wood Pole (Creep)",
                 pieceGroup: PieceClassification.Dvergr
             )
@@ -10037,9 +11264,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Building,
                 craftingStation: nameof(CraftingStations.BlackForge),
                 requirements: "YggdrasilWood,1",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Dvergr
             )
         },
@@ -10053,9 +11282,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Building,
                 craftingStation: nameof(CraftingStations.BlackForge),
                 requirements: "YggdrasilWood,4",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Dvergr
             )
         },
@@ -10069,9 +11300,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Building,
                 craftingStation: nameof(CraftingStations.BlackForge),
                 requirements: "YggdrasilWood,10",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Dvergr
             )
         },
@@ -10085,9 +11318,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Building,
                 craftingStation: nameof(CraftingStations.BlackForge),
                 requirements: "YggdrasilWood,20",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Dvergr
             )
         },
@@ -10101,9 +11336,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Building,
                 craftingStation: nameof(CraftingStations.BlackForge),
                 requirements: "YggdrasilWood,12",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Dvergr
             )
         },
@@ -10117,9 +11354,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Building,
                 craftingStation: nameof(CraftingStations.BlackForge),
                 requirements: "YggdrasilWood,10;IronNails,6",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Dvergr
             )
         },
@@ -10132,9 +11371,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -10147,9 +11388,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -10162,9 +11405,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "WolfHairBundle,2",
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -10188,9 +11433,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Misc,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,5;Wood,2;BlackCore,1",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Campfire (Eternal)",
                 pieceDesc: "Burns eternally without fuel.",
                 pieceGroup: PieceClassification.Fire
@@ -10206,9 +11453,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Misc,
                 craftingStation: nameof(CraftingStations.Forge),
                 requirements: "Ironpit,1;Wood,1;BlackCore,1",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Firepit Iron (Eternal)",
                 pieceDesc: "Burns eternally without fuel.",
                 pieceGroup: PieceClassification.Fire
@@ -10224,9 +11473,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Crystal,24",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 spawnOnDestroyed: "fx_crystal_destruction"
             )
         },
@@ -10239,9 +11490,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: true,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -10253,9 +11506,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -10267,9 +11522,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -10282,9 +11539,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -10323,9 +11582,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Softtissue,64",
-                clipEverything: true,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -10350,9 +11611,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Iron,24",
-                clipEverything: true,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -10377,9 +11640,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Iron,24",
-                clipEverything: true,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -10406,9 +11671,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "BlackMarble,64",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Rock
             )
         },
@@ -10436,9 +11703,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "BlackMarble,32",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Rock
             )
         },
@@ -10464,9 +11733,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Iron,16",
-                clipEverything: true,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -10491,9 +11762,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Iron,16",
-                clipEverything: true,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -10506,9 +11779,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Furniture,
                 craftingStation: nameof(CraftingStations.Workbench),
                 requirements: "Wood,1;DeerHide,1;Tar,1",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Banner
             )
         },
@@ -10522,9 +11797,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Furniture,
                 craftingStation: nameof(CraftingStations.Workbench),
                 requirements: "Wood,8;Tar,1",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Bed,
                 playerBasePatch: true
             )
@@ -10539,9 +11816,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Building,
                 craftingStation: nameof(CraftingStations.Workbench),
                 requirements: "Wood,2;Tar,1",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Goblin
             )
         },
@@ -10555,9 +11834,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Building,
                 craftingStation: nameof(CraftingStations.Workbench),
                 requirements: "Wood,1;Tar,1",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Goblin
             )
         },
@@ -10571,9 +11852,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Building,
                 craftingStation: nameof(CraftingStations.Workbench),
                 requirements: "Wood,1;Tar,1",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Goblin
             )
         },
@@ -10587,9 +11870,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Building,
                 craftingStation: nameof(CraftingStations.Workbench),
                 requirements: "Wood,1;DeerHide,1;Tar,1",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Goblin
             )
         },
@@ -10603,9 +11888,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Building,
                 craftingStation: nameof(CraftingStations.Workbench),
                 requirements: "Wood,1;DeerHide,1;Tar,1",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Goblin
             )
         },
@@ -10619,9 +11906,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Building,
                 craftingStation: nameof(CraftingStations.Workbench),
                 requirements: "Wood,4;DeerHide,4;Tar,1",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Goblin
             )
         },
@@ -10635,9 +11924,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Building,
                 craftingStation: nameof(CraftingStations.Workbench),
                 requirements: "Wood,2;Tar,1",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Goblin
             )
         },
@@ -10651,9 +11942,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Building,
                 craftingStation: nameof(CraftingStations.Workbench),
                 requirements: "Wood,2;Tar,1",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Goblin
             )
         },
@@ -10667,9 +11960,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Furniture,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Wood,4",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Rug straw (large)",
                 pieceDesc: "",
                 pieceGroup: PieceClassification.Rug
@@ -10685,9 +11980,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Workbench),
                 requirements: "Wood,2;GoblinTotem,1",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Goblin
             )
         },
@@ -10701,9 +11998,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Goblin
             )
         },
@@ -10717,9 +12016,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Building,
                 craftingStation: nameof(CraftingStations.Workbench),
                 requirements: "Wood,1;Tar,1",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Goblin
             )
         },
@@ -10733,9 +12034,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Building,
                 craftingStation: nameof(CraftingStations.Workbench),
                 requirements: "Wood,2;Tar,1",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Goblin
             )
         },
@@ -10749,9 +12052,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "BoneFragments,6;Tar,1",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Goblin
             )
         },
@@ -10765,9 +12070,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Stone,1;Tar,1",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Goblin
             )
         },
@@ -10780,9 +12087,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: true,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -10795,9 +12104,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -10824,9 +12135,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,32",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Rock
             )
         },
@@ -10840,9 +12153,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -10867,9 +12182,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Crystal,32",
-                clipEverything: true,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -10882,9 +12199,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -10897,9 +12216,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Stonecutter,
                 craftingStation: nameof(CraftingStations.Forge),
                 requirements: "Iron,1",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Iron
             )
         },
@@ -10913,9 +12234,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: true,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Rock
             )
         },
@@ -10928,9 +12251,9 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false
             )
         },
         {
@@ -10943,9 +12266,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Furniture,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Stone,10",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Stone Chest (Light Moss)",
                 pieceGroup: PieceClassification.Chest,
                 invWidth: 5,
@@ -10961,9 +12286,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -10975,9 +12302,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -10990,9 +12319,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "BoneFragments,30",
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -11005,9 +12336,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,4",
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -11020,9 +12353,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,4",
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -11035,9 +12370,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Building,
                 craftingStation: nameof(CraftingStations.BlackForge),
                 requirements: "BlackMarble,2;Copper,1",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Black Marble 1x2 (Reinforced)",
                 pieceDesc: "",
                 pieceGroup: PieceClassification.BlackMarble
@@ -11053,9 +12390,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Eitr,10;Wisp,4",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Mist Volume",
                 pieceDesc: "Warning: requires devcommands to remove."
             )
@@ -11070,9 +12409,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -11084,9 +12425,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -11098,9 +12441,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -11112,9 +12457,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -11127,9 +12474,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Furniture,
                 craftingStation: nameof(CraftingStations.Workbench),
                 requirements: "FineWood,4",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Chair
             )
         },
@@ -11143,9 +12492,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Furniture,
                 craftingStation: nameof(CraftingStations.Workbench),
                 requirements: "FineWood,10;IronNails,20",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Table
             )
         },
@@ -11182,9 +12533,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "IronScrap,10",
-                clipEverything: true,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -11208,9 +12561,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "IronScrap,10",
-                clipEverything: true,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -11233,9 +12588,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -11247,9 +12604,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: true,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -11262,9 +12621,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -11276,9 +12637,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -11291,9 +12654,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Workbench),
                 requirements: "Blackwood,6",
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: true,
                 clipGround: false,
-                placementPatch: true
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -11306,9 +12671,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Building,
                 craftingStation: nameof(CraftingStations.BlackForge),
                 requirements: "YggdrasilWood,1",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Dvergr Wood Pole",
                 pieceGroup: PieceClassification.Dvergr
             )
@@ -11323,9 +12690,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Building,
                 craftingStation: nameof(CraftingStations.BlackForge),
                 requirements: "YggdrasilWood,16;IronNails,24",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Dvergr
             )
         },
@@ -11339,9 +12708,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Building,
                 craftingStation: nameof(CraftingStations.BlackForge),
                 requirements: "YggdrasilWood,5",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Dvergr
             )
         },
@@ -11355,9 +12726,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -11370,9 +12743,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -11385,9 +12760,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -11400,9 +12777,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -11415,9 +12794,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -11430,9 +12811,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -11442,13 +12825,14 @@ internal static class PrefabConfigManager
                 enabled: true,
                 allowedInDungeons: false,
                 pieceTable: nameof(PieceTables.Hammer),
-                category: PieceCategoryManager.Misc,
+                category: PieceCategoryManager.Stonecutter,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "GreydwarfEye,10;BlackMarble,20;MoltenCore,2",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
-                placementOffset: new Vector3(0f, -0.35f, 0f),
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, -0.35f, 0.0f),
                 pieceName: "Dvergr Portal",
                 pieceDesc: "Connects another portal with equal or no tag.",
                 pieceGroup: PieceClassification.Portal
@@ -11463,9 +12847,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -11477,9 +12863,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -11491,9 +12879,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: true,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -11505,9 +12895,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -11519,9 +12911,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -11533,9 +12927,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -11547,9 +12943,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -11561,9 +12959,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -11575,9 +12975,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -11589,9 +12991,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -11603,9 +13007,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -11617,9 +13023,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -11631,9 +13039,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -11645,9 +13055,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -11659,9 +13071,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -11673,9 +13087,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -11687,9 +13103,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -11701,9 +13119,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -11715,9 +13135,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -11729,9 +13151,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -11743,9 +13167,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -11757,9 +13183,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: true,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -11771,9 +13199,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -11785,9 +13215,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -11799,9 +13231,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -11813,9 +13247,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -11827,9 +13263,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: true,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -11841,9 +13279,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -11855,9 +13295,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -11869,9 +13311,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -11883,9 +13327,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -11897,9 +13343,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -11911,9 +13359,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -11955,9 +13405,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,350",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Rock
             )
         },
@@ -11985,9 +13437,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,32",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Rock
             )
         },
@@ -12015,9 +13469,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,64",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Rock
             )
         },
@@ -12045,9 +13501,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Crystal,32",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Rock
             )
         },
@@ -12074,9 +13532,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: true,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -12089,9 +13549,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,100",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Rock
             )
         },
@@ -12119,9 +13581,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,64;SilverOre,32",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Ore
             )
         },
@@ -12135,9 +13599,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Rock
             )
         },
@@ -12150,9 +13616,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: true,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -12179,9 +13647,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,64",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Rock
             )
         },
@@ -12209,9 +13679,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: true,
-                clipGround: true,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: true,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Ore
             )
         },
@@ -12239,9 +13711,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,64",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Rock
             )
         },
@@ -12269,9 +13743,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,32",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Rock
             )
         },
@@ -12300,9 +13776,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,48",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Rock (Black)",
                 pieceGroup: PieceClassification.Rock
             )
@@ -12317,9 +13795,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,48",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Rock (Black, Alt)",
                 pieceGroup: PieceClassification.Rock,
                 spawnOnDestroyed: "sfx_rock_destroyed"
@@ -12335,9 +13815,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,350",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Rock
             )
         },
@@ -12351,9 +13833,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "ElderBark,2",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Flora
             )
         },
@@ -12367,9 +13851,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "ElderBark,4",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Flora
             )
         },
@@ -12383,9 +13869,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "ElderBark,4",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Flora
             )
         },
@@ -12399,9 +13887,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "ElderBark,4",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Flora
             )
         },
@@ -12415,9 +13905,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Rug
             )
         },
@@ -12431,9 +13923,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Rug
             )
         },
@@ -12447,9 +13941,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Rug
             )
         },
@@ -12462,8 +13958,8 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Furniture,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Wood,2",
-                clipEverything: false,
                 clipGround: false,
+                clipEverything: false,
                 pieceGroup: PieceClassification.Rug
             )
         },
@@ -12476,9 +13972,9 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false
             )
         },
         {
@@ -12491,9 +13987,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "FineWood,8",
-                clipEverything: true,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -12506,9 +14004,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "FineWood,16",
-                clipEverything: true,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -12521,10 +14021,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "FineWood,8",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
-                placementOffset: new Vector3(0f, -1.5f, 6f)
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, -1.5f, 6.0f)
             )
         },
         {
@@ -12537,9 +14038,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "FineWood,16",
-                clipEverything: true,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -12552,9 +14055,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "FineWood,10",
-                clipEverything: true,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -12566,9 +14071,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -12580,9 +14087,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -12594,9 +14103,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -12608,9 +14119,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -12622,9 +14135,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -12637,9 +14152,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Flora
             )
         },
@@ -12653,9 +14170,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Flora
             )
         },
@@ -12669,9 +14188,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Grausten,2",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Fortress
             )
         },
@@ -12685,9 +14206,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Building,
                 craftingStation: nameof(CraftingStations.Workbench),
                 requirements: "Wood,1",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Wood Plank",
                 pieceDesc: "",
                 pieceGroup: PieceClassification.Wood
@@ -12717,9 +14240,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,50;SilverOre,50",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Ore
             )
         },
@@ -12733,9 +14258,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -12748,9 +14275,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Stonecutter,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Stone,16",
-                clipEverything: false,
-                clipGround: true,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: true,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Stone Floor 4x4",
                 pieceGroup: PieceClassification.Stone
             )
@@ -12764,9 +14293,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -12778,9 +14309,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -12792,9 +14325,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -12806,9 +14341,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -12821,9 +14358,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Stonecutter,
                 craftingStation: nameof(CraftingStations.Stonecutter),
                 requirements: "Stone,16",
-                clipEverything: false,
-                clipGround: true,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: true,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Stone Floor 4x4 (2)",
                 pieceGroup: PieceClassification.Stone
             )
@@ -12837,9 +14376,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: true,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -12851,9 +14392,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: true,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -12866,9 +14409,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Flora
             )
         },
@@ -12881,9 +14426,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: true,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -12896,9 +14443,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: true,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -12911,9 +14460,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Stonecutter,
                 craftingStation: nameof(CraftingStations.Forge),
                 requirements: "Iron,4",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Iron
             )
         },
@@ -12926,8 +14477,8 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Tar,50",
-                clipEverything: true,
                 clipGround: false,
+                clipEverything: true,
                 pieceName: "Crystallized Tar",
                 pieceDesc: "Warning: requires devcommands to remove"
             )
@@ -12942,9 +14493,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Tar,50",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Crystallized Tar",
                 pieceGroup: PieceClassification.Ore
             )
@@ -12959,9 +14512,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Furniture,
                 craftingStation: nameof(CraftingStations.BlackForge),
                 requirements: "FineWood,32",
-                clipEverything: true,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -12974,9 +14529,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: true,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -12989,9 +14546,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Building,
                 craftingStation: nameof(CraftingStations.Workbench),
                 requirements: "Wood,2",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Wood
             )
         },
@@ -13005,9 +14564,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Building,
                 craftingStation: nameof(CraftingStations.Workbench),
                 requirements: "Wood,2",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Wood
             )
         },
@@ -13021,9 +14582,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Flora,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Charredskull,1",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: true,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceName: "Charred Skull"
             )
         },
@@ -13037,9 +14600,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: true,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, -1.0f, 0.0f)
             )
         },
         {
@@ -13052,9 +14617,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Wood,2",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Flora
             )
         },
@@ -13068,9 +14635,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "",
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -13096,9 +14665,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: true,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -13111,9 +14682,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "Stone,32",
-                clipEverything: true,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: true,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Rock
             )
         },
@@ -13127,9 +14700,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Building,
                 craftingStation: nameof(CraftingStations.Workbench),
                 requirements: "Wood,1",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Wood
             )
         },
@@ -13142,9 +14717,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -13156,9 +14733,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -13170,9 +14749,11 @@ internal static class PrefabConfigManager
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
                 craftingStation: nameof(CraftingStations.None),
-                clipEverything: false,
+                offsetPatch: true,
+                placementPatch: false,
                 clipGround: false,
-                placementPatch: false
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
             )
         },
         {
@@ -13185,9 +14766,11 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "YggdrasilWood,10",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Flora
             )
         },
@@ -13201,12 +14784,16 @@ internal static class PrefabConfigManager
                 category: PieceCategoryManager.Nature,
                 craftingStation: nameof(CraftingStations.None),
                 requirements: "YggdrasilWood,10",
-                clipEverything: false,
-                clipGround: false,
+                offsetPatch: true,
                 placementPatch: false,
+                clipGround: false,
+                clipEverything: false,
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
                 pieceGroup: PieceClassification.Flora
             )
         },
     };
+
+
 
 }

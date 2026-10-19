@@ -8,6 +8,24 @@
 			<th align="center">Notes</th>
 		</tr>
 		<tr>
+			<td align="center">1.7.0</td>
+			<td align="left">
+				<ul>
+					<li>Fixed NRE on removal of some non-standard build pieces. This fixes the issue of the ZDO not being properly deleted in some cases.</li>
+					<li>Added a new offset patch config setting to automatically adjust the center location of pieces when you are placing them to correct for some prefabs having very large offsets that make them impossible to place normally.</li>
+					<li>Exposed custom PlacementOffset as a config setting so that users can fine tune the location of pieces during placement if the automatic offset patch is not perfect.</li>
+					<li>Updated default config settings for clipping and placement patches to make all prefabs placeable (they are not all functional and still need snap points added).</li>
+					<li>Fixed the dvergr shelf and table not providing support for items placed on them if they were owned by a client without MVBP. Player-build versions now always provide support, even if you uninstall MVBP.</li>
+					<li>Fixed balance issue where player-built instances of various prefabs did not require support and could be used to create floating pieces with 100% stability. All player-built pieces (excluding carts and ships) now require support and pieces generated out in the world are unaffected.</li>
+					<li>Added a configuration setting to exempt specific prefabs from requiring support when placed by a player. This can be used to preserve existing builds that rely on floating pieces.</li>
+					<li>Improved performance of code in various places.</li>
+					<li>Fixed placement so that animations for the piece you are placing will no longer play while you are placing them.</li>
+					<li>Patched tunnel_web, vertical_web, candle_resin_bogwith, and various other prefabs to make sure they can be removed after being placed.</li>
+					<li>Set default recipies for some deep north pieces and enabled them by default.</li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
 			<td align="center">1.6.8</td>
 			<td align="left">
 				<ul>
