@@ -621,6 +621,7 @@ If you like this mod you might like some of my other ones.
 - [ShowMeTheGoods](https://thunderstore.io/c/valheim/p/Searica/ShowMeTheGoods/)
 - [UnderTheSea](https://thunderstore.io/c/valheim/p/Searica/UnderTheSea/)
 - [QueueEquipChanges](https://thunderstore.io/c/valheim/p/Searica/QueueEquipChanges/)
+- [QuickCart](https://thunderstore.io/c/valheim/p/Searica/QuickCart/)
 - [WatchWhereYouStab](https://thunderstore.io/c/valheim/p/Searica/WatchWhereYouStab/)
 
 #### QoL/Utility Mods
@@ -632,8 +633,6 @@ If you like this mod you might like some of my other ones.
 
 # Contributing
 If you would like to provide suggestions, make feature requests, or reports bugs and compatibility issues you can either open an issue on the Github repository or tag me (@searica) with a message on my discord [Searica's Mods](https://discord.gg/sFmGTBYN6n).
-
-Over time I will keep patching more prefabs and improving this mod's features but you'd really like a specific prefab to work better then let me know via one of the methods above. I'm a grad student and have a lot of personal responsibilities on top of that so I can't promise I will always respond quickly, but I do intend to maintain and improve the mod in my free time.
 
 - AI-generated issues or AI-generated PRs ARE NOT accepted and will be immediately closed and resolved.
 

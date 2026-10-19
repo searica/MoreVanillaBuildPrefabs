@@ -8131,16 +8131,19 @@ internal static class PrefabConfigManager
             "Sled",
             new PrefabConfig(
                 name: "Sled",
-                enabled: false,
+                enabled: true,
                 allowedInDungeons: false,
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.CreatorShop,
-                craftingStation: nameof(CraftingStations.None),
+                craftingStation: nameof(CraftingStations.Workbench),
+                requirements: "Frostwood,20;BronzeNails,10",
                 offsetPatch: true,
                 placementPatch: false,
                 clipGround: false,
                 clipEverything: false,
-                placementOffset: new Vector3(0.0f, -0.25f, 0.0f)
+                placementOffset: new Vector3(0.0f, -0.25f, 0.0f),
+                invHeight: 3,
+                invWidth: 6
             )
         },
         {
