@@ -14,6 +14,7 @@
 					<li>Updated readme with information on which pieces are affected by the new WearNTear patches.</li>
 					<li>Updated readme to explicitly state that WearNTear patches are persistent without MVBP installed and are vanilla compatible.</li>
 					<li>Updated readme to explain the new fortress pieces config setting and changes to the creative mode piece categories.</li>
+					<li>Updated readme with new lists of acceptable values and all current piece config settings.</li>
 					<li>Made any build pieces that can float in water automatically be allowed to be placed in water.</li>
 				</ul>
 			</td>

@@ -330,105 +330,143 @@ The mod has a default configuration that enables ~100 new pieces by default. The
 	<tbody>
 		<tr>
 			<th align="center">Setting</th>
-      <th align="center">Server&nbspSync</th>
+			<th align="center">Server&nbspSync</th>
 			<th align="center">Description</th>
 		</tr>
 		<tr>
 			<td align="center"><b>Enabled</b></td>
-      <td align="center">Yes</td>
+			<td align="center">Yes</td>
 			<td align="left">
-        If true then allow this prefab to be built and deconstructed. Note: this setting is ignored if ForceAllPrefabs is true.
+				If true then allow this prefab to be built and deconstructed. Note: this setting is ignored if ForceAllPrefabs is true.
 				<ul>
 					<li>Acceptable values: False, True</li>
 					<li>Default value: <i>Depends on the prefab</i></li>
 				</ul>
 			</td>
 		</tr>
-    <tr>
+		<tr>
 			<td align="center"><b>AllowedInDungeons</b></td>
-      <td align="center">Yes</td>
+			<td align="center">Yes</td>
 			<td align="left">
-        If true/enabled then this prefab can be built inside dungeon zones.
+				If true/enabled then this prefab can be built inside dungeon zones.
 				<ul>
 					<li>Acceptable values: False, True</li>
 					<li>Default value: false</li>
 				</ul>
 			</td>
 		</tr>
-    <tr>
-			<td align="center"><b>Category</b></td>
-      <td align="center">Yes</td>
+		<tr>
+			<td align="center"><b>PieceTable</b></td>
+			<td align="center">Yes</td>
 			<td align="left">
-        A string defining the tab the prefab shows up on in the hammer build table.
+				The piece table that this prefab should be added to.
 				<ul>
-					<li>Acceptable values: Acceptable values: CreatorShop, Nature, Misc, Crafting, Building, Furniture</li>
+					<li>Acceptable values: Acceptable values: Hammer, Cultivator, Hoe, ServingTray</li>
+					<li>Default value: Hammer</li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<td align="center"><b>Category</b></td>
+			<td align="center">Yes</td>
+			<td align="left">
+				A string defining the tab the prefab shows up on in the hammer build table.
+				<ul>
+					<li>Acceptable values: Acceptable values: CreatorShop, Nature, Plants, Flora, Rocks, Ore, Ice, Spawner, Misc, Crafting, BuildingWorkbench, BuildingStonecutter, Furniture, DeepNorth, Feasts, Food, Meads</li>
 					<li>Default value: CreatorShop</li>
 				</ul>
 			</td>
 		</tr>
-    <tr>
+		<tr>
 			<td align="center"><b>CraftingStation</b></td>
-      <td align="center">Yes</td>
+			<td align="center">Yes</td>
 			<td align="left">
-        A string defining the crafting station required to built the prefab.
+				A string defining the crafting station required to built the prefab.
 				<ul>
-					<li>Acceptable values: None, Workbench, Forge, Stonecutter, Cauldron, ArtisanTable, BlackForge, GaldrTable</li>
+					<li>Acceptable values: None, Workbench, Forge, Stonecutter, Cauldron, ArtisanTable, BlackForge, GaldrTable, MeadKetill, FoodPreparationTable</li>
 					<li>Default value: None</li>
 				</ul>
 			</td>
 		</tr>
-    <tr>
+		<tr>
 			<td align="center"><b>Requirements</b></td>
-      <td align="center">Yes</td>
+			<td align="center">Yes</td>
 			<td align="left">
-        Resources required to build the prefab. Formatted as: itemID,amount;itemID,amount where itemID is the in-game identifier for the resource and amount is an integer. You can find itemID on Valheim Wiki or on this <a href="https://valheim-modding.github.io/Jotunn/data/objects/item-list.html">link</a>. Example: Requirements = Wood,5;Stone,2 would mean the prefab requires 5 wood and 2 stone to build.
+				Resources required to build the prefab. Formatted as: itemID,amount;itemID,amount where itemID is the in-game identifier for the resource and amount is an integer. You can find itemID on Valheim Wiki or on this <a href="https://valheim-modding.github.io/Jotunn/data/objects/item-list.html">link</a>. Example: Requirements = Wood,5;Stone,2 would mean the prefab requires 5 wood and 2 stone to build.
 			</td>
 		</tr>
-    <tr>
-			<td align="center"><b>ClipEverything</b></td>
-      <td align="center">Yes</td>
+		<tr>
+			<td align="center"><b>OffsetPatch</b></td>
+			<td align="center">Yes</td>
 			<td align="left">
-        Set to true to allow piece to clip through everything during placement. Recommended to try this if the piece is not appearing when you go to place it. (If this setting fixes the issue please let me know via Github or Discord so I can change the default settings.)
+				Set to true to enable automatic patching to adjust the center location of the piece during placement. Recommended to try adjusting this first if the piece is not appearing when you go to place it.
+				(If this setting fixes the issue please let me know via Github or Discord so I can change the default settings.)
 				<ul>
 					<li>Acceptable values: False, True</li>
-					<li>Default value: false</li>
-          <li><b>Note:</b> Some prefabs are missing this setting because changing it breaks them.</li>
+					<li>Default value: true</li>
 				</ul>
 			</td>
 		</tr>
-    <tr>
-			<td align="center"><b>ClipGround</b></td>
-      <td align="center">Yes</td>
-			<td align="left">
-        Set to true to allow piece to clip through everything during placement. Recommended to try this if the piece is not appearing when you go to place it.(If this setting fixes the issue please let me know via Github or Discord so I can change the default settings.)
-				<ul>
-					<li>Acceptable values: False, True</li>
-					<li>Default value: false</li>
-          <li><b>Note:</b> Some prefabs are missing this setting because changing it breaks them.</li>
-				</ul>
-			</td>
-		</tr>
-    <tr>
+		<tr>
 			<td align="center"><b>PlacementPatch</b></td>
-      <td align="center">Yes</td>
+			<td align="center">Yes</td>
 			<td align="left">
-        Set to true to enable collision patching during placement of the piece. Recommended to try this if the piece is not appearing when attempting to place it. (If this setting fixes the issue please let me know via Github or Discord so I can change the default settings.)
+				Set to true to enable collision patching during placement of the piece. Recommended to try this if the piece is not appearing when you go to place it against a wall or structure other than the ground.
+				(If this setting fixes the issue please let me know via Github or Discord so I can change the default settings.)
 				<ul>
 					<li>Acceptable values: False, True</li>
 					<li>Default value: false</li>
-          <li><b>Note:</b> Some prefabs are missing this setting because changing it breaks them.</li>
+					<li><b>Note:</b> Some prefabs are missing this setting because changing it breaks them.</li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<td align="center"><b>ClipGround</b></td>
+			<td align="center">Yes</td>
+			<td align="left">
+				Set to true to allow piece to clip through ground during placement. Recommended to try this if the piece is not appearing or it is floating above the ground when you try to place it on the ground.
+				(If this setting fixes the issue please let me know via Github or Discord so I can change the default settings.)
+				<ul>
+					<li>Acceptable values: False, True</li>
+					<li>Default value: false</li>
+					<li><b>Note:</b> Some prefabs are missing this setting because changing it breaks them.</li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<td align="center"><b>ClipEverything</b></td>
+			<td align="center">Yes</td>
+			<td align="left">
+				Set to true to allow piece to clip through everything during placement. Recommended to try this if the piece is not appearing at all when you go to place it and you have tried everything else.
+				(If this setting fixes the issue please let me know via Github or Discord so I can change the default settings.)
+				<ul>
+					<li>Acceptable values: False, True</li>
+					<li>Default value: false</li>
+					<li><b>Note:</b> Some prefabs are missing this setting because changing it breaks them.</li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<td align="center"><b>PlacementOffset</b></td>
+			<td align="center">Yes</td>
+			<td align="left">
+				Configures the offset applied to a prefab during placement. This is used to customize the location of the prefab relative to where you are trying to place it. Used to fix prefabs with strange offsets, but try OffsetPatch first.
+				(If this setting fixes the issue please let me know via Github or Discord so I can change the default settings.)
+				<ul>
+					<li>Acceptable values: Vector3</li>
 				</ul>
 			</td>
 		</tr>
 	</tbody>
 </table>
+      
 
 ## Detailed Mechanics
 This mod enables prefabs that were not intended to used for building by players, so they may lack things like proper collision or snap points. All of the prefabs enabled by the default configuration have been patched so they behave more lke vanilla pieces.These patches are applied whether the prefab is enabled for building or not to make sure that prefabs that have been placed previously still behave as intended (ie they don't lose their collision and fall though the world).
 
- As of version 1.0.0 and Valheim version 0.217.30, all prefabs detected by MoreVanillaBuildPrefabs are placeable without any changes to the configuration. If a prefab is not enabled by default then it may still behave unexpectedly after being placed though. MoreVanillaBuildPrefabs automatically detects all prefabs in Valheim, so future game updates may add more pieces that will require additional patches to work though.
+As of version 1.7.0 and Valheim version 1.0.20, all prefabs detected by MoreVanillaBuildPrefabs are placeable without any changes to the configuration. If a prefab is not enabled by default then it may still behave unexpectedly after being placed though. MoreVanillaBuildPrefabs automatically detects all prefabs in Valheim, so future game updates may add more pieces that will require additional patches to work though.
 
-If a piece is having issues during placement the PlacementPatch, ClipEverything, and ClipGround configuration options can be used to try resolving the issue. Please try toggling those settings if you encounter issues during piece placement.
+If a piece is having issues during placement the OffsetPatch, PlacementPatch, ClipGround, and ClipEverything configuration options can be used to try resolving the issue. Please try toggling those settings if you encounter issues during piece placement.
 
 Another solution for placement issues is using either [Snap Points Made Easy](https://valheim.thunderstore.io/package/MathiasDecrock/Snap_Points_Made_Easy/) by MathiasDecrock or [Extra Snap Points Made Easy](https://valheim.thunderstore.io/package/Searica/Extra_Snap_Points_Made_Easy/) by Searica (that's me). Both of these mods allow you to manually select the snap points on the piece you are placing and the piece you are snapping to. Manually selecting the snap points can allow you to place a prefab that otherwise does not show up due to missing colliders.
 
@@ -439,11 +477,11 @@ If there is piece you would really like to build with that is buggy feel free to
 **TLDR:** Some prefabs other than the ones enabled by default may be buggy, please adjust your expectations accordingly.
 
 ## Custom Piece Categories
-This mod adds two custom piece categories: **CreatorShop** and **Nature**. Pieces set to either of the custom categories will only be enabled for building if CreativeMode is set to True. Additionally, these pieces can only be deconstructed by the player who placed them and world-generated instances of these pieces cannot be deconstructed. This prevents player's from deconstructing things like world-generated trees, while still allowing them to build and deconstruct their own trees.
+This mod adds several custom piece categories such as: **CreatorShop** and **Nature**. Pieces set to any of the custom categories will only be enabled for building if CreativeMode is set to True. Additionally, these pieces can only be deconstructed by the player who placed them and world-generated instances of these pieces cannot be deconstructed. This prevents player's from deconstructing things like world-generated trees, while still allowing them to build and deconstruct their own trees.
 
 If multiple player's have this mod, the same restrictions still apply and they will not be able to deconstruct instances of  pieces set to either of the custom piece categories that were built by other players.
 
-The AdminDeconstructOtherPlayers setting can allow players with admin status to deconstruct CreatorShop or Nature pieces built by other players, so that admins have a way to remove indestructible pieces. Even if you enable the AdminDeconstructOtherPlayers setting, admins are still not able to deconstruct world-generated instances of pieces set to the CreatorShop or Nature categories.
+The AdminDeconstructOtherPlayers setting can allow players with admin status to deconstruct pieces from custom categories built by other players, so that admins have a way to remove indestructible pieces. Even if you enable the AdminDeconstructOtherPlayers setting, admins are still not able to deconstruct world-generated instances of pieces set to the CreatorShop or Nature categories.
 
 ## Resource Costs and Drops
 Since this mod adds more prefabs to the hammer, that means you can deconstruct more pieces. World-generated pieces will only drop their default drops, while player-built pieces will only drop the resources used to build them.
@@ -490,11 +528,9 @@ MoreVanillaBuildPrefabs is able to detect prefabs added by other mods. It is pos
 
 ## Planned Improvements
 - Find a way to make placing and removing liquids work.
-- Make a pull request to PlanBuild that fixes the partial incompatibility.
 - Learn how localization works and add localization options to the mod.
 
 ## Potential Improvements
-- Add an **Unsafe** patch option that changes the inventory size of containers made of end-game materials.
 - Add a Customization patch that improves the new ship added by this mod.
 
 
