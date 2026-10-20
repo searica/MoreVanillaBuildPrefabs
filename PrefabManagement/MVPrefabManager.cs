@@ -79,10 +79,17 @@ internal static class MVPrefabManager
         "TreasureChest_swamp",
         "shipwreck_karve_chest",
         "loot_chest_wood",
+        "TreasureChest_deepnorth_village",
+        "TreasureChest_meadows_01",
+        "TreasureChest_meadows_02",
+        "TreasureChest_meadows_combat",
+        "TreasureChest_memorial_buried",
+        "shipwreck_vikingship_chest",
 
         // Duplicate of fcrypt
         "TreasureChest_forestcrypt",
         "stonechest", // Inventory name is weird
+        //"TreasureChest_trollcave", // missing opening animation
 
         // Duplicate of loot_chest_stone
         "TreasureChest_plains_stone",
@@ -194,7 +201,7 @@ internal static class MVPrefabManager
         // Need this to prevent NRE's if other code references the defaultResources
         // before the coroutine that is rendering the icons finishes. (Such as PlanBuild)
         Sprite defaultIcon = PrefabManager.Cache.GetPrefab<Sprite>("mapicon_hildir1");
-           
+
         // Loop over eligible prefabs in sorted order by name 
         // Makes sure configs are bound in the right order.
         foreach (KeyValuePair<string, GameObject> kvp in EligiblePrefabMap.OrderBy(x => x.Key))
@@ -342,7 +349,7 @@ internal static class MVPrefabManager
             piece.m_groundOnly = false;
             piece.m_groundPiece = false;
             piece.m_cultivatedGroundOnly = false;
-            piece.m_waterPiece = false;
+            piece.m_waterPiece = piece.GetComponent<Floating>() || piece.GetComponent<Ship>(); // floating pieces should be placeable in water by default
             piece.m_noInWater = false;
             piece.m_notOnWood = false;
             piece.m_notOnTiltingSurface = false;
@@ -363,9 +370,12 @@ internal static class MVPrefabManager
             // I could change this value for player-built pieces in piece.Awake and piece.SetCreator
             // to prevent deconstruction of pieces that are not enabled by the mod
             piece.m_canBeRemoved = false;
+            
+            // handle floating pieces
 
             // do this last in case the defaults influence it
             piece.m_usage = UsageTagManager.GetPieceUsage(prefab);
+
 
             AddedPieceComponent.Add(prefab.GetPrefabName());
             Log.LogInfo($"Created Piece component for: {prefab.name}", Log.InfoLevel.High);

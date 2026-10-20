@@ -8,6 +8,7 @@ using MVBP.PrefabManagement;
 using MVBP.Utils;
 using Jotunn;
 using MVBP.Extensions;
+using System.Linq;
 
 namespace MVBP.Functions;
 
@@ -27,7 +28,8 @@ internal static class Placement
         typeof(SpawnArea),
         typeof(Humanoid),
         typeof(Animator),
-        typeof(RandomSpawn)
+        typeof(RandomSpawn),
+        typeof(LODGroup),
     };
 
     /// <summary>
@@ -190,6 +192,10 @@ internal static class Placement
                 humanoid.m_randomArmor ??= Array.Empty<GameObject>();
                 humanoid.m_randomShield ??= Array.Empty<GameObject>();
                 humanoid.m_randomSets ??= Array.Empty<Humanoid.ItemSet>();
+            }
+            else if (componentType == typeof(LODGroup) && clonedPrefab.TryGetComponent(out LODGroup lodGroup))
+            {
+                lodGroup.enabled = false;
             }
             else if (clonedPrefab.TryGetComponent(componentType, out Component component))
             {

@@ -87,7 +87,17 @@ internal static class Removal
             {
                 return false;
             }
-   
+
+            //if (!piece.m_canBeRemoved)
+            //{
+            //    Log.LogInfo($"{piece.name} cannot be removed");
+            //    return false;
+            //}
+            if (!Check_m_canBeRemoved(piece))
+            {
+                return false;
+            }
+
             if (Location.IsInsideNoBuildLocation(piece.transform.position))
             {
                 player.Message(MessageHud.MessageType.Center, "$msg_nobuildzone");
@@ -154,7 +164,6 @@ internal static class Removal
             {
                 return piece.m_canBeRemoved;  
             }
-
 
             // For creative mode pieces and pieces added by MVBP always let the creator remove them.
             if (PieceCategoryManager.IsCreativeModePiece(piece) || MVPrefabManager.HasPieceAddedByMVBP(piece)) 

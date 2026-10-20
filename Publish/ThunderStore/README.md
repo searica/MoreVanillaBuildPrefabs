@@ -11,7 +11,18 @@ Expect more updates in the near future to improve the configuration options and 
 As of version 1.7.0 the default configuration settings now allow you to place every single thing in the vanilla game that is discovered by this mod. I have also patched almost everything to make sure that you can remove it after placing it. Configuring default resource costs and adding custom snap points is still a work in progress.
 
 ## Version 1.7.0 Notice
-**WARNING:** This mod no longer allows player-built pieces to not require support, this means that if you have builds that relied on floating pieces with 100% stability then those builds may break after this update. However you can configure which pieces you want to still not require support by adding the names of them to the new configuration setting `IgnoreWearNTearPatches` to preserve your existing floating builds.
+**WARNING:** This mod no longer allows player-built pieces that have a WearNTear component to not require support, this change is persistent for anything you build with MVBP and affects vanilla clients. Things like ships and carts
+are unnaffected as they do not require support in the vanilla game. Anything that is meant to float on water or be able to get thrown around after placing it is also unaffected. There are also still many build pieces that will not 
+require support because they are not normal build pieces such as various rocks and trees. 
+
+This means that if you have builds that relied on floating pieces with 100% stability then those builds may break after this update if they depend on the subset of pieces that are affected by the WearNTear patch. 
+However, you can configure which pieces you want to still not require support by adding the names of them to the new configuration setting `IgnoreWearNTearPatches` to  your existing floating builds. See below 
+for a list of pieces you may want to add to that setting. While the changes from the config setting are persistent, they do require you to reload an area to affect anything that is already placed.
+
+<details>
+<summary><b>Click here for a list of prefabs affected by the WearNTearPatches</b></summary>
+	Ashlands_Fortress_Gate, blackmarble_floor_large, dungeon_forestcrypt_door, dungeon_sunkencrypt_irongate, dungeon_sunkencrypt_irongate_rusty, dverger_guardstone, dvergrprops_crate_long
+</details>
 
 ## Key Feature
 Because all the added build pieces are pre-existing vanilla prefabs, any pieces you build with this mod will persist in your world even if you uninstall the mod. This means that pieces you build on a server will also be visible for players without the mod and any builds using the pieces from this mod will load for players without the mod.
@@ -82,33 +93,34 @@ The mod has a default configuration that enables ~100 new pieces by default. The
 	<tbody>
 		<tr>
 			<th align="center">Setting</th>
-      <th align="center">Server&nbspSync</th>
+			<th align="center">Server&nbspSync</th>
 			<th align="center">Description</th>
 		</tr>
-    <tr>
+		<tr>
 			<td align="center"><b>CreativeMode</b></td>
-      <td align="center">Yes</td>
+			<td align="center">Yes</td>
 			<td align="left">
-        Setting to enable pieces set to the custom CreatorShop or Nature piece categories. By default, the pieces set to those categories are not standard build pieces. These prefabs are also more likely to have bugs like being unable to remove them after placing them and are a lower priority for me to patch.
+				Set to true/enabled to enable pieces from the custom CreatorShop, Nature, Plants, Flora, Rocks, Ore, Ice, and Spawner piece categories. By default, pieces set to those categories are not enabled 
+				as they are not standard build pieces and deconstructing any pieces in these categories is prevented unless you built them yourself.
 				<ul>
 					<li>Acceptable values: False, True</li>
 					<li>Default value: false</li>
 				</ul>
-        <b>Note:</b> If you're doing a survival playthrough and just want more build pieces then leave CreativeMode off. If you want to build new environmental locations or new dungeons then you probably want to enable CreativeMode.
+			<b>Note:</b> If you're doing a survival playthrough and just want more build pieces then leave CreativeMode off. If you want to build new environmental locations or new dungeons then you probably want to enable CreativeMode.
 			</td>
 		</tr>
 		<tr>
 			<td align="center"><b>ForceAllPrefabs</b></td>
-      <td align="center">Yes</td>
+			<td align="center">Yes</td>
 			<td align="left">
-        If enabled, adds all prefabs to the hammer for building. Unless CreativeMode is also enabled it will not add pieces set to the CreatorShop or Nature category though.
+				If enabled, adds all prefabs to the hammer for building. Unless CreativeMode is also enabled it will not add pieces set to the any of the custom piece categories though.
 				<ul>
 					<li>Acceptable values: False, True</li>
 					<li>Default value: false</li>
 				</ul>
 			</td>
 		</tr>
-    <tr>
+		<tr>
 		<td align="center"><b>Verbosity</b></td>
 		<td align="center">No</td>
 		<td align="left">
@@ -210,6 +222,19 @@ The mod has a default configuration that enables ~100 new pieces by default. The
 				<ul>
 					<li>Acceptable values: False, True</li>
 					<li>Default value: true</li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<td align="center"><b>FortressPieces</b></td>
+			<td align="center">Yes</td>
+			<td align="left">
+				In vanilla, only some fortress pieces actually require seige weapons to damage. Set this to true/enabled to modify player built instances of fortress pieces so that they all require
+				siege weapons to damage by modifying them to have the correct value for min tool tier required to damage them. This only affects player built pieces, works for vanilla clients and is 
+				persistent if you uninstall this mod. If you disable this setting and reload the area, then all fortress pieces will revert to vanilla behaviour.
+				<ul>
+					<li>Acceptable values: False, True</li>
+					<li>Default value: false</li>
 				</ul>
 			</td>
 		</tr>

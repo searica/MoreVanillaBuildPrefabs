@@ -2799,7 +2799,7 @@ internal static class PrefabConfigManager
                 allowedInDungeons: false,
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Furniture,
-                craftingStation: nameof(CraftingStations.None),
+                craftingStation: nameof(CraftingStations.Workbench),
                 requirements: "Wood,10;Iron,1",
                 offsetPatch: true,
                 placementPatch: false,
@@ -4946,16 +4946,20 @@ internal static class PrefabConfigManager
             "Morkhalla_ChestAncient",
             new PrefabConfig(
                 name: "Morkhalla_ChestAncient",
-                enabled: false,
+                enabled: true,
                 allowedInDungeons: false,
                 pieceTable: nameof(PieceTables.Hammer),
-                category: PieceCategoryManager.CreatorShop,
-                craftingStation: nameof(CraftingStations.None),
+                category: PieceCategoryManager.Furniture,
+                craftingStation: nameof(CraftingStations.Stonecutter),
+                requirements: "Grausten,10;Gold,2",
                 offsetPatch: true,
                 placementPatch: false,
                 clipGround: false,
                 clipEverything: false,
-                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
+                pieceName: "$piece_morkhallachestancient",
+                invWidth: 8,
+                invHeight: 8
             )
         },
         {
@@ -8142,8 +8146,8 @@ internal static class PrefabConfigManager
                 clipGround: false,
                 clipEverything: false,
                 placementOffset: new Vector3(0.0f, -0.25f, 0.0f),
-                invHeight: 3,
-                invWidth: 6
+                invWidth: 6,
+                invHeight: 3
             )
         },
         {
@@ -8783,20 +8787,21 @@ internal static class PrefabConfigManager
             "TreasureChest_ashland_stone",
             new PrefabConfig(
                 name: "TreasureChest_ashland_stone",
-                enabled: false,
+                enabled: true,
                 allowedInDungeons: false,
                 pieceTable: nameof(PieceTables.Hammer),
-                category: PieceCategoryManager.CreatorShop,
-                craftingStation: nameof(CraftingStations.None),
-                requirements: "",
+                category: PieceCategoryManager.Furniture,
+                craftingStation: nameof(CraftingStations.Stonecutter),
+                requirements: "Stone,10",
                 offsetPatch: true,
                 placementPatch: false,
                 clipGround: false,
                 clipEverything: false,
                 placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
+                pieceName: "Stone Chest",
                 pieceGroup: PieceClassification.Chest,
                 invWidth: 5,
-                invHeight: 2
+                invHeight: 3
             )
         },
         {
@@ -8806,9 +8811,9 @@ internal static class PrefabConfigManager
                 enabled: true,
                 allowedInDungeons: false,
                 pieceTable: nameof(PieceTables.Hammer),
-                category: PieceCategoryManager.Misc,
+                category: PieceCategoryManager.Furniture,
                 craftingStation: nameof(CraftingStations.Stonecutter),
-                requirements: "Grausten,10;ProustitePowder,2;FlametalNew,6",
+                requirements: "Grausten,10;ProustitePowder,2;FlametalNew,4",
                 offsetPatch: true,
                 placementPatch: false,
                 clipGround: false,
@@ -8893,7 +8898,7 @@ internal static class PrefabConfigManager
                 clipGround: false,
                 clipEverything: false,
                 placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
-                pieceName: "Dvergr Chest (Large)",
+                pieceName: "Large Dvergr Chest",
                 pieceGroup: PieceClassification.Chest,
                 invWidth: 8,
                 invHeight: 5
@@ -8903,7 +8908,7 @@ internal static class PrefabConfigManager
             "TreasureChest_fCrypt",
             new PrefabConfig(
                 name: "TreasureChest_fCrypt",
-                enabled: true,
+                enabled: false,
                 allowedInDungeons: false,
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Furniture,
@@ -8917,7 +8922,7 @@ internal static class PrefabConfigManager
                 pieceName: "Stone Chest (Mossy)",
                 pieceGroup: PieceClassification.Chest,
                 invWidth: 5,
-                invHeight: 2
+                invHeight: 3
             )
         },
         {
@@ -8988,16 +8993,20 @@ internal static class PrefabConfigManager
             "TreasureChest_morkhalla",
             new PrefabConfig(
                 name: "TreasureChest_morkhalla",
-                enabled: false,
+                enabled: true,
                 allowedInDungeons: false,
                 pieceTable: nameof(PieceTables.Hammer),
-                category: PieceCategoryManager.CreatorShop,
-                craftingStation: nameof(CraftingStations.None),
+                category: PieceCategoryManager.Furniture,
+                craftingStation: nameof(CraftingStations.Workbench),
+                requirements: "Frostwood,10;Leatherstraps,2;BlackMetal,4",
                 offsetPatch: true,
                 placementPatch: false,
                 clipGround: false,
                 clipEverything: false,
-                placementOffset: new Vector3(0.0f, 0.0f, 0.0f)
+                placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
+                pieceName: "$piece_jotunchest",
+                invWidth: 8,
+                invHeight: 8
             )
         },
         {
@@ -9015,10 +9024,10 @@ internal static class PrefabConfigManager
                 clipGround: false,
                 clipEverything: false,
                 placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
-                pieceName: "Stone Chest (Snow)",
+                pieceName: "Large Stone Chest (Snowy)",
                 pieceGroup: PieceClassification.Chest,
-                invWidth: 6,
-                invHeight: 3
+                invWidth: 5,
+                invHeight: 4
             )
         },
         {
@@ -9039,14 +9048,14 @@ internal static class PrefabConfigManager
                 pieceName: "Stone Chest (Dark Moss)",
                 pieceGroup: PieceClassification.Chest,
                 invWidth: 5,
-                invHeight: 2
+                invHeight: 3
             )
         },
         {
             "TreasureChest_trollcave",
             new PrefabConfig(
                 name: "TreasureChest_trollcave",
-                enabled: true,
+                enabled: false,
                 allowedInDungeons: false,
                 pieceTable: nameof(PieceTables.Hammer),
                 category: PieceCategoryManager.Furniture,
@@ -9057,10 +9066,10 @@ internal static class PrefabConfigManager
                 clipGround: false,
                 clipEverything: false,
                 placementOffset: new Vector3(0.0f, 0.0f, 0.0f),
-                pieceName: "Stone Chest (Mossy, Big)",
+                pieceName: "Large Stone Chest (Mossy)",
                 pieceGroup: PieceClassification.Chest,
-                invWidth: 6,
-                invHeight: 3
+                invWidth: 5,
+                invHeight: 4
             )
         },
         {
@@ -9076,7 +9085,8 @@ internal static class PrefabConfigManager
                 placementPatch: false,
                 clipGround: false,
                 clipEverything: false,
-                placementOffset: new Vector3(0.0f, -0.5f, 0.0f)
+                placementOffset: new Vector3(0.0f, -0.5f, 0.0f),
+                pieceName: "$piece_deposit_goldvein"
             )
         },
         {
@@ -12277,7 +12287,7 @@ internal static class PrefabConfigManager
                 pieceName: "Stone Chest (Light Moss)",
                 pieceGroup: PieceClassification.Chest,
                 invWidth: 5,
-                invHeight: 2
+                invHeight: 3
             )
         },
         {
@@ -14796,7 +14806,4 @@ internal static class PrefabConfigManager
             )
         },
     };
-
-
-
 }

@@ -41,6 +41,11 @@ internal static class PlacedPiecePatcher
         "obsidian_pile"
     ];
 
+    private static readonly Dictionary<string, float> ShouldFixLOD = new() {
+        {"Morkhalla_WallChain1", 0.04f},
+        {"Pickable_DvergrStein", 0.005f}
+    };
+
     /// <summary>
     ///     Applies patches from when pieces are loaded.
     /// </summary>
@@ -104,6 +109,11 @@ internal static class PlacedPiecePatcher
         {
             EditDestructibleSpawn(prefabName, destructible);
             //PreventPersistentEventTrigger(prefabName, destructible);
+        }
+
+        if (ShouldFixLOD.TryGetValue(prefabName, out float lodVal))
+        {
+            ApplyLODGroupFix(prefabName, piece, lodVal);
         }
         ApplyDvergrPortalPatches(prefabName, piece);
         ApplyDoorPatches(prefabName, piece);
@@ -182,6 +192,22 @@ internal static class PlacedPiecePatcher
     //    }
     // }
 
+    private static void ApplyLODGroupFix(string prefabName, Piece piece, float lodVal)
+    {
+        LODGroup lodGroup = piece.GetComponentInChildren<LODGroup>();
+        if (!lodGroup)
+        {
+            return;
+        }
+
+        LOD[] lods = lodGroup.GetLODs();
+        for (int i = 0; i < lods.Length; i++)
+        {
+            lods[i].screenRelativeTransitionHeight = lodVal;
+        }
+        lodGroup.SetLODs(lods);
+    }
+
     private static void ApplyWearNTearSupportPatch(string prefabName, WearNTear wearNTear)
     {
         if (wearNTear.m_noSupportWear) 
@@ -191,7 +217,7 @@ internal static class PlacedPiecePatcher
 
         // set to true if not in the list of things to ignore and false if it is in the list
         // or set to true if there is a Vagon or Ship component since those don't need support in Vanilla
-        wearNTear.m_noSupportWear = !MorePrefabs.IgnoreWearNTearPatchesSet.Contains(prefabName) && !(wearNTear.GetComponent<Vagon>() || wearNTear.GetComponent<Ship>());
+        wearNTear.m_noSupportWear = !MorePrefabs.IgnoreWearNTearPatchesSet.Contains(prefabName) && !(wearNTear.GetComponent<Vagon>() || wearNTear.GetComponent<Ship>() || wearNTear.GetComponent<Floating>() || wearNTear.GetComponent<Rigidbody>());
 
         // update ZDO to make sure that the setting is changed in a way that is persistent in
         // case the list of IgnoreWearNTearPatches has changed since the last time ZDO were saved

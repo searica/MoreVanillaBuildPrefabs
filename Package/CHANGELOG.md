@@ -8,6 +8,27 @@
 			<th align="center">Notes</th>
 		</tr>
 		<tr>
+			<td align="center">1.7.2</td>
+			<td align="left">
+				<ul>
+					<li>Updated readme with information on which pieces are affected by the new WearNTear patches.</li>
+					<li>Updated readme to explicitly state that WearNTear patches are persistent without MVBP installed and are vanilla compatible.</li>
+					<li>Updated readme to explain the new fortress pieces config setting and changes to the creative mode piece categories.</li>
+					<li>Made any build pieces that can float in water automatically be allowed to be placed in water.</li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<td align="center">1.7.1</td>
+			<td align="left">
+				<ul>
+					<li>Enabled various storage chests and configured player-built instances to provide a more consistent progression in terms of storage size all the from the meadows to the deep north.</li>
+					<li>Adjusted default names of some pieces to take advantage of existing localization in-game.</li>
+					<li>Bugfix for being able to remove non-player built pieces that already exist in the world.</li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
 			<td align="center">1.7.0</td>
 			<td align="left">
 				<ul>
