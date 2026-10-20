@@ -81,6 +81,8 @@ The mod has a default configuration that enables ~100 new pieces by default. The
   - Turf roofs.
   - Statues.
   - Wood ledge.
+  - All Ashlands ruins and structures.
+  - New chests that provide a more consistent progression for your storage across all of the biomes.
 
   See the PrefabConfig.cs file in the source code for the full default configuration or install the mod and check the generated configuration file.
 </details>
