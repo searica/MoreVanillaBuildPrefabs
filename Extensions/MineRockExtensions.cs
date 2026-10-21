@@ -24,7 +24,7 @@ internal static class MineRockExtensions
         hitData.m_toolTier = 100;
         hitData.m_hitType = HitData.HitType.Structural;
         //hitData.m_attacker = ZDOID.None; // ideally use this
-        hitData.m_attacker = Player.m_localPlayer.GetZDOID(); // have to use this because of the silly hit.GetAttacker().GetZDOID()
+        hitData.m_attacker = Player.m_localPlayer.GetZDOID(); // have to use this because of the silly hit.GetAttacker().GetZDOID() and hit.GetAttacker() is Player player
 
         for (int i = 0; i < mineRock.m_hitAreas.Length; i++)
         {
